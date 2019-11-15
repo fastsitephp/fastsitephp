@@ -24,6 +24,12 @@ TODO List
 **** Priority Items Start
 ****
 
+*) Fix Server Certificate issue
+    ** Works:
+        https://www.fastsitephp.com/en/
+    ** Does not work:
+        https://fastsitephp.com/en/
+
 *) Update Download Controller and GitHub links on [getting-started] page after code is published
         FastSitePHP\website\app\Views\getting-started.php
         FastSitePHP\website\app\Controllers\Downloads.php
