@@ -24,12 +24,6 @@ TODO List
 **** Priority Items Start
 ****
 
-*) Fix Server Certificate issue
-    ** Works:
-        https://www.fastsitephp.com/en/
-    ** Does not work:
-        https://fastsitephp.com/en/
-
 *) Update Download Controller and GitHub links on [getting-started] page after code is published
         FastSitePHP\website\app\Views\getting-started.php
         FastSitePHP\website\app\Controllers\Downloads.php
@@ -46,6 +40,8 @@ TODO List
         https://packagist.org/packages/fastsitephp/fastsitephp
     Packagist recommends the following:
         https://packagist.org/about#how-to-update-packages
+    Once published update the related GitHub icon for Framework in:
+        FastSitePHP\website\app\Views\getting-started.php
 
 *) Update [install.php] on the Starter and Main sites to point to GitHub
     - Only download polyfills if needed based on PHP Version then

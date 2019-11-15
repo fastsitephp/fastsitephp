@@ -100,22 +100,22 @@
         </div>
         <ul>
             <li>
-                <a href="#" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['framework_and_site']) ?>">📥</a>
-                <a href="#">
+                <a href="<?= $app->rootUrl() ?>downloads/fastsitephp" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['framework_and_site']) ?>">📥</a>
+                <a href="https://github.com/fastsitephp/fastsitephp" target="_blank">
                     <img src="../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32">
                     <span class="text"><?= $app->escape($i18n['framework_and_site']) ?></span>
                 </a>
             </li>
             <li>
-                <a href="#" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['starter_site']) ?>">📥</a>
-                <a href="#">
+                <a href="<?= $app->rootUrl() ?>downloads/starter-site" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['starter_site']) ?>">📥</a>
+                <a href="https://github.com/fastsitephp/starter-site" target="_blank">
                     <img src="../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32">
                     <span class="text"><?= $app->escape($i18n['starter_site']) ?></span>
                 </a>
             </li>
             <li>
                 <a href="<?= $app->rootUrl() ?>downloads/framework" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['framework_only']) ?>">📥</a>
-                <a href="#">
+                <a href="https://github.com/fastsitephp/fastsitephp" target="_blank">
                     <img src="../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32">
                     <span class="text"><?= $app->escape($i18n['framework_only']) ?></span>
                 </a>

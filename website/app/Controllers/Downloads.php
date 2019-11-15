@@ -23,6 +23,12 @@ class Downloads
                     $file_path = __DIR__ . '/../../../scripts/shell/bash/encrypt.sh';
                 }
                 return (new Response())->file($file_path, 'download');
+            case 'fastsitephp':
+                $url = 'https://github.com/fastsitephp/fastsitephp/archive/master.zip';
+                break;
+            case 'starter-site':
+                $url = 'https://github.com/fastsitephp/starter-site/archive/master.zip';
+                break;
             case 'framework':
                 $url = 'https://fastsitephp.s3-us-west-1.amazonaws.com/downloads/FastSitePHP-Framework-v1.0.0.zip';
                 break;
