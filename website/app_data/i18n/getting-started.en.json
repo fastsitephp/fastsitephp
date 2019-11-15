@@ -1,0 +1,15 @@
+{
+    "page_title": "Getting Started with FastSitePHP",
+    "download": "Download",
+    "develop": "Developing with PHP",
+    "install_nix": "Install PHP on Linux and Unix",
+    "install_win": "Install PHP on Windows",
+    "install_mac": "Install PHP on macOS",
+    "framework_and_site": "FastSitePHP Framework and Website (~1.2 mb)",
+    "starter_site": "FastSitePHP Starter Site (~10 kb)",
+    "framework_only": "FastSitePHP Framework Only (~430 kb)",
+    "vs_code": "PHP with Visual Studio Code",
+    "atom": "PHP with GitHub Atom Editor",
+    "other_editors": "Other IDE's and Code Editors",
+    "code_editors": "Code Editors"
+}

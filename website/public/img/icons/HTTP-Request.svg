@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>HTTP-Request</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#07D4FA" offset="0%"></stop>
+            <stop stop-color="#03A9F4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="HTTP-Request" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" stroke="#0284C0" stroke-width="4" fill="#FFFFFF" x="12" y="12" width="96" height="96"></rect>
+        <path d="M67.9149563,68.2 L67.9149563,92 C67.9149563,96.418278 64.3332343,100 59.9149563,100 C55.4966783,100 51.9149563,96.418278 51.9149563,92 L51.9149563,68.2 L34.3922323,71.7045448 C33.7365117,71.8356889 33.0586333,71.6304438 32.5857864,71.157597 C31.8047379,70.3765484 31.8047379,69.1102185 32.5857864,68.3291699 L59.9149563,41 L87.2441262,68.3291699 C87.716973,68.8020167 87.9222181,69.4798952 87.791074,70.1356157 C87.5744501,71.2187352 86.5207999,71.9211687 85.4376804,71.7045448 L67.9149563,68.2 Z" id="Combined-Shape" stroke="#0284C0" stroke-width="4" fill="url(#linearGradient-1)"></path>
+        <rect id="Rectangle" stroke="#0284C0" stroke-width="4" fill="#FFFFFF" x="12" y="12" width="96" height="20"></rect>
+        <rect id="Rectangle" fill="#03A9F4" x="93" y="17" width="10" height="10"></rect>
+        <rect id="Rectangle" fill="#03A9F4" x="17" y="17" width="72" height="10"></rect>
+    </g>
+</svg>

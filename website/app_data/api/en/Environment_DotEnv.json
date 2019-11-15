@@ -1,0 +1,50 @@
+{
+    "name": "FastSitePHP\\Environment\\DotEnv",
+    "short_name": "Environment\\DotEnv",
+    "link": "Environment_DotEnv",
+    "namespace": "FastSitePHP\\Environment",
+    "description": "Loads environment variables from a [.env] file into [getenv()] and [$_ENV].\n\nThis class is a port of the widely used node [dotenv] package so the following syntax is supported:\n\n  - Empty lines are skipped\n  - Lines beginning with # are treated as comments\n  - Empty values become empty strings ([EMPTY=] becomes {EMPTY: ''})\n  - Whitespace is trimmed for unquoted values ([FOO= some value ] becomes {FOO: 'some value'})\n  - Single and double quoted values are escaped ([SINGLE_QUOTE='quoted'] becomes {SINGLE_QUOTE: \"quoted\"})\n  - Double quoted values expand new lines (example: [MULTILINE=\"new\\nline\"])\n\nThis class is minimal like the node pacakage and does not support nested variables, inline shell execution, or advanced validation. If you prefer to use those features then PHP packages [vlucas\/phpdotenv] or [symfony\/dotenv] are recommended.",
+    "attributes": [
+        "@link https:\/\/www.npmjs.com\/package\/dotenv",
+        "@link https:\/\/github.com\/vlucas\/phpdotenv",
+        "@link https:\/\/github.com\/symfony\/dotenv"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "load($dir_path, array $required_vars = array())",
+            "target": "fn_load",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Load a [.env] file from a directory. The directory and file must exist or an exception will be thrown.\n\nAn optional array [$required_vars] can be passed and if any key from the array do not exist in the file an exception will be thrown. The actual values are not validated by this class.\n\nReturns an array of all variables read from the file.",
+            "attributes": [
+                "@param string $dir_path",
+                "@param null|array $required_vars",
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "loadFile($file_path, array $required_vars = array())",
+            "target": "fn_loadFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Load a file using [.env] file format. The full path of the file is specified so it can be named anything.",
+            "attributes": [
+                "@param string $file_path",
+                "@param null|array $required_vars",
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/www.npmjs.com\/package\/dotenv",
+        "https:\/\/github.com\/vlucas\/phpdotenv",
+        "https:\/\/github.com\/symfony\/dotenv"
+    ]
+}

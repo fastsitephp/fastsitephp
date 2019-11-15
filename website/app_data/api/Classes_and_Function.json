@@ -1,0 +1,2016 @@
+[
+    {
+        "name": "FastSitePHP\\Application",
+        "link": "Application",
+        "properties": [
+            {
+                "name": "Application->template_dir",
+                "link": "Application#prop_template_dir"
+            },
+            {
+                "name": "Application->header_templates",
+                "link": "Application#prop_header_templates"
+            },
+            {
+                "name": "Application->footer_templates",
+                "link": "Application#prop_footer_templates"
+            },
+            {
+                "name": "Application->error_template",
+                "link": "Application#prop_error_template"
+            },
+            {
+                "name": "Application->not_found_template",
+                "link": "Application#prop_not_found_template"
+            },
+            {
+                "name": "Application->show_detailed_errors",
+                "link": "Application#prop_show_detailed_errors"
+            },
+            {
+                "name": "Application->error_page_title",
+                "link": "Application#prop_error_page_title"
+            },
+            {
+                "name": "Application->error_page_message",
+                "link": "Application#prop_error_page_message"
+            },
+            {
+                "name": "Application->not_found_page_title",
+                "link": "Application#prop_not_found_page_title"
+            },
+            {
+                "name": "Application->not_found_page_message",
+                "link": "Application#prop_not_found_page_message"
+            },
+            {
+                "name": "Application->method_not_allowed_title",
+                "link": "Application#prop_method_not_allowed_title"
+            },
+            {
+                "name": "Application->method_not_allowed_message",
+                "link": "Application#prop_method_not_allowed_message"
+            },
+            {
+                "name": "Application->strict_url_mode",
+                "link": "Application#prop_strict_url_mode"
+            },
+            {
+                "name": "Application->case_sensitive_urls",
+                "link": "Application#prop_case_sensitive_urls"
+            },
+            {
+                "name": "Application->allow_options_requests",
+                "link": "Application#prop_allow_options_requests"
+            },
+            {
+                "name": "Application->allow_methods_override",
+                "link": "Application#prop_allow_methods_override"
+            },
+            {
+                "name": "Application->controller_root",
+                "link": "Application#prop_controller_root"
+            },
+            {
+                "name": "Application->middleware_root",
+                "link": "Application#prop_middleware_root"
+            },
+            {
+                "name": "Application->lang",
+                "link": "Application#prop_lang"
+            },
+            {
+                "name": "Application->json_options",
+                "link": "Application#prop_json_options"
+            },
+            {
+                "name": "Application->locals",
+                "link": "Application#prop_locals"
+            },
+            {
+                "name": "Application->config",
+                "link": "Application#prop_config"
+            }
+        ],
+        "methods": [
+            {
+                "name": "Application->setup($timezone)",
+                "link": "Application#fn_setup"
+            },
+            {
+                "name": "Application->exceptionHandler($e)",
+                "link": "Application#fn_exceptionHandler"
+            },
+            {
+                "name": "Application->errorHandler($severity, $message, $file, $line)",
+                "link": "Application#fn_errorHandler"
+            },
+            {
+                "name": "Application->shutdown()",
+                "link": "Application#fn_shutdown"
+            },
+            {
+                "name": "Application->__call($name, $arguments)",
+                "link": "Application#fn___call"
+            },
+            {
+                "name": "Application->methodExists($name)",
+                "link": "Application#fn_methodExists"
+            },
+            {
+                "name": "Application->__get($name)",
+                "link": "Application#fn___get"
+            },
+            {
+                "name": "Application->lazyLoad($name, \\Closure $function)",
+                "link": "Application#fn_lazyLoad"
+            },
+            {
+                "name": "Application->statusCode($new_value = null)",
+                "link": "Application#fn_statusCode"
+            },
+            {
+                "name": "Application->header($name, $value = null)",
+                "link": "Application#fn_header"
+            },
+            {
+                "name": "Application->headers()",
+                "link": "Application#fn_headers"
+            },
+            {
+                "name": "Application->noCache($no_cache = true)",
+                "link": "Application#fn_noCache"
+            },
+            {
+                "name": "Application->cors($origin_or_headers = null)",
+                "link": "Application#fn_cors"
+            },
+            {
+                "name": "Application->cookie($name, $value = '', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Application#fn_cookie"
+            },
+            {
+                "name": "Application->clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Application#fn_clearCookie"
+            },
+            {
+                "name": "Application->cookies()",
+                "link": "Application#fn_cookies"
+            },
+            {
+                "name": "Application->escape($text)",
+                "link": "Application#fn_escape"
+            },
+            {
+                "name": "Application->engine(\\Closure $callback)",
+                "link": "Application#fn_engine"
+            },
+            {
+                "name": "Application->render($files, array $data = null)",
+                "link": "Application#fn_render"
+            },
+            {
+                "name": "Application->errorPage($page_title, $message, $e = null)",
+                "link": "Application#fn_errorPage"
+            },
+            {
+                "name": "Application->pageNotFound()",
+                "link": "Application#fn_pageNotFound"
+            },
+            {
+                "name": "Application->sendPageNotFound()",
+                "link": "Application#fn_sendPageNotFound"
+            },
+            {
+                "name": "Application->before(\\Closure $callback)",
+                "link": "Application#fn_before"
+            },
+            {
+                "name": "Application->notFound(\\Closure $callback)",
+                "link": "Application#fn_notFound"
+            },
+            {
+                "name": "Application->beforeSend(\\Closure $callback)",
+                "link": "Application#fn_beforeSend"
+            },
+            {
+                "name": "Application->after(\\Closure $callback)",
+                "link": "Application#fn_after"
+            },
+            {
+                "name": "Application->error(\\Closure $callback)",
+                "link": "Application#fn_error"
+            },
+            {
+                "name": "Application->onRender(\\Closure $callback)",
+                "link": "Application#fn_onRender"
+            },
+            {
+                "name": "Application->mount($url_path, $file, $condition = null)",
+                "link": "Application#fn_mount"
+            },
+            {
+                "name": "Application->route($pattern, $callback, $method = null)",
+                "link": "Application#fn_route"
+            },
+            {
+                "name": "Application->get($pattern, $callback)",
+                "link": "Application#fn_get"
+            },
+            {
+                "name": "Application->post($pattern, $callback)",
+                "link": "Application#fn_post"
+            },
+            {
+                "name": "Application->put($pattern, $callback)",
+                "link": "Application#fn_put"
+            },
+            {
+                "name": "Application->delete($pattern, $callback)",
+                "link": "Application#fn_delete"
+            },
+            {
+                "name": "Application->patch($pattern, $callback)",
+                "link": "Application#fn_patch"
+            },
+            {
+                "name": "Application->routes()",
+                "link": "Application#fn_routes"
+            },
+            {
+                "name": "Application->redirect($url, $status_code = 302)",
+                "link": "Application#fn_redirect"
+            },
+            {
+                "name": "Application->requestedPath()",
+                "link": "Application#fn_requestedPath"
+            },
+            {
+                "name": "Application->rootUrl()",
+                "link": "Application#fn_rootUrl"
+            },
+            {
+                "name": "Application->rootDir()",
+                "link": "Application#fn_rootDir"
+            },
+            {
+                "name": "Application->param($name, $validation, $converter = null)",
+                "link": "Application#fn_param"
+            },
+            {
+                "name": "Application->routeMatches($pattern, $path)",
+                "link": "Application#fn_routeMatches"
+            },
+            {
+                "name": "Application->run()",
+                "link": "Application#fn_run"
+            },
+            {
+                "name": "Application->runAfterEvents($content)",
+                "link": "Application#fn_runAfterEvents"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\AppMin",
+        "link": "AppMin",
+        "properties": [
+            {
+                "name": "AppMin->status_code",
+                "link": "AppMin#prop_status_code"
+            },
+            {
+                "name": "AppMin->headers",
+                "link": "AppMin#prop_headers"
+            },
+            {
+                "name": "AppMin->cors_headers",
+                "link": "AppMin#prop_cors_headers"
+            },
+            {
+                "name": "AppMin->no_cache",
+                "link": "AppMin#prop_no_cache"
+            },
+            {
+                "name": "AppMin->template_dir",
+                "link": "AppMin#prop_template_dir"
+            },
+            {
+                "name": "AppMin->error_template",
+                "link": "AppMin#prop_error_template"
+            },
+            {
+                "name": "AppMin->not_found_template",
+                "link": "AppMin#prop_not_found_template"
+            },
+            {
+                "name": "AppMin->error_page_title",
+                "link": "AppMin#prop_error_page_title"
+            },
+            {
+                "name": "AppMin->error_page_message",
+                "link": "AppMin#prop_error_page_message"
+            },
+            {
+                "name": "AppMin->not_found_page_title",
+                "link": "AppMin#prop_not_found_page_title"
+            },
+            {
+                "name": "AppMin->not_found_page_message",
+                "link": "AppMin#prop_not_found_page_message"
+            },
+            {
+                "name": "AppMin->method_not_allowed_title",
+                "link": "AppMin#prop_method_not_allowed_title"
+            },
+            {
+                "name": "AppMin->method_not_allowed_message",
+                "link": "AppMin#prop_method_not_allowed_message"
+            },
+            {
+                "name": "AppMin->strict_url_mode",
+                "link": "AppMin#prop_strict_url_mode"
+            }
+        ],
+        "methods": [
+            {
+                "name": "AppMin->setup($timezone)",
+                "link": "AppMin#fn_setup"
+            },
+            {
+                "name": "AppMin->exceptionHandler($e)",
+                "link": "AppMin#fn_exceptionHandler"
+            },
+            {
+                "name": "AppMin->errorHandler($severity, $message, $file, $line)",
+                "link": "AppMin#fn_errorHandler"
+            },
+            {
+                "name": "AppMin->shutdown()",
+                "link": "AppMin#fn_shutdown"
+            },
+            {
+                "name": "AppMin->escape($text)",
+                "link": "AppMin#fn_escape"
+            },
+            {
+                "name": "AppMin->render($templates, $data = null)",
+                "link": "AppMin#fn_render"
+            },
+            {
+                "name": "AppMin->route($pattern, \\Closure $callback, $method = null)",
+                "link": "AppMin#fn_route"
+            },
+            {
+                "name": "AppMin->get($pattern, \\Closure $callback)",
+                "link": "AppMin#fn_get"
+            },
+            {
+                "name": "AppMin->post($pattern, \\Closure $callback)",
+                "link": "AppMin#fn_post"
+            },
+            {
+                "name": "AppMin->routes()",
+                "link": "AppMin#fn_routes"
+            },
+            {
+                "name": "AppMin->redirect($url, $status_code = 302)",
+                "link": "AppMin#fn_redirect"
+            },
+            {
+                "name": "AppMin->requestedPath()",
+                "link": "AppMin#fn_requestedPath"
+            },
+            {
+                "name": "AppMin->rootUrl()",
+                "link": "AppMin#fn_rootUrl"
+            },
+            {
+                "name": "AppMin->rootDir()",
+                "link": "AppMin#fn_rootDir"
+            },
+            {
+                "name": "AppMin->routeMatches($pattern, $path)",
+                "link": "AppMin#fn_routeMatches"
+            },
+            {
+                "name": "AppMin->run()",
+                "link": "AppMin#fn_run"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Route",
+        "link": "Route",
+        "properties": [
+            {
+                "name": "Route->pattern",
+                "link": "Route#prop_pattern"
+            },
+            {
+                "name": "Route->controller",
+                "link": "Route#prop_controller"
+            },
+            {
+                "name": "Route->method",
+                "link": "Route#prop_method"
+            },
+            {
+                "name": "Route->filter_callbacks",
+                "link": "Route#prop_filter_callbacks"
+            }
+        ],
+        "methods": [
+            {
+                "name": "Route->filter($callback)",
+                "link": "Route#fn_filter"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\Database",
+        "link": "Data_Database",
+        "properties": [
+            {
+                "name": "Database->db",
+                "link": "Data_Database#prop_db"
+            }
+        ],
+        "methods": [
+            {
+                "name": "Database->__construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())",
+                "link": "Data_Database#fn___construct"
+            },
+            {
+                "name": "Database->query($sql, array $params = null)",
+                "link": "Data_Database#fn_query"
+            },
+            {
+                "name": "Database->queryOne($sql, array $params = null)",
+                "link": "Data_Database#fn_queryOne"
+            },
+            {
+                "name": "Database->queryValue($sql, array $params = null)",
+                "link": "Data_Database#fn_queryValue"
+            },
+            {
+                "name": "Database->queryList($sql, array $params = null)",
+                "link": "Data_Database#fn_queryList"
+            },
+            {
+                "name": "Database->querySets($sql, array $params = null)",
+                "link": "Data_Database#fn_querySets"
+            },
+            {
+                "name": "Database->execute($sql, array $params = null)",
+                "link": "Data_Database#fn_execute"
+            },
+            {
+                "name": "Database->lastInsertId($name = null)",
+                "link": "Data_Database#fn_lastInsertId"
+            },
+            {
+                "name": "Database->executeMany($sql, array $records)",
+                "link": "Data_Database#fn_executeMany"
+            },
+            {
+                "name": "Database->trimStrings($new_value = null)",
+                "link": "Data_Database#fn_trimStrings"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\Db2Database",
+        "link": "Data_Db2Database",
+        "properties": [
+            {
+                "name": "Db2Database->db",
+                "link": "Data_Db2Database#prop_db"
+            }
+        ],
+        "methods": [
+            {
+                "name": "Db2Database->__construct($dsn, $user = null, $password = null, $persistent = false, $options = null)",
+                "link": "Data_Db2Database#fn___construct"
+            },
+            {
+                "name": "Db2Database->__destruct()",
+                "link": "Data_Db2Database#fn___destruct"
+            },
+            {
+                "name": "Db2Database->close()",
+                "link": "Data_Db2Database#fn_close"
+            },
+            {
+                "name": "Db2Database->query($sql, array $params = null)",
+                "link": "Data_Db2Database#fn_query"
+            },
+            {
+                "name": "Db2Database->queryOne($sql, array $params = null)",
+                "link": "Data_Db2Database#fn_queryOne"
+            },
+            {
+                "name": "Db2Database->queryValue($sql, array $params = null)",
+                "link": "Data_Db2Database#fn_queryValue"
+            },
+            {
+                "name": "Db2Database->queryList($sql, array $params = null)",
+                "link": "Data_Db2Database#fn_queryList"
+            },
+            {
+                "name": "Db2Database->execute($sql, array $params = null)",
+                "link": "Data_Db2Database#fn_execute"
+            },
+            {
+                "name": "Db2Database->executeMany($sql, array $records)",
+                "link": "Data_Db2Database#fn_executeMany"
+            },
+            {
+                "name": "Db2Database->trimStrings($new_value = null)",
+                "link": "Data_Db2Database#fn_trimStrings"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\OdbcDatabase",
+        "link": "Data_OdbcDatabase",
+        "properties": [
+            {
+                "name": "OdbcDatabase->db",
+                "link": "Data_OdbcDatabase#prop_db"
+            }
+        ],
+        "methods": [
+            {
+                "name": "OdbcDatabase->allowLargeTextValues($size = 100000)",
+                "link": "Data_OdbcDatabase#fn_allowLargeTextValues"
+            },
+            {
+                "name": "OdbcDatabase->__construct($dsn, $user = null, $password = null, $persistent = false, $options = null)",
+                "link": "Data_OdbcDatabase#fn___construct"
+            },
+            {
+                "name": "OdbcDatabase->__destruct()",
+                "link": "Data_OdbcDatabase#fn___destruct"
+            },
+            {
+                "name": "OdbcDatabase->close()",
+                "link": "Data_OdbcDatabase#fn_close"
+            },
+            {
+                "name": "OdbcDatabase->query($sql, array $params = null)",
+                "link": "Data_OdbcDatabase#fn_query"
+            },
+            {
+                "name": "OdbcDatabase->queryOne($sql, array $params = null)",
+                "link": "Data_OdbcDatabase#fn_queryOne"
+            },
+            {
+                "name": "OdbcDatabase->queryValue($sql, array $params = null)",
+                "link": "Data_OdbcDatabase#fn_queryValue"
+            },
+            {
+                "name": "OdbcDatabase->queryList($sql, array $params = null)",
+                "link": "Data_OdbcDatabase#fn_queryList"
+            },
+            {
+                "name": "OdbcDatabase->execute($sql, array $params = null)",
+                "link": "Data_OdbcDatabase#fn_execute"
+            },
+            {
+                "name": "OdbcDatabase->executeMany($sql, array $records)",
+                "link": "Data_OdbcDatabase#fn_executeMany"
+            },
+            {
+                "name": "OdbcDatabase->trimStrings($new_value = null)",
+                "link": "Data_OdbcDatabase#fn_trimStrings"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\Validator",
+        "link": "Data_Validator",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Validator->addRules(array $rules)",
+                "link": "Data_Validator#fn_addRules"
+            },
+            {
+                "name": "Validator->customRule($name, \\Closure $callback)",
+                "link": "Data_Validator#fn_customRule"
+            },
+            {
+                "name": "Validator->supportedRules()",
+                "link": "Data_Validator#fn_supportedRules"
+            },
+            {
+                "name": "Validator->supportedTypes()",
+                "link": "Data_Validator#fn_supportedTypes"
+            },
+            {
+                "name": "Validator->errorText(array $error_text = null)",
+                "link": "Data_Validator#fn_errorText"
+            },
+            {
+                "name": "Validator->validate($data)",
+                "link": "Data_Validator#fn_validate"
+            },
+            {
+                "name": "Validator->checkType($value, $type)",
+                "link": "Data_Validator#fn_checkType"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\KeyValue\\SqliteStorage",
+        "link": "Data_KeyValue_SqliteStorage",
+        "properties": [],
+        "methods": [
+            {
+                "name": "SqliteStorage->__construct($file_path)",
+                "link": "Data_KeyValue_SqliteStorage#fn___construct"
+            },
+            {
+                "name": "SqliteStorage->get($key, $default_value = null)",
+                "link": "Data_KeyValue_SqliteStorage#fn_get"
+            },
+            {
+                "name": "SqliteStorage->set($key, $value)",
+                "link": "Data_KeyValue_SqliteStorage#fn_set"
+            },
+            {
+                "name": "SqliteStorage->exists($key)",
+                "link": "Data_KeyValue_SqliteStorage#fn_exists"
+            },
+            {
+                "name": "SqliteStorage->remove($key)",
+                "link": "Data_KeyValue_SqliteStorage#fn_remove"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\Log\\FileLogger",
+        "link": "Data_Log_FileLogger",
+        "properties": [
+            {
+                "name": "FileLogger->file_path",
+                "link": "Data_Log_FileLogger#prop_file_path"
+            },
+            {
+                "name": "FileLogger->log_format",
+                "link": "Data_Log_FileLogger#prop_log_format"
+            },
+            {
+                "name": "FileLogger->line_break",
+                "link": "Data_Log_FileLogger#prop_line_break"
+            },
+            {
+                "name": "FileLogger->date_format",
+                "link": "Data_Log_FileLogger#prop_date_format"
+            }
+        ],
+        "methods": [
+            {
+                "name": "FileLogger->__construct($file_path)",
+                "link": "Data_Log_FileLogger#fn___construct"
+            },
+            {
+                "name": "FileLogger->log($level, $message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_log"
+            },
+            {
+                "name": "FileLogger->emergency($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_emergency"
+            },
+            {
+                "name": "FileLogger->alert($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_alert"
+            },
+            {
+                "name": "FileLogger->critical($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_critical"
+            },
+            {
+                "name": "FileLogger->error($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_error"
+            },
+            {
+                "name": "FileLogger->warning($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_warning"
+            },
+            {
+                "name": "FileLogger->notice($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_notice"
+            },
+            {
+                "name": "FileLogger->info($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_info"
+            },
+            {
+                "name": "FileLogger->debug($message, array $context = array())",
+                "link": "Data_Log_FileLogger#fn_debug"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Data\\Log\\HtmlLogger",
+        "link": "Data_Log_HtmlLogger",
+        "properties": [
+            {
+                "name": "HtmlLogger->temlate_file",
+                "link": "Data_Log_HtmlLogger#prop_temlate_file"
+            },
+            {
+                "name": "HtmlLogger->date_format",
+                "link": "Data_Log_HtmlLogger#prop_date_format"
+            }
+        ],
+        "methods": [
+            {
+                "name": "HtmlLogger->__construct(Application $app, $replace_response = false)",
+                "link": "Data_Log_HtmlLogger#fn___construct"
+            },
+            {
+                "name": "HtmlLogger->getHtml()",
+                "link": "Data_Log_HtmlLogger#fn_getHtml"
+            },
+            {
+                "name": "HtmlLogger->log($level, $message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_log"
+            },
+            {
+                "name": "HtmlLogger->emergency($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_emergency"
+            },
+            {
+                "name": "HtmlLogger->alert($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_alert"
+            },
+            {
+                "name": "HtmlLogger->critical($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_critical"
+            },
+            {
+                "name": "HtmlLogger->error($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_error"
+            },
+            {
+                "name": "HtmlLogger->warning($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_warning"
+            },
+            {
+                "name": "HtmlLogger->notice($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_notice"
+            },
+            {
+                "name": "HtmlLogger->info($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_info"
+            },
+            {
+                "name": "HtmlLogger->debug($message, array $context = array())",
+                "link": "Data_Log_HtmlLogger#fn_debug"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Encoding\\Base64Url",
+        "link": "Encoding_Base64Url",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Base64Url::encode($data)",
+                "link": "Encoding_Base64Url#fn_encode"
+            },
+            {
+                "name": "Base64Url::decode($data)",
+                "link": "Encoding_Base64Url#fn_decode"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Encoding\\Json",
+        "link": "Encoding_Json",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Json::encode($data, $options = JSON_UNESCAPED_UNICODE)",
+                "link": "Encoding_Json#fn_encode"
+            },
+            {
+                "name": "Json::decode($text)",
+                "link": "Encoding_Json#fn_decode"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Encoding\\Utf8",
+        "link": "Encoding_Utf8",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Utf8::encode($data)",
+                "link": "Encoding_Utf8#fn_encode"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Environment\\DotEnv",
+        "link": "Environment_DotEnv",
+        "properties": [],
+        "methods": [
+            {
+                "name": "DotEnv::load($dir_path, array $required_vars = array())",
+                "link": "Environment_DotEnv#fn_load"
+            },
+            {
+                "name": "DotEnv::loadFile($file_path, array $required_vars = array())",
+                "link": "Environment_DotEnv#fn_loadFile"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Environment\\System",
+        "link": "Environment_System",
+        "properties": [],
+        "methods": [
+            {
+                "name": "System->osVersionInfo()",
+                "link": "Environment_System#fn_osVersionInfo"
+            },
+            {
+                "name": "System->systemInfo()",
+                "link": "Environment_System#fn_systemInfo"
+            },
+            {
+                "name": "System->diskSpace($drive = null)",
+                "link": "Environment_System#fn_diskSpace"
+            },
+            {
+                "name": "System->mappedDrives()",
+                "link": "Environment_System#fn_mappedDrives"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\FileSystem\\Search",
+        "link": "FileSystem_Search",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Search->dir($new_value = null)",
+                "link": "FileSystem_Search#fn_dir"
+            },
+            {
+                "name": "Search->reset()",
+                "link": "FileSystem_Search#fn_reset"
+            },
+            {
+                "name": "Search->recursive($new_value = null)",
+                "link": "FileSystem_Search#fn_recursive"
+            },
+            {
+                "name": "Search->includeRoot($new_value = null)",
+                "link": "FileSystem_Search#fn_includeRoot"
+            },
+            {
+                "name": "Search->fullPath($full_path = null)",
+                "link": "FileSystem_Search#fn_fullPath"
+            },
+            {
+                "name": "Search->fileTypes(array $new_value = null)",
+                "link": "FileSystem_Search#fn_fileTypes"
+            },
+            {
+                "name": "Search->includeNames(array $new_value = null)",
+                "link": "FileSystem_Search#fn_includeNames"
+            },
+            {
+                "name": "Search->includeRegExNames(array $new_value = null)",
+                "link": "FileSystem_Search#fn_includeRegExNames"
+            },
+            {
+                "name": "Search->includeRegExPaths(array $new_value = null)",
+                "link": "FileSystem_Search#fn_includeRegExPaths"
+            },
+            {
+                "name": "Search->excludeNames(array $new_value = null)",
+                "link": "FileSystem_Search#fn_excludeNames"
+            },
+            {
+                "name": "Search->excludeRegExNames(array $new_value = null)",
+                "link": "FileSystem_Search#fn_excludeRegExNames"
+            },
+            {
+                "name": "Search->excludeRegExPaths(array $new_value = null)",
+                "link": "FileSystem_Search#fn_excludeRegExPaths"
+            },
+            {
+                "name": "Search->includeText(array $new_value = null)",
+                "link": "FileSystem_Search#fn_includeText"
+            },
+            {
+                "name": "Search->caseInsensitiveText($new_value = null)",
+                "link": "FileSystem_Search#fn_caseInsensitiveText"
+            },
+            {
+                "name": "Search->hideExtensions($new_value = null)",
+                "link": "FileSystem_Search#fn_hideExtensions"
+            },
+            {
+                "name": "Search->files()",
+                "link": "FileSystem_Search#fn_files"
+            },
+            {
+                "name": "Search->dirs()",
+                "link": "FileSystem_Search#fn_dirs"
+            },
+            {
+                "name": "Search->urlFiles($url_root)",
+                "link": "FileSystem_Search#fn_urlFiles"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\FileSystem\\Security",
+        "link": "FileSystem_Security",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Security::dirContainsFile($dir, $file)",
+                "link": "FileSystem_Security#fn_dirContainsFile"
+            },
+            {
+                "name": "Security::dirContainsPath($dir, $path)",
+                "link": "FileSystem_Security#fn_dirContainsPath"
+            },
+            {
+                "name": "Security::dirContainsDir($root_dir, $dir_name)",
+                "link": "FileSystem_Security#fn_dirContainsDir"
+            },
+            {
+                "name": "Security::fileIsValidImage($full_path)",
+                "link": "FileSystem_Security#fn_fileIsValidImage"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Lang\\I18N",
+        "link": "Lang_I18N",
+        "properties": [
+            {
+                "name": "I18N::loaded_files",
+                "link": "Lang_I18N#prop_loaded_files"
+            },
+            {
+                "name": "I18N::opened_text_files",
+                "link": "Lang_I18N#prop_opened_text_files"
+            },
+            {
+                "name": "I18N::redirect_on_missing_lang",
+                "link": "Lang_I18N#prop_redirect_on_missing_lang"
+            }
+        ],
+        "methods": [
+            {
+                "name": "I18N::langFile($file_name, $lang)",
+                "link": "Lang_I18N#fn_langFile"
+            },
+            {
+                "name": "I18N::textFile($file_path, $lang)",
+                "link": "Lang_I18N#fn_textFile"
+            },
+            {
+                "name": "I18N::setup(Application $app)",
+                "link": "Lang_I18N#fn_setup"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Lang\\L10N",
+        "link": "Lang_L10N",
+        "properties": [],
+        "methods": [
+            {
+                "name": "L10N->__construct($locale = null, $timezone = null)",
+                "link": "Lang_L10N#fn___construct"
+            },
+            {
+                "name": "L10N->function supportedLocales()",
+                "link": "Lang_L10N#fn_supportedLocales"
+            },
+            {
+                "name": "L10N->function supportedLanguages()",
+                "link": "Lang_L10N#fn_supportedLanguages"
+            },
+            {
+                "name": "L10N->locale($locale = null)",
+                "link": "Lang_L10N#fn_locale"
+            },
+            {
+                "name": "L10N->function supportedTimezones()",
+                "link": "Lang_L10N#fn_supportedTimezones"
+            },
+            {
+                "name": "L10N->timezone($timezone = null)",
+                "link": "Lang_L10N#fn_timezone"
+            },
+            {
+                "name": "L10N->formatDateTime($date_time)",
+                "link": "Lang_L10N#fn_formatDateTime"
+            },
+            {
+                "name": "L10N->formatDate($date)",
+                "link": "Lang_L10N#fn_formatDate"
+            },
+            {
+                "name": "L10N->formatTime($time)",
+                "link": "Lang_L10N#fn_formatTime"
+            },
+            {
+                "name": "L10N->formatNumber($number, $decimals = 0)",
+                "link": "Lang_L10N#fn_formatNumber"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Lang\\Time",
+        "link": "Lang_Time",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Time::secondsToText($seconds)",
+                "link": "Lang_Time#fn_secondsToText"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Media\\Image",
+        "link": "Media_Image",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Image->__construct($image_path = null)",
+                "link": "Media_Image#fn___construct"
+            },
+            {
+                "name": "Image->__destruct()",
+                "link": "Media_Image#fn___destruct"
+            },
+            {
+                "name": "Image->open($image_path)",
+                "link": "Media_Image#fn_open"
+            },
+            {
+                "name": "Image->resize($max_width = null, $max_height = null)",
+                "link": "Media_Image#fn_resize"
+            },
+            {
+                "name": "Image->crop($left, $top, $width, $height, $target_width = null, $target_height = null)",
+                "link": "Media_Image#fn_crop"
+            },
+            {
+                "name": "Image->rotateLeft()",
+                "link": "Media_Image#fn_rotateLeft"
+            },
+            {
+                "name": "Image->rotateRight()",
+                "link": "Media_Image#fn_rotateRight"
+            },
+            {
+                "name": "Image->rotate($degrees)",
+                "link": "Media_Image#fn_rotate"
+            },
+            {
+                "name": "Image->saveQuality($new_value = null)",
+                "link": "Media_Image#fn_saveQuality"
+            },
+            {
+                "name": "Image->pngCompression($new_value = null)",
+                "link": "Media_Image#fn_pngCompression"
+            },
+            {
+                "name": "Image->save($file_name = null)",
+                "link": "Media_Image#fn_save"
+            },
+            {
+                "name": "Image->close()",
+                "link": "Media_Image#fn_close"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Net\\Config",
+        "link": "Net_Config",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Config->fqdn()",
+                "link": "Net_Config#fn_fqdn"
+            },
+            {
+                "name": "Config->networkIp()",
+                "link": "Net_Config#fn_networkIp"
+            },
+            {
+                "name": "Config->networkIpList()",
+                "link": "Net_Config#fn_networkIpList"
+            },
+            {
+                "name": "Config->networkInfo($all = false)",
+                "link": "Net_Config#fn_networkInfo"
+            },
+            {
+                "name": "Config->parseNetworkInfo($config_text, $exception_on_parse_error = false)",
+                "link": "Net_Config#fn_parseNetworkInfo"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Net\\Email",
+        "link": "Net_Email",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Email->__construct($from = null, $to = null, $subject = null, $body = null)",
+                "link": "Net_Email#fn___construct"
+            },
+            {
+                "name": "Email->from($new_value = null)",
+                "link": "Net_Email#fn_from"
+            },
+            {
+                "name": "Email->replyTo($new_value = null)",
+                "link": "Net_Email#fn_replyTo"
+            },
+            {
+                "name": "Email->to($new_value = null)",
+                "link": "Net_Email#fn_to"
+            },
+            {
+                "name": "Email->cc($new_value = null)",
+                "link": "Net_Email#fn_cc"
+            },
+            {
+                "name": "Email->bcc($new_value = null)",
+                "link": "Net_Email#fn_bcc"
+            },
+            {
+                "name": "Email->subject($new_value = null)",
+                "link": "Net_Email#fn_subject"
+            },
+            {
+                "name": "Email->body($new_value = null)",
+                "link": "Net_Email#fn_body"
+            },
+            {
+                "name": "Email->isHtml($new_value = null)",
+                "link": "Net_Email#fn_isHtml"
+            },
+            {
+                "name": "Email->priority($new_value = null)",
+                "link": "Net_Email#fn_priority"
+            },
+            {
+                "name": "Email->header($name, $new_value = null)",
+                "link": "Net_Email#fn_header"
+            },
+            {
+                "name": "Email->safeHeaderNames($new_value = null)",
+                "link": "Net_Email#fn_safeHeaderNames"
+            },
+            {
+                "name": "Email->attachFile($file_path)",
+                "link": "Net_Email#fn_attachFile"
+            },
+            {
+                "name": "Email->allowUnicodeEmails($new_value = null)",
+                "link": "Net_Email#fn_allowUnicodeEmails"
+            },
+            {
+                "name": "Email->encodeFileNames($new_value = null)",
+                "link": "Net_Email#fn_encodeFileNames"
+            },
+            {
+                "name": "Email->message()",
+                "link": "Net_Email#fn_message"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Net\\HttpClient",
+        "link": "Net_HttpClient",
+        "properties": [
+            {
+                "name": "HttpClient::cainfo_path",
+                "link": "Net_HttpClient#prop_cainfo_path"
+            },
+            {
+                "name": "HttpClient::allow_insecure",
+                "link": "Net_HttpClient#prop_allow_insecure"
+            }
+        ],
+        "methods": [
+            {
+                "name": "HttpClient::get($url, array $headers = null)",
+                "link": "Net_HttpClient#fn_get"
+            },
+            {
+                "name": "HttpClient::postJson($url, $data, array $headers = null)",
+                "link": "Net_HttpClient#fn_postJson"
+            },
+            {
+                "name": "HttpClient::postForm($url, $fields, array $headers = null)",
+                "link": "Net_HttpClient#fn_postForm"
+            },
+            {
+                "name": "HttpClient::downloadFile($url, $path, array $headers = null)",
+                "link": "Net_HttpClient#fn_downloadFile"
+            },
+            {
+                "name": "HttpClient->request($url, array $options = null)",
+                "link": "Net_HttpClient#fn_request"
+            },
+            {
+                "name": "HttpClient->certPath()",
+                "link": "Net_HttpClient#fn_certPath"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Net\\HttpResponse",
+        "link": "Net_HttpResponse",
+        "properties": [
+            {
+                "name": "HttpResponse->error",
+                "link": "Net_HttpResponse#prop_error"
+            },
+            {
+                "name": "HttpResponse->status_code",
+                "link": "Net_HttpResponse#prop_status_code"
+            },
+            {
+                "name": "HttpResponse->headers",
+                "link": "Net_HttpResponse#prop_headers"
+            },
+            {
+                "name": "HttpResponse->content",
+                "link": "Net_HttpResponse#prop_content"
+            },
+            {
+                "name": "HttpResponse->json",
+                "link": "Net_HttpResponse#prop_json"
+            },
+            {
+                "name": "HttpResponse->info",
+                "link": "Net_HttpResponse#prop_info"
+            }
+        ],
+        "methods": []
+    },
+    {
+        "name": "FastSitePHP\\Net\\IP",
+        "link": "Net_IP",
+        "properties": [],
+        "methods": [
+            {
+                "name": "IP::cidr($cidr, $ip_to_compare = null)",
+                "link": "Net_IP#fn_cidr"
+            },
+            {
+                "name": "IP::privateNetworkAddresses()",
+                "link": "Net_IP#fn_privateNetworkAddresses"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Net\\SmtpClient",
+        "link": "Net_SmtpClient",
+        "properties": [],
+        "methods": [
+            {
+                "name": "SmtpClient->__construct($host = null, $port = null, $timeout = 5, \\Closure $debug_callback = null)",
+                "link": "Net_SmtpClient#fn___construct"
+            },
+            {
+                "name": "SmtpClient->__destruct()",
+                "link": "Net_SmtpClient#fn___destruct"
+            },
+            {
+                "name": "SmtpClient::sendEmails(array $emails)",
+                "link": "Net_SmtpClient#fn_sendEmails"
+            },
+            {
+                "name": "SmtpClient->send(Email $email)",
+                "link": "Net_SmtpClient#fn_send"
+            },
+            {
+                "name": "SmtpClient->connect($host, $port, $timeout = 5)",
+                "link": "Net_SmtpClient#fn_connect"
+            },
+            {
+                "name": "SmtpClient->close()",
+                "link": "Net_SmtpClient#fn_close"
+            },
+            {
+                "name": "SmtpClient->ehlo($client = null)",
+                "link": "Net_SmtpClient#fn_ehlo"
+            },
+            {
+                "name": "SmtpClient->helo($client = null)",
+                "link": "Net_SmtpClient#fn_helo"
+            },
+            {
+                "name": "SmtpClient->fqdn()",
+                "link": "Net_SmtpClient#fn_fqdn"
+            },
+            {
+                "name": "SmtpClient->startTls($client = null)",
+                "link": "Net_SmtpClient#fn_startTls"
+            },
+            {
+                "name": "SmtpClient->auth($user, $password)",
+                "link": "Net_SmtpClient#fn_auth"
+            },
+            {
+                "name": "SmtpClient->authLogin($user, $password)",
+                "link": "Net_SmtpClient#fn_authLogin"
+            },
+            {
+                "name": "SmtpClient->authPlain($user, $password)",
+                "link": "Net_SmtpClient#fn_authPlain"
+            },
+            {
+                "name": "SmtpClient->mailFrom($email, $utf8 = false)",
+                "link": "Net_SmtpClient#fn_mailFrom"
+            },
+            {
+                "name": "SmtpClient->rcptTo($email)",
+                "link": "Net_SmtpClient#fn_rcptTo"
+            },
+            {
+                "name": "SmtpClient->vrfy($email)",
+                "link": "Net_SmtpClient#fn_vrfy"
+            },
+            {
+                "name": "SmtpClient->rset()",
+                "link": "Net_SmtpClient#fn_rset"
+            },
+            {
+                "name": "SmtpClient->noop()",
+                "link": "Net_SmtpClient#fn_noop"
+            },
+            {
+                "name": "SmtpClient->data($data)",
+                "link": "Net_SmtpClient#fn_data"
+            },
+            {
+                "name": "SmtpClient->help()",
+                "link": "Net_SmtpClient#fn_help"
+            },
+            {
+                "name": "SmtpClient->quit()",
+                "link": "Net_SmtpClient#fn_quit"
+            },
+            {
+                "name": "SmtpClient->supports($extension)",
+                "link": "Net_SmtpClient#fn_supports"
+            },
+            {
+                "name": "SmtpClient->size()",
+                "link": "Net_SmtpClient#fn_size"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto",
+        "link": "Security_Crypto",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Crypto::encrypt($data)",
+                "link": "Security_Crypto#fn_encrypt"
+            },
+            {
+                "name": "Crypto::decrypt($encrypted_text)",
+                "link": "Security_Crypto#fn_decrypt"
+            },
+            {
+                "name": "Crypto::sign($data, $expire_time = '+1 hour')",
+                "link": "Security_Crypto#fn_sign"
+            },
+            {
+                "name": "Crypto::verify($signed_text)",
+                "link": "Security_Crypto#fn_verify"
+            },
+            {
+                "name": "Crypto::encryptFile($file_path, $enc_file)",
+                "link": "Security_Crypto#fn_encryptFile"
+            },
+            {
+                "name": "Crypto::decryptFile($enc_file, $output_file)",
+                "link": "Security_Crypto#fn_decryptFile"
+            },
+            {
+                "name": "Crypto::encodeJWT($payload, $exp_time = '+1 hour')",
+                "link": "Security_Crypto#fn_encodeJWT"
+            },
+            {
+                "name": "Crypto::decodeJWT($token)",
+                "link": "Security_Crypto#fn_decodeJWT"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Password",
+        "link": "Security_Password",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Password->__construct()",
+                "link": "Security_Password#fn___construct"
+            },
+            {
+                "name": "Password->hash($password)",
+                "link": "Security_Password#fn_hash"
+            },
+            {
+                "name": "Password->verify($password, $hash)",
+                "link": "Security_Password#fn_verify"
+            },
+            {
+                "name": "Password->needsRehash($hash)",
+                "link": "Security_Password#fn_needsRehash"
+            },
+            {
+                "name": "Password->generate()",
+                "link": "Security_Password#fn_generate"
+            },
+            {
+                "name": "Password->cost($new_value = null)",
+                "link": "Security_Password#fn_cost"
+            },
+            {
+                "name": "Password->findCost()",
+                "link": "Security_Password#fn_findCost"
+            },
+            {
+                "name": "Password->algo($new_value = null)",
+                "link": "Security_Password#fn_algo"
+            },
+            {
+                "name": "Password->options($new_value = null)",
+                "link": "Security_Password#fn_options"
+            },
+            {
+                "name": "Password->pepper($new_hex_value = null)",
+                "link": "Security_Password#fn_pepper"
+            },
+            {
+                "name": "Password->generatePepper($bytes = 8)",
+                "link": "Security_Password#fn_generatePepper"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\Encryption",
+        "link": "Security_Crypto_Encryption",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Encryption->generateKey()",
+                "link": "Security_Crypto_Encryption#fn_generateKey"
+            },
+            {
+                "name": "Encryption->encrypt($data, $key, $aad = '')",
+                "link": "Security_Crypto_Encryption#fn_encrypt"
+            },
+            {
+                "name": "Encryption->decrypt($encrypted_text, $key, $aad = '')",
+                "link": "Security_Crypto_Encryption#fn_decrypt"
+            },
+            {
+                "name": "Encryption->encryptionAlgorithm($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_encryptionAlgorithm"
+            },
+            {
+                "name": "Encryption->returnFormat($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_returnFormat"
+            },
+            {
+                "name": "Encryption->dataFormat($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_dataFormat"
+            },
+            {
+                "name": "Encryption->keySizeEnc($new_bit_length = null)",
+                "link": "Security_Crypto_Encryption#fn_keySizeEnc"
+            },
+            {
+                "name": "Encryption->isAEAD_Mode()",
+                "link": "Security_Crypto_Encryption#fn_isAEAD_Mode"
+            },
+            {
+                "name": "Encryption->__construct()",
+                "link": "Security_Crypto_Encryption#fn___construct"
+            },
+            {
+                "name": "Encryption->exceptionOnError($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_exceptionOnError"
+            },
+            {
+                "name": "Encryption->allowNull($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_allowNull"
+            },
+            {
+                "name": "Encryption->hashingAlgorithm($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_hashingAlgorithm"
+            },
+            {
+                "name": "Encryption->encryptThenAuthenticate($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_encryptThenAuthenticate"
+            },
+            {
+                "name": "Encryption->keyType($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_keyType"
+            },
+            {
+                "name": "Encryption->pbkdf2Algorithm($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_pbkdf2Algorithm"
+            },
+            {
+                "name": "Encryption->pbkdf2Iterations($new_value = null)",
+                "link": "Security_Crypto_Encryption#fn_pbkdf2Iterations"
+            },
+            {
+                "name": "Encryption->keySizeHmac()",
+                "link": "Security_Crypto_Encryption#fn_keySizeHmac"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\FileEncryption",
+        "link": "Security_Crypto_FileEncryption",
+        "properties": [],
+        "methods": [
+            {
+                "name": "FileEncryption->generateKey()",
+                "link": "Security_Crypto_FileEncryption#fn_generateKey"
+            },
+            {
+                "name": "FileEncryption->encryptFile($file_path, $enc_file, $key)",
+                "link": "Security_Crypto_FileEncryption#fn_encryptFile"
+            },
+            {
+                "name": "FileEncryption->decryptFile($enc_file, $output_file, $key)",
+                "link": "Security_Crypto_FileEncryption#fn_decryptFile"
+            },
+            {
+                "name": "FileEncryption->checkFileSetup()",
+                "link": "Security_Crypto_FileEncryption#fn_checkFileSetup"
+            },
+            {
+                "name": "FileEncryption->displayCmdErrorDetail($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_displayCmdErrorDetail"
+            },
+            {
+                "name": "FileEncryption->processFilesWithCmdLine($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_processFilesWithCmdLine"
+            },
+            {
+                "name": "FileEncryption->__construct()",
+                "link": "Security_Crypto_FileEncryption#fn___construct"
+            },
+            {
+                "name": "FileEncryption->encryptThenAuthenticate($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_encryptThenAuthenticate"
+            },
+            {
+                "name": "FileEncryption->keyType($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_keyType"
+            },
+            {
+                "name": "FileEncryption->pbkdf2Algorithm($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_pbkdf2Algorithm"
+            },
+            {
+                "name": "FileEncryption->pbkdf2Iterations($new_value = null)",
+                "link": "Security_Crypto_FileEncryption#fn_pbkdf2Iterations"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\JWT",
+        "link": "Security_Crypto_JWT",
+        "properties": [],
+        "methods": [
+            {
+                "name": "JWT->__construct()",
+                "link": "Security_Crypto_JWT#fn___construct"
+            },
+            {
+                "name": "JWT->generateKey($key_type = 'base64')",
+                "link": "Security_Crypto_JWT#fn_generateKey"
+            },
+            {
+                "name": "JWT->encode($payload, $key)",
+                "link": "Security_Crypto_JWT#fn_encode"
+            },
+            {
+                "name": "JWT->decode($token, $key)",
+                "link": "Security_Crypto_JWT#fn_decode"
+            },
+            {
+                "name": "JWT->addClaim($payload, $claim, $value)",
+                "link": "Security_Crypto_JWT#fn_addClaim"
+            },
+            {
+                "name": "JWT->exceptionOnError($value = null)",
+                "link": "Security_Crypto_JWT#fn_exceptionOnError"
+            },
+            {
+                "name": "JWT->algo($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_algo"
+            },
+            {
+                "name": "JWT->allowedAlgos(array $new_value = null)",
+                "link": "Security_Crypto_JWT#fn_allowedAlgos"
+            },
+            {
+                "name": "JWT->useInsecureKey($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_useInsecureKey"
+            },
+            {
+                "name": "JWT->validateDefinedClaims($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_validateDefinedClaims"
+            },
+            {
+                "name": "JWT->allowedIssuers(array $new_value = null)",
+                "link": "Security_Crypto_JWT#fn_allowedIssuers"
+            },
+            {
+                "name": "JWT->requireSubject($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_requireSubject"
+            },
+            {
+                "name": "JWT->allowedAudiences(array $new_value = null)",
+                "link": "Security_Crypto_JWT#fn_allowedAudiences"
+            },
+            {
+                "name": "JWT->requireExpireTime($new_expiration_time = null, $leeway = null)",
+                "link": "Security_Crypto_JWT#fn_requireExpireTime"
+            },
+            {
+                "name": "JWT->requireNotBefore($new_not_before_time = null, $leeway = null)",
+                "link": "Security_Crypto_JWT#fn_requireNotBefore"
+            },
+            {
+                "name": "JWT->requireIssuedAt($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_requireIssuedAt"
+            },
+            {
+                "name": "JWT->requireJwtId($new_value = null)",
+                "link": "Security_Crypto_JWT#fn_requireJwtId"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\PublicKey",
+        "link": "Security_Crypto_PublicKey",
+        "properties": [],
+        "methods": [
+            {
+                "name": "PublicKey::defaultConfig($bits = 2048)",
+                "link": "Security_Crypto_PublicKey#fn_defaultConfig"
+            },
+            {
+                "name": "PublicKey::generateRsaKeyPair($bits = 2048)",
+                "link": "Security_Crypto_PublicKey#fn_generateRsaKeyPair"
+            },
+            {
+                "name": "PublicKey::generateKeyPair(array $config)",
+                "link": "Security_Crypto_PublicKey#fn_generateKeyPair"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\Random",
+        "link": "Security_Crypto_Random",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Random::bytes($length)",
+                "link": "Security_Crypto_Random#fn_bytes"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Crypto\\SignedData",
+        "link": "Security_Crypto_SignedData",
+        "properties": [],
+        "methods": [
+            {
+                "name": "SignedData->generateKey()",
+                "link": "Security_Crypto_SignedData#fn_generateKey"
+            },
+            {
+                "name": "SignedData->sign($data, $key, $expire_time = null)",
+                "link": "Security_Crypto_SignedData#fn_sign"
+            },
+            {
+                "name": "SignedData->verify($signed_text, $key)",
+                "link": "Security_Crypto_SignedData#fn_verify"
+            },
+            {
+                "name": "SignedData->__construct()",
+                "link": "Security_Crypto_SignedData#fn___construct"
+            },
+            {
+                "name": "SignedData->exceptionOnError($new_value = null)",
+                "link": "Security_Crypto_SignedData#fn_exceptionOnError"
+            },
+            {
+                "name": "SignedData->allowNull($new_value = null)",
+                "link": "Security_Crypto_SignedData#fn_allowNull"
+            },
+            {
+                "name": "SignedData->hashingAlgorithm($new_value = null)",
+                "link": "Security_Crypto_SignedData#fn_hashingAlgorithm"
+            },
+            {
+                "name": "SignedData->keySizeHmac()",
+                "link": "Security_Crypto_SignedData#fn_keySizeHmac"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Web\\CsrfSession",
+        "link": "Security_Web_CsrfSession",
+        "properties": [],
+        "methods": [
+            {
+                "name": "CsrfSession::setup(Application $app, $key = 'X-CSRF-Token')",
+                "link": "Security_Web_CsrfSession#fn_setup"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Web\\CsrfStateless",
+        "link": "Security_Web_CsrfStateless",
+        "properties": [],
+        "methods": [
+            {
+                "name": "CsrfStateless::generateKey()",
+                "link": "Security_Web_CsrfStateless#fn_generateKey"
+            },
+            {
+                "name": "CsrfStateless::setup(Application $app, $user_id, $expire_time = null, $key = 'X-CSRF-Token')",
+                "link": "Security_Web_CsrfStateless#fn_setup"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Security\\Web\\RateLimit",
+        "link": "Security_Web_RateLimit",
+        "properties": [],
+        "methods": [
+            {
+                "name": "RateLimit->filterRequest(Application $app, array $options)",
+                "link": "Security_Web_RateLimit#fn_filterRequest"
+            },
+            {
+                "name": "RateLimit->allow(array $options)",
+                "link": "Security_Web_RateLimit#fn_allow"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Web\\Request",
+        "link": "Web_Request",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Request->queryString($name, $format = 'value?')",
+                "link": "Web_Request#fn_queryString"
+            },
+            {
+                "name": "Request->form($name, $format = 'value?')",
+                "link": "Web_Request#fn_form"
+            },
+            {
+                "name": "Request->cookie($name, $format = 'value?')",
+                "link": "Web_Request#fn_cookie"
+            },
+            {
+                "name": "Request->verifiedCookie($name)",
+                "link": "Web_Request#fn_verifiedCookie"
+            },
+            {
+                "name": "Request->jwtCookie($name)",
+                "link": "Web_Request#fn_jwtCookie"
+            },
+            {
+                "name": "Request->decryptedCookie($name)",
+                "link": "Web_Request#fn_decryptedCookie"
+            },
+            {
+                "name": "Request->value($data, $key, $format = 'value?', $max_length = null)",
+                "link": "Web_Request#fn_value"
+            },
+            {
+                "name": "Request->header($name)",
+                "link": "Web_Request#fn_header"
+            },
+            {
+                "name": "Request->headers()",
+                "link": "Web_Request#fn_headers"
+            },
+            {
+                "name": "Request->method()",
+                "link": "Web_Request#fn_method"
+            },
+            {
+                "name": "Request->contentType()",
+                "link": "Web_Request#fn_contentType"
+            },
+            {
+                "name": "Request->content()",
+                "link": "Web_Request#fn_content"
+            },
+            {
+                "name": "Request->contentText()",
+                "link": "Web_Request#fn_contentText"
+            },
+            {
+                "name": "Request->isXhr()",
+                "link": "Web_Request#fn_isXhr"
+            },
+            {
+                "name": "Request->origin()",
+                "link": "Web_Request#fn_origin"
+            },
+            {
+                "name": "Request->userAgent()",
+                "link": "Web_Request#fn_userAgent"
+            },
+            {
+                "name": "Request->referrer()",
+                "link": "Web_Request#fn_referrer"
+            },
+            {
+                "name": "Request->clientIp($option = null, $trusted_proxies = 'trust local')",
+                "link": "Web_Request#fn_clientIp"
+            },
+            {
+                "name": "Request->protocol($option = null, $trusted_proxies = 'trust local')",
+                "link": "Web_Request#fn_protocol"
+            },
+            {
+                "name": "Request->host($option = null, $trusted_proxies = 'trust local', array $allowed_hosts = null)",
+                "link": "Web_Request#fn_host"
+            },
+            {
+                "name": "Request->port($option = null, $trusted_proxies = 'trust local')",
+                "link": "Web_Request#fn_port"
+            },
+            {
+                "name": "Request->serverIp()",
+                "link": "Web_Request#fn_serverIp"
+            },
+            {
+                "name": "Request->isLocal()",
+                "link": "Web_Request#fn_isLocal"
+            },
+            {
+                "name": "Request->accept($mime_type = null)",
+                "link": "Web_Request#fn_accept"
+            },
+            {
+                "name": "Request->acceptCharset($character_encoding = null)",
+                "link": "Web_Request#fn_acceptCharset"
+            },
+            {
+                "name": "Request->acceptEncoding($content_encoding = null)",
+                "link": "Web_Request#fn_acceptEncoding"
+            },
+            {
+                "name": "Request->acceptLanguage($language = null)",
+                "link": "Web_Request#fn_acceptLanguage"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\Web\\Response",
+        "link": "Web_Response",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Response->__construct(Application $app = null)",
+                "link": "Web_Response#fn___construct"
+            },
+            {
+                "name": "Response->header($name, $value = null)",
+                "link": "Web_Response#fn_header"
+            },
+            {
+                "name": "Response->headers()",
+                "link": "Web_Response#fn_headers"
+            },
+            {
+                "name": "Response->statusCode($new_value = null)",
+                "link": "Web_Response#fn_statusCode"
+            },
+            {
+                "name": "Response->contentType($type = null, $option = null)",
+                "link": "Web_Response#fn_contentType"
+            },
+            {
+                "name": "Response->jsonpQueryString($value = null)",
+                "link": "Web_Response#fn_jsonpQueryString"
+            },
+            {
+                "name": "Response->content($content = null)",
+                "link": "Web_Response#fn_content"
+            },
+            {
+                "name": "Response->json($content)",
+                "link": "Web_Response#fn_json"
+            },
+            {
+                "name": "Response->jsonOptions($new_value = null)",
+                "link": "Web_Response#fn_jsonOptions"
+            },
+            {
+                "name": "Response->etag($value = null, $type = 'weak')",
+                "link": "Web_Response#fn_etag"
+            },
+            {
+                "name": "Response->lastModified($last_modified_time = null)",
+                "link": "Web_Response#fn_lastModified"
+            },
+            {
+                "name": "Response->cacheControl($value = null)",
+                "link": "Web_Response#fn_cacheControl"
+            },
+            {
+                "name": "Response->expires($expires_time = null)",
+                "link": "Web_Response#fn_expires"
+            },
+            {
+                "name": "Response->vary($value = null)",
+                "link": "Web_Response#fn_vary"
+            },
+            {
+                "name": "Response->noCache()",
+                "link": "Web_Response#fn_noCache"
+            },
+            {
+                "name": "Response->cors(Application $app = null)",
+                "link": "Web_Response#fn_cors"
+            },
+            {
+                "name": "Response->cookie($name, $value = '', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Web_Response#fn_cookie"
+            },
+            {
+                "name": "Response->clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Web_Response#fn_clearCookie"
+            },
+            {
+                "name": "Response->signedCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Web_Response#fn_signedCookie"
+            },
+            {
+                "name": "Response->jwtCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Web_Response#fn_jwtCookie"
+            },
+            {
+                "name": "Response->encryptedCookie($name, $value = '', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "link": "Web_Response#fn_encryptedCookie"
+            },
+            {
+                "name": "Response->cookies()",
+                "link": "Web_Response#fn_cookies"
+            },
+            {
+                "name": "Response->fileTypeToMimeType($file_name)",
+                "link": "Web_Response#fn_fileTypeToMimeType"
+            },
+            {
+                "name": "Response->file($file_path = null, $content_type = null, $cache_type = null, $cache_control = null)",
+                "link": "Web_Response#fn_file"
+            },
+            {
+                "name": "Response->redirect($url, $status_code = 302)",
+                "link": "Web_Response#fn_redirect"
+            },
+            {
+                "name": "Response->reset()",
+                "link": "Web_Response#fn_reset"
+            },
+            {
+                "name": "Response->send()",
+                "link": "Web_Response#fn_send"
+            }
+        ]
+    }
+]

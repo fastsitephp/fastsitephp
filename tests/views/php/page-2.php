@@ -1,0 +1,1 @@
+[PagePhp2][<?php echo $app->escape($page2_data); ?>]

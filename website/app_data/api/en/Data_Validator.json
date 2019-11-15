@@ -1,0 +1,107 @@
+{
+    "name": "FastSitePHP\\Data\\Validator",
+    "short_name": "Data\\Validator",
+    "link": "Data_Validator",
+    "namespace": "FastSitePHP\\Data",
+    "description": "FastSitePHP Data Validation API\n\nFor many apps validating client side (webpage or app) provides instant feedback to users and limits need for extra web request, however users can bypass validation by using DevTools or other methods so for data that needs to be validated using server-side validation is important.\n\nThis class allows for many rules to be easily defined and run against an object (or Associative Array\/Dictionary).\n\nCommon rules can simply be copied from HTML Input controls.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "addRules(array $rules)",
+            "target": "fn_addRules",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add an array of rules for use with the [validation()] function in the format of [Field, Display_Name, Rules].\n\nField = String of the Array Key or Object Property to validate Display_Name = Field Name to include on Error Text for User - String or Null to use Field Name Rules = String of rules to be parsed or an array of defined rules",
+            "attributes": [
+                "@param array $rules",
+                "@return $this",
+                "@throws Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "customRule($name, \\Closure $callback)",
+            "target": "fn_customRule",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Define a Custom Rule using a callback function for use with the [validation()] function.\n\nThe name must contain a dash '-' character and cannot contain spaces [ ], quotes [\"], or equals [=] characters.\n\nExamples of valid rule names:\n    'custom-rule'\n    'check-password'\n    'db-unique-email'",
+            "attributes": [
+                "@param string $name",
+                "@param \\Closure $callback",
+                "@return $this",
+                "@throws Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "supportedRules()",
+            "target": "fn_supportedRules",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of standard rules supported by this class.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "supportedTypes()",
+            "target": "fn_supportedTypes",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of types supported the [type] rule.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "errorText(array $error_text = null)",
+            "target": "fn_errorText",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an Array of error message templates used when validation fails. All error text can be overridden by the calling application.\n\nDifferent data types for the [type] validation can have specific messages under the 'types' option. See a full list of types in the function [supportedTypes()].\n\nTo customize text for your applications simply copy and modify the array from this function's source code.",
+            "attributes": [
+                "@param array|null $error_text",
+                "@return array|$this"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "validate($data)",
+            "target": "fn_validate",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Validate an object using rules defined from [addRules() or customRule()].\n\nThe object to validate, must be either an Associative Array (Dictionary) or an Object\n\nReturns an array of ( error_messages[], error_fields[] ) where\n    error_messages[] = Error Messages to Display to End Users\n    error_fields[]   = Dictionary with each field that had an error and an array of error messages for the field. If count(error_messages[]) = 0 then all validations passed.",
+            "attributes": [
+                "@param array|object $data",
+                "@return array",
+                "@throws Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "checkType($value, $type)",
+            "target": "fn_checkType",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return [true] if valid - Value matches the specified data type.\n\nThis function is marked public for validation with Unit Testing. Calling [validate()] after [addFields(), etc] is the intended use of this class.",
+            "attributes": [
+                "@param mixed $value",
+                "@param string $type",
+                "@return bool",
+                "@throws Exception"
+            ],
+            "returnType": "bool",
+            "links": []
+        }
+    ],
+    "links": []
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>view-item</title>
+    <desc>Created with Sketch.</desc>
+    <g id="view-item" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M8,12 C10.3932339,12 12.5599006,10.6666667 14.5,8 C12.5599006,5.33333333 10.3932339,4 8,4 C5.60676608,4 3.44009942,5.33333333 1.5,8 C3.44009942,10.6666667 5.60676608,12 8,12 Z" id="Oval-2" stroke="#4F5B93" stroke-width="2"></path>
+        <circle id="Oval-2" fill="#4F5B93" cx="8" cy="8" r="1.75"></circle>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(8.000000, 15.000000) scale(-1, 1) translate(-8.000000, -15.000000) " x="0" y="14" width="16" height="2" rx="1"></rect>
+    </g>
+</svg>

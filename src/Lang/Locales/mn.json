@@ -1,0 +1,9 @@
+{
+    "date": "Y.m.d",
+    "time": "H:i:s",
+    "dateTime": "Y.m.d H:i",
+    "am": "ү.ө",
+    "pm": "ү.х",
+    "decimal": ".",
+    "group": ","
+}

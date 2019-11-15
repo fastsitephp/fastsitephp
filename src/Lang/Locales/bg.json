@@ -1,0 +1,9 @@
+{
+    "date": "j.m.Y г.",
+    "time": "G:i:s ч.",
+    "dateTime": "j.m.Y г., G:i ч.",
+    "am": "пр.об.",
+    "pm": "сл.об.",
+    "decimal": ",",
+    "group": " "
+}

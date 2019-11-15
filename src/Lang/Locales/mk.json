@@ -1,0 +1,9 @@
+{
+    "date": "d.n.Y",
+    "time": "H:i:s",
+    "dateTime": "d.n.Y H:i",
+    "am": "претпладне",
+    "pm": "попладне",
+    "decimal": ",",
+    "group": "."
+}

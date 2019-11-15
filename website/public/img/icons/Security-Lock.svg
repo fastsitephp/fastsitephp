@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="102px" height="153px" viewBox="0 0 102 153" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Security-Lock</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="8.15610662%" x2="50%" y2="81.5560511%" id="linearGradient-1">
+            <stop stop-color="#EDEDED" offset="0%"></stop>
+            <stop stop-color="#E3E3E3" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="65.3877009%" id="radialGradient-2">
+            <stop stop-color="#D1C5D5" offset="0%"></stop>
+            <stop stop-color="#D6C8DB" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="124.770405%" id="radialGradient-3">
+            <stop stop-color="#858485" offset="0%"></stop>
+            <stop stop-color="#605F60" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="69.2017215%" fx="50%" fy="69.2017215%" r="150.806952%" gradientTransform="translate(0.500000,0.692017),scale(1.000000,0.400000),rotate(90.000000),translate(-0.500000,-0.692017)" id="radialGradient-4">
+            <stop stop-color="#565656" offset="0%"></stop>
+            <stop stop-color="#2C2C2C" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="60.3227809%" id="radialGradient-5">
+            <stop stop-color="#565656" offset="0%"></stop>
+            <stop stop-color="#2C2C2C" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Security-Lock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M91,41 L91,121 L11,121 L11,41 C11,18.90861 28.90861,1 51,1 C73.09139,1 91,18.90861 91,41 Z M76,41 C76,27.1928813 64.8071187,16 51,16 C37.1928813,16 26,27.1928813 26,41 L26,91 L76,91 L76,41 Z" id="Combined-Shape" stroke="#4A4A4A" fill="url(#linearGradient-1)"></path>
+        <circle id="Oval-1" stroke="#4A4A4A" fill="url(#radialGradient-2)" cx="51" cy="102" r="50"></circle>
+        <circle id="Oval-1" stroke="#2D2D2D" fill="url(#radialGradient-3)" cx="51" cy="102" r="35"></circle>
+        <path d="M52.8626454,99.6415336 L55,113 L47,113 L49.1373546,99.6415336 C47.2984188,98.9028857 46,97.1030738 46,95 C46,92.2385763 48.2385763,90 51,90 C53.7614237,90 56,92.2385763 56,95 C56,97.1030738 54.7015812,98.9028857 52.8626454,99.6415336 Z" id="Combined-Shape" stroke="#000000" stroke-width="2"></path>
+        <polygon id="Rectangle-2" fill="url(#radialGradient-4)" points="50.2 93 51.8 93 55 113 47 113"></polygon>
+        <circle id="Oval" fill="url(#radialGradient-5)" cx="51" cy="95" r="5"></circle>
+    </g>
+</svg>

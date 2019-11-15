@@ -1,0 +1,15 @@
+{
+    "menu_home": "家",
+    "menu_playground": "操场",
+    "menu_getting_started": "入门",
+    "menu_quick_ref": "快速参考",
+    "menu_examples": "例子",
+    "menu_documents": "文件资料",
+    "menu_api": "API",
+    "example_code": "范例程式码",
+    "footer_license": "MIT许可下提供的站点和源代码",
+    "old_browser_warning": "警告-此页面上的某些功能需要的浏览器或操作系统比您当前使用的浏览器或操作系统更新。 如果您有其他浏览器，请打开该页面。",
+    "api_docs": "API文档",
+    "info": "信息",
+    "hello_world": "你好，世界"
+}

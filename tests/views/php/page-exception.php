@@ -1,0 +1,1 @@
+[PageExceptionPhp][<?php throw new \Exception('Exception from PHP Page 3'); ?>]

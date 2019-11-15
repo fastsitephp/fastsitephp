@@ -1,0 +1,15 @@
+{
+    "menu_home": "Home",
+    "menu_playground": "Playground",
+    "menu_getting_started": "Getting Started",
+    "menu_quick_ref": "Quick Reference",
+    "menu_examples": "Examples",
+    "menu_documents": "Documents",
+    "menu_api": "API",
+    "example_code": "Example Code",
+    "footer_license": "Site and Source Code provided under MIT License",
+    "old_browser_warning": "Warning - some features on this page require a newer Browser or OS than the one that you are currently using. If you have a different browser available then open this page with it.",
+    "api_docs": "API Documentation",
+    "info": "Info",
+    "hello_world": "Hello World"
+}

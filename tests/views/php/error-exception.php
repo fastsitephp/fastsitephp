@@ -1,0 +1,1 @@
+[ErrorExceptionPhp]<?php throw new \Exception('Exception from error-exception.php'); ?>

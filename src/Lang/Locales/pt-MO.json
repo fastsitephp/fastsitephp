@@ -1,0 +1,9 @@
+{
+    "date": "d\/m\/Y",
+    "time": "g:i:s A",
+    "dateTime": "d\/m\/Y, g:i A",
+    "am": "da manhã",
+    "pm": "da tarde",
+    "decimal": ",",
+    "group": " "
+}

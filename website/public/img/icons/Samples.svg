@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="109px" height="136px" viewBox="0 0 109 136" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Samples</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="63.2810503%" gradientTransform="translate(0.500000,0.500000),scale(0.869327,1.000000),rotate(43.101081),translate(-0.500000,-0.500000)" id="radialGradient-1">
+            <stop stop-color="#4FC4AB" offset="0%"></stop>
+            <stop stop-color="#38A890" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="302.654794%" gradientTransform="translate(0.500000,0.000000),scale(0.137500,1.000000),rotate(19.293629),translate(-0.500000,-0.000000)" id="radialGradient-2">
+            <stop stop-color="#36A189" offset="0%"></stop>
+            <stop stop-color="#297A69" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Samples" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Computer" transform="translate(9.000000, 0.000000)">
+            <path d="M66.3049794,80 L57.3629422,51 L42.2968428,51 L33.3548055,80 L66.3049794,80 Z" id="Rectangle-30" stroke="#1C5347" stroke-width="2" fill="url(#radialGradient-1)"></path>
+            <path d="M86.8595223,87 L69.3142035,78 L32.6857965,78 L15.1404777,87 L86.8595223,87 Z" id="Rectangle-30" stroke="#1C5347" stroke-width="2" fill="url(#radialGradient-2)"></path>
+            <rect id="Rectangle" stroke="#1C5347" stroke-width="3" fill="#FFFFFF" x="1.5" y="1.5" width="97" height="63"></rect>
+            <rect id="Rectangle-33" fill="#C98EFC" x="53" y="11" width="37" height="4"></rect>
+            <rect id="Rectangle-33" fill="#E2C1FF" x="53" y="21" width="37" height="4"></rect>
+            <rect id="Rectangle-33" fill="#E2C1FF" x="53" y="31" width="37" height="4"></rect>
+            <rect id="Rectangle-33" fill="#E2C1FF" x="53" y="41" width="37" height="4"></rect>
+            <rect id="Rectangle-33" fill="#E2C1FF" x="53" y="51" width="37" height="4"></rect>
+            <path d="M76.5,10.5 L76.5,55.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M83.5,10.5 L83.5,55.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M69.5,10.5 L69.5,55.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M61.5,10.5 L61.5,55.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <rect id="Rectangle-30" fill="#9013FE" x="11" y="10" width="19" height="46"></rect>
+            <rect id="Rectangle-30" fill="#CF98FF" x="29" y="10" width="19" height="46"></rect>
+            <rect id="Rectangle-32" stroke="#9013FE" x="52.5" y="10.5" width="38" height="45"></rect>
+            <path d="M52.5,15.5 L90.5,15.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,20.5 L90.5,20.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,25.5 L90.5,25.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,30.5 L90.5,30.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,35.5 L90.5,35.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,40.5 L90.5,40.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,45.5 L90.5,45.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+            <path d="M52.5,50.5 L90.5,50.5" id="Line" stroke="#9013FE" stroke-linecap="square"></path>
+        </g>
+        <rect id="Rectangle" stroke="#6B1E85" stroke-width="2" fill="#FFFFFF" x="1" y="41" width="58" height="83"></rect>
+        <rect id="Rectangle-37" fill="#FF1733" x="9" y="61" width="42" height="8"></rect>
+        <rect id="Rectangle-37" fill="#FFB4BE" x="9" y="75" width="42" height="8"></rect>
+        <rect id="Rectangle-37" fill="#FFB4BE" x="9" y="89" width="42" height="8"></rect>
+        <rect id="Rectangle-37" fill="#FFB4BE" x="9" y="103" width="42" height="8"></rect>
+        <path d="M29.5,61.5 L29.5,117.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M39.5,61.5 L39.5,112.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M19.5,62.5 L19.5,116.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,68.5 L9.5,68.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,75.5 L9.5,75.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,82.5 L9.5,82.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,89.5 L9.5,89.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,96.5 L9.5,96.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,103.5 L9.5,103.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <path d="M50.5,110.5 L9.5,110.5" id="Line" stroke="#970517" stroke-linecap="square"></path>
+        <rect id="Rectangle-36" stroke="#970517" x="9.5" y="61.5" width="41" height="56"></rect>
+        <rect id="Rectangle-37" stroke="#970517" fill="#FF475D" x="9.5" y="46.5" width="41" height="9"></rect>
+        <path d="M39,97 L39,135 L67,135 L67,97 L39,97 Z" id="Rectangle" stroke="#6B1E85" stroke-width="2" fill="#FFFFFF"></path>
+        <rect id="Rectangle" fill="#CBD5DD" x="44" y="102" width="18" height="28"></rect>
+        <path d="M62,111.763456 L44,129.763456 L44,102 L62,102 L62,111.763456 Z" id="Combined-Shape" fill-opacity="0.2" fill="#577284"></path>
+        <path d="M62,122.606602 L44,104.606602 L44,102 L62,102 L62,122.606602 Z" id="Combined-Shape" fill-opacity="0.3" fill="#577284"></path>
+    </g>
+</svg>

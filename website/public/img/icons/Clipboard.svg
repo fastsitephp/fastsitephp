@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="176px" viewBox="0 0 100 176" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Clipboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="-35.8936742%" x2="50%" y2="139.665285%" id="linearGradient-1">
+            <stop stop-color="#D2BC84" offset="0%"></stop>
+            <stop stop-color="#A6874D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#DACACA" offset="0%"></stop>
+            <stop stop-color="#EFE7E7" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Clipboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-5" stroke="#453921" stroke-width="2" fill="url(#linearGradient-1)" x="1" y="27" width="98" height="148" rx="10"></rect>
+        <rect id="Rectangle-5" stroke="#453921" stroke-width="2" fill="#FFFFFF" x="11" y="37" width="78" height="128" rx="10"></rect>
+        <g id="Group-2" transform="translate(49.870058, 123.870058) rotate(-315.000000) translate(-49.870058, -123.870058) translate(34.870058, 100.870058)" fill="#9013FE">
+            <rect id="Rectangle-18" x="0" y="31" width="30" height="15"></rect>
+            <rect id="Rectangle-18" transform="translate(22.500000, 22.500000) rotate(-270.000000) translate(-22.500000, -22.500000) " x="0" y="15" width="45" height="15"></rect>
+        </g>
+        <g id="Group-2" transform="translate(49.870058, 70.870058) rotate(-315.000000) translate(-49.870058, -70.870058) translate(34.870058, 47.870058)" fill="#9013FE">
+            <rect id="Rectangle-18" x="0" y="31" width="30" height="15"></rect>
+            <rect id="Rectangle-18" transform="translate(22.500000, 22.500000) rotate(-270.000000) translate(-22.500000, -22.500000) " x="0" y="15" width="45" height="15"></rect>
+        </g>
+        <path d="M31,19.2500453 L31,19 L33.0070055,19 C33.0023455,18.8339019 33,18.6672249 33,18.5 C33,8.83501688 40.8350169,1 50.5,1 C60.1649831,1 68,8.83501688 68,18.5 C68,18.6672249 67.9976545,18.8339019 67.9929945,19 L70,19 L70,19.089075 C70.4917954,19.0302601 70.9923639,19 71.5,19 C78.4035594,19 84,24.5964406 84,31.5 C84,38.4035594 78.4035594,44 71.5,44 C70.9923639,44 70.4917954,43.9697399 70,43.910925 L70,44 L31,44 L31,43.7499547 C30.1922251,43.9139244 29.3561646,44 28.5,44 C21.5964406,44 16,38.4035594 16,31.5 C16,24.5964406 21.5964406,19 28.5,19 C29.3561646,19 30.1922251,19.0860756 31,19.2500453 Z" id="Combined-Shape" stroke="#4A4A4A" stroke-width="2" fill="url(#linearGradient-2)"></path>
+        <circle id="Oval-21" stroke="#4A4A4A" stroke-width="2" fill="#FFFFFF" cx="51" cy="25" r="10"></circle>
+    </g>
+</svg>

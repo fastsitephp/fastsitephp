@@ -1,0 +1,825 @@
+
+TODO List
+
+--------------------------------------------------------------------------
+|
+|   In General:
+|
+|   *) Translations
+|   *) More Examples (for all or most classes and features)
+|   *) More Documentation
+|   *) More Unit Testing
+|       - All classes and code must be Unit tested (ideally every line).
+          Currently all core classes are tested but not all code.
+|       - A number of manual test files from [FastSitePHP\scripts\*]
+|         need to be converted unit tests under [FastSitePHP\tests\*]
+|   *) Additional Classes and Features
+|
+|   Other than a few items at the top there is no priority to this list.
+|   All contributions are welcome.
+|
+--------------------------------------------------------------------------
+
+****
+**** Priority Items Start
+****
+
+*) Update Download Controller and GitHub links on [getting-started] page after code is published
+        FastSitePHP\website\app\Views\getting-started.php
+        FastSitePHP\website\app\Controllers\Downloads.php
+   The following links will re-direct to GitHub
+        https://www.fastsitephp.com/downloads/fastsitephp
+        https://www.fastsitephp.com/downloads/starter-site
+        https://www.fastsitephp.com/downloads/framework
+
+*) Figure out a good workflow for master branch and releases. Basically
+    releases need [export-ignore] lines in [.gitattributes] while the master
+    branch should have them commented out.
+
+*) Publish for Composer
+
+*) Update [install.php] on the Starter and Main sites to point to GitHub
+    - Only download polyfills if needed based on PHP Version then
+        from command line provide an optional 'all' parameter.
+        Applies to [ircmaxell/password_compat] and [paragonie/random_compat]
+
+*) Link CDN page to the main FastSitePHP site and update colors/theme on it
+    https://dydn9njgevbmp.cloudfront.net/index.html
+
+*) Create a script that uses the Google Translate API to create initial i18n files.
+   The script will need to be able to keys in the JSON files, find and update
+   code comments in specific files, and also handle markdown documents.
+        https://cloud.google.com/translate/?hl=en
+    This will be pending findings from the first translators to verify how well
+    Google Translate is working with technical docs.
+
+****
+**** Priority Items End
+****
+
+*) Docs Priority (not required but these items are preferred before adding additional docs and a lot of code or other demos)
+    - READE.md
+        - Link to the starter site Repository
+        - Document local development URL's?
+            http://localhost:3000/FastSitePHP/website/public/en/
+            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
+            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
+            http://localhost:3000/FastSitePHP/tests/index.htm
+        - How to user Composer with FastSitePHP
+    - Step by Step Setup of Sites
+        - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
+        - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
+        - Framework (how to run examples when downloading directly)
+        - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
+        - These docs may be linked from Getting Started Page as well once created
+    - Update images and content on [edit-with-vs-code] and related docs with
+        the published version of FastSitePHP and how to download the site
+        or use [git clone] to download it.
+    - Source Code Folder structure
+    - How the Unit Testing for FastSitePHP works
+        - Include print screen examples of how it recommends fixes
+        - Include docs for use with Linux, Mac, Windows
+        - Update the [readme.txt] file once the link is created
+    - How to use composer and differences between Windows and other OS's
+    - Publish step by step guide on FastSitePHP Server is Setup
+    - Linux Install Doc
+        - Need more OS examples
+        - Examples on how to connect to linux (possibly in seperate docs for Mac and Windows)
+    - PHP and FastSitePHP with Docker?
+    - [encrypt.sh] Docs should also link to GitHub Source
+    - [ibm-server-db-query] should link to the [ibm-db2-test.php] script on GitHub
+    - Need to come up with workflow and/or examples on how to publish images
+        and then docs. Currently images are hosted on AWS and saved to a seperate
+        Repository.
+    - Local Development and Framework or site changes
+        - How to update the sitemap of the main site during local development
+            http://localhost:3000/FastSitePHP/website/public/site/generate-sitemap
+        - How to refresh API Docs
+            vendor\FastSitePHP\scripts\create-api-json-files.php
+
+*) API Class Pages should link to the Source File on Github
+
+*) Additional Updates for [install.php] on the Starter and Main sites
+    - Add SHA256 or SHA384 file verification for download zip files?
+    - Add initial permissions check and helpfull warning if user does't have write access
+    - echo colors for console (example [green=success], [red=error]), see [encrypt.sh]
+    - Possibly create an HTML install wizard and allow access by any user (non-local)
+      if the site is not yet setup
+    - Allow the script to setup common apache config if using sudo?
+      This would take a decent amount of work and testing but would be helpful.
+
+*) Playground Site
+    - decide after frequent use with many users if [opcache_reset()]
+        should be called regularly or if it is ok to leave it alone.
+        It cannot be called via CLI so a web service would need to be created to handle
+        it, or it could be called on ceartain actions such as 'delete-site' however
+        if there are many users then 'delete-site' would be too often. Another option
+        would be to reset it on 'create-site' or 'delete-site' once it is using a
+        specific amount of memory or number of cached files.
+    - Test adding
+        <link rel="preconnect" href="https://playground.fastsitephp.com" crossorigin>
+        Under the HTML <head> attribute only when using the playground site.
+        Only keep and use if it makes a real difference, it's unlikely to do so though. See:
+        https://developers.google.com/web/fundamentals/performance/resource-prioritization
+
+*) Add a Auth Demo page to the Starter-Site
+    It will use JWT with a Cookie and not PHP session
+
+*) I18N Editor
+    - FastSitePHP\Templates\i18n-editor.php
+    - And add method to [FastSitePHP\Lang\I18N] for rendering the form and allow users to save values
+    - Allow support for an optional custom property "_I18N_NOTES" that would display in a notes section for each file
+
+*) PHP Script to download and update and related docs
+    [FastSitePHP\vendor\FastSitePHP\src\Net\cacert.pem]
+
+*) Create Additional Interfaces for [\FastSitePHP\Data\KeyValue\StorageInterface]
+    - Currently only SQLite has been creatd:
+        http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
+    - At a minimum both [memcached] and [redis] should be suppoted
+        http://www.memcached.org/
+            https://www.php.net/manual/en/intro.memcached.php
+        https://redis.io/
+            https://github.com/phpredis/phpredis
+            https://github.com/nrk/predis
+            https://redis.io/clients#php
+    - Add a session storage class as well?
+        If so need to add comments about not using sleep while a session is open
+    - Installer [scripts/install.php] and Autoloader [scripts/fast_autoloader.php]
+        should be setup to optionally handle a [Predis] install.
+
+*) Support for https://hhvm.com/
+    Note - HHVM is ending support for PHP with the latest releases so
+    make it work with the most recent version that supports PHP.
+        https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html
+    - For Hack currently [test-net-smtp.php] has to be updated to not use a reference paramater
+
+*) Many pages can use more graphics and updates, some specific examples:
+    - Most examples need to have an improved mobile layout
+    - Github Icons on [getting-started] page resize incorrectly
+        when the page is shown on a narrow mobile screen (375px width)
+        or when the page is refreshed with the browser very narrow.
+    - Many documents need to have the image header section improved for mobile layout
+    - Should an icon be added to each page title for the main pages?
+        - Only if it makes the pages look better
+        - Need to test with SVG icons
+    - [getting-started] page
+        - Create icons for [Download] and [Developing with PHP] text?
+        - Or should there be an "Install [php logo]" and similar items?
+        - Or leave as-is? Need to try several different options
+    - All Examples should have more Graphics and Icons
+    - home page
+        - Try animating all reason-to-use SVG images but not all at once
+          For example animate each one for 1 second on a rotating basis so only 1 image
+          is animating at at time. This can take a long time as each image should have
+          a custom animation similar to how to rocketship works. For example the
+          "Great Performance" icon could have the needle move quickly for a second, while
+          the lightswitch could turn on and off. This may or may not be done as it can
+          take a while.
+    - Stater Site
+        - create nice svg icons for each of the resource links
+    - Playground
+        - possibly add an animated CSS bomb going off once a user manually deletes a site.
+            For example, SVG fuse using path animation then shake the bomb, then
+            show an exploding animating that quickly scales out.
+
+*) Examples
+    - System Info (only returns real info if running in localhost or modified, otherwise return content generated from example cloud servers)
+            $sys = new \FastSitePHP\Environment\System();
+            $data = $sys->osVersionInfo();
+            //$data = $sys->systemInfo();
+            //$data = $sys->diskSpace();
+
+            //$path = '/Users/conrad/Sites/fastsitephp/app_data/examples/sys-osinfo-mac.json';
+            //file_put_contents($path, $data);
+            //file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
+
+            header('Content-Type: text/plain');
+            echo json_encode($data, JSON_PRETTY_PRINT);
+            //echo $data;
+    - CSRF
+    - Data Validation Class
+    - Request Demo [examples/request-demo]
+        Under Tab [Application Functions], provide an example of how it would differ if using "index.php"
+        between [rootUrl()] and [rootDir()]
+    - Better formatting for mobile - this applies to all demos
+    - Route Pattern matching page
+    - HTML Logging
+    - Image - Create docs and demos from [testing-thumbnails.php] and [testing-img.php]
+        Also create examples using various JavaScript cropping libraries. For libraries
+        such as jquery-jcrop the x,y,w,h value can be submitted and then call [crop()]
+        server side.
+        http://deepliquid.com/content/Jcrop.html
+        https://jamesooi.design/Croppr.js/
+        https://jcrop.com/
+        https://fengyuanchen.github.io/cropperjs/
+        https://foliotek.github.io/Croppie/
+    - Form Posting and Validation
+    - Using JS Frameworks (React and Vue)
+    - ETags and 304 Responses
+    - File Encryption
+    - Signed Data
+        - Include a JavaScript validation and parsing function for the demo page.
+        - Regex Validation:
+            var regexExpires = /^([a-zA-Z0-9_-]{2,}).(n|s|i32|i64|f|b|j).(\d+).([a-zA-Z0-9_-]{2,})$/;
+            var regexBasic = /^([a-zA-Z0-9_-]{2,}).(n|s|i32|i64|f|b|j).([a-zA-Z0-9_-]{2,})$/;
+        - See file [FastSitePHP\website\public\js\playground.js], functions:
+            parseSiteKey()
+            decodeBase64UrlSafe(base64url)
+        - Also provide notes on:
+            https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
+    - JWT
+    - Config Builder
+    - IP Validation with CIDR
+    - File Search
+    - File Security
+    - Existing Encryption Demo - Add more options (seperate tab or hidden by default?) to allow a user to encypt using different settings
+        Ideally, allow changing of all settings that are possible but don't allow PBKDF2 on a public site
+    - Request Example Page
+        Include a demo/test tab with examples of reading different content types submitted by the user
+            example Form Post and JSON POST
+    - Crypto Example?
+        Add a code builder tab to build code with different options?
+    - Email demo
+        - Possibly Allow testing of many more settings (ideally all getter/setter functions):
+          allowUnicodeEmails(), isHtml(), header(), attachFile(), etc
+        - Allow multiple addresses for [To, CC, BCC]
+        - Syntax highlighting of SMTP commands (send, reply, etc) - possibly create a custom prism plugin for this
+        - HTML editor is very minimal and was created quickly
+            Need to add at least several more buttons and draw better svg icons for each button.
+            The list icon was quickly created with an online svg app.
+    -  Data\Validator
+        - HTML vs PHP Validation (basic example then all fields example):
+            HTML Form Example:
+                <input name="name" title="Name" required>
+                <input name="age" title="Age" required min="13" max="99">
+                <input name="phone" title="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <input name="password" type="password" title="Password" required minlength="8" maxlength="30">
+                <input name="confirm" type="password" title="Confirm Password" required>
+                // JavaScript used to validate [password] and [confirm]
+
+            Server-Side Validation:
+
+            $validator = new \FastSitePHP\Data\Validator();
+            $validator
+                ->addRules([
+                    ['name',     'Name',     'required'],
+                    ['age',      'Age',      'required minlength="2"'],
+                    ['phone',    'Phone',    'pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"'],
+                    ['password', 'Password', 'required minlength="8" maxlength="30"'],
+                    ['confirm',  null,        'check-password'],
+                ])
+                ->customRule('confirm-password', function($value) {
+                    $password = (isset($_POST['password']) ? $_POST['password'] : null);
+                    return ($value === $password ? true : 'Both [Password] and [Confirm Password] must match.');
+                });
+
+            list($error_messages, $error_fields) = $validator->validate($_POST);
+            if ($error_messages) {
+                // Error Logic
+            }
+
+        - Docs to state that rules in string format similar to HTML so that HTML code can easily be copied
+        - Docs to recommend [Request->value()] if only basic Sanitization is needed
+        Docs
+            - first show a simple example with no custom rules and text matching HTML
+            - Then show an Advanced one where all Tests fail with one object and succeed with the other
+            - Docs pref notes that while about 15-20x faster array vs string rules
+                the difference is so small that it would be a micro-optimization
+                to pass rules as an array. If a site expects 1,000 requests per second
+                and used validation then the optimization could be worthwhile.
+        - Links for Docs:
+            https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
+            https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation
+            Add something for iOS or Android?
+
+*) Documentation pages to create:
+    - Updating this site:
+        Where to add files
+        How to update lang files, etc
+        Generating a new sitemap:
+            http://localhost:3000/website/public/site/generate-sitemap
+        Update humans.txt for new Contributors
+    - docs for various scripts used with this site
+    - how the playground site works
+    - Using CORS - provide example from DataFormsJS
+    - Links (with print screens of sites) to popular PHP sites (frameworks, blogs, components, etc)
+        This might end up a PHP page rather than [md], if needed just use simple logic in the Controller
+        use PHP rather than MD.
+    - Signed Data Format
+    - Crypto - easy to understand for end users
+    - Crypto - file format and how data types are saved with this code
+    - Installing PDO Drivers (Web Platform Installer for SQL Server PDO Driver)
+        Often DLL's are included, simply need to enable
+    - PHP General - Where PHP is installed and folder structure (Extensions, etc)
+    - How to read info with [phpinfo()]
+    - Send Email with Print Screen of SMTP Log Info
+        Add a small 3-file zip download for testing emails with the 2
+        needed PHP files (no framework nessesary). It needs to be easy enough
+        for sys admins to use with minimal programming experience
+    - Environment Info using the Classes
+    - Docs on how to use [.htaccess] might need to add [mod_rewrite] support for subdirectories
+    - App Routing
+    - How to use ETag/304 and Crypto in a method similar to a "Forever Cookie"
+    - HttpClient Docs
+        - In docs likely link to Guzzle and also clients from Stripe, ebay, etc
+            http://docs.guzzlephp.org/en/stable/
+            https://github.com/guzzle/guzzle
+            https://github.com/stripe/stripe-php/blob/master/lib/HttpClient/CurlClient.php
+            https://github.com/paypal/sdk-core-php/blob/master/lib/PayPal/Core/PPHttpConfig.php
+            https://github.com/paypal/sdk-core-php/blob/master/lib/PayPal/Core/PPHttpConnection.php
+            https://github.com/dropbox/dropbox-sdk-php/blob/master/lib/Dropbox/Curl.php
+        - Also docs showing basic code examples:
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "http://www.example.com/");
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            echo curl_exec($ch);
+            curl_close($ch);
+            exit();
+    - AI and ML with PHP
+        Create examples with a Python Backend and use the HttpClient similar to the GraphQL example code
+        https://github.com/dstogov/php-tensorflow  - Requires a C Extension - from a PHP/Zend Core Developer
+        https://www.glohbe.de/en/stockprice-prediction-with-ai-in-php/  Blog Article showing how to use PHP AI project
+        https://github.com/marasong/resnet50  PHP that calls a Python Server with Resnet 50
+        https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html   Uses ResNet50 with model from ImageNet
+            https://github.com/jrosebr1/simple-keras-rest-api
+    - Using Symfony Request/Response Objects with FastSitePHP Routing - possibly in the Quick Reference as well
+    - How graphics are created and editor for the site - Sketch and other apps
+
+*) New Classes to Create:
+    Environment\UserAgent
+        - Starting point: vendor\FastSitePHP\examples\site-examples\Controllers\DatabaseDemo.sql
+        - The SQL demo file should also be expanded upon for more traffic, it is mostly based on
+          US General Population (GENPOP) Web Traffic from around 2015-2018.
+        - SQL file should have commented versions available for Oracle, MySQL, and PostgreSQL
+    FileSystem\Path::join
+    FileSystem\File\Csv
+    Media\Video
+    Web\DbSession
+    Web\DynamicRouting
+    Web\SiteMapBuilder
+        May or may not be created, at the very least docs are needed on how to create one
+    Web\StaticSiteBuilder
+    Classes for Authentication including Two-Factor Auth - to be decided later
+
+*) Unit Testing
+    - The below items are a lower priority than having all classes fully tested
+    - JavaScript Code for Unit Tests can be converted to latest version of JavaScript
+    - [core.js] will be converted to a ES Module with exports and then calling files will import from it
+    - Update JS Code to also allow CLI using Node.
+    - After test converting the JS files to JSON and having a new core JS file and PHP version
+      so that that Unit Tests can be run in Browser, with Node, or with PHP
+
+*) Unit Testing JS Clarification
+    [responseContains] should be replaced with [responseMatchesOne] for a number of Tests
+
+*) Use [$app->lang] for language translations with the Error and Page Not found templates.
+    Translations will be stored in JSON files (1 per language), likely in a directory [I18N]
+    under [Templates].
+
+*) Create Unit Tests for the Following Classes:
+    Environment\System
+
+*) Application Object
+    - Add Unit Tests for [$show_detailed_errors], [lazyLoad()], and [sendPageNotFound()], [cookies],
+        [cookie], [clearCookie], [onRender], [errorPage()]
+    - requestedPath() - build different mock tests based on actual computer settings
+        This will allow IIS/Apache/etc to be verified from other servers
+    - Create Unit Tests for String 'class' and 'class.method' route options.
+      When Unit Tests were created only the Closure option was supported.
+    - Add Unit Tests for string 'Class.method' filter and mount functions and middleware_root
+    - Possibly update the [statusCode()] to allow anything between 100 and 599 like the Response Object
+        This includes allowing 304 so an app can use a fully custom 304 response if needed
+    - Create Unit Tests for [error-cli.php], this can be done by calling [shell_exec()] or [exec()] with [php] and a custom script
+    - Likely add a property for CLI errors such as [error_template_cli]
+    - Add Unit Tests for Variables in mount path - Currently the feature is verified ont the site itself
+        $app->mount('/:lang/examples/', 'routes-examples.php');
+    - Add Unit Tests for [$page_title, $message] params on error callback
+
+*) Web\Response
+    - Create and Expand on Unit Tests for the following functions:
+        clearCookie() - also more tests from JavaScript related to Cookies
+        signedCookie() Verify all parameters, this can be done server-side by checking collection before the response
+        encryptedCookie() - Verify all parameters, ...
+        jwtCookie() - Verify all parameters, ...
+        jsonOptions() - Currently manually tested, need to Unit Test with JSON_PRETTY_PRINT on PHP 5.4+
+        contentType('graphql')
+    - Add 'graphql' to [fileTypeToMimeType()]
+    - fileStream() similar to file but accepts HTTP_RANGE header
+    - Test one or more non-common status codes such as 503 Service Unavailable
+        PHP 5.3 code will need to be updates for additional status codes
+            Possibly make it a pollyfill
+        Also unit test the error message from the function
+        https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+    - New function [asFile(content, name)] that returns regular content as a file download
+    - Add Unit Tests for 429 - 'Too Many Requests' responses
+
+*) Web\Request
+    queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
+    form() - ...
+    url() - return full URL including query string. Just like [host()] and other user input headers this
+        needs to hanlde proxy servers and since it's related to security it must be carefully developed and tested.
+    Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
+        The reason is that Apache can remove it from $_SERVER, however it's handled here.
+    origin() - need to unit test string value of 'null'
+
+*) Initial Unit Test [/check-server-config]
+    If a 500 response is returned then JavaScript should provide a message that JSON support is
+    not installed if it can be determined from the error. This can be manually verified by
+    installing only Apache and PHP without Modules on FreeBSD.
+
+*) Test many additional Linux environments and add more helper info to [/check-server-config]
+    based on common modules that may be missing. Also create docs for various OS installs.
+
+*) Unit Test function [checkObjectMethods()] needs to handle static methods
+    Used in [Net\IP] class and more
+
+*) Data\Database
+    - Create Unit Tests - use file [docs/scripts/testing-db.php] and [home-page-en-examples.php] as a starting point
+    - ODBC and DB2 Classes will have seperate test files not part of the standard unit tests
+    - Additional seperate unit test files for different database vendors (Oracle, Microsoft, etc)
+    - Need to test [lastInsertId()] with Oracle and PostgreSQL. Might have to use bound parameters with Oracle:
+        https://stackoverflow.com/questions/18441693/how-to-get-the-row-of-the-last-insert-on-oracle-using-pdo
+      Create Docs on how to handle last insert id with different databases.
+    - Functions [beginTransaction()], [commit()], and [rollback()] to all 3 classes
+        and as part of the [DatabaseInterface] class
+        http://php.net/manual/en/pdo.begintransaction.php
+        http://php.net/manual/en/function.odbc-autocommit.php
+        http://php.net/manual/en/function.db2-autocommit.php
+    - Add additional Vendor Database Classes using [AbstractDatabaseFunctions]
+
+*) FileSystem\Search
+    - Additional file search options modifiedAfter, modifiedBefore, sizeLargerThan, sizeSmallerThan, sizeMbLargerThan, sizeMbSmallerThan
+       modifiedBetween() which would set modifiedAfter/modifiedBefore
+       createdAfter/etc
+    - Options to limit large files from being included with [includeText()]
+    - Create Unit Tests - use file [docs/scripts/testing-fs.php] as a starting point
+    - Allow [urlFiles()] to work with [recursive(true)]
+
+*) Net\Config - Create more Unit Tests
+    - parseNetworkInfo()
+      Get info by setting up more Temp Cloud Servers (example FreeBSD, Linux, etc)
+        parseNetworkInfo(networkInfo()) - returns objects with correct key properties
+        parseNetworkInfo(networkInfo()) - with parsed files
+        parseNetworkInfo(networkInfo()) - returns null on all errors
+        parseNetworkInfo(networkInfo(), true) - throws specific exceptions
+    - networkIpList() returns an array of valid IP addresses
+    - networkIp() currently doesn't allow mock tests and has to be verified on many
+        OS's. Seperate parts fo the code to a new function such as [netInfoToIp()].
+        That way the logic of the function can be verified
+
+*) Unit Testing - docs\unit-testing\test-no-templates.php
+    See if these errors can be replicated using:
+        stream_wrapper_unregister('file');
+    If not then create a headless browser JS file to test this page
+    Also expand the above page for [errorPage()] or develop a unit test for it as well.
+
+*) PHP 7.1+ test with 'sha3-384', 'sha3-512', etc
+    https://en.wikipedia.org/wiki/SHA-3#Examples_of_SHA-3_variants
+
+*) Create Unit Tests for CSRF Classes
+    - Verify that the 3 type of tokens work (Session, Stateless, Stateless with expire date)
+    - Verify that changing the token causes an error
+    - Likely have to use GET/POST [runGetAndPostUnitTest] tests and modify the JS to handle 500 http search text
+    - Create docs with advantages/disadvantages of each method
+
+*) FastSitePHP\FileSystem\Security
+    - Add a new function [dirContainsDir]
+    - Build Unit Tests, see [testing-fs-security.php]
+
+*) FastSitePHP\Security\AbstractCrypto
+   hash_pbkdf2() Polyfill
+        Create a Polyfill function for [hash_hmac_algos()] which was added in PHP 7.2
+        and use it instead of [hash_algos()]
+        http://php.net/manual/en/function.hash-hmac-algos.php
+
+*) FastSitePHP\Security\Crypto
+    - Add Unit Tests to verify the '+1 hour' default timeout for [sign()] and [encodeJWT()]
+
+*) FastSitePHP\Security\Crypto\Encryption
+    - For supported versions of PHP need testing with
+      all places [isAEAD_Mode()] with Password Key Type (PBKDF2)
+
+*) FastSitePHP\Security\Crypto\FileEncryption
+    - This has worked in the past with some FreeBSD installed however it is not working most recently
+      when tested on AWS and DigitalOcean Cloud Servers. The issue is that "$()" does not work from
+      shell on all FreeBSD installs. A more reliable method is needed. Currently the code below should
+      work in theory however it now gives permission errors on later commands even for the '/tmp' folder.
+      A lot more research and testing is needed it seems in order to make large file encryption work
+      with FreeBSD.
+
+        $truncate_cmd_2 = null;
+        if (PHP_OS === 'Darwin') {
+            $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';
+        } elseif (PHP_OS === 'FreeBSD') {
+            // One-liner works on shell but not with PHP [exec()]
+            // $truncate_cmd = 'set length = `stat -f%z "{{file}}"`; set new_length = `expr $length - {{bytes}}`; truncate -s $new_length "{{file}}" 2>&1;';
+            $truncate_cmd = 'expr `stat -f%z "{{file}}"` - {{bytes}}';
+            $truncate_cmd_2 = 'truncate -s {{length}} "{{file}}" 2>&1';
+        } else {
+            $truncate_cmd = 'truncate -s $(( $(stat -c%s "{{file}}" 2>/dev/null || stat -f%z "{{file}}") - {{bytes}} )) "{{file}}" 2>&1';
+        }
+
+        // Update truncate command as it will only run on the temp file
+        $truncate_cmd = str_replace('{{file}}', $tmp_file, $truncate_cmd);
+        if ($truncate_cmd_2 !== null) {
+            $truncate_cmd_2 = str_replace('{{file}}', $tmp_file, $truncate_cmd_2);
+        }
+
+                // Truncate the HMAC Bytes from the end of the file
+                if ($truncate_cmd_2 === null) {
+                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
+                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
+                } else {
+                    // ------------
+                    // Using this version will fail on [$truncate_cmd_2]
+                    // with a permissions error.
+                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
+                    $length = shell_exec($cmd);
+                    if ($length === null) {
+                        throw new \Exception('Command Failed: ' . $cmd);
+                    }
+                    // ------------
+                    // Using this version will cause the next command to fail with
+                    // a permissions error even though the syntax is correct.
+                    // This is just for testing as [filesize()] cannot be used
+                    // for large files on 32-bit systems or versions of PHP.
+                    // $length = filesize($tmp_file);
+                    // ------------
+                    $cmd = str_replace('{{length}}', $length, $truncate_cmd_2);
+                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
+                }
+
+                ## Also above code once working needs to be used for truncating IV
+
+
+    - Modify Unit Test function [encryptAndDecryptFile()] and add new routes to
+      test for File Encryption with Passwords. At least one standard sha512/200_000
+      and one custom PBKDF2 params. For now code has been manually verified using
+      [crypto-test-many-files.php].
+    - Unit Test all errors that can be replicated
+    - Unit Test an error or errors the with true/false for [displayCmdErrorDetail], code is
+      manually verified for now. Most Unit Tests run the value with [true] for dev testing.
+    - Some errors are included for safety and won't be tested, errors like this:
+		// Verify that the enrypted file can be read by PHP
+        if (!is_file($enc_file)) {
+      A doc or general comment should explain which errors are not unit tested and why
+
+*) File Encryption Shell File [encrypt.sh]
+    - Automatically handle ".enc" extension if [-o] not specified?
+        If using on Decrypt then the input file must end with ".enc"
+    - File currently only works with Bash, create a Bourne Shell Versions
+        that works with FreeBSD. To work with a default FreeBSD install
+        Passwords won't be supported unless Python, etc are installed.
+        [xxd] will also likely not be installed until other programs are
+        so it would need to be replaced with FreeBSD hex dump tools.
+
+*) FastSitePHP\Security\Crypto\JWT
+    - Unit Test all misc errors that can be replicated, examples
+      Currently all claim errors are validated and every error has been manually tested
+        - Invalid Token format on decode
+        - Invalid Key and Algo
+        - Can specific OpenSSL Errors using RSA keys be validated without [$is_valid = ($is_public || $is_private);]?
+          If not add some comments on how to replicate detailed OpenSSL Errors
+
+*) FastSitePHP\Security\Password
+    - Add a [isStrong()] function
+    - Expand on the [generate()] formula and provide options
+    - Unit Test the generated passwords for the actual rules
+    - See comments in JS Code for Unit Test [hash-with-argon2]
+        The test should be slightly revised to handle all servers (different memory, threads, etc)
+
+*) FastSitePHP\Security\Web\Csrf*
+    - Make error messages static variables so user can channge if needed
+    - Create Unit Test Files based on [testing-csrf.php] or other demo code
+
+*) FastSitePHP\Media\Image
+    - Create Unit Tests - use file [docs/scripts/testing-img.php] as a starting point
+    - Consider using [exif_imagetype()] in future to determine file type instead of file ext
+    - Once images are created for Unit Testing (JPG, PNG, etc) then update all demo code that
+        uses [C:\Users\Public] images.
+
+*) FastSitePHP\Encoding\Json
+    Create Unit Tests for all errors from json_last_error_msg() if less than PHP 5.5
+    as the function is polyfilled.
+    This can be replicated on PHP 5.5+ using [json_encode(['test' => acos(8)]);]
+    http://php.net/manual/en/function.json-last-error-msg.php
+
+*) Unit Test [E_COMPILE_WARNING] in all versions of PHP7, need to determine how to trigger by searching [php-src]
+    It failed on one computer in testing but works on most tested computers
+
+*) Move some of the larger function comments to docs and link back.
+    Example in [Application->setup()] [IP::cidr()]
+
+*) Lang\I18N
+    - Create unit tests, see [testing-i18n.php], also test Error: 'Invalid JSON File: ...'
+
+*) Lang\L10N
+    - Create Unit Tests, Plan on Testing Several Different Dates (AM, PM, Single-Digit Day/Month, etc)
+      and Save expected results to JSON file for all Locales, then Unit Test will compare result of
+      expected JSON with actual data. For now using [l10n-*-compare.php] files in [docs\scripts].
+    - Add Date/Time Locale Calendar support for [ar-SA], [fa], and [fa-AF].
+      See notes in [l10n-process-files.php]. These locales will need custom Calendar
+      support and likely new calendar classes created.
+    - Add Currency support
+      JS has a 'currency' option when using [Intl.NumberFormat]
+      This feature will likely take a lot of work and planning
+    - Additional getter/setter function(s) to override default locale formatting options.
+      If supported it should validate that a defined format (example 'Y-m-d') is valid.
+      If should also set the selected [locale = null].
+    - Add a function or functions to convert a locale to language/country
+        Example: 'en-US' = 'English / United States'
+        Will likely need to add a [countries.json] or [regions.json] file for this
+    - Related to the above:
+        [Languages.json] is only in English, consider making a [Languages] folder and then
+        have languages properly translated so [Languages.json] would end up [en.json].
+        Or having at least [displayName] and [englishName] versions since every having every
+        language name translated to every lagnuage may not be practical (and creates large files).
+        See script [l10n-process-files.php] as data needs to come from [unicode-cldr]
+
+*) Lang\Time
+    - Add Support for additional lanauges
+        public static function secondsToText($seconds, $locale = 'en')
+      Then add additional language functions
+
+*) New Class - Lang\PluralRules
+    - See:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/PluralRules
+        https://formatjs.io/guides/message-syntax/
+        http://userguide.icu-project.org/formatparse/messages
+
+*) Data\Validator Class
+    - Translations files for [errorText] based on user's locale
+    - Add support for <input type="color">
+      https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
+
+*) Net\HttpClient
+    - Create unit tests, see [testing-http.php]
+    - Add friendly error validation for developers if the function is called with invalid options
+    - Page and docs on how to update, to be based on Stripe (MIT License)
+        https://github.com/stripe/stripe-php/blob/master/update_certs.php
+    - Additional options:
+        - query = array - Build before calling [curl_init], need to use regex to determine how to add to the URL
+    - Support different auth header options (basic, digest, etc)
+        CURLOPT_USERNAME / CURLOPT_USERPWD with CURLAUTH_BASIC, CURLAUTH_DIGEST, etc
+        CURLOPT_XOAUTH2_BEARER  - Specifies the OAuth 2.0 access token. (Added in cURL 7.33.0. Available since PHP 7.0.7.)
+        Currently Basic Auth is supported if using format: 'https://{user}:{password}@url...'
+        - Working example with Shopify and current code (1 line of code to call):
+            $res = HttpClient::get('https://{user}:{password}@{shop}.myshopify.com/admin/products.json?handle={product}');
+        - Would need to test the different options against real and widely used API's to make sure it works well
+    - Cookie Support?
+        CURLOPT_COOKIESESSION / CURLOPT_COOKIEJAR / CURLOPT_COOKIEFILE / CURLOPT_COOKIE
+    - Redirect Options:
+        CURLOPT_FOLLOWLOCATION / CURLOPT_MAXREDIRS
+    - Option to force specific HTTP and TLS Versions
+        CURLOPT_SSLVERSION / CURLOPT_HTTP_VERSION
+    - For HTTP using php/stream - use [fopen] instead of [file_get_contents] so files
+        can be saved. Currently the full response is read into memory
+    - Proxy with CURLOPT_PROXY
+    - Alternativly rather than making this class too large simply recommned Guzzle if additional features
+      such as cookies are needed. Depends on how much code is needed for additional features. The HttpClient
+      class must be kept small in order for easy security auditing and fast performance.
+        http://docs.guzzlephp.org/en/stable/
+
+*) Net\SmtpClient and Net\Email
+    - Working example and documentation to allows someone to download
+        only 3 files (SmtpClient.php, Email.php, index.php) so that Admins or anyone
+        can use a single script to easily test SMTP in their environment.
+        Docs will need to include links of how to quickly install PHP in various
+        OS's as well.
+    - More Unit Testing
+       - Email - Validate Error Messages
+       - Email - Validate How Getter Functions work (Example Address returned but not UserName for an Email)
+       - SMTP - Custom Test Page with Config or just use demos for testing?
+    - Build a Mock SMTP Server for Unit Testing Timeouts and general testing
+    - Add support for DomainKeys Identified Mail (DKIM)
+        This will take a while and will likely go in a seperate class
+    - Support [AUTH CRAM-MD5] if any widely used SMTP servers still support it
+        It seems primarly used with port 25 before TLS was used for security.
+        Seems to be poorly supported now as secure ports now exist.
+    - Possibly add a [altBody(text)] for when [isHtml(true)]
+        Ideally some recent stats on text based html clients and usage along
+        with percentage of emails that go out like this would be looked up
+        before adding this.
+    - Rather than attach files in memory the code could be updated to stream
+      read to the server. To do this the size would need to be read from the file
+      and base64 estimated then used to compare to SIZE
+
+*) Security\Web\RateLimit
+    - Create Unit Tests and Demos - This will likely take a lot of time
+    - There are many variations on the Token Bucket Algorithm.
+      Consider other versions or adding options as the one used currently
+      can allow for the requests to exceed the max in a given time frame.
+    - Add support for additional Algorithms, example:
+        https://en.wikipedia.org/wiki/Leaky_bucket
+      An example of a major site that uses the Leaky bucket for API rate limiting is Shopify:
+        https://help.shopify.com/en/api/reference/rest-admin-api-rate-limits
+    - See file [scripts\testing-ratelimit.php]
+
+*) Basic FreeBSD Doc with min requirements:
+	pkg install mod_php71 php71-json php71-filter php71-hash php71-ctype php71-openssl php71-mbstring php71-xml php71-bcmath php71-gd
+	# without [php71-json] most tests will fail
+
+*) Add documentation regarding errors that cannot be unit tested but are in place for safety
+   This includes at least 4 errors with text "This error can only happen when invalid changes are made this class."
+   from the Encryption class.
+
+*) Refactor Unit Test Code for [checkObjectProperties()] - too many parameters for clarity
+    - Create a new function or class to handle this. Possibly have it return a JSON object with a list
+    of all properties with defaults, functions by visibility, and then just accept a list of getter
+    functions to call. See unit test route ['/default-settings-encryption'] as a starting example
+    of getter functions and related JS code.
+
+*) Remove [use ($app)] when routes are defined where it is not needed. Many Unit Test
+    or Demo Routes will have it and not need it.
+
+*) Quick Reference Demo Page [app_data\sample-code\home-page-en-examples.php]
+    - Add a section for clickable keywords to filter down to common things [Database, email, etc]
+        This will be done in JS and requires adding attributes to the code examples.
+        The UI should look nice and likely only show on desktop layout so it doesn't take up
+        to much space on mobile.
+    - Render to an HTML Template instead of Text or JSON Response for many routes
+      Example a table to show different variables and data type
+          <tr><td>Field</td><td>Type</td><td><pre>Value</pre></td></tr>
+    - Originally the following items were used:
+            // Example Usage in a PHP/HTML Template File
+            /*
+            <link href="<?= $app->rootDir() ?>css/site.css" rel="stylesheet" />
+            <a href="<?= $app->rootUrl() ?>/documents">Documents</a>
+            */
+        Replaced with:
+            // Example usage for building URL's:
+            $site_css = $app->rootDir() . 'css/site.css';
+            $docs_link = $app->rootUrl() . '/documents';
+            //
+            // <link href="{{ $site_css }}" rel="stylesheet" />
+            // <a href="{{ $docs_link }}">Documents</a>
+        And both CSRF examples:
+            /*
+            <meta name="X-CSRF-Token" content="<?= $csrf_token ?>">
+            <input name="X-CSRF-Token" value="<?= $csrf_token ?>">
+            */
+        Replaced with:
+            //
+            // <meta name="X-CSRF-Token" content="{{ $csrf_token }}">
+            // <input name="X-CSRF-Token" value="{{ $csrf_token }}">
+        This is because an update to Prism caused the syntax highlighting to break when including PHP
+        template syntax in the comments. Using // causes a syntax error however when using /* */
+        PHP doesn't render the tags. Ideally prism would be corrected and the original PHP code
+        would be displayed
+
+*) Update quick-reference page on the main site to add attributes for API and example links, etc
+    The page may also allow for code snippets without "title:" to not appear
+    in Quick Ref but be used elsewhere - intended for Class Demos once API docs
+    are being setup.
+
+*) Create a Quick Reference Page or Documentation showing how to use Monolog with FastSitePHP
+     https://github.com/Seldaek/monolog
+
+*) Create Documentation and Examples of how to use Symfony Request and Response with
+    the FastSitePHP Application Object. Basically they work out of the box and the
+    Symfony Response object can be returned on a route
+
+*) Html Logger Template - Make it look nice, example more colors or images based on error type
+
+*) Improve formatting and comments on API Docs, possibly use Markdown in PHP DocBlock comments
+    Use consistant spacing for indents in PHP DocBlocks - 4 Spaces instead of 2
+
+*) Add Specific API Examples for the following (but do not show in Quick Ref):
+        http://localhost:3000/FastSitePHP/website/public/en/api/Data_OdbcDatabase
+        http://localhost:3000/FastSitePHP/website/public/en/api/Data_Db2Database
+        http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
+        http://localhost:3000/FastSitePHP/website/public/en/api/Security_Crypto_Encryption
+        http://localhost:3000/FastSitePHP/website/public/en/api/Security_Crypto_FileEncryption
+        http://localhost:3000/FastSitePHP/website/public/en/api/Lang_Time
+    Basically all classes should have example code on the API docs but not all classes
+    need to show in the quick ref section.
+
+*) API Class Pages - Display comments for named function parameters or merge the
+    comments with the main function comments? If displaying on the API page then
+    the comments will need to be cleaned up.
+
+    An example would be in [Response->cookie()]
+
+*) API Index Page, allow for a more complex filter such as option to filter just methods/properties
+    or full class text as is currently done, show counts of filtered properties and methods, etc
+
+*) Allow for Language Translations of all Exception Messages. One possible option:
+    - JSON files for each language, example: [Lang/I18N/errors.en.js]
+    - Instead of
+        $error = sprintf($long_text, ...)
+        throw new \Exception($error)
+    - Use something like this:
+        $GLOBALS['error_content'] = [key=>value]
+        throw new \Exception('ERR_CLASS_UNIQUE_KEY');
+    - The Application Error Code can then show on of the following:
+        1) If language selected and JSON file found show the message and
+            use simple {var} replacement for the context
+        2) No JSON file then just show ERR_CLASS_UNIQUE_KEY
+    - AppMin would not use the language files and just show something like this:
+        'ERR_CLASS_UNIQUE_KEY: ' . json_encode($GLOBALS['error_content'])
+
+*) Test with other Web Servers and provide setup docs
+    https://caddyserver.com/
+    https://www.lighttpd.net/

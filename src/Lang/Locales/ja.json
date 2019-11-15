@@ -1,0 +1,9 @@
+{
+    "date": "Y\/m\/d",
+    "time": "G:i:s",
+    "dateTime": "Y\/m\/d G:i",
+    "am": "午前",
+    "pm": "午後",
+    "decimal": ".",
+    "group": ","
+}

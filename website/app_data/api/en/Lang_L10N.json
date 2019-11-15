@@ -1,0 +1,155 @@
+{
+    "name": "FastSitePHP\\Lang\\L10N",
+    "short_name": "Lang\\L10N",
+    "link": "Lang_L10N",
+    "namespace": "FastSitePHP\\Lang",
+    "description": "Localization (l10n) API\n\nContains functions for formatting dates, times, and numbers.\n\n[l10n] is spelled \"Localisation\" in British English. [l10n] is an acronym\/numeronym that represents (\"l\" + 10 characters + \"n\"). The difference is US English uses \"z\" while British English uses an \"s\" in the spelling of the word.",
+    "attributes": [
+        "@link http:\/\/cldr.unicode.org\/",
+        "@link https:\/\/en.wikipedia.org\/wiki\/Languages_used_on_the_Internet",
+        "@link https:\/\/en.wikipedia.org\/wiki\/List_of_countries_by_number_of_Internet_users",
+        "@link http:\/\/php.net\/manual\/en\/function.date.php"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct($locale = null, $timezone = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor Settings can optionally be set when the class is first created.\n\nExample:\n  $l10n = new \\FastSitePHP\\Lang\\L10N('en-US', 'America\/Los_Angeles');",
+            "attributes": [
+                "@param string|null $locale",
+                "@param string|null $timezone"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "function supportedLocales()",
+            "target": "fn_supportedLocales",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a list of supported locales. Each locale has a JSON file in the [Locales] sub-folder.\n\nTerritories (Countries) are not always included when the language has a primary Country. For example French \u2018fr\u2019 and German \u2018de\u2019 do not have locales for \u2018fr-FR\u2019 and \u2018de-DE\u2019 however setting [locale()] with either value will match to the correct language.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "function supportedLanguages()",
+            "target": "fn_supportedLanguages",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an associative array of Supported Languages. The key will contain the language abbreviation and the value will contain the language in English.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "locale($locale = null)",
+            "target": "fn_locale",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the locale to be used when formatting dates, times, and numbers. When setting the locale this function is chainable and returns the L10N object instance.\n\nExamples:\n  Get:\n    $current_locale = $l10n->locale();\n  Set:\n    $l10n->locale('zh');\n    $l10n->locale('fr-FR');\n    $l10n->locale('en-US');",
+            "attributes": [
+                "@param string|null $locale",
+                "@return $this|null|string",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | null | string",
+            "links": []
+        },
+        {
+            "definition": "function supportedTimezones()",
+            "target": "fn_supportedTimezones",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of timezones that can be set from the function [timezone()]. This function simply returns the results of the native PHP function [\\DateTimeZone::listIdentifiers()].",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "timezone($timezone = null)",
+            "target": "fn_timezone",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the timezone to be used when formatting dates and times. When setting the timezone this function is chainable and returns this L10N object instance.\n\nExamples:\n  $time = '2030-01-01 00:00:00';\n  $l10n->timezone($timezone)->formatDateTime($time);\n\n  time = $timezone:\n  '2030-01-01 00:00' = 'UTC'\n  '2030-01-01 09:00' = 'Asia\/Tokyo'\n  '2029-12-31 16:00' = 'America\/Los_Angeles'",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/timezones.php",
+                "@param string|null $timezone",
+                "@return $this|null|string",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | null | string",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/timezones.php"
+            ]
+        },
+        {
+            "definition": "formatDateTime($date_time)",
+            "target": "fn_formatDateTime",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Format a date and time string based on the selected locale. Seconds are not included in the result.\n\nExample:\n  $l10n->timezone('UTC')->formatDateTime('2030-02-01 13:00:30');\n\nReturns:\n  'ko-KR' : 2030. 2. 1. \uc624\ud6c4 1:00\n  'bn-BD' : \u09e7\/\u09e8\/\u09e8\u09e6\u09e9\u09e6 \u09e7:\u09e6\u09e6 PM\n  'en-US' : 2\/1\/2030, 1:00 PM\n  'de-CH' : 01.02.2030, 13:00\n\nTo return formatted current date and time:\n  $l10n->formatDateTime(time());\n\nIf an invalid time is passed and timezone is set then this function will return [null]; otherwise if timezone is not set then the initial value for Unix Timestamp (00:00:00 on 1 January 1970) will be returned.\n\nWhen using Language 'fa' (Farsi\/Persian) or locale 'ar-SA' (Arabic - Saudi Arabia) dates are currently returned with Latin Digits using the Gregorian Calendar instead of Jalaali Calendar for 'fa' and Hijri Calendar for 'ar-SA'. If you need either of these calendars on a web page an option is to use the browser built-in object [Intl.DateTimeFormat] from JavaScript.",
+            "attributes": [
+                "@param int|string $date_time - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "formatDate($date)",
+            "target": "fn_formatDate",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Format a date string (excluding time) based on the selected locale.\n\nExample:\n  $l10n->timezone('UTC')->formatDate('2030-02-01 13:00:30');\n\nReturns:\n  'ko-KR' : 2030. 2. 1.\n  'bn-BD' : \u09e7\/\u09e8\/\u09e8\u09e6\u09e9\u09e6\n  'en-US' : 2\/1\/2030\n  'de-CH' : 01.02.2030\n\nTo return formatted current date:\n  $l10n->formatDate(time());\n\nSee additional notes in [formatDateTime()].",
+            "attributes": [
+                "@param int|string $date - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "formatTime($time)",
+            "target": "fn_formatTime",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Format a time string (excluding date) based on the selected locale. Hours, minutes, and seconds are included in the result.\n\nExample:\n  $l10n->timezone('UTC')->formatTime('2030-02-01 13:00:30');\n\nReturns:\n  'ko-KR' : \uc624\ud6c4 1:00:30\n  'bn-BD' : \u09e7:\u09e6\u09e6:\u09e9\u09e6 PM\n  'en-US' : 1:00:30 PM\n  'de-CH' : 13:00:30\n\nTo return formatted current time:\n  $l10n->formatTime(time());\n\nSee additional notes in [formatDateTime()].",
+            "attributes": [
+                "@param int|string $time - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "formatNumber($number, $decimals = 0)",
+            "target": "fn_formatNumber",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Format a number based on the selected locale. Defaults to zero decimal places.\n\nExample:\n  $l10n->formatNumber(1234567890.12345, 5)\n\nReturns:\n  'en-US' :  1,234,567,890.12345\n  'en-IN' : 1,23,45,67,890.12345\n  'fr'    :  1 234 567 890,12345\n  'ar'    :  \u0661\u066c\u0662\u0663\u0664\u066c\u0665\u0666\u0667\u066c\u0668\u0669\u0660\u066b\u0661\u0662\u0663\u0664\u0665",
+            "attributes": [
+                "@param string|int|float $number",
+                "@param int $decimals",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": [
+        "http:\/\/cldr.unicode.org\/",
+        "https:\/\/en.wikipedia.org\/wiki\/Languages_used_on_the_Internet",
+        "https:\/\/en.wikipedia.org\/wiki\/List_of_countries_by_number_of_Internet_users",
+        "http:\/\/php.net\/manual\/en\/function.date.php"
+    ]
+}

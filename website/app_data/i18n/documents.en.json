@@ -1,0 +1,69 @@
+{
+    "_I18N_NOTES": "When copying leave the values for [img] because they points to images.",
+    "page_title": "FastSitePHP Documentation",
+    "links": [
+        {
+            "page": "install-php-on-linux",
+            "category": "Install",
+            "title": "Install Apache and PHP on a Linux or Unix Server",
+            "img": "../img/logos/linux.svg",
+            "img_alt": "Linux"
+        },
+        {
+            "page": "install-php-on-windows",
+            "category": "Install",
+            "title": "Install IIS and PHP on a Windows Server or Desktop",
+            "img": "../img/logos/Windows_logo_-_2012.svg",
+            "img_alt": "Windows"
+        },
+        {
+            "page": "install-php-on-mac",
+            "category": "Install",
+            "title": "Install Apache and PHP on a Mac",
+            "img": "../img/logos/apple.svg",
+            "img_alt": "Apple"
+        },
+        {
+            "page": "edit-with-vs-code",
+            "category": "Develop",
+            "title": "Use Visual Studio Code for PHP Development",
+            "img": "../img/logos/vs-code.png",
+            "img_alt": "Visual Studio Code"
+        },
+        {
+            "page": "edit-with-atom",
+            "category": "Develop",
+            "title": "Use GitHub Atom Editor for PHP Development",
+            "img": "../img/logos/atom.png",
+            "img_alt": "Atom Editor"
+        },
+        {
+            "page": "edit-with-other",
+            "category": "Develop",
+            "title": "Using other Code Editors and IDE's for PHP Development",
+            "img": "../img/icons/Code-Editor.svg",
+            "img_alt": "Code Editor"
+        },
+        {
+            "page": "file-encryption-bash",
+            "category": "Security",
+            "title": "File Encryption using the compatible Bash Script [encrypt.sh]",
+            "img": "../img/icons/Security-Lock.svg",
+            "img_alt": "Encryption"
+        },
+        {
+            "page": "file-encryption-windows",
+            "category": "Security",
+            "title": "File Encryption using the Bash Script [encrypt.sh] on Windows",
+            "img": "../img/icons/Security-Lock.svg",
+            "img_alt": "Encryption"
+        },
+        {
+            "page": "ibm-server-db-query",
+            "category": "Database",
+            "title": "Using the Db2Database Class with an IBM iSeries Server",
+            "img": "../img/logos/IBM_logo.svg",
+            "img_alt": "IBM"
+        }
+    ]
+}

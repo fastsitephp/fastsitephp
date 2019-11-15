@@ -1,0 +1,48 @@
+{
+    "_I18N_NOTES": "When copying leave the values for [img] because they points to images.",
+    "page_title": "FastSitePHP Examples",
+    "links": [
+        {
+            "page": "request-demo",
+            "category": "HTTP",
+            "title": "Reading the HTTP Request",
+            "img": "../img/icons/HTTP-Request.svg",
+            "img_alt": "HTTP Request"
+        },
+        {
+            "page": "response-demo",
+            "category": "HTTP",
+            "title": "Using the HTTP Response Object",
+            "img": "../img/icons/HTTP-Response.svg",
+            "img_alt": "HTTP Response"
+        },
+        {
+            "page": "database-demo",
+            "category": "Database",
+            "title": "Connect to a Database and run SQL Statements",
+            "img": "../img/icons/Database.svg",
+            "img_alt": "Database"
+        },
+        {
+            "page": "email-demo",
+            "category": "Email",
+            "title": "Send Email using the SMTP Client",
+            "img": "../img/icons/Email.svg",
+            "img_alt": "Email"
+        },
+        {
+            "page": "l10n-demo",
+            "category": "Language",
+            "title": "Localization (L10N) Demo - Date and Number Formatting",
+            "img": "../img/icons/Language.svg",
+            "img_alt": "Language"
+        },
+        {
+            "page": "encryption-demo",
+            "category": "Security",
+            "title": "Encryption Demo",
+            "img": "../img/icons/Security-Lock.svg",
+            "img_alt": "Encryption"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="110px" height="160px" viewBox="0 0 110 160" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Lightswitch</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#D6F7A0" offset="0%"></stop>
+            <stop stop-color="#ADEC67" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#E5FEC1" offset="0%"></stop>
+            <stop stop-color="#C7FC8D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#C7FC8D" offset="0%"></stop>
+            <stop stop-color="#E5FEC1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#C7FC8D" offset="0%"></stop>
+            <stop stop-color="#E5FEC1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Lightswitch" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Frame-Outside" stroke="#529C00" stroke-width="2" fill="url(#linearGradient-1)" x="1" y="1" width="108" height="158" rx="10"></rect>
+        <rect id="Frame-Inside" stroke="#529C00" stroke-width="2" fill="#EFFFDD" x="9" y="9" width="92" height="142" rx="10"></rect>
+        <rect id="Light-Switch-Bottom" stroke="#7ED321" stroke-width="2" fill="url(#linearGradient-2)" x="39" y="46" width="28" height="61"></rect>
+        <path d="M38,45 L68,45 L68,75 L38,75 L38,45 Z" id="Combined-Shape" fill="#365712"></path>
+        <path d="M48.9597656,39.4568393 L45.0450381,73.430894 L49.9544189,81.934191 L54.3057882,53.3638415 L48.9597656,39.4568393 Z" id="Light-Switch-Side" stroke="#7ED321" stroke-width="2" fill="url(#linearGradient-3)" transform="translate(49.674038, 60.100481) rotate(30.000000) translate(-49.674038, -60.100481) "></path>
+        <path d="M55.464453,58.0344065 L40.0364944,78 L67.5193752,78 L82.0263651,59.8662625 L55.464453,58.0344065 Z" id="Switch-Underneight" stroke="#7ED321" stroke-width="2" fill="url(#linearGradient-4)"></path>
+        <rect id="Mask-Top-of-Switch" fill="#EFFFDD" x="35" y="35" width="43" height="10"></rect>
+        <rect id="Mask-Right-of-Switch" fill="#EFFFDD" x="83" y="57" width="4" height="15"></rect>
+        <rect id="Mask-Top-Inside" fill="#365712" x="38" y="45" width="30" height="4"></rect>
+        <rect id="Lightswitch-closeset-part" stroke="#7ED321" stroke-width="2" fill="#C7FC8D" x="54" y="50" width="28" height="10"></rect>
+    </g>
+</svg>

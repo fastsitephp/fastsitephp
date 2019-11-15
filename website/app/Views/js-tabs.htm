@@ -1,0 +1,39 @@
+<style>
+    .tabs { display: flex; }
+    .tab { 
+        flex:1; 
+        background-color:#bdc2db; 
+        cursor:pointer; 
+        padding: 20px; 
+        text-align:center; 
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+    .tab:first-child { border-top-left-radius: 4px; }
+    .tab:last-child { border-top-right-radius: 4px; }
+    .tab.active { background-color:white; }
+    .tab-content { padding:40px; }
+</style>
+<script>
+    // Simple JavaScript Tab Selector
+    // Validates with [jshint]
+    (function() {
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('.tab');
+            var contentElements = document.querySelectorAll('.tab-content');
+            Array.prototype.forEach.call(tabs, function(tab) {
+                tab.onclick = function () {
+                    Array.prototype.forEach.call(tabs, function(el) {
+                        el.classList.remove('active');
+                    });
+                    Array.prototype.forEach.call(contentElements, function(el) {
+                        el.style.display = 'none';
+                    });
+                    document.querySelector(this.getAttribute('data-target')).style.display = '';
+                    this.classList.add('active');
+                };
+            });
+        });
+    })();
+</script>

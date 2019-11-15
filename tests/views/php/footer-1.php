@@ -1,0 +1,1 @@
+[FooterPhp1][<?php echo $app->escape($footer_data); ?>]

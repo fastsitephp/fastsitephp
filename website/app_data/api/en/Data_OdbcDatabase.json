@@ -1,0 +1,178 @@
+{
+    "name": "FastSitePHP\\Data\\OdbcDatabase",
+    "short_name": "Data\\OdbcDatabase",
+    "link": "Data_OdbcDatabase",
+    "namespace": "FastSitePHP\\Data",
+    "description": "ODBC Database\n\nThis class provides a thin wrapper for PHP ODBC functions. It reduces the amount of code needed to query a database and provides a compatible class with FastSitePHP's Database class.\n\nODBC is most common on Windows and especially on older servers or databases. In most cases PDO (FastSitePHP class [Database]) is preferred and will provide more recent drivers however if ODBC with PDO is not available the ODBC on a server then ODBC functions might be. Additionally certain databases such as IBM may only work through ODBC on some servers.\n\nIMPORTANT - If using this class you may need to call the fuction [allowLargeTextValues()] if working with records that have large text or binary data.",
+    "attributes": [
+        "@link http:\/\/php.net\/manual\/en\/ref.uodbc.php"
+    ],
+    "properties": [
+        {
+            "name": "db",
+            "target": "prop_db",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Connection for the Database",
+            "attributes": [
+                "@var null|\\resource"
+            ],
+            "dataType": "null\n\\resource",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "allowLargeTextValues($size = 100000)",
+            "target": "fn_allowLargeTextValues",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Use when needed to make sure that ODBC will return large text fields. By default only the first 4096 characters are returned.\n\nThis sets the PHP INI Setting 'odbc.defaultlrl' to the specified size.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/odbc.configuration.php#ini.uodbc.defaultlrl",
+                "@param int $size - Defaults to 100000 (100,000)"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/php.net\/manual\/en\/odbc.configuration.php#ini.uodbc.defaultlrl"
+            ]
+        },
+        {
+            "definition": "__construct($dsn, $user = null, $password = null, $persistent = false, $options = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor. Creates Db Connection.",
+            "attributes": [
+                "@param string $dsn - Database Connection String",
+                "@param null|string $user - User Name for the Connection",
+                "@param null|string $password - Password for the User",
+                "@param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.",
+                "@param mixed $options - Default options exist for each database class. To customize refer to PHP documentation based on the driver used.",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "__destruct()",
+            "target": "fn___destruct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Deconstructor. Calls [close()] automatically unless using a Persistent Connection.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "close()",
+            "target": "fn_close",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Close the connection",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "query($sql, array $params = null)",
+            "target": "fn_query",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a Query and return results as any array of records. Records are each associative arrays. If no records are found an empty array is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "queryOne($sql, array $params = null)",
+            "target": "fn_queryOne",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single record and return it as a associative array or return null if the record does not exist.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array|null"
+            ],
+            "returnType": "array | null",
+            "links": []
+        },
+        {
+            "definition": "queryValue($sql, array $params = null)",
+            "target": "fn_queryValue",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single value from the first column of the first record found. If no records were found null is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "queryList($sql, array $params = null)",
+            "target": "fn_queryList",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for an array of values from the first column of all records found.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "execute($sql, array $params = null)",
+            "target": "fn_execute",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a SQL Action Statement (INSERT, UPDATE, DELETE, etc) and return the number or rows affected. If multiple statments are passed then the returned row count will likely be for only the last query.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return int - Row count of the last query"
+            ],
+            "returnType": "int - Row count of the last query",
+            "links": []
+        },
+        {
+            "definition": "executeMany($sql, array $records)",
+            "target": "fn_executeMany",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Prepare a SQL Statement and run many record parameters against it. This can be used for transactions such as bulk record inserts. Returns the total number of rows affected for all queries.",
+            "attributes": [
+                "@param string $sql",
+                "@param array $records",
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        },
+        {
+            "definition": "trimStrings($new_value = null)",
+            "target": "fn_trimStrings",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether spaces on strings should be trimmed when calling [query(), queryOne(), queryValue(), queryList(), querySets()].\n\nWhen called strings are trimmed after the records are queried and before the function returns the result.\n\nOften legacy databases will use [CHAR] text fields over [VARCHAR] or similar types. For example when using a [CHAR] field:\n    Field: [name] CHAR(20)\n    Data saved as \"John                \"\n\nWhen querying by default the spaces will be returned however if this function is set to [true] then \"John\" would be returned.\n\nDefaults to [false]. Calling this function takes extra memory vs not using it so if you have a high traffic site and want to trim strings you may want to do so in the SQL Statement and keep this [false].\n\nFor a small amount of records (several hundred or less) this has little or not noticeable impact however if using a large set of records (1,000+) this setting may cause a about a 10% increase in memory or more.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        }
+    ],
+    "links": [
+        "http:\/\/php.net\/manual\/en\/ref.uodbc.php"
+    ]
+}

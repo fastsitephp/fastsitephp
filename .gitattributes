@@ -1,0 +1,38 @@
+# PHP Projects typically exclude many folders and files from default zip
+# downloads using [export-ignore]. This is different than projects for 
+# other popular langauges because PHP files are executable by users so
+# including tests and other files in packages (Composer) can pose a 
+# security risk if installed on a public directory of a web server.
+# Also they can take a lot of extra space for production users.
+#
+# Basically everything except [src, composer.json, and LICENSE] are
+# excluded for production releases, however the [master] branch
+# should have these lines commented out so that files can easily
+# be downloaded.
+#
+# /docs           export-ignore
+# /scripts        export-ignore
+# /tests          export-ignore
+# /website        export-ignore
+# .gitattributes  export-ignore
+# .gitignore      export-ignore
+# autoload.php    export-ignore
+# index.php       export-ignore
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# CRLF for Windows Files
+*.cs       text eol=crlf
+*.config   text eol=crlf
+
+# LF for *nix files
+*.sh       text eol=lf
+*.pem      text eol=lf
+*.sha256   text eol=lf
+.htaccess  text eol=lf
+
+# Binary Files
+*.sketch   binary
+*.ico      binary
+*.png      binary

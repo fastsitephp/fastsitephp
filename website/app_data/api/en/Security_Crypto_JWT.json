@@ -1,0 +1,270 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\JWT",
+    "short_name": "Security\\Crypto\\JWT",
+    "link": "Security_Crypto_JWT",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "JSON Web Tokens (JWT)",
+    "attributes": [
+        "@link https:\/\/jwt.io\/",
+        "@link https:\/\/tools.ietf.org\/html\/rfc7519",
+        "@link https:\/\/en.wikipedia.org\/wiki\/JSON_Web_Token",
+        "@link http:\/\/self-issued.info\/docs\/draft-ietf-oauth-json-web-token.html"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct()",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nIf using PHP 5.5 or below then [hash_equals()] is polyfilled, and [bin2hex()] and [hex2bin()] are polyfilled for PHP 5.3.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "generateKey($key_type = 'base64')",
+            "target": "fn_generateKey",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Generate a secure key based on the algorithm specified from the function [algo()]. When using HMAC the key is returned in either Base64 of Hex format depending on the $type parameter (defaults to Base64); and when using RSA an array is returned in the format of [private_key, public_key].",
+            "attributes": [
+                "@param string $key_type - 'base64' or 'hex'",
+                "@return string|array"
+            ],
+            "returnType": "string | array",
+            "links": []
+        },
+        {
+            "definition": "encode($payload, $key)",
+            "target": "fn_encode",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Encode and Create a JWT. The algorithm to use can be specified from the function [algo()]. By default a secure key is required and one can be generated from the function [generateKey()]. If a weak key is required for compatibility with other code see the function [useInsecureKey()].",
+            "attributes": [
+                "@param array|object $payload - Data to encode",
+                "@param string $key",
+                "@return string - JSON Web Token (JWT)",
+                "@throws \\Exception"
+            ],
+            "returnType": "string - JSON Web Token (JWT)",
+            "links": []
+        },
+        {
+            "definition": "decode($token, $key)",
+            "target": "fn_decode",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Decode and Verify a JWT. If the token is not valid null will be returned unless [exceptionOnError(true)] is set and then an exception will be thrown.\n\nUnless settings are changed from [allowedAlgos()] only the default algorithm 'HS256' is accepted for decoding.\n\nIf the payload has a claim defined then it will be validated by default. This can be turned off by calling [validateDefinedClaims(false)].\n\nTo require and validate specific claims use the [require*()\/allowed*()] getter\/setter functions of this class.",
+            "attributes": [
+                "@param string $token",
+                "@param string $key",
+                "@return array - The payload that was originally encoded.",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - The payload that was originally encoded.",
+            "links": []
+        },
+        {
+            "definition": "addClaim($payload, $claim, $value)",
+            "target": "fn_addClaim",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Helper function to add a JWT field value to either an array or object. Use this prior to calling [encode()]. Time fields ['exp', 'nbf', 'iat'] must be either an integer representing a Unix Timestamp or a string that is valid for the PHP function [strtotime()].\n\nExample to expire a Token after 10 minutes:\n    $payload = $jwt->addClaim($payload, 'exp', '+10 minutes');",
+            "attributes": [
+                "@param array|object $payload - Payload for encoding",
+                "@param string $claim - Standard JWT Field ['iss', 'sub', 'aud', 'exp', 'nbf', 'iat', 'jti']",
+                "@param string|int $value",
+                "@return array|object - The modified payload",
+                "@throws \\Exception"
+            ],
+            "returnType": "array | object - The modified payload",
+            "links": []
+        },
+        {
+            "definition": "exceptionOnError($value = null)",
+            "target": "fn_exceptionOnError",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "By default [decode()] returns null when a JWT cannot be validated or invalid settings are used. When the value of this function is set to [true] then an exception will be thrown instead.",
+            "attributes": [
+                "@param string|null $value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "algo($new_value = null)",
+            "target": "fn_algo",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the default JWT Algorithm to use, for supported algorithms see comments in [allowedAlgos()]. Defaults to 'HMAC' with 'SHA256'.",
+            "attributes": [
+                "@param string|null $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "allowedAlgos(array $new_value = null)",
+            "target": "fn_allowedAlgos",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an array of allowed JWT Algorithms to accept when decoding.\n\nHMAC [HS256, HS384, HS512] and RSA [RS256, RS384, RS512] are supported. Elliptic Curve Digital Signature Algorithms (ECDSA) [ES256, ES384, ES512] are not supported by this class because PHP's OpenSSL implementation does not provide built-in support.\n\nIf need to use (ECDSA) with PHP there are several options:\n  Encode\/Decode Fast (PHP C Extension):\n    https:\/\/github.com\/cdoco\/php-jwt\n  Encode\/Decode Slower (Using PHP Code):\n    https:\/\/github.com\/lcobucci\/jwt\n    https:\/\/github.com\/web-token\/jwt-framework",
+            "attributes": [
+                "@param array|null $new_value",
+                "@return array|$this"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "useInsecureKey($new_value = null)",
+            "target": "fn_useInsecureKey",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set Key Requirement when using and HMAC JWT [HS256, HS384, HS512]. Defaults to [false] and with default settings a strong key size must be used.\n\nThis should only be set to [true] if compatibility with other code is needed. Often online samples use common passwords such as 'secret' when signing JWT's which is why this setting was created.",
+            "attributes": [
+                "@param bool|null $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "validateDefinedClaims($new_value = null)",
+            "target": "fn_validateDefinedClaims",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether defined claims must be validated when [decode()] is called. Defaults to true.\n\nExample if the payload has a value for [exp] then by default the JWT Expiration Time is checked otherwise [requireExpireTime()] would have to be set.",
+            "attributes": [
+                "@param bool|null $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "allowedIssuers(array $new_value = null)",
+            "target": "fn_allowedIssuers",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an allowed list of values for \"iss\" (Issuer) Claim",
+            "attributes": [
+                "@param array|null $new_value - If set then \"iss\" is required and must be in the array",
+                "@return array|null|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.1"
+            ],
+            "returnType": "array | null | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.1"
+            ]
+        },
+        {
+            "definition": "requireSubject($new_value = null)",
+            "target": "fn_requireSubject",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set validation for the \"sub\" (Subject) Claim",
+            "attributes": [
+                "@param string|null $new_value - If set then \"sub\" is required and must match",
+                "@return string|null|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.2"
+            ],
+            "returnType": "string | null | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.2"
+            ]
+        },
+        {
+            "definition": "allowedAudiences(array $new_value = null)",
+            "target": "fn_allowedAudiences",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an allowed list of audience values for the \"aud\" (Audience) Claim",
+            "attributes": [
+                "@param array|null $new_value - If set then \"aud\" is required and must be in the array",
+                "@return array|null|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.3"
+            ],
+            "returnType": "array | null | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.3"
+            ]
+        },
+        {
+            "definition": "requireExpireTime($new_expiration_time = null, $leeway = null)",
+            "target": "fn_requireExpireTime",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set validation for the \"exp\" (Expiration Time) Claim",
+            "attributes": [
+                "@param bool|null $new_expiration_time - If [true] then \"exp\" is required and must be valid",
+                "@param int|null $leeway - Time in seconds if leeway is to be used for clock skew",
+                "@return array|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.4"
+            ],
+            "returnType": "array | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.4"
+            ]
+        },
+        {
+            "definition": "requireNotBefore($new_not_before_time = null, $leeway = null)",
+            "target": "fn_requireNotBefore",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set validation for the \"nbf\" (Not Before) Claim",
+            "attributes": [
+                "@param bool|null $new_not_before_time - If [true] then \"nbf\" is required and must be valid",
+                "@param int|null $leeway - Time in seconds if leeway is to be used for clock skew",
+                "@return array|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.5"
+            ],
+            "returnType": "array | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.5"
+            ]
+        },
+        {
+            "definition": "requireIssuedAt($new_value = null)",
+            "target": "fn_requireIssuedAt",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set validation for the \"iat\" (Issued At) Claim",
+            "attributes": [
+                "@param bool|null $new_value - If [true] then \"iat\" is required and must be a valid number",
+                "@return bool|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.6"
+            ],
+            "returnType": "bool | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.6"
+            ]
+        },
+        {
+            "definition": "requireJwtId($new_value = null)",
+            "target": "fn_requireJwtId",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set validation for the \"jti\" (JWT ID) Claim",
+            "attributes": [
+                "@param string|null $new_value - If set then \"jti\" is required and must match",
+                "@return bool|$this",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.7"
+            ],
+            "returnType": "bool | $this",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc7519#section-4.1.7"
+            ]
+        }
+    ],
+    "links": [
+        "https:\/\/jwt.io\/",
+        "https:\/\/tools.ietf.org\/html\/rfc7519",
+        "https:\/\/en.wikipedia.org\/wiki\/JSON_Web_Token",
+        "http:\/\/self-issued.info\/docs\/draft-ietf-oauth-json-web-token.html"
+    ]
+}

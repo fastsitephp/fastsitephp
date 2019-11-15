@@ -1,0 +1,21 @@
+# Directories
+.vscode/
+.idea/
+tmp/
+vendor/
+
+# OS Files
+.DS_Store
+Desktop.ini
+Thumbs.db
+
+# Enviroment Variable Files
+.env
+
+# PHP Composer Files
+composer.lock
+composer.phar
+composer-setup.php
+
+# Misc files used by the app for testing
+log.txt

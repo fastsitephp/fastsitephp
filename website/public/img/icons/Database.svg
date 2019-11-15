@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="104px" height="129px" viewBox="0 0 104 129" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Database</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="75.8437962%" cy="50%" fx="75.8437962%" fy="50%" r="167.98353%" gradientTransform="translate(0.758438,0.500000),scale(0.500000,1.000000),scale(1.000000,0.947195),translate(-0.758438,-0.500000)" id="radialGradient-1">
+            <stop stop-color="#FF9380" offset="0%"></stop>
+            <stop stop-color="#F80000" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="65.9716387%" cy="50%" fx="65.9716387%" fy="50%" r="167.98353%" gradientTransform="translate(0.659716,0.500000),scale(0.500000,1.000000),scale(1.000000,0.947195),translate(-0.659716,-0.500000)" id="radialGradient-2">
+            <stop stop-color="#FF9380" offset="0%"></stop>
+            <stop stop-color="#F80000" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="46.224947%" cy="69.6616658%" fx="46.224947%" fy="69.6616658%" r="167.98353%" gradientTransform="translate(0.462249,0.696617),scale(0.500000,1.000000),scale(1.000000,0.947195),translate(-0.462249,-0.696617)" id="radialGradient-3">
+            <stop stop-color="#FF9380" offset="0%"></stop>
+            <stop stop-color="#F80000" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="29.503594%" cy="50%" fx="29.503594%" fy="50%" r="198.265647%" gradientTransform="translate(0.295036,0.500000),scale(0.500000,1.000000),rotate(-138.587341),scale(1.000000,0.947195),translate(-0.295036,-0.500000)" id="radialGradient-4">
+            <stop stop-color="#FF9380" offset="0%"></stop>
+            <stop stop-color="#F80000" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Database" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M52,102 C64.3380393,102 81.0047059,93.6666667 102,77 C102,90.6309405 102,98.9642738 102,102 C102,115.807119 77,127 52,127 C27,127 2,115.807119 2,102 C2,98.9642738 2,90.6309405 2,77 C22.9952941,93.6666667 39.6619607,102 52,102 Z" id="Path" stroke="#800000" stroke-width="4" fill="url(#radialGradient-1)"></path>
+        <path d="M52,77 C64.3380393,77 81.0047059,68.6666667 102,52 C102,65.6309405 102,73.9642738 102,77 C102,90.8071187 77,102 52,102 C27,102 2,90.8071187 2,77 C2,73.9642738 2,65.6309405 2,52 C22.9952941,68.6666667 39.6619607,77 52,77 Z" id="Path" stroke="#800000" stroke-width="4" fill="url(#radialGradient-2)"></path>
+        <path d="M52,52 C64.3380393,52 81.0047059,43.6666667 102,27 C102,40.6309405 102,48.9642738 102,52 C102,65.8071187 77,77 52,77 C27,77 2,65.8071187 2,52 C2,48.9642738 2,40.6309405 2,27 C22.9952941,43.6666667 39.6619607,52 52,52 Z" id="Path" stroke="#800000" stroke-width="4" fill="url(#radialGradient-3)"></path>
+        <ellipse id="Oval" stroke="#800000" stroke-width="4" fill="url(#radialGradient-4)" cx="52" cy="27" rx="50" ry="25"></ellipse>
+    </g>
+</svg>

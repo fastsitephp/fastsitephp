@@ -1,0 +1,52 @@
+<script type="module">
+    const resType = document.querySelector('select');
+    const result = document.querySelector('.result');
+    const pre = result.parentNode;
+    const exampleCode = document.getElementById('example-code');
+    
+    function getResponse() {
+        const type = resType.value;
+        const url = `response/${type}`;
+        fetch(url, {
+            method: 'GET',
+            cache: 'no-store',
+        })
+        .then(response => {
+            return (type === 'json' ? response.json() : response.text());
+        })
+        .then(data => {
+            result.innerHTML = '';
+            result.className = 'result';
+            pre.className = '';
+            switch (type) {
+                case 'json':
+                    result.textContent = JSON.stringify(data, null, '\t');
+                    result.className = 'result language-json';
+                    break;
+                case 'text':
+                    result.textContent = data;
+                    result.className = 'result plain-text';
+                    break;
+                case 'html':
+                    result.textContent = data;
+                    result.className = 'result language-markup';
+                    break;
+                default:
+                    throw 'Type not yet handled: ' + type;
+            }
+            exampleCode.textContent = document.getElementById('tmpl-' + type).textContent;
+            Prism.highlightAll();
+        })
+        .catch(error => {
+            console.error(error);
+            result.innerHTML = '';
+            result.className = 'result error'
+            result.textContent = error;
+        });        
+    }
+
+    resType.onchange = getResponse;
+    document.addEventListener('DOMContentLoaded', () => {
+        getResponse();
+    });
+</script>

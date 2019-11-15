@@ -1,0 +1,74 @@
+<script type="module">
+    // Validates with [jshint]
+    /* jshint esversion: 6 */
+
+    // Loop through all Filter Inputs
+    const filterInputs = document.querySelectorAll('input[data-filter]');
+    for (const filterInput of filterInputs) {
+        // Get attributes for each filter element
+        let labelSelector = filterInput.getAttribute('data-label');
+        if (!labelSelector) {
+            labelSelector = '.filter-info';
+        }
+        const filterInfo = document.querySelector(labelSelector);
+        const textAll = filterInfo.getAttribute('data-text-all');
+        const textFiltered = filterInfo.getAttribute('data-text-filtered');
+        const exampleCode = document.querySelectorAll(filterInput.getAttribute('data-filter'));
+        const codeCount = exampleCode.length;
+        const codeLCase = new WeakMap();
+        
+        // Setup Filter Input. Old Browsers that do not support JavaScript
+        // Modules will not it disabled with a different placeholder.
+        filterInput.placeholder = filterInput.getAttribute('data-placeholder');
+        filterInput.disabled = false;
+
+        // Convert all code to lower-case for searching
+        for (const el of exampleCode) {
+            codeLCase.set(el, el.innerText.toLowerCase());
+        }
+        
+        // Handle changes to the filter input
+        filterInput.oninput = function() {
+            // Get Search Text
+            const searchText = this.value.trim().toLowerCase().split(' ').filter(item => item !== '');
+            let displayCount = 0;
+            
+            // Loop through each code element and if all text 
+            // is found then show it, otherwise hide it.
+            for (const el of exampleCode) {
+                // Match all words
+                const code = codeLCase.get(el);
+                let show = true;
+                for (const text of searchText) {
+                    if (code.indexOf(text) === -1) {
+                        show = false;
+                        break;
+                    }
+                }                    
+                // Show or hide element
+                el.style.display = (show ? '' : 'none');
+                if (show) {
+                    displayCount++;
+                }
+            }
+
+            // Show filter info
+            let text = (displayCount === codeCount ? textAll : textFiltered);
+            filterInfo.textContent = text.replace('{displayed}', displayCount).replace('{count}', codeCount);
+        };
+    }
+</script>
+<script nomodule>
+    // Validates with [jshint]
+    (function() {
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function() {
+            var inputs = document.querySelectorAll('.filter');
+            Array.prototype.forEach.call(inputs, function(input) {
+                if (input.disabled) {
+                    input.placeholder = input.getAttribute('data-disabled');
+                }
+            });
+        });
+    })();
+</script>

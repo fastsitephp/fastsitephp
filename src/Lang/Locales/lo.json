@@ -1,0 +1,9 @@
+{
+    "date": "j\/n\/Y",
+    "time": "G:i:s",
+    "dateTime": "j\/n\/Y, G:i",
+    "am": "ກ່ອນທ່ຽງ",
+    "pm": "ຫຼັງທ່ຽງ",
+    "decimal": ",",
+    "group": "."
+}

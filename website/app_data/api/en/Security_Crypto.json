@@ -1,0 +1,118 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto",
+    "short_name": "Security\\Crypto",
+    "link": "Security_Crypto",
+    "namespace": "FastSitePHP\\Security",
+    "description": "FastSitePHP Crypto Class\n\nThis is a helper class using a Facade Software Design Pattern to simplify Secure Encryption, Data Signing, and JWT usage.\n\nThis class allows for only the default secure settings of each object and requires secure keys to be defined in either the App Config Array or as Environment Variables.\n\nBy default Signed Data and JSON Web Tokens are valid for 1 hour and expire after. The expiration time can be changed from a parameter when calling either [sign()] or [encodeJWT].\n\nExample usage:\n    $app->config['ENCRYPTION_KEY'] = 'dd8daccb9e2b66321a......';\n    $encrypted_text = Crypto::encrypt($data);\n    $decrypted_data = Crypto::decrypt($encrypted_text);\n\n[$app] Config (or Environment Variables) Settings:\n    ENCRYPTION_KEY\n        encrypt()\n        decrypt()\n        encryptFile()\n        decryptFile()\n    SIGNING_KEY\n        sign()\n        verify()\n    JWT_KEY\n        encodeJWT()\n        decodeJWT()",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "encrypt($data)",
+            "target": "fn_encrypt",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Encrypt data (string, int, float, bool, object, or array) and return the encrypted text as a base64-url string.",
+            "attributes": [
+                "@param mixed $data",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "decrypt($encrypted_text)",
+            "target": "fn_decrypt",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Decrypt data that was encrypted using the [encrypt()] function and return the original value.\n\nThe same data type is returned so if a string was encrypted a string will be returned and if an array was encrypted then an array will be returned. Objects of type stdClass or custom classes that were encrypted are returned as an Array (Dictionary).\n\nIf decryption fails then null will be returned.",
+            "attributes": [
+                "@param string $encrypted_text",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "sign($data, $expire_time = '+1 hour')",
+            "target": "fn_sign",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Sign data (string, int, float, bool, object, or array) and return the signed data in one of the following formats:\n    'base64url(data).type.base64url(signature)'\n    'base64url(data).type.timestamp.base64url(signature)'\n\nThe default expiration time is 1 hour; this can be changed to a different time or turned off passing [null].",
+            "attributes": [
+                "@param mixed $data",
+                "@param null|string|float $expire_time",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "verify($signed_text)",
+            "target": "fn_verify",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Verify data that was signed using the [sign()] function and return the original value.\n\nThe same data type is returned so if a string was signed a string will be returned and if an array was signed then an array will be returned. Objects of type stdClass or custom classes that were signed are returned as an Array (Dictionary).\n\nIf verification fails then null will be returned.",
+            "attributes": [
+                "@param string $signed_text",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "encryptFile($file_path, $enc_file)",
+            "target": "fn_encryptFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Encrypt a file\n\nIf a file is 10 MB or smaller (or any size on Windows) then it will be processed in memory, otherwise the file will be processed using shell commands. This allows for files of any size to be encrypted.\n\nIf you need to encrypt files that are larger than 2 GB on a 32-Bit OS then you should use the [FileEncryption] class directly like this:\n    $crypto = new FileEncryption();\n    $crypto->processFilesWithCmdLine(true);\n    $crypto->encryptFile($file_path, $enc_file, $key);",
+            "attributes": [
+                "@param string $file_path - Input file to encrypt, this file will not be modified",
+                "@param string $enc_file - Path to save the encrypted (output) file"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "decryptFile($enc_file, $output_file)",
+            "target": "fn_decryptFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Decrypt a file that was created from [encryptFile()]. The same memory and OS rules apply for file processing.\n\nThis function has no return value so if decryption fails an exception is thrown.",
+            "attributes": [
+                "@param string $enc_file - Encrypted file, this file will not be modified",
+                "@param string $output_file - Path to save the decrypted file"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "encodeJWT($payload, $exp_time = '+1 hour')",
+            "target": "fn_encodeJWT",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Create a JSON Web Token (JWT) with a default expiration time of 1 hour.",
+            "attributes": [
+                "@param array|object $payload",
+                "@param null|string|int $exp_time",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "decodeJWT($token)",
+            "target": "fn_decodeJWT",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Decode and Verify a JWT. If the token is not valid null will be returned.",
+            "attributes": [
+                "@param string $token",
+                "@return array - The payload that was originally encoded."
+            ],
+            "returnType": "array - The payload that was originally encoded.",
+            "links": []
+        }
+    ],
+    "links": []
+}

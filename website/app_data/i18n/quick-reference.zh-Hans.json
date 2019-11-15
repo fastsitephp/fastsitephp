@@ -1,0 +1,9 @@
+{
+    "page_title": "PHP代码-快速参考",
+    "page_description_1": "此页面包含基本PHP语法以及如何使用FastSitePHP的示例。 假定一些编程知识，例如[if]语句或[loop]是什么； 但是，您不必了解PHP就可以使用它。",
+    "page_description_2": "通过设计示例，您可以简单地复制并粘贴所需的内容。 因为存在标准PHP代码的示例，所以即使您不使用FastSitePHP，此页面也可以作为通用PHP参考。",
+    "filter_placeholder": "过滤此页面上的代码。 例如，键入“安全性”或“数据库”",
+    "filter_disabled": "如果使用较新的浏览器或操作系统查看此页面，则可以过滤代码。",
+    "filter_all": "显示{count}个示例代码节",
+    "filter_filtered": "显示{count}个示例代码节中的{displayed}个"
+}

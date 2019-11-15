@@ -1,0 +1,160 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\FileEncryption",
+    "short_name": "Security\\Crypto\\FileEncryption",
+    "link": "Security_Crypto_FileEncryption",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "File Encryption\n\nThis class is designed to provide secure and easy to use file encryption. This class uses encryption that is compatible with most Linux, Unix, and Mac computers using command line calls on the OS with [openssl]. This class and has the ability to encrypt both large on-disk files and smaller in-memory files. Very large files of any size can be encrypted on when using the default command line settings.\n\nAs of 2019 file encryption has been tested and confirmed on recent versions the following operating systems using the default or minimal OS setup and PHP:\n  macOS, Windows, Ubuntu, Debian, Amazon Linux, CentOS, openSUSE, Fedora,\n  Red Hat Enterprise Linux, Windows using Windows Subsystem for Linux\n\nLarge file encryption with FreeBSD may or may not work depending on which shell commands are avaiable and which version of FreeBSD is used. If you intended on using this class with FreeBSD for large file encryption make sure your server passes all crypto unit tests.\n\nA compatible Bash Script available on the main site at [scripts\/shell\/bash\/encrypt.sh].",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "generateKey()",
+            "target": "fn_generateKey",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a new key in hex format based on the size of the needed key. Keys are generated using random bytes from the System's CSPRNG (Cryptographically secure pseudorandom number generator).\n\nThe same key must be used for both encryption and decryption and the key should be kept secret in a secure manner and should not be shared publicly.",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "encryptFile($file_path, $enc_file, $key)",
+            "target": "fn_encryptFile",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Encrypt a file\n\nThis function takes an input plaintext file and an output file of where to save the encrypted file. The file path for the encrypted file must refer to a file that does not yet exist. This function returns nothing and raises an exception in the event of an error.\n\nThe key is a string value in hexadecimal format that can be securely generated using [generateKey()].\n\nIf encrypting large files call [processFilesWithCmdLine(true)] or use the helper [Crypto] class instead. See additional comments below.\n\nIf using this Red Hat Linux you will likely first have to install the [xxd] command using [sudo yum install vim-common]. By default [xxd] is expected to exist on most Linux and Unix OS's.\n\nIMPORTANT - File paths should generally not be passed user parameters because a user could specify files other than the intended file. If an App does need to allow the user to specify a file then the code should be carefully reviewed and tested for security.\n\nFunction Properties used with [encryptFile()] and [decryptFile()]:\n  Create a secure key\n    [generateKey()]\n\n  [displayCmdErrorDetail(false)]\n    Set to [true] to show error detail on command line errors.\n    IMPORTANT - this should only be used for debugging as it can show\n    security info such as file paths and the key in the error message.\n\n  [processFilesWithCmdLine(false)]\n    By default files are processed in memory. If this is set to [true]\n    then files are encrypted using shell commands. [true] will work with\n    most *nix OS's (Unix, Linux, macOS, etc); [false] is the only option that\n    will work with Windows. Small files can be processed in memory much\n    faster than using shell commands, however when using shell commands\n    large files (Gigs in size) can be processed.\n\n  Functions that change how Crypto Works:\n    [keyType()] - 'key' or 'password' - Default to 'key'\n    [pbkdf2Algorithm()] - For use with 'password' Key type\n    [pbkdf2Iterations()] - For use with 'password' Key type\n    [encryptThenAuthenticate()] - Set to [false] to disable Authentication",
+            "attributes": [
+                "@param string $file_path - Input file to encrypt, this file will not be modified",
+                "@param string $enc_file - Path to save the encrypted (output) file",
+                "@param string $key - Key in hexadecimal format",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "decryptFile($enc_file, $output_file, $key)",
+            "target": "fn_decryptFile",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Decrypt a file\n\nThis function returns nothing and if the file cannot be decrypted an exception is thrown.\n\nSee comments in [encryptFile()] because the same properties and settings are used here.",
+            "attributes": [
+                "@param string $enc_file - Encrypted file, this file will not be modified",
+                "@param string $output_file - Path to save the decrypted file",
+                "@param string $key - Key in hexadecimal format",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "checkFileSetup()",
+            "target": "fn_checkFileSetup",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "If either [encryptFile()] or [decryptFile()] fails this function can be used to check the setup on the current computer or server. It returns relevant information for debugging such as the file path of all used commands, the current user, and the path variable.\n\nExample of Data Returned:\n  {\n      \"valid\": true,\n      \"whoami\": \"www-data\",\n      \"path\": \"\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin\",\n      \"getenforce\": null,\n      \"commands\": {\n          \"openssl\": \"\/usr\/bin\/openssl\",\n          \"echo\": \"\/bin\/echo\",\n          ...\n          ...\n      }\n  }\n\nThe return property [getenforce] checks if Security-Enhanced Linux (SELinux) is installed. SELinux is included with various Linux OS's including Red Hat Enterprise Edition and CoreOS. SELinux provides additional security features that can prevent Apache and PHP from writing files unless configured to allow writing. If the shell command [getenforce] runs then SELinux is installed. Permissions may vary system to system however one example to allow writing by Apache\/PHP to the directory [\/var\/www\/data] and subdirectories is this:\n\n    sudo semanage fcontext -a -t httpd_sys_rw_content_t \"\/var\/www\/app_data(\/.*)?\"\n    sudo restorecon -Rv \/var\/www\/app_data\n    sudo chown apache:apache -R \/var\/www\/app_data\/*",
+            "attributes": [
+                "@link https:\/\/opensource.com\/article\/18\/7\/sysadmin-guide-selinux",
+                "@link https:\/\/wiki.centos.org\/HowTos\/SELinux",
+                "@link https:\/\/access.redhat.com\/documentation\/en-us\/red_hat_enterprise_linux\/5\/html\/deployment_guide\/ch-selinux"
+            ],
+            "returnType": null,
+            "links": [
+                "https:\/\/opensource.com\/article\/18\/7\/sysadmin-guide-selinux",
+                "https:\/\/wiki.centos.org\/HowTos\/SELinux",
+                "https:\/\/access.redhat.com\/documentation\/en-us\/red_hat_enterprise_linux\/5\/html\/deployment_guide\/ch-selinux"
+            ]
+        },
+        {
+            "definition": "displayCmdErrorDetail($new_value = null)",
+            "target": "fn_displayCmdErrorDetail",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set error detail level.\n\nWhen preforming command line file encryption and decryption this property can be set to true to provide detailed information including the command called with the error message.\n\nIMPORTANT - This property is intended only for developers during development because the encryption key can be displayed with the error message if the command that has an error includes it.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "processFilesWithCmdLine($new_value = null)",
+            "target": "fn_processFilesWithCmdLine",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set option on how to process files. Defaults to [false].\n\nWhen set to [true] file encryption with will be done through command line calls on the OS using [openssl]. This allows for efficient streaming of large files during encryption and description and on most systems allows for files of any size (limited by the OS) to be encrypted. Command line file encryption can be done on most Linux, Unix, and Mac computers.\n\nWhen set to [false] then file encryption will be handled in-memory using settings that are compatible with [openssl] command line.\n\nWhen set to [false] file encryption will be faster for small files however the entire file is loaded in memory so it should only be used on small files or based on the needs of your app and server.\n\nTo perform file encryption on Windows this must be set to [false] because command line encryption is currently not supported on Windows.\n\nWARNING - setting [processFilesWithCmdLine(true)] is currently not recommended when using FreeBSD unless your server passes all crypto unit tests.",
+            "attributes": [
+                "@param bool|null $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "__construct()",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nIf using PHP 5.3 then functions [bin2hex()] and [hex2bin()] and OpenSSL Constant [OPENSSL_RAW_DATA] are polyfilled.\n\nIf using PHP 5.5 or below then [hash_equals()] is polyfilled.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "encryptThenAuthenticate($new_value = null)",
+            "target": "fn_encryptThenAuthenticate",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether to use authenticated encryption. When set to [true] text or data is encrypted using the specified encryption algorithm (default 'aes-256-cbc') then the encrypted bytes are hashed using hmac with the specified hashing algorithm (default 'sha256'). If set to [false] then data or text is only encrypted and the decrypted data cannot be verified if it has been tampered with or not. Authenticating encrypted data is a critical step for data integrity so it's important that this property should be left as the default value [true] unless compatibility with data encrypted outside of this class is needed.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "keyType($new_value = null)",
+            "target": "fn_keyType",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the key type which is a string value of either 'key' or 'password'. The default value is 'key' which results in encryption functions validating that the key parameter used for encryption and decryption to match the required length. When using 'password' then keys are generated each time from PBKDF2 (Password-Based Key Derivation Function 2). PBKDF2 takes a considerable amount of CPU so using the 'password' option requires carefull consideration as it can make a site more susceptible to Denial of Service (DoS) attacks if a lot of requests are sent to service or page that uses PBKDF2.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "pbkdf2Algorithm($new_value = null)",
+            "target": "fn_pbkdf2Algorithm",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the PBKDF2 Hashing Algorithm to use with the option [keyType('password')]. Defaults to 'sha512'. Only Algorthims allowed for PHP function [hash_pbkdf2()] are supported.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "pbkdf2Iterations($new_value = null)",
+            "target": "fn_pbkdf2Iterations",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the number of PBKDF2 iterations to use with option [keyType('password')]. Defaults to 200000 [200,000].\n\nIf you have an older server 200,000 might be too slow and you could use 100,000, however if you change this setting you would need to track what was encrypted with a different number.",
+            "attributes": [
+                "@param null|int $new_value",
+                "@return int|$this"
+            ],
+            "returnType": "int | $this",
+            "links": []
+        }
+    ],
+    "links": []
+}

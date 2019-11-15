@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>rename-hover</title>
+    <desc>Created with Sketch.</desc>
+    <g id="rename-hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(15.000000, 8.000000) rotate(270.000000) translate(-15.000000, -8.000000) " x="7" y="7" width="16" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(11.000000, 1.000000) rotate(360.000000) translate(-11.000000, -1.000000) " x="6" y="-1.77635684e-15" width="10" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(11.000000, 15.000000) rotate(360.000000) translate(-11.000000, -15.000000) " x="6" y="14" width="10" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(6.500000, 8.000000) rotate(360.000000) translate(-6.500000, -8.000000) " x="0" y="7" width="13" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(10.474874, 9.525126) rotate(315.000000) translate(-10.474874, -9.525126) " x="7.97487373" y="8.52512627" width="5" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(10.474874, 6.525126) scale(-1, 1) rotate(315.000000) translate(-10.474874, -6.525126) " x="7.97487373" y="5.52512627" width="5" height="2" rx="1"></rect>
+    </g>
+</svg>

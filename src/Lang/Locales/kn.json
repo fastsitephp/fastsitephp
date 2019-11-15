@@ -1,0 +1,9 @@
+{
+    "date": "j\/n\/Y",
+    "time": "h:i:s A",
+    "dateTime": "j\/n\/Y h:i A",
+    "am": "ಪೂರ್ವಾಹ್ನ",
+    "pm": "ಅಪರಾಹ್ನ",
+    "decimal": ".",
+    "group": ","
+}

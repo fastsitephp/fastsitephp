@@ -1,0 +1,9 @@
+{
+    "date": "d-m-Y",
+    "time": "H:i:s",
+    "dateTime": "d-m-Y H:i",
+    "am": "နံနက်",
+    "pm": "ညနေ",
+    "decimal": ".",
+    "group": ","
+}

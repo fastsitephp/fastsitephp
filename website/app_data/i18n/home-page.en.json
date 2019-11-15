@@ -1,0 +1,17 @@
+{
+    "page_title": "Home Page",
+    "page_desc": "A Modern Open Source Framework for building High Performance Websites and API’s with PHP",
+    "better_title": "Better Sites",
+    "better_desc": "FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. Using FastSitePHP you can create better sites faster than ever.",
+    "performance_title": "Great Performance",
+    "performance_desc": "With FastSitePHP complex pages can be generated within thousands of a second using only a small amount of memory. This level of performance even allows for sites to run fast on low powered computers.",
+    "setup_title": "Easy to setup and use",
+    "setup_desc": "FastSitePHP is designed so that it easy to setup to on any OS, easy to read the code, easy to develop with, and much more. With FastSitePHP high quality websites and apps can be developed at a rapid pace using fewer lines of code and minimal config.",
+    "learn_title": "Quick to learn and debug",
+    "learn_desc": "FastSitePHP is well documented and comes with practical samples. FastSitePHP provides developer friendly error messages so that errors can be fixed quickly even if you have little or no experience programming with PHP.",
+    "security_title": "Strong Security",
+    "security_desc": "Security has been carefully planned in all features of FastSitePHP so that it is both secure and easy to work with. Security features include Encryption (text, objects, and files), Signed Cookies, JWT, CORS, Proxy Server Validation, Rate Limiting, and more.",
+    "test_title": "Web Based Unit Testing",
+    "test_desc": "Most frameworks are tested from a developer’s computer using special CLI tools; however this doesn’t guarantee that it will work in your environment. FastSitePHP’s provides a web based method of testing so that all code and page speed can be easily confirmed in any environment.",
+    "create_site": "Create an Instant Site on the Playground!"
+}

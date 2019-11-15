@@ -1,0 +1,17 @@
+{
+    "page_title": "主页",
+    "page_desc": "一个现代的开源框架，用于使用PHP构建高性能网站和API",
+    "better_title": "更好的网站",
+    "better_desc": "FastSitePHP旨在实现快速性能，编码灵活性，长期稳定性，易用性和更好的整体开发体验。 使用FastSitePHP，您可以比以往更快地创建更好的网站。",
+    "performance_title": "很好的表现;很好的绩效",
+    "performance_desc": "使用FastSitePHP，仅需少量内存就可以在数千秒内生成复杂的页面。 这种性能水平甚至允许站点在低功耗计算机上快速运行。",
+    "setup_title": "易于安装和使用",
+    "setup_desc": "FastSitePHP的设计使其易于在任何OS上进行设置，易于阅读代码，易于开发等。 借助FastSitePHP，可以使用更少的代码行和最少的配置快速开发高质量的网站和应用程序。",
+    "learn_title": "快速学习和调试",
+    "learn_desc": "FastSitePHP有充分的文档记录，并附带实用的示例。 FastSitePHP提供了开发人员友好的错误消息，因此即使您很少或没有使用PHP进行编程的经验，也可以快速修复错误。",
+    "security_title": "强大的安全性",
+    "security_desc": "在FastSitePHP的所有功能中，都已仔细计划了安全性，以使其既安全又易于使用。 安全功能包括加密（文本，对象和文件），签名Cookie，JWT，CORS，代理服务器验证，速率限制等。",
+    "test_title": "基于网络的单元测试",
+    "test_desc": "大多数框架都使用特殊的CLI工具在开发人员的计算机上进行了测试； 但这并不能保证它会在您的环境中正常工作。 FastSitePHP提供了一种基于Web的测试方法，因此可以在任何环境中轻松确认所有代码和页面速度。",
+    "create_site": "在操场上创建一个即时站点！"
+}

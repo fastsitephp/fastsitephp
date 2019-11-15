@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>save-hover</title>
+    <desc>Created with Sketch.</desc>
+    <g id="save-hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#FFFFFF" x="0" y="14" width="16" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(15.000000, 11.000000) rotate(90.000000) translate(-15.000000, -11.000000) " x="10" y="10" width="10" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(1.000000, 11.000000) rotate(90.000000) translate(-1.000000, -11.000000) " x="-4" y="10" width="10" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(8.000000, 6.500000) rotate(90.000000) translate(-8.000000, -6.500000) " x="1.5" y="5.5" width="13" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(6.474874, 10.474874) rotate(45.000000) translate(-6.474874, -10.474874) " x="3.97487373" y="9.47487373" width="5" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#FFFFFF" transform="translate(9.474874, 10.474874) scale(-1, 1) rotate(45.000000) translate(-9.474874, -10.474874) " x="6.97487373" y="9.47487373" width="5" height="2" rx="1"></rect>
+    </g>
+</svg>

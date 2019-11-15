@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="150px" viewBox="0 0 100 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Better-Sites</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#D8D8D8" offset="0%"></stop>
+            <stop stop-color="#AFAFAF" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="38.2018055%" id="radialGradient-2">
+            <stop stop-color="#FFFF00" offset="0%"></stop>
+            <stop stop-color="#FFD700" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Better-Sites" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-13" stroke="#000000" stroke-width="2" fill="url(#linearGradient-1)" x="1" y="1" width="98" height="148" rx="4"></rect>
+        <rect id="Rectangle-13-Copy" stroke="#000000" stroke-width="2" fill="#FFFFFF" x="11" y="10" width="78" height="108" rx="4"></rect>
+        <circle id="Oval" stroke="#000000" stroke-width="2" fill="#E3E3E3" cx="50" cy="134" r="9"></circle>
+        <polygon id="Star" stroke="#FFA500" fill="url(#radialGradient-2)" points="50 76.8 31.1908719 89.8885438 37.8264766 67.9554175 19.5661915 54.1114562 42.4763488 53.6445825 50 32 57.5236512 53.6445825 80.4338085 54.1114562 62.1735234 67.9554175 68.8091281 89.8885438"></polygon>
+    </g>
+</svg>

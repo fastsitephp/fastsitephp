@@ -1,0 +1,20 @@
+{
+    "page_title": "FastSite API",
+    "class_list": "Class List",
+    "properties_methods": "Properties and Methods",
+    "properties": "Properties",
+    "name": "Name",
+    "data_type": "Data Type",
+    "default": "Default",
+    "description": "Description",
+    "methods": "Methods",
+    "static": "Static",
+    "static_func": "Static Function",
+    "getter_setter": "Getter / Setter Property",
+    "returns": "Returns",
+    "filter_placeholder": "Filter classes on this page. For example type 'Email' or 'JWT'",
+    "filter_disabled": "If you view this page with a newer Browser or OS you can filter the classes.",
+    "filter_all": "Showing {count} Classes",
+    "filter_filtered": "Showing {displayed} of {count} Classes",
+    "related_links": "Related Links"
+}

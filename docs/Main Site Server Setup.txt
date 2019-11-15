@@ -1,0 +1,144 @@
+
+# ------------------------------------------------------------------------------------
+#
+#   This document lists the commands with comments for setup of the main web server.
+#   This commands can be ran from a web based terminal such as AWS Lightsail.
+#
+#   These instructions assume the Linux OS: Ubuntu 18.04 LTS
+#
+# ------------------------------------------------------------------------------------
+
+# Update [apt] Package Manager
+# The [upgrade] is not required but recommended (however, it takes many minutes)
+sudo apt update
+sudo apt upgrade
+
+# Install Apache and PHP
+sudo apt install apache2
+sudo apt install php
+
+# Enable PHP for Apache
+sudo apt install libapache2-mod-php
+
+# Add PHP Extensions needed for all Unit Tests to succeed and Examples to work
+sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
+
+# Enable a Fallback page so that [index.php]
+# does not show in the URL.
+sudo nano /etc/apache2/apache2.conf
+# Scroll through the file and look for line:
+#    <Directory /var/www/>
+# Under it add the line:
+#    FallbackResource /index.php
+# Save using:
+#    {control+x} -> {y} -> {enter}
+#    or {control+s} -> {control+x}
+
+# Enable Gzip Compression for JSON Responses
+#   (This is not enabled by default on Apache)
+sudo nano /etc/apache2/mods-available/deflate.conf
+# Add the following under similar commands:
+#       AddOutputFilterByType DEFLATE application/json
+
+# Restart Apache
+sudo service apache2 restart
+
+# Set Permissions
+# This assumes that the user [ubuntu] exists and
+# is used to create and update files on the site.
+sudo adduser ubuntu www-data
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Create and view a PHP test file
+cd /var/www/html
+echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
+# http://your-server.example.com/phpinfo.php
+# http://34.220.104.81/phpinfo.php
+
+# Delete file [phpinfo.php] after checking server
+sudo rm phpinfo.php
+
+# Download Site Files
+# In the future, this will be linked to a GitHub Repository
+# [index.php] comes from [Starter-Site\public\index.php]
+cd ~
+wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/FastSitePHP-2019-11-14.zip
+wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/index.php
+sudo apt install unzip
+unzip FastSitePHP-2019-11-14.zip
+ls
+
+# Copy Files (Overview)
+# In the future [vendor] directories will come from the install script.
+FastSitePHP\vendor
+    -> Copy under [/var/www]
+FastSitePHP\src
+    -> Copy to [/var/www/vendor/fastsitephp]
+FastSitePHP\website\[app, app_data]
+    -> Copy under [/var/www]
+FastSitePHP\website\public
+    (all directories) and [robots.txt, favicon.ico, humans.txt, sitemap.xml]
+    -> Copy under [/var/www/html]
+Starter-Site\public\index.php
+    -> Copy under [/var/www/html]
+FastSitePHP\tests
+    -> Copy under [/var/www/html]
+    
+# Copy Files (Commands)
+cp -r ~/FastSitePHP/vendor /var/www/vendor
+mkdir /var/www/vendor/fastsitephp
+cp -r ~/FastSitePHP/src /var/www/vendor/fastsitephp/src
+cp -r ~/FastSitePHP/website/app /var/www/app
+cp -r ~/FastSitePHP/website/app_data /var/www/app_data
+cp -r ~/FastSitePHP/website/public/css /var/www/html/css
+cp -r ~/FastSitePHP/website/public/img /var/www/html/img
+cp -r ~/FastSitePHP/website/public/js /var/www/html/js
+cp ~/FastSitePHP/website/public/robots.txt /var/www/html/robots.txt
+cp ~/FastSitePHP/website/public/favicon.ico /var/www/html/favicon.ico
+cp ~/FastSitePHP/website/public/humans.txt /var/www/html/humans.txt
+cp ~/FastSitePHP/website/public/sitemap.xml /var/www/html/sitemap.xml
+cp ~/index.php /var/www/html/index.php
+cp -r ~/FastSitePHP/scripts /var/www/scripts
+cp -r ~/FastSitePHP/tests /var/www/html/tests
+
+# Delete the Default Apache File
+sudo rm /var/www/html/index.html
+
+# Setup [.env] file which is used for the [/en/translators-needed] page
+sudo nano /var/www/app_data/.env
+
+# Keys (copy from values local file)
+SMTP_HOST={host}
+SMTP_PORT={port}
+SMTP_USER={email}
+SMTP_PASSWORD={password}
+
+# After copying files up, reset permissions
+sudo chown ubuntu:www-data -R /var/www
+sudo chmod 0775 -R /var/www
+
+# Check the Site Home Page and verify that all main pages, examples, and docs works
+# http://34.220.104.81/en/
+
+# If there is a fatal error then use this to see the last apache error
+tail -n 1 /var/log/apache2/error.log
+
+# Make sure that sending an email works
+# http://34.220.104.81/en/translators-needed
+
+# Run and Verify all Unit Tests
+http://34.220.104.81/tests/index.htm
+# To run all tests edit the HTML file and 
+# set all values to true:
+#   runTimeConsumingTasks = true
+#   runTestsWithRSA = true
+#   etc
+# sudo nano /var/www/html/tests/index.htm
+
+# Delete Unit Tests are running them
+sudo rm -R /var/www/html/tests
+ls /var/www/html
+
+# Restart the server and make sure everything works after a reboot
+sudo reboot

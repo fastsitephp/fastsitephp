@@ -1,0 +1,11 @@
+{
+    "page_title": "Localization (L10N) Demo",
+    "locale": "Locale",
+    "number": "Number",
+    "date_time": "Date / Time",
+    "date": "Date",
+    "time": "Time",
+    "update_table": "Update Table",
+    "info_1": "FastSitePHP’s localization (l10n) API contains functions for formatting dates, times, and numbers using different locales and languages. You can also easily convert dates and times to different time zones.",
+    "info_2": "The time you viewed this page (UTC time zone) along with a number is displayed in all available locales. You can use the form below to use different dates and numbers."
+}

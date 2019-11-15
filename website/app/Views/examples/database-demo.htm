@@ -1,0 +1,124 @@
+<script type="module">
+    // Validates with [jshint]
+    /* jshint esversion: 6 */
+    const colorItems = document.querySelectorAll('.color-list li');
+
+    function setup() {
+        // Color List
+        for (const colorItem of colorItems) {
+            colorItem.onclick = selectColor;
+        }
+
+        // Request Buttons
+        const btns = document.querySelectorAll('button.request');
+        for (const btn of btns) {
+            btn.onclick = submitRequest;
+        }
+    }
+
+    function selectColor(e) {
+        const colorItems = document.querySelectorAll('.color-list li');
+        for (const colorItem of colorItems) {
+            colorItem.className = '';
+        }
+        e.target.className = 'active';
+    }
+
+    function submitRequest(e) {
+        const color = document.querySelector('.color-list li.active').getAttribute('data-value');
+        const method = e.target.textContent.toUpperCase();
+        const url = `database-demo/${color}`;
+        let isFetching = true;
+
+        // Wait 2/10'nths of a second before disabling
+        // buttons. This service should finish in that time or
+        // less so disabling buttons is too quick visually.
+        window.setTimeout(function() {
+            if (isFetching) {
+                enableButtons(false);
+            }
+        }, 200);
+
+        fetch(url, {
+            method: method,
+            cache: 'no-store',
+        })
+        .then(response => {
+            isFetching = false;
+            return response.json();
+        })
+        .then(data => {
+            renderTable(data.records);
+            enableButtons(true);
+        })
+        .catch(error => {
+            showError(error);
+            enableButtons(true);
+        });
+    }
+
+    function enableButtons(enabled) {
+        const btns = document.querySelectorAll('button.request');
+        for (const btn of btns) {
+            btn.disabled = !enabled;
+        }
+    }
+
+    function renderTable(records) {
+        // Build and Set HTML
+        const html = [];
+        for (const record of records) {
+            html.push(render`
+                <tr>
+                    <td class="nobr">${record.id}</td>
+                    <td class="nobr url"><span class="color ${record.class_name}"></span>
+                    <span class="url">${record.url}</span></td>
+                    <td>${record.method}</td>
+                    <td>${record.device_type}</td>
+                    <td>${record.os_type}</td>
+                    <td class="nobr">${record.os}</td>
+                    <td>${record.browser}</td>
+                    <td>${record.user_agent}</td>
+                    <td class="nobr">${record.date_requested}</td>
+                </tr>`
+            );
+        }
+        document.querySelector('table tbody').innerHTML = html.join('');
+
+        // Update Row Highlighting
+        if (window.setupTableHighlighter !== undefined) {
+            window.setupTableHighlighter();
+        }
+    }
+
+    function showError(error) {
+        console.error(error);
+        const html = render`<tr><td colspan="9" class="error">${error}</td></tr>`;
+        document.querySelector('table tbody').innerHTML = html;
+    }
+
+    // This is a Tagged Template Literal function that escapes values for HTML.
+    // Use it like this [render``] and not [render(``)].
+    function render(strings, ...values) {
+        const html = [strings[0]];
+        for (let n = 0, m = values.length; n < m; n++) {
+            html.push(escapeHtml(values[n]));
+            html.push(strings[n+1]);
+        }
+        return html.join('');
+    }
+
+    function escapeHtml(text) {
+        if (text === undefined || text === null || typeof text === 'number') {
+            return text;
+        }
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    document.addEventListener('DOMContentLoaded', setup);
+</script>

@@ -1,0 +1,173 @@
+{
+    "name": "FastSitePHP\\Data\\Db2Database",
+    "short_name": "Data\\Db2Database",
+    "link": "Data_Db2Database",
+    "namespace": "FastSitePHP\\Data",
+    "description": "IBM - DB2 and AS\/400 Databases\n\nThis class provides a thin wrapper for PHP DB2 functions. It reduces the amount of code needed to query IBM databases and provides a compatible class with FastSitePHP's Database class.\n\nThe IBM DB2 Drivers needed to run this class will not be available on most systems however on an IBM Server such as AIX (AS\/400) that has PHP installed the driver will likely be available by default.\n\nOn IBM Servers PHP is typically installed through Zend Server. PHP supports IBM Severs so the versions of PHP 7.# can be installed on old IBM Servers.\n\nIf using this class directly on the server you can use the server's credentials and pass [null] for [DSN, User, and Password]. In fact this is recommended as you can get better performance. If empty strings '' are used as shown in the PHP docs online it can cause extra print spool jobs to run so use [null] instead.",
+    "attributes": [
+        "@link https:\/\/www.ibm.com\/it-infrastructure\/power\/os\/ibm-i",
+        "@link https:\/\/www.ibm.com\/it-infrastructure\/power\/os\/aix",
+        "@link http:\/\/www.zend.com\/en\/solutions\/modernize-ibm-i",
+        "@link http:\/\/files.zend.com\/help\/Zend-Server\/content\/i5_installation_guide.htm",
+        "@link http:\/\/php.net\/manual\/en\/book.ibm-db2.php",
+        "@link http:\/\/php.net\/manual\/en\/function.db2-connect.php"
+    ],
+    "properties": [
+        {
+            "name": "db",
+            "target": "prop_db",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Connection for the Database",
+            "attributes": [
+                "@var null|\\resource"
+            ],
+            "dataType": "null\n\\resource",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "__construct($dsn, $user = null, $password = null, $persistent = false, $options = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor. Creates Db Connection.",
+            "attributes": [
+                "@param string $dsn - Database Connection String",
+                "@param null|string $user - User Name for the Connection",
+                "@param null|string $password - Password for the User",
+                "@param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.",
+                "@param mixed $options - Default options exist for each database class. To customize refer to PHP documentation based on the driver used.",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "__destruct()",
+            "target": "fn___destruct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Deconstructor. Calls [close()] automatically unless using a Persistent Connection.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "close()",
+            "target": "fn_close",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Close the connection",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "query($sql, array $params = null)",
+            "target": "fn_query",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a Query and return results as any array of records. Records are each associative arrays. If no records are found an empty array is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "queryOne($sql, array $params = null)",
+            "target": "fn_queryOne",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single record and return it as a associative array or return null if the record does not exist.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array|null"
+            ],
+            "returnType": "array | null",
+            "links": []
+        },
+        {
+            "definition": "queryValue($sql, array $params = null)",
+            "target": "fn_queryValue",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single value from the first column of the first record found. If no records were found null is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "queryList($sql, array $params = null)",
+            "target": "fn_queryList",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for an array of values from the first column of all records found.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "execute($sql, array $params = null)",
+            "target": "fn_execute",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a SQL Action Statement (INSERT, UPDATE, DELETE, etc) and return the number or rows affected. If multiple statments are passed then the returned row count will likely be for only the last query.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return int - Row count of the last query"
+            ],
+            "returnType": "int - Row count of the last query",
+            "links": []
+        },
+        {
+            "definition": "executeMany($sql, array $records)",
+            "target": "fn_executeMany",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Prepare a SQL Statement and run many record parameters against it. This can be used for transactions such as bulk record inserts. Returns the total number of rows affected for all queries.",
+            "attributes": [
+                "@param string $sql",
+                "@param array $records",
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        },
+        {
+            "definition": "trimStrings($new_value = null)",
+            "target": "fn_trimStrings",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether spaces on strings should be trimmed when calling [query(), queryOne(), queryValue(), queryList(), querySets()].\n\nWhen called strings are trimmed after the records are queried and before the function returns the result.\n\nOften legacy databases will use [CHAR] text fields over [VARCHAR] or similar types. For example when using a [CHAR] field:\n    Field: [name] CHAR(20)\n    Data saved as \"John                \"\n\nWhen querying by default the spaces will be returned however if this function is set to [true] then \"John\" would be returned.\n\nDefaults to [false]. Calling this function takes extra memory vs not using it so if you have a high traffic site and want to trim strings you may want to do so in the SQL Statement and keep this [false].\n\nFor a small amount of records (several hundred or less) this has little or not noticeable impact however if using a large set of records (1,000+) this setting may cause a about a 10% increase in memory or more.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/www.ibm.com\/it-infrastructure\/power\/os\/ibm-i",
+        "https:\/\/www.ibm.com\/it-infrastructure\/power\/os\/aix",
+        "http:\/\/www.zend.com\/en\/solutions\/modernize-ibm-i",
+        "http:\/\/files.zend.com\/help\/Zend-Server\/content\/i5_installation_guide.htm",
+        "http:\/\/php.net\/manual\/en\/book.ibm-db2.php",
+        "http:\/\/php.net\/manual\/en\/function.db2-connect.php"
+    ]
+}

@@ -1,0 +1,267 @@
+/************ Reset (only what is needed for the site) ************/
+html, body, h1, h2, h3, div, span, p, ul, li, a, img, table, thead, tbody, tr, th, td { margin: 0; padding: 0; }
+img { border-style: none; }
+input, select, button, textarea { padding:8px 16px; }
+p { text-align: left; line-height: 1.4em; margin-bottom: 1em; }
+code { font-family: monospace; white-space: pre; }
+
+/* Using 'Native font stack' - See Bootstrap 4 Docs for info on 'Native font stack' */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+code, pre {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* IE 10 Responsive */
+@-ms-viewport { width: device-width; }
+
+/************ Colors ************/
+/*
+    Primary colors for this site are based on theme colors from https://secure.php.net/
+    light-blue: #E2E4EF;
+    medium-blue: #8892BF;
+    dark-blue: #4F5B93;
+*/
+
+/************ Body and Layout ************/
+
+/*
+Required For IE11 when using Flexbox fixed footer layout
+Also for IE11 is the use of full flex syntax "flex: 1 0 auto;"
+which is only needed on specific elements.
+*/
+html, body { height:100%; }
+
+body {
+    background-color: #8892BF;
+    background-image: radial-gradient(39% 90%, #BDC4E1 28%, #8892BF 100%);
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-attachment: fixed;
+    color:hsla(229, 30%, 24%, 1);
+}
+
+body > main {
+    flex: 1 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+a,
+a:visited { color:#4F5B93; }
+
+/************ Navigation ************/
+
+.site-nav {
+    text-align:center;
+    background-color: #4F5B93;
+    background-image: linear-gradient(-180deg, #7481B5 0%, #4F5B93 100%);
+    box-shadow:0 1px 3px 0 rgba(0, 0, 0, .3);
+}
+
+/* IE only - fixed nav layout when menu items wrap to 2 lines */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .site-nav { flex: 1 0 auto; }
+}
+
+.mobile-nav { display:flex; justify-content: space-between; }
+.mobile-nav .site-title,
+.mobile-nav .open-menu {
+    display: inline-flex;
+}
+.mobile-nav .site-title a,
+.mobile-nav .open-menu a {
+    margin:10px;
+    border-radius:2px;
+    background-color: #E2E4EF;
+    background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%);
+    padding:10px 20px;
+    font-weight:bold;
+    text-decoration: none;
+}
+.mobile-nav .site-title a:hover,
+.mobile-nav .open-menu a:hover {
+    background-color: #BCC1DB;
+    background-image: linear-gradient(0deg, #BCC1DB 0%, #fff 100%);
+    border-radius:2px;    
+}
+
+.mobile-menu {
+    display:block;
+    background-color: white;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.5);
+    border-radius: 4px;
+    z-index: 1000;
+    position: absolute;
+    width: calc(100% - 20px);
+    top: 10px;
+    margin-left: 10px;
+    text-align: right;
+}
+.mobile-menu .close-menu a {
+    margin: 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+.mobile-menu ul {
+    display:flex;
+    flex-wrap:wrap;
+    list-style-type:none;
+    text-align:left;
+    max-width:400px;
+    margin:auto;
+    margin-bottom:20px;
+}
+.mobile-menu ul li { width:calc(50% - 20px); margin:10px; max-width:200px; }
+.mobile-menu ul li a { text-decoration:none; font-weight:bold; padding:10px; display:block; }
+.mobile-menu ul li.active a {
+    background-color: #3C456F;
+    border-radius:2px;
+    color: white;
+}
+.mobile-menu ul li:not(.active):hover a {
+    background-color: #8892BF;
+    border-radius:2px;
+    color:white;
+}
+.mobile-menu ul li.active:hover a {
+    color: #8892BF;
+}
+
+.site-nav ul.desktop-nav { list-style-type: none; margin:10px; letter-spacing: 0.1em; }
+.site-nav ul.desktop-nav li { display: inline-block; margin:10px; border:1px solid transparent; border-radius:2px; transition:all 0.2s; }
+.site-nav ul.desktop-nav li:hover {
+    background-color: #8892BF;
+    background-image: linear-gradient(0deg, #8892BF 0%, #CACFE3 100%);
+    border:1px solid #3C456F;
+    box-shadow: inset 0px 0px 1px 0px #4F5B93;
+    transition:all 0.2s;
+}
+.site-nav ul.desktop-nav li.active { background-color: #E2E4EF; background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%); }
+.site-nav ul.desktop-nav li a { display: inline-block; padding:10px 20px; font-weight:bold; color: #fff; text-decoration: none; position: relative; }
+.site-nav ul.desktop-nav li.active a { color:#4F5B93; }
+.site-nav ul.desktop-nav li:hover a { color:#3C456F; }
+.site-nav ul.desktop-nav li.active:hover {
+    background-color: #BCC1DB;
+    background-image: linear-gradient(0deg, #BCC1DB 0%, #fff 100%);
+    border-radius:2px;    
+}
+
+.desktop-nav { display:none; }
+@media screen and (min-width: 700px) {
+    .mobile-nav,
+    .mobile-menu { display:none; }
+    .desktop-nav { display:block; }
+}
+
+/************ Footer ************/
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color:#fff;
+    background-color: #4F5B93;
+    box-shadow:0 0 1px 1px rgba(0,0,0,.7);
+    background-image:linear-gradient(0deg, #717DB1 0%, #4F5B93 100%);
+}
+footer p { text-align:center; padding: 0; margin:8px; }
+footer a { color:#fff; text-decoration: none; padding:2px 6px; background-color: #8892BF; border-radius:2px; transition:all 1s; }
+footer a:visited { color:#fff; }
+footer a:hover { background-color: #E2E4EF; color:#4F5B93; }
+
+/************ General Content ************/
+
+.content.page-title {
+    display:inline-block;
+    background-color: #E2E4EF;
+    background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%);
+    padding: 20px;
+}
+@media (min-width: 650px) {
+    .content.page-title { padding: 20px 80px; }
+}
+
+.content.example-title {
+    display: inline-block;
+    width: auto;
+    padding: 20px 80px;
+}
+.content.example-title h1 { padding-bottom: 20px; }
+
+.content {
+    display: block;
+    background-color: #fff;
+    margin: 20px 20px 40px;
+    padding: 30px;
+    box-shadow: 0 1px 5px 0 rgba(0,0,0,.5);
+    border-radius: 4px;
+    transition: box-shadow .2s ease-in-out;
+    text-align: left;
+}
+
+.content:hover { box-shadow: 0 0 40px 0 rgba(0,0,0,.5); }
+
+@media screen and (min-width: 700px) {
+    .content { margin: 0 auto 40px auto; }
+}
+
+.content a  { color: #4F5B93; }
+.content a:hover { color:#8892BF; text-decoration: none; }
+.content p:last-child { margin-bottom: 0; }
+
+.sample-code { max-width:700px; padding:20px; }
+.sample-code h2 { font-size:18px; text-align:center; margin-bottom:20px; }
+
+.error { padding:1em; background-color:red; color:white; }
+
+.bullet-list { text-align: left; padding-left: 1em; line-height: 1.4em; }
+.bullet-list li { margin-bottom:0.5em; }
+
+.mb20 { margin-bottom: 20px; }
+.mt20 { margin-top: 20px; }
+.ml20 { margin-left: 20px; }
+.mr20 { margin-right: 20px; }
+
+table { border-collapse:collapse; display:inline-block; margin:20px; text-align:left; }
+table caption { font-size:1.5em; font-weight:bold; line-height:1.5em; margin-bottom:.5em; }
+td, th { border:1px solid hsla(229, 30%, 64%, 1); padding:5px 10px; vertical-align:top; max-width:70vw; }
+th { background-color:hsla(230, 29%, 85%, 1); }
+table tr { background-color:#fff; }
+table tbody tr:nth-child(even) { background-color:hsla(230, 29%, 95%, 1); }
+table.can-highlight tbody tr { cursor: pointer; }
+table.can-highlight tbody tr.highlight { background-color:yellow; }
+.nobr { white-space:nowrap; }
+
+.inline-block { display:inline-block; }
+.align-left { text-align:left; }
+.align-center { text-align:center; }
+.align-right { text-align:right; }
+.center { margin-left:auto; margin-right:auto; }
+
+/************ Prism Theme Override ************/
+
+pre[class*="language-"]>code
+{
+    background-color:#fff;
+    border: 0;
+    max-height:none;
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    background-image:none;
+}
+code[class*="language-"], pre[class*="language-"] {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+}
+.sample-code .token.delimiter {
+    background-color:yellow;
+    padding:5px;
+    border-radius:5px;
+}
+.token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata {
+    color: #a9b3bc;
+}

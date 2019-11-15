@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Language</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="100%" id="radialGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="50%" fx="50%" fy="50%" r="210.526316%" gradientTransform="translate(0.500000,0.500000),scale(1.000000,0.475000),rotate(90.000000),translate(-0.500000,-0.500000)" id="radialGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Language" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" stroke="#000000" stroke-width="3" fill="url(#radialGradient-1)" cx="60" cy="60" r="58.5"></circle>
+        <ellipse id="Oval" stroke="#000000" stroke-width="3" fill="url(#radialGradient-2)" cx="59.5" cy="60" rx="27" ry="58.5"></ellipse>
+        <path d="M11.0893519,27.3766385 C21.9655483,32.5959076 39.8192595,36 60,36 C79.972285,36 97.665366,32.665869 108.571385,27.537792" id="Path" stroke="#000000" stroke-width="2"></path>
+        <path d="M1.71776042,55.1183045 C9.33464475,63.4517376 32.1000335,69.5 59,69.5 C88.1399414,69.5 112.428059,62.4025148 117.863548,52.9911527" id="Path" stroke="#000000" stroke-width="2"></path>
+        <path d="M9.57787334,89.6273023 C20.4006245,94.9872308 38.4996519,98.5 59,98.5 C81.709697,98.5 101.472596,94.1892799 111.661636,87.8320857" id="Path" stroke="#000000" stroke-width="2"></path>
+        <g id="Group" transform="translate(49.000000, 44.000000)">
+            <path d="M34.395532,63.7472618 C33.1218085,58.6820721 32.3283072,55.1577401 32.012237,53.1559626 C31.8376383,52.0501705 31.743978,51.0023456 31.731918,50.0121789 L31.7195898,49 L42,49 C45.8659932,49 49,45.8659932 49,42 L49,8 C49,4.13400675 45.8659932,1 42,1 L8,1 C4.13400675,1 1,4.13400675 1,8 L1,42 C1,45.8659932 4.13400675,49 8,49 L16.7556178,49 L17.0558093,49.3717898 C18.9012892,51.6574319 20.7676292,53.6143668 22.6536199,55.243177 C25.0277118,57.2935291 28.9453147,60.1317813 34.395532,63.7472618 Z" id="Combined-Shape" stroke="#000000" stroke-width="2" fill="#FFFFFF"></path>
+            <text id="あ" fill="#000000" font-family="HiraginoSans-W3, Hiragino Sans" font-size="42" font-weight="300">
+                <tspan x="4" y="41">あ</tspan>
+            </text>
+        </g>
+        <g id="Group-2" transform="translate(16.000000, 16.000000)">
+            <path d="M8.60446797,60.7472618 C14.0546853,57.1317813 17.9722882,54.2935291 20.3463801,52.243177 C22.2323708,50.6143668 24.0987108,48.6574319 25.9441907,46.3717898 L26.2443822,46 L26.7222343,46 L33,46 C36.8659932,46 40,42.8659932 40,39 L40,14 C40,10.1340068 36.8659932,7 33,7 L8,7 C4.13400675,7 1,10.1340068 1,14 L1,39 C1,42.8659932 4.13400675,46 8,46 L11.2804102,46 L11.268082,47.0121789 C11.256022,48.0023456 11.1623617,49.0501705 10.987763,50.1559626 C10.6716928,52.1577401 9.87819147,55.6820721 8.60446797,60.7472618 Z" id="Combined-Shape" stroke="#000000" stroke-width="2" fill="#FFFFFF"></path>
+            <text id="a" fill="#000000" font-family="ArialMT, Arial" font-size="42" font-weight="normal">
+                <tspan x="9" y="38">a</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

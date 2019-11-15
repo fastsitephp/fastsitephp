@@ -1,0 +1,85 @@
+{
+    "name": "FastSitePHP\\FileSystem\\Security",
+    "short_name": "FileSystem\\Security",
+    "link": "FileSystem_Security",
+    "namespace": "FastSitePHP\\FileSystem",
+    "description": "File System Security",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "dirContainsFile($dir, $file)",
+            "target": "fn_dirContainsFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Prevent Path Traversal Attacks by verifying if a file name exists in a specified directory. Path Traversal Attacks can happen if a user is allowed to specify a file on a file system through input and uses a pattern such as '\/..\/' to obtain files from another directory.\n\nThis function returns [true] if the file exists in the directory and the file name matches exactly to the [$file] parameter. The [$dir] parameter can be a relative path with '..\/' characters so it should not come from a user. The [$dir] parameter is required to be a valid directory otherwise an exception is thrown as it indicates a logic or permissions error in the app.\n\nExample:\n    \/\/ Assume both files exist and would return [true] from built-in function [is_file()].\n    \/\/ False is returned for the 2nd file because a '\/' character was used.\n    $dir = __DIR__ . '\/..\/img';\n    true  = Security::dirContainsFile($dir, 'user_image.jpg')\n    false = Security::dirContainsFile($dir, '..\/..\/index.php')",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/Directory_traversal_attack",
+                "@link https:\/\/www.owasp.org\/index.php\/Path_Traversal",
+                "@link http:\/\/php.net\/manual\/en\/security.filesystem.php",
+                "@param string $dir - Directory\/Folder Path to look for the file in.",
+                "@param string $file - File name to search for in a directory.",
+                "@return bool",
+                "@throws \\Exception"
+            ],
+            "returnType": "bool",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/Directory_traversal_attack",
+                "https:\/\/www.owasp.org\/index.php\/Path_Traversal",
+                "http:\/\/php.net\/manual\/en\/security.filesystem.php"
+            ]
+        },
+        {
+            "definition": "dirContainsPath($dir, $path)",
+            "target": "fn_dirContainsPath",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Prevent Path Traversal Attacks by verifying if a file exists under the specified directory. Sub-directories can be specified, however path traversal using '..\/' or '..\\' is not allowed for the [$path] paramater.\n\nSee additional comments and links in [dirContainsFile()].\n\nExample:\n    \/\/ Assume both files exist and would return [true] from built-in function [is_file()].\n    \/\/ False is returned for the 2nd file because a '..\/' was used.\n    $dir = __DIR__ . '\/..\/img';\n    true  = Security::dirContainsPath($dir, 'icons\/clipboard.svg')\n    false = Security::dirContainsPath($dir, '..\/..\/app\/app.php')",
+            "attributes": [
+                "@param string $dir - Directory\/Folder Path to look for the file under.",
+                "@param string $path - File path to search for under the root directory.",
+                "@return bool",
+                "@throws \\Exception"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "dirContainsDir($root_dir, $dir_name)",
+            "target": "fn_dirContainsDir",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Prevent Path Traversal Attacks by verifying if a directory exists in a specified directory.\n\nThis function returns [true] if the directory exists in the directory and the directory name matches exactly to the [$dir_name] parameter.\n\nSee additional comments and links in [dirContainsFile()].\n\nExample:\n    \/\/ Assume both directories exist and would return [true] from built-in function [is_dir()].\n    \/\/ False is returned for the 2nd file because a '\/' character was used.\n    $dir = __DIR__ . '\/..\/img';\n    true  = Security::dirContainsDir($dir, 'icons')\n    false = Security::dirContainsDir($dir, '..\/..\/app')",
+            "attributes": [
+                "@param string $root_dir - Directory\/Folder Path to look for the directory in.",
+                "@param string $dir_name - Directory name to search for in a directory.",
+                "@return bool",
+                "@throws \\Exception"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "fileIsValidImage($full_path)",
+            "target": "fn_fileIsValidImage",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Returns [true] if a image file (jpg, jpeg, gif, png, webp, svg) is valid and the file's extension matches the image type.\n\nThis function can be used to verify if image files created from user input are valid. For example a malicious user may try to rename a PHP Script or executable file as an image and upload it to a site.\n\nFor SVG Files this function simply verifies that the file is a valid XML file with [svg] as the root element.\n\nFor other images types such as JPG or PNG this function uses the [FastSitePHP\\Media\\Image] class to check if a file is valid. If you intended on using the [Image] class from the same calling function then using this function is not needed as it would open the same image file twice.\n\nIf your app or site needs to resize an image after a user upload then the [Image] class is recommend, however if you simply need to verify an image then this helper function allows for simple and clear code.",
+            "attributes": [
+                "@link https:\/\/cwe.mitre.org\/data\/definitions\/434.html",
+                "@link https:\/\/www.sans.org\/reading-room\/whitepapers\/testing\/paper\/36487",
+                "@link https:\/\/www.owasp.org\/index.php\/Unrestricted_File_Upload",
+                "@param string $full_path",
+                "@return bool",
+                "@throws \\Exception"
+            ],
+            "returnType": "bool",
+            "links": [
+                "https:\/\/cwe.mitre.org\/data\/definitions\/434.html",
+                "https:\/\/www.sans.org\/reading-room\/whitepapers\/testing\/paper\/36487",
+                "https:\/\/www.owasp.org\/index.php\/Unrestricted_File_Upload"
+            ]
+        }
+    ],
+    "links": []
+}

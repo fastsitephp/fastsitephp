@@ -1,0 +1,73 @@
+# Apache Server Config
+#
+# By default this file is disabled in recent versions of Apache and to
+# enable you would have to set [AllowOverride All] in [apache2.conf].
+#
+# Using [.htaccess] files slows down requests on Apache so for production
+# servers it's better to save settings in the main config file
+# [apache2.conf] or [httpd.conf (older servers)]. On hosted environments
+# this might not be possible so then keeping the [.htaccess] file as small
+# as possible is recommended, for example only two lines:
+#     FallbackResource /index.php
+#     CGIPassAuth On
+#
+# Because [.htaccess] files are not used by default on recent versions of
+# Apache this file is configured by default for local development with Apache
+# and uses a root [FastSitePHP] directory as the [FallbackResource].
+#
+# Docs:
+#   https://httpd.apache.org/docs/current/howto/htaccess.html
+#
+# See Detailed Examples and Options from HTML5 Boilerplate:
+#   https://github.com/h5bp/html5-boilerplate/blob/master/dist/.htaccess
+# See also:
+#   https://wordpress.org/support/article/htaccess/
+
+# ----------------------------------------------------------------------
+# Use [index.php] as the default page but exclude it from URL
+# ----------------------------------------------------------------------
+
+# Most newer versions of Apache support [dir_module] with [FallbackResource]
+# for friendly URL's with the [index.php]. Older versions may not and then
+# you would need to use [mod_rewrite] (example below).
+
+<IfModule dir_module>
+    # Using an [.htaccess] file in Production? Try the following:
+    #
+    # FallbackResource /index.php
+
+    # Hosting from a Sub-directory? Modify the following for your environment.
+    # For example if using Apache on a Mac this will typically be needed.
+    #
+    # FallbackResource /{site-name}/index.php
+    FallbackResource /FastSitePHP/FastSitePHP/website/public/index.php
+</IfModule>
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^ index.php [L]
+# </IfModule>
+
+# ----------------------------------------------------------------------
+# Allow PHP to see the 'Authorization' Request Header.
+# This is blocked by default on most Apache Installations.
+# FastSitePHP reads the header regardless of the setting, but when it
+# is off it won't be available as $_SERVER['HTTP_AUTHORIZATION'].
+# ----------------------------------------------------------------------
+
+# Option 1)
+# https://httpd.apache.org/docs/current/en/mod/core.html#cgipassauth
+CGIPassAuth On
+#
+# Option 2)
+# <IfModule setenvif_module>
+#    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+# </IfModule>
+#
+# Option 3)
+# <IfModule rewrite_module>
+#    RewriteEngine On
+#    RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization},last]
+# </IfModule>

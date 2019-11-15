@@ -1,0 +1,9 @@
+{
+    "date": "Y. n. j.",
+    "time": "A g:i:s",
+    "dateTime": "Y. n. j. A g:i",
+    "am": "오전",
+    "pm": "오후",
+    "decimal": ".",
+    "group": ","
+}

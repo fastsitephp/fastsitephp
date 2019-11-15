@@ -1,0 +1,116 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\SignedData",
+    "short_name": "Security\\Crypto\\SignedData",
+    "link": "Security_Crypto_SignedData",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "Data Signing\n\nThis class is designed to provide secure and easy to use data signing functions for an application or site. Data Signing is often used with cookies and web data to allow data to be sent back and forth from a client while verifying that it has not been tampered with.\n\nA common use of this function would be to provide security information to a webpage that can be ready by JavaScript and where the client sends it back. The client site or app can then handle logic based on different permissions and once sent back to the server it can be verified that nothing changed and that security info is valid. In this scenario of using client side logic based on the signed data it's important to still handle security on the server.\n\nThe format of signed data and concepts used by this class are similar to JWT with a few differences:\n  - This class only allows secure keys\n  - Various data types (string, int, float, bool, array, object, and null)\n    can be signed and verified back to the original format\n  - Server-Side Algorithm and Header information is not saved with the signed data\n  - Claim Rules are simplified as there is only an optional expired time rule\n  - The expire time option is designed to work well with JavaScript\n  - Only HMAC is supported; RSA and other Public Key options are not used\n\nData Signing as used in the context of this class are functions that use a Cryptographic Hashing Function (default SHA-256) with Hash-based Message Authentication Code (HMAC).\n\nData Format of Signed Data\n   'base64url(data).type.base64url(signature)'\n   'base64url(data).type.timestamp.base64url(signature)'",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "generateKey()",
+            "target": "fn_generateKey",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a new key in hex format based on the size of the needed key. Keys are generated using random bytes from the System's CSPRNG (Cryptographically secure pseudorandom number generator).\n\nThe same key must be used for both signing and verifying and the key should be kept secret in a secure manner and should not be shared publicly.",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "sign($data, $key, $expire_time = null)",
+            "target": "fn_sign",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Save data in a text format that can easily be read but cannot be tampered with. Use the [verify()] function to read the data.\n\nData can be in one of the following formats [string, int, float, bool, array, object, and null if the option [allowNull(true)] is set.\n\nA secret key is needed to sign data and one can be generated from the function [generateKey()]. The same key used for signing data must also be used to verify data.\n\nExpire time if used must be a float representing a Unix Timestamp in Milliseconds or a string that is valid for the PHP function [strtotime()] - for example '+1 hour'. Expire time can be used for features such as sending user permissions to a webpage with a timeout in a cookie or response header instead of using a PHP Session for user permissions.",
+            "attributes": [
+                "@param mixed $data",
+                "@param string $key",
+                "@param null|float|string $expire_time",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "verify($signed_text, $key)",
+            "target": "fn_verify",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Verify a string that was signed with [sign()]; data is returned in the original format if verification was successful and null is returned if the string cannot be verified. Objects that are signed are returned as an Associative Array (Dictionary).\n\nIf setting the option [exceptionOnError(true)] then an Exception will be thrown if the text cannot be verified.",
+            "attributes": [
+                "@param string $signed_text",
+                "@param string $key",
+                "@return mixed",
+                "@throws \\Exception"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "__construct()",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nIf using PHP 5.3 then functions [bin2hex()] and [hex2bin()] and OpenSSL Constant [OPENSSL_RAW_DATA] are polyfilled.\n\nIf using PHP 5.5 or below then [hash_equals()] is polyfilled.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "exceptionOnError($new_value = null)",
+            "target": "fn_exceptionOnError",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set how invalid values are handled on decryption and verification. By default functions [decrypt()] and [verify()] will return null if data cannot be decrypted or verified respectively. When [exceptionOnError()] is set to [true] then these two functions will throw an exception instead of returning null. This allows for the default behavior of [decrypt()] and [verify()] to allow calling code to handle nulls easily rather than try\/catch blocks and if details are needed on why encryption or data verification failed then then this property can be set to [true].",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "allowNull($new_value = null)",
+            "target": "fn_allowNull",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "When [allowNull()] is set to the default value [false] then function [encrypt()] and [sign()] will not accept null data parameters and instead will throw an exception. The reason for this is because [decrypt()] and [verify()] return nulls by default if data cannot be decrypted or verified. If it makes sense for your application to encrypt or sign null values then set this property to [true] and likely set [exceptionOnError()] to true so that decryption and authentication can properly validate the null values.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "hashingAlgorithm($new_value = null)",
+            "target": "fn_hashingAlgorithm",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the Hashing Algorithm to use with classes [Encryption] and [SignedData]. Defaults to 'sha256'. Only Algorthims allowed for PHP function [hash_hmac()] are supported.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "keySizeHmac()",
+            "target": "fn_keySizeHmac",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get the key size used for HMAC Hashing. This value is set automatically when calling [hashingAlgorithm()] and for security cannot be changed to a different value. The default value is 256-bit (32 Bytes) which is the output length for hashing with 'sha256'.",
+            "attributes": [
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        }
+    ],
+    "links": []
+}

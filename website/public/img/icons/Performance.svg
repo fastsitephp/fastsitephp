@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="150px" viewBox="0 0 100 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Performance</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FAF8F8" offset="0%"></stop>
+            <stop stop-color="#F3EFEF" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="110.315662%" fx="50%" fy="110.315662%" r="121.274542%" gradientTransform="translate(0.500000,1.103157),scale(0.866667,1.000000),rotate(-90.000000),translate(-0.500000,-1.103157)" id="radialGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#D64F60" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Performance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-13" stroke="#9B9B9B" stroke-width="2" fill="url(#linearGradient-1)" x="1" y="1" width="98" height="148" rx="4"></rect>
+        <rect id="Rectangle-13-Copy" stroke="#9B9B9B" stroke-width="2" fill="#FFFFFF" x="11" y="10" width="78" height="108" rx="4"></rect>
+        <circle id="Oval" stroke="#9B9B9B" stroke-width="2" fill="#DCDCDC" cx="50" cy="134" r="9"></circle>
+        <path d="M29.603726,85 C23.696712,79.5210199 20,71.6922166 20,63 C20,46.4314575 33.4314575,33 50,33 C66.5685425,33 80,46.4314575 80,63 C80,71.6922166 76.303288,79.5210199 70.396274,85 L29.603726,85 Z" id="Combined-Shape" stroke="#D0021B" stroke-width="2" fill="url(#radialGradient-2)"></path>
+        <circle id="Oval-4" fill="#4F5B93" cx="64" cy="46" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="50" cy="40" r="3"></circle>
+        <path d="M47.0359074,71.7950624 C48.6927617,71.7950624 71.0359074,70.4519167 71.0359074,68.7950624 C71.0359074,67.1382082 48.6927617,65.7950624 47.0359074,65.7950624 C45.3790532,65.7950624 44.0359074,67.1382082 44.0359074,68.7950624 C44.0359074,70.4519167 45.3790532,71.7950624 47.0359074,71.7950624 Z" id="Oval-4" fill="#4F5B93" transform="translate(57.535907, 68.795062) rotate(46.000000) translate(-57.535907, -68.795062) "></path>
+        <circle id="Oval-4" fill="#4F5B93" cx="72" cy="68" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="66" cy="78" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="28" cy="68" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="34" cy="78" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="28" cy="56" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="71" cy="56" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="36" cy="46" r="3"></circle>
+        <circle id="Oval-4" fill="#4F5B93" cx="50" cy="61" r="6"></circle>
+    </g>
+</svg>

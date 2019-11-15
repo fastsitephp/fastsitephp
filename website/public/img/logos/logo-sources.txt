@@ -1,0 +1,15 @@
+https://php.net/download-logos.php
+https://www.apple.com/ac/globalnav/4/en_US/images/globalnav/apple/image_large.svg
+    Logo was then cropped with Inkscape Logo color then changed to #A3AAAE from white
+https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/logo.aspx
+https://en.wikipedia.org/wiki/Linux#/media/File:Tux.svg
+	Attribution: lewing@isc.tamu.edu Larry Ewing and The GIMP
+    Linux logo then reduced in size with:
+        https://jakearchibald.github.io/svgomg/
+https://github.com/logos
+https://commons.wikimedia.org/wiki/File:Windows_logo_-_2012.svg
+https://commons.wikimedia.org/wiki/File:Visual_Studio_Code_1.35_icon.svg
+https://github.githubassets.com/images/icons/emoji/atom.png
+https://commons.wikimedia.org/wiki/File:IBM_logo.svg
+    IBM Logo then updated to color #0530ad which is based on:
+    Blue 80 from https://www.ibm.com/design/language/elements/logos/

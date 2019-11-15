@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>FastSitePHP Performance Testing</title>
+        <style>
+            table { border-collapse: collapse; margin-top:20px; }
+            th, td { padding:4px 8px; border:1px solid black; }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div id="text-result"></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Application Script Time</th>
+                        <th>AppMin Script Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Average</td>
+                        <td id="script-time-0-avg"></td>
+                        <td id="script-time-1-avg"></td>
+                    </tr>
+                    <tr>
+                        <td>Minimum</td>
+                        <td id="script-time-0-min"></td>
+                        <td id="script-time-1-min"></td>
+                    </tr>
+                    <tr>
+                        <td>Maximum</td>
+                        <td id="script-time-0-max"></td>
+                        <td id="script-time-1-max"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="script-time-0-sum"></td>
+                        <td id="script-time-1-sum"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>Test #</th>
+                        <th>Application Script Time</th>
+                        <th>AppMin Script Time</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>            
+            </table>
+        </div>
+        
+        <div id="test-result" style="display:none;"></div>
+
+        <script>
+            /* Validates with [jshint] */
+            /* jshint strict: true */
+            (function () {
+                "use strict"; // Invoke strict mode
+
+                var pageCount = 100;
+                var totalCompletedHttpRequests = 0;
+
+                // Function to run a single HTTP Test and Check the Result
+                function runTest(url, row, column, testCount, scriptTimes) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            // Keep count of how many completed
+                            totalCompletedHttpRequests++;
+
+                            if (xhr.status === 200) {
+                                // Get the Script Time Value and Log the Result
+                                document.getElementById("test-result").innerHTML = xhr.responseText;
+                                var scriptTime = document.getElementById("FastSitePHP-script-time");
+                                if (scriptTime !== null) {
+                                    scriptTime = parseFloat(scriptTime.textContent);
+                                    logResult(true, scriptTime, row, column, testCount, scriptTimes);
+                                } else {
+                                    logResult(false, "n/a", row, column, testCount, scriptTimes);
+                                }
+                            } else {
+                                // If Error
+                                document.getElementById("test-result").innerHTML = "Error: " + xhr.status;
+                                logResult(false, "n/a", row, column, testCount, scriptTimes);
+                            }
+                        }
+                    };
+
+                    // Make the request
+                    xhr.open("GET", url, true);
+                    xhr.send();
+                }
+
+                function logResult(success, scriptTime, rowIndex, cellIndex, testCount, scriptTimes) {
+                    // Add to array if success
+                    if (success) {
+                        scriptTimes[cellIndex].push(scriptTime);
+                    }
+
+                    // Add to the results table
+                    var row = document.getElementById("results-table").tBodies[0].rows[rowIndex];
+                    row.cells[cellIndex + 1].textContent = scriptTime;
+                                        
+                    // Once complete calculate statics and show the result                    
+                    if (totalCompletedHttpRequests === (testCount * 2)) {
+                        // Count how many requests succeeded in getting the time.
+                        var scriptCount = (function () {
+                            var count = 0;
+                            for (var n = 0, m = scriptTimes.length; n < m; n++) {
+                                count += scriptTimes[n].length;
+                            }
+                            return count;
+                        })();
+
+                        // First check if all tests failed
+                        if (scriptCount === 0) {
+                            document.getElementById("text-result").innerHTML = "All Tests Failed";
+                            return;
+                        }
+
+                        // Calculate Stats
+                        for (var n = 0, m = scriptTimes.length; n < m; n++) {
+                            var sum = scriptTimes[n].reduce(function (previousValue, currentValue) {
+                                return previousValue + currentValue;
+                            });
+
+                            var avg = sum / scriptTimes[n].length;
+                            var min = Math.min.apply(null, scriptTimes[n]);
+                            var max = Math.max.apply(null, scriptTimes[n]);
+
+                            document.getElementById("script-time-" + n + "-avg").innerHTML = avg;
+                            document.getElementById("script-time-" + n + "-min").innerHTML = min;
+                            document.getElementById("script-time-" + n + "-max").innerHTML = max;
+                            document.getElementById("script-time-" + n + "-sum").innerHTML = sum;
+                        }
+
+                        // Final Result
+                        if (totalCompletedHttpRequests === scriptCount) {
+                            document.getElementById("text-result").innerHTML = "Successfully ran all " + scriptCount + " tests";
+                        } else {
+                            document.getElementById("text-result").innerHTML = "Test completed with errors; successfully completed " + scriptCount + " of " + totalCompletedHttpRequests + " tests";
+                        }
+                    }
+                }
+
+                var scriptTimes = [
+                    [],
+                    []
+                ];
+                var resultsTable = document.getElementById("results-table").tBodies[0];
+
+                for (var n = 0; n < pageCount; n++) {
+                    // Add row and cells to the table
+                    var row = resultsTable.insertRow(n);
+                    row.insertCell(0).textContent = (n + 1);
+                    row.insertCell(1);
+                    row.insertCell(2);
+
+                    // Run the test
+                    // The timer variable is to makes sure each URL is unique, if not both  
+                    // Safari and IE will likely cache the Response in the xhr object.
+                    var timer = (new Date()).getTime() + n;
+                    runTest("performance-testing.php?app=Application&_=" + timer, n, 0, pageCount, scriptTimes);
+                    runTest("performance-testing.php?app=AppMin&_=" + timer, n, 1, pageCount, scriptTimes);
+                }
+            })();
+        </script>
+    </body>
+</html>

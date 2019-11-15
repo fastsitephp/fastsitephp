@@ -1,0 +1,30 @@
+{
+    "name": "fastsitephp/fastsitephp",
+    "description": "A Modern Open Source Framework for building High Performance Websites and API’s with PHP",
+    "keywords": [
+            "Framework", "Security", "Encoding", "System Info", "Database", "HTTP Client", 
+            "SMTP Client", "Email", "I18N", "L10N", "Encryption", "JWT", "IP", "CIDR", "CSRF"
+    ],
+    "homepage": "https://www.fastsitephp.com/en/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Conrad Sollitt",
+            "homepage": "http://conradsollitt.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FastSitePHP\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.3.0",
+        "ircmaxell/password-compat": "^1.0",
+        "paragonie/random_compat": "^1|^2",
+        "psr/log": "^1.1"
+    },
+    "require-dev": {
+        "erusev/parsedown": "^1.7"
+    }
+}

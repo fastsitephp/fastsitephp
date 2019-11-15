@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>bomb</title>
+    <desc>Created with Sketch.</desc>
+    <g id="bomb" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#4F5B93" cx="5" cy="11" r="5"></circle>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(7.474874, 8.474874) rotate(45.000000) translate(-7.474874, -8.474874) " x="5.47487373" y="6.97487373" width="4" height="3"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(8.828427, 7.328427) scale(-1, 1) rotate(45.000000) translate(-8.828427, -7.328427) " x="5.82842712" y="6.32842712" width="6" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(13.914214, 2.414214) scale(-1, 1) rotate(45.000000) translate(-13.914214, -2.414214) " x="12.4142136" y="1.91421356" width="3" height="1" rx="0.5"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(14.500000, 4.500000) scale(-1, 1) translate(-14.500000, -4.500000) " x="13" y="4" width="3" height="1" rx="0.5"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(13.500000, 6.500000) scale(-1, 1) rotate(-45.000000) translate(-13.500000, -6.500000) " x="12" y="6" width="3" height="1" rx="0.5"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(11.500000, 1.500000) scale(-1, 1) rotate(90.000000) translate(-11.500000, -1.500000) " x="10" y="1" width="3" height="1" rx="0.5"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(9.500000, 2.500000) scale(-1, 1) rotate(135.000000) translate(-9.500000, -2.500000) " x="8" y="2" width="3" height="1" rx="0.5"></rect>
+    </g>
+</svg>

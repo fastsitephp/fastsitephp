@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>save</title>
+    <desc>Created with Sketch.</desc>
+    <g id="save" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#4F5B93" x="0" y="14" width="16" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(15.000000, 11.000000) rotate(90.000000) translate(-15.000000, -11.000000) " x="10" y="10" width="10" height="2" rx="1"></rect>
+        <rect id="Rectangle" fill="#4F5B93" transform="translate(1.000000, 11.000000) rotate(90.000000) translate(-1.000000, -11.000000) " x="-4" y="10" width="10" height="2" rx="1"></rect>
+        <path d="M9,10 L9.57842712,9.20710678 C9.96895142,8.81658249 10.6021164,8.81658249 10.9926407,9.20710678 C11.383165,9.59763107 11.383165,10.2307961 10.9926407,10.6213203 C10.010682,12.2071068 9.01313513,13 8,13 C6.98686487,13 5.97256713,12.2071068 4.95710678,10.6213203 C4.56658249,10.2307961 4.56658249,9.59763107 4.95710678,9.20710678 C5.34763107,8.81658249 5.98079605,8.81658249 6.37132034,9.20710678 L7,10 L7,1 C7,0.44771525 7.44771525,0 8,0 C8.55228475,0 9,0.44771525 9,1 L9,10 Z" id="Path" fill="#4F5B93"></path>
+    </g>
+</svg>

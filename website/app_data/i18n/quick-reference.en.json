@@ -1,0 +1,9 @@
+{
+    "page_title": "PHP Code - Quick Reference",
+    "page_description_1": "This page includes examples of basic PHP Syntax and how to use FastSitePHP. Some programming knowledge is assumed such as what an [if] statement or [loop] is; however you do not have to know PHP in order to use this.",
+    "page_description_2": "Examples are designed so that you simply copy and paste what you need. Because examples exist for standard PHP code this page is helpful as a general PHP reference even if you are not using FastSitePHP.",
+    "filter_placeholder": "Filter code on this page. For example type 'Security' or 'Database'",
+    "filter_disabled": "If you view this page with a newer Browser or OS you can filter the code.",
+    "filter_all": "Showing {count} Example Code Sections",
+    "filter_filtered": "Showing {displayed} of {count} Example Code Sections"
+}

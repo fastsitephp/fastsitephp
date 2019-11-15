@@ -1,0 +1,22 @@
+FastSitePHP Unit Testing Overview
+
+FastSitePHP provides a web based method of testing so that all code and page speed
+can be easily confirmed in any environment from a web browser.
+
+To run from a development computer simply browse to the file [index.htm] while running PHP.
+The [index.htm] contains a number of options which can changed in JavaScript.
+
+Example Link:
+    http://localhost:3000/vendor/fastsitephp/tests/index.htm
+
+If you want to confirm the framework on your server then you will need to move the [tests]
+folder to the web root. The command will vary based on your setup, however the below example
+works in Linux if the site is installed to [/var/www]. The Unit Tests can provide info on the
+environment being used such as the PHP and OS Version plus they will run time consuming task
+such as PBKDF2 so after you finish testing on a public server you should delete the folder.
+
+Example Command:
+    cp -R /var/www/vendor/fastsitephp/tests /var/www/html/
+
+Then run:
+    http://www.example.com/tests/index.htm

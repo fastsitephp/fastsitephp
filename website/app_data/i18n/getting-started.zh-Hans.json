@@ -1,0 +1,15 @@
+{
+    "page_title": "FastSitePHP入门",
+    "download": "下载",
+    "develop": "用PHP开发",
+    "install_nix": "在Linux和Unix上安装PHP",
+    "install_win": "在Windows上安装PHP",
+    "install_mac": "在macOS上安装PHP",
+    "framework_and_site": "FastSitePHP框架和网站（〜1.2 mb）",
+    "starter_site": "FastSitePHP入门网站（〜10 kb）",
+    "framework_only": "仅限FastSitePHP框架（〜430 kb）",
+    "vs_code": "PHP与Visual Studio代码",
+    "atom": "带有GitHub Atom Editor的PHP",
+    "other_editors": "其他IDE和代码编辑器",
+    "code_editors": "代码编辑器"
+}

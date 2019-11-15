@@ -1,0 +1,32 @@
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 10.13.6 (17G65)
+      Kernel Version: Darwin 17.7.0
+      Boot Volume: Macintosh HD
+      Boot Mode: Normal
+      Computer Name: Conrad’s MacBook Air
+      User Name: World Wide Web Server (_www)
+      Secure Virtual Memory: Enabled
+      System Integrity Protection: Enabled
+      Time since boot: 1 day 21:07
+
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Air
+      Model Identifier: MacBookAir4,2
+      Processor Name: Intel Core i5
+      Processor Speed: 1.7 GHz
+      Number of Processors: 1
+      Total Number of Cores: 2
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 3 MB
+      Memory: 4 GB
+      Boot ROM Version: MBA41.0080.B00
+      SMC Version (system): 1.73f66
+      Serial Number (system): C00000000000
+      Hardware UUID: 00000000-0000-0000-0000-0000000000
+

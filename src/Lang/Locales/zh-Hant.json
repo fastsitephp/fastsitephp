@@ -1,0 +1,9 @@
+{
+    "date": "Y\/n\/j",
+    "time": "Ag:i:s",
+    "dateTime": "Y\/n\/j Ag:i",
+    "am": "上午",
+    "pm": "下午",
+    "decimal": ".",
+    "group": ","
+}

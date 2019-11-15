@@ -1,0 +1,96 @@
+<script type="module">
+    // Validates with [jshint]
+    /* jshint esversion: 6 */
+
+    const btnEncrypt = document.querySelector('#btn-encrypt');
+    const btnDecrypt = document.querySelector('#btn-decrypt');
+    const btnNewKey = document.querySelector('#btn-new-key');
+    const inputKey = document.querySelector('#key');
+    const textArea = document.querySelector('#text');
+    const errorContainer = document.querySelector('.error-message');
+    const errorMessage = errorContainer.querySelector('p');
+
+    function showError(error) {
+        errorMessage.textContent = error;
+        errorContainer.style.display = '';
+    }
+
+    function hideError() {
+        errorContainer.style.display = 'none';
+    }
+
+    function setFormControls() {
+        const value = textArea.value;
+        if (value === '') {
+            // Disable buttons if no data
+            btnEncrypt.disabled = true;
+            btnDecrypt.disabled = true;
+        } else if (/^[a-zA-Z0-9_-]{2,}$/.test(value)) {
+            // Enable both Encrypt and Decrypt button if the data looks like
+            // it is base64-url format.  This is not full base64-url validation
+            // but rahter a quick check.
+            btnEncrypt.disabled = false;
+            btnDecrypt.disabled = false;
+        } else {
+            // Enable encrypt button
+            btnEncrypt.disabled = false;
+            btnDecrypt.disabled = true;
+        }        
+    }
+
+    function encryptOrDecrypt(url) {
+        // Build Request Content and Hide Previous Error
+        const data = {
+            key: inputKey.value,
+            text: textArea.value,
+        };
+        hideError();
+
+        // Submit Request and Update form with Result
+        fetch(url, {
+            method: 'POST',
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error !== undefined) {
+                showError(data.error);
+            } else {
+                textArea.value = data.text;
+            }
+            setFormControls();
+        })
+        .catch(error => {
+            showError(error);
+            console.error(error);
+            setFormControls();
+        });
+    }
+
+    function generateNewKey() {
+        fetch('encryption/generate-key', {
+            method: 'GET',
+            cache: 'no-store',
+        })
+        .then(response => response.json())
+        .then(data => {
+            inputKey.value = data.key;
+            hideError();
+        })
+        .catch(error => {
+            showError(error);
+            console.error(error);
+        });
+    }
+
+    // Setup Element Events
+    textArea.oninput = textArea.onchange = setFormControls;
+    btnEncrypt.onclick = function () { encryptOrDecrypt('encryption/encrypt'); };
+    btnDecrypt.onclick = function () { encryptOrDecrypt('encryption/decrypt'); };
+    btnNewKey.onclick = generateNewKey;
+    setFormControls();
+</script>

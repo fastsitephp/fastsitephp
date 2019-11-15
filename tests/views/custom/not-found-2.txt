@@ -1,0 +1,1 @@
+[NotFoundText2][{{page_title}}][{{message}}]

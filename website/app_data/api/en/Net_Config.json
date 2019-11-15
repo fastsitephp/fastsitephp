@@ -1,0 +1,77 @@
+{
+    "name": "FastSitePHP\\Net\\Config",
+    "short_name": "Net\\Config",
+    "link": "Net_Config",
+    "namespace": "FastSitePHP\\Net",
+    "description": "Network Configuration Info for your Server or Environment",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "fqdn()",
+            "target": "fn_fqdn",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a (fqdn) 'fully-qualified domain name' for the server that is running this script. A fqdn might not be available which will result in null being returned. This function performs a DNS lookup on the hostname of the server.",
+            "attributes": [
+                "@return string|null 'server.example.com'"
+            ],
+            "returnType": "string | null 'server.example.com'",
+            "links": []
+        },
+        {
+            "definition": "networkIp()",
+            "target": "fn_networkIp",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the IPv4 Address of the computer or server that is running the script. This can be used if a site is installed in an environment with multiple web servers to determine what server a specific user is accessing. If a computer is not connected to a network and PHP is running from a development environment then this function will likely return the localhost address '127.0.0.1' however if connected to the internet or a corporate network then this function will return the computer's network IP address. To get the IP Address of the Web Server Software see the function [FastSitePHP\\Web\\Request->serverIp()].",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "networkIpList()",
+            "target": "fn_networkIpList",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return any array of IPv4 Address of the computer or server that is running the script. Often a server will have more than 1 IP assigned.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "networkInfo($all = false)",
+            "target": "fn_networkInfo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a string of Network Info from the OS. If Network info can't be determined then null will be returned. This function works with various OS's including Windows, Mac, and recent versions of Linux. It runs the following commands:\n\n    Win:   ipconfig\n           ipconfig \/all    (If the optional [$all] parameter is true)\n    Mac:   ifconfig\n    Other: ip addr\n           ifconfig\n\nFor Linux newer versions will typically include the [ip] command. For older versions of Linux or Unix OS's [ifconfig] will usually be used.",
+            "attributes": [
+                "@param bool $all (Optional)",
+                "@return null",
+                "@throws \\Exception"
+            ],
+            "returnType": "null",
+            "links": []
+        },
+        {
+            "definition": "parseNetworkInfo($config_text, $exception_on_parse_error = false)",
+            "target": "fn_parseNetworkInfo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Parse Network Info that from the function [networkInfo()] from a string to a PHP Basic Object. By default an error will cause [null] to be returned unless the parameter [$exception_on_parse_error] is set to [true].",
+            "attributes": [
+                "@param string|null $config_text",
+                "@param bool $exception_on_parse_error (Optional)",
+                "@return null|\\stdClass",
+                "@throws \\Exception"
+            ],
+            "returnType": "null | \\stdClass",
+            "links": []
+        }
+    ],
+    "links": []
+}

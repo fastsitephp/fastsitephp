@@ -1,0 +1,269 @@
+<script type="module">
+    // Validates with [jshint]
+    /* jshint esversion: 6 */
+
+    // --------------------------------------
+    // [Send Email] Tab
+    // --------------------------------------
+    const btnSendEmail = document.getElementById('btn-send-email');
+
+    function setupPortInputs() {
+        const portInputs = document.querySelectorAll('input[name="smtp-port"]');
+        const otherPort = document.querySelector('input[name="smtp-other-port"]');
+        for (const el of portInputs) {
+            el.oninput = function(e) {
+                const value = e.target.value;
+                otherPort.disabled = (value === '587' || value === '25');
+            };
+        }
+    }
+
+    // Minimal HTML Editor, only works with recent browsers
+    function setupEditor() {
+        const container = document.querySelector('.editor-container');
+        const toolbar = container.querySelector('.editor-toolbar');
+        const btns = container.querySelectorAll('.editor-btn[data-command]');
+        const btnBold = toolbar.querySelector('.editor-btn[data-command="bold"]');
+        const btnItalic = toolbar.querySelector('.editor-btn[data-command="italic"]');
+        const btnList = toolbar.querySelector('.editor-btn[data-command="insertUnorderedList"]');        
+        const editor = container.querySelector('[contenteditable]');
+        
+        for (const btn of btns) {
+            btn.onclick = function (e) {
+                const cmd = e.target.getAttribute('data-command');
+                editor.focus();
+                document.execCommand(cmd, false, false);
+                editor.focus();
+            };
+        }
+
+        document.addEventListener('selectionchange', () => {
+            const selection = document.getSelection();
+            let node = selection.focusNode;
+            let isInEditor = false;
+            let isInUL = false;
+
+            while (node) {
+                if (node.nodeName === 'UL') {
+                    isInUL = true;
+                } else if (node === editor) {
+                    isInEditor = true;
+                    break;
+                }
+                node = node.parentNode;
+            }
+
+            if (!isInEditor) {
+                return;
+            }
+
+            const style = window.getComputedStyle(selection.focusNode.parentNode);
+            btnBold.className = 'editor-btn' + (style.getPropertyValue('font-weight') === '700' ? ' active' : '');
+            btnItalic.className = 'editor-btn' + (style.getPropertyValue('font-style') === 'italic' ? ' active' : '');
+            btnList.className = 'editor-btn' + (isInUL ? ' active' : '');
+        });
+    }
+
+    function sendEmail() {
+        // Get Port Selection
+        let smtpPort;
+        if (document.getElementById('smtp-port-587').checked) {
+            smtpPort = 587;
+        } else if (document.getElementById('smtp-port-25').checked) {
+            smtpPort = 25;
+        } else {
+            smtpPort = document.querySelector('input[name="smtp-other-port"]').value;
+        }
+        
+        // Build Form Data to Post
+        // As long as there is an SMTP Host let the server handle validation.
+        const data = {
+            // SMTP Settings
+            host: document.getElementById('smtp-host').value,
+            port: smtpPort,
+            timeout: document.getElementById('smtp-timeout').value,
+            user: document.getElementById('smtp-user').value,
+            password: document.getElementById('smtp-password').value,
+            // Email Fields
+            from: document.getElementById('email-from').value,
+            to: document.getElementById('email-to').value,
+            subject: document.getElementById('email-subject').value,
+            body: document.getElementById('email-body').innerHTML,
+        };
+
+        // Reset screen and disable selection while loading
+        const emailResult = document.getElementById('email-server-log');
+        const sentLabel = document.getElementById('email-sent-label');
+        const errorLabel = document.getElementById('email-error-label');
+        btnSendEmail.disabled = true;
+        emailResult.className = '';
+        emailResult.innerHTML = '';
+        sentLabel.style.display = 'none';
+        errorLabel.style.display = 'none';
+
+        // Show Loading/Progress
+        const loadingEl = document.querySelector('.email.loading-container');
+        loadingEl.style.display = '';
+        
+        // Submit request
+        const url = 'email-demo/send-email';
+        let hasError = true;
+        fetch(url, {
+            method: 'POST',
+            cache: 'no-store',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),            
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            showSmtpResult(emailResult, data);
+            hasError = !data.success;
+        })
+        .catch(error => {
+            showSmtpResult(emailResult, {fatalError: error});
+            hasError = true;
+        })
+        .finally(result => {
+            loadingEl.style.display = 'none';
+            btnSendEmail.disabled = false;
+            const el = (hasError ? errorLabel : sentLabel);
+            el.style.display = '';
+        });
+    }
+
+    function setupFieldWarnings() {
+        const ul = document.getElementById('fields-warning');
+        const liHost = document.getElementById('warning-host');
+        const liFrom = document.getElementById('warning-from');
+        const liTo = document.getElementById('warning-to');
+        
+        const stmpHost = document.getElementById('smtp-host');
+        const emailFrom = document.getElementById('email-from');
+        const emailTo = document.getElementById('email-to');
+
+        function showHideWarnings() {
+            const showHost = (stmpHost.value.trim() === '');
+            const showFrom = (emailFrom.value.trim() === '');
+            const showTo = (emailTo.value.trim() === '');
+            const showWarning = (showHost || showFrom || showTo);
+            const borderError = '2px solid red';
+            const borderValid = '2px solid transparent';
+
+            liHost.style.display = (showHost ? '' : 'none');
+            stmpHost.style.border = (showHost ? borderError : borderValid);
+            
+            liFrom.style.display = (showFrom ? '' : 'none');
+            emailFrom.style.border = (showFrom ? borderError : borderValid);
+            
+            liTo.style.display = (showTo ? '' : 'none');
+            emailTo.style.border = (showTo ? borderError : borderValid);
+            
+            ul.style.display = (showWarning ? '' : 'none');
+            btnSendEmail.disabled = showWarning;
+        }
+        
+        stmpHost.oninput = showHideWarnings;
+        emailFrom.oninput = showHideWarnings;
+        emailTo.oninput = showHideWarnings;
+        showHideWarnings();
+    }
+
+    function disableEmailFields() {
+        const inputs = document.querySelectorAll('input');
+        for (const input of inputs) {
+            input.disabled = true;
+        }
+    }
+    
+    // Setup Tab
+    setupPortInputs();
+    setupEditor();
+    if (btnSendEmail) {
+        setupFieldWarnings();
+        btnSendEmail.onclick = sendEmail;
+    } else {
+        disableEmailFields();
+    }
+    
+    // --------------------------------------
+    // [SMTP Commands] Tab
+    // --------------------------------------
+    const smtpServer = document.getElementById('smtp-server');
+    const smtpReplyCache = {};
+    smtpServer.onchange = submitSmtpRequest;
+
+    // Submit request to send some comments to an SMTP Server.
+    // No email is sent, only basic commands are sent.
+    function submitSmtpRequest() {
+        // Get STMP Server
+        const server = smtpServer.value;
+        if (server === '') {
+            return;
+        }
+
+        // Reset screen and disable selection while loading
+        const smtpResult = document.getElementById('smtp-server-log');      
+        smtpServer.disabled = true;
+        smtpResult.className = '';
+        smtpResult.innerHTML = '';
+
+        // Use previously cached version. This prevents too many 
+        // as this is a demo page.
+        if (smtpReplyCache[server] !== undefined) {
+            showSmtpResult(smtpResult, smtpReplyCache[server]);
+            return;
+        }
+
+        // Show Loading/Progress
+        const loadingEl = document.querySelector('.smtp.loading-container');
+        loadingEl.style.display = '';
+        
+        // Submit request
+        const url = 'email-demo/smtp-server?server=' + encodeURIComponent(server);
+        fetch(url, {
+            method: 'POST',
+            cache: 'no-store',
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            smtpReplyCache[server] = data;
+        })
+        .catch(error => {
+            smtpReplyCache[server] = {fatalError: error};
+        })
+        .finally(() => {
+            showSmtpResult(smtpResult, smtpReplyCache[server]);
+            loadingEl.style.display = 'none';
+            smtpServer.disabled = false;
+        });
+    }
+
+    function showSmtpResult(smtpResult, data) {
+        if (data.fatalError === undefined) {
+            // Show SMTP Commands
+            smtpResult.textContent = data.replyLines.join('\n');
+            if (!data.success) {
+                // Show error above SMTP Commands
+                const errorDiv = document.createElement('div');
+                errorDiv.textContent = data.error;
+                errorDiv.className = 'error';
+                errorDiv.style.marginBottom = '1em';
+                errorDiv.style.textAlign = 'left';
+                errorDiv.style.whiteSpace = 'normal';
+                smtpResult.insertAdjacentElement('afterbegin', errorDiv);
+            }
+        } else {
+            // Error with request/response or other unexpected fatal error
+            console.error(data.fatalError);
+            smtpResult.textContent = data.fatalError;
+            smtpResult.className = 'error';
+        }
+        smtpResult.style.display = '';
+    }
+</script>

@@ -1,0 +1,20 @@
+{
+    "page_title": "FastSite API",
+    "class_list": "班级清单",
+    "properties_methods": "属性和方法",
+    "properties": "物产",
+    "name": "名称",
+    "data_type": "数据类型",
+    "default": "默认",
+    "description": "描述",
+    "methods": "方法",
+    "static": "静态的",
+    "static_func": "静态功能",
+    "getter_setter": "Getter / Setter属性",
+    "returns": "退货",
+    "filter_placeholder": "在此页面上过滤类。 例如，键入“ Email”或“ JWT”",
+    "filter_disabled": "如果使用较新的浏览器或操作系统查看此页面，则可以过滤类。",
+    "filter_all": "显示{count}个班级",
+    "filter_filtered": "正在显示{count}个类中的{displayed}个",
+    "related_links": "相关链接"
+}

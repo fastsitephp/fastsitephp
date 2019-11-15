@@ -1,0 +1,12 @@
+<h1>{{page_title}}</h1>
+{{#has_list}}
+<ol>
+    {{#list}}
+        <li>{{.}}</li>
+    {{/list}}
+</ol>
+{{/has_list}}
+{{^list}}
+    <p>No Records found</p>
+{{/list}}
+<p>{{year}}</p>

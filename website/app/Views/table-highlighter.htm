@@ -1,0 +1,36 @@
+<script type="module">
+    /*
+        This file looks for <table class="can-highlight"> elements
+        and then adds click events to each row so the user can toggle
+        on or off a highlighted color. This is allows for a user to 
+        work with large tables (many rows, many columns) more easily,
+        because they can highlight specific rows to look at.
+
+        Required CSS (or use different colors, etc):
+            table.can-highlight tbody tr { cursor: pointer; }
+            table.can-highlight tbody tr.highlight { background-color:yellow; }
+    */
+
+    function toggleHighlight(e) {
+        let el = e.target;
+        while (el) {
+            if (el.tagName === 'TR') {
+                el.classList.toggle('highlight');
+                break;
+            }
+            el = el.parentNode;
+        }
+    }
+
+    function setupTableHighlighter() {
+        const rows = document.querySelectorAll('table.can-highlight tbody tr');
+        for (const row of rows) {
+            row.onclick = toggleHighlight;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setupTableHighlighter();
+        window.setupTableHighlighter = setupTableHighlighter;
+    });
+</script>

@@ -1,0 +1,7 @@
+{
+    "date": "Y\/n\/j",
+    "time": "H:i:s",
+    "dateTime": "Y\/n\/j H:i",
+    "decimal": ",",
+    "group": "."
+}

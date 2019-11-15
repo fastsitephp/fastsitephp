@@ -1,0 +1,19 @@
+<style>
+    .error { background-color:red; color:white; padding:10px; }
+</style>
+<section class="content" id="old-browser-warning" style="display:none;">
+    <p class="error"><?= $app->escape($i18n['old_browser_warning']) ?></p>
+</section>
+<script nomodule>
+    // Validates with [jshint]
+    (function() {
+        'use strict';
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("old-browser-warning").style.display = "";
+            var buttons = document.querySelectorAll('button');
+            Array.prototype.forEach.call(buttons, function(button) {
+                button.disabled = true;
+            });
+        });
+    })();
+</script>

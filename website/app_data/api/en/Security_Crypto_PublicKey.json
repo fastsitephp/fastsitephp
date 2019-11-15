@@ -1,0 +1,64 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\PublicKey",
+    "short_name": "Security\\Crypto\\PublicKey",
+    "link": "Security_Crypto_PublicKey",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "Public Key Generator\n\nUsed to generate RSA Keys which can be used for JWT Signing. Function parameters allow for generation of additional public and private key types.",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/RSA_(cryptosystem)",
+        "@link https:\/\/tools.ietf.org\/html\/rfc3447"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "defaultConfig($bits = 2048)",
+            "target": "fn_defaultConfig",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return the default config options used when generating a new Key Pair. This an array of options set for a 2048-bit RSA Key.\n\n2048-bit is used as because it is provides a combination of acceptable speed for JWT and strong security. If a JWT needs to be signed and validated after the year 2030 then a 3072-bit key is recommended, however 3072-bit keys are much slower to create.\n\nOn Windows this will attempt to find and set the [openssl.cnf] file for the instance of PHP that is running. This option is generally required in order to generate RSA Key Pairs on Windows. The file if found by default will exist at a location such as:\n    C:\\Program Files\\PHP\\v7.2\\extras\\ssl\\openssl.cnf",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/Key_size",
+                "@param int $bits - Defaults to 2048",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/Key_size"
+            ]
+        },
+        {
+            "definition": "generateRsaKeyPair($bits = 2048)",
+            "target": "fn_generateRsaKeyPair",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Generate a new RSA Key Pair",
+            "attributes": [
+                "@param int $bits - Defaults to 2048",
+                "@return array - [private_key, public_key]"
+            ],
+            "returnType": "array - [private_key, public_key]",
+            "links": []
+        },
+        {
+            "definition": "generateKeyPair(array $config)",
+            "target": "fn_generateKeyPair",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Generate a new Public\/Private Key Pair",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.openssl-pkey-new.php",
+                "@param array $config @config - See config options from the PHP link",
+                "@return array - [private_key, public_key]",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - [private_key, public_key]",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.openssl-pkey-new.php"
+            ]
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/RSA_(cryptosystem)",
+        "https:\/\/tools.ietf.org\/html\/rfc3447"
+    ]
+}

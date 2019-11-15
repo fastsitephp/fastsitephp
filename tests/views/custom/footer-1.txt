@@ -1,0 +1,1 @@
+[FooterText1][{{footer_data}}]

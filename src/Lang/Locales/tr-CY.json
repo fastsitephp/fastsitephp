@@ -1,0 +1,9 @@
+{
+    "date": "j.m.Y",
+    "time": "g:i:s A",
+    "dateTime": "j.m.Y g:i A",
+    "am": "ÖÖ",
+    "pm": "ÖS",
+    "decimal": ",",
+    "group": "."
+}
