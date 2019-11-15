@@ -115,7 +115,7 @@
             </li>
             <li>
                 <a href="<?= $app->rootUrl() ?>downloads/framework" class="download-icon" title="<?= $app->escape($i18n['download']) . ' ' . $app->escape($i18n['framework_only']) ?>">📥</a>
-                <a href="https://github.com/fastsitephp/fastsitephp" target="_blank">
+                <a href="https://github.com/fastsitephp/fastsitephp/releases/tag/1.0.0" target="_blank">
                     <img src="../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32">
                     <span class="text"><?= $app->escape($i18n['framework_only']) ?></span>
                 </a>

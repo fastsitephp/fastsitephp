@@ -30,7 +30,7 @@ class Downloads
                 $url = 'https://github.com/fastsitephp/starter-site/archive/master.zip';
                 break;
             case 'framework':
-                $url = 'https://fastsitephp.s3-us-west-1.amazonaws.com/downloads/FastSitePHP-Framework-v1.0.0.zip';
+                $url = 'https://github.com/fastsitephp/fastsitephp/archive/1.0.0.zip';
                 break;
         }
         if (isset($url)) {

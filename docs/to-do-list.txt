@@ -24,25 +24,6 @@ TODO List
 **** Priority Items Start
 ****
 
-*) Update Download Controller and GitHub links on [getting-started] page after code is published
-        FastSitePHP\website\app\Views\getting-started.php
-        FastSitePHP\website\app\Controllers\Downloads.php
-   The following links will re-direct to GitHub
-        https://www.fastsitephp.com/downloads/fastsitephp
-        https://www.fastsitephp.com/downloads/starter-site
-        https://www.fastsitephp.com/downloads/framework
-
-*) Figure out a good workflow for master branch and releases. Basically
-    releases need [export-ignore] lines in [.gitattributes] while the master
-    branch should have them commented out.
-*) Published for Composer (now need to pulish a specific 1.0.0 version and test)
-    Published as:
-        https://packagist.org/packages/fastsitephp/fastsitephp
-    Packagist recommends the following:
-        https://packagist.org/about#how-to-update-packages
-    Once published update the related GitHub icon for Framework in:
-        FastSitePHP\website\app\Views\getting-started.php
-
 *) Update [install.php] on the Starter and Main sites to point to GitHub
     - Only download polyfills if needed based on PHP Version then
         from command line provide an optional 'all' parameter.
@@ -63,6 +44,10 @@ TODO List
 ****
 
 *) Docs Priority (not required but these items are preferred before adding additional docs and a lot of code or other demos)
+    - Publishing releases
+        - Ideally there would be a better workflow
+        - Currently releases need [export-ignore] lines in [.gitattributes]
+            while the master must have them commented out.
     - READE.md
         - Link to the starter site Repository
         - Document local development URL's?
