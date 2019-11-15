@@ -41,8 +41,11 @@ TODO List
 *) Figure out a good workflow for master branch and releases. Basically
     releases need [export-ignore] lines in [.gitattributes] while the master
     branch should have them commented out.
-
-*) Publish for Composer
+*) Published for Composer (now need to pulish a specific 1.0.0 version and test)
+    Published as:
+        https://packagist.org/packages/fastsitephp/fastsitephp
+    Packagist recommends the following:
+        https://packagist.org/about#how-to-update-packages
 
 *) Update [install.php] on the Starter and Main sites to point to GitHub
     - Only download polyfills if needed based on PHP Version then
