@@ -24,6 +24,21 @@ TODO List
 **** Priority Items Start
 ****
 
+*) Finish Testing Composer (PHP Package Manager)
+    https://packagist.org/packages/fastsitephp/fastsitephp
+
+    # Windows
+    composer require fastsitephp/fastsitephp
+    composer install
+
+    # Mac/Linux/other
+    php composer.phar require fastsitephp/fastsitephp
+    php composer.phar install
+
+    # After more testing need to update Readme files and docs
+        - How to user Composer with FastSitePHP
+        - How to use Composer and differences between Windows and other OS's
+
 *) Update [install.php] on the Starter and Main sites to point to GitHub
     - Only download polyfills if needed based on PHP Version then
         from command line provide an optional 'all' parameter.
@@ -55,7 +70,6 @@ TODO List
             http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
             http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
             http://localhost:3000/FastSitePHP/tests/index.htm
-        - How to user Composer with FastSitePHP
     - Step by Step Setup of Sites
         - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
         - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
@@ -70,7 +84,6 @@ TODO List
         - Include print screen examples of how it recommends fixes
         - Include docs for use with Linux, Mac, Windows
         - Update the [readme.txt] file once the link is created
-    - How to use composer and differences between Windows and other OS's
     - Publish step by step guide on FastSitePHP Server is Setup
     - Linux Install Doc
         - Need more OS examples
