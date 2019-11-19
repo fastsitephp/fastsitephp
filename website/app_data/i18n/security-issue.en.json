@@ -1,0 +1,7 @@
+{
+    "page_title": "Security Issue",
+    "security": "Security",
+    "security_issue": "You can use this form to send a private message to the author if you believe you have found a security issue with either FastSitePHP or the DataFormsJS Playground.",
+    "thank_you_message": "Your message has been sent. Thank you for your help! Look for an email from [%s]; you may need to add this to your email whitelist.",
+    "submit": "Submit"
+}

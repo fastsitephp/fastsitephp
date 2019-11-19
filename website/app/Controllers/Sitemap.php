@@ -28,6 +28,7 @@ class Sitemap
             '/:lang/examples/database-demo/:page',
             '/:lang/examples/encryption/generate-key',
             '/:lang/translators-needed',
+            '/:lang/security-issue',
         ];
         $include_files = [
             __DIR__ . '/../routes-examples.php'

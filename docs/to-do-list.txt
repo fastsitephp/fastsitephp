@@ -20,14 +20,19 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Additional Site Layout Updates
+    - Favicons for different devices
+    - General improvements for Phone layout
+    - Once the new Security Page is published (likely tomorrow 11/20) on the server then link back
+        in the read me file on the main site, playground server, and DataFormsJS Playground.
+        http://localhost:3000/fastsitephp/website/public/en/security-issue
+
 *) Create a script that uses the Google Translate API to create initial i18n files.
    The script will need to be able to keys in the JSON files, find and update
    code comments in specific files, and also handle markdown documents.
         https://cloud.google.com/translate/?hl=en
     This will be pending findings from the first translators to verify how well
     Google Translate is working with technical docs.
-
-*) API Class Pages should link to the Source File on Github
 
 *) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.

@@ -1,0 +1,7 @@
+{
+    "page_title": "安全问题",
+    "security": "安全",
+    "security_issue": "如果您认为发现FastSitePHP或DataFormsJS Playground存在安全问题，则可以使用此表单向作者发送私人消息。",
+    "thank_you_message": "您的留言已发送。 谢谢您的帮助！ 寻找来自[％s]的电子邮件； 您可能需要将此添加到您的电子邮件白名单中。",
+    "submit": "提交"
+}
