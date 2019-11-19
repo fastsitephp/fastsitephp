@@ -8,6 +8,8 @@ FastSitePHP is a new web framework that uses PHP. FastSitePHP has been designed 
 
 This repository contains FastSitePHP’s Framework and main Website.
 
+FastSitePHP includes many Standalone Components that can be used without using the main Application object or Framework so it’s easy to use FastSitePHP with other PHP Frameworks or Projects.
+
 ## 🚀 Getting Started
 
 **Getting started with PHP and FastSitePHP is extremely easy.** If you do not have PHP installed then see instructions for Windows, Mac, and Linux on the getting started page:
@@ -17,6 +19,7 @@ This repository contains FastSitePHP’s Framework and main Website.
 Once PHP is installed you can launch the site from the command-line as show below or if you use a Code Editor or IDE [Visual Studio Code, GitHub Atom, etc] then you can launch the site directly from your editor. See the above getting started page for more.
 
 ~~~
+# Download this Repository
 cd {root-directory}
 php -S localhost:3000
 ~~~
@@ -26,6 +29,12 @@ To include support for rendering server-side markdown documents or support for c
 ~~~
 cd {root-directory}
 php ./scripts/install.php
+~~~
+
+The FastSitePHP Framework can also be installed using Composer (PHP Dependency/Package Manager). When installed from Composer only the core Framework files are included and not this full Repository with the Main Website. The size of downloaded files is about 470 kb, so it’s quick to include with existing PHP projects or use to start new projects.
+
+~~~
+composer require fastsitephp/fastsitephp
 ~~~
 
 ## 🤝 Contributing
@@ -67,7 +76,7 @@ For the site being developed the framework and components were replaced one by o
 
 **How large is FastSitePHP?**
 
-- **Framework** (~19,000 lines of PHP Code, ~430 kb as a zip file)
+- **Framework** (~19,000 lines of PHP Code, ~470 kb as a zip file)
 - **Unit Tests** (~25,000 lines of Code)
 
 **Which versions of PHP are supported?**
