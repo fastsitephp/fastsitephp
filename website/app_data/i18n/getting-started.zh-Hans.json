@@ -11,5 +11,6 @@
     "vs_code": "PHP与Visual Studio代码",
     "atom": "带有GitHub Atom Editor的PHP",
     "other_editors": "其他IDE和代码编辑器",
-    "code_editors": "代码编辑器"
+    "code_editors": "代码编辑器",
+    "package_manager": "包装经理"
 }

@@ -169,7 +169,7 @@
 
     <section class="content composer">
         <div>
-            <span>Package Manager</span>
+            <span><?= $app->escape($i18n['package_manager']) ?></span>
         </div>
         <ul>
             <li>

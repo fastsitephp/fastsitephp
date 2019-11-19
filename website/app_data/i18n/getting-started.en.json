@@ -11,5 +11,6 @@
     "vs_code": "PHP with Visual Studio Code",
     "atom": "PHP with GitHub Atom Editor",
     "other_editors": "Other IDE's and Code Editors",
-    "code_editors": "Code Editors"
+    "code_editors": "Code Editors",
+    "package_manager": "Package Manager"
 }
