@@ -16,5 +16,6 @@
     "filter_disabled": "如果使用较新的浏览器或操作系统查看此页面，则可以过滤类。",
     "filter_all": "显示{count}个班级",
     "filter_filtered": "正在显示{count}个类中的{displayed}个",
-    "related_links": "相关链接"
+    "related_links": "相关链接",
+    "source_code": "源代码"
 }

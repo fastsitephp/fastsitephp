@@ -21,6 +21,7 @@
         padding-bottom: 20px; 
         align-self: flex-start;
     }
+    .source-code,
     .related-links { margin-bottom:10px; }
     @media screen and (min-width: 1000px) {
         .flex { display:flex; }
@@ -119,6 +120,8 @@
     <section class="content class-info">
         <h1><?= $app->escape($class->name) ?></h1>
         <p><?= $app->escapeDesc($class->description) ?></p>
+        <h3 class="source-code"><?= $app->escape($i18n['source_code']) ?></h3>
+        <p><a href="<?= $app->escape($class->github) ?>" target="_blank"><img src="../../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32"></a></p>
         <?php if ($class->links): ?>
             <h3 class="related-links"><?= $app->escape($i18n['related_links']) ?></h3>
             <ul class="link-list">

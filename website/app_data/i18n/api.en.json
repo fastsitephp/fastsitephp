@@ -16,5 +16,6 @@
     "filter_disabled": "If you view this page with a newer Browser or OS you can filter the classes.",
     "filter_all": "Showing {count} Classes",
     "filter_filtered": "Showing {displayed} of {count} Classes",
-    "related_links": "Related Links"
+    "related_links": "Related Links",
+    "source_code": "Source Code"
 }

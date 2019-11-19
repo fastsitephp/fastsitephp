@@ -78,6 +78,11 @@ class API
         // Update Page Title with Class Name
         $app->locals['i18n']['page_title'] .= ' | ' . $class->name;
 
+        // Create a Github link to the source code for the clas
+        $class->github = 'https://github.com/fastsitephp/fastsitephp/blob/master/src/';
+        $class->github .= str_replace('\\', '/', str_replace('FastSitePHP\\', '', $class->name));
+        $class->github .= '.php';
+
         // Render
         return $app->render('api-class.php', [
             'nav_active_link' => 'api',
