@@ -11,26 +11,14 @@ TODO List
 |   *) More Unit Testing
 |       - All classes and code must be Unit tested (ideally every line).
           Currently all core classes are tested but not all code.
-|       - A number of manual test files from [FastSitePHP\scripts\*]
-|         need to be converted unit tests under [FastSitePHP\tests\*]
+|       - A number of manual test files from [fastsitephp/scripts/testing-*.php]
+|         need to be converted unit tests under [fastsitephp/tests/*]
 |   *) Additional Classes and Features
 |
-|   Other than a few items at the top there is no priority to this list.
+|   There is no priority to this list.
 |   All contributions are welcome.
 |
 --------------------------------------------------------------------------
-
-****
-**** Priority Items Start
-****
-
-*) Update [install.php] on the Starter and Main sites to point to GitHub
-    - Only download polyfills if needed based on PHP Version then
-        from command line provide an optional 'all' parameter.
-        Applies to [ircmaxell/password_compat] and [paragonie/random_compat]
-
-*) Link CDN page to the main FastSitePHP site and update colors/theme on it
-    https://dydn9njgevbmp.cloudfront.net/index.html
 
 *) Create a script that uses the Google Translate API to create initial i18n files.
    The script will need to be able to keys in the JSON files, find and update
@@ -39,11 +27,14 @@ TODO List
     This will be pending findings from the first translators to verify how well
     Google Translate is working with technical docs.
 
-****
-**** Priority Items End
-****
+*) API Class Pages should link to the Source File on Github
 
-*) Docs Priority (not required but these items are preferred before adding additional docs and a lot of code or other demos)
+*) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
+    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
+    These files were created because creating full automated unit tests was causing too much of a delay
+    for the initial release.
+
+*) Documentation to create
     - Publishing releases
         - Ideally there would be a better workflow, possibly a seperate "Release" branch
         - Currently releases need [export-ignore] lines in [.gitattributes]
@@ -52,7 +43,7 @@ TODO List
         # Windows
         # First install composer
             composer require fastsitephp/fastsitephp
-            composer create-project fastsitephp/starter-site my-app        
+            composer create-project fastsitephp/starter-site my-app
         # Mac/Linux/other
         # Download composer to directory
             php composer.phar require fastsitephp/fastsitephp
@@ -94,8 +85,6 @@ TODO List
         - How to refresh API Docs
             vendor\FastSitePHP\scripts\create-api-json-files.php
 
-*) API Class Pages should link to the Source File on Github
-
 *) Additional Updates for [install.php] on the Starter and Main sites
     - Add SHA256 or SHA384 file verification for download zip files?
     - Add initial permissions check and helpfull warning if user does't have write access
@@ -104,6 +93,11 @@ TODO List
       if the site is not yet setup
     - Allow the script to setup common apache config if using sudo?
       This would take a decent amount of work and testing but would be helpful.
+    - The script is likely to not work now when using very old versions of PHP [5.3, 5.4].
+      Would likley have to switch to an alternative HTTP download link and then performance
+      SHA256 or SHA384 file verification. This would not be ideal as it reqiures a duplicate
+      copy of files on S3 or another host. Low priority as almost no one should use 5.3 or 5.4
+      as of late-2019.
 
 *) Playground Site
     - decide after frequent use with many users if [opcache_reset()]

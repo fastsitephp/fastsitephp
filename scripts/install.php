@@ -18,6 +18,10 @@
  *   (*) Make sure that you have write file permissions to the root directory
  *   (*) Run from command line using [php install.php]
  *   (*) Or open [install.php] in your browser
+ *       Optionally updated constants to change behavior near the top of this file:
+ *         INSTALL_PSR_LOG = true/false
+ *         INSTALL_THIRD_PARTY = true/false
+ *         ALWAYS_INSTALL_POLYFILLS = true/false
  *   (*) When this script runs it will download [cacert.pem] and
  *       save it to the temp directory (the file is always verified).
  *
@@ -26,6 +30,8 @@
  *       from a Code Editor or IDE then close and re-open the editor and
  *       run this script again. If it happens again make sure you have the
  *       related directories/folders closed in your file manager.
+ *   (*) If you are on a very old version of PHP [5.3 or 5.4] you may have
+ *       to manually download the files or upgrade PHP.
  *
  * @package  FastSitePHP
  * @link     https://www.fastsitephp.com
@@ -41,7 +47,12 @@ ini_set('display_errors', 'on');
 // Constants
 define('IS_CLI', (php_sapi_name() === 'cli'));
 define('LINE_BREAK', (IS_CLI ? PHP_EOL : '<br>'));
-const VENDOR_DIR = __DIR__ . '/../vendor';
+define('VENDOR_DIR', __DIR__ . '/../vendor');
+
+// Change as desired based on your project
+const INSTALL_PSR_LOG = true; // [php-fig/log]
+const INSTALL_MARKDOWN = true; // [erusev/parsedown]
+const ALWAYS_INSTALL_POLYFILLS = false; // [ircmaxell/password_compat] and [paragonie/random_compat]
 
 // CA certificates are download from [https://curl.haxx.se/docs/caextract.html]
 // and saved at the following location:
@@ -66,12 +77,13 @@ $downloads = array(
         'skip_check' => __DIR__ . '/../src/Application.php', // Skip download if running within Framework
     ),
     array(
-        'url' => 'https://github.com/php-fig/log/archive/1.1.0.zip',
+        'url' => 'https://github.com/php-fig/log/archive/1.1.2.zip',
         'save_file' => __DIR__ . '/psr-log.zip',
         'check_file' => VENDOR_DIR . '/psr/log/Psr/Log/AbstractLogger.php',
         'mkdir' => VENDOR_DIR . '/psr',
-        'rename_from' => VENDOR_DIR . '/log-1.1.0',
+        'rename_from' => VENDOR_DIR . '/log-1.1.2',
         'rename_to' => VENDOR_DIR . '/psr/log',
+        'install' => INSTALL_PSR_LOG,
     ),
     array(
         'url' => 'https://github.com/erusev/parsedown/archive/1.7.3.zip',
@@ -80,6 +92,7 @@ $downloads = array(
         'mkdir' => VENDOR_DIR . '/erusev',
         'rename_from' => VENDOR_DIR . '/parsedown-1.7.3',
         'rename_to' => VENDOR_DIR . '/erusev/parsedown',
+        'install' => INSTALL_MARKDOWN,
     ),
     array(
         'url' => 'https://github.com/ircmaxell/password_compat/archive/v1.0.4.zip',
@@ -88,6 +101,7 @@ $downloads = array(
         'mkdir' => VENDOR_DIR . '/ircmaxell',
         'rename_from' => VENDOR_DIR . '/password_compat-1.0.4',
         'rename_to' => VENDOR_DIR . '/ircmaxell/password-compat',
+        'install' => (PHP_VERSION_ID < 50500) || ALWAYS_INSTALL_POLYFILLS,
     ),
     array(
         'url' => 'https://github.com/paragonie/random_compat/archive/v2.0.18.zip',
@@ -96,6 +110,7 @@ $downloads = array(
         'mkdir' => VENDOR_DIR . '/paragonie',
         'rename_from' => VENDOR_DIR . '/random_compat-2.0.18',
         'rename_to' => VENDOR_DIR . '/paragonie/random_compat',
+        'install' => (PHP_VERSION_ID < 70000) || ALWAYS_INSTALL_POLYFILLS,
     ),
 );
 
@@ -184,7 +199,7 @@ function downloadZip($url, $path) {
     );
     $context = stream_context_create($http_options);
     $response = file_get_contents($url, null, $context);
-
+    
     // Look for a 200 Response Code, example:
     //     'HTTP/1.0 200 OK'
     //     'HTTP/1.1 200 OK'
@@ -332,13 +347,18 @@ function main($downloads) {
     createVendorDir();
     foreach ($downloads as $download) {
         echo str_repeat('-', 80) . LINE_BREAK;
-        $is_downloaded = projectIsDownloaded($download);
-        if ($is_downloaded) {
-            echo 'Project [' . $download['url'] . '] is already downloaded' . LINE_BREAK;
+        $install = (!isset($download['install']) || $download['install'] === true);
+        if (!$install) {
+            echo 'Skipping download of project [' . $download['url'] . ']' . LINE_BREAK;
         } else {
-            downloadZip($download['url'], $download['save_file']);
-            extractZip($download);
-            unlink($download['save_file']); // Delete the Zip file
+            $is_downloaded = projectIsDownloaded($download);
+            if ($is_downloaded) {
+                echo 'Project [' . $download['url'] . '] is already downloaded' . LINE_BREAK;
+            } else {
+                downloadZip($download['url'], $download['save_file']);
+                extractZip($download);
+                unlink($download['save_file']); // Delete the Zip file
+            }
         }
     }
 
