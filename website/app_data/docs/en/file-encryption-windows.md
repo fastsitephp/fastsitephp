@@ -12,10 +12,11 @@ Windows 10 and Windows Server 1709 and later provide support for the Windows Sub
 
 This document shows up to run the script [encrypt.sh] on the Windows Subsystem for Linux and can be used as a general reference for running Bash Scripts on Windows.
 
-### FileEncryption API and Bash Script
-* [Class [Security\Crypto\FileEncryption]](../api/Security_Crypto_FileEncryption)
-* [📥](../../downloads/encrypt-bash) [Bash Script File Download [encrypt.sh]](../../downloads/encrypt-bash)
-* [More info on using the Bash Script File [encrypt.sh]](file-encryption-bash)
+### File Encryption API and Bash Script
+* [📄 Class [Security\Crypto\FileEncryption]](../api/Security_Crypto_FileEncryption)
+* <a href="https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/encrypt.sh">📜 View Source Code of [encrypt.sh]</a>
+* [📥 Bash Script File Download [encrypt.sh]](../../downloads/encrypt-bash)
+* [📑 More info on using the Bash Script File [encrypt.sh]](file-encryption-bash)
 
 ### Windows Subsystem for Linux Links
 * [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/about)

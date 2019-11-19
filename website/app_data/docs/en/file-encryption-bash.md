@@ -12,9 +12,11 @@ This page shows how to use the bash script and provides details on how it works.
 
 Screenshots on this page were created on Mac using SSH and Terminal to connect to an Amazon Web Services (AWS) Lightsail Servers. The IP addresses and any server info shown on the screenshots are from temporary severs that no longer exists.
 
-### FileEncryption API and Bash Script
-* [Class [Security\Crypto\FileEncryption]](../api/Security_Crypto_FileEncryption)
-* [📥](../../downloads/encrypt-bash) [Bash Script File Download [encrypt.sh]](../../downloads/encrypt-bash)
+### File Encryption API and Bash Script
+* [📄 Class [Security\Crypto\FileEncryption]](../api/Security_Crypto_FileEncryption)
+* <a href="https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/encrypt.sh">📜 View Source Code of [encrypt.sh]</a>
+* [📥 Bash Script File Download [encrypt.sh]](../../downloads/encrypt-bash)
+* [📑 File Encryption using the Bash Script [encrypt.sh] on Windows](file-encryption-windows)
 
 ---
 ## Running the Script

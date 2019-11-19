@@ -27,6 +27,10 @@ PHP is supported for IBM Servers and typically the most recent version of PHP ca
 * http://files.zend.com/help/Zend-Server/content/i5_installation_guide.htm
 * https://en.wikipedia.org/wiki/IBM_AIX
 
+### API and Test Script
+* [📄 Class [Data\Db2Database]](../api/Data_Db2Database)
+* <a href="https://github.com/fastsitephp/fastsitephp/blob/master/scripts/ibm-db2-test.php">📜 IBM Test Script File [scripts/ibm-db2-test.php]</a>
+
 ---
 ## Copying Files
 A script that comes with FastSitePHP [scripts\ibm-db2-test.php] provides details on what files to copy. Many FTP programs will not work with IBM Servers however when using Windows the Command Line built-in FTP works with IBM Servers.

@@ -18,6 +18,8 @@ FastSitePHP includes many Standalone Components that can be used without using t
 
 Once PHP is installed you can launch the site from the command-line as show below or if you use a Code Editor or IDE [Visual Studio Code, GitHub Atom, etc] then you can launch the site directly from your editor. See the above getting started page for more.
 
+### Donwload and run the Main Website and Full Framework (~1.2 mb)
+
 ~~~
 # Download this Repository
 cd {root-directory}
@@ -31,11 +33,19 @@ cd {root-directory}
 php ./scripts/install.php
 ~~~
 
-The FastSitePHP Framework can also be installed using Composer (PHP Dependency/Package Manager). When installed from Composer only the core Framework files are included and not this full Repository with the Main Website. The size of downloaded files is about 470 kb, so it’s quick to include with existing PHP projects or use to start new projects.
+### Install using Composer (PHP Dependency/Package Manager) (~470 kb)
+
+The FastSitePHP Framework can also be installed using Composer. When installed from Composer only the core Framework files are included and not this full Repository with the Main Website. The size of downloaded files is small, so it’s quick to include with existing PHP projects or use to start new projects.
 
 ~~~
 composer require fastsitephp/fastsitephp
 ~~~
+
+### Start with a Starter Site (~32 kb)
+
+A starter site for FastSitePHP also exists that includes several examples pages and provides a basic directory/file structure. It’s small in size and quick to setup.
+
+[https://github.com/fastsitephp/starter-site](https://github.com/fastsitephp/starter-site)
 
 ## 🤝 Contributing
 

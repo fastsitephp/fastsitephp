@@ -79,8 +79,6 @@ TODO List
         - Need more OS examples
         - Examples on how to connect to linux (possibly in seperate docs for Mac and Windows)
     - PHP and FastSitePHP with Docker?
-    - [encrypt.sh] Docs should also link to GitHub Source
-    - [ibm-server-db-query] should link to the [ibm-db2-test.php] script on GitHub
     - Need to come up with workflow and/or examples on how to publish images
         and then docs. Currently images are hosted on AWS and saved to a seperate
         Repository.
