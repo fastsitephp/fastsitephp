@@ -475,7 +475,7 @@ class Request
             // false rather than an array. If it fails continue code execution
             // in this function to get request headers from the $_SERVER array.
             if ($headers !== false) {
-	            // When using Apache [getallheaders()] will return certain headers
+                // When using Apache [getallheaders()] will return certain headers
                 // using the upper/lower-case values submitted so if 'Content-type'
                 // is submitted from a browser then it will come in that way
                 // rather than as 'Content-Type'. On IIS or Nginx the value would
@@ -483,12 +483,12 @@ class Request
                 // due to a different function called for Apache in the PHP Source
                 // Code. This code corrects the header capitalization and creates
                 // and returns a new array using the corrected names.
-	            $req_headers = array();
-	            foreach ($headers as $key => $value) {
+                $req_headers = array();
+                foreach ($headers as $key => $value) {
                     // Replace '_' with spaces and capitalize the words then replace
                     // the spaces with dashes '-' resulting in the correct header name.
                     $req_headers[str_replace(' ', '-', ucwords(strtolower(str_replace('-', ' ', $key))))] = $value;
-	            }
+                }
                 return $req_headers;
             }
         }
@@ -558,7 +558,7 @@ class Request
         if (isset($_SERVER['CONTENT_TYPE'])) {
             $content_type = $_SERVER['CONTENT_TYPE'];
         } elseif (isset($_SERVER['HTTP_CONTENT_TYPE'])) {
-        	$content_type = $_SERVER['HTTP_CONTENT_TYPE'];
+            $content_type = $_SERVER['HTTP_CONTENT_TYPE'];
         } else {
             return null;
         }
@@ -654,7 +654,7 @@ class Request
      */
     public function isXhr()
     {
-	    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest');
+        return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest');
     }
 
     /**
@@ -691,7 +691,7 @@ class Request
      */
     public function userAgent()
     {
-	    return (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null);
+        return (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : null);
     }
 
     /**

@@ -52,12 +52,12 @@ class CsrfStateless
     }
 
     /**
-	 * Setup and validate stateless CSRF Tokens. A good place to call this
-	 * function is on route filters of pages that use authentication.
+     * Setup and validate stateless CSRF Tokens. A good place to call this
+     * function is on route filters of pages that use authentication.
      *
-	 * This will assign the token to app property $app->locals['csrf_token']
-	 * which then must be included with the form or response. When using
-	 * [$app->render()] the value will be available as variable [$csrf_token].
+     * This will assign the token to app property $app->locals['csrf_token']
+     * which then must be included with the form or response. When using
+     * [$app->render()] the value will be available as variable [$csrf_token].
      *
      * This function requires the App config value $app->config['CSRF_KEY']
      * or an Environment Variable of the same name with a key generated from
@@ -65,8 +65,8 @@ class CsrfStateless
      *
      * For usage see demo code.
      *
-	 * @link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
-	 * @link https://en.wikipedia.org/wiki/Cross-site_request_forgery
+     * @link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+     * @link https://en.wikipedia.org/wiki/Cross-site_request_forgery
      * @link https://en.wikipedia.org/wiki/HMAC
      * @param Application @app
      * @param string|int $user_id - A unique identifier for the user. This doesn't have to be secret and can be a simple as an numeric field in a database.
@@ -74,8 +74,8 @@ class CsrfStateless
      * @param string $key - Defaults to ['X-CSRF-Token'], the key must be included in either a form field or request header when the request is submitted.
      * @throws \Exception
      */
-	public static function setup(Application $app, $user_id, $expire_time = null, $key = 'X-CSRF-Token')
-	{
+    public static function setup(Application $app, $user_id, $expire_time = null, $key = 'X-CSRF-Token')
+    {
         if (PHP_VERSION_ID < 50400) {
             require_once __DIR__ . '/../../Polyfill/hex_compat.php';
         }
@@ -112,23 +112,23 @@ class CsrfStateless
 
         // Validate POST, PUT, DELETE Requests, etc.
         // A Token MUST be sent with the request.
-		$method = (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : null);
-		if (!($method === 'GET' || $method === 'HEAD' || $method === 'OPTIONS')) {
-			// Get Token from either Submitted Form or from Request Header
-			$submitted_token = null;
-			if (isset($_POST[$key])) {
-				$submitted_token = $_POST[$key];
-			} else {
-				// Request header will come in as 'HTTP_X_CSRF_Token'
-				$field = 'HTTP_' . str_replace('-', '_', strtoupper($key));
-				if (isset($_SERVER[$field])) {
-					$submitted_token = $_SERVER[$field];
-				}
-			}
+        $method = (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : null);
+        if (!($method === 'GET' || $method === 'HEAD' || $method === 'OPTIONS')) {
+            // Get Token from either Submitted Form or from Request Header
+            $submitted_token = null;
+            if (isset($_POST[$key])) {
+                $submitted_token = $_POST[$key];
+            } else {
+                // Request header will come in as 'HTTP_X_CSRF_Token'
+                $field = 'HTTP_' . str_replace('-', '_', strtoupper($key));
+                if (isset($_SERVER[$field])) {
+                    $submitted_token = $_SERVER[$field];
+                }
+            }
 
-			// Was token submitted?
-			if ($submitted_token === null) {
-				throw new \Exception('CSRF Token not submitted');
+            // Was token submitted?
+            if ($submitted_token === null) {
+                throw new \Exception('CSRF Token not submitted');
             }
 
             // Get expire time if one was saved with token.
@@ -165,13 +165,13 @@ class CsrfStateless
             $hash_text = $bytes . (string)$csrf_expire_time . (string)$user_id;
             $calculated_hash = \hash_hmac('sha256', $hash_text, $hmac_key, true);
 
-			// Compare what client submitted vs the calculated value.
-			if (PHP_VERSION_ID < 50600) {
-				require_once __DIR__ . '/../../Polyfill/hash_equals_compat.php';
-			}
-			if (!\hash_equals($calculated_hash, $submitted_hash)) {
-				throw new \Exception('Error - Your session may have expired. Please logout then log back in and try again.');
-			}
+            // Compare what client submitted vs the calculated value.
+            if (PHP_VERSION_ID < 50600) {
+                require_once __DIR__ . '/../../Polyfill/hash_equals_compat.php';
+            }
+            if (!\hash_equals($calculated_hash, $submitted_hash)) {
+                throw new \Exception('Error - Your session may have expired. Please logout then log back in and try again.');
+            }
         }
 
         // Generate a new CSRF Token; a new token is generated on each request.
@@ -183,8 +183,8 @@ class CsrfStateless
             $token = (string)$expire_time . '.' . $token;
         }
 
-		// Make token available in App Locals.
+        // Make token available in App Locals.
         // The site itself must send this with the form or page.
-		$app->locals['csrf_token'] = $token;
-	}
+        $app->locals['csrf_token'] = $token;
+    }
 }

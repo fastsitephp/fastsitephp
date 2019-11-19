@@ -34,19 +34,19 @@ use FastSitePHP\Security\Crypto\Random;
  * PHP 7.1 or above Authenticated Encryption Block Modes of GCM and CCM
  * are available.
  *
- * The type of encryption that this class uses is Advanced Encryption Standard 
- * (AES) which is a Symmetric Key Block Cipher meaning that the same key used 
- * for encryption must also be used decryption; and that data is encrypted 
- * in blocks of text rather than one byte at a time. Additionally when using 
- * default and recommended settings Authenticated Encryption is performed 
+ * The type of encryption that this class uses is Advanced Encryption Standard
+ * (AES) which is a Symmetric Key Block Cipher meaning that the same key used
+ * for encryption must also be used decryption; and that data is encrypted
+ * in blocks of text rather than one byte at a time. Additionally when using
+ * default and recommended settings Authenticated Encryption is performed
  * using either HMAC (CBC and CTR modes) or GCM mode.
- * 
+ *
  * Default Algorthims:
  *     'aes-256-cbc' - Encryption Algorithm - AES (Rigndeal) with a 256-bit
  *                     key using CBC mode. CTR and GCM modes are also supported
  *                     depending upon the version of PHP being used.
  *     'sha256'      - Hashing Algorithm for HMAC
- * 
+ *
  * @link https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
  * @link https://en.wikipedia.org/wiki/Authenticated_encryption
  */
@@ -116,11 +116,11 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      *     [encryptThenAuthenticate()] - Set to [false] to disable Authentication
      *
      * By default only secure settings are used so changing most encryption
-     * options is not recommend unless you have detailed knowledge of 
-     * cryptography or have specific app needs. One security option that is 
-     * safe to change without knowning the details of how to use it is 
-     * [encryptionAlgorithm('aes-256-gcm')] if all of your servers have 
-     * PHP 7.1 or greater. This will provide faster encryption and decryption 
+     * options is not recommend unless you have detailed knowledge of
+     * cryptography or have specific app needs. One security option that is
+     * safe to change without knowning the details of how to use it is
+     * [encryptionAlgorithm('aes-256-gcm')] if all of your servers have
+     * PHP 7.1 or greater. This will provide faster encryption and decryption
      * and the ciphertext will be slightly smaller in size.
      *
      * @param mixed $data
@@ -166,7 +166,7 @@ class Encryption extends AbstractCrypto implements CryptoInterface
             $ciphertext = \openssl_encrypt($plaintext, $algo, $key_enc, OPENSSL_RAW_DATA, $iv);
             $ciphertext = $ciphertext . $iv;
 
-            // Calculate HMAC from the ciphertext (and optionally AAD) 
+            // Calculate HMAC from the ciphertext (and optionally AAD)
             // and add it to the end of the ciphertext string.
             if ($this->encrypt_then_authenticate) {
                 $hmac = \hash_hmac($this->hashing_algorithm, $ciphertext . $aad, $key_hmac, true);
@@ -293,12 +293,12 @@ class Encryption extends AbstractCrypto implements CryptoInterface
                 throw new \Exception($error);
             }
         } catch (\Exception $e) {
-			// Re-throw Exception based if [exceptionOnError(true)]
-			// otherwise return null by default.
-			if ($this->exception_on_error) {
-				throw $e;
-			}
-			return null;
+            // Re-throw Exception based if [exceptionOnError(true)]
+            // otherwise return null by default.
+            if ($this->exception_on_error) {
+                throw $e;
+            }
+            return null;
         }
     }
 
@@ -416,7 +416,7 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      *         This works by converting data to a string prior to encryption
      *         and appending a single byte to the end of the string which
      *         represents what the original data type is. Objects and arrays
-     *         are converted using JSON which allows for this code to be easily  
+     *         are converted using JSON which allows for this code to be easily
      *         portable to other programming languages.
      *     'string-only':
      *         When this property is set only strings can be passed to the
@@ -440,8 +440,8 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      * IMPORTANT - This should only be manually set if compatibility with other
      * code is needed or for Unit Testing. Often online samples of AES use
      * insecure passwords such as 'password' when showing encryption demos
-     * which is one of the reasons that this setting was created. The main 
-     * reason this function exists is for Unit Testing. Additionally if 
+     * which is one of the reasons that this setting was created. The main
+     * reason this function exists is for Unit Testing. Additionally if
      * using an Encryption Algorithm other than AES then you may need
      * to set this value.
      *
@@ -522,13 +522,13 @@ class Encryption extends AbstractCrypto implements CryptoInterface
         }
 
         // Get Data Type and Convert to a String
-	    // 0 = Null
-	    // 1 = String
-	    // 2 = Int32
-	    // 3 = Int64
-	    // 4 = Float (64-Bit)
-	    // 5 = Bool
-	    // 6 = JSON (Object or Array)
+        // 0 = Null
+        // 1 = String
+        // 2 = Int32
+        // 3 = Int64
+        // 4 = Float (64-Bit)
+        // 5 = Bool
+        // 6 = JSON (Object or Array)
         if ($data === null) {
             // Null will always be at Bit/Byte 0
             if ($this->allow_null) {
@@ -693,8 +693,8 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      * @param string $decrypted_text
      * @throws \Exception
      */
-	private function validateDecryption($decrypted_text)
-	{
+    private function validateDecryption($decrypted_text)
+    {
         if ($decrypted_text === false) {
             $error = array();
             while ($msg = openssl_error_string()) {
@@ -703,5 +703,5 @@ class Encryption extends AbstractCrypto implements CryptoInterface
             $error = sprintf('[%s]', implode('], [', $error));
             throw new \Exception('Decryption Failed, Error from openssl: ' . $error);
         }
-	}
+    }
 }

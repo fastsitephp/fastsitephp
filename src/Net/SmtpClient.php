@@ -536,8 +536,8 @@ class SmtpClient
      */
     public function data($data)
     {
-		$this->sendCommand(354, 'DATA');
-		$this->sendCommand(250, $data . self::CRLF. '.');
+        $this->sendCommand(354, 'DATA');
+        $this->sendCommand(250, $data . self::CRLF. '.');
     }
 
     /**

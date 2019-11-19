@@ -16,10 +16,10 @@ $starting_memory = memory_get_usage(false);
 
 // Call this at the end of the page, call by entering the line [$showDebugInfo();]
 $showDebugInfo = function($show_as_text = false) use ($start_time, $starting_memory) {
-	// Is the response is json then return and do not show the html debug info
-	if (in_array('Content-type: application/json', headers_list())) {
-		return;
-	}
+    // Is the response is json then return and do not show the html debug info
+    if (in_array('Content-type: application/json', headers_list())) {
+        return;
+    }
 
     // Calculate the script time in micro-seconds and memory in bytes
     $script_time = microtime(true) - $start_time;

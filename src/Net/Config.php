@@ -209,12 +209,12 @@ class Config
             return null;
         }
 
-	    // Before parsing convert all lines to Unix Line endings
-	    //   "\r" = Carriage Return = Mac before OSX
-	    //   "\n" = Line Feed = *nix
-	    //   "\r\n" = CR/LF = Windows
-	    $config_text = str_replace("\r\n", "\n", $config_text);
-	    $config_text = str_replace("\r", "\n", $config_text);
+        // Before parsing convert all lines to Unix Line endings
+        //   "\r" = Carriage Return = Mac before OSX
+        //   "\n" = Line Feed = *nix
+        //   "\r\n" = CR/LF = Windows
+        $config_text = str_replace("\r\n", "\n", $config_text);
+        $config_text = str_replace("\r", "\n", $config_text);
 
         // Parse based on format:
         //   Linux/Unix - Text from either [ip addr] or [ifconfig]

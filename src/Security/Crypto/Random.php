@@ -42,9 +42,9 @@ class Random
                 throw new \Exception('A polyfill from [paragonie/random_compat] is required for your version of PHP. Please run [scripts/install.php] or refer to setup instructions.');
             }
 
-			// [include_once] is used rather than [require_once] in case the 
-			// file doesn't exist; if it doesn't exist and [require_once] is used
-			// then a White Screen of Death (WSOD) would likely occur.
+            // [include_once] is used rather than [require_once] in case the 
+            // file doesn't exist; if it doesn't exist and [require_once] is used
+            // then a White Screen of Death (WSOD) would likely occur.
             include_once $path;
         }
         return random_bytes($length);

@@ -159,14 +159,14 @@ class SignedData extends AbstractCrypto implements CryptoInterface
             // Convert to return format based on type
             // saved when the data was originally signed
             return $this->stringToData('Verification', $type, $text);
-		} catch (\Exception $e) {
-			// Re-throw Exception based if [exceptionOnError(true)]
-			// otherwise return null by default.
-			if ($this->exception_on_error) {
-				throw $e;
-			}
-			return null;
-		}
+        } catch (\Exception $e) {
+            // Re-throw Exception based if [exceptionOnError(true)]
+            // otherwise return null by default.
+            if ($this->exception_on_error) {
+                throw $e;
+            }
+            return null;
+        }
     }
 
     /**

@@ -22,15 +22,15 @@
 
             /************ Page Contents ************/
             /*
-	            NOTE - CSS Class Names are based on Twitter Bootstrap Classes however Bootstrap
-	            is not used here. If you would like to use this template with Bootstrap rather
-	            than the FastSitePHP theme all you need to do is include bootstrap and remove
-	            the css from this section.
+                NOTE - CSS Class Names are based on Twitter Bootstrap Classes however Bootstrap
+                is not used here. If you would like to use this template with Bootstrap rather
+                than the FastSitePHP theme all you need to do is include bootstrap and remove
+                the css from this section.
 
-	            CSS is hardcoded in the file rather than linking to a Bootstrap CDN so that it
-	            works and displays correctly offline. Additionaly Bootstrap is not included in
-	            the basic download of FastSitePHP so this page is designed to have no dependencies.
-	        */
+                CSS is hardcoded in the file rather than linking to a Bootstrap CDN so that it
+                works and displays correctly offline. Additionaly Bootstrap is not included in
+                the basic download of FastSitePHP so this page is designed to have no dependencies.
+            */
             body {
                 background-color: #8892BF;
                 text-align: center;
@@ -50,7 +50,7 @@
             .table.table > tbody > tr > td { padding:8px 10px; border:1px solid #4F5B93; border-bottom:none; border-right:none; vertical-align:top; }
             .table-striped>tbody>tr:nth-child(odd) { background-color:#E2E4EF; }
             .table-striped>tbody>tr:nth-child(even) { background-color:#fff; }
-	</style>
+    </style>
   </head>
   <body>
     <div class="container">
@@ -96,56 +96,56 @@
             }
         ?>
         <?php if ($show_detailed_errors) { ?>
-	        <h2>Error</h2>
-	        <div class="table-responsive">
-	            <table class="table table-bordered table-striped table-condensed text-left">
-	                <thead>
-	                    <tr><th colspan="2">Error Source</th></tr>
-	                </thead>
-	                <tbody>
-	                    <tr><td><b>Type</b></td><td class="error-type"><?php echo $app->escape(get_class($e)) ?></td></tr>
-	                    <tr><td><b>Code</b></td><td class="error-code"><?php echo $app->escape($e->getCode()) ?></td></tr>
-	                    <?php if (get_class($e) === 'ErrorException') { ?>
-	                       <tr><td><b>Severity</b></td><td class="error-severity"><?php echo $app->escape($e->getSeverity()) . (isset($e->severityText) ? ' (' . $e->severityText . ')' : '') ?></td></tr>
-	                    <?php } ?>
-	                    <tr><td><b>Message</b></td><td class="error-message"><?php echo str_replace("\n", '<br>', $app->escape($e->getMessage())) ?></td></tr>
-	                    <tr><td><b>File</b></td><td class="error-file"><?php echo $app->escape($e->getFile()) ?></td></tr>
-	                    <tr><td><b>Line</b></td><td class="error-line"><?php echo $app->escape($e->getLine()) ?></td></tr>
+            <h2>Error</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed text-left">
+                    <thead>
+                        <tr><th colspan="2">Error Source</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><b>Type</b></td><td class="error-type"><?php echo $app->escape(get_class($e)) ?></td></tr>
+                        <tr><td><b>Code</b></td><td class="error-code"><?php echo $app->escape($e->getCode()) ?></td></tr>
+                        <?php if (get_class($e) === 'ErrorException') { ?>
+                           <tr><td><b>Severity</b></td><td class="error-severity"><?php echo $app->escape($e->getSeverity()) . (isset($e->severityText) ? ' (' . $e->severityText . ')' : '') ?></td></tr>
+                        <?php } ?>
+                        <tr><td><b>Message</b></td><td class="error-message"><?php echo str_replace("\n", '<br>', $app->escape($e->getMessage())) ?></td></tr>
+                        <tr><td><b>File</b></td><td class="error-file"><?php echo $app->escape($e->getFile()) ?></td></tr>
+                        <tr><td><b>Line</b></td><td class="error-line"><?php echo $app->escape($e->getLine()) ?></td></tr>
                         <tr><td><b>Time</b></td><td class="error-time"><?php echo $app->escape(date(DATE_RFC2822)) ?></td></tr>
-	                </tbody>
-	            </table>
-	        </div>
+                    </tbody>
+                </table>
+            </div>
 
-	        <h2>Stack Trace</h2>
-	        <div class="table-responsive">
-	            <table class="table table-bordered table-striped table-condensed trace-table text-left">
-	                <thead>
-	                    <tr>
-	                        <th>#</th>
-	                        <th>Function</th>
-	                        <th>File</th>
-	                        <th>Line</th>
-	                    </tr>
-	                </thead>
-	                <tbody>
-	                    <?php
-	                    $index = 0;
-	                    foreach ($e->getTrace() as $trace) {
-	                        $index++;
-	                    ?>
-	                    <tr>
-	                        <td><?php echo $index ?></td>
-	                        <td><?php echo $app->escape($trace['function']) ?></td>
-	                        <td><?php echo $app->escape(isset($trace['file']) ? $trace['file'] : '') ?></td>
-	                        <td><?php echo $app->escape(isset($trace['line']) ? $trace['line'] : 0) ?></td>
-	                    </tr>
-	                     <?php } ?>
-	                </tbody>
-	            </table>
-	        </div>
+            <h2>Stack Trace</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed trace-table text-left">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Function</th>
+                            <th>File</th>
+                            <th>Line</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $index = 0;
+                        foreach ($e->getTrace() as $trace) {
+                            $index++;
+                        ?>
+                        <tr>
+                            <td><?php echo $index ?></td>
+                            <td><?php echo $app->escape($trace['function']) ?></td>
+                            <td><?php echo $app->escape(isset($trace['file']) ? $trace['file'] : '') ?></td>
+                            <td><?php echo $app->escape(isset($trace['line']) ? $trace['line'] : 0) ?></td>
+                        </tr>
+                         <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         <?php } else { ?>
             <div class="alert alert-info"><strong>Time: </strong><span class="error-time"><?php echo $app->escape(date(DATE_RFC2822)) ?></span></div>
-	    <?php } ?>
+        <?php } ?>
         <script>
             // The time that comes from PHP will likely be UTC time with a format such as "Mon, 23 Apr 2018 21:19:08 +0000"
             // Convert it to a local time (example "4/23/2018, 2:19:08 PM" for US PST)

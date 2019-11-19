@@ -296,8 +296,8 @@ class Response
      */
     public function contentType($type = null, $option = null)
     {
-	    // If this method was called without a parameter then return the
-	    // content type that was already set or null if it has not been set.
+        // If this method was called without a parameter then return the
+        // content type that was already set or null if it has not been set.
         if ($type === null) {
             return $this->header('Content-Type');
         }
@@ -319,8 +319,8 @@ class Response
             throw new \Exception(sprintf('Invalid option for [%s->%s()]. The only content types that allow for an option to be specified are [html], [javascript], [css], [text], and [jsonp]. The $type parameter was [%s] and the invalid $option parameter was [%s].', __CLASS__, __FUNCTION__, $type, $option));
         }
 
-		// Convert the simple content type from the parameter
-		// to a content type that is valid for the http protocol
+        // Convert the simple content type from the parameter
+        // to a content type that is valid for the http protocol
         switch ($type)
         {
             case 'html':
@@ -384,7 +384,7 @@ class Response
             throw new \Exception(sprintf($error, $type, __CLASS__, __FUNCTION__));
         }
 
-		// Set the 'Content-Type' Response Header and return this Response Object Instance
+        // Set the 'Content-Type' Response Header and return this Response Object Instance
         return $this->header('Content-Type', $value);
     }
 
@@ -531,7 +531,7 @@ class Response
      */
     public function etag($value = null, $type = 'weak')
     {
-	    // If this method was called without a parameter then return
+        // If this method was called without a parameter then return
         // the ETag that was already set or null if it has not been set.
         if ($value === null) {
             return $this->header('ETag');
@@ -620,7 +620,7 @@ class Response
      */
     public function cacheControl($value = null)
     {
-	    // If this method was called without a parameter then return
+        // If this method was called without a parameter then return
         // the value that was already set or null if it has not been set.
         if ($value === null) {
             return $this->header('Cache-Control');
@@ -830,7 +830,7 @@ class Response
      */
     public function vary($value = null)
     {
-	    // If this method was called without a parameter then return
+        // If this method was called without a parameter then return
         // the value that was already set or null if it has not been set.
         if ($value === null) {
             return $this->header('Vary');
@@ -953,7 +953,7 @@ class Response
      */
     public function cors(Application $app = null)
     {
-	    // Return any previously set CORS Headers on this 
+        // Return any previously set CORS Headers on this 
         // Response Object or null if no CORS Headers are set.
         if ($app === null) {
             $cors_headers = array();
@@ -968,7 +968,7 @@ class Response
         // Before setting CORS Headers from the Application Object
         // to this Response Object, clear any previous CORS Headers 
         // that were set on this Response Object.
-	    foreach ($this->header_fields as $key => $value) {
+        foreach ($this->header_fields as $key => $value) {
             if (strpos(strtolower($key), 'access-control-') === 0) {
                 unset($this->header_fields[$key]);
             }

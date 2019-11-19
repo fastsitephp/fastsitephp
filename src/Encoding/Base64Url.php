@@ -46,21 +46,21 @@ class Base64Url
      */
     public static function decode($data)
     {
-	    if ($data !== null && !is_string($data)) {
-		    throw new \Exception(sprintf('Invalid parameter of type [%s] for [%s::%s()], only strings or null can be decoded.', gettype($data), __CLASS__, __FUNCTION__));
-	    }
+        if ($data !== null && !is_string($data)) {
+            throw new \Exception(sprintf('Invalid parameter of type [%s] for [%s::%s()], only strings or null can be decoded.', gettype($data), __CLASS__, __FUNCTION__));
+        }
 
-	    // Calculate Padding to Add
-	    $padding = strlen($data) % 4;
-	    if ($padding !== 0) {
-	        $padding = 4 - $padding;
+        // Calculate Padding to Add
+        $padding = strlen($data) % 4;
+        if ($padding !== 0) {
+            $padding = 4 - $padding;
         }
         
         // Convert to Standard Base64 String
         if ($padding === 0) {
-	    	$data = strtr($data, '-_', '+/');
+            $data = strtr($data, '-_', '+/');
         } else {
-	        $data = strtr($data, '-_', '+/') . str_repeat('=', $padding);
+            $data = strtr($data, '-_', '+/') . str_repeat('=', $padding);
         }
 
         // Decode from Standard Base64 String

@@ -144,7 +144,7 @@ class L10N
                 $error = sprintf($error, gettype($locale));
                 throw new \Exception($error);
             }
-		}
+        }
 
         // Locale definitions are defined in JSON files which are created
         // from the script [docs/scripts/l10n-process-files.php].
@@ -265,7 +265,7 @@ class L10N
      */
     public function formatDateTime($date_time)
     {
-	    return $this->getFormattedDate($date_time, $this->format_date_time);
+        return $this->getFormattedDate($date_time, $this->format_date_time);
     }
 
     /**
@@ -290,7 +290,7 @@ class L10N
      */
     public function formatDate($date)
     {
-	    return $this->getFormattedDate($date, $this->format_date);
+        return $this->getFormattedDate($date, $this->format_date);
     }
 
     /**
@@ -316,7 +316,7 @@ class L10N
      */
     public function formatTime($time)
     {
-	    return $this->getFormattedDate($time, $this->format_time);
+        return $this->getFormattedDate($time, $this->format_time);
     }
 
     /**
@@ -383,33 +383,33 @@ class L10N
     private function getFormattedDate($date_time_value, $format)
     {
         // Use PHP DateTime object when using Timezone
-	    if ($this->timezone !== null) {
-		    // Create DateTime object. [is_int()] will return true in cases where this function is
-		    // called with a number of seconds, for example using the time() function. Otherwise
-		    // this function expects the date in a format of [YYYY-MM-DD HH:MM:SS] or [YYYY-MM-DD].
-		    if (is_int($date_time_value) === true) {
-			    $date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', $date_time_value));
-		    } else {
-			    // Get format to read from, then parse
-			    $date_format = (strpos($date_time_value, ':') !== false ? 'Y-m-d H:i:s' : 'Y-m-d');
-			    $date = \DateTime::createFromFormat($date_format, $date_time_value);
+        if ($this->timezone !== null) {
+            // Create DateTime object. [is_int()] will return true in cases where this function is
+            // called with a number of seconds, for example using the time() function. Otherwise
+            // this function expects the date in a format of [YYYY-MM-DD HH:MM:SS] or [YYYY-MM-DD].
+            if (is_int($date_time_value) === true) {
+                $date = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s', $date_time_value));
+            } else {
+                // Get format to read from, then parse
+                $date_format = (strpos($date_time_value, ':') !== false ? 'Y-m-d H:i:s' : 'Y-m-d');
+                $date = \DateTime::createFromFormat($date_format, $date_time_value);
             }
             
-		    // If error return null otherwise set timezone and return formatted date
+            // If error return null otherwise set timezone and return formatted date
             $date_errors = \DateTime::getLastErrors();
-		    if ($date === false || ($date_errors['warning_count'] + $date_errors['error_count'] > 0)) {
-			    return null;
-		    } else {
-			    $date->setTimezone(new \DateTimeZone($this->timezone));
-			    $date_value = $date->format($format);
-		    }
-	    } else {
+            if ($date === false || ($date_errors['warning_count'] + $date_errors['error_count'] > 0)) {
+                return null;
+            } else {
+                $date->setTimezone(new \DateTimeZone($this->timezone));
+                $date_value = $date->format($format);
+            }
+        } else {
             // Use Standard PHP date function when timezone is not specified
-		    if (is_int($date_time_value) === true) {
-			    $date_value = date($format, $date_time_value);
-		    } else {
-			    $date_value = date($format, strtotime($date_time_value));
-		    }
+            if (is_int($date_time_value) === true) {
+                $date_value = date($format, $date_time_value);
+            } else {
+                $date_value = date($format, strtotime($date_time_value));
+            }
         }
         
         // Handle translations for AM/PM

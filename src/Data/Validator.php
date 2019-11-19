@@ -492,10 +492,10 @@ class Validator
             case 'base64url':
                 return Base64Url::decode((string)$value) !== false;
             case 'xml':
-				if (!class_exists('DOMDocument')) {
-					$error = 'Unable to validate XML because PHP extension [libxml] is not installed on this server.';
-					throw new \Exception($error);
-				}
+                if (!class_exists('DOMDocument')) {
+                    $error = 'Unable to validate XML because PHP extension [libxml] is not installed on this server.';
+                    throw new \Exception($error);
+                }
                 $parsed = false;
                 try {
                     $doc = new \DOMDocument();

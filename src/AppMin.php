@@ -152,11 +152,11 @@ class AppMin
 
         // If the [php.ini] setting [display_errors] is turned on then turn it off
         if (function_exists('filter_var') &&
-        	function_exists('ini_get') &&
+            function_exists('ini_get') &&
             filter_var(ini_get('display_errors'), FILTER_VALIDATE_BOOLEAN) === true &&
             function_exists('ini_set')
         ) {
-        	ini_set('display_errors', 'off');
+            ini_set('display_errors', 'off');
         }
 
         // Set the time-zone
@@ -194,15 +194,15 @@ class AppMin
      */
     public function errorHandler($severity, $message, $file, $line)
     {
-	    if (!(error_reporting() & $severity)) {
-		    $this->last_error = array(
-				'type' => $severity,
-				'message' => $message,
-				'file' => $file,
-				'line' => $line,
-		    );
-		    return false;
-	    }
+        if (!(error_reporting() & $severity)) {
+            $this->last_error = array(
+                'type' => $severity,
+                'message' => $message,
+                'file' => $file,
+                'line' => $line,
+            );
+            return false;
+        }
         throw new \ErrorException($message, 0, $severity, $file, $line);
     }
 
@@ -232,17 +232,17 @@ class AppMin
      */
     private function sendErrorPage($response_code, $e = null, $allowed_methods = null)
     {
-	    if ($response_code === 404) {
-		    $page_title = $this->not_found_page_title;
-		    $message = $this->not_found_page_message;
-	    } elseif ($response_code === 405) {
-		    $page_title = $this->method_not_allowed_title;
+        if ($response_code === 404) {
+            $page_title = $this->not_found_page_title;
+            $message = $this->not_found_page_message;
+        } elseif ($response_code === 405) {
+            $page_title = $this->method_not_allowed_title;
             $message = $this->method_not_allowed_message;
             $method = (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '');
             $message = str_replace('{method}', $method, $message);
             $message = str_replace('{allowed_methods}', implode(', ', $allowed_methods), $message);
-	    } else {
-	        $page_title = $this->error_page_title;
+        } else {
+            $page_title = $this->error_page_title;
             $message = $this->error_page_message;
 
             if (get_class($e) === 'ErrorException') {
@@ -309,7 +309,7 @@ class AppMin
 
         $this->status_code = $response_code;
         $this->headers = array('Content-Type' => 'text/html; charset=UTF-8');
-	    $this->sendResponse($response);
+        $this->sendResponse($response);
         exit();
     }
 
@@ -330,7 +330,7 @@ class AppMin
      */
     public function escape($text)
     {
-	    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', true);
+        return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', true);
     }
 
     /**
@@ -377,7 +377,7 @@ class AppMin
      */
     public function route($pattern, \Closure $callback, $method = null)
     {
-    	// Create the new Route
+        // Create the new Route
         $route = new Route();
         $route->pattern = $pattern;
         $route->controller = $callback;
@@ -486,21 +486,21 @@ class AppMin
      */
     public function requestedPath()
     {
-		$url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null);
-		if ($url === null) {
+        $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null);
+        if ($url === null) {
             if (!isset($_SERVER['REQUEST_URI'])) {
                 return null;
             }
-	        $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-	        $script_name = $_SERVER['SCRIPT_NAME'];
-	        if (strpos($url, $script_name) === 0) {
-	            $url = substr($url, strlen($script_name));
-	        } elseif ((string)$script_name !== '') {
+            $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $script_name = $_SERVER['SCRIPT_NAME'];
+            if (strpos($url, $script_name) === 0) {
+                $url = substr($url, strlen($script_name));
+            } elseif ((string)$script_name !== '') {
                 $data = explode('/', $script_name);
                 $base_name = $data[count($data) - 1];
-	            $script_name = substr($script_name, 0, strlen($script_name) - strlen($base_name) - 1);
-	            $url = substr($url, strlen($script_name));
-	        }
+                $script_name = substr($script_name, 0, strlen($script_name) - strlen($base_name) - 1);
+                $url = substr($url, strlen($script_name));
+            }
         }
 
         if ((string)$url === '') {
@@ -523,17 +523,17 @@ class AppMin
             return null;
         }
 
-	    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-	    $script_name = $_SERVER['SCRIPT_NAME'];
+        $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $script_name = $_SERVER['SCRIPT_NAME'];
 
-	    if (strpos($url, $script_name) === 0) {
-	        $url = substr($url, 0, strlen($script_name)) . '/';
-	    } elseif ((string)$script_name !== '') {
+        if (strpos($url, $script_name) === 0) {
+            $url = substr($url, 0, strlen($script_name)) . '/';
+        } elseif ((string)$script_name !== '') {
             $data = explode('/', $script_name);
             $base_name = $data[count($data) - 1];
-	        $script_name = substr($script_name, 0, strlen($script_name) - strlen($base_name) - 1);
-	        $url = substr($url, 0, strlen($script_name)) . '/';
-	    }
+            $script_name = substr($script_name, 0, strlen($script_name) - strlen($base_name) - 1);
+            $url = substr($url, 0, strlen($script_name)) . '/';
+        }
 
         $is_secure = (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
         $url = ($is_secure ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $url;
@@ -660,16 +660,16 @@ class AppMin
             // First check if the requested URL matches the current route.
             $args = $this->routeMatches($route->pattern, $url);
             if ($args === false) {
-	            continue;
+                continue;
             }
 
             // Next check the method [GET, POST, etc]
-	        if (!($route->method === null
-	        	|| $route->method === $method
-	        	|| ($route->method === 'GET' && $method === 'HEAD'))) {
+            if (!($route->method === null
+                || $route->method === $method
+                || ($route->method === 'GET' && $method === 'HEAD'))) {
                     $allowed_methods[] = $route->method;
-		        	continue;
-	        }
+                    continue;
+            }
 
             // The route matches so check any filter functions defined for the route.
             if (!$this->skipRoute($route, $method, $url)) {
@@ -777,7 +777,7 @@ class AppMin
             // Does the Requested URL match the Current Route?
             $args = $this->routeMatches($route->pattern, $url);
             if ($args === false) {
-	            continue;
+                continue;
             }
 
             // Check any filter functions defined for the route. If a route exits
@@ -873,10 +873,10 @@ class AppMin
                 header('Pragma: no-cache');
                 header('Expires: -1');
             }
-	        if ($this->cors_headers !== null) {
-	            foreach ($this->cors_headers as $name => $value) {
-	                header("$name: $value");
-	            }
+            if ($this->cors_headers !== null) {
+                foreach ($this->cors_headers as $name => $value) {
+                    header("$name: $value");
+                }
             }
             foreach ($this->headers as $name => $value) {
                 header("$name: $value");

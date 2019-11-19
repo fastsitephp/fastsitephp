@@ -360,8 +360,8 @@ class I18N
             || strpos($lang, '\\') !== false
             || strpos($lang, '/') !== false
             || strpos($lang, '.') !== false
-			|| strpos($lang, chr(0)) !== false // NULL Character
-		) {
+            || strpos($lang, chr(0)) !== false // NULL Character
+        ) {
             if (is_string($lang)) {
                 $error = 'Unsupported Language format for [%s]. Use format of [lang = \'en\'] or [lang-country = \'en-US\'].';
                 $error = sprintf($error, __CLASS__);
@@ -372,7 +372,7 @@ class I18N
                 $error = sprintf($error, gettype($lang));
                 throw new \Exception($error);
             }
-		}
+        }
     }
 
     /**
