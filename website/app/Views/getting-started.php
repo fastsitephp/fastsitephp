@@ -1,7 +1,7 @@
 <style>
     section.content { display:inline-block; }
-    .getting-started { display:inline-flex; flex-direction:column; }
-    .getting-started section.content { margin:20px 0; padding:0; }
+    .getting-started { display:flex; flex-direction:column; }
+    .getting-started section.content { margin:20px 0; padding:0; overflow:auto; }
     .getting-started section.content div {
         background-color: #ffbc91;
         background-image: url('../img/card-background.svg');
@@ -41,10 +41,16 @@
     .getting-started section.content span.text { margin-left:20px; margin-top:5px; }
 
     .getting-started section.content.php ul li img,
-    .getting-started section.content.develop ul li img { height:32px; width:32px; }
+    .getting-started section.content.develop ul li img,
+    .getting-started section.content.composer ul li img { height:32px; width:32px; }
 
+    .getting-started section.content.composer ul li {
+        align-items: center;
+    }
+    
     .getting-started section.content.download > div > span,
-    .getting-started section.content.develop > div > span {
+    .getting-started section.content.develop > div > span,
+    .getting-started section.content.composer > div > span {
         background-color: white;
         padding: 0.5em 1em;
         box-shadow: 0 0 1px hsla(23, 100%, 40%, 0.5),
@@ -55,7 +61,8 @@
     }
 
     .getting-started section.content.download:hover > div > span,
-    .getting-started section.content.develop:hover > div > span {
+    .getting-started section.content.develop:hover > div > span,
+    .getting-started section.content.composer:hover > div > span {
         box-shadow: 0 0 1px hsla(23, 100%, 40%, 0.5),
                     inset 0 0 6px 3px hsla(23, 100%, 30%, 0.8),
                     inset 0 0 12px 6px hsla(23, 100%, 40%, 0.8);
@@ -65,14 +72,25 @@
 
 
     @media screen and (min-width: 1060px) {
-        .getting-started { flex-direction:row; margin-top:40px; }
-        .getting-started section.content { margin:auto 20px; }
+        .getting-started {
+            flex-direction:row;
+            margin-top:40px;
+            flex-wrap:wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .getting-started section.content { margin:20px; }
         .getting-started section.content span.text { white-space:nowrap; }
     }
 
     @media screen and (min-width: 1400px) {
-        .getting-started section.content { margin:auto 40px; }
+        .getting-started section.content { margin:40px; }
         .getting-started section.content ul { padding:40px; }
+    }
+
+    code {
+        background-color: #fff;
+        padding: 10px;
     }
 </style>
 
@@ -145,6 +163,22 @@
                     <img src="../img/icons/Code-Editor.svg" alt="<?= $app->escape($i18n['code_editors']) ?>">
                     <span class="text"><?= $app->escape($i18n['other_editors']) ?></span>
                 </a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="content composer">
+        <div>
+            <span>Package Manager</span>
+        </div>
+        <ul>
+            <li>
+                <a href="https://packagist.org/packages/fastsitephp/fastsitephp" target="_blank"><img src="../img/logos/packagist.png" alt="PHP Packagist"></a>
+                <code>composer require fastsitephp/fastsitephp</code>
+            </li>
+            <li>
+                <a href="https://packagist.org/packages/fastsitephp/starter-site" target="_blank"><img src="../img/logos/packagist.png" alt="PHP Packagist"></a>
+                <code>composer create-project fastsitephp/starter-site my-app</code>
             </li>
         </ul>
     </section>
