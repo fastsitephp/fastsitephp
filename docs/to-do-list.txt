@@ -21,7 +21,6 @@ TODO List
 --------------------------------------------------------------------------
 
 *) Additional Site Layout Updates
-    - Favicons for different devices
     - General improvements for Phone layout
     - Once the new Security Page is published (likely tomorrow 11/20) on the server then link back
         in the read me file on the main site, playground server, and DataFormsJS Playground.

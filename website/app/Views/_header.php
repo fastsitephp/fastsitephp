@@ -10,6 +10,16 @@
 		<link rel="shortcut icon" href="<?= $app->rootDir() ?>favicon.ico" type="image/x-icon" />
 		<link type="text/plain" rel="author" href="<?= $app->rootDir() ?>humans.txt" />
 
+		<link rel="apple-touch-icon" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-152x152.png">
+		<link rel="apple-touch-icon" sizes="167x167" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-167x167.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-180x180.png">
+
+        <link rel="icon" sizes="32x32" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-32x32.png">
+        <link rel="icon" sizes="144x144" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-144x144.png">
+        <link rel="icon" sizes="192x192" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-192x192.png">
+        <link rel="icon" sizes="196x196" href="<?= $app->rootDir() ?>img/favicons/FastSitePHP-196x196.png">
+
 		<link href="<?= $app->rootDir() ?>js/prism.css" rel="stylesheet" />
 		<?= $site_css ?>
 	</head>
