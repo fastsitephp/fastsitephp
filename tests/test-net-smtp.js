@@ -64,7 +64,7 @@ Content-Type: application/octet-stream;
 Content-Disposition: attachment; filename="Test.txt"
 Content-Transfer-Encoding: base64
 
-VGhpcyBpcyBhIFRlc3QNCg==
+VGhpcyBpcyBhIFRlc3Q=
 ----NEXT_PART----`
     });
 
@@ -91,7 +91,7 @@ Content-Disposition: attachment; filename="Test.txt"
 Content-Disposition: attachment; filename*=UTF-8''Test.txt
 Content-Transfer-Encoding: base64
 
-VGhpcyBpcyBhIFRlc3QNCg==
+VGhpcyBpcyBhIFRlc3Q=
 ----NEXT_PART----
 Content-Type: application/octet-stream;
 Content-Disposition: attachment; filename="测试.txt"
