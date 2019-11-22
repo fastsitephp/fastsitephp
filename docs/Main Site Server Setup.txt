@@ -21,7 +21,7 @@ sudo apt install php
 sudo apt install libapache2-mod-php
 
 # Add PHP Extensions needed for all Unit Tests to succeed and Examples to work
-sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
+sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml php7.2-zip
 
 # Enable a Fallback page so that [index.php]
 # does not show in the URL.
@@ -31,8 +31,8 @@ sudo nano /etc/apache2/apache2.conf
 # Under it add the line:
 #    FallbackResource /index.php
 # Save using:
-#    {control+x} -> {y} -> {enter}
-#    or {control+s} -> {control+x}
+#    {control+s} -> {control+x}
+#    or {control+x} -> {y} -> {enter}
 
 # Enable Gzip Compression for JSON Responses
 #   (This is not enabled by default on Apache)
@@ -54,55 +54,59 @@ sudo chmod 0775 -R /var/www
 cd /var/www/html
 echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
 # http://your-server.example.com/phpinfo.php
-# http://34.220.104.81/phpinfo.php
+# http://44.227.18.120/phpinfo.php
 
 # Delete file [phpinfo.php] after checking server
 sudo rm phpinfo.php
 
 # Download Site Files
-# In the future, this will be linked to a GitHub Repository
-# [index.php] comes from [Starter-Site\public\index.php]
+# Note - [index.php] comes from the [starter-site] repository, it varies
+# slightly from the local development version in the main site.
+#   https://github.com/fastsitephp/starter-site/blob/master/public/index.php
+#   https://github.com/fastsitephp/fastsitephp/blob/master/website/public/index.php
 cd ~
-wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/FastSitePHP-2019-11-14.zip
-wget https://fastsitephp.s3-us-west-1.amazonaws.com/tmp/index.php
+wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+wget https://raw.githubusercontent.com/fastsitephp/starter-site/master/public/index.php
 sudo apt install unzip
-unzip FastSitePHP-2019-11-14.zip
+unzip master.zip
 ls
 
 # Copy Files (Overview)
-# In the future [vendor] directories will come from the install script.
-FastSitePHP\vendor
+fastsitephp\website\[app, app_data]
     -> Copy under [/var/www]
-FastSitePHP\src
-    -> Copy to [/var/www/vendor/fastsitephp]
-FastSitePHP\website\[app, app_data]
-    -> Copy under [/var/www]
-FastSitePHP\website\public
+fastsitephp\website\public
     (all directories) and [robots.txt, favicon.ico, humans.txt, sitemap.xml]
     -> Copy under [/var/www/html]
-Starter-Site\public\index.php
+starter-site\public\index.php
     -> Copy under [/var/www/html]
-FastSitePHP\tests
+fastsitephp\tests
     -> Copy under [/var/www/html]
+FastSitePHP\src
+    -> Copy to [/var/www/vendor/fastsitephp]
+Other Dependencies (PHP Logging and Markdown)
+    -> Created by script [/var/www/scripts/install.php]
     
 # Copy Files (Commands)
-cp -r ~/FastSitePHP/vendor /var/www/vendor
-mkdir /var/www/vendor/fastsitephp
-cp -r ~/FastSitePHP/src /var/www/vendor/fastsitephp/src
-cp -r ~/FastSitePHP/website/app /var/www/app
-cp -r ~/FastSitePHP/website/app_data /var/www/app_data
-cp -r ~/FastSitePHP/website/public/css /var/www/html/css
-cp -r ~/FastSitePHP/website/public/img /var/www/html/img
-cp -r ~/FastSitePHP/website/public/js /var/www/html/js
-cp ~/FastSitePHP/website/public/robots.txt /var/www/html/robots.txt
-cp ~/FastSitePHP/website/public/favicon.ico /var/www/html/favicon.ico
-cp ~/FastSitePHP/website/public/humans.txt /var/www/html/humans.txt
-cp ~/FastSitePHP/website/public/sitemap.xml /var/www/html/sitemap.xml
+cp -r ~/fastsitephp-master/website/app /var/www/app
+cp -r ~/fastsitephp-master/website/app_data /var/www/app_data
+cp -r ~/fastsitephp-master/website/public/. /var/www/html
 cp ~/index.php /var/www/html/index.php
-cp -r ~/FastSitePHP/scripts /var/www/scripts
-cp -r ~/FastSitePHP/tests /var/www/html/tests
+cp -r ~/fastsitephp-master/scripts /var/www/scripts
+cp -r ~/fastsitephp-master/tests /var/www/html/tests
+mkdir /var/www/vendor
+mkdir /var/www/vendor/fastsitephp
+cp -r ~/fastsitephp-master/src /var/www/vendor/fastsitephp/src
+ls /var/www
+ls -la /var/www/html
 
-# Delete the Default Apache File
+# Install Dependencies (~20 - 40 kb) and create [vendor/autoload.php]
+php /var/www/scripts/install.php
+
+# Delete files that are not needed including the Apache default page
+# The [.htaccess] file being deleted is a version for local development
+# that is copied from the downloaded site (it's not needed for production).
+sudo rm /var/www/html/.htaccess
+sudo rm /var/www/html/Web.config
 sudo rm /var/www/html/index.html
 
 # Setup [.env] file which is used for the [/en/translators-needed] page
@@ -119,16 +123,16 @@ sudo chown ubuntu:www-data -R /var/www
 sudo chmod 0775 -R /var/www
 
 # Check the Site Home Page and verify that all main pages, examples, and docs works
-# http://34.220.104.81/en/
+# http://44.227.18.120/en/
 
 # If there is a fatal error then use this to see the last apache error
 tail -n 1 /var/log/apache2/error.log
 
 # Make sure that sending an email works
-# http://34.220.104.81/en/translators-needed
+# http://44.227.18.120/en/translators-needed
 
 # Run and Verify all Unit Tests
-http://34.220.104.81/tests/index.htm
+# http://44.227.18.120/tests/index.htm
 # To run all tests edit the HTML file and 
 # set all values to true:
 #   runTimeConsumingTasks = true
@@ -142,3 +146,14 @@ ls /var/www/html
 
 # Restart the server and make sure everything works after a reboot
 sudo reboot
+
+# Additional Steps performmed for the live site
+https://www.fastsitephp.com/en/
+
+# 1) Created Static IP in AWS Lightsail for the Sever: 44.227.18.120
+# 2) GoDaddy - Used the IP for the Main A Record in Domain Settings
+# 3) Update AWS to allow HTTPS in the Firewall on the Networking Tab
+# 4) Installed HTTPS Certificate using certbot:
+#    https://certbot.eff.org/lets-encrypt/ubuntubionic-apache
+#    For the Certificate both non-www and www were entered:
+#        fastsitephp.com www.fastsitephp.com

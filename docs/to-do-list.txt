@@ -20,12 +20,6 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-*) Additional Site Layout Updates
-    - General improvements for Phone layout
-    - Once the new Security Page is published (likely tomorrow 11/20) on the server then link back
-        in the read me file on the main site, playground server, and DataFormsJS Playground.
-        http://localhost:3000/fastsitephp/website/public/en/security-issue
-
 *) Create a script that uses the Google Translate API to create initial i18n files.
    The script will need to be able to keys in the JSON files, find and update
    code comments in specific files, and also handle markdown documents.

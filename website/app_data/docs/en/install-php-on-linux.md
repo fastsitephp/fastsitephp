@@ -20,7 +20,7 @@ This tutorial provides instructions including shell commands, a step-by-step gui
 
 ---
 ## Connecting to Linux
-If you are connecting to a Linux Could Server from either Windows or macOS there are many programs that you can use. You may want to start with guids from your web host on how to get connected. If you have a Mac [ssh] is built-in to terminal so you can get connected without having to install anything. Here are some resources for connecting to Linux.
+If you are connecting to a Linux Could Server from either Windows or macOS there are many programs that you can use. You may want to start with guides from your web host on how to get connected. If you have a Mac [ssh] is built-in to terminal so you can get connected without having to install anything. Here are some resources for connecting to Linux.
 
 ### Connecting from Windows
 * https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ssh-from-windows
@@ -42,7 +42,7 @@ This section shows several different installation options for Linux using shell 
 ### Installation on Ubuntu
 ~~~
 # Update [apt] Package Manager
-# The [upgrade] is not required but recommend
+# The [upgrade] is not required but recommend (however, it takes many minutes)
 sudo apt update
 sudo apt upgrade
 
@@ -66,6 +66,10 @@ sudo apt install libapache2-mod-php
 # in order to use FastSitePHP.
 sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
 
+# The zip extension is required in order for the FastSitePHP
+# install script to run.
+sudo apt install php7.2-zip
+
 # Optional - Enable a Fallback page so that [index.php] 
 # does not show in the URL.
 sudo nano /etc/apache2/apache2.conf
@@ -74,7 +78,14 @@ sudo nano /etc/apache2/apache2.conf
 # Under it add the line:
 #    FallbackResource /index.php
 # Save using:
-#    {control+x} -> {y} -> {enter}
+#    {control+s} -> {control+x}
+#    or {control+x} -> {y} -> {enter}
+
+# Optional - Enable Gzip Compression for JSON Responses
+#   (This is not enabled by default on Apache)
+sudo nano /etc/apache2/mods-available/deflate.conf
+# Add the following under similar commands:
+#       AddOutputFilterByType DEFLATE application/json
 
 # Restart Apache
 sudo service apache2 restart
@@ -93,6 +104,41 @@ echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
 
 # After you view the [phpinfo.php] link it's a good idea to delete it:
 rm phpinfo.php
+
+# Bonus! - Install the FastSitePHP Starter Site
+
+# Navigate to your home directory and download the Starter Site
+# This is a small download (~32 kb)
+cd ~
+wget https://github.com/fastsitephp/starter-site/archive/master.zip
+sudo apt install unzip
+unzip master.zip
+
+# Copy Files
+cp -r ~/starter-site-master/app /var/www/app
+cp -r ~/starter-site-master/app_data /var/www/app_data
+cp -r ~/starter-site-master/scripts /var/www/scripts
+cp -r ~/starter-site-master/public/. /var/www/html
+ls /var/www
+ls -la /var/www/html
+
+# Install FastSitePHP (~470 kb) and Dependencies (~20 - 40 kb)
+php /var/www/scripts/install.php
+
+# Delete files that are not needed including the Apache default page
+# The [.htaccess] file being deleted is a version for local development
+# that is copied from the starter site (it's not needed for production).
+sudo rm /var/www/html/.htaccess
+sudo rm /var/www/html/Web.config
+sudo rm /var/www/html/index.html
+
+# Remove the downloaded files
+rm -r ~/starter-site-master
+rm master.zip
+ls ~
+
+# View your site
+# http://your-server.example.com/
 ~~~
 
 ### Installation on Red Hat, CentoOS, Fedora

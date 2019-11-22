@@ -1,5 +1,9 @@
 # Apache Server Config
 #
+# This file will most likely be used on a Mac with Apache.
+# For local development Apache setup on a Mac see:
+#     https://www.fastsitephp.com/en/documents/install-php-on-mac
+#
 # By default this file is disabled in recent versions of Apache and to
 # enable you would have to set [AllowOverride All] in [apache2.conf].
 #
@@ -13,7 +17,7 @@
 #
 # Because [.htaccess] files are not used by default on recent versions of
 # Apache this file is configured by default for local development with Apache
-# and uses a root [FastSitePHP] directory as the [FallbackResource].
+# and uses a root [fastSitephp] directory as the [FallbackResource].
 #
 # Docs:
 #   https://httpd.apache.org/docs/current/howto/htaccess.html
@@ -40,7 +44,7 @@
     # For example if using Apache on a Mac this will typically be needed.
     #
     # FallbackResource /{site-name}/index.php
-    FallbackResource /FastSitePHP/FastSitePHP/website/public/index.php
+    FallbackResource /fastSitephp/fastSitephp/website/public/index.php
 </IfModule>
 
 # <IfModule mod_rewrite.c>
