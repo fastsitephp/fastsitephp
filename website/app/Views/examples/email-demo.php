@@ -1,5 +1,5 @@
 <style>
-    section.content.tab-container { width:90%; max-width:1050px; padding:0; }
+    section.content.tab-container { width:90%; min-width:600px; max-width:1050px; padding:0; }
 
     form { width:100%; max-width:700px; }
     .form-row { margin-bottom:20px; text-align:left; display:flex; }

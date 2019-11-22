@@ -3,6 +3,7 @@
     .nowrap { white-space:nowrap; }
     section.content { width:90%; max-width:1050px; padding:0; }
     section.content.sample-code { max-width:700px; margin-top:40px; padding:20px; }
+    section.content.inline-block { min-width:600px; }
     .title,
     .request-headers p { text-align:center; }
 </style>

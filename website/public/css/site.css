@@ -46,8 +46,13 @@ body {
 
 body > main {
     flex: 1 0 auto;
-    padding: 50px 20px;
+    padding: 50px 0;
     text-align: center;
+}
+@media screen and (min-width: 600px) {
+    body > main {
+        padding: 50px 20px;
+    }
 }
 
 a,
@@ -194,16 +199,23 @@ footer a:hover { background-color: #E2E4EF; color:#4F5B93; }
 .content {
     display: block;
     background-color: #fff;
-    margin: 20px 20px 40px;
-    padding: 30px;
+    margin: 20px 0;
+    padding: 20px;
     box-shadow: 0 1px 5px 0 rgba(0,0,0,.5);
-    border-radius: 4px;
     transition: box-shadow .2s ease-in-out;
     text-align: left;
+    overflow: auto;
 }
 
 .content:hover { box-shadow: 0 0 40px 0 rgba(0,0,0,.5); }
 
+@media screen and (min-width: 600px) {
+    .content { 
+        margin: 20px 20px 40px;
+        padding: 30px;
+        border-radius: 4px;
+    }
+}
 @media screen and (min-width: 700px) {
     .content { margin: 0 auto 40px auto; }
 }
@@ -255,7 +267,10 @@ pre[class*="language-"]>code
 }
 code[class*="language-"], pre[class*="language-"] {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 14px;
+    font-size: 12px;
+}
+@media (min-width:600px) {
+    code[class*="language-"], pre[class*="language-"] { font-size:14px; }
 }
 .sample-code .token.delimiter {
     background-color:yellow;

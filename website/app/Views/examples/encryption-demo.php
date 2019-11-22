@@ -12,7 +12,7 @@
     button { margin:20px 20px 0 0; }
     #key { width:calc(100% - 30px); border:0; }
     #text { width:calc(100% - 30px); }
-    section.content.tab-container { width:90%; max-width:1050px; padding:0; }
+    section.content.tab-container { width:90%; min-width:600px; max-width:1050px; padding:0; }
     section.content.tab-container.sample-code { max-width:600px; margin-top:40px; padding:20px; }
     @media screen and (min-width: 750px) {
         .row { flex-direction:row; }

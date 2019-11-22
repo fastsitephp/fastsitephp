@@ -34,6 +34,7 @@
         border-radius: 4px;
         max-width: 700px;
         margin: 30px auto;
+        overflow: auto;
     }
     pre[class*="language-"] { padding:20px; }
     pre[class*="language-"]>code { padding:0; margin:0; }
