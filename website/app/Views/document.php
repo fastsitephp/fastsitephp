@@ -35,6 +35,11 @@
         max-width: 700px;
         margin: 30px auto;
         overflow: auto;
+        font-size:12px;
+    }
+    @media (min-width:600px) {
+        section pre code,
+        pre[class*="language-"] { font-size:14px; }
     }
     pre[class*="language-"] { padding:20px; }
     pre[class*="language-"]>code { padding:0; margin:0; }

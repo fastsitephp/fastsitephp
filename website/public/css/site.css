@@ -43,6 +43,13 @@ body {
     background-attachment: fixed;
     color:hsla(229, 30%, 24%, 1);
 }
+/*
+    This gets set from [app/Views/_header.php].
+    A tested Samsung Galaxy Tablet does not handle this specifc [radial-gradient()]
+*/
+html.samsung body {
+    background-image: none;
+}
 
 body > main {
     flex: 1 0 auto;

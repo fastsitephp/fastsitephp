@@ -22,6 +22,16 @@
 
 		<link href="<?= $app->rootDir() ?>js/prism.css" rel="stylesheet" />
 		<?= $site_css ?>
+		<script>
+			// Set attribute on root <html> attribute for Samsung devices. Used for CSS.
+			// See [fastsitephp/website/public/css/site.css]: "html.samsung body"
+			(function() {
+				var isSamsung = (navigator.userAgent.toLowerCase().indexOf('samsungbrowser') > -1);
+				if (isSamsung) {
+					document.documentElement.classList.add('samsung');
+				}
+			})();
+		</script>
 	</head>
 	<body>
 		<nav class="site-nav">
