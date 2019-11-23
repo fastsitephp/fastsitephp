@@ -74,7 +74,10 @@
     ul.cards {
         display: flex;
         flex-direction: column;
-        margin: 0 40px;
+        margin: 0 20px;
+    }
+    @media (min-width:600px) {
+        ul.cards { margin:0 40px; }
     }
     ul.cards li {
         display: flex;
