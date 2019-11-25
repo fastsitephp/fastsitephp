@@ -20,6 +20,17 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Known Site Issues
+    - Old Safari/iOS (Tested iPad 2/iOS 9) - Page Header and Footer does not layout correctly
+        Used to work before when last tested, the <nav> likely needs to be wrapped in a <header> tag
+    - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
+            <input type="datetime-local">
+        On desktop safari the page works but no date controls show:
+            https://www.fastsitephp.com/en/examples/l10n-demo
+        Need to check if safari and just use <input type="text"> from JavaScript
+        Possibly change to use pickadate for Safari and other unsupported browsers
+            https://amsul.ca/pickadate.js/
+
 *) Create a script that uses the Google Translate API to create initial i18n files.
    The script will need to be able to keys in the JSON files, find and update
    code comments in specific files, and also handle markdown documents.

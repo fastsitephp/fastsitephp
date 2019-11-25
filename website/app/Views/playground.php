@@ -18,6 +18,9 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
     /* Hide footer on this page to remove scrollbar for the page */
     footer { display:none; }
 
+    .content {
+        overflow: initial;
+    }
     .editor-container {
         display: flex;
         min-height: calc(100vh - 245px);
