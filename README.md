@@ -58,7 +58,7 @@ A starter site for FastSitePHP also exists that includes several examples pages 
 * Additional Classes and Features
 * New Ideas - If you have ideas on how to improve then please open an issue to discuss.
 
-The [docs/to-do-list.txt] file contains the full list of items that are currently pending and is good place to start.
+The [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) file contains the full list of items that are currently pending and is good place to start.
 
 ## <span style="color:green;">$</span> Paid Translators Needed!
 
