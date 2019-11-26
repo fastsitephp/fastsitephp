@@ -21,8 +21,10 @@ TODO List
 --------------------------------------------------------------------------
 
 *) Known Site Issues
-    - Old Safari/iOS (Tested iPad 2/iOS 9) - Page Header and Footer does not layout correctly
-        Used to work before when last tested, the <nav> likely needs to be wrapped in a <header> tag
+    - Old Safari/iOS (Tested iPad 2/iOS 9)
+        - Margins on page content in <main> are not correct
+        - Used to work before when previously tested
+        - May be a flexbox issue that has to be fixed from JS like the Samsung issue 
     - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
             <input type="datetime-local">
         On desktop safari the page works but no date controls show:
