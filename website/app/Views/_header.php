@@ -6,6 +6,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		
 		<title>FastSitePHP | <?= (isset($page_title) ? $app->escape($page_title) : $app->escape($i18n['page_title'])) ?></title>
+		<?php if (isset($i18n) && isset($i18n['page_desc'])): ?>
+			<meta name="description" content="<?= $app->escape($i18n['page_desc']) ?>">
+		<?php endif ?>
 
 		<link rel="shortcut icon" href="<?= $app->rootDir() ?>favicon.ico" type="image/x-icon" />
 		<link type="text/plain" rel="author" href="<?= $app->rootDir() ?>humans.txt" />
