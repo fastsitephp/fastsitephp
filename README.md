@@ -1,3 +1,7 @@
+<p align="center">
+	<img src="https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/website/public/img/FastSitePHP_Rocketship.png" alt="FastSitePHP">
+</p>
+
 # 🌟 Welcome to FastSitePHP!
 
 **Thanks for visiting!**
