@@ -18,6 +18,13 @@ class EmailDemo
         // Load Language File
         I18N::langFile('email-demo', $lang);
 
+        // Add Code Examples from text files
+        $file_path = $app->config['I18N_DIR'] . '/code/email-demo-smtp.{lang}.txt';
+        $app->locals['i18n']['smtp_code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
+        $file_path = $app->config['I18N_DIR'] . '/code/email-demo-code.{lang}.txt';
+        $app->locals['i18n']['code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
         // Sending emails is only allowed if the user is local.
         // A variable is sent to JavaScript/Template to disable sending
         // emails from the UI, however the main validation happens on the server

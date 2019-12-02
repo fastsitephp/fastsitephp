@@ -1,0 +1,26 @@
+// Connect to a Database
+$db = new \FastSitePHP\Data\Database($dsn, $user, $password);
+
+// Query for Multiple Records
+// Returns an Array of Records (Associative Array for each Record).
+$sql = 'SELECT * FROM pages';
+$records = $db->query($sql);
+
+// Query for one record. Returns an Associative Array or [null] if not found.
+// Both [query()] and [queryOne()] support optional parameters when querying.
+$sql = 'SELECT * FROM pages WHERE id = ?';
+$params = [1];
+$record = $db->queryOne($sql, $params);
+
+// Use [execute()] for INSERT, UPDATE, DELETE, CREATE and other Transactions.
+// In addition to using [?] you can also used named parameters in the
+// format of ":name". Named parameters can make the code easier to read.
+$sql = 'INSERT INTO pages (title, content)';
+$sql .= ' VALUES (:title, :content)';
+$params = [
+    'title'   => 'Database Demo',
+    'content' => '<h1>Database Demo<h1>',
+];
+$rows_affected = $db->execute($sql, $params);
+
+// Many additional examples can be found on the quick reference page.

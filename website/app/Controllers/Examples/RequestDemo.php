@@ -74,6 +74,13 @@ class RequestDemo
         // Find/Replace in text
         $app->locals['i18n']['request_headers_desc'] = str_replace('{ip}', $req->clientIp(), $app->locals['i18n']['request_headers_desc']);
 
+        // Add Code Examples from text files
+        $file_path = $app->config['I18N_DIR'] . '/code/request-demo-header.{lang}.txt';
+        $app->locals['i18n']['header_code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
+        $file_path = $app->config['I18N_DIR'] . '/code/request-demo-code.{lang}.txt';
+        $app->locals['i18n']['req_code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
         // Render the View
         $templates = [
             'js-tabs.htm',

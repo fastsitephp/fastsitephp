@@ -16,6 +16,13 @@ class ResponseDemo
         // Load Language File
         I18N::langFile('response-demo', $lang);
 
+        // Add Code Examples from text files
+        $templates = ['html', 'json', 'text'];
+        foreach ($templates as $tmpl) {
+            $file_path = $app->config['I18N_DIR'] . '/code/response-demo-' . $tmpl . '.{lang}.txt';
+            $app->locals['i18n']['tmpl_' . $tmpl] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);    
+        }
+
         // Render the View
         $templates = [
             'old-browser-warning.htm',

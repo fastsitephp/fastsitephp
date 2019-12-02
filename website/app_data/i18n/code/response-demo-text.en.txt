@@ -1,0 +1,15 @@
+// The Application Object allows for basic Response Headers using the 
+// [header()] function. This helps avoid creating a Response Object if it
+// is not needed, however a response object may be preferred for clarity.
+$app->get('/app-text', function() {
+    $app->header('Content-Type', 'text/plain');
+    return 'Hello World';
+});
+
+// When using the Response Object, properties are set through 
+// getter/setter functions and are chainable.
+$app->get('/res-text', function() {
+    return (new \FastSitePHP\Web\Response())
+        ->contentType('text')
+        ->content('Hello World');
+});

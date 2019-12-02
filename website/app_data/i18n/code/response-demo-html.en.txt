@@ -1,0 +1,14 @@
+// Sending a response using the Application Object. By default when a 
+// string is returned in a route the server returns an HTML response.
+$app->get('/app-html', function() {
+    return '<h1>Hello World</h1>';
+});
+
+// The Response Object provides many options such as cache control headers
+// and secure cookies. This example shows a basic HTML response 
+// by setting [content()] and returning the Response Object.
+$app->get('/res-html', function() {
+    $res = new \FastSitePHP\Web\Response();
+    $res->content('<h1>Hello World</h1>');
+    return $res;
+});

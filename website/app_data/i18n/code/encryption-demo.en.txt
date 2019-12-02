@@ -1,0 +1,12 @@
+// The data to encrypt can be in the format of:
+// [string, int, float, bool, array, object, and optionally null]
+// and when decrypted the same data type and value is returned.
+$crypto = new \FastSitePHP\Security\Crypto\Encryption();
+$key = $crypto->generateKey();
+$encrypted_text = $crypto->encrypt($data, $key);
+$decrypted_data = $crypto->decrypt($encrypted_text, $key);
+
+// Encrypt and Decrypt using a Password
+$crypto->keyType('password');
+$encrypted_text = $crypto->encrypt($data, $password);
+$decrypted_data = $crypto->decrypt($encrypted_text, $password);

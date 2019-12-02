@@ -17,6 +17,10 @@ class EncryptionDemo
         // Load Language File
         I18N::langFile('encryption-demo', $lang);
 
+        // Add Code Example from text file
+        $file_path = $app->config['I18N_DIR'] . '/code/encryption-demo.{lang}.txt';
+        $app->locals['i18n']['code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
         // Generate a new Key each time the page is loaded
         $crypto = new Encryption();
         $key = $crypto->generateKey();

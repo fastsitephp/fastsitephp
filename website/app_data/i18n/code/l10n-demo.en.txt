@@ -1,0 +1,10 @@
+$l10n = new \FastSitePHP\Lang\L10N();
+$l10n->locale('@lang');
+
+$now = time();
+$num = 123456;
+
+$number = $l10n->formatNumber($num); // Format Number
+$dt = $l10n->formatDateTime($now); // Format Date and Time
+$date = $l10n->formatDate($now); // Format Date
+$time = $l10n->formatTime($now); // Format Time

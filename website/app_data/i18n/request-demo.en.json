@@ -20,7 +20,5 @@
     "array_string": "array or string",
     "mixed": "mixed",
     "boolean": "boolean",
-    "array": "array",
-    "header_code": "$req = new \\FastSitePHP\\Web\\Request();\r\n\r\n\/\/ Return an array of all HTTP Request Headers Fields. Header names will be\r\n\/\/ capitalized so the following names ['Content-type', 'Content-Type',\r\n\/\/ and 'CONTENT-TYPE'] would all be returned by this function as\r\n\/\/ 'Content-Type' for the key in the array.\r\n$headers = $req->headers();\r\n\r\n\/\/ Return the value of a Header Field sent with the HTTP Request.\r\n\/\/ If not sent [null] will be returned. Keys are case-insensitive\r\n\/\/ so the following all return the same value.\r\n$value = $req->header('Content-Type');\r\n$value = $req->header('CONTENT-TYPE');\r\n\r\n\/\/ Using PHP built-in features without FastSitePHP or other frameworks Request\r\n\/\/ Headers can be read from the PHP Superglobal $_SERVER Array.\r\n\/\/ For example 'User-Agent' will be 'HTTP_USER_AGENT'. This applies to all \r\n\/\/ headers except for 'Content-Type' and 'Content-Length'. To read those two\r\n\/\/ headers directly refer to FastSitePHP source code.\r\n$name = 'HTTP_USER_AGENT';\r\n$value = (isset($_SERVER[$name]) ? $_SERVER[$name] : null);\r\n\r\n\/\/ When using PHP 7 or higher the null coalescing operator can be used.\r\n$value = ($_SERVER[$name] ?? null);",
-    "req_code": "$req = new \\FastSitePHP\\Web\\Request();\r\n\r\n\/\/ Read the 'User-Agent' Request Header\r\n$user_agent = $req->userAgent();\r\n\r\n\/\/ Securely read the User's IP from a Proxy Header\r\n$user_ip = $req->clientIp('from proxy', 'trust local');\r\n\r\n\/\/ Return [true] if the user's browser is configured to accept French\r\n$accept_fr = $req->acceptLanguage('fr');"
+    "array": "array"
 }

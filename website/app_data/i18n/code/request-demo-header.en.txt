@@ -1,0 +1,24 @@
+$req = new \FastSitePHP\Web\Request();
+
+// Return an array of all HTTP Request Headers Fields. Header names will be
+// capitalized so the following names ['Content-type', 'Content-Type',
+// and 'CONTENT-TYPE'] would all be returned by this function as
+// 'Content-Type' for the key in the array.
+$headers = $req->headers();
+
+// Return the value of a Header Field sent with the HTTP Request.
+// If not sent [null] will be returned. Keys are case-insensitive
+// so the following all return the same value.
+$value = $req->header('Content-Type');
+$value = $req->header('CONTENT-TYPE');
+
+// Using PHP built-in features without FastSitePHP or other frameworks Request
+// Headers can be read from the PHP Superglobal $_SERVER Array.
+// For example 'User-Agent' will be 'HTTP_USER_AGENT'. This applies to all 
+// headers except for 'Content-Type' and 'Content-Length'. To read those two
+// headers directly refer to FastSitePHP source code.
+$name = 'HTTP_USER_AGENT';
+$value = (isset($_SERVER[$name]) ? $_SERVER[$name] : null);
+
+// When using PHP 7 or higher the null coalescing operator can be used.
+$value = ($_SERVER[$name] ?? null);

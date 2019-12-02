@@ -15,6 +15,5 @@
     "algo_overview": "Algorithm Overview",
     "algo_overview_1": "The Encryption Algorithm used on this page (and the default for FastSitePHP) is Advanced Encryption Standard (AES) with a 256-bit key using CBC mode. Authentication is performed with HMAC using SHA-256.",
     "algo_overview_2": "Half of the key (32 bytes / 256 bits) is used for encryption and the other half is used for authentication.",
-    "algo_overview_3": "The encrypted text (ciphertext) contains only encryption and HMAC bytes; it does not contain any headers or magic numbers to associate it with the encryption method.",
-    "code": "// The data to encrypt can be in the format of:\n// [string, int, float, bool, array, object, and optionally null]\n// and when decrypted the same data type and value is returned.\n$crypto = new \\FastSitePHP\\Security\\Crypto\\Encryption();\n$key = $crypto->generateKey();\n$encrypted_text = $crypto->encrypt($data, $key);\n$decrypted_data = $crypto->decrypt($encrypted_text, $key);\n\n// Encrypt and Decrypt using a Password\n$crypto->keyType('password');\n$encrypted_text = $crypto->encrypt($data, $password);\n$decrypted_data = $crypto->decrypt($encrypted_text, $password);"
+    "algo_overview_3": "The encrypted text (ciphertext) contains only encryption and HMAC bytes; it does not contain any headers or magic numbers to associate it with the encryption method."
 }

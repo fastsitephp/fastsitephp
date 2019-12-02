@@ -1,0 +1,10 @@
+$req = new \FastSitePHP\Web\Request();
+
+// Read the 'User-Agent' Request Header
+$user_agent = $req->userAgent();
+
+// Securely read the User's IP from a Proxy Header
+$user_ip = $req->clientIp('from proxy', 'trust local');
+
+// Return [true] if the user's browser is configured to accept French
+$accept_fr = $req->acceptLanguage('fr');

@@ -1,0 +1,33 @@
+// Return a JSON Response by returning an Object or an Array
+$app->get('/app-json-object', function() {
+    $object = new \stdClass;
+    $object->greeting = 'Hello World';
+    return $object;
+});
+
+$app->get('/app-json-array', function() {
+    return ['greeting' => 'Hello World'];
+});
+
+// Send JSON using the Response Object
+$app->get('/res-json', function() {
+    $res = new \FastSitePHP\Web\Response();
+
+    // Set the 'Content-Type' Header.
+    // The following 3 function calls all set the same value.
+    // The difference is that [contentType()] is a helper function
+    // which allows for short-hand values of
+    // [html, json, jsonp, text, css, javascript, xml].
+    $res->contentType('json');
+    $res->contentType('application/json');
+    $res->header('Content-Type', 'application/json');
+
+    // For JSON Content either Objects and Arrays are used
+    $data = ['greeting' => 'Hello World'];
+    $res->content($object);
+
+    // The helper [json()] can improve code readability as it
+    // sets both [contentType()] and [content()].
+    $res->json($data);
+    return $res;
+});

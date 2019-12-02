@@ -17,6 +17,10 @@ class DatabaseDemo
         // Load Language File
         I18N::langFile('database-demo', $lang);
 
+        // Add Code Example from text file
+        $file_path = $app->config['I18N_DIR'] . '/code/database-demo.{lang}.txt';
+        $app->locals['i18n']['db_code'] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
         // Add a record for the request and get the 20 most recent records
         $records = $this->insertAndSelectRecords($app);
 

@@ -62,19 +62,9 @@ class L10nDemo
             $date = date('Y-m-d\TH:i:s', $date);
         }
 
-        // Code Example
-        $code = <<<'CODE'
-$l10n = new \FastSitePHP\Lang\L10N();
-$l10n->locale('@lang');
-
-$now = time();
-$num = 123456;
-
-$number = $l10n->formatNumber($num);
-$dt = $l10n->formatDateTime($now);
-$date = $l10n->formatDate($now);
-$time = $l10n->formatTime($now);
-CODE;
+        // Add Code Example from text file
+        $file_path = $app->config['I18N_DIR'] . '/code/l10n-demo.{lang}.txt';
+        $code = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
 
         // Update Code Sample to show the User's Default Language
         $req = new Request();

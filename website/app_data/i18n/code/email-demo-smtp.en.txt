@@ -1,0 +1,12 @@
+// Optional Debug callback to log SMTP calls and reply lines
+$reply_lines = [];
+$debug_callback = function($message) use (&$reply_lines) {
+    $reply_lines[] = '[' . date('H:i:s') . '] ' . trim($message);
+};
+
+// Create SMTP Object and call serveral commands (API methods)
+$smtp = new SmtpClient($host, $port, $timeout, $debug_callback);
+$smtp->help();
+$smtp->noop();
+$smtp->quit();
+$smtp->close();

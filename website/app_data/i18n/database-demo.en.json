@@ -15,7 +15,6 @@
     "user_agent": "User-Agent",
     "date_requested": "Date Requested",
     "db_code_title": "Database Code Overview",
-    "db_code": "\/\/ Connect to a Database\r\n$db = new \\FastSitePHP\\Data\\Database($dsn, $user, $password);\r\n\r\n\/\/ Query for Multiple Records\r\n\/\/ Returns an Array of Records (Associative Array for each Record).\r\n$sql = 'SELECT * FROM pages';\r\n$records = $db->query($sql);\r\n\r\n\/\/ Query for one record. Returns an Associative Array or [null] if not found.\r\n\/\/ Both [query()] and [queryOne()] support optional parameters when querying.\r\n$sql = 'SELECT * FROM pages WHERE id = ?';\r\n$params = [1];\r\n$record = $db->queryOne($sql, $params);\r\n\r\n\/\/ Use [execute()] for INSERT, UPDATE, DELETE, CREATE and other Transactions.\r\n\/\/ In addition to using [?] you can also used named parameters in the\r\n\/\/ format of \":name\". Named parameters can make the code easier to read.\r\n$sql = 'INSERT INTO pages (title, content)';\r\n$sql .= ' VALUES (:title, :content)';\r\n$params = [\r\n    'title'   => 'Database Demo',\r\n    'content' => '<h1>Database Demo<h1>',\r\n];\r\n$rows_affected = $db->execute($sql, $params);\r\n\r\n\/\/ Many additional examples can be found on the quick reference page.",
     "php_code_page": "PHP Code for this Page",
     "red": "Red",
     "green": "Green",
