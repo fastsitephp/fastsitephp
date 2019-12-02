@@ -120,21 +120,21 @@
 
 <div class="card-container">
     <ul class="card-list">
-        <?php foreach ($i18n['links'] as $link): ?>
+        <?php foreach ($cards as $card): ?>
         <li>
-            <a href="<?= $app->rootUrl() . $app->lang ?>/<?= $nav_active_link ?>/<?= $app->escape($link['page']) ?>">
+            <a href="<?= $app->rootUrl() . $app->lang ?>/<?= $nav_active_link ?>/<?= $app->escape($card->page) ?>">
                 <span class="img">
                     <span class="img-circle">
-                        <?php if (isset($link['img'])): ?>
-                            <img src="<?= $app->escape($link['img']) ?>" alt="<?= $app->escape($link['img_alt']) ?>">
+                        <?php if (isset($card->img)): ?>
+                            <img src="<?= $app->escape($card->img) ?>" alt="<?= $app->escape($card->img_alt) ?>">
                         <?php endif ?>
                     </span>
                 </span>
                 <span class="category">
-                    <?= $app->escape($link['category']) ?>
+                    <?= $app->escape($card->category) ?>
                 </span>
                 <span class="text">
-                    <?= $app->escape($link['title']) ?>
+                    <?= $app->escape($card->title) ?>
                 </span>
             </a>
         </li>

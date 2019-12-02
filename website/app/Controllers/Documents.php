@@ -17,8 +17,25 @@ class Documents
      */
     public function get(Application $app, $lang)
     {
+        // Read JSON Language File
         I18N::langFile('documents', $lang);
-        return $app->render('card-list.php', ['nav_active_link' => 'documents']);
+
+        // Get Documents from JSON file and Update for i18n Keys
+        $i18n = $app->locals['i18n'];
+        $documents = json_decode(file_get_contents(__DIR__ . '/../Models/Documents.json'));
+        foreach ($documents as $document) {
+            $document->title = $i18n[$document->page];
+            $document->category = $i18n[$document->category];
+            if (isset($document->img_alt_i18n)) {
+                $document->img_alt = $i18n[$document->img_alt_i18n];
+            }
+        }
+        
+        // Render Page
+        return $app->render('card-list.php', [
+            'nav_active_link' => 'documents',
+            'cards' => $documents,
+        ]);
     }
     
     /**

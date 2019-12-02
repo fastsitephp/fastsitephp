@@ -128,7 +128,8 @@ TODO List
 *) I18N Editor
     - FastSitePHP\Templates\i18n-editor.php
     - And add method to [FastSitePHP\Lang\I18N] for rendering the form and allow users to save values
-    - Allow support for an optional custom property "_I18N_NOTES" that would display in a notes section for each file
+    - Allow support for an optional custom property "_I18N_NOTES" that would display in a notes section for each file.
+        Either that or create a [{file}._notes.json] file and use that.
 
 *) PHP Script to download and update and related docs
     [FastSitePHP\vendor\FastSitePHP\src\Net\cacert.pem]

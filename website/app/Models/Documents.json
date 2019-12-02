@@ -1,0 +1,56 @@
+[
+    {
+        "page": "install-php-on-linux",
+        "category": "category-install",
+        "img": "../img/logos/linux.svg",
+        "img_alt": "Linux"
+    },
+    {
+        "page": "install-php-on-windows",
+        "category": "category-install",
+        "img": "../img/logos/Windows_logo_-_2012.svg",
+        "img_alt": "Windows"
+    },
+    {
+        "page": "install-php-on-mac",
+        "category": "category-install",
+        "img": "../img/logos/apple.svg",
+        "img_alt": "Apple"
+    },
+    {
+        "page": "edit-with-vs-code",
+        "category": "category-develop",
+        "img": "../img/logos/vs-code.png",
+        "img_alt": "Visual Studio Code"
+    },
+    {
+        "page": "edit-with-atom",
+        "category": "category-develop",
+        "img": "../img/logos/atom.png",
+        "img_alt_i18n": "img-alt-atom"
+    },
+    {
+        "page": "edit-with-other",
+        "category": "category-develop",
+        "img": "../img/icons/Code-Editor.svg",
+        "img_alt_i18n": "img-alt-editor"
+    },
+    {
+        "page": "file-encryption-bash",
+        "category": "category-security",
+        "img": "../img/icons/Security-Lock.svg",
+        "img_alt_i18n": "img-alt-crypto"
+    },
+    {
+        "page": "file-encryption-windows",
+        "category": "category-security",
+        "img": "../img/icons/Security-Lock.svg",
+        "img_alt_i18n": "img-alt-crypto"
+    },
+    {
+        "page": "ibm-server-db-query",
+        "category": "category-db",
+        "img": "../img/logos/IBM_logo.svg",
+        "img_alt": "IBM"
+    }
+]

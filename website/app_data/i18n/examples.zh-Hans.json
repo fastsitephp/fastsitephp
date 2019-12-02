@@ -1,48 +1,17 @@
 {
-    "_I18N_NOTES": "When copying leave the values for [img] because they points to images.",
     "page_title": "FastSitePHP示例",
-    "links": [
-        {
-            "page": "request-demo",
-            "category": "HTTP",
-            "title": "读取HTTP请求",
-            "img": "../img/icons/HTTP-Request.svg",
-            "img_alt": "HTTP请求"
-        },
-        {
-            "page": "response-demo",
-            "category": "HTTP",
-            "title": "使用HTTP响应对象",
-            "img": "../img/icons/HTTP-Response.svg",
-            "img_alt": "HTTP响应"
-        },
-        {
-            "page": "database-demo",
-            "category": "数据库",
-            "title": "连接到数据库并运行SQL语句",
-            "img": "../img/icons/Database.svg",
-            "img_alt": "Database"
-        },
-        {
-            "page": "email-demo",
-            "category": "电子邮件",
-            "title": "使用SMTP客户端发送电子邮件",
-            "img": "../img/icons/Email.svg",
-            "img_alt": "电子邮件"
-        },
-        {
-            "page": "l10n-demo",
-            "category": "语言",
-            "title": "本地化（L10N）演示-日期和数字格式",
-            "img": "../img/icons/Language.svg",
-            "img_alt": "语言"
-        },
-        {
-            "page": "encryption-demo",
-            "category": "安全",
-            "title": "加密示范",
-            "img": "../img/icons/Security-Lock.svg",
-            "img_alt": "加密"
-        }
-    ]
+    "category-http": "HTTP",
+    "category-db": "数据库",
+    "category-email": "电子邮件",
+    "category-lang": "语言",
+    "category-security": "安全",
+    "img-alt-http-req": "HTTP请求",
+    "img-alt-http-res": "HTTP响应",
+    "img-alt-crypto": "加密",
+    "request-demo": "读取HTTP请求",
+    "response-demo": "使用HTTP响应对象",
+    "database-demo": "连接到数据库并运行SQL语句",
+    "email-demo": "使用SMTP客户端发送电子邮件",
+    "l10n-demo": "本地化（L10N）演示-日期和数字格式",
+    "encryption-demo": "加密示范"
 }

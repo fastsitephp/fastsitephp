@@ -1,69 +1,19 @@
 {
-    "_I18N_NOTES": "When copying leave the values for [img] because they points to images.",
     "page_title": "FastSitePHP文档",
-    "links": [
-        {
-            "page": "install-php-on-linux",
-            "category": "安装",
-            "title": "在Linux或Unix服务器上安装Apache和PHP",
-            "img": "../img/logos/linux.svg",
-            "img_alt": "Linux"
-        },
-        {
-            "page": "install-php-on-windows",
-            "category": "安装",
-            "title": "在Windows Server或台式机上安装IIS和PHP",
-            "img": "../img/logos/Windows_logo_-_2012.svg",
-            "img_alt": "Windows"
-        },
-        {
-            "page": "install-php-on-mac",
-            "category": "安装",
-            "title": "在Mac上安装Apache和PHP",
-            "img": "../img/logos/apple.svg",
-            "img_alt": "Apple"
-        },
-        {
-            "page": "edit-with-vs-code",
-            "category": "开发",
-            "title": "使用Visual Studio Code进行PHP开发",
-            "img": "../img/logos/vs-code.png",
-            "img_alt": "Visual Studio Code"
-        },
-        {
-            "page": "edit-with-atom",
-            "category": "开发",
-            "title": "使用GitHub Atom Editor进行PHP开发",
-            "img": "../img/logos/atom.png",
-            "img_alt": "Atom Editor"
-        },
-        {
-            "page": "edit-with-other",
-            "category": "开发",
-            "title": "使用其他代码编辑器和IDE进行PHP开发",
-            "img": "../img/icons/Code-Editor.svg",
-            "img_alt": "代码编辑器"
-        },
-        {
-            "page": "file-encryption-bash",
-            "category": "安全",
-            "title": "使用兼容的Bash脚本[encrypt.sh]进行文件加密",
-            "img": "../img/icons/Security-Lock.svg",
-            "img_alt": "加密"
-        },
-        {
-            "page": "file-encryption-windows",
-            "category": "安全",
-            "title": "在Windows上使用Bash脚本[encrypt.sh]进行文件加密",
-            "img": "../img/icons/Security-Lock.svg",
-            "img_alt": "加密"
-        },
-        {
-            "page": "ibm-server-db-query",
-            "category": "数据库",
-            "title": "将Db2Database类与IBM iSeries服务器一起使用",
-            "img": "../img/logos/IBM_logo.svg",
-            "img_alt": "IBM"
-        }
-    ]
+    "category-install": "安装",
+    "category-develop": "开发",
+    "category-security": "安全",
+    "category-db": "数据库",
+    "img-alt-atom": "Atom Text Editor",
+    "img-alt-editor": "代码编辑器",
+    "img-alt-crypto": "加密",
+    "install-php-on-linux": "在Linux或Unix服务器上安装Apache和PHP",
+    "install-php-on-windows": "在Windows Server或台式机上安装IIS和PHP",
+    "install-php-on-mac": "在Mac上安装Apache和PHP",
+    "edit-with-vs-code": "使用Visual Studio Code进行PHP开发",
+    "edit-with-atom": "使用GitHub Atom Editor进行PHP开发",
+    "edit-with-other": "使用其他代码编辑器和IDE进行PHP开发",
+    "file-encryption-bash": "使用兼容的Bash脚本[encrypt.sh]进行文件加密",
+    "file-encryption-windows": "在Windows上使用Bash脚本[encrypt.sh]进行文件加密",
+    "ibm-server-db-query": "将Db2Database类与IBM iSeries服务器一起使用"
 }

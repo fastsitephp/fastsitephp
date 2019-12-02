@@ -1,0 +1,38 @@
+[
+    {
+        "page": "request-demo",
+        "category": "category-http",
+        "img": "../img/icons/HTTP-Request.svg",
+        "img_alt": "img-alt-http-req"
+    },
+    {
+        "page": "response-demo",
+        "category": "category-http",
+        "img": "../img/icons/HTTP-Response.svg",
+        "img_alt": "img-alt-http-res"
+    },
+    {
+        "page": "database-demo",
+        "category": "category-db",
+        "img": "../img/icons/Database.svg",
+        "img_alt": "category-db"
+    },
+    {
+        "page": "email-demo",
+        "category": "category-email",
+        "img": "../img/icons/Email.svg",
+        "img_alt": "category-email"
+    },
+    {
+        "page": "l10n-demo",
+        "category": "category-lang",
+        "img": "../img/icons/Language.svg",
+        "img_alt": "category-lang"
+    },
+    {
+        "page": "encryption-demo",
+        "category": "category-security",
+        "img": "../img/icons/Security-Lock.svg",
+        "img_alt": "img-alt-crypto"
+    }
+]
