@@ -129,7 +129,7 @@
 					</li>
 					<li>
 						<a href="https://github.com/fastsitephp/fastsitephp" class="github" target="_blank">
-						<img src="../img/logos/GitHub-Mark-Light-32px.png" alt="GitHub" height="32" width="32">
+						<img src="<?= $app->rootDir() ?>img/logos/GitHub-Mark-Light-32px.png" alt="GitHub" height="32" width="32">
 						</a>
 					</li>
 				</ul>
