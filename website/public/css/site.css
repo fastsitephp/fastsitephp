@@ -153,7 +153,8 @@ a:visited { color:#4F5B93; }
     transition:all 0.2s;
 }
 .site-nav ul.desktop-nav li.active { background-color: #E2E4EF; background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%); }
-.site-nav ul.desktop-nav li a { display: inline-block; padding:10px 20px; font-weight:bold; color: #fff; text-decoration: none; position: relative; }
+.site-nav ul.desktop-nav li a { display: inline-block; padding:10px 15px; font-weight:bold; color: #fff; text-decoration: none; position: relative; }
+.site-nav ul.desktop-nav a.github { padding:5px 15px 0 15px; }
 .site-nav ul.desktop-nav li.active a { color:#4F5B93; }
 .site-nav ul.desktop-nav li:hover a { color:#3C456F; }
 .site-nav ul.desktop-nav li.active:hover {
@@ -166,7 +167,12 @@ a:visited { color:#4F5B93; }
 @media screen and (min-width: 700px) {
     .mobile-nav,
     .mobile-menu { display:none; }
-    .desktop-nav { display:block; }
+    .desktop-nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 /************ Footer ************/
