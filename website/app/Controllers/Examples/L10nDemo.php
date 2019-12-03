@@ -64,7 +64,7 @@ class L10nDemo
 
         // Add Code Example from text file
         $file_path = $app->config['I18N_DIR'] . '/code/l10n-demo.{lang}.txt';
-        $code = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+        $code = I18N::textFile($file_path, $app->lang);
 
         // Update Code Sample to show the User's Default Language
         $req = new Request();

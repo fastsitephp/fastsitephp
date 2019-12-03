@@ -20,7 +20,7 @@ class ResponseDemo
         $templates = ['html', 'json', 'text'];
         foreach ($templates as $tmpl) {
             $file_path = $app->config['I18N_DIR'] . '/code/response-demo-' . $tmpl . '.{lang}.txt';
-            $app->locals['i18n']['tmpl_' . $tmpl] = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);    
+            $app->locals['i18n']['tmpl_' . $tmpl] = I18N::textFile($file_path, $app->lang);    
         }
 
         // Render the View
