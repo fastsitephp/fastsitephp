@@ -1,0 +1,17 @@
+{
+    "page_title": "Página de inicio",
+    "page_desc": "Un marco moderno de código abierto para construir sitios web de alto rendimiento y API con PHP",
+    "better_title": "Mejores sitios",
+    "better_desc": "FastSitePHP ha sido diseñado para un rendimiento rápido, flexibilidad de codificación, estabilidad a largo plazo, facilidad de uso y una mejor experiencia de desarrollo general. Usando FastSitePHP puedes crear mejores sitios más rápido que nunca.",
+    "performance_title": "Gran actuación",
+    "performance_desc": "Con FastSitePHP, las páginas complejas se pueden generar en miles de segundos utilizando solo una pequeña cantidad de memoria. Este nivel de rendimiento incluso permite que los sitios se ejecuten rápidamente en computadoras de baja potencia.",
+    "setup_title": "Fácil de configurar y utilizar",
+    "setup_desc": "FastSitePHP está diseñado para que sea fácil de configurar en cualquier sistema operativo, fácil de leer el código, fácil de desarrollar y mucho más. Con FastSitePHP, se pueden desarrollar sitios web y aplicaciones de alta calidad a un ritmo rápido utilizando menos líneas de código y una configuración mínima.",
+    "learn_title": "Rápido para aprender y depurar",
+    "learn_desc": "FastSitePHP está bien documentado y viene con muestras prácticas. FastSitePHP proporciona mensajes de error amigables para el desarrollador para que los errores puedan repararse rápidamente incluso si tiene poca o ninguna experiencia en programación con PHP.",
+    "security_title": "Fuerte seguridad",
+    "security_desc": "La seguridad ha sido cuidadosamente planificada en todas las características de FastSitePHP para que sea segura y fácil de trabajar. Las características de seguridad incluyen cifrado (texto, objetos y archivos), cookies firmadas, JWT, CORS, validación del servidor proxy, limitación de velocidad y más.",
+    "test_title": "Pruebas unitarias basadas en web",
+    "test_desc": "La mayoría de los marcos se prueban desde la computadora de un desarrollador utilizando herramientas especiales de CLI; sin embargo, esto no garantiza que funcionará en su entorno. FastSitePHP proporciona un método de prueba basado en la web para que todo el código y la velocidad de la página puedan confirmarse fácilmente en cualquier entorno.",
+    "create_site": "¡Crea un sitio instantáneo en el patio de recreo!"
+}

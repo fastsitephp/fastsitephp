@@ -1,0 +1,15 @@
+{
+    "menu_home": "Casa",
+    "menu_playground": "Patio de recreo",
+    "menu_getting_started": "Empezando",
+    "menu_quick_ref": "Referencia rápida",
+    "menu_examples": "Ejemplos",
+    "menu_documents": "Documentos",
+    "menu_api": "API",
+    "example_code": "Código de ejemplo",
+    "footer_license": "Sitio y código fuente proporcionado bajo licencia MIT",
+    "old_browser_warning": "Advertencia: algunas funciones de esta página requieren un navegador o sistema operativo más nuevo que el que está utilizando actualmente. Si tiene un navegador diferente disponible, abra esta página con él.",
+    "api_docs": "Documentación API",
+    "info": "Informacion",
+    "hello_world": "Hola Mundo"
+}
