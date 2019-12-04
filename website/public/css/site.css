@@ -128,6 +128,7 @@ a:visited { color:#4F5B93; }
     margin-bottom:20px;
 }
 .mobile-menu ul li { width:calc(50% - 20px); margin:10px; max-width:200px; }
+.mobile-menu ul.i18n-menu li { width:100%; text-align:center; max-width:400px; }
 .mobile-menu ul li a { text-decoration:none; font-weight:bold; padding:10px; display:block; }
 .mobile-menu ul li.active a {
     background-color: #3C456F;
@@ -144,24 +145,41 @@ a:visited { color:#4F5B93; }
 }
 
 .site-nav ul.desktop-nav { list-style-type: none; padding:10px; letter-spacing: 0.1em; }
-.site-nav ul.desktop-nav li { display: inline-block; margin:10px; border:1px solid transparent; border-radius:2px; transition:all 0.2s; }
-.site-nav ul.desktop-nav li:hover {
+.site-nav ul.desktop-nav > li { display: inline-block; margin:10px; border:1px solid transparent; border-radius:2px; transition:all 0.2s; }
+.site-nav ul.desktop-nav > li:hover {
     background-color: #8892BF;
     background-image: linear-gradient(0deg, #8892BF 0%, #CACFE3 100%);
     border:1px solid #3C456F;
     box-shadow: inset 0px 0px 1px 0px #4F5B93;
     transition:all 0.2s;
 }
-.site-nav ul.desktop-nav li.active { background-color: #E2E4EF; background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%); }
-.site-nav ul.desktop-nav li a { display: inline-block; padding:10px 15px; font-weight:bold; color: #fff; text-decoration: none; position: relative; }
+.site-nav ul.desktop-nav > li.active { background-color: #E2E4EF; background-image: linear-gradient(0deg, #fff 0%, #E2E4EF 100%); }
+.site-nav ul.desktop-nav > li a,
+.site-nav ul.desktop-nav > li.i18n-menu span { display: inline-block; padding:10px 15px; font-weight:bold; color: #fff; text-decoration: none; position: relative; }
 .site-nav ul.desktop-nav a.github { padding:5px 15px 0 15px; }
-.site-nav ul.desktop-nav li.active a { color:#4F5B93; }
-.site-nav ul.desktop-nav li:hover a { color:#3C456F; }
-.site-nav ul.desktop-nav li.active:hover {
+.site-nav ul.desktop-nav > li.active a { color:#4F5B93; }
+.site-nav ul.desktop-nav > li:hover a,
+.site-nav ul.desktop-nav > li.i18n-menu:hover span { color:#3C456F; cursor:pointer; }
+.site-nav ul.desktop-nav > li.active:hover {
     background-color: #BCC1DB;
     background-image: linear-gradient(0deg, #BCC1DB 0%, #fff 100%);
     border-radius:2px;    
 }
+
+.site-nav ul.desktop-nav > li.i18n-menu { position:relative; }
+.site-nav ul.desktop-nav > li.i18n-menu ul {
+    display:none;
+    position:absolute;
+    background-color: white;
+    white-space: nowrap;
+    border: 1px solid #3C456F;
+    box-shadow: inset 0px 0px 1px 0px #4F5B93;
+    list-style-type: none;
+    left: -30px;
+}
+.site-nav ul.desktop-nav > li.i18n-menu ul li.active { background-color: #E2E4EF; }
+.site-nav ul.desktop-nav > li.i18n-menu ul li:hover { background-color: #BCC1DB; }
+.site-nav ul.desktop-nav > li.i18n-menu:hover ul { display:block; }
 
 .desktop-nav { display:none; }
 @media screen and (min-width: 700px) {
