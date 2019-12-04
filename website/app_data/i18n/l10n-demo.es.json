@@ -1,0 +1,11 @@
+{
+    "page_title": "emostración de localización (L10N)",
+    "locale": "Lugar",
+    "number": "Número",
+    "date_time": "Fecha y hora",
+    "date": "Fecha",
+    "time": "Hora",
+    "update_table": "Actualizar tabla",
+    "info_1": "La API de localización de FastSitePHP (l10n) contiene funciones para formatear fechas, horas y números usando diferentes configuraciones regionales e idiomas. También puede convertir fácilmente fechas y horas a diferentes zonas horarias.",
+    "info_2": "La hora en que vio esta página (zona horaria UTC) junto con un número se muestra en todas las configuraciones regionales disponibles. Puede usar el siguiente formulario para usar diferentes fechas y números."
+}

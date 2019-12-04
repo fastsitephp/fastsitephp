@@ -1,0 +1,14 @@
+// Enviar una respuesta utilizando el objeto de aplicación. Por defecto, cuando
+// se devuelve una cadena en una ruta, el servidor devuelve una respuesta HTML.
+$app->get('/app-html', function() {
+    return '<h1>Hello World</h1>';
+});
+
+// El objeto de respuesta proporciona muchas opciones, como encabezados de
+// control de caché y cookies seguras. Este ejemplo muestra una respuesta
+// HTML básica configurando [content ()] y devolviendo el objeto de respuesta.
+$app->get('/res-html', function() {
+    $res = new \FastSitePHP\Web\Response();
+    $res->content('<h1>Hello World</h1>');
+    return $res;
+});

@@ -1,0 +1,19 @@
+{
+    "page_title": "Documentación FastSitePHP",
+    "category-install": "Instalar",
+    "category-develop": "Desarrollar",
+    "category-security": "Seguridad",
+    "category-db": "Base de datos",
+    "img-alt-atom": "Atom Text Editor",
+    "img-alt-editor": "Editor de código",
+    "img-alt-crypto": "Cifrado",
+    "install-php-on-linux": "Instale Apache y PHP en un servidor Linux o Unix",
+    "install-php-on-windows": "Instale IIS y PHP en un servidor o escritorio de Windows",
+    "install-php-on-mac": "Instalar Apache y PHP en una Mac",
+    "edit-with-vs-code": "Utilice el Visual Studio Code para el desarrollo de PHP",
+    "edit-with-atom": "Utilice GitHub Atom Editor para el desarrollo de PHP",
+    "edit-with-other": "Uso de otros editores de código e IDE para el desarrollo de PHP",
+    "file-encryption-bash": "Cifrado de archivos utilizando el script Bash compatible [encrypt.sh]",
+    "file-encryption-windows": "Cifrado de archivos usando el script Bash [encrypt.sh] en Windows",
+    "ibm-server-db-query": "Uso de la clase Db2Database con un servidor IBM iSeries"
+}

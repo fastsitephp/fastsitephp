@@ -1,0 +1,25 @@
+$req = new \FastSitePHP\Web\Request();
+
+// Devuelve una matriz de todos los campos de encabezados de solicitud HTTP.
+// Los nombres de encabezado se pondrán en mayúscula para que los siguientes
+// nombres ['Content-type', 'Content-Type', and 'CONTENT-TYPE'] sean devueltos
+// por esta función como 'Content-Type' para la clave en la matriz.
+$headers = $req->headers();
+
+// Devuelve el valor de un campo de encabezado enviado con la solicitud HTTP.
+// Si no se envía [null] será devuelto. Las claves no distinguen entre
+// mayúsculas y minúsculas, por lo que las siguientes devuelven el mismo valor.
+$value = $req->header('Content-Type');
+$value = $req->header('CONTENT-TYPE');
+
+// El uso de las funciones integradas de PHP sin FastSitePHP u otros marcos
+// Los encabezados de solicitud se pueden leer desde la matriz PHP Superglobal
+// $_SERVER. Por ejemplo, 'User-Agent' será 'HTTP_USER_AGENT'. Esto se aplica
+// a todos los encabezados, excepto 'Authorization', 'Content-Type' y
+// 'Content-Length'. Para leer esos tres encabezados, consulte directamente
+// el código fuente de FastSitePHP.
+$name = 'HTTP_USER_AGENT';
+$value = (isset($_SERVER[$name]) ? $_SERVER[$name] : null);
+
+// Cuando se usa PHP 7 o superior, se puede usar el operador de fusión nula.
+$value = ($_SERVER[$name] ?? null);

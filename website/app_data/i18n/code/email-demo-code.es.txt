@@ -1,0 +1,40 @@
+// Crear un objeto de correo electrónico. El objeto de correo electrónico
+// también se puede crear sin especificar ningún parámetro.
+$email = new \FastSitePHP\Net\Email($from, $to, $subject, $body);
+
+// Todas las propiedades se pueden leer y configurar a través
+// de funciones getter/setter.
+$email
+    ->allowUnicodeEmails(true) // Para soporte con direcciones de correo electrónico Unicode
+    ->from(['无回复@example.com', 'Sin respuesta'])
+    ->replyTo('test@example.com')
+    ->to(['email1@example.com', 'email2@example.com'])
+    ->cc('email3@example.com')
+    ->bcc('email4@example.com')
+    ->priority('High') // ['High', 'Normal', or 'Low']
+    ->safeHeaderNames(true) // El valor predeterminado es [true] para campos personalizados
+    ->header('X-Transaction-ID', '123abc')
+    ->encodeFileNames(true)
+    ->attachFile($file_path)
+    ->isHtml(true) // El valor predeterminado es [true]
+    ->subject($subject)
+    ->body($body);
+
+// Enviar correo electrónico utilizando el Protocolo simple de transferencia
+// de correo (SMTP). La configuración [$smtp = null] después del uso llama
+// automáticamente [$smtp->quit()] y [$smtp->close()], sin embargo, también
+// ocurre automáticamente después de que el objeto ya no se usa.
+$smtp = new \FastSitePHP\Net\SmtpClient($host, $port);
+if ($user) {
+    $smtp->auth($user, $password);
+}
+$smtp->send($email);
+$smtp = null;
+
+// Cree un cliente con un tiempo de espera de 2 segundos y con depuración para
+// mostrar todos los datos enviados al servidor SMTP y todas las líneas de respuesta
+$timeout = 2;
+$callback = function($message) {
+    echo '[' . date('H:i:s') . '] ' . trim($message) . "\n";
+};
+$smtp = new \FastSitePHP\Net\SmtpClient($host, $port, $timeout, $callback);

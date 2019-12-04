@@ -1,0 +1,9 @@
+{
+    "page_title": "Código PHP - Referencia rápida",
+    "page_description_1": "Esta página incluye ejemplos de sintaxis básica de PHP y cómo usar FastSitePHP. Se supone que algunos conocimientos de programación son, por ejemplo, qué es una instrucción [if] o [loop]; sin embargo, no tiene que saber PHP para usar esto.",
+    "page_description_2": "Los ejemplos están diseñados para que simplemente copie y pegue lo que necesita. Debido a que existen ejemplos para el código PHP estándar, esta página es útil como referencia general de PHP incluso si no está utilizando FastSitePHP.",
+    "filter_placeholder": "Código de filtro en esta página. Por ejemplo, escriba 'Security' o 'Database'",
+    "filter_disabled": "Si ve esta página con un navegador o sistema operativo más reciente, puede filtrar el código.",
+    "filter_all": "Mostrando {count} secciones de código de ejemplo",
+    "filter_filtered": "Mostrando {mostrado} de {count} Secciones de código de ejemplo"
+}

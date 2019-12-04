@@ -15,8 +15,8 @@ $value = $req->header('CONTENT-TYPE');
 // Using PHP built-in features without FastSitePHP or other frameworks Request
 // Headers can be read from the PHP Superglobal $_SERVER Array.
 // For example 'User-Agent' will be 'HTTP_USER_AGENT'. This applies to all 
-// headers except for 'Content-Type' and 'Content-Length'. To read those two
-// headers directly refer to FastSitePHP source code.
+// headers except for 'Authorization', 'Content-Type', and 'Content-Length'.
+// To read those three headers directly refer to FastSitePHP source code.
 $name = 'HTTP_USER_AGENT';
 $value = (isset($_SERVER[$name]) ? $_SERVER[$name] : null);
 

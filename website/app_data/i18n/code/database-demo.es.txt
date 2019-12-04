@@ -1,0 +1,29 @@
+// Conectarse a una base de datos
+$db = new \FastSitePHP\Data\Database($dsn, $user, $password);
+
+// Consulta para registros múltiples
+// Devuelve una matriz de registros (matriz asociativa para cada registro).
+$sql = 'SELECT * FROM pages';
+$records = $db->query($sql);
+
+// Consulta para un registro. Devuelve una matriz asociativa o [nulo] si
+// no se encuentra. Tanto [query()] como [queryOne()] admiten parámetros
+// opcionales al realizar consultas.
+$sql = 'SELECT * FROM pages WHERE id = ?';
+$params = [1];
+$record = $db->queryOne($sql, $params);
+
+// Utilice [execute()] para INSERT, UPDATE, DELETE, CREATE y otras transacciones.
+// Además de usar [?] También puede usar parámetros con nombre en el formato
+// de ':nombre'. Los parámetros con nombre pueden hacer que el código sea más
+// fácil de leer.
+$sql = 'INSERT INTO pages (title, content)';
+$sql .= ' VALUES (:title, :content)';
+$params = [
+    'title'   => 'Database Demo',
+    'content' => '<h1>Database Demo<h1>',
+];
+$rows_affected = $db->execute($sql, $params);
+
+// Se pueden encontrar muchos ejemplos adicionales en la página de
+// referencia rápida.

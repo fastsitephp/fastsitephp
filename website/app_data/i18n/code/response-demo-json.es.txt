@@ -1,0 +1,33 @@
+// Devolver una respuesta JSON devolviendo un objeto o una matriz
+$app->get('/app-json-object', function() {
+    $object = new \stdClass;
+    $object->greeting = 'Hello World';
+    return $object;
+});
+
+$app->get('/app-json-array', function() {
+    return ['greeting' => 'Hello World'];
+});
+
+// Enviar JSON utilizando el objeto de respuesta
+$app->get('/res-json', function() {
+    $res = new \FastSitePHP\Web\Response();
+
+    // Establecer el encabezado 'Content-Type'.
+    // Las siguientes 3 llamadas a funciones establecen el mismo valor.
+    // La diferencia es que [contentType()] es una función auxiliar
+    // que permite valores abreviados de
+    // [html, json, jsonp, text, css, javascript, xml].
+    $res->contentType('json');
+    $res->contentType('application/json');
+    $res->header('Content-Type', 'application/json');
+
+    // Para el contenido JSON, se utilizan objetos y matrices
+    $data = ['greeting' => 'Hello World'];
+    $res->content($object);
+
+    // El ayudante [json()] puede mejorar la legibilidad del
+    // código, ya que establece [contentType()] y [content()].
+    $res->json($data);
+    return $res;
+});

@@ -1,0 +1,13 @@
+// Devolución de llamada de depuración opcional para
+// registrar llamadas SMTP y responder líneas
+$reply_lines = [];
+$debug_callback = function($message) use (&$reply_lines) {
+    $reply_lines[] = '[' . date('H:i:s') . '] ' . trim($message);
+};
+
+// Crear objeto SMTP y llamar a varios comandos (métodos API)
+$smtp = new SmtpClient($host, $port, $timeout, $debug_callback);
+$smtp->help();
+$smtp->noop();
+$smtp->quit();
+$smtp->close();

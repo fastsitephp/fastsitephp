@@ -1,0 +1,16 @@
+// El objeto de aplicación permite encabezados de respuesta básicos utilizando
+// la función [header()]. Esto ayuda a evitar la creación de un Objeto de
+// respuesta si no es necesario, sin embargo, puede preferirse un objeto
+// de respuesta para mayor claridad.
+$app->get('/app-text', function() {
+    $app->header('Content-Type', 'text/plain');
+    return 'Hello World';
+});
+
+// Cuando se usa el objeto de respuesta, las propiedades se establecen
+// a través de funciones getter / setter y se pueden encadenar.
+$app->get('/res-text', function() {
+    return (new \FastSitePHP\Web\Response())
+        ->contentType('text')
+        ->content('Hello World');
+});
