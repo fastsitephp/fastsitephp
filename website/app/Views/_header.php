@@ -158,7 +158,21 @@
 						</a>
 					</li>
 					<li class="i18n-menu">
-						<span><?= $app->escape(strtoupper($app->lang)) ?></span>
+						<div>
+							<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<g id="Buttons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									<g id="i18n" stroke="#4F5B93">
+										<circle id="Oval" fill="#FFFFFF" cx="12" cy="12" r="11.5"></circle>
+										<path d="M12.5,-2.5 C11.8333333,-0.472541163 11.5,2.52745884 11.5,6.5 C11.5,12.4588117 12.5,15.5 12.5,15.5" id="Line" stroke-linecap="square" transform="translate(12.000000, 6.500000) rotate(-90.000000) translate(-12.000000, -6.500000) "></path>
+										<ellipse id="Oval" cx="12" cy="12" rx="5.5" ry="11.5"></ellipse>
+										<line x1="12" y1="0" x2="12" y2="24" id="Line-2" stroke-linecap="square"></line>
+										<path d="M12.5,1 C11.8333333,4.83333333 11.5,8.66666667 11.5,12.5 C11.5,16.3333333 11.8333333,20.1666667 12.5,24" id="Line-2" stroke-linecap="square" transform="translate(12.000000, 12.500000) rotate(-90.000000) translate(-12.000000, -12.500000) "></path>
+										<path d="M12.5,8.5 C11.8333333,11.6666667 11.5,14.8333333 11.5,18 C11.5,21.1666667 11.8333333,24.3333333 12.5,27.5" id="Line" stroke-linecap="square" transform="translate(12.000000, 18.000000) rotate(-90.000000) translate(-12.000000, -18.000000) "></path>
+									</g>
+								</g>
+							</svg>
+							<span><?= $app->escape($app->lang) ?></span>
+						</div>
 						<ul>
 							<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
