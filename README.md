@@ -16,11 +16,13 @@ FastSitePHP includes many Standalone Components that can be used without using t
 
 ## :dizzy: Why use FastSitePHP?
 
-|<img src="https://www.fastsitephp.com/img/icons/Performance.svg" alt="Great Performance" width="60">|<img src="https://www.fastsitephp.com/img/icons/Lightswitch.svg" alt="Easy to setup and use" width="60">|
+<table><tbody><tr><td><div><img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Performance.svg" alt="Great Performance" width="60"></div><div><strong>Great Performance</strong> With FastSitePHP complex pages can be generated within thousands of a second using only a small amount of memory. This level of performance even allows for sites to run fast on low powered computers.</div></td></tr></tbody></table>
+
+|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Performance.svg" alt="Great Performance" width="60">|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Lightswitch.svg" alt="Easy to setup and use" width="60">|
 |---|---|
 |**Great Performance** With FastSitePHP complex pages can be generated within thousands of a second using only a small amount of memory. This level of performance even allows for sites to run fast on low powered computers.|**Easy to setup and use** FastSitePHP is designed so that it easy to setup to on any OS, easy to read the code, easy to develop with, and much more. With FastSitePHP high quality websites and apps can be developed at a rapid pace using fewer lines of code and minimal config.|
 
-|<img src="https://www.fastsitephp.com/img/icons/Samples.svg" alt="Quick to learn and debug" width="60">|<img src="https://www.fastsitephp.com/img/icons/Security-Lock.svg" alt="Strong Security" width="60">|
+|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Samples.svg" alt="Quick to learn and debug" width="60">|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Security-Lock.svg" alt="Strong Security" width="60">|
 |---|---|
 |**Quick to learn and debug** FastSitePHP is well documented and comes with practical samples. FastSitePHP provides developer friendly error messages so that errors can be fixed quickly even if you have little or no experience programming with PHP.|**Strong Security** Security has been carefully planned in all features of FastSitePHP so that it is both secure and easy to work with. Security features include Encryption (text, objects, and files), Signed Cookies, JWT, CORS, Proxy Server Validation, Rate Limiting, and more.|
 
