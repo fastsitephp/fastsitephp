@@ -1,0 +1,87 @@
+# Internationalization (I18N) - Language Translations
+
+## Overview
+
+This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations.
+
+The following setup is recommended for local development.
+
+~~~
+fastsitephp     {root-directory}
+├── fastsitephp   [repository]
+├── playground    [repository]
+└── starter-site  [repository]
+~~~
+
+If you need to install PHP see documents for (Windows, macOS, and Linux) from: https://www.fastsitephp.com/en/getting-started
+
+Currently specific languages are desired and translation work can be paid. For more see: https://www.fastsitephp.com/en/translators-needed
+
+Files are copied from English, Google Translate is used for initial translations, and then human translators fix errors from Google Translate.
+
+## JSON Files
+
+Files for specific languages end with `*.{lang}.json` and the main file for each site is `_.{lang}.json`.
+
+* `dataformsjs\examples\i18n`
+* `website\public\i18n`
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/i18n
+
+https://github.com/fastsitephp/starter-site/tree/master/app_data/i18n
+
+## Related Nav Menu
+
+Search the following file for `i18n-menu` and `$github`. There are 2 `i18n-menu` menus (one desktop and one mobile). `$github` is used to specify the readme file.
+
+https://github.com/fastsitephp/fastsitephp/blob/master/website/app/Views/_header.php
+
+## Code Playground Template
+
+Each language has it's own template directory/folder. Text content and code comments are updated to the translated language.
+
+`playground\app_data\template\{lang}`
+
+https://github.com/fastsitephp/playground/tree/master/app_data/template
+
+## Code Playground Language Whitelist
+
+PHP code has to be updated so the language can be used.
+
+https://github.com/fastsitephp/playground/blob/master/app/app.php
+
+Line 55: `function getLangauage($lang) {`
+
+## Home Page Code
+
+Code comments are updated and some text is changed `home-page-{lang}.php`
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/sample-code
+
+## Main Site Readme
+
+Some of this content is duplicated from the main home page so some content simply be copied after translating JSON files.
+
+`fastsitephp\docs\i18n-readme\README.{lang}.md`
+
+https://github.com/fastsitephp/fastsitephp/tree/master/docs/i18n-readme
+
+## Code for the Example Pages
+
+Update comments in `.{lang}.txt`
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/i18n/code
+
+## Quick Reference Code
+
+Code comments are updated and some text is changed `home-page-{lang}-examples.php`. This is a large file so tranlations are planned for the future after many languages are first translated. Additionally `home-page-{lang}.php` should load the new file when created.
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/sample-code
+
+## Docs and API
+
+These file are also planned for the future due to the amount of content. The API docs will need a custom UI created in order to edit them as much of the JSON content contains line breaks and formatting.
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/docs/en
+
+https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/api
