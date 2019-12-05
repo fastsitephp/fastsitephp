@@ -175,7 +175,8 @@ a:visited { color:#4F5B93; }
     border: 1px solid #3C456F;
     box-shadow: inset 0px 0px 1px 0px #4F5B93;
     list-style-type: none;
-    left: -30px;
+    left: -120px;
+    z-index: 1000;
 }
 .site-nav ul.desktop-nav > li.i18n-menu ul li.active { background-color: #E2E4EF; }
 .site-nav ul.desktop-nav > li.i18n-menu ul li:hover { background-color: #BCC1DB; }

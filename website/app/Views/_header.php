@@ -39,6 +39,7 @@
 	<body>
 		<header>
 			<?php
+			// Variables needed for nav links
 			switch ($app->lang) {
 				case 'es':
 					$github = 'https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.' . $app->lang . '.md';
@@ -46,6 +47,7 @@
 				default:
 					$github = 'https://github.com/fastsitephp/fastsitephp';
 			}
+			$current_page = substr($app->requestedPath(), strlen($app->lang) + 1);
 			?>
 			<nav class="site-nav">
 				<div class="mobile-nav">
@@ -113,18 +115,18 @@
 							</a>
 						</li>
 					</ul>
-					<ul class="i18n-menu" style="display:none;">
+					<ul class="i18n-menu">
 						<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'en/', $app->requestedPath())) ?>">English</a>
+							<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 						</li>
 						<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'es/', $app->requestedPath())) ?>">Español</a>
+							<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 						</li>
-						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?> style="display:none;">
-							<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'pt-BR/', $app->requestedPath())) ?>">Português (do Brasil)</a>
+						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 						</li>
-						<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?> style="display:none;">
-							<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'zh-Hans/', $app->requestedPath())) ?>">中文 (简体)</a>
+						<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
 						</li>
 					</ul>
 				</div>
@@ -155,20 +157,20 @@
 						<img src="<?= $app->rootDir() ?>img/logos/GitHub-Mark-Light-32px.png" alt="GitHub" height="32" width="32">
 						</a>
 					</li>
-					<li class="i18n-menu" style="display:none;">
+					<li class="i18n-menu">
 						<span><?= $app->escape(strtoupper($app->lang)) ?></span>
 						<ul>
 							<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'en/', $app->requestedPath())) ?>">English</a>
+								<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 							</li>
 							<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'es/', $app->requestedPath())) ?>">Español</a>
+								<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 							</li>
-							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?> style="display:none;">
-								<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'pt-BR/', $app->requestedPath())) ?>">Português (do Brasil)</a>
+							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 							</li>
-							<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?> style="display:none;">
-								<a href="<?= $app->escape($app->rootUrl() . str_replace('/'.$app->lang.'/', 'zh-Hans/', $app->requestedPath())) ?>">中文 (简体)</a>
+							<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
 							</li>
 						</ul>
 					</li>
