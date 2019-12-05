@@ -36,6 +36,10 @@ Search the following file for `i18n-menu` and `$github`. There are 2 `i18n-menu`
 
 https://github.com/fastsitephp/fastsitephp/blob/master/website/app/Views/_header.php
 
+The order of languages for the Nav Menu will be initially based on global internet usage for each language; however this may change in the future:
+
+https://en.wikipedia.org/wiki/Languages_used_on_the_Internet
+
 ## Code Playground Template
 
 Each language has it's own template directory/folder. Text content and code comments are updated to the translated language.
