@@ -72,7 +72,7 @@ https://github.com/fastsitephp/fastsitephp/tree/master/docs/i18n-readme
 
 ## Code for the Example Pages
 
-Update comments in `.{lang}.txt`
+Update comments in `*.{lang}.txt` files
 
 https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/i18n/code
 
