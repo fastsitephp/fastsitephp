@@ -56,11 +56,18 @@
         <p>Initially I’m looking for translators in the most widely used web and spoken languages. As time goes on more languages will be added however this is a personal project to start so I have to keep my costs affordable. For other languages I will consider them right now if the price is reasonable.</p>
         <p>Also to keep this affordable I’m not looking for professional firms so even if you have limited experience but are willing to translate then that is perfectly ok.</p>
         <p>Translations are first generated using Google Translate and then paid translators will make needed corrections. The expected time needed is around 10 to 20 hours.</p>
-        <p>Here is an example of content generated from Google Translate that needs translators.</p>
+        <p>Here is an example of content generated from Google Translate that needs translators:</p>
         <p>
             <ul class="bullet-list">
                 <li><a href="https://www.fastsitephp.com/zh-Hans/" target="_blank">https://www.fastsitephp.com/zh-Hans/</a></li>
                 <li><a href="https://www.dataformsjs.com/#/jp/" target="_blank">https://www.dataformsjs.com/#/jp/</a></li>
+            </ul>
+        </p>
+        <p>Docs on what needs to be done for Translations:</p>
+        <p>
+            <ul class="bullet-list">
+                <li><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md" target="_blank">https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md</a></li>
+                <li><a href="https://github.com/dataformsjs/dataformsjs/blob/master/docs/i18n-translations.md" target="_blank">https://github.com/dataformsjs/dataformsjs/blob/master/docs/i18n-translations.md</a></li>
             </ul>
         </p>
     </div>
@@ -70,17 +77,17 @@
                 <tr><th>Language</th><th>Status</th></tr>
             </thead>
             <tbody>
-                <tr><td>Arabic</td><td>Translator Needed in early 2020</td></tr>
-                <tr class="highlight"><td>Chinese Simplified (zh-Hans)</td><td>Translator Needed Immediately</td></tr>
-                <tr><td>French</td><td>Translator Needed in early 2020</td></tr>
-                <tr><td>German</td><td>Translator Needed in early 2020</td></tr>
-                <tr><td>Italian</td><td>Translator Needed in early 2020</td></tr>
-                <tr class="highlight"><td>Japanese</td><td>Translator Needed Immediately</td></tr>
-                <tr><td>Korean</td><td>Translator Needed in early 2020</td></tr>
-                <tr><td>Persian</td><td>Translator Needed in early 2020</td></tr>
-                <tr class="not-needed"><td>Portuguese</td><td>Translator not needed (In progress)</td></tr>
-                <tr><td>Russian</td><td>Translator Needed in early 2020</td></tr>
-                <tr class="not-needed"><td>Spanish</td><td>Translator not needed (In progress)</td></tr>
+                <tr><td>Arabic</td><td>Translator Needed</td></tr>
+                <tr class="highlight"><td>Chinese Simplified (zh-Hans)</td><td>Translator Needed (some content ready)</td></tr>
+                <tr><td>French</td><td>Translator Needed</td></tr>
+                <tr><td>German</td><td>Translator Needed</td></tr>
+                <tr><td>Italian</td><td>Translator Needed</td></tr>
+                <tr class="highlight"><td>Japanese</td><td>Translator Needed (some content ready)</td></tr>
+                <tr><td>Korean</td><td>Translator Needed</td></tr>
+                <tr><td>Persian</td><td>Translator Needed</td></tr>
+                <tr class="not-needed"><td>Portuguese</td><td>Translator not needed (in progress)</td></tr>
+                <tr><td>Russian</td><td>Translator Needed</td></tr>
+                <tr class="not-needed"><td>Spanish</td><td>Translator not needed (in progress)</td></tr>
             <tbody>
         </table>
     </div>
