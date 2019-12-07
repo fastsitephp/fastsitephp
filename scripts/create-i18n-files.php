@@ -141,7 +141,7 @@ if (!is_dir($playground_dir_to . '/app')) {
 $files = $search
     ->reset()
     ->dir($playground_dir_from)
-    ->fileTypes(['.htaccess', 'php,', 'htm', 'css', 'js', 'jsx', 'svg'])
+    ->fileTypes(['htaccess', 'php', 'htm', 'css', 'js', 'jsx', 'svg'])
     ->fullPath(true)
     ->files();
 
@@ -151,7 +151,7 @@ $app_files = $search
     ->files();
 
 $all_files = array_merge($files, $app_files);
-foreach ($files as $file) {
+foreach ($all_files as $file) {
     $find = DIRECTORY_SEPARATOR . LANG_COPY_FROM . DIRECTORY_SEPARATOR;
     $replace = DIRECTORY_SEPARATOR . LANG_COPY_TO . DIRECTORY_SEPARATOR;
     $dest = str_replace($find, $replace, $file);
