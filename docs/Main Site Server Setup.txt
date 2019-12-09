@@ -157,3 +157,6 @@ https://www.fastsitephp.com/en/
 #    https://certbot.eff.org/lets-encrypt/ubuntubionic-apache
 #    For the Certificate both non-www and www were entered:
 #        fastsitephp.com www.fastsitephp.com
+
+# Additionally a shell script is used to sync changes from GitHub back to the server
+https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
