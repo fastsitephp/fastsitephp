@@ -20,19 +20,6 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-*) Script needed to sync published changes from GitHub on the main production server.
-    Server setup is described here:
-        https://github.com/fastsitephp/fastsitephp/blob/master/docs/Main%20Site%20Server%20Setup.txt
-    Currently changes are synced manually and it's time consuming.
-    Script will use sha256 to compare and be added to the [scripts] directory:
-        https://github.com/fastsitephp/fastsitephp/tree/master/scripts
-    For an example of PHP server-side script running on a server to change files see:
-        https://github.com/dataformsjs/website/blob/master/scripts/update-html-files-cdn-version.php
-    Also needed for the Playground site however only the template sub-folder will be synced
-        https://github.com/fastsitephp/playground/tree/master/app_data/template
-    This script will not run automatically on the sever rather manually from terminal
-    after publishing and confirming new changes.
-
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
         - Margins on page content in <main> are not correct
