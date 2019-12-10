@@ -48,6 +48,9 @@
 					$github = 'https://github.com/fastsitephp/fastsitephp';
 			}
 			$current_page = substr($app->requestedPath(), strlen($app->lang) + 1);
+			if ($current_page === '') {
+				$current_page = '/';
+			}
 			?>
 			<nav class="site-nav">
 				<div class="mobile-nav">
