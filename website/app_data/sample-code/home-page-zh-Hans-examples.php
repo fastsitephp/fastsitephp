@@ -4003,6 +4003,15 @@ $app->get('/examples/i18n', function() use ($app) {
     // the file or if it doesn't exist, the matching file for the fallback language.
     $file_path = $app->config['I18N_DIR'] . '/test-{lang}.txt';
     $content = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
+    // Use [getUserDefaultLang()] to get the default language for the user based
+    // on the 'Accept-Language' Request Header and available languages for the site.
+    //
+    // This is useful to provide custom content for the user or to redirect to the
+    // user's language when they access the default URL. 
+    //
+    // Requires config values I18N_DIR and I18N_FALLBACK_LANG.
+    $default_lang = \FastSitePHP\Lang\I18n::getUserDefaultLang();
     // EXAMPLE_CODE_END
 
     // Return Text Response
@@ -4012,6 +4021,7 @@ $app->get('/examples/i18n', function() use ($app) {
         ->content(implode("\n", [
             json_encode($app->locals['i18n'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
             $content,
+            $default_lang,
         ]));
 });
 

@@ -981,6 +981,10 @@
                 "link": "Lang_I18N#fn_textFile"
             },
             {
+                "name": "I18N::getUserDefaultLang()",
+                "link": "Lang_I18N#fn_getUserDefaultLang"
+            },
+            {
                 "name": "I18N::setup(Application $app)",
                 "link": "Lang_I18N#fn_setup"
             }
