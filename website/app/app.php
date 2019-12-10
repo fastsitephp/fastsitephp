@@ -63,7 +63,10 @@ $app->onRender(function() use ($app) {
 // The code below provides several different examples.
 // ----------------------------------------------------------------------------
 
-// Home Page - Redirect using the Default Language
+// Root URL, redirect to the user's default language based the 'Accept-Language'
+// request header. Defaults to 'en = English' if no language is matched.
+// For example if the user's default language is Spanish then they will be
+// redirected to '/es/'.
 //
 // This route is defined as a callback function (Closure in PHP).
 // Defining routes with callback functions allows for fast prototyping
@@ -71,7 +74,7 @@ $app->onRender(function() use ($app) {
 // can be organized into controller classes.
 //
 $app->get('/', function() use ($app) {
-    $app->redirect($app->rootUrl() . 'en/');
+    $app->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
 });
 
 // Home Page
