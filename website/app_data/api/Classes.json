@@ -68,6 +68,10 @@
         "link": "FileSystem_Security"
     },
     {
+        "name": "FileSystem\\Sync",
+        "link": "FileSystem_Sync"
+    },
+    {
         "name": "Lang\\I18N",
         "link": "Lang_I18N"
     },

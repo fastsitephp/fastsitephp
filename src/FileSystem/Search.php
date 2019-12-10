@@ -113,7 +113,8 @@ class Search
 
     /**
      * If true then then the full file paths will be returned when
-     * [dirs() or files()] are called. Defaults to false.
+     * [dirs() or files()] are called. Defaults to false, however when
+     * [recursive(true)] is used then the value will always be true.
      *
      * @param null|bool $full_path
      * @return bool|$this

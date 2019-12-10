@@ -2982,6 +2982,35 @@ $app->get('/examples/file-system-search', function() use ($app) {
         ]));
 });
 
+$app->get('/examples/file-system-sync', function() use ($app) {
+    // Modify here if testing locally
+    $dir_from = __DIR__ . '/../../../../Test/src1';
+    $dir_to = __DIR__ . '/../../../../Test/src2';
+
+    // EXAMPLE_CODE_START
+    // TITLE: File System Sync
+    // CLASS: FileSystem\Sync
+    // Create a FileSystem Sync Object
+    $sync = new FastSitePHP\FileSystem\Sync();
+    
+    // Sync files and directories (folders) from [dirFrom(path)] to [dirTo(path)].
+    // The sync is recursive so all files and directories are synced in all
+    // sub-directories. Required functions are [dirFrom, dirTo, and sync].
+    // To view the results call [printResults()] after calling [sync()].
+    // All options with defaults are shown below.
+    $sync
+        ->dirFrom($dir_from)
+        ->dirTo($dir_to)
+        ->excludeNames(['package-lock.json'])
+        ->excludeRegExPaths(['/node_modules/'])
+        ->summaryTitle('File System Sync Results')
+        ->hashAlgo('sha256')
+        ->dryRun(false) // Set to [true] for testing
+        ->sync()
+        ->printResults();
+    // EXAMPLE_CODE_END
+});
+
 $app->get('/examples/markdown', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Convert Markdown to HTML using PHP
