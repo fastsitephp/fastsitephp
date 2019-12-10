@@ -69,10 +69,10 @@ define('CACERT_FILE', sys_get_temp_dir() . '/install-cacert.pem');
  */
 $downloads = array(
     array(
-        'url' => 'https://github.com/fastsitephp/fastsitephp/archive/1.0.0.zip',
+        'url' => 'https://github.com/fastsitephp/fastsitephp/archive/1.1.0.zip',
         'save_file' => __DIR__ . '/FastSitePHP.zip',
         'check_file' => VENDOR_DIR . '/fastsitephp/src/Application.php',
-        'rename_from' => VENDOR_DIR . '/fastsitephp-1.0.0',
+        'rename_from' => VENDOR_DIR . '/fastsitephp-1.1.0',
         'rename_to' => VENDOR_DIR . '/fastsitephp',
         'skip_check' => __DIR__ . '/../src/Application.php', // Skip download if running within Framework
     ),
