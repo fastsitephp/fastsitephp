@@ -4040,7 +4040,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // user's language when they access the default URL. 
     //
     // Requires config values I18N_DIR and I18N_FALLBACK_LANG.
-    $default_lang = \FastSitePHP\Lang\I18n::getUserDefaultLang();
+    $default_lang = \FastSitePHP\Lang\I18N::getUserDefaultLang();
     // EXAMPLE_CODE_END
 
     // Return Text Response
