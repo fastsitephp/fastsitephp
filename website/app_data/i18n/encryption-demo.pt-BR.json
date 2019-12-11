@@ -1,0 +1,19 @@
+{
+    "page_title": "Demonstraçãod e Criptografia",
+    "sample_text": "Entre ou copie/cole texto aqui para criptografar ou descriptografar.",
+    "key": "Chave",
+    "encrypt": "Criptografar",
+    "decrypt": "Descriptografar",
+    "new_key": "Gerar Nova Chave",
+    "using_page": "Usando esta Página",
+    "using_page_1": "Esta página permite que você criptografe e descriptografe texto usando a classe the criptografia do FastSitePHP.",
+    "using_page_2": "Cada vez que você recarregar a página uma nova chave será gerada.",
+    "using_page_3": "Chaves geradas por esta página são seguras, serão criadas somente uma vez, e não são registradas.",
+    "using_page_4": "Dados não poderão ser recuperados se uma chave for perdida, então certifique-se de guardar sua chave se está utilizando esta página para dados importantes.",
+    "using_page_5": "O texto e criptografado e descriptografado no servidor com cada clique de botão; No entanto ambos chave e texto não são registrados.",
+    "using_page_6": "A Criptografia utiliza diferente números aleatórios cada vez que os dados são criptografados e por isso o mesmo texto com a mesma chave gera textos criptografados diferentes a cada clique no botão.",
+    "algo_overview": "Visão gerald o Algoritmo",
+    "algo_overview_1": "O Algoritmo de Criptografia usado nesta página (e o padrão para o FastSitePHP) é AES (Advanced Encryption Standard) com chave de  256-bit usando o modo CBC (Cipher Block Chaining). A autenticação é realizada com HMAC (Hash-based Message Authentication Code) usando SHA-256.",
+    "algo_overview_2": "Metade da chave (32 bytes / 256 bits) é usada para criptografia e a outra metade é usada para autenticação.",
+    "algo_overview_3": "O texto criptografado (ciphertext) contém somente bytes de criptografia e HMAC; não contém headers ou magic numbers para associá-lo com o método de criptografia."
+}

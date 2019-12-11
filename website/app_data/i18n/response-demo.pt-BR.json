@@ -1,0 +1,9 @@
+{
+    "page_title": "Usando o objeto HTTP Response",
+    "response": "Resposta",
+    "response_types": "Tipos de Resposta",
+    "page_requested": "Esta página foi requisitada em {time}",
+    "html": "HTML",
+    "json": "JSON",
+    "text": "Texto"
+}
