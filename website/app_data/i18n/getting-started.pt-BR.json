@@ -1,0 +1,16 @@
+{
+    "page_title": "Começando a Utilizar o FastSitePHP",
+    "download": "Baixar",
+    "develop": "Desenvolvendo com PHP",
+    "install_nix": "Instalar PHP no Linux e Unix",
+    "install_win": "Instalar PHP no Windows",
+    "install_mac": "Instalar PHP no macOS",
+    "framework_and_site": "FastSitePHP: Framework e Website (~1.2 MB)",
+    "starter_site": "FastSitePHP: Starter Site (~32 KB)",
+    "framework_only": "FastSitePHP: Somente o Framework (~470 KB)",
+    "vs_code": "PHP com o Visual Studio Code",
+    "atom": "PHP com o GitHub Atom Editor",
+    "other_editors": "Outro IDE e Editores de Código",
+    "code_editors": "Editores de Código",
+    "package_manager": "Geranciador de Pacote"
+}

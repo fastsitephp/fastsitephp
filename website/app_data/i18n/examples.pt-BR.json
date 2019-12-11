@@ -1,0 +1,17 @@
+{
+    "page_title": "Examplo do FastSitePHP",
+    "category-http": "HTTP",
+    "category-db": "Banco de Dados",
+    "category-email": "E-mail",
+    "category-lang": "Idioma",
+    "category-security": "Segurança",
+    "img-alt-http-req": "Requisição HTTP",
+    "img-alt-http-res": "Resposta HTTP",
+    "img-alt-crypto": "Criptografia",
+    "request-demo": "Lendo a Requisição HTTP",
+    "response-demo": "Usando a Objeto Resposta do HTTP",
+    "database-demo": "Conect ao um Bando de Dados e execute instruções SQL",
+    "email-demo": "Envie e-mail usando o cliente SMTP",
+    "l10n-demo": "Demonstração Localização (L10N) - Formatação Datal e Numérica",
+    "encryption-demo": "Demonstração de Criptografia"
+}
