@@ -33,13 +33,6 @@ TODO List
         Possibly change to use pickadate for Safari and other unsupported browsers
             https://amsul.ca/pickadate.js/
 
-*) Create a script that uses the Google Translate API to create initial i18n files.
-   The script will need to be able to keys in the JSON files, find and update
-   code comments in specific files, and also handle markdown documents.
-        https://cloud.google.com/translate/?hl=en
-    This will be pending findings from the first translators to verify how well
-    Google Translate is working with technical docs.
-
 *) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
     These files were created because creating full automated unit tests was causing too much of a delay
