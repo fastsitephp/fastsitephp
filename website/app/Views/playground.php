@@ -404,7 +404,7 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
                     <span class="arrow"></span>
                 </span>
             </span>
-            <p class="try-other-site"><a href="https://www.dataformsjs.com/#/en/playground" target="_blank"><?= $app->escape($i18n['try_other_site']) ?></a></p>
+            <p class="try-other-site"><a href="https://www.dataformsjs.com/en/playground" target="_blank"><?= $app->escape($i18n['try_other_site']) ?></a></p>
         </section>
     </div>
     <div class="files">

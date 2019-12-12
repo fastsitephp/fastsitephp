@@ -57,12 +57,6 @@
         <p>Also to keep this affordable I’m not looking for professional firms so even if you have limited experience but are willing to translate then that is perfectly ok.</p>
         <p>Translations are first generated using Google Translate and then paid translators will make needed corrections. The expected time needed is around 10 to 20 hours.</p>
         <p>Here is an example of content generated from Google Translate that needs translators:</p>
-        <p>
-            <ul class="bullet-list">
-                <li><a href="https://www.fastsitephp.com/zh-Hans/" target="_blank">https://www.fastsitephp.com/zh-Hans/</a></li>
-                <li><a href="https://www.dataformsjs.com/#/jp/" target="_blank">https://www.dataformsjs.com/#/jp/</a></li>
-            </ul>
-        </p>
         <p>Docs on what needs to be done for Translations:</p>
         <p>
             <ul class="bullet-list">
@@ -78,12 +72,12 @@
             </thead>
             <tbody>
                 <tr><td>Arabic</td><td>Translator Needed</td></tr>
-                <tr class="highlight"><td>Chinese Simplified (zh-Hans)</td><td>Translator Needed (some content ready)</td></tr>
+                <tr class="not-needed"><td>Chinese Simplified (zh-Hans)</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>French</td><td>Translator Needed</td></tr>
                 <tr><td>German</td><td>Translator Needed</td></tr>
                 <tr><td>Italian</td><td>Translator Needed</td></tr>
                 <tr class="highlight"><td>Japanese</td><td>Translator Needed (some content ready)</td></tr>
-                <tr><td>Korean</td><td>Translator Needed</td></tr>
+                <tr class="not-needed"><td>Korean</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>Persian</td><td>Translator Needed</td></tr>
                 <tr class="not-needed"><td>Portuguese</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>Russian</td><td>Translator Needed</td></tr>
