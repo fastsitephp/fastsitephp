@@ -1,0 +1,11 @@
+{
+    "page_title": "Demonstração Localização (L10N)",
+    "locale": "Localização",
+    "number": "Número",
+    "date_time": "Data / Hora",
+    "date": "Data",
+    "time": "Hora",
+    "update_table": "Atualizar Tabela",
+    "info_1": "A API de localização (l10n) do FastSitePHP API contém funções para formatação de datas, horas e números usando locais e idiomas diferentes.  Você pode também facilmente converter datas e horas para fuso horários diferentes.",
+    "info_2": "O horário em que você viu esta página (fuso horário UTC) juntamente com um número é mostrado em todas as localizações disponíveis. Você pode utilizar o formulário abaixo para definir datas e números diferentes."
+}
