@@ -1,7 +1,7 @@
 <?php
-// This is a working route file with many examples that runs from [home-page-zh-Hans.php]
+// This is a working route file with many examples that runs from [home-page-zh-CN.php]
 // When running from a local environment the URL of a route will look like this:
-//     http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-zh-Hans.php/examples
+//     http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-zh-CN.php/examples
 // This file is also used as the source of code for documentation pages. For example
 // the Quick Reference Page [URL = '/:lang/quick-reference']. Code is organized in
 // blocks of [EXAMPLE_CODE_START] and [EXAMPLE_CODE_END] comments which are used

@@ -128,8 +128,8 @@
 						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 						</li>
-						<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
+						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 						</li>
 					</ul>
 				</div>
@@ -186,8 +186,8 @@
 							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 							</li>
-							<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
+							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 							</li>
 						</ul>
 					</li>

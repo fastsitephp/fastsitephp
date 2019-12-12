@@ -72,7 +72,8 @@
             </thead>
             <tbody>
                 <tr><td>Arabic</td><td>Translator Needed</td></tr>
-                <tr class="not-needed"><td>Chinese Simplified (zh-Hans)</td><td>Translator not needed (in progress)</td></tr>
+                <tr class="not-needed"><td>Chinese Simplified (zh-CN)</td><td>Translator not needed (in progress)</td></tr>
+                <tr class="not-needed"><td>Chinese Traditional (zh-TW)</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>French</td><td>Translator Needed</td></tr>
                 <tr><td>German</td><td>Translator Needed</td></tr>
                 <tr><td>Italian</td><td>Translator Needed</td></tr>

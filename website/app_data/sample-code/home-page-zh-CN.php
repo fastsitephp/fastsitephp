@@ -123,7 +123,7 @@ $app->get('/server', function() {
 // 如果请求的URL以'/ examples'开头，则从当前目录加载一个PHP文件以
 // 查找匹配的路由。 这是一个真实的文件，提供了更多示例。 如果您下载此站点，
 // 则可以在[app_data / sample-code]中找到此代码和其他示例。
-$app->mount('/examples', 'home-page-zh-Hans-examples.php');
+$app->mount('/examples', 'home-page-zh-CN-examples.php');
 
 // -------------------------------
 // 运行应用程序
