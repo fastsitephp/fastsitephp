@@ -126,7 +126,7 @@ class I18N
         // Get fallback language if defined and Validate
         $dir = self::validateDir($app);
         self::validateLang($lang);
-        $fallback_lang = (isset($app->config['I18N_FALLBACK_LANG']) ? $app->config['I18N_FALLBACK_LANG'] : null);        
+        $fallback_lang = (isset($app->config['I18N_FALLBACK_LANG']) ? $app->config['I18N_FALLBACK_LANG'] : null);
         $main_file_loaded = false;
         $path = null;
 
@@ -197,23 +197,23 @@ class I18N
             }
         }
 
-        // Language not matched, redirect to fallback language if possible or send a 404 error.
-        // This requires the site to be setup like this: "https://www.example.com/{lang}/{pages}".
-        if (!self::$lang_matched && $fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
-            // Build URL with the Fallback Language
-            $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '');
-            if (strpos($url, '/' . $lang . '/') === 0) {
-                $url = $app->rootDir() . $fallback_lang . '/' . substr($url, strlen($lang) + 2);
-            } elseif ($url === '/' . $lang) {
-                $url = $app->rootDir() . $fallback_lang;
-            }
-
-            // Redirect (optional) or Send a 404 Response (default)
-            if ($url !== '') {
-                if (self::$redirect_on_missing_lang) {
+        // Language not matched, send a 404 error (default) or optionally redirect to fallback language
+        // Fallback redirect requires the site to be setup like this: "https://www.example.com/{lang}/{pages}".
+        if (!self::$lang_matched) {
+            // Send a 404 Response and terminate the response (default)
+            if (!self::$redirect_on_missing_lang) {
+                $app->sendPageNotFound();
+            // Or Redirect (optional)
+            } else if ($fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
+                // Build URL with the Fallback Language
+                $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '');
+                if (strpos($url, '/' . $lang . '/') === 0) {
+                    $url = $app->rootDir() . $fallback_lang . '/' . substr($url, strlen($lang) + 2);
+                } elseif ($url === '/' . $lang) {
+                    $url = $app->rootDir() . $fallback_lang;
+                }
+                if ($url !== '') {
                     $app->redirect($url);
-                } else {
-                    $app->sendPageNotFound();
                 }
             }
         }

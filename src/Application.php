@@ -112,7 +112,7 @@ class Application
      * Title for 404 'Not Found' Responses, available as [$page_title] for the template.
      * @var string|null
      */
-    public $not_found_page_title = 'Page Not Found';
+    public $not_found_page_title = '404 - Page Not Found';
 
     /**
      * Message for 404 'Not Found' Responses, available as [$message] for the template.

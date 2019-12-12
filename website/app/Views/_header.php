@@ -47,7 +47,11 @@
 				default:
 					$github = 'https://github.com/fastsitephp/fastsitephp';
 			}
-			$current_page = substr($app->requestedPath(), strlen($app->lang) + 1);
+			$current_page = $app->requestedPath();
+			if ($current_page !== '') {
+				$components = explode('/', $current_page);
+				$current_page = substr($current_page, strlen($components[1]) + 1);
+			}
 			if ($current_page === '') {
 				$current_page = '/';
 			}

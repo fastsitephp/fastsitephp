@@ -384,7 +384,7 @@ $app->get('/check-app-properties', function() use ($app) {
     $string_properties = array(
         'error_page_title' => 'An error has occurred',
         'error_page_message' => 'An error has occurred while processing your request.',
-        'not_found_page_title' => 'Page Not Found',
+        'not_found_page_title' => '404 - Page Not Found',
         'not_found_page_message' => 'The requested page could not be found.',
         'method_not_allowed_title' => 'Error - Method Not Allowed',
         'method_not_allowed_message' => 'A [{method}] request was submitted however this route only allows for [{allowed_methods}] methods.',
