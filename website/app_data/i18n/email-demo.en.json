@@ -24,7 +24,7 @@
     "smtp_commands": "SMTP Commands",
     "select_server": "-- Select an SMTP Server --",
     "smtp_info_1": "This page allows you to see a live example of communication between the SMTP Client and widely used SMTP Servers.",
-    "smtp_info_2": "Select an SMTP Server from the list and then code shown below will be called.",
+    "smtp_info_2": "Select an SMTP Server from the list and then the code shown below will be called.",
     "smtp_info_3": "At times there will be a delay. This is likely a forced delay from the SMTP Server to slow down and block spammers. The call that is delayed will clearly show in the log result.",
     "smtp_info_4": "Typically SMTP is simply used for sending outgoing emails however basic commands can be used by an automated script to verify if the server is working correctly.",
     "why_use": "Why use FastSitePHP for SMTP and Email",
