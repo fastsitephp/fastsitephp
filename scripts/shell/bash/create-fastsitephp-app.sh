@@ -18,7 +18,7 @@
 #
 #  Download and running this script (requires root/sudo).
 #  This script works on a default OS when nothing is installed.
-#      wget https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fastsitephp-app.sh
+#      wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/shell/bash/create-fastsitephp-app.sh
 #      sudo bash create-fastsitephp-app.sh
 #
 #  This script is generally safe to run multiple times because it checks
