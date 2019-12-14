@@ -23,7 +23,7 @@ class Downloads
                     $file_path = __DIR__ . '/../../../scripts/shell/bash/encrypt.sh';
                 }
                 return (new Response())->file($file_path, 'download');
-            case 'create-fastsitephp-app':
+            case 'create-fastsitephp-app.sh':
                 $file_path = __DIR__ . '/../../scripts/shell/bash/create-fastsitephp-app.sh';
                 if (!is_file($file_path)) {
                     $file_path = __DIR__ . '/../../../scripts/shell/bash/create-fastsitephp-app.sh';

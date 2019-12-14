@@ -52,7 +52,7 @@ This section shows several different installation options for Linux using shell 
 # Supported Operating Systems (more will be added in the future):
 #   Ubuntu 18.04 LTS
 
-swget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/shell/bash/create-fastsitephp-app.sh
+wget https://www.fastsitephp.com/downloads/create-fastsitephp-app.sh
 sudo bash create-fastsitephp-app.sh
 ~~~
 
