@@ -255,7 +255,7 @@ Enquanto o site era desenvolvido o framework e componentes foram sendo substitu�
 * PHP é a mais amplamente utilizada linguagem de programação no mundo para websites dinâmicos em server-side; Isso inclui muitos dos mais populares sites no mundo.
 * O PHP tem grande documentação e uma grande comunidade de desenvolvedores que faz com que aprender e encontrar recursos seja fácil.
 * Suporte a banco de dados já integrado. Todos os principais fornecedores (Microsoft, Oracle, etc) tem dado suporte ao PHP por anos com extensões de banco de dados nativas de alto desempenho.
-* Funciona em qualquer ambiente. A mais recente versão do  PHP pode funcionar virtualmente em qualquer servidor ou computador. Isso inclui Windows IIS, Linux/Apache, Linux/Nginx, Raspberry Pi e mesmo em servidores IBM legados.
+* Funciona em qualquer ambiente. A mais recente versão do  PHP pode funcionar virtualmente em qualquer servidor ou computador. Isso inclui Windows IIS, Linux/Apache, Raspberry Pi e mesmo em servidores IBM legados.
 * Desenvolvimento e configuração de servidor rápidos - simplesmente faça mudanças no arquivo PHP e recarregue a página. Não há processo de compilação para compilar programas e serviços para parar e reiniciar quando forem feitas mudanças.
 * Aprender uma linguagem adicioal permite aprender novas ideias e conceitos e melhora suas habilidades gerais.
 * Renda - mais linguagens = mais dinheiro e um melhor currículo. Enquanto em média PHP paga menos que muitas outras linguagens populares; sites grandes e sites que dependem de empresas de design geralmente pagam mais _(alta renda)_ por desenvolvimento em PHP. Tendo PHP em seu currículo permite novas oportunidades. Além disso se você está pagando desenvolvedores para desenvolverem um site em PHP isso pode resultar em um site mais em conta.
@@ -271,6 +271,6 @@ Todas as versões do PHP da 5.3 a 7.3.
 
 ## :memo: Licença
 
-Este projeto está sob o licenciamento **MIT License** - veja o arquivo da [LICENÇA](LICENSE) para detalhes.
+Este projeto está sob o licenciamento **MIT** - veja o arquivo da [LICENÇA](LICENSE) para detalhes.
 
 Arte (SVG Files) localizadas em [website/public/img] e [website/public/img/icons] estão licenciadas sob duplo licenciamento **MIT License** e <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="font-weight:bold;">Creative Commons Attribution 4.0 International License</a>.
