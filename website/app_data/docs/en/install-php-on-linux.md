@@ -39,7 +39,24 @@ If you are connecting to a Linux Could Server from either Windows or macOS there
 ## Quick Reference Code
 This section shows several different installation options for Linux using shell (terminal / command-prompt). If you are familiar with using shell and are installing on one of the listed OS’s you can use this quick reference. These instructions currently provide an overview of the initial installation. Depending on your OS you may want install additional Apache extensions to update various config files.
 
-### Installation on Ubuntu
+### Quick Setup
+
+~~~
+# A bash script is available for a quick setup of Apache, PHP, and FastSitePHP
+# with a Starter Site. This script works for a full setup on a default OS when
+# nothing is installed.
+
+# This script is safe to run multiple times because it checks for if programs
+# such php are already installed, and prompts before overwriting an existing site.
+
+# Supported Operating Systems (more will be added in the future):
+#   Ubuntu 18.04 LTS
+
+swget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/shell/bash/create-fastsitephp-app.sh
+sudo bash create-fastsitephp-app.sh
+~~~
+
+### Installation on Ubuntu (Detailed)
 ~~~
 # Update [apt] Package Manager
 # The [upgrade] is not required but recommend (however, it takes many minutes)

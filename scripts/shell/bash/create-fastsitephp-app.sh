@@ -21,9 +21,8 @@
 #      wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/shell/bash/create-fastsitephp-app.sh
 #      sudo bash create-fastsitephp-app.sh
 #
-#  This script is generally safe to run multiple times because it checks
-#  for if programs such as php are already installed, and prompts before
-#  overwriting and existing site.
+#  This script is safe to run multiple times because it checks for if programs such
+#  as php are already installed, and prompts before overwriting an existing site.
 #
 #  This script is linted using:
 #  https://www.shellcheck.net/
