@@ -955,6 +955,49 @@
         ]
     },
     {
+        "name": "FastSitePHP\\FileSystem\\Sync",
+        "link": "FileSystem_Sync",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Sync->function dirFrom($new_value = null)",
+                "link": "FileSystem_Sync#fn_dirFrom"
+            },
+            {
+                "name": "Sync->function dirTo($new_value = null)",
+                "link": "FileSystem_Sync#fn_dirTo"
+            },
+            {
+                "name": "Sync->function excludeNames(array $new_value = null)",
+                "link": "FileSystem_Sync#fn_excludeNames"
+            },
+            {
+                "name": "Sync->excludeRegExPaths(array $new_value = null)",
+                "link": "FileSystem_Sync#fn_excludeRegExPaths"
+            },
+            {
+                "name": "Sync->function summaryTitle($new_value = null)",
+                "link": "FileSystem_Sync#fn_summaryTitle"
+            },
+            {
+                "name": "Sync->function dryRun($new_value = null)",
+                "link": "FileSystem_Sync#fn_dryRun"
+            },
+            {
+                "name": "Sync->function hashAlgo($new_value = null)",
+                "link": "FileSystem_Sync#fn_hashAlgo"
+            },
+            {
+                "name": "Sync->function sync()",
+                "link": "FileSystem_Sync#fn_sync"
+            },
+            {
+                "name": "Sync->function printResults()",
+                "link": "FileSystem_Sync#fn_printResults"
+            }
+        ]
+    },
+    {
         "name": "FastSitePHP\\Lang\\I18N",
         "link": "Lang_I18N",
         "properties": [
@@ -979,6 +1022,10 @@
             {
                 "name": "I18N::textFile($file_path, $lang)",
                 "link": "Lang_I18N#fn_textFile"
+            },
+            {
+                "name": "I18N::getUserDefaultLang()",
+                "link": "Lang_I18N#fn_getUserDefaultLang"
             },
             {
                 "name": "I18N::setup(Application $app)",

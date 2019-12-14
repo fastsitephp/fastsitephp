@@ -2982,6 +2982,35 @@ $app->get('/examples/file-system-search', function() use ($app) {
         ]));
 });
 
+$app->get('/examples/file-system-sync', function() use ($app) {
+    // Modify here if testing locally
+    $dir_from = __DIR__ . '/../../../../Test/src1';
+    $dir_to = __DIR__ . '/../../../../Test/src2';
+
+    // EXAMPLE_CODE_START
+    // TITLE: File System Sync
+    // CLASS: FileSystem\Sync
+    // Create a FileSystem Sync Object
+    $sync = new FastSitePHP\FileSystem\Sync();
+    
+    // Sync files and directories (folders) from [dirFrom(path)] to [dirTo(path)].
+    // The sync is recursive so all files and directories are synced in all
+    // sub-directories. Required functions are [dirFrom, dirTo, and sync].
+    // To view the results call [printResults()] after calling [sync()].
+    // All options with defaults are shown below.
+    $sync
+        ->dirFrom($dir_from)
+        ->dirTo($dir_to)
+        ->excludeNames(['package-lock.json'])
+        ->excludeRegExPaths(['/node_modules/'])
+        ->summaryTitle('File System Sync Results')
+        ->hashAlgo('sha256')
+        ->dryRun(false) // Set to [true] for testing
+        ->sync()
+        ->printResults();
+    // EXAMPLE_CODE_END
+});
+
 $app->get('/examples/markdown', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Convert Markdown to HTML using PHP
@@ -4004,6 +4033,15 @@ $app->get('/examples/i18n', function() use ($app) {
     // the file or if it doesn't exist, the matching file for the fallback language.
     $file_path = $app->config['I18N_DIR'] . '/test-{lang}.txt';
     $content = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
+
+    // Use [getUserDefaultLang()] to get the default language for the user based
+    // on the 'Accept-Language' Request Header and available languages for the site.
+    //
+    // This is useful to provide custom content for the user or to redirect to the
+    // user's language when they access the default URL. 
+    //
+    // Requires config values I18N_DIR and I18N_FALLBACK_LANG.
+    $default_lang = \FastSitePHP\Lang\I18N::getUserDefaultLang();
     // EXAMPLE_CODE_END
 
     // Return Text Response
@@ -4013,6 +4051,7 @@ $app->get('/examples/i18n', function() use ($app) {
         ->content(implode("\n", [
             json_encode($app->locals['i18n'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
             $content,
+            $default_lang,
         ]));
 });
 

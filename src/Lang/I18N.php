@@ -13,6 +13,7 @@ namespace FastSitePHP\Lang;
 
 use FastSitePHP\Application;
 use FastSitePHP\FileSystem\Security;
+use FastSitePHP\Web\Request;
 
 /**
  * Internationalization (I18N) API
@@ -63,6 +64,11 @@ class I18N
      * @var bool
      */
     public static $redirect_on_missing_lang = false;
+
+    /**
+     * Private variables used for logic
+     */
+    private static $lang_matched = false;
 
     /**
      * This function read JSON files from a directory specified in the config setting
@@ -121,7 +127,6 @@ class I18N
         $dir = self::validateDir($app);
         self::validateLang($lang);
         $fallback_lang = (isset($app->config['I18N_FALLBACK_LANG']) ? $app->config['I18N_FALLBACK_LANG'] : null);
-        $lang_matched = false;
         $main_file_loaded = false;
         $path = null;
 
@@ -152,7 +157,7 @@ class I18N
                 $json = file_get_contents($path);
                 $i18n = array_merge($i18n, json_decode($json, true));
                 self::$loaded_files[] = $path;
-                $lang_matched = true;
+                self::$lang_matched = true;
                 $main_file_loaded = true;
             }
         }
@@ -188,27 +193,27 @@ class I18N
                 $i18n = array_merge($i18n, $json);
                 self::$loaded_files[] = $path;
                 $was_found = true;
-                $lang_matched = true;
+                self::$lang_matched = true;
             }
         }
 
-        // Language not matched, redirect to fallback language if possible or send a 404 error.
-        // This requires the site to be setup like this: "https://www.example.com/{lang}/{pages}".
-        if (!$lang_matched && $fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
-            // Build URL with the Fallback Language
-            $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '');
-            if (strpos($url, '/' . $lang . '/') === 0) {
-                $url = $app->rootDir() . $fallback_lang . '/' . substr($url, strlen($lang) + 2);
-            } elseif ($url === '/' . $lang) {
-                $url = $app->rootDir() . $fallback_lang;
-            }
-
-            // Redirect (optional) or Send a 404 Response (default)
-            if ($url !== '') {
-                if (self::$redirect_on_missing_lang) {
+        // Language not matched, send a 404 error (default) or optionally redirect to fallback language
+        // Fallback redirect requires the site to be setup like this: "https://www.example.com/{lang}/{pages}".
+        if (!self::$lang_matched) {
+            // Send a 404 Response and terminate the response (default)
+            if (!self::$redirect_on_missing_lang) {
+                $app->sendPageNotFound();
+            // Or Redirect (optional)
+            } else if ($fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
+                // Build URL with the Fallback Language
+                $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '');
+                if (strpos($url, '/' . $lang . '/') === 0) {
+                    $url = $app->rootDir() . $fallback_lang . '/' . substr($url, strlen($lang) + 2);
+                } elseif ($url === '/' . $lang) {
+                    $url = $app->rootDir() . $fallback_lang;
+                }
+                if ($url !== '') {
                     $app->redirect($url);
-                } else {
-                    $app->sendPageNotFound();
                 }
             }
         }
@@ -307,6 +312,49 @@ class I18N
             $error = sprintf($error, $lang_files[0]);
         }
         throw new \Exception($error);
+    }
+
+    /**
+     * Return the default language for the user based on the 'Accept-Language'
+     * request header and available languages for the site.
+     *
+     * This is useful to provide custom content for the user or to redirect
+     * to the user's language when they access the default URL.
+     *
+     * Requires config values:
+     *     $app->config['I18N_DIR']
+     *     $app->config['I18N_FALLBACK_LANG']
+     *
+     * Example usage:
+     *     $app->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
+     */
+    public static function getUserDefaultLang()
+    {
+        // Use the Global Application Object
+        global $app;
+
+        // Fallback language is required
+        if (!isset($app->config['I18N_FALLBACK_LANG'])) {
+            throw new \Exception('The app config value [I18N_FALLBACK_LANG] needs to be set before calling this function.');
+        }
+
+        // Get and Validate the i18n dir
+        $dir = self::validateDir($app);
+
+        // Read the 'Accept-Language' as an array and check each langauge
+        $req = new Request();
+        $langs = $req->acceptLanguage();
+        $matched_lang = null;
+        foreach ($langs as $lang) {
+            $name = '_.' . $lang['value'] . '.json';
+            if (Security::dirContainsFile($dir, $name)) {
+                $matched_lang = $lang['value'];
+                break;
+            }
+        }
+
+        // Return matched language or fallback
+        return ($matched_lang ? $matched_lang : $app->config['I18N_FALLBACK_LANG']);
     }
 
     /**

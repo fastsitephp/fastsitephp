@@ -51,7 +51,7 @@
     <div>
         <p><?= $app->escape($i18n['security_issue']) ?></p>
         <p>
-        <a href="https://www.dataformsjs.com/#/en/playground" target="_blank">https://www.dataformsjs.com/#/en/playground</a>
+        <a href="https://www.dataformsjs.com/en/playground" target="_blank">https://www.dataformsjs.com/en/playground</a>
         </p>
     </div>
     <form method="POST">

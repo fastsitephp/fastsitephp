@@ -64,7 +64,7 @@ https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/sample-c
 
 ## Main Site Readme
 
-Some of this content is duplicated from the main home page so some content simply be copied after translating JSON files.
+Some of this content is duplicated from the main home page so some content simply be copied after translating JSON files. The 'Paid Translators Needed' section should be manually deleted on the copied file.
 
 `fastsitephp\docs\i18n-readme\README.{lang}.md`
 

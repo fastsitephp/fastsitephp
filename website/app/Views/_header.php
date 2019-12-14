@@ -47,7 +47,14 @@
 				default:
 					$github = 'https://github.com/fastsitephp/fastsitephp';
 			}
-			$current_page = substr($app->requestedPath(), strlen($app->lang) + 1);
+			$current_page = $app->requestedPath();
+			if ($current_page !== '') {
+				$components = explode('/', $current_page);
+				$current_page = substr($current_page, strlen($components[1]) + 1);
+			}
+			if ($current_page === '') {
+				$current_page = '/';
+			}
 			?>
 			<nav class="site-nav">
 				<div class="mobile-nav">
@@ -125,8 +132,8 @@
 						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 						</li>
-						<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
+						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 						</li>
 					</ul>
 				</div>
@@ -183,8 +190,8 @@
 							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 							</li>
-							<li<?= ($app->lang === 'zh-Hans' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . 'zh-Hans' . $current_page) ?>">中文 (简体)</a>
+							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 							</li>
 						</ul>
 					</li>

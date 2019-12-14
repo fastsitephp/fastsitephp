@@ -106,7 +106,7 @@
             "name": "not_found_page_title",
             "target": "prop_not_found_page_title",
             "isStatic": false,
-            "defaultValue": "\"Page Not Found\"",
+            "defaultValue": "\"404 - Page Not Found\"",
             "description": "Title for 404 'Not Found' Responses, available as [$page_title] for the template.",
             "attributes": [
                 "@var string|null"

@@ -8,7 +8,10 @@
         "@link http:\/\/cldr.unicode.org\/",
         "@link https:\/\/en.wikipedia.org\/wiki\/Languages_used_on_the_Internet",
         "@link https:\/\/en.wikipedia.org\/wiki\/List_of_countries_by_number_of_Internet_users",
-        "@link http:\/\/php.net\/manual\/en\/function.date.php"
+        "@link http:\/\/php.net\/manual\/en\/function.date.php",
+        "@link https:\/\/github.com\/unicode-cldr\/cldr-dates-modern\/",
+        "@link https:\/\/github.com\/unicode-cldr\/cldr-numbers-modern\/",
+        "@link https:\/\/github.com\/unicode-cldr\/cldr-localenames-modern\/"
     ],
     "properties": [],
     "methods": [
@@ -150,6 +153,9 @@
         "http:\/\/cldr.unicode.org\/",
         "https:\/\/en.wikipedia.org\/wiki\/Languages_used_on_the_Internet",
         "https:\/\/en.wikipedia.org\/wiki\/List_of_countries_by_number_of_Internet_users",
-        "http:\/\/php.net\/manual\/en\/function.date.php"
+        "http:\/\/php.net\/manual\/en\/function.date.php",
+        "https:\/\/github.com\/unicode-cldr\/cldr-dates-modern\/",
+        "https:\/\/github.com\/unicode-cldr\/cldr-numbers-modern\/",
+        "https:\/\/github.com\/unicode-cldr\/cldr-localenames-modern\/"
     ]
 }

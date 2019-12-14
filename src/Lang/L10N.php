@@ -27,6 +27,9 @@ use FastSitePHP\FileSystem\Security;
  * @link https://en.wikipedia.org/wiki/Languages_used_on_the_Internet
  * @link https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users
  * @link http://php.net/manual/en/function.date.php
+ * @link https://github.com/unicode-cldr/cldr-dates-modern/
+ * @link https://github.com/unicode-cldr/cldr-numbers-modern/
+ * @link https://github.com/unicode-cldr/cldr-localenames-modern/
  */
 class L10N
 {

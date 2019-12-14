@@ -11,7 +11,7 @@
     
 	runHttpUnitTest("Application Object - Template Rendering - 404 Not Found - PHP", "test-app-render.php/php-404", {
 	    status: 404,
-	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
+	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][404 - Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - 404 Not Found - HTML", "test-app-render.php/file-404", {
@@ -21,7 +21,7 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - 404 Not Found - Text", "test-app-render.php/custom-404", {
 	    status: 404,
-	    response: "[HeaderText1][header&amp;data][NotFoundText1][Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
+	    response: "[HeaderText1][header&amp;data][NotFoundText1][404 - Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Missing 404 Not Found - PHP", "test-app-render.php/php-missing-not-found", {
@@ -59,7 +59,7 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Multiple 404 Not Found - PHP", "test-app-render.php/php-multiple-not-found", {
 	    status: 404,
-	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][Page Not Found][The requested page could not be found.][NotFoundPhp2][Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
+	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][404 - Page Not Found][The requested page could not be found.][NotFoundPhp2][404 - Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Multiple 404 Not Found - HTML", "test-app-render.php/file-multiple-not-found", {
@@ -69,7 +69,7 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Multiple 404 Not Found - Text", "test-app-render.php/custom-multiple-not-found", {
 	    status: 404,
-	    response: "[HeaderText1][header&amp;data][NotFoundText1][Page Not Found][The requested page could not be found.][NotFoundText2][Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
+	    response: "[HeaderText1][header&amp;data][NotFoundText1][404 - Page Not Found][The requested page could not be found.][NotFoundText2][404 - Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error with Not Found - PHP", "test-app-render.php/php-error-with-not-found", {
@@ -348,7 +348,7 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - pageNotFound() function - PHP", "test-app-render.php/php-page-not-found", {
 	    status: 404,
-	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
+	    response: "[HeaderPhp1][header&amp;data][NotFoundPhp1][404 - Page Not Found][The requested page could not be found.][FooterPhp1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - pageNotFound() function - HTML", "test-app-render.php/file-page-not-found", {
@@ -358,7 +358,7 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - pageNotFound() function - Text", "test-app-render.php/custom-page-not-found", {
 	    status: 404,
-	    response: "[HeaderText1][header&amp;data][NotFoundText1][Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
+	    response: "[HeaderText1][header&amp;data][NotFoundText1][404 - Page Not Found][The requested page could not be found.][FooterText1][footer&amp;data]"
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - pageNotFound() function with Custom Message - PHP", "test-app-render.php/php-page-not-found-custom", {
