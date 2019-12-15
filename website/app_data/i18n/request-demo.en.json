@@ -5,7 +5,7 @@
     "req_props": "Request Functions",
     "req_props_desc": "The Request Object contains a number of functions for easily reading common request info such as IP Addresses and also help functions for reading common headers such as [userAgent()]. In addition the Request Object has the ability to securely read proxy headers (for example: Headers sent by a Load Balancer). For full details and parameters of each function refer to API Documentation.",
     "req_content": "Request Content",
-    "req_content_desc": "The request object includes a number of functions that make reading request content easy. This includes JSON Posts, Form Posts, JWT Cookies, are more. For examples see API Documentation or the Quick Reference Section.",
+    "req_content_desc": "The request object includes a number of functions that make reading request content easy. This includes JSON Posts, Form Posts, JWT Cookies, and more. For examples see API Documentation or the Quick Reference Section.",
     "request_headers": "Request Headers",
     "request_headers_desc": "You are requesting this page from IP Address [{ip}]; here are the request headers that your browser submitted.",
     "proxy": "Proxy",

@@ -25,7 +25,7 @@
     "file_deleted": "File Deleted",
     "file_already_exists": "File already exits",
     "name_not_allowed": "Name not allowed",
-    "confirm_site_delete": "Are you are that you want to delete your playground site?",
+    "confirm_site_delete": "Are you sure that you want to delete your playground site?",
     "minutes_remaining": "{time} Minutes Remaining",
     "seconds_remaining": "{time} Seconds Remaining",
     "one_second_remaining": "1 Second Remaining",
