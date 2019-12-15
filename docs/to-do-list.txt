@@ -23,6 +23,23 @@ TODO List
 *) Starter Site
     - Need to add i18n nav menus for both mobile and desktop
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
+    - Add a Auth Demo page to the Starter-Site
+        It will use JWT with a Cookie and not PHP session
+
+* Install Script [create-fast-site.sh]
+    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
+    - Add option to choose either nginx or apache
+        Allow param '-a' or Apache or '-n' for nginx
+        If no param then likely prompt user for which web server to use
+    - Possibly modify Apache config to allow for more concurrent users based
+      on available OS memory and server size. This will likely require a decent
+      amount of time for testing various senarios and servers of different sizes.
+      At the very least - likely allow for more based on what would work
+      on a small 512 mb memory server (smallest on AWS) or a 1 gb server (smallest on DigitalOcean).
+
+*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Use tab layout for different OS's and options
+    - Add nginx install guide
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
@@ -118,9 +135,6 @@ TODO List
         Under the HTML <head> attribute only when using the playground site.
         Only keep and use if it makes a real difference, it's unlikely to do so though. See:
         https://developers.google.com/web/fundamentals/performance/resource-prioritization
-
-*) Add a Auth Demo page to the Starter-Site
-    It will use JWT with a Cookie and not PHP session
 
 *) I18N Editor
     - FastSitePHP\Templates\i18n-editor.php
