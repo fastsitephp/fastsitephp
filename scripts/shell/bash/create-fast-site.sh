@@ -18,8 +18,8 @@
 #
 #  Download and running this script (requires root/sudo).
 #  This script works on a default OS when nothing is installed.
-#      wget https://www.fastsitephp.com/downloads/create-fastsitephp-app.sh
-#      sudo bash create-fastsitephp-app.sh
+#      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+#      sudo bash create-fast-site.sh
 #
 #  This script is safe to run multiple times because it checks for if programs such
 #  as php are already installed, and prompts before overwriting an existing site.

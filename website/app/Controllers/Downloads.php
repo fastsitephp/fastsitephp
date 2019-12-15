@@ -23,10 +23,12 @@ class Downloads
                     $file_path = __DIR__ . '/../../../scripts/shell/bash/encrypt.sh';
                 }
                 return (new Response())->file($file_path, 'download');
+            case 'create-fast-site.sh':
             case 'create-fastsitephp-app.sh':
-                $file_path = __DIR__ . '/../../scripts/shell/bash/create-fastsitephp-app.sh';
+                // When first published [create-fast-site.sh] was named [create-fastsitephp-app.sh]
+                $file_path = __DIR__ . '/../../scripts/shell/bash/create-fast-site.sh';
                 if (!is_file($file_path)) {
-                    $file_path = __DIR__ . '/../../../scripts/shell/bash/create-fastsitephp-app.sh';
+                    $file_path = __DIR__ . '/../../../scripts/shell/bash/create-fast-site.sh';
                 }
                 return (new Response())->file($file_path, 'download');
             case 'fastsitephp':
