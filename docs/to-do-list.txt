@@ -20,6 +20,47 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Full Support for nginx needed on basic nginx install
+    - [fastsitephp/src/Application.php], line 2000:
+        Replace:
+            if ($url === null) {
+        With:
+            if ($url === null || $url === '') {
+    - Before making the update do full tests with Apache and IIS and create more Unit Tests
+    - Using nginx Basic Install for Ubuntu:
+        sudo apt update
+        sudo apt install -y nginx
+        sudo ufw allow 'Nginx HTTP'
+        sudo apt install -y php-fpm
+        sudo nano /etc/nginx/sites-available/default
+            index index.php index.html index.htm index.nginx-debian.html;
+            try_files $uri $uri/ /index.php$is_args$args;
+            location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+            }
+        # Note, the above file is typically not modified on production systems, see comments in the file
+        sudo systemctl reload nginx
+        sudo adduser ubuntu www-data
+        sudo chown ubuntu:www-data -R /var/www
+        sudo chmod 0775 -R /var/www
+        cd /var/www/html
+        echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
+        # Install FastSitePHP Starter Site:
+        cd ~
+        wget https://github.com/fastsitephp/starter-site/archive/master.zip
+        sudo apt install unzip
+        unzip master.zip
+        cp -r ~/starter-site-master/app /var/www/app
+        cp -r ~/starter-site-master/app_data /var/www/app_data
+        cp -r ~/starter-site-master/scripts /var/www/scripts
+        cp -r ~/starter-site-master/public/. /var/www/html
+        sudo apt install php7.2-zip
+        php /var/www/scripts/install.php
+        sudo rm /var/www/html/.htaccess
+        sudo rm /var/www/html/Web.config
+        sudo rm /var/www/html/index.nginx-debian.html 
+
 *) Starter Site
     - Need to add i18n nav menus for both mobile and desktop
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
