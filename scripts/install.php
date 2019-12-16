@@ -45,6 +45,7 @@ error_reporting(-1);
 ini_set('display_errors', 'on');
 
 // Constants
+const ERR_SCRIPT_FAILED = 1;
 define('IS_CLI', (php_sapi_name() === 'cli'));
 define('LINE_BREAK', (IS_CLI ? PHP_EOL : '<br>'));
 define('VENDOR_DIR', __DIR__ . '/../vendor');
@@ -69,11 +70,11 @@ define('CACERT_FILE', sys_get_temp_dir() . '/install-cacert.pem');
  */
 $downloads = array(
     array(
-        'url' => 'https://github.com/fastsitephp/fastsitephp/archive/1.1.0.zip',
+        'url' => 'https://github.com/fastsitephp/fastsitephp/archive/{tag_name}.zip',
         'save_file' => __DIR__ . '/FastSitePHP.zip',
         'check_file' => VENDOR_DIR . '/fastsitephp/src/Application.php',
         'composer_file' => VENDOR_DIR . '/fastsitephp/fastsitephp/src/Application.php', // Composer uses an extra nested directory
-        'rename_from' => VENDOR_DIR . '/fastsitephp-1.1.0',
+        'rename_from' => VENDOR_DIR . '/fastsitephp-{tag_name}',
         'rename_to' => VENDOR_DIR . '/fastsitephp',
         'skip_check' => __DIR__ . '/../src/Application.php', // Skip download if running within Framework
     ),
@@ -138,6 +139,7 @@ function downloadCACert() {
     }
 
     // Status
+    echo str_repeat('-', 80) . LINE_BREAK;
     echo 'Downloading: ' . CACERT_URL . LINE_BREAK;
 
     // Download and verify contents
@@ -152,7 +154,7 @@ function downloadCACert() {
         }
         echo 'Response:' . LINE_BREAK;
         var_dump($contents);
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
 
     // Write to file and verify written file
@@ -161,12 +163,47 @@ function downloadCACert() {
         echo 'ERROR - Downloaded CA Cert File does not match the known SHA-256 Hash:' . LINE_BREAK;
         echo 'Expected: ' . CACERT_SHA256 . LINE_BREAK;
         echo 'File Hash: ' . hash_file('sha256', CACERT_FILE) . LINE_BREAK;
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
 
     // File is valid if code execution makes it here
     echo 'CA Cert File Saved: ' . CACERT_FILE . LINE_BREAK;
     echo 'CA Cert File Hash Verified: ' . CACERT_SHA256 . LINE_BREAK;
+}
+
+/**
+ * Use GitHub's API to get the latest release of FastSitePHP
+ *
+ * @return string
+ */
+function getLatestRelease() {
+    $url = 'https://api.github.com/repos/fastsitephp/fastsitephp/releases/latest';
+    $http_options = array(
+        'ssl' => array(
+            'ciphers' => 'HIGH',
+            'cafile' => CACERT_FILE,
+        ),
+        'http' => array(
+            'method' => 'GET',
+            'header' => array(
+                'User-Agent: php/' . phpversion(),
+            ),
+        ),
+    );
+    // Status
+    echo str_repeat('-', 80) . LINE_BREAK;
+    echo 'Getting latest release of FastSitePHP: ' . $url . LINE_BREAK;
+    $context = stream_context_create($http_options);
+    $response = file_get_contents($url, null, $context);
+    $json = json_decode($response);
+    if ($json && isset($json->tag_name)) {
+        echo 'Version: ' . $json->tag_name . LINE_BREAK;
+        return $json->tag_name;
+    } else {
+        echo 'ERROR - Unable to determine latest FastSitePHP Release using URL:' . LINE_BREAK;
+        echo $url . LINE_BREAK;
+        exit(ERR_SCRIPT_FAILED);
+    }
 }
 
 /**
@@ -182,11 +219,6 @@ function downloadZip($url, $path) {
         return;
     }
 
-    // Make sure [cacert.pem] is downloaded and valid
-    if (strpos($url, 'https://') === 0) {
-        downloadCACert();
-    }
-
     // Status
     echo 'Downloading: ' . $url . LINE_BREAK;
     echo 'Save Location: ' . $path . LINE_BREAK;
@@ -200,7 +232,7 @@ function downloadZip($url, $path) {
     );
     $context = stream_context_create($http_options);
     $response = file_get_contents($url, null, $context);
-    
+
     // Look for a 200 Response Code, example:
     //     'HTTP/1.0 200 OK'
     //     'HTTP/1.1 200 OK'
@@ -226,7 +258,7 @@ function downloadZip($url, $path) {
         foreach ($http_response_header as $header) {
             echo $header . LINE_BREAK;
         }
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
 }
 
@@ -251,7 +283,7 @@ function extractZip($download) {
         echo 'File extracted successfully' . LINE_BREAK;
     } else {
         echo 'Error extracting Zip' . LINE_BREAK;
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
 
     // Create the [vendor/{owner}] Directory if needed
@@ -278,7 +310,7 @@ function extractZip($download) {
     } else {
         echo 'ERROR - the following file was not found after unzipping the Zip file. Check your file permissions and any warning or error messages' . LINE_BREAK;
         echo $path . LINE_BREAK;
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
 
     // Status
@@ -345,12 +377,24 @@ function main($downloads) {
     // Running from command line or localhost? (both client and server are required)
     if (!(IS_CLI || isLocal())) {
         echo 'No Action Taken - Exiting Script. Running this file requires server access. You need to run from either Command Line or directly on the server/computer.' . LINE_BREAK;
-        exit();
+        exit(ERR_SCRIPT_FAILED);
     }
+
+    // Make sure [cacert.pem] is downloaded and valid
+    downloadCACert();
+
+    // Get the latest release tag/number of FastSitePHP
+    $tag_name = getLatestRelease();
 
     // Download and Extract Zip Files
     createVendorDir();
     foreach ($downloads as $download) {
+        if (strpos($download['url'], '{tag_name}') !== false) {
+            // For FastSitePHP lastest release
+            $download['url'] = str_replace('{tag_name}', $tag_name, $download['url']);
+            $download['rename_from'] = str_replace('{tag_name}', $tag_name, $download['rename_from']);
+        }
+        // Download or Skip
         echo str_repeat('-', 80) . LINE_BREAK;
         $install = (!isset($download['install']) || $download['install'] === true);
         if (!$install) {

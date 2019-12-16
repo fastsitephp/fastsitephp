@@ -89,6 +89,12 @@ TODO List
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
     - Add a Auth Demo page to the Starter-Site
         It will use JWT with a Cookie and not PHP session
+    - Need a new [scripts/sync-server.sh] Script
+        - See similar script for main server
+            https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
+        - The version for the starter site will be based on the main server script
+          but apply to the stater site only and it will include comments (and in repository readme file)
+          on how to use and customize for a private site. 
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
@@ -158,13 +164,7 @@ TODO List
             vendor\FastSitePHP\scripts\create-api-json-files.php
 
 *) Additional Updates for [install.php] on the Starter and Main sites
-    - Add SHA256 or SHA384 file verification for download zip files?
     - Add initial permissions check and helpfull warning if user does't have write access
-    - echo colors for console (example [green=success], [red=error]), see [encrypt.sh]
-    - Possibly create an HTML install wizard and allow access by any user (non-local)
-      if the site is not yet setup
-    - Allow the script to setup common apache config if using sudo?
-      This would take a decent amount of work and testing but would be helpful.
     - The script is likely to not work now when using very old versions of PHP [5.3, 5.4].
       Would likley have to switch to an alternative HTTP download link and then performance
       SHA256 or SHA384 file verification. This would not be ideal as it reqiures a duplicate
