@@ -81,7 +81,9 @@
         responseContains: [[
             "[/check-file-setup], Test Skipped, Running on Windows",
             "[/check-file-setup], [Tests: 3], {valid:boolean, whoami:string, path:string, getenforce:string_or_null, commands:array[openssl:string, echo:string, cat:string, cp:string, tail:string, rm:string, ruby:string, xxd:string, ]}",
-            "[/check-file-setup], [Tests: 3], {valid:boolean, whoami:string, path:string, getenforce:string_or_null, commands:array[openssl:string, echo:string, cat:string, cp:string, tail:string, rm:string, truncate:string, stat:string, xxd:string, ]}"
+            "[/check-file-setup], [Tests: 3], {valid:boolean, whoami:string, path:string, getenforce:string_or_null, commands:array[openssl:string, echo:string, cat:string, cp:string, tail:string, rm:string, truncate:string, stat:string, xxd:string, ]}",
+            // Nginx will return [path:boolean] using a standard setup:
+            "[/check-file-setup], [Tests: 3], {valid:boolean, whoami:string, path:boolean, getenforce:string_or_null, commands:array[openssl:string, echo:string, cat:string, cp:string, tail:string, rm:string, truncate:string, stat:string, xxd:string, ]}"
         ]]
     });
 

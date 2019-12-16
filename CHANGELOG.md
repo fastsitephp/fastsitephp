@@ -1,6 +1,20 @@
 # FastSitePHP Change Log
 
-FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning).
+FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log also includes Framework release history and new website features or major changes.
+
+## 1.1.2 (December 16, 2019)
+
+* Updates for easier nginx suppport using a basic nginx install
+  * Change affected [Application->requestedPath()] and [AppMin->requestedPath()] so handle empty string "" for PATH_INFO
+
+## Website (December 12, 2019)
+
+* Created a script that allows easy web server setup with Apache, PHP, and the FastSitePHP Starter Site
+
+~~~
+wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+sudo bash create-fast-site.sh
+~~~
 
 ## 1.1.1 (December 12, 2019)
 

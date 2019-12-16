@@ -1993,11 +1993,13 @@ class Application
      */
     public function requestedPath()
     {
-        // If PATH_INFO is set use it (some versions of Apache depending on config)
-        // otherwise code below should work for IIS and Apache (Apache 2.0 Handler and CGI/FastCGI).
+        // Use PATH_INFO if set, this will typically be on newer
+        // versions of Apache depending on the config.
         $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null);
 
-        if ($url === null) {
+        // IIS, Nginx, and some versions of Apache will use the code block below.
+        // IIS and Apache will likely use [$url === null] and Nginx will use [$url === ''].
+        if ($url === null || $url === '') {
             // If running from CLI the URI will not be set
             if (!isset($_SERVER['REQUEST_URI'])) {
                 return null;
@@ -2007,8 +2009,8 @@ class Application
 
             // For cases where URL contains the PHP page [ex: /public/index.php/test]
             // and SCRIPT_NAME is similar to [/public/index.php].
-            // If the base script file name [ex: index.php] is not found in the 
-            // script name then the request could be comming from the PHP built-in 
+            // If the base script file name [ex: index.php] is not found in the
+            // script name then the request could be comming from the PHP built-in
             // Webserver using a router page so keep the existing URL.
             if (strpos($url, $script_name) === 0) {
                 if (strpos($script_name, basename($_SERVER['SCRIPT_FILENAME'])) !== false) {

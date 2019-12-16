@@ -20,13 +20,16 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-*) Full Support for nginx needed on basic nginx install
-    - [fastsitephp/src/Application.php], line 2000:
-        Replace:
-            if ($url === null) {
-        With:
-            if ($url === null || $url === '') {
-    - Before making the update do full tests with Apache and IIS and create more Unit Tests
+* Install Script [create-fast-site.sh]
+    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
+    - Add option to choose either nginx or apache
+        Allow param '-a' or Apache or '-n' for nginx
+        If no param then likely prompt user for which web server to use
+    - Possibly modify Apache config to allow for more concurrent users based
+      on available OS memory and server size. This will likely require a decent
+      amount of time for testing various senarios and servers of different sizes.
+      At the very least - likely allow for more based on what would work
+      on a small 512 mb memory server (smallest on AWS) or a 1 gb server (smallest on DigitalOcean).
     - Using nginx Basic Install for Ubuntu:
         sudo apt update
         sudo apt install -y nginx
@@ -35,11 +38,20 @@ TODO List
         sudo nano /etc/nginx/sites-available/default
             index index.php index.html index.htm index.nginx-debian.html;
             try_files $uri $uri/ /index.php$is_args$args;
-            location ~ \.php$ {
+            # location ~ \.php$ {
+            location ~ \.php {
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
             }
         # Note, the above file is typically not modified on production systems, see comments in the file
+        # Also the default [location ~ \.php$ {] will work however [location ~ \.php {] is needed
+        # for Unit Testing with the Web Server
+        # Also optional for unit testing:
+        sudo nano /etc/nginx/snippets/fastcgi-php.conf
+            Replace:
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            With:
+                fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
         sudo systemctl reload nginx
         sudo adduser ubuntu www-data
         sudo chown ubuntu:www-data -R /var/www
@@ -60,27 +72,23 @@ TODO List
         sudo rm /var/www/html/.htaccess
         sudo rm /var/www/html/Web.config
         sudo rm /var/www/html/index.nginx-debian.html 
+        # Unit Testing
+        sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
+        cd ~
+        wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+        unzip master.zip
+        cp -r ~/fastsitephp-master/tests /var/www/html/tests
+        # View http://example.com/tests/index.htm
+
+*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Use tab layout for different OS's and options
+    - Add nginx install guide
 
 *) Starter Site
     - Need to add i18n nav menus for both mobile and desktop
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
     - Add a Auth Demo page to the Starter-Site
         It will use JWT with a Cookie and not PHP session
-
-* Install Script [create-fast-site.sh]
-    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
-    - Add option to choose either nginx or apache
-        Allow param '-a' or Apache or '-n' for nginx
-        If no param then likely prompt user for which web server to use
-    - Possibly modify Apache config to allow for more concurrent users based
-      on available OS memory and server size. This will likely require a decent
-      amount of time for testing various senarios and servers of different sizes.
-      At the very least - likely allow for more based on what would work
-      on a small 512 mb memory server (smallest on AWS) or a 1 gb server (smallest on DigitalOcean).
-
-*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
-    - Use tab layout for different OS's and options
-    - Add nginx install guide
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
@@ -423,6 +431,14 @@ TODO List
     - Update JS Code to also allow CLI using Node.
     - After test converting the JS files to JSON and having a new core JS file and PHP version
       so that that Unit Tests can be run in Browser, with Node, or with PHP
+    - Strong ETags fail during Unit Testing with standard nginx setup.
+      Strong Etags are not common so this is acceptable, however it would be good to document
+      how to allow strong etags so the tests can pass:
+        "Response Object - Cache Headers Test - 3c - Strong ETag Function Test", "test-web-response.php/cache-headers-3-strong?_="
+        "Response Object - Cache Headers Test - 5b - 304 Response for Strong ETag", "test-web-response.php/cache-headers-5"
+      Related link:
+        https://forum.nginx.org/read.php?29,251164,251966
+      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx
 
 *) Unit Testing JS Clarification
     [responseContains] should be replaced with [responseMatchesOne] for a number of Tests

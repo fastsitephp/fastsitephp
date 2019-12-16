@@ -487,7 +487,7 @@ class AppMin
     public function requestedPath()
     {
         $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null);
-        if ($url === null) {
+        if ($url === null || $url === '') {
             if (!isset($_SERVER['REQUEST_URI'])) {
                 return null;
             }
