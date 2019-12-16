@@ -430,6 +430,7 @@ function main($downloads) {
     $err = error_get_last();
     if ($err !== null) {
         echo 'WARNING - an error has occurred. This site may or may not work. Review the full output and take any action needed (for example setting file permissions).' . LINE_BREAK;
+        exit(ERR_SCRIPT_FAILED);
     } else {
         echo 'SUCCESS - All files are downloaded and extracted to the correct folder' . LINE_BREAK;
     }
