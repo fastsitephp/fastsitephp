@@ -3,10 +3,11 @@
 # =============================================================================
 #
 #  ------------------------------------------------------------------
-#  Install Apache, PHP, and FastSitePHP with a Starter Site
+#  Bash Script to Setup a Web Server
+#  Install Apache or nginx, PHP, and FastSitePHP with a Starter Site
 #  ------------------------------------------------------------------
 #
-#  https://www.fastsitephp.com/
+#  https://www.fastsitephp.com
 #  https://github.com/fastsitephp/starter-site
 #
 #  Author:   Conrad Sollitt
@@ -17,9 +18,20 @@
 #      Ubuntu 18.04 LTS
 #
 #  Download and running this script (requires root/sudo).
-#  This script works on a default OS when nothing is installed.
+#  This script works on a default OS when nothing is installed and is
+#  expected to take about 1 minute.
+#
+#  Basic Usage:
 #      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
 #      sudo bash create-fast-site.sh
+#
+#  Options:
+#      -h  Show Help
+#      -a  Install using Apache
+#      -n  Install using nginx
+#
+#  Example:
+#      sudo bash create-fast-site.sh -a
 #
 #  This script is safe to run multiple times because it checks for if programs such
 #  as php are already installed, and prompts before overwriting an existing site.
@@ -31,20 +43,22 @@
 
 # Set Bash Options for this Script
 #   e - Exit if a command fails
-#   u - Exit if variable is unset
 #   o pipefail - Exit if any command in a pipe fails
-set -eou pipefail
+set -eo pipefail
 
 # Error Codes
 # Output for errors is sent to STDERR by using the
 # redirection command [>&2] before calling "echo".
+ERR_GENERAL=1
 ERR_NOT_ROOT=2
 ERR_MISSING_APT=3
 ERR_MISSING_USER=4
+ERR_INVALID_OPT=5
 
 # Font Formatting for Output
 FONT_RESET="\x1B[0m"
 FONT_BOLD="\x1B[1m"
+FONT_DIM="\x1B[2m"
 FONT_UNDERLINE="\x1B[4m"
 FONT_WHITE="\x1B[97m"
 FONT_BG_RED="\x1B[41m"
@@ -62,13 +76,88 @@ SCRIPT_NAME=$(basename "${SCRIPT_PATH}")
 main ()
 {
     # Declare local variables
-    local user php_ver file time_taken ip
+    local user time_taken ip
+
+    # Parse script params or get user input for server type
+    get_options "$@"
 
     # Environment Validation
     # These function will terminate the script if there is an error
     check_root
-    check_apt
     user=$(get_user)
+    check_apt
+
+    # Install Web Server (Apache or nginx) and PHP
+    if [[ "${server_type}" == "Apache" ]]; then
+        install_apache
+    else
+        install_nginx
+    fi
+
+    # Install the FastSitePHP Starter Site
+
+    # Navigate to your home directory and download the Starter Site
+    # This is a small download (~32 kb)
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Downloading FastSitePHP Stater Site${FONT_RESET}"
+    wget https://github.com/fastsitephp/starter-site/archive/master.zip
+    apt_install 'unzip'
+    unzip master.zip
+
+    # Copy Files
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Copying Files${FONT_RESET}"
+    copy_dir ./starter-site-master/app /var/www/app
+    copy_dir ./starter-site-master/app_data /var/www/app_data
+    copy_dir ./starter-site-master/scripts /var/www/scripts
+    cp -r ./starter-site-master/public/. /var/www/html
+
+    # Install FastSitePHP (~470 kb) and Dependencies (~20 - 40 kb)
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Installing FastSitePHP${FONT_RESET}"
+    php /var/www/scripts/install.php
+
+    # Delete files that are not needed including the Apache default page
+    # The [.htaccess] file being deleted is a version for local development
+    # that is copied from the starter site (it's not needed for production).
+    rm /var/www/html/.htaccess
+    rm /var/www/html/Web.config
+    # If this script runs more than once the files will already be deleted
+    if [[ -f /var/www/html/index.html ]]; then
+        rm /var/www/html/index.html
+    fi
+    if [[ -f /var/www/html/index.nginx-debian.html ]]; then
+        rm /var/www/html/index.nginx-debian.html
+    fi
+
+    # Remove the downloaded files
+    rm -r ./starter-site-master
+    rm ./master.zip
+
+    # Set Permissions so that the main OS account expected to be used by a developer
+    # exists and is granted access to create and update files on the site.
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Setting user permissions for ${user}${FONT_RESET}"
+    adduser "${user}" www-data
+    chown "${user}:www-data" -R /var/www
+    chmod 0775 -R /var/www
+
+    # Success, print summary
+    echo ""
+    echo ""
+    echo -e "${FONT_SUCCESS}Success!${FONT_RESET}"
+    echo "${server_type} has been installed and the FastSitePHP Starter Site is setup and ready to use."
+    time_taken=$(format_time $SECONDS)
+    echo "Time Taken to Install: [${time_taken}]"
+
+    # Get public IP for the server from Google and show to the user
+    # From: https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
+    ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
+    echo -e "View your site at: ${FONT_BOLD}${FONT_UNDERLINE}http://${ip}${FONT_RESET}"
+}
+
+# ---------------------------------------------------------
+# Install Apache and PHP
+# ---------------------------------------------------------
+install_apache ()
+{
+    local php_ver file
 
     # Install Apache and PHP
     apt_install 'apache2'
@@ -136,60 +225,76 @@ main ()
     # Restart Apache
     echo -e "${FONT_BOLD}${FONT_UNDERLINE}Restarting Apache${FONT_RESET}"
     service apache2 restart
+}
 
-    # Set Permissions so that the main OS account expected to be used by a developer
-    # exists and is granted access to create and update files on the site.
-    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Setting user permissions for ${user}${FONT_RESET}"
-    adduser "${user}" www-data
-    chown "${user}:www-data" -R /var/www
-    chmod 0775 -R /var/www
+# ---------------------------------------------------------
+# Install nginx and PHP
+# ---------------------------------------------------------
+install_nginx ()
+{
+    local php_ver file tab
 
-    # Install the FastSitePHP Starter Site
+    # Install nginx and PHP
+    apt_install 'nginx'
+    ufw allow 'Nginx HTTP'
+    apt_install 'php-fpm'
 
-    # Navigate to your home directory and download the Starter Site
-    # This is a small download (~32 kb)
-    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Downloading FastSitePHP Stater Site${FONT_RESET}"
-    wget https://github.com/fastsitephp/starter-site/archive/master.zip
-    apt_install 'unzip'
-    unzip master.zip
+    # Get the installed PHP major and minor version (example: 7.2)
+    php_ver=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
 
-    # Copy Files
-    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Copying Files${FONT_RESET}"
-    copy_dir ./starter-site-master/app /var/www/app
-    copy_dir ./starter-site-master/app_data /var/www/app_data
-    copy_dir ./starter-site-master/scripts /var/www/scripts
-    cp -r ./starter-site-master/public/. /var/www/html
+    # Add PHP Extensions. A large number of extensions exist and the
+    # installed PHP version number needs to be included. The extensions
+    # below are needed for all FastSitePHP common features to work and
+    # for all Unit Tests to succeed, however they are not required
+    # in order to use FastSitePHP.
+    apt_install "php${php_ver}-sqlite"
+    apt_install "php${php_ver}-gd"
+    apt_install "php${php_ver}-bc"
+    apt_install "php${php_ver}-simplexml"
 
-    # Install FastSitePHP (~470 kb) and Dependencies (~20 - 40 kb)
-    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Installing FastSitePHP${FONT_RESET}"
-    php /var/www/scripts/install.php
+    # The zip extension is required in order for the FastSitePHP
+    # install script to run.
+    apt_install "php${php_ver}-zip"
 
-    # Delete files that are not needed including the Apache default page
-    # The [.htaccess] file being deleted is a version for local development
-    # that is copied from the starter site (it's not needed for production).
-    rm /var/www/html/.htaccess
-    rm /var/www/html/Web.config
-    if [[ -f /var/www/html/index.html ]]; then
-        # If this script runs twice the file will already be deleted
-        rm /var/www/html/index.html
-    fi
+    # nginx Config
+    # Create an nginx site file: [/etc/nginx/sites-available/fastsitephp]
+    # This is based on the the default [/etc/nginx/sites-available/default]
+    # and includes the following changes:
+    #    index index.php ...
+    #    try_files $uri $uri/ /index.php$is_args$args;
+    #    Added section "location ~ \.php$ { ... }" based on nginx default
+    tab="$(printf '\t')"
+cat > /etc/nginx/sites-available/fastsitephp <<EOF
+server {
+${tab}listen 80 default_server;
+${tab}listen [::]:80 default_server;
 
-    # Remove the downloaded files
-    rm -r ./starter-site-master
-    rm ./master.zip
+${tab}root /var/www/html;
+${tab}index index.php index.html index.htm index.nginx-debian.html;
 
-    # Success! print summary
-    echo ""
-    echo ""
-    echo -e "${FONT_SUCCESS}Success!${FONT_RESET}"
-    echo "The FastSitePHP Starter Site is setup and ready to use."
-    time_taken=$(format_time $SECONDS)
-    echo "Time Taken to Install: [${time_taken}]"
+${tab}server_name _;
 
-    # Get public IP for the server from Google and show to the user
-    # From: https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
-    ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
-    echo -e "View your site at: ${FONT_BOLD}${FONT_UNDERLINE} http://${ip}/ ${FONT_RESET}"
+${tab}location / {
+${tab}${tab}try_files \$uri \$uri/ /index.php\$is_args\$args;
+${tab}}
+${tab}location ~ \.php$ {
+${tab}${tab}include snippets/fastcgi-php.conf;
+${tab}${tab}fastcgi_pass unix:/var/run/php/php${php_ver}-fpm.sock;
+${tab}}
+}
+EOF
+
+    # For nginx sites under [sites-enabled] use a symbolic link to
+    # [sites-available]. Create a link for [fastsitephp] then remove the
+    # symbolic link for [default]. The actual [default] file still exists
+    # under [sites-available]. nginx recommends not editing the [default]
+    # file in production servers. For more see comments in the file itself.
+    ln -s /etc/nginx/sites-available/fastsitephp /etc/nginx/sites-enabled/
+    rm /etc/nginx/sites-enabled/default
+
+    # Restart nginx
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Restarting nginx${FONT_RESET}"
+    systemctl reload nginx
 }
 
 # ---------------------------------------------------------
@@ -214,7 +319,7 @@ check_apt ()
         # Update [apt] Package Manager
         echo -e "Updating APT using ${FONT_BOLD}${FONT_UNDERLINE}apt update${FONT_RESET}"
         apt update
-        # The [upgrade] is not required but recommend.
+        # The [upgrade] is not required but often recommend.
         # However, it takes many minutes so it is commented out by default.
         # apt upgrade
     else
@@ -222,6 +327,113 @@ check_apt ()
         >&2 echo "Ubuntu, Debian, and related Linux distributions"
         exit $ERR_MISSING_APT
     fi
+}
+
+# -----------------------------------------------------------------------------
+# Get Command Line Options
+# This function uses [getopts] to read script parameters, this only works here
+# because "$@" is passed to the function, otherwise this code would have
+# to be at the top script level outside of a function. This method is used
+# to keep the code organized into seperate functions. [local OPTIND] and the
+# ending [shift...] commands are only needed if this function is being called
+# twice and this script doesn't call it twice; however, it's good practice to
+# have if using [getopts] in a function.
+# -----------------------------------------------------------------------------
+get_options ()
+{
+    # If no parameters, prompt user for server type
+    if [[ -z "$1" ]]; then
+        while true; do
+            echo "Which server would you like to install:"
+            echo "  Apache (a)"
+            echo "  nginx (n)"
+            echo "  Cancel Script (c)"
+            echo "Enter a, n, or c:"
+            read -r input
+            case "$input" in
+                c)
+                    echo 'Script Cancelled'
+                    exit $ERR_GENERAL
+                    ;;
+                a)
+                    server_type=Apache
+                    break
+                    ;;
+                n)
+                    server_type=nginx
+                    break
+                    ;;
+                *) continue ;;
+            esac
+        done
+        return 0
+    fi
+
+    # Get options
+    local OPTIND opt
+    while getopts ":anh" opt; do
+        case "${opt}" in
+            a) set_server_type "Apache" ;;
+            n) set_server_type "nginx" ;;
+            h)
+                show_help
+                exit 0
+                ;;
+            *)
+                >&2 echo ""
+                >&2 echo -e "${FONT_ERROR}Error, option is invalid: [-$OPTARG]${FONT_RESET}"
+                >&2 echo -e "${FONT_ERROR}To see help with valid options run:${FONT_RESET}"
+                >&2 echo -e "${FONT_ERROR}bash ${SCRIPT_NAME} -h${FONT_RESET}"
+                >&2 echo ""
+                exit $ERR_INVALID_OPT
+                ;;
+        esac
+    done
+    shift $((OPTIND-1))
+}
+
+# ---------------------------------------------------------
+# Called when using options [-a] and [-n]
+# ---------------------------------------------------------
+set_server_type ()
+{
+    # Make sure server_type is not already set
+    if [[ -n "${server_type}" ]]; then
+        >&2 echo ""
+        >&2 echo -e "${FONT_ERROR}Error, cannot install both Apache and nginx.${FONT_RESET}"
+        >&2 echo -e "${FONT_ERROR}Specify only [-a] or only [-n] but not both.${FONT_RESET}"
+        >&2 echo -e "${FONT_ERROR}To see help with valid options run:${FONT_RESET}"
+        >&2 echo -e "${FONT_ERROR}bash ${SCRIPT_NAME} -h${FONT_RESET}"
+        >&2 echo ""
+        exit $ERR_INVALID_OPT
+    fi
+
+    # Set server_type first time this function is called
+    server_type="$1"
+}
+
+# -----------------------------------------------------------------------------
+# Help Text, called when passing the [-h] option
+# -----------------------------------------------------------------------------
+show_help ()
+{
+    echo ""
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Bash Script to Setup a Web Server${FONT_RESET}"
+    echo "    Install Apache or nginx, PHP, and FastSitePHP with a Starter Site"
+    echo ""
+    echo "    This script works on a default OS when nothing is installed."
+    echo "    Running this script requires requires root/sudo."
+    echo ""
+    echo -e "    ${FONT_UNDERLINE}https://www.fastsitephp.com${FONT_RESET}"
+    echo -e "    ${FONT_UNDERLINE}https://github.com/fastsitephp/starter-site${FONT_RESET}"
+    echo ""
+    echo -e "${FONT_BOLD}${FONT_UNDERLINE}Usage:${FONT_RESET}"
+    script="    sudo bash ${SCRIPT_NAME}"
+    echo -e "${script}    ${FONT_DIM}# Use a prompt to select the Web Server${FONT_RESET}"
+    echo -e "${script} ${FONT_BOLD}-a${FONT_RESET} ${FONT_DIM}# Install Apache${FONT_RESET}"
+    echo -e "${script} ${FONT_BOLD}-n${FONT_RESET} ${FONT_DIM}# Install nginx${FONT_RESET}"
+    echo -e "    bash ${SCRIPT_NAME} ${FONT_BOLD}-h${FONT_RESET} ${FONT_DIM}# Show help${FONT_RESET}"
+    echo ""
 }
 
 # -----------------------------------------------------------------------------
@@ -291,8 +503,10 @@ format_time ()
     fi
 }
 
-# ---------------------------------------------------------
-# Run the main() function and exit with the result
-# ---------------------------------------------------------
-main
+# --------------------------------------------------------------
+# Run the main() function and exit with the result. "$@" is
+# used to pass the script parameters to the main function
+# and "$?" returns the exit code of the last command to run.
+# --------------------------------------------------------------
+main "$@"
 exit $?

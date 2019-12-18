@@ -21,16 +21,18 @@ TODO List
 --------------------------------------------------------------------------
 
 * Install Script [create-fast-site.sh]
-    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
-    - Add option to choose either nginx or apache
-        Allow param '-a' or Apache or '-n' for nginx
-        If no param then likely prompt user for which web server to use
-    - Possibly modify Apache config to allow for more concurrent users based
-      on available OS memory and server size. This will likely require a decent
-      amount of time for testing various senarios and servers of different sizes.
-      At the very least - likely allow for more based on what would work
-      on a small 512 mb memory server (smallest on AWS) or a 1 gb server (smallest on DigitalOcean).
-    - Using nginx Basic Install for Ubuntu:
+    - Running:
+        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+        sudo bash create-fast-site.sh
+    - Need to test with the Windows Subsystem for Linux
+        https://docs.microsoft.com/en-us/windows/wsl/install-win10
+        https://docs.microsoft.com/en-us/windows/wsl/about
+    - In the future add support for more Linux OS's
+
+*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Use tab layout for different OS's and options
+    - Add detailed nginx install guide
+        # See most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
         sudo apt update
         sudo apt install -y nginx
         sudo ufw allow 'Nginx HTTP'
@@ -79,10 +81,6 @@ TODO List
         unzip master.zip
         cp -r ~/fastsitephp-master/tests /var/www/html/tests
         # View http://example.com/tests/index.htm
-
-*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
-    - Use tab layout for different OS's and options
-    - Add nginx install guide
 
 *) Starter Site
     - Need to add i18n nav menus for both mobile and desktop
