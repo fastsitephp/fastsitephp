@@ -422,7 +422,7 @@ show_help ()
     echo "    Install Apache or nginx, PHP, and FastSitePHP with a Starter Site"
     echo ""
     echo "    This script works on a default OS when nothing is installed."
-    echo "    Running this script requires requires root/sudo."
+    echo "    Running this script requires root/sudo."
     echo ""
     echo -e "    ${FONT_UNDERLINE}https://www.fastsitephp.com${FONT_RESET}"
     echo -e "    ${FONT_UNDERLINE}https://github.com/fastsitephp/starter-site${FONT_RESET}"
