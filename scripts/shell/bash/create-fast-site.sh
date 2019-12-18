@@ -432,7 +432,7 @@ show_help ()
     echo -e "${script}    ${FONT_DIM}# Use a prompt to select the Web Server${FONT_RESET}"
     echo -e "${script} ${FONT_BOLD}-a${FONT_RESET} ${FONT_DIM}# Install Apache${FONT_RESET}"
     echo -e "${script} ${FONT_BOLD}-n${FONT_RESET} ${FONT_DIM}# Install nginx${FONT_RESET}"
-    echo -e "    bash ${SCRIPT_NAME} ${FONT_BOLD}-h${FONT_RESET} ${FONT_DIM}# Show help${FONT_RESET}"
+    echo -e "         bash ${SCRIPT_NAME} ${FONT_BOLD}-h${FONT_RESET} ${FONT_DIM}# Show help${FONT_RESET}"
     echo ""
 }
 
