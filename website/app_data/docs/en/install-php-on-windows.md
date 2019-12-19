@@ -32,7 +32,7 @@ Microsoft’s Web Platform Installer can be used to install multiple version of 
 
 ### Alternative Development Environments for PHP with Windows
 This tutorial shows how to use a Microsoft supported program for installing PHP, however many alternative options exist for local development. Here are a few:
-* https://www.apachefriends.org/ - XAMPP Apache + MariaDB + PHP + Perl
+* https://www.apachefriends.org/ - XAMPP Apache + MariaDB + PHP + Perl - Popular PHP development environment, also works with macOS and Linux.
 * https://windows.php.net/download - Direct Download of PHP, once installed you can use PHP itself as a Development Server
 
 ### Additional PHP Install Resources
