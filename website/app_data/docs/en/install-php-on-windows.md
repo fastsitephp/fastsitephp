@@ -19,7 +19,7 @@
 
 ---
 ## Overview
-This tutorial provides instructions with a step by step guide on how to setup a web server (IIS) and PHP on Windows. Installing PHP on Windows is relatively quick and simple because Microsoft provides easy to use installers.
+This tutorial provides instructions with a step by step guide on how to setup a web server (IIS) and PHP on Windows and some alternative options. Installing PHP on Windows is relatively quick and simple because Microsoft provides easy to use installers.
 
 <div class="quick-tip">
     <h3>Quick Tip</h3>
@@ -27,8 +27,13 @@ This tutorial provides instructions with a step by step guide on how to setup a 
 </div>
 
 ### Web Platform Installer
-Microsoft’s Web Platform Installer can be used to install multiple version of PHP both on regular desktops (Windows 10, etc) and on Windows Server.
+Microsoft’s Web Platform Installer can be used to install multiple version of PHP both on regular desktops (Windows 10, etc) for development and on Windows Servers for production.
 * https://www.microsoft.com/web/downloads/platform.aspx
+
+### Alternative Development Environments for PHP with Windows
+This tutorial shows how to use a Microsoft supported program for installing PHP, however many alternative options exist for local development. Here are a few:
+* https://www.apachefriends.org/ - XAMPP Apache + MariaDB + PHP + Perl
+* https://windows.php.net/download - Direct Download of PHP, once installed you can use PHP itself as a Development Server
 
 ### Additional PHP Install Resources
 There are many ways that PHP can be installed. To find out more see additional links or search online.
