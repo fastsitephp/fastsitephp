@@ -49,16 +49,16 @@ cd {root-directory}
 php -S localhost:3000
 ~~~
 
-Para incluir suporte a renderização de documentos markdown à partir do servidor ou para funções de criptografia com versões mais antigas do PHP (PHP5) execute primeiramente o script de instalação.
+Para incluir suporte a renderização de documentos markdown à partir do servidor ou para funções de criptografia com versões mais antigas do PHP (PHP5) antes de qualquer coisa execute o script de instalação.
 
 ~~~
 cd {root-directory}
 php ./scripts/install.php
 ~~~
 
-### Install using Composer (PHP Dependency/Package Manager) (~470 kb)
+### Instalar utilizando o Composer (Gerenciador de Pacotes e/ou dependências PHP) (~470 kb)
 
-O framework FastSitePHP pode também ser instalado usando o Composer. Quando instalado via Composer somente os arquivos essenciais são incluídos e não o repositório completo com o site principal. O tamanho dos arquivos baixados é pequeno, então é rápido incluí-lo em um projeto já existente ou usá-lo para iniciar novos projetos. As classes FastSitePHP podem ser utilizadas com outros frameworks PHP como Symfony, Laravel, Zend quando usá-lo com o Composer.
+O framework FastSitePHP pode também ser instalado usando o Composer. Quando instalado via Composer somente os arquivos essenciais são incluídos e não o repositório completo com o site principal. O tamanho dos arquivos baixados é pequeno, então é rápido incluí-lo em um projeto já existente ou usá-lo para iniciar novos projetos. Quando instalado com o auxilio do Composer as classes do FastSitePHP podem ser utilizadas com outros frameworks PHP como Symfony, Laravel, Zend.
 
 ~~~
 composer require fastsitephp/fastsitephp
@@ -87,12 +87,11 @@ Um site inicial também existe e inclui vários páginas de exemplo e fornece um
 // Isso permite que classes sejam dinamicamente carregadas
 require '../../../autoload.php';
 
-// Ou um site mínimo que tem somente 2 arquivos como requisito de inclusão
+// Ou um site mínimo possuindo somente 2 arquivos como requisito de inclusão
 // require '../vendor/fastsitephp/src/Application.php';
 // require '../vendor/fastsitephp/src/Route.php';
 
-// Crie o objeto da Aplicação com tratamento de erros e UTC para fuso horário
-Create the Application Object with Error Handling and UTC for the Timezone
+// Crie o objeto da aplicação com tratamento de erros e utilizando o fuso horário UTCs
 $app = new \FastSitePHP\Application();
 $app->setup('UTC');
 
@@ -123,7 +122,7 @@ $app->get('/site', function() use ($app) {
     ];
 });
 
-// Envie uma Resposta JSON que contenha informações básicas da Requisição
+// Envie uma resposta JSON que contenha informações básicas da requisição
 $app->get('/request', function() {
     $req = new \FastSitePHP\Web\Request();
     return [
@@ -184,7 +183,7 @@ $is_local = function() {
 };
 
 // Fornece informações de ambiente detalhadas do PHP para usuários requisitando
-// a página the uma rede local. Se a requisição está vindo de alguém na Internet
+// a página de uma rede local. Se a requisição está vindo de alguém na Internet
 // então uma resposta 404 'Página não encontrada' seria retornada. Chamando [phpinfo()]
 // produz uma resposta HTML para que a rota não precise retornar nada.
 $app->get('/phpinfo', function() {
@@ -209,7 +208,7 @@ $app->get('/server', function() {
 })
 ->filter($is_local);
 
-// Se a URL requisistada começa com '/examples' então carregue um arquivo
+// Se a URL requisitada começa com '/examples' então carregue um arquivo
 // para a rota correspondente à partir do diretório atual. Este é um arquivo
 // real que fornece muitos outros exemplos. Se você baixar este site, este código
 // e outros exemplos podem ser encontrados em [app_data/sample-code].
