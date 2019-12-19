@@ -23,7 +23,7 @@ This tutorial provides instructions with a step by step guide on how to setup a 
 
 <div class="quick-tip">
     <h3>Quick Tip</h3>
-    <p>If you only need PHP for local development you can skip the IIS install and jump to <a href="#install_php">installing PHP</a>.</p>
+    <p>If you only need PHP for local development you can skip the IIS install and jump to <a href="#install_php">installing PHP</a> or see additional links in this section of the page.</p>
 </div>
 
 ### Web Platform Installer
