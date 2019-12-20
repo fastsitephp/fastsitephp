@@ -229,7 +229,7 @@ $app->run();
 * Testes de unidade adicionais e metodologias de teste
 * Documentação e Tutoriais adicionais
 * Classes e funcionalidades adicionais
-* Novas ideias - Se você tem ideias de como melhorar por favor abra um pedido para que possamos discutir. (??)
+* Novas ideias - Se você tem ideias de como melhorar por favor abra um pedido para que possamos discutir.
 
 O arquivo [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) contém a lista completa de itens pendentes e é um lugar para começar.
 
