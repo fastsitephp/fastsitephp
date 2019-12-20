@@ -482,7 +482,7 @@ copy_dir ()
 {
     local input
     if [[ -d "$2" ]]; then
-        echo "Directory [$1] already exists, overwrite existing files? [y, n]"
+        echo "Directory [$2] already exists, overwrite existing files? [y, n]"
         read -r input
         if [[ "${input}" == 'y' || ${input} == 'Y' ]]; then
             cp -r "$1" "$2"
