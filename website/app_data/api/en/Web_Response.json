@@ -208,7 +208,7 @@
             "description": "Get or set a value for the 'Vary' Response Header which is used to specify rules for HTTP Caching and also to provide content hints to Google and other Search Engines. When setting the header value this function validates that the options specified are valid options; this includes all server driven content negotiation headers and several commonly used request headers. It's possible that other options could be used and would be valid however this function validates for common options so that if there is a typo it can be caught and to catch logic errors with the parameters. The valid parameters that can be used with this function are ['Accept', 'Accept-Charset', 'Accept-Encoding', 'Accept-Language', 'User-Agent', 'Origin', 'Cookie', and 'Referer']. If the a custom 'Vary' option is needed then it can be added with the header() function instead. Additionally testing should be performed when using this function because depending upon how the actual web server is configured this function could overwrite the web server value or the web server could overwrite the value set from this function.",
             "attributes": [
                 "@link http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec14.html#sec14.44",
-                "@link https:\/\/developers.google.com\/webmasters\/mobile-sites\/mobile-seo\/configurations\/dynamic-serving",
+                "@link https:\/\/developers.google.com\/search\/mobile-sites\/mobile-seo\/dynamic-serving",
                 "@link http:\/\/httpd.apache.org\/docs\/2.2\/content-negotiation.html",
                 "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation",
                 "@link https:\/\/www.fastly.com\/blog\/best-practices-for-using-the-vary-header",
@@ -221,7 +221,7 @@
             "returnType": "$this | mixed | null",
             "links": [
                 "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec14.html#sec14.44",
-                "https:\/\/developers.google.com\/webmasters\/mobile-sites\/mobile-seo\/configurations\/dynamic-serving",
+                "https:\/\/developers.google.com\/search\/mobile-sites\/mobile-seo\/dynamic-serving",
                 "http:\/\/httpd.apache.org\/docs\/2.2\/content-negotiation.html",
                 "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation",
                 "https:\/\/www.fastly.com\/blog\/best-practices-for-using-the-vary-header",

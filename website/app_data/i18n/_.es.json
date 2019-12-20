@@ -1,9 +1,10 @@
 {
     "menu_home": "Casa",
-    "menu_playground": "Patio de recreo",
+    "menu_playground": "Code Playground",
     "menu_getting_started": "Empezando",
     "menu_quick_ref": "Referencia rápida",
     "menu_examples": "Ejemplos",
+    "menu_resources": "Recursos",
     "menu_documents": "Documentos",
     "menu_api": "API",
     "example_code": "Código de ejemplo",

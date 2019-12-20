@@ -1,0 +1,17 @@
+This file contains notes for specific tasks for local development. For general setup of local development refer to the readme file and main site documentation.
+
+https://github.com/fastsitephp/fastsitephp
+
+https://www.fastsitephp.com/en/getting-started
+
+
+*) Documentation Images
+	When adding new images to existing Markdown documentation (or creating new documents).
+	1) Add images to [static-files] repository
+	2) Run repositories side-by-side, Example URL for markdown:
+		http://localhost:3000/static-files/img/docs/install_php_windows/21_Copy_Starter_Site_Folders.png
+	3) Commit Images to [static-files] repository
+	4) Once approved and images are uploaded to the CDN they can be used for the live site and markdown
+
+
+

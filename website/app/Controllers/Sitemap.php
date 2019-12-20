@@ -8,6 +8,14 @@ use FastSitePHP\FileSystem\Search;
 
 /**
  * Controller for URL '/site/generate-sitemap'
+ * 
+ * Typically this will run from localhost at the following URL:
+ * http://localhost:3000/fastsitephp/website/public/site/generate-sitemap
+ * 
+ * It will overwite the existing site [sitemap.xml] so it only needs 
+ * to run when new pages or translations are added.
+ * 
+ * To add a new language add it under the [$langs] array at line 34.
  */
 class Sitemap
 {
@@ -22,7 +30,14 @@ class Sitemap
         // Site Settings
         $host = 'https://www.fastsitephp.com';
         $urls = [];
-        $langs = ['en'];
+        // *** Add new lanauges here once the content is ready
+        $langs = [
+            'en',
+            'pt-BR'
+        ];
+        // Only change [docs] and [api] languages if content has been created
+        $docs_langs = ['en'];
+        $api_langs = ['en'];
         $exclude_routes = [
             '/:lang/examples/response/:type',
             '/:lang/examples/database-demo/:page',
@@ -37,16 +52,19 @@ class Sitemap
         // Generate lists of variables for specific routes
 
         // Docs
-        I18N::langFile('documents', $langs[0]);
-        $links = $app->locals['i18n']['links'];
-        $docs = array_map(function($item) {
-            return $item['page'];
-        }, $links);
+        $search = new Search();
+        $docs_dir = $app->config['APP_DATA'] . 'docs/en';
+        $docs = $search
+            ->reset()
+            ->dir($docs_dir)
+            ->fileTypes(['md'])
+            ->hideExtensions(true)
+            ->files();
 
         // API Class Files
         $classes_dir = $app->config['APP_DATA'] . 'api/en';
-        $search = new Search();
         $classes = $search
+            ->reset()
             ->dir($classes_dir)
             ->fileTypes(['json'])
             ->hideExtensions(true)
@@ -78,7 +96,7 @@ class Sitemap
                     $url = '/:lang/';
                 } elseif ($url === '/:lang/documents/:page') {
                     foreach ($docs as $doc) {
-                        foreach ($langs as $lang) {
+                        foreach ($docs_langs as $lang) {
                             $url = str_replace('/:lang', '/' . $lang, $route->pattern);
                             $url = str_replace(':page', $doc, $url);
                             $urls[] = $host . $url;
@@ -87,7 +105,7 @@ class Sitemap
                     continue;
                 } elseif ($url === '/:lang/api/:class') {
                     foreach ($classes as $class) {
-                        foreach ($langs as $lang) {
+                        foreach ($api_langs as $lang) {
                             $url = str_replace('/:lang', '/' . $lang, $route->pattern);
                             $url = str_replace(':class', $class, $url);
                             $urls[] = $host . $url;

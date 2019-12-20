@@ -817,7 +817,7 @@ class Response
      * web server could overwrite the value set from this function.
      *
      * @link http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.44
-     * @link https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/dynamic-serving
+     * @link https://developers.google.com/search/mobile-sites/mobile-seo/dynamic-serving
      * @link http://httpd.apache.org/docs/2.2/content-negotiation.html
      * @link https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation
      * @link https://www.fastly.com/blog/best-practices-for-using-the-vary-header

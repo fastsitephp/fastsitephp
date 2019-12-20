@@ -20,17 +20,114 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Minor fix for edge case error needed for running local PHP Server:
+    - if [http://localhost:3000] is used instead of [http://localhost:3000/] then
+        [$app->rootUrl()] returns [http://localhost:3000//]
+    - See workaround here on line 90
+        https://github.com/dataformsjs/website/blob/master/app/app.php
+    - This is a core function so if an update is made full unit tests need to
+      run and be confirmed in a variety of environments:
+        Windows/IIS
+        Linux (Apache and nginx),
+        Apple Mac (Apache),
+        local PHP server (on both Windows and macOS)
+
+*) Starter Site
+    - Need to add i18n nav menus for both mobile and desktop
+      The HTML and CSS needed for this can be copied from the main site and modified as needed.
+    - Add a Auth Demo page to the Starter-Site
+        It will use JWT with a Cookie and not PHP session
+    - Need a new [scripts/sync-server.sh] Script
+        - See similar script for main server
+            https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
+        - The version for the starter site will be based on the main server script
+          but apply to the stater site only and it will include comments (and in repository readme file)
+          on how to use and customize for a private site. 
+
+*) Known Site Issues
+    - Old Safari/iOS (Tested iPad 2/iOS 9)
+        - Margins on page content in <main> are not correct
+        - Used to work before when previously tested
+        - May be a flexbox issue that has to be fixed from JS like the Samsung issue 
+    - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
+            <input type="datetime-local">
+        On desktop safari the page works but no date controls show:
+            https://www.fastsitephp.com/en/examples/l10n-demo
+        Need to check if safari and just use <input type="text"> from JavaScript
+        Possibly change to use pickadate for Safari and other unsupported browsers
+            https://amsul.ca/pickadate.js/
+    - Not an issue for most users but ideally the pages with tab layout should use the ARIA tab role
+            https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+        Example page:
+            https://www.fastsitephp.com/en/api
+
+*) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
+    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
+    These files were created because creating full automated unit tests was causing too much of a delay
+    for the initial release.
+
 * Install Script [create-fast-site.sh]
-    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
-    - Add option to choose either nginx or apache
-        Allow param '-a' or Apache or '-n' for nginx
-        If no param then likely prompt user for which web server to use
-    - Possibly modify Apache config to allow for more concurrent users based
-      on available OS memory and server size. This will likely require a decent
-      amount of time for testing various senarios and servers of different sizes.
-      At the very least - likely allow for more based on what would work
-      on a small 512 mb memory server (smallest on AWS) or a 1 gb server (smallest on DigitalOcean).
-    - Using nginx Basic Install for Ubuntu:
+    - Running:
+        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+        sudo bash create-fast-site.sh
+    - Need to test with the Windows Subsystem for Linux
+        https://docs.microsoft.com/en-us/windows/wsl/install-win10
+        https://docs.microsoft.com/en-us/windows/wsl/about
+    - In the future add support for more Linux OS's
+
+*) Documentation to create
+    - Publishing releases
+        - Ideally there would be a better workflow, possibly a seperate "Release" branch
+        - Currently releases need [export-ignore] lines in [.gitattributes]
+            while the master must have them commented out. For the initial release this was done manuall.
+    - Document on how to use Composer
+        # Windows
+        # First install composer
+            composer require fastsitephp/fastsitephp
+            composer create-project fastsitephp/starter-site my-app
+        # Mac/Linux/other
+        # Download composer to directory
+            php composer.phar require fastsitephp/fastsitephp
+            php composer.phar create-project fastsitephp/starter-site my-app
+    - READE.md
+        - Link to the starter site Repository
+        - Document local development URL's?
+            http://localhost:3000/FastSitePHP/website/public/en/
+            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
+            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
+            http://localhost:3000/FastSitePHP/tests/index.htm
+    - Step by Step Setup of Sites
+        - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
+        - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
+        - Framework (how to run examples when downloading directly)
+        - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
+        - These docs may be linked from Getting Started Page as well once created
+    - Update images and content on [edit-with-vs-code] and related docs with
+        the published version of FastSitePHP and how to download the site
+        or use [git clone] to download it.
+    - Source Code Folder structure
+    - How the Unit Testing for FastSitePHP works
+        - Include print screen examples of how it recommends fixes
+        - Include docs for use with Linux, Mac, Windows
+        - Update the [readme.txt] file once the link is created
+    - Publish step by step guide on FastSitePHP Server is Setup
+    - Linux Install Doc
+        - Need more OS examples
+        - Examples on how to connect to linux (possibly in seperate docs for Mac and Windows)
+    - PHP and FastSitePHP with Docker?
+    - Need to come up with workflow and/or examples on how to publish images
+        and then docs. Currently images are hosted on AWS and saved to a seperate
+        Repository.
+
+*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Make the layout easier to use when picking an OS:
+        This will likely be done with JavaScript only if the page is [install-php-on-linux]
+        Example - get all <h3> links using:
+            document.querySelectorAll('h3')
+        Then create a <ul> link list in the [Overview] topic
+        Alternativly a Tab Layout could be used but that would likely take more time than it's worth
+    - Add detailed nginx install guide after layout has been made easier to use
+        # See also the most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
         sudo apt update
         sudo apt install -y nginx
         sudo ufw allow 'Nginx HTTP'
@@ -79,98 +176,7 @@ TODO List
         unzip master.zip
         cp -r ~/fastsitephp-master/tests /var/www/html/tests
         # View http://example.com/tests/index.htm
-
-*) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
-    - Use tab layout for different OS's and options
-    - Add nginx install guide
-
-*) Starter Site
-    - Need to add i18n nav menus for both mobile and desktop
-      The HTML and CSS needed for this can be copied from the main site and modified as needed.
-    - Add a Auth Demo page to the Starter-Site
-        It will use JWT with a Cookie and not PHP session
-    - Need a new [scripts/sync-server.sh] Script
-        - See similar script for main server
-            https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
-        - The version for the starter site will be based on the main server script
-          but apply to the stater site only and it will include comments (and in repository readme file)
-          on how to use and customize for a private site. 
-
-*) Known Site Issues
-    - Old Safari/iOS (Tested iPad 2/iOS 9)
-        - Margins on page content in <main> are not correct
-        - Used to work before when previously tested
-        - May be a flexbox issue that has to be fixed from JS like the Samsung issue 
-    - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
-            <input type="datetime-local">
-        On desktop safari the page works but no date controls show:
-            https://www.fastsitephp.com/en/examples/l10n-demo
-        Need to check if safari and just use <input type="text"> from JavaScript
-        Possibly change to use pickadate for Safari and other unsupported browsers
-            https://amsul.ca/pickadate.js/
-
-*) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
-    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
-    These files were created because creating full automated unit tests was causing too much of a delay
-    for the initial release.
-
-*) Documentation to create
-    - Publishing releases
-        - Ideally there would be a better workflow, possibly a seperate "Release" branch
-        - Currently releases need [export-ignore] lines in [.gitattributes]
-            while the master must have them commented out. For the initial release this was done manuall.
-    - Document on how to use Composer
-        # Windows
-        # First install composer
-            composer require fastsitephp/fastsitephp
-            composer create-project fastsitephp/starter-site my-app
-        # Mac/Linux/other
-        # Download composer to directory
-            php composer.phar require fastsitephp/fastsitephp
-            php composer.phar create-project fastsitephp/starter-site my-app
-    - READE.md
-        - Link to the starter site Repository
-        - Document local development URL's?
-            http://localhost:3000/FastSitePHP/website/public/en/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
-            http://localhost:3000/FastSitePHP/tests/index.htm
-    - Step by Step Setup of Sites
-        - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
-        - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
-        - Framework (how to run examples when downloading directly)
-        - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
-        - These docs may be linked from Getting Started Page as well once created
-    - Update images and content on [edit-with-vs-code] and related docs with
-        the published version of FastSitePHP and how to download the site
-        or use [git clone] to download it.
-    - Source Code Folder structure
-    - How the Unit Testing for FastSitePHP works
-        - Include print screen examples of how it recommends fixes
-        - Include docs for use with Linux, Mac, Windows
-        - Update the [readme.txt] file once the link is created
-    - Publish step by step guide on FastSitePHP Server is Setup
-    - Linux Install Doc
-        - Need more OS examples
-        - Examples on how to connect to linux (possibly in seperate docs for Mac and Windows)
-    - PHP and FastSitePHP with Docker?
-    - Need to come up with workflow and/or examples on how to publish images
-        and then docs. Currently images are hosted on AWS and saved to a seperate
-        Repository.
-    - Local Development and Framework or site changes
-        - How to update the sitemap of the main site during local development
-            http://localhost:3000/FastSitePHP/website/public/site/generate-sitemap
-        - How to refresh API Docs
-            vendor\FastSitePHP\scripts\create-api-json-files.php
-
-*) Additional Updates for [install.php] on the Starter and Main sites
-    - Add initial permissions check and helpfull warning if user does't have write access
-    - The script is likely to not work now when using very old versions of PHP [5.3, 5.4].
-      Would likley have to switch to an alternative HTTP download link and then performance
-      SHA256 or SHA384 file verification. This would not be ideal as it reqiures a duplicate
-      copy of files on S3 or another host. Low priority as almost no one should use 5.3 or 5.4
-      as of late-2019.
-
+        
 *) Playground Site
     - decide after frequent use with many users if [opcache_reset()]
         should be called regularly or if it is ok to leave it alone.
@@ -179,11 +185,6 @@ TODO List
         if there are many users then 'delete-site' would be too often. Another option
         would be to reset it on 'create-site' or 'delete-site' once it is using a
         specific amount of memory or number of cached files.
-    - Test adding
-        <link rel="preconnect" href="https://playground.fastsitephp.com" crossorigin>
-        Under the HTML <head> attribute only when using the playground site.
-        Only keep and use if it makes a real difference, it's unlikely to do so though. See:
-        https://developers.google.com/web/fundamentals/performance/resource-prioritization
 
 *) I18N Editor
     - FastSitePHP\Templates\i18n-editor.php
@@ -356,11 +357,13 @@ TODO List
 
 *) Documentation pages to create:
     - Updating this site:
-        Where to add files
-        How to update lang files, etc
-        Generating a new sitemap:
-            http://localhost:3000/website/public/site/generate-sitemap
-        Update humans.txt for new Contributors
+        - Where to add files
+        - How to update lang files, etc
+        - Update humans.txt for new Contributors
+        - How to update the sitemap of the main site during local development
+            http://localhost:3000/fastsitephp/website/public/site/generate-sitemap
+        - How to refresh API Docs
+            vendor\FastSitePHP\scripts\create-api-json-files.php        
     - docs for various scripts used with this site
     - how the playground site works
     - Using CORS - provide example from DataFormsJS
