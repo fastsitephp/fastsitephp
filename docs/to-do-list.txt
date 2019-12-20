@@ -20,6 +20,18 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Minor fix for edge case error needed for running local PHP Server:
+    - if [http://localhost:3000] is used instead of [http://localhost:3000/] then
+        [$app->rootUrl()] returns [http://localhost:3000//]
+    - See workaround here on line 90
+        https://github.com/dataformsjs/website/blob/master/app/app.php
+    - This is a core function so if an update is made full unit tests need to
+      run and be confirmed in a variety of environments:
+        Windows/IIS
+        Linux (Apache and nginx),
+        Apple Mac (Apache),
+        local PHP server (on both Windows and macOS)
+
 *) Starter Site
     - Need to add i18n nav menus for both mobile and desktop
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
