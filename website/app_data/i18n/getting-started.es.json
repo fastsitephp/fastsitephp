@@ -5,12 +5,12 @@
     "install_nix": "Instalar PHP en Linux y Unix",
     "install_win": "Instalar PHP en Windows",
     "install_mac": "Instalar PHP en macOS",
-    "framework_and_site": "FastSitePHP Framework y sitio web (~1.2 mb)",
+    "framework_and_site": "Framework FastSitePHP y Sitio Web (~1.2 mb)",
     "starter_site": "Sitio de inicio de FastSitePHP (~32 kb)",
-    "framework_only": "Marco FastSitePHP solamente (~470 kb)",
+    "framework_only": "Framework FastSitePHP solamente (~470 kb)",
     "vs_code": "PHP con Visual Studio Code",
-    "atom": "PHP con GitHub Atom Editor",
+    "atom": "PHP con Editor Atom GitHub",
     "other_editors": "Otros IDE y Editores de Código",
     "code_editors": "Editores de código",
-    "package_manager": "Gerente de empaquetación"
+    "package_manager": "Administrador de Paquetes"
 }
