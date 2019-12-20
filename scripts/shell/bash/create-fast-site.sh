@@ -33,8 +33,10 @@
 #  Example:
 #      sudo bash create-fast-site.sh -a
 #
-#  This script is safe to run multiple times because it checks for if programs such
-#  as php are already installed, and prompts before overwriting an existing site.
+#  This script is intended for a clean OS and one-time setup however it is
+#  generally safe to run multiple times because it checks for if programs
+#  such as php are already installed and prompts before overwriting an
+#  existing site.
 #
 #  This script is linted using:
 #  https://www.shellcheck.net/
@@ -159,6 +161,12 @@ install_apache ()
 {
     local php_ver file
 
+    # Safety check to make sure that nginx is not already installed
+    if hash nginx 2>/dev/null; then
+        >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, unable to install Apache because nginx is already setup on this server."
+        exit $ERR_GENERAL
+    fi
+
     # Install Apache and PHP
     apt_install 'apache2'
     apt_install 'php'
@@ -234,6 +242,12 @@ install_nginx ()
 {
     local php_ver file tab
 
+    # Safety check to make sure that Apache is not already installed
+    if hash apache2 2>/dev/null; then
+        >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, unable to install nginx because Apache is already setup on this server."
+        exit $ERR_GENERAL
+    fi
+
     # Install nginx and PHP
     apt_install 'nginx'
     ufw allow 'Nginx HTTP'
@@ -258,12 +272,19 @@ install_nginx ()
 
     # nginx Config
     # Create an nginx site file: [/etc/nginx/sites-available/fastsitephp]
-    # This is based on the the default [/etc/nginx/sites-available/default]
-    # and includes the following changes:
-    #    index index.php ...
-    #    try_files $uri $uri/ /index.php$is_args$args;
-    #    Added section "location ~ \.php$ { ... }" based on nginx default
-    tab="$(printf '\t')"
+    # which is also linked from [/etc/nginx/sites-enabled/fastsitephp]
+    if [[ -f /etc/nginx/sites-enabled/fastsitephp ]]; then
+        echo -e "${FONT_BOLD}${FONT_UNDERLINE}nginx config already exists for fastsitephp${FONT_RESET}"
+    else
+        echo -e "${FONT_BOLD}${FONT_UNDERLINE}Setting up nginx config for fastsitephp${FONT_RESET}"
+        # This is based on the the default [/etc/nginx/sites-available/default]
+        # and includes the following changes:
+        #    index index.php ...
+        #    try_files $uri $uri/ /index.php$is_args$args;
+        #    Added section "location ~ \.php$ { ... }" based on nginx default
+        tab="$(printf '\t')"
+
+# bash heredoc "multi-line string"
 cat > /etc/nginx/sites-available/fastsitephp <<EOF
 server {
 ${tab}listen 80 default_server;
@@ -284,13 +305,14 @@ ${tab}}
 }
 EOF
 
-    # For nginx sites under [sites-enabled] use a symbolic link to
-    # [sites-available]. Create a link for [fastsitephp] then remove the
-    # symbolic link for [default]. The actual [default] file still exists
-    # under [sites-available]. nginx recommends not editing the [default]
-    # file in production servers. For more see comments in the file itself.
-    ln -s /etc/nginx/sites-available/fastsitephp /etc/nginx/sites-enabled/
-    rm /etc/nginx/sites-enabled/default
+        # For nginx sites under [sites-enabled] use a symbolic link to
+        # [sites-available]. Create a link for [fastsitephp] then remove the
+        # symbolic link for [default]. The actual [default] file still exists
+        # under [sites-available]. nginx recommends not editing the [default]
+        # file in production servers. For more see comments in the file itself.
+        ln -s /etc/nginx/sites-available/fastsitephp /etc/nginx/sites-enabled/
+        rm /etc/nginx/sites-enabled/default
+    fi
 
     # Restart nginx
     echo -e "${FONT_BOLD}${FONT_UNDERLINE}Restarting nginx${FONT_RESET}"
