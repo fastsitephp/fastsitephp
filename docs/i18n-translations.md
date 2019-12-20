@@ -58,6 +58,10 @@ Each language has it's own template directory/folder. Once a directory is create
 
 https://github.com/fastsitephp/playground/tree/master/app_data/template
 
+This can be done without a local setup, but if you would prefer to test the site locally refer to instructions in the readme of the playground repository.
+
+https://github.com/fastsitephp/playground
+
 ## Home Page Code
 
 Code comments are updated and some text is changed `home-page-{lang}.php`
