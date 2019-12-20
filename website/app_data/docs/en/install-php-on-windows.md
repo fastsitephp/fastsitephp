@@ -183,3 +183,64 @@ Viewing the page from localhost shows that PHP is installed and correctly workin
 The install location may vary for your server however here it is installed at [C:\Program Files\PHP\v7.3]. You can see that the Web Platform Installer sets up needed config options such as the timezone. The extension folder typically includes many addition extensions that are not enabled by default; if you need them view the related files to make sure they exist and then add them to the [ExtensionList] in the [php.ini] file.
 
 ![Windows PHP Config Folder and INI File](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/20_PHP_Config.png)
+
+---
+## Setup the FastSitePHP Starter Site
+
+Download the FastSitePHP Starter Site from https://www.fastsitephp.com/downloads/starter-site or directly from GitHub https://github.com/fastsitephp/starter-site/archive/master.zip
+
+Either link result in the file `starter-site-master.zip` being downloaded.
+
+Unzip the file and copy the following folders:
+
+~~~
+Copy folders:
+    starter-site-master\app
+    starter-site-master\app_data
+    starter-site-master\scripts
+
+Copy under:
+    C:\inetpub
+~~~
+
+These three folders will exist outside of the IIS public web root folder `wwwroot`.
+
+![Copy Starter Site Folders](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/21_Copy_Starter_Site_Folders.png)
+
+&nbsp;
+
+Run the install script, this takes only a few seconds and installs the FastSitePHP Framework to `C:\inetpub\vendor`.
+
+~~~
+cd C:\inetpub\scripts
+php install.php
+~~~
+
+![FastSitePHP Install Script](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/22_Run_Install.png)
+
+&nbsp;
+
+Copy public files and folders to the web root folder.
+
+~~~
+Copy from:
+    starter-site-master\public\
+        css
+        img
+        js
+        index.php
+        Web.config
+        favicon.ico
+        robots.txt
+
+Copy under:
+    C:\inetpub\wwwroot
+~~~
+
+![Copy Starter Site Public Files](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/23_Copy_Starter_Site_Files.png)
+
+&nbsp;
+
+View the site! Congratulations if you have followed all of these steps then you have setup a Windows Server with IIS for production usage.
+
+![View Site](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/24_View_Starter_Site.png)
