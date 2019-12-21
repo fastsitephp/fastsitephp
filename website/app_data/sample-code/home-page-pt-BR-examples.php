@@ -4,9 +4,8 @@
 //     http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
 // Este arquivo é também usado como um código fonte para páginas de documentação. Por exemplo
 // a Página Referência Rápida [URL = '/:lang/quick-reference']. O código é organizado em
-// blocos de [EXAMPLE_CODE_START] e [EXAMPLE_CODE_END] comments which are used
-// by the class [\App\Models\ExampleCode] when reading this file.
-(???)
+// blocos de comentário [EXAMPLE_CODE_START] e [EXAMPLE_CODE_END] os quais são utilizados pela classe
+// [\App\Models\ExampleCode] ao carregar este arquivo.
 
 // Se estiver rodando este arquivo diretamente então redirecione para o arquivo
 // principal usando a rota do index '/examples' para este site.
