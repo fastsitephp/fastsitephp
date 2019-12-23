@@ -2,6 +2,24 @@
 	<img src="https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/website/public/img/FastSitePHP_Rocketship.png" alt="FastSitePHP">
 </p>
 
+<table>
+	<tbody>
+		<tr align="center"><td colspan="2">
+<g-emoji class="g-emoji" alias="globe_with_meridians" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f310.png"><img class="emoji" alt="globe_with_meridians" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f310.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_americas" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30e.png"><img class="emoji" alt="earth_americas" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30e.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_asia" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30f.png"><img class="emoji" alt="earth_asia" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30f.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_africa" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png"><img class="emoji" alt="earth_africa" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png"></g-emoji>
+		</td></tr>
+		<tr>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.es.md">Español</a>
+			</td>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.es.md">Bienvenido a FastSitePHP</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.pt-BR.md">Português (do Brasil)</a>
+			</td>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.pt-BR.md">Bem vindo ao FastSitePHP</a></td>
+		</tr>
+	</tbody>
+</table>
+
 # :star2: Welcome to FastSitePHP!
 
 **Thanks for visiting!**
