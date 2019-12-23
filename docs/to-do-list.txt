@@ -25,6 +25,11 @@ TODO List
         [$app->rootUrl()] returns [http://localhost:3000//]
     - See workaround here on line 90
         https://github.com/dataformsjs/website/blob/master/app/app.php
+        Note above code has changed, the earlier code that caused the error looked like this:
+                $res = new Response();
+                return $res
+                    ->vary('Accept-Language')
+                    ->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
     - This is a core function so if an update is made full unit tests need to
       run and be confirmed in a variety of environments:
         Windows/IIS
