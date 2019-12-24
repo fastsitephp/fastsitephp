@@ -2071,10 +2071,15 @@ class Application
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $script_name = $_SERVER['SCRIPT_NAME'];
 
-        // For cases where URL is similar to [/web/index.php/test/?test=test] and SCRIPT_NAME is similar to [/web/index.php]
-        if (strpos($url, $script_name) === 0) {
+        // For cases where URL is similar to [/web/index.php/test/?test=test] 
+        // and SCRIPT_NAME is similar to [/web/index.php]. If both [$url] and
+        // [$script_name] equal '/' then the PHP built-in server is likely being
+        // in a manner similar to "http://localhost:3000" where the URL does not end
+        // with a forward slash. '/'
+        if (strpos($url, $script_name) === 0 && !($url === $script_name && $url === '/')) {
             $url = substr($url, 0, strlen($script_name)) . '/';
-        // For cases where URL is similar to [/web/test/?test=test] and SCRIPT_NAME is similar to [/web/index.php]
+        // For cases where URL is similar to [/web/test/?test=test]
+        // and SCRIPT_NAME is similar to [/web/index.php]
         } elseif ((string)$script_name !== '') {
             $data = explode('/', $script_name);
             $base_name = $data[count($data) - 1];
