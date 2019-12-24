@@ -38,10 +38,9 @@ TODO List
         local PHP server (on both Windows and macOS)
 
 *) Starter Site
-    - Need to add i18n nav menus for both mobile and desktop
-      The HTML and CSS needed for this can be copied from the main site and modified as needed.
     - Add a Auth Demo page to the Starter-Site
         It will use JWT with a Cookie and not PHP session
+    - Once Auth page is added a new release will be published
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
