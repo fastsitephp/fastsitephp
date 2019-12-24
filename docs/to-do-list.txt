@@ -42,12 +42,6 @@ TODO List
       The HTML and CSS needed for this can be copied from the main site and modified as needed.
     - Add a Auth Demo page to the Starter-Site
         It will use JWT with a Cookie and not PHP session
-    - Need a new [scripts/sync-server.sh] Script
-        - See similar script for main server
-            https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
-        - The version for the starter site will be based on the main server script
-          but apply to the stater site only and it will include comments (and in repository readme file)
-          on how to use and customize for a private site. 
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
