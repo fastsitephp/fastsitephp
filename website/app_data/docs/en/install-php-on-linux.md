@@ -1,4 +1,4 @@
-# Install Apache and PHP on a Linux or Unix Server
+# Install Apache or nginx and PHP on a Linux or Unix Server
 <style>
     .logo-images { display:inline-flex; flex-direction:column; }
     .logo-images img { display:inline; width:150px; height:150px; }
@@ -42,9 +42,9 @@ This section shows several different installation options for Linux using shell 
 ### Quick Setup
 
 ~~~
-# A bash script is available for a quick setup of Apache, PHP, and FastSitePHP
-# with a Starter Site. This script works for a full setup on a default OS when
-# nothing is installed.
+# A bash script is available for a quick setup of Apache or nginx, PHP, and
+# FastSitePHP with a Starter Site. This script works for a full setup on a
+# default OS when nothing is installed.
 
 # This script is safe to run multiple times because it checks for if programs
 # such php are already installed, and prompts before overwriting an existing site.
@@ -54,9 +54,18 @@ This section shows several different installation options for Linux using shell 
 
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh
 sudo bash create-fast-site.sh
+
+# When you run [create-fast-site.sh] you will be prompted to select the Web Server
+# (either Apache or ngninx) or you can run with the following options:
+
+# For Apache
+sudo bash create-fast-site.sh -a
+
+# For nginx
+sudo bash create-fast-site.sh -n
 ~~~
 
-### Installation on Ubuntu (Detailed)
+### Apache and PHP Installation on Ubuntu (Detailed)
 ~~~
 # Update [apt] Package Manager
 # The [upgrade] is not required but recommend (however, it takes many minutes)
@@ -158,7 +167,7 @@ ls ~
 # http://your-server.example.com/
 ~~~
 
-### Installation on Red Hat, CentoOS, Fedora
+### Apache and PHP Installation on Red Hat, CentoOS, Fedora
 ~~~
 # Update Package Manager
 sudo yum update –y
@@ -184,7 +193,7 @@ sudo restorecon -Rv /var/www/app_data
 sudo chown apache:apache -R /var/www/app_data/*
 ~~~
 
-### Installation on FreeBSD
+### Apache and PHP Installation on FreeBSD
 ~~~
 # [sudo] may not always be available so you can use [su -]
 su -

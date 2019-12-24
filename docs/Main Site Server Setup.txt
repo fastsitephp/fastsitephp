@@ -8,6 +8,38 @@
 #
 # ------------------------------------------------------------------------------------
 
+# ------------------------------------------
+# New Easy Setup
+# ------------------------------------------
+
+# After FastSitePHP was released a bash script [create-fast-site.sh] was created to allow
+# for easy server setup of either Apache or nginx, PHP, and FastSitePHP with the Starter Site.
+# Additionally another script was created [sync-server-from-github.sh] which allows the
+# main site to be synced to all content published to GitHub.
+
+# The combination of download and running these two scripts on a default OS are enough to
+# setup the site now. This does not include the [.env] file or HTTPS setup though which
+# are described in the detail setup.
+
+# The new setup works with either Apache or nginx (Web Server choice is chosen in a
+# selection from [create-fast-site.sh]).
+
+# 1) Download and run the Bash Script to setup the Web Server with the Start Site
+wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+sudo bash create-fast-site.sh
+
+# 2) Download the Sync Server Script from GitHub and run it
+wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/sync-server-from-github.sh
+bash sync-server-from-github.sh
+
+# Normally this file is used to sync the server and now it will be Installed so
+# if you run it then no files will be changed because the server is up to date.
+bash /var/www/scripts/sync-server-from-github.sh
+
+# ------------------------------------------
+# Original Commands used for Manual Setup
+# ------------------------------------------
+
 # Update [apt] Package Manager
 # The [upgrade] is not required but recommended (however, it takes many minutes)
 sudo apt update

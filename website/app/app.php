@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------
 
 use FastSitePHP\Lang\I18N;
+use FastSitePHP\Web\Response;
 
 // --------------------------------------------------------------------------------------
 // Site Configuration
@@ -73,8 +74,15 @@ $app->onRender(function() use ($app) {
 // and works well when minimal logic is used. As code grows in size it
 // can be organized into controller classes.
 //
+// The response header [Vary: Accept-Language] is used for Content 
+// negotiation to let bots know that the content will change based
+// on language. For example this applies to Googlebot and Bingbot.
+//
 $app->get('/', function() use ($app) {
-    $app->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
+    $res = new Response();
+    return $res
+        ->vary('Accept-Language')
+        ->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
 });
 
 // Home Page

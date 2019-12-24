@@ -4,6 +4,8 @@
 
 This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations.
 
+This document itself does NOT need to be translated rather it specifies what files and code should be updated.
+
 The following setup is recommended for local development.
 
 ~~~
@@ -17,7 +19,7 @@ If you need to install PHP see documents for (Windows, macOS, and Linux) from: h
 
 Currently specific languages are desired and translation work can be paid. For more see: https://www.fastsitephp.com/en/translators-needed
 
-Files are copied from English, Google Translate is used for initial translations, and then human translators fix errors from Google Translate.
+Files are copied from English, Google Translate or other sites are used for initial translations, and then human translators fix errors from machine translations.
 
 ## Generating the files
 
@@ -56,6 +58,10 @@ Each language has it's own template directory/folder. Once a directory is create
 
 https://github.com/fastsitephp/playground/tree/master/app_data/template
 
+This can be done without a local setup, but if you would prefer to test the site locally refer to instructions in the readme of the playground repository.
+
+https://github.com/fastsitephp/playground
+
 ## Home Page Code
 
 Code comments are updated and some text is changed `home-page-{lang}.php`
@@ -70,6 +76,24 @@ Some of this content is duplicated from the main home page so some content simpl
 
 https://github.com/fastsitephp/fastsitephp/tree/master/docs/i18n-readme
 
+## Starter Site Readme
+
+Each translated language will have it’s own starter site readme file.
+
+`starter-site\docs\README.{lang}.md`
+
+https://github.com/fastsitephp/starter-site/blob/master/README.md
+
+https://github.com/fastsitephp/starter-site/tree/master/docs
+
+## Additional Readme updates
+
+Readme files for the `playground` and `static-files` repositories will have a single row added to the table at the top of the file. Copy and tanslate the English row.
+
+https://github.com/fastsitephp/playground/blob/master/README.md
+
+https://github.com/fastsitephp/static-files/blob/master/README.md
+
 ## Code for the Example Pages
 
 Update comments in `*.{lang}.txt` files
@@ -78,9 +102,16 @@ https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/i18n/cod
 
 ## Quick Reference Code
 
-Code comments are updated and some text is changed `home-page-{lang}-examples.php`. This is a large file so tranlations are planned for the future after many languages are first translated. Additionally `home-page-{lang}.php` should load the new file when created.
+Code comments are updated and some text is changed `home-page-{lang}-examples.php`. This is a large file so tranlations are planned for the future after many languages are first translated. Additionally `home-page-{lang}.php` should load the new file when created, this is specified at the bottom of each `home-page` file for the language.
 
 https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/sample-code
+
+
+## Sitemap Update
+
+Once content is ready the `sitemap.xml` file can be updated by following instructions in the Sitemap Controller file.
+
+https://github.com/fastsitephp/fastsitephp/blob/master/website/app/Controllers/Sitemap.php
 
 ## Docs and API
 

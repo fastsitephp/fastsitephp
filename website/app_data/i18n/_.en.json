@@ -1,9 +1,10 @@
 {
     "menu_home": "Home",
-    "menu_playground": "Playground",
+    "menu_playground": "Code Playground",
     "menu_getting_started": "Getting Started",
     "menu_quick_ref": "Quick Reference",
     "menu_examples": "Examples",
+    "menu_resources": "Resources",
     "menu_documents": "Documents",
     "menu_api": "API",
     "example_code": "Example Code",

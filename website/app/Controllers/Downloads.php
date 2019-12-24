@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use FastSitePHP\Application;
+use FastSitePHP\Net\HttpClient;
 use FastSitePHP\Web\Response;
 
 class Downloads
@@ -38,7 +39,14 @@ class Downloads
                 $url = 'https://github.com/fastsitephp/starter-site/archive/master.zip';
                 break;
             case 'framework':
-                $url = 'https://github.com/fastsitephp/fastsitephp/archive/1.0.0.zip';
+                // Determine latest release verison from GitHub, example 1.1.2
+                $api_url = 'https://api.github.com/repos/fastsitephp/fastsitephp/releases/latest';
+                $res = HttpClient::get($api_url);
+                if ($res->error || !isset($res->json['tag_name'])) {
+                    throw new \Exception('Call to GitHub failed, unable to get release number.');
+                }
+                $version = $res->json['tag_name'];
+                $url = 'https://github.com/fastsitephp/fastsitephp/archive/' . $version . '.zip';
                 break;
         }
         if (isset($url)) {

@@ -7,7 +7,7 @@
     "img-alt-atom": "Editor de Texto Atom",
     "img-alt-editor": "Editor de Código",
     "img-alt-crypto": "Cifrado",
-    "install-php-on-linux": "Instale Apache y PHP en un servidor Linux o Unix",
+    "install-php-on-linux": "Instale Apache o nginx y PHP en un servidor Linux o Unix",
     "install-php-on-windows": "Instale IIS y PHP en un servidor o PC de escritorio Windows",
     "install-php-on-mac": "Instalar Apache y PHP en una Mac",
     "edit-with-vs-code": "Utilice el Visual Studio Code para el desarrollo de PHP",

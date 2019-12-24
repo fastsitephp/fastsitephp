@@ -1,6 +1,6 @@
 # FastSitePHP Change Log
 
-FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log also includes Framework release history and new website features or major changes.
+FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
 ## 1.1.2 (December 16, 2019)
 

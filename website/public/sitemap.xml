@@ -4,37 +4,46 @@
     <loc>https://www.fastsitephp.com/en/</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/playground</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/playground</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/getting-started</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/getting-started</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/quick-reference</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/quick-reference</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/documents</loc>
   </url>
   <url>
-    <loc>https://www.fastsitephp.com/en/documents/install-php-on-linux</loc>
-  </url>
-  <url>
-    <loc>https://www.fastsitephp.com/en/documents/install-php-on-windows</loc>
-  </url>
-  <url>
-    <loc>https://www.fastsitephp.com/en/documents/install-php-on-mac</loc>
-  </url>
-  <url>
-    <loc>https://www.fastsitephp.com/en/documents/edit-with-vs-code</loc>
+    <loc>https://www.fastsitephp.com/pt-BR/documents</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/documents/edit-with-atom</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/documents/edit-with-other</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/documents/edit-with-vs-code</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/documents/file-encryption-bash</loc>
@@ -46,7 +55,19 @@
     <loc>https://www.fastsitephp.com/en/documents/ibm-server-db-query</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/en/documents/install-php-on-linux</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/documents/install-php-on-mac</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/documents/install-php-on-windows</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/api</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/api</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/api/AppMin</loc>
@@ -95,6 +116,9 @@
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/api/FileSystem_Security</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/api/FileSystem_Sync</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/api/Lang_I18N</loc>
@@ -172,18 +196,36 @@
     <loc>https://www.fastsitephp.com/en/examples/request-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/request-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/response-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/response-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples/database-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/database-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/email-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/email-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples/l10n-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/l10n-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/encryption-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/pt-BR/examples/encryption-demo</loc>
   </url>
 </urlset>

@@ -55,6 +55,15 @@
 			if ($current_page === '') {
 				$current_page = '/';
 			}
+			$is_resources_page = (
+				isset($nav_active_link)
+				&& (
+					$nav_active_link === 'quick-reference'
+					|| $nav_active_link === 'examples'
+					|| $nav_active_link === 'documents'
+					|| $nav_active_link === 'api'
+				)
+			);
 			?>
 			<nav class="site-nav">
 				<div class="mobile-nav">
@@ -126,14 +135,14 @@
 						<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 						</li>
+						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+						</li>
 						<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 						</li>
 						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
-						</li>
-						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 						</li>
 					</ul>
 				</div>
@@ -147,24 +156,29 @@
 					<li<?= (isset($nav_active_link) && $nav_active_link === 'getting-started' ? ' class="active"' : '') ?>>
 						<a href="<?= $app->rootUrl() . $app->lang ?>/getting-started"><?= $app->escape($i18n['menu_getting_started']) ?></a>
 					</li>
-					<li<?= (isset($nav_active_link) && $nav_active_link === 'quick-reference' ? ' class="active"' : '') ?>>
-						<a href="<?= $app->rootUrl() . $app->lang ?>/quick-reference"><?= $app->escape($i18n['menu_quick_ref']) ?></a>
-					</li>
-					<li<?= (isset($nav_active_link) && $nav_active_link === 'examples' ? ' class="active"' : '') ?>>
-						<a href="<?= $app->rootUrl() . $app->lang ?>/examples"><?= $app->escape($i18n['menu_examples']) ?></a>
-					</li>				
-					<li<?= (isset($nav_active_link) && $nav_active_link === 'documents' ? ' class="active"' : '') ?>>
-						<a href="<?= $app->rootUrl() . $app->lang ?>/documents"><?= $app->escape($i18n['menu_documents']) ?></a>
-					</li>
-					<li<?= (isset($nav_active_link) && $nav_active_link === 'api' ? ' class="active"' : '') ?>>
-						<a href="<?= $app->rootUrl() . $app->lang ?>/api"><?= $app->escape($i18n['menu_api']) ?></a>
+					<li class="sub-menu resources <?=($is_resources_page ? 'active' : '')?>">
+						<span><?= $app->escape($i18n['menu_resources']) ?></span>
+						<ul>
+							<li<?= (isset($nav_active_link) && $nav_active_link === 'quick-reference' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->rootUrl() . $app->lang ?>/quick-reference"><?= $app->escape($i18n['menu_quick_ref']) ?></a>
+							</li>
+							<li<?= (isset($nav_active_link) && $nav_active_link === 'examples' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->rootUrl() . $app->lang ?>/examples"><?= $app->escape($i18n['menu_examples']) ?></a>
+							</li>				
+							<li<?= (isset($nav_active_link) && $nav_active_link === 'documents' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->rootUrl() . $app->lang ?>/documents"><?= $app->escape($i18n['menu_documents']) ?></a>
+							</li>
+							<li<?= (isset($nav_active_link) && $nav_active_link === 'api' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->rootUrl() . $app->lang ?>/api"><?= $app->escape($i18n['menu_api']) ?></a>
+							</li>
+						</ul>
 					</li>
 					<li>
 						<a href="<?= $github ?>" class="github" target="_blank">
 						<img src="<?= $app->rootDir() ?>img/logos/GitHub-Mark-Light-32px.png" alt="GitHub" height="32" width="32">
 						</a>
 					</li>
-					<li class="i18n-menu">
+					<li class="sub-menu i18n-menu">
 						<div>
 							<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 								<g id="Buttons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -184,14 +198,14 @@
 							<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 							</li>
+							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+							</li>
 							<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 							</li>
 							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
-							</li>
-							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
 							</li>
 						</ul>
 					</li>
