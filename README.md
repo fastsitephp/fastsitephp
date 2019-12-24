@@ -2,6 +2,12 @@
 	<img src="https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/website/public/img/FastSitePHP_Rocketship.png" alt="FastSitePHP">
 </p>
 
+# :star2: Welcome to FastSitePHP!
+
+**Thanks for visiting!**
+
+_If you are seeing this message then you are one of the earliest visitors!_ 🌠👍
+
 <table>
 	<tbody>
 		<tr align="center"><td colspan="2">
@@ -19,12 +25,6 @@
 		</tr>
 	</tbody>
 </table>
-
-# :star2: Welcome to FastSitePHP!
-
-**Thanks for visiting!**
-
-_If you are seeing this message then you are one of the earliest visitors!_ 🌠👍
 
 FastSitePHP is a new web framework that uses PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is also minimal in size so it quick to download and easy to get started. Although it’s new (first published in November of 2019) FastSitePHP was written over many years and is extremely stable containing a large number of unit tests.
 
