@@ -77,12 +77,12 @@
                 <tr><td>French</td><td>Translator Needed</td></tr>
                 <tr><td>German</td><td>Translator Needed</td></tr>
                 <tr><td>Italian</td><td>Translator Needed</td></tr>
-                <tr class="highlight"><td>Japanese</td><td>Translator Needed (some content ready)</td></tr>
+                <tr><td>Japanese</td><td>Translator Needed (some content ready)</td></tr>
                 <tr class="not-needed"><td>Korean</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>Persian</td><td>Translator Needed</td></tr>
                 <tr class="not-needed"><td>Portuguese</td><td>Translator not needed (in progress)</td></tr>
                 <tr><td>Russian</td><td>Translator Needed</td></tr>
-                <tr class="not-needed"><td>Spanish</td><td>Translator not needed (in progress)</td></tr>
+                <tr><td>Spanish</td><td>Translator Needed (some content already translated)</td></tr>
             <tbody>
         </table>
     </div>
