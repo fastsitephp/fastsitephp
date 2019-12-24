@@ -76,6 +76,24 @@ Some of this content is duplicated from the main home page so some content simpl
 
 https://github.com/fastsitephp/fastsitephp/tree/master/docs/i18n-readme
 
+## Starter Site Readme
+
+Each translated language will have it’s own starter site readme file.
+
+`starter-site\docs\README.{lang}.md`
+
+https://github.com/fastsitephp/starter-site/blob/master/README.md
+
+https://github.com/fastsitephp/starter-site/tree/master/docs
+
+## Additional Readme updates
+
+Readme files for the `playground` and `static-files` repositories will have a single row added to the table at the top of the file. Copy and tanslate the English row.
+
+https://github.com/fastsitephp/playground/blob/master/README.md
+
+https://github.com/fastsitephp/static-files/blob/master/README.md
+
 ## Code for the Example Pages
 
 Update comments in `*.{lang}.txt` files
@@ -87,6 +105,7 @@ https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/i18n/cod
 Code comments are updated and some text is changed `home-page-{lang}-examples.php`. This is a large file so tranlations are planned for the future after many languages are first translated. Additionally `home-page-{lang}.php` should load the new file when created, this is specified at the bottom of each `home-page` file for the language.
 
 https://github.com/fastsitephp/fastsitephp/tree/master/website/app_data/sample-code
+
 
 ## Sitemap Update
 
