@@ -20,26 +20,10 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-*) Minor fix for edge case error needed for running local PHP Server:
-    - if [http://localhost:3000] is used instead of [http://localhost:3000/] then
-        [$app->rootUrl()] returns [http://localhost:3000//]
-    - See workaround here on line 90
-        https://github.com/dataformsjs/website/blob/master/app/app.php
-        Note above code has changed, the earlier code that caused the error looked like this:
-                $res = new Response();
-                return $res
-                    ->vary('Accept-Language')
-                    ->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
-    - This is a core function so if an update is made full unit tests need to
-      run and be confirmed in a variety of environments:
-        Windows/IIS
-        Linux (Apache and nginx),
-        Apple Mac (Apache),
-        local PHP server (on both Windows and macOS)
-
 *) Starter Site
     - Add a Auth Demo page to the Starter-Site
-        It will use JWT with a Cookie and not PHP session
+        - It will use JWT with a Cookie and not PHP session
+        - Development has started on this but has not yet been published
     - Once Auth page is added a new release will be published
 
 *) Known Site Issues
