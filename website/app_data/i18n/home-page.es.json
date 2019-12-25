@@ -13,5 +13,6 @@
     "security_desc": "La seguridad ha sido cuidadosamente planificada en todas las características de FastSitePHP para que sea tanto segura como fácil de trabajar. Las características de seguridad incluyen Encriptación (texto, objetos y archivos), Cookies firmadas, JWT, CORS, validación del Servidor Proxy, Limitación de Velocidad y más.",
     "test_title": "Pruebas unitarias basadas en la Web",
     "test_desc": "La mayoría de los frameworks se prueban desde la computadora de un desarrollador utilizando herramientas especiales de CLI; sin embargo, esto no garantiza que funcionará en su entorno. FastSitePHP proporciona un método de prueba basado en la web para que todo el código y la velocidad de la página puedan confirmarse fácilmente en cualquier entorno.",
-    "create_site": "¡Crea un sitio instantáneo en la Zona de Pruebas!"
+    "create_site": "¡Crea un sitio instantáneo en la Zona de Pruebas!",
+    "sample_code": "Código de Muestra"
 }

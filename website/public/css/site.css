@@ -16,6 +16,9 @@ code, pre {
 /* IE 10 Responsive */
 @-ms-viewport { width: device-width; }
 
+/* Prevent issues with RTL Languages such as Arabic changing SVG Layout */
+svg { direction:ltr; }
+
 /************ Colors ************/
 /*
     Primary colors for this site are based on theme colors from https://secure.php.net/
@@ -305,6 +308,7 @@ pre[class*="language-"]>code
 code[class*="language-"], pre[class*="language-"] {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 12px;
+    direction: ltr;
 }
 @media (min-width:600px) {
     code[class*="language-"], pre[class*="language-"] { font-size:14px; }
