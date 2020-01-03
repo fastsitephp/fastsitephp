@@ -8,7 +8,7 @@
 // This allows classes to be dynamically loaded
 require '../../../autoload.php';
 
-// OR for a minimal site only the following 2 files need to be included
+// Or for a minimal site only the following 2 files need to be included
 // require '../vendor/fastsitephp/src/Application.php';
 // require '../vendor/fastsitephp/src/Route.php';
 
@@ -57,8 +57,8 @@ $app->get('/request', function() {
     ];
 });
 
-// Send the contents of this file as a plain text response using 
-// HTTP Response Headers that allow for the end user to cache the  
+// Send the contents of this file as a plain text response using
+// HTTP Response Headers that allow for the end user to cache the
 // page until the file is modified
 $app->get('/cached-file', function() {
     $file_path = __FILE__;
@@ -94,7 +94,7 @@ $is_local = function() {
     $private_ips = \FastSitePHP\Net\IP::privateNetworkAddresses();
 
     return \FastSitePHP\Net\IP::cidr(
-        $private_ips, 
+        $private_ips,
         $req->clientIp('from proxy')
     );
 };
@@ -125,9 +125,9 @@ $app->get('/server', function() {
 })
 ->filter($is_local);
 
-// If the requested url starts with '/examples' then load a PHP file for 
-// the matching routes from the current directory. This is a real file 
-// that provides many more examples. If you download this site, this code 
+// If the requested url starts with '/examples' then load a PHP file for
+// the matching routes from the current directory. This is a real file
+// that provides many more examples. If you download this site, this code
 // and other examples can be found in [app_data/sample-code].
 $app->mount('/examples', 'home-page-en-examples.php');
 
