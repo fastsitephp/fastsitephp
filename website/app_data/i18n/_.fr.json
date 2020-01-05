@@ -1,0 +1,16 @@
+{
+    "menu_home": "Accueil",
+    "menu_playground": "Aire de jeux de Code",
+    "menu_getting_started": "Commencer",
+    "menu_quick_ref": "Référence Rapide",
+    "menu_examples": "Exemples",
+    "menu_resources": "Ressources",
+    "menu_documents": "Les Documents",
+    "menu_api": "API",
+    "example_code": "Exemple de Code",
+    "footer_license": "Site et code source fournis sous licence MIT",
+    "old_browser_warning": "Avertissement - certaines fonctionnalités de cette page nécessitent un navigateur ou un système d'exploitation plus récent que celui que vous utilisez actuellement. Si vous disposez d'un autre navigateur, ouvrez cette page avec.",
+    "api_docs": "Documentation API",
+    "info": "Info",
+    "hello_world": "Bonjour le Monde"
+}
