@@ -266,7 +266,7 @@ Enquanto o site era desenvolvido o framework e componentes foram sendo substitu�
 
 **Quais versões do PHP são suportadas?**
 
-Todas as versões do PHP da 5.3 a 7.3.
+Todas as versões do PHP da 5.3 a 7.4.
 
 ## :memo: Licença
 

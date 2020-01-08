@@ -281,7 +281,7 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-All versions of PHP from 5.3 to 7.3.
+All versions of PHP from 5.3 to 7.4.
 
 ## :memo: License
 

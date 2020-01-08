@@ -260,7 +260,7 @@ Para el sitio que se está desarrollando, el marco y los componentes se reemplaz
 
 **¿Qué versiones de PHP son compatibles?**
 
-Todas las versiones de PHP de 5.3 a 7.3.
+Todas las versiones de PHP de 5.3 a 7.4.
 
 ## :memo: Licencia
 

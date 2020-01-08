@@ -523,6 +523,8 @@
                 '<td class="error-message">syntax error, unexpected T_ECHO, expecting &#039;,&#039; or &#039;;&#039;</td>',
                 // Mac with PHP 5.4
                 '<td class="error-message">parse error, expecting `&#039;,&#039;&#039; or `&#039;;&#039;&#039;</td>',
+                // PHP 7.4
+                '<tr><td><b>Message</b></td><td class="error-message">syntax error, unexpected &#039;echo&#039; (T_ECHO), expecting &#039;;&#039; or &#039;,&#039;</td></tr>',
             ],
             "test-app-parse-error.php",
             [
