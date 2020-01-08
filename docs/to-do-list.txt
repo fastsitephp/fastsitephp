@@ -537,6 +537,20 @@ TODO List
 *) PHP 7.1+ test with 'sha3-384', 'sha3-512', etc
     https://en.wikipedia.org/wiki/SHA-3#Examples_of_SHA-3_variants
 
+*) Security\Crypto\SignedData
+    - Add new functions:
+        SignedData->expireTime(signed_text) - returns int/timestamp or null
+        SignedData->isExpired(signed_text) - returns bool
+    - These will only be used for reporting on the time stamp if desired by an app
+      and not for security. 
+    - SignedData uses a timestamp format compatible with JavaScript, here is a quick 
+      example of how to convert it for PHP functions (Unix Timestamp in Seconds): 
+        $token = $_COOKIE['USER'];
+        $exp = (float)explode('.', $token)[2];
+        $exp = $exp / 1000;
+        $exp = (int)$exp;
+    - Adding these functions requires unit testing
+
 *) Create Unit Tests for CSRF Classes
     - Verify that the 3 type of tokens work (Session, Stateless, Stateless with expire date)
     - Verify that changing the token causes an error
