@@ -129,7 +129,7 @@ $app->get('/server', function() {
 // the matching routes from the current directory. This is a real file
 // that provides many more examples. If you download this site, this code
 // and other examples can be found in [app_data/sample-code].
-$app->mount('/examples', 'home-page-en-examples.php');
+$app->mount('/examples', 'home-page-pt-BR-examples.php');
 
 // -------------------------------
 // Run the application

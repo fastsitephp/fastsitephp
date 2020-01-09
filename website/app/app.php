@@ -1,7 +1,7 @@
 <?php
 // This script is the main entry point for the app. Routes are defined here and
-// in other PHP files loaded from here. This script and gets loaded from the file
-// [public\index.php].
+// other PHP files are also loaded from here. This script and gets loaded from
+// the file [public\index.php].
 
 // ------------------------------------------------------------------
 // Classes used in this file. Classes are not loaded unless used.
