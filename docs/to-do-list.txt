@@ -475,13 +475,21 @@ TODO List
     - Add Unit Tests for 429 - 'Too Many Requests' responses
 
 *) Web\Request
-    queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
-    form() - ...
-    url() - return full URL including query string. Just like [host()] and other user input headers this
+    - queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
+    - form() - ...
+    - url() - return full URL including query string. Just like [host()] and other user input headers this
         needs to hanlde proxy servers and since it's related to security it must be carefully developed and tested.
-    Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
+    - Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
         The reason is that Apache can remove it from $_SERVER, however it's handled here.
-    origin() - need to unit test string value of 'null'
+    - origin() - need to unit test string value of 'null'
+    - New Function to easily read a bearer token without the 'Bearer ' prefix:
+        - bearerToken($header = 'Authorization')
+        - Hack example:
+            $token = $req->header('Authorization');
+            if ($token === null) {
+                return null;
+            }
+            $token = str_replace('Bearer ', '', $token);
 
 *) Initial Unit Test [/check-server-config]
     If a 500 response is returned then JavaScript should provide a message that JSON support is
