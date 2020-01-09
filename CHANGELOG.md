@@ -7,12 +7,12 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Updated `Application->rootUrl()` and `AppMin->rootUrl()` for edge case error when using built-in PHP Server
   * Error did not affect Apache, nginx, IIS, or most PHP built-in server setups
   * When PHP built-in server with fallback 'php -S localhost:3000 website/public/index.php' and code similar to the example below the a site would redirect with 2 forward slashes (example: `http://localhost:3000//en/`).
-  * The previous work-around was to use `$app->redirect('/' . I18n::getUserDefaultLang() . '/');`
+  * The previous work-around was to use `$app->redirect('/' . I18N::getUserDefaultLang() . '/');`
   * The below code now works correctly in all tested environments
 
 ~~~
 $app->get('/', function() use ($app) {
-    $app->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
+    $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
 });
 ~~~
 
@@ -54,8 +54,8 @@ sudo bash create-fast-site.sh
 
 * New Class `FastSitePHP\FileSystem\Sync`
 * Class `FastSitePHP\Lang\I18N` 
-  * Added new static function: `I18n::getUserDefaultLang()`
-  * Fixed edge case error when multple calls are made to `I18n::langFile()` and a file is missing after the first call.
+  * Added new static function: `I18N::getUserDefaultLang()`
+  * Fixed edge case error when multple calls are made to `I18N::langFile()` and a file is missing after the first call.
 
 ## 1.0.0 (November 14, 2019)
 

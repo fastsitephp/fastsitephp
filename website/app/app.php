@@ -82,7 +82,7 @@ $app->get('/', function() use ($app) {
     $res = new Response();
     return $res
         ->vary('Accept-Language')
-        ->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
+        ->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
 });
 
 // Home Page

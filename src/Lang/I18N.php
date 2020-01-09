@@ -326,7 +326,7 @@ class I18N
      *     $app->config['I18N_FALLBACK_LANG']
      *
      * Example usage:
-     *     $app->redirect($app->rootUrl() . I18n::getUserDefaultLang() . '/');
+     *     $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
      */
     public static function getUserDefaultLang()
     {
