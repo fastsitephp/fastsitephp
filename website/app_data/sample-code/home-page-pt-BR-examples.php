@@ -503,7 +503,7 @@ $app->get('/examples/php-functions', function() use ($app) {
     echo '<br>';
 
     // Unlike JavaScript PHP functions do not have access to variables in the
-    // parent scope. The [use] keyword can be used to pass variables  from the
+    // parent scope. The [use] keyword can be used to pass variables from the
     // parent scope. When using this syntax and setting [$x] in the called function
     // [$x] does not get set from the parent scope so this code prints "1".
     $scope_test = function() use ($x) {
