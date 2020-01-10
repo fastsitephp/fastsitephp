@@ -2,18 +2,18 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
-## Next release - 1.2.0 (changes on master branch)
+## 1.2.0 (January 10, 2020)
 
-* The core `Application` object now handles route `filter` functions that return a `Response` object instead of a a `bool`. This allows for easier unit testing of custom middleware. See code example below.
+* The core `Application` object now handles route `filter` functions that return a `Response` object instead of a `bool`. This allows for easier unit testing of custom middleware. See code example below.
+* Added function `Request->bearerToken()`
 * Added function `I18N::hasLang($lang)`
 * Updated function `I18N::getUserDefaultLang()` to validate the language from malicious user attempts to attack a site from the 'Accept-Language' request header. This is simply an additional safety check as the key validation is handled by `Security::dirContainsFile` in the function.
-* Added function `Request->bearerToken()`
 
 ~~~php
 // Example route
 $app->get('/:lang/auth-demo', 'AuthDemo')->filter('Auth.hasAccess');
 
-// Prior to this change a Middleware Object would have likely called [exit()]
+// Prior to this change an Auth Middleware Object would have likely called [exit()]
 class Auth
 {
     public function hasAccess(Application $app)
@@ -28,7 +28,8 @@ class Auth
     }
 }
 
-// Now the Middleware Object can return a Response Object
+// Now the Middleware Object can return a Response Object.
+// This allows for easier CLI testing of an Apps Middleware.
 class Auth
 {
     public function hasAccess(Application $app)
