@@ -327,6 +327,8 @@ class I18N
      *
      * Example usage:
      *     $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
+     * 
+     * @return string
      */
     public static function getUserDefaultLang()
     {
@@ -341,12 +343,16 @@ class I18N
         // Get and Validate the i18n dir
         $dir = self::validateDir($app);
 
-        // Read the 'Accept-Language' as an array and check each langauge
+        // Read the 'Accept-Language' as an array and check each langauge.
+        // validateLang() is also called in case a malicious user attempts to
+        // attack a site from the 'Accept-Language' request header.
         $req = new Request();
         $langs = $req->acceptLanguage();
         $matched_lang = null;
         foreach ($langs as $lang) {
-            $name = '_.' . $lang['value'] . '.json';
+            $iso = $lang['value'];
+            self::validateLang($iso);
+            $name = '_.' . $iso . '.json';
             if (Security::dirContainsFile($dir, $name)) {
                 $matched_lang = $lang['value'];
                 break;
@@ -355,6 +361,30 @@ class I18N
 
         // Return matched language or fallback
         return ($matched_lang ? $matched_lang : $app->config['I18N_FALLBACK_LANG']);
+    }
+
+    /**
+     * Return true if the language is supported by the site. For a language to be 
+     * supported it must include a '_.{lang}.json' file in the [I18N_DIR] directory.
+     *
+     * Requires config value:
+     *     $app->config['I18N_DIR']
+     * 
+     * @param string $lang
+     * @return bool
+     */
+    public static function hasLang($lang)
+    {
+        // Use the Global Application Object
+        global $app;
+
+        // Get and Validate the i18n dir
+        $dir = self::validateDir($app);
+
+        // Return true only if the file exists
+        self::validateLang($lang);
+        $name = '_.' . $lang . '.json';
+        return Security::dirContainsFile($dir, $name);
     }
 
     /**
