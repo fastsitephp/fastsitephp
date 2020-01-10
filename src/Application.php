@@ -2071,7 +2071,7 @@ class Application
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $script_name = $_SERVER['SCRIPT_NAME'];
 
-        // For cases where URL is similar to [/web/index.php/test/?test=test] 
+        // For cases where URL is similar to [/web/index.php/test/?test=test]
         // and SCRIPT_NAME is similar to [/web/index.php]. If both [$url] and
         // [$script_name] equal '/' then the PHP built-in server is likely being
         // in a manner similar to "http://localhost:3000" where the URL does not end
@@ -2550,31 +2550,43 @@ class Application
      * Private function that gets called from $app->run(). This function
      * gets called only on matched routes and checks each filter in the
      * route. If a filter function returns false then the route is skipped.
-     * If all filters for the route returns anything else including nothing
-     * then the route is considered valid for processing.
+     * If the filter function returns a response object then it will be used
+     * instead of the controller for the route, this would commonly be handled
+     * for filters than handle authenication.
      *
      * @param Route $route
      * @param string $method
      * @param string $url
-     * @return bool
+     * @return array [bool, Response|null]
      * @throws \Exception
      */
     private function skipRoute($route, $method, $url)
     {
-        // Run route filter() callback functions if any exist for the route
+        // Run route [filter()] callback functions if any exist for the route
         $skip_route = false;
+        $response = null;
         foreach ($route->filter_callbacks as $callback) {
             list($valid_callback, $result) = $this->callMiddleware($callback);
             if ($valid_callback) {
-                if ($result === false) {
-                    $skip_route = true;
+                if (is_null($result)) {
+                    // Filter was executed and returned nothing so it's considered valid
+                    continue;
+                } else if (is_bool($result)) {
+                    if ($result === false) {
+                        $skip_route = true;
+                        break;
+                    }
+                } else if (is_object($result) && method_exists($result, 'send') && stripos(get_class($result), 'Response') !== false) {
+                    $response = $result;
                     break;
+                } else {
+                    throw new \Exception(sprintf('An item from [Route->filter()] for URL [%s %s] was called and returned and invalid response with data type [%s]. Filter functions must return one of the following (null/void, bool, Response object).', $method, $url, gettype($result)));
                 }
             } else {
                 throw new \Exception(sprintf('An item from [Route->filter()] for URL [%s %s] was defined as a [%s] but it should be defined as either a Closure function or a string in the format of \'Class.method\'.', $method, $url, gettype($callback)));
             }
         }
-        return $skip_route;
+        return array($skip_route, $response);
     }
 
     /**
@@ -2700,7 +2712,11 @@ class Application
             }
 
             // The route matches so check filter functions defined for the route.
-            if (!$this->skipRoute($route, $method, $url)) {
+            list($skip_route, $response) = $this->skipRoute($route, $method, $url);
+            if ($response !== null) {
+                $route_was_found = true;
+                break;
+            } else if (!$skip_route) {
                 // Call the route controller function. There are three supported
                 // Controller options:
                 //   - Closure (Callback function)
@@ -2888,7 +2904,9 @@ class Application
             // Check any filter functions defined for the route. If a route exits
             // but the user doesn't have access because of a filter function then
             // they won't see it here so they cannot use OPTIONS to probe for possible URL's.
-            if (!$this->skipRoute($route, 'OPTIONS', $url)) {
+            // If a filter function returns a response it will be ignored here.
+            list($skip_route, $response) = $this->skipRoute($route, 'OPTIONS', $url);
+            if (!$skip_route) {
                 // Same rules as used above when matching all routes
                 switch ($route->method) {
                     case null:

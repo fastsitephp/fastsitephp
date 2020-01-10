@@ -2,6 +2,45 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Next release - 1.2.0 (changes on master branch)
+
+* The core `Application` object now handles route `filter` functions that return a `Response` object instead of a a `bool`. This allows for easier unit testing of custom middleware. See code example below.
+* Added function `I18N::hasLang($lang)`
+* Updated function `I18N::getUserDefaultLang()` to validate the language from malicious user attempts to attack a site from the 'Accept-Language' request header. This is simply an additional safety check as the key validation is handled by `Security::dirContainsFile` in the function.
+* Added function `Request->bearerToken()`
+
+~~~php
+// Example route
+$app->get('/:lang/auth-demo', 'AuthDemo')->filter('Auth.hasAccess');
+
+// Prior to this change a Middleware Object would have likely called [exit()]
+class Auth
+{
+    public function hasAccess(Application $app)
+    {
+        $res = new Response($app)
+        $res
+            ->statusCode(401)
+            ->header('WWW-Authenticate', 'Bearer')
+            ->json(['success' => false, 'authRequired' => true])
+            ->send();
+        exit();
+    }
+}
+
+// Now the Middleware Object can return a Response Object
+class Auth
+{
+    public function hasAccess(Application $app)
+    {
+        return (new Response($app))
+            ->statusCode(401)
+            ->header('WWW-Authenticate', 'Bearer')
+            ->json(['success' => false, 'authRequired' => true]);
+    }
+}
+~~~
+
 ## 1.1.3 (December 24, 2019)
 
 * Updated `Application->rootUrl()` and `AppMin->rootUrl()` for edge case error when using built-in PHP Server
@@ -10,7 +49,7 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
   * The previous work-around was to use `$app->redirect('/' . I18N::getUserDefaultLang() . '/');`
   * The below code now works correctly in all tested environments
 
-~~~
+~~~php
 $app->get('/', function() use ($app) {
     $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
 });
@@ -31,7 +70,7 @@ $app->get('/', function() use ($app) {
 
 * Created a script that allows easy web server setup with Apache, PHP, and the FastSitePHP Starter Site
 
-~~~
+~~~bash
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh
 sudo bash create-fast-site.sh
 ~~~
