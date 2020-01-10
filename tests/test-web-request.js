@@ -21,7 +21,7 @@
     });
     
     runHttpUnitTest("Request Object - Functions", "test-web-request.php/check-request-methods", {
-        response: "All methods matched for [FastSitePHP\\Web\\Request]: accept, acceptCharset, acceptEncoding, acceptHeader, acceptLanguage, clientIp, content, contentText, contentType, cookie, decryptedCookie, fixIp, form, header, headers, host, isLocal, isXhr, jwtCookie, method, origin, port, protocol, proxyHeader, queryString, referrer, serverIp, userAgent, value, verifiedCookie"
+        response: "All methods matched for [FastSitePHP\\Web\\Request]: accept, acceptCharset, acceptEncoding, acceptHeader, acceptLanguage, bearerToken, clientIp, content, contentText, contentType, cookie, decryptedCookie, fixIp, form, header, headers, host, isLocal, isXhr, jwtCookie, method, origin, port, protocol, proxyHeader, queryString, referrer, serverIp, userAgent, value, verifiedCookie"
     });
 
     runHttpUnitTest("Request Object - method() - GET", "test-web-request.php/method", {

@@ -103,7 +103,7 @@ $app->get('/check-request-methods', function() use ($app) {
         'contentText', 'isXhr', 'origin', 'userAgent', 'referrer', 
         'clientIp', 'protocol', 'host', 'port', 'serverIp', 
         'isLocal', 'accept', 'acceptCharset', 'acceptEncoding', 'acceptLanguage',
-        'jwtCookie', 'method',
+        'jwtCookie', 'method', 'bearerToken',
     );
     
     // Load the core function file and verify the object 
