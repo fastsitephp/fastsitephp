@@ -1028,6 +1028,10 @@
                 "link": "Lang_I18N#fn_getUserDefaultLang"
             },
             {
+                "name": "I18N::hasLang($lang)",
+                "link": "Lang_I18N#fn_hasLang"
+            },
+            {
                 "name": "I18N::setup(Application $app)",
                 "link": "Lang_I18N#fn_setup"
             }
@@ -1886,6 +1890,10 @@
             {
                 "name": "Request->contentText()",
                 "link": "Web_Request#fn_contentText"
+            },
+            {
+                "name": "Request->bearerToken()",
+                "link": "Web_Request#fn_bearerToken"
             },
             {
                 "name": "Request->isXhr()",

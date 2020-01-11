@@ -10,7 +10,7 @@ use FastSitePHP\FileSystem\Security;
  * API Controller
  * 
  * JSON files used by this Class are generated from the script:
- *     vendor\FastSitePHP\scripts\create-api-json-files.php
+ *     fastsitephp\scripts\create-api-json-files.php
  */
 class API
 {

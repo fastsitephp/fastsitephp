@@ -27,9 +27,6 @@ TODO List
         App\Middleware\{Auth, Cors, Env} from the Starter Site once code is published
     - Add [App\Middleware\{Auth, Cors, Env}] to the Quick Ref page once they have API Docs
         Possibly just a single stater site middleware topic
-    - Confirm which versions of PHP are supported
-        - Likely PHP 5.4+
-        - Add comments to the readme regarding this
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected

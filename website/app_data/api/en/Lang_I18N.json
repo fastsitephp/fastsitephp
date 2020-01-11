@@ -82,8 +82,23 @@
             "isStatic": true,
             "isGetterSetter": false,
             "description": "Return the default language for the user based on the 'Accept-Language' request header and available languages for the site.\n\nThis is useful to provide custom content for the user or to redirect to the user's language when they access the default URL.\n\nRequires config values:\n    $app->config['I18N_DIR']\n    $app->config['I18N_FALLBACK_LANG']\n\nExample usage:\n    $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '\/');",
-            "attributes": [],
-            "returnType": null,
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "hasLang($lang)",
+            "target": "fn_hasLang",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return true if the language is supported by the site. For a language to be supported it must include a '_.{lang}.json' file in the [I18N_DIR] directory.\n\nRequires config value:\n    $app->config['I18N_DIR']",
+            "attributes": [
+                "@param string $lang",
+                "@return bool"
+            ],
+            "returnType": "bool",
             "links": []
         },
         {
