@@ -5,6 +5,17 @@
 error_reporting(-1);
 ini_set('display_errors', 'on');
 
+// Autoloader for the Starter Site
+// Run this for the Starter Site 'App\*' classes proir to other code
+spl_autoload_register(function($class) {
+    if (strpos($class, 'App\\') === 0) {
+        $file_path = __DIR__ . '/../../starter-site/app/' . str_replace('\\', '/', substr($class, 4)) . '.php';
+        if (is_file($file_path)) {
+            require $file_path;
+        }
+    }
+});
+
 // Autoloader and App Setup
 // This requires the [psr/log] dependency to be installed
 require __DIR__ . '/../autoload.php';
@@ -18,6 +29,11 @@ $dir_src = realpath(__DIR__ . '/../src/');
 $dir_save = realpath(__DIR__ . '/../website/app_data/api/en');
 if (!is_dir($dir_src) || !is_dir($dir_save)) {
     echo 'ERROR - This Script is for use with the main website.';
+    exit();
+}
+$starter_site = realpath(__DIR__ . '/../../starter-site/app');
+if (!is_dir($starter_site)) {
+    echo 'ERROR - Missing Starter Site, it should be downloaded and included when running this.';
     exit();
 }
 
@@ -40,6 +56,12 @@ foreach ($files as $file) {
     $class = str_replace('.php', '', $class);
     $class_names[] = $class;
 }
+
+// Add Starter Site Middleware.
+// There are only 3 classes so they are hard-coded for now.
+$class_names[] = 'App\Middleware\Auth';
+$class_names[] = 'App\Middleware\Cors';
+$class_names[] = 'App\Middleware\Env';
 
 // Save each Class to a JSON File
 $classes = [];

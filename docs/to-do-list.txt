@@ -23,8 +23,6 @@ TODO List
 *) Starter Site
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
-    - Modify [fastsitephp\scripts\create-api-json-files.php] to include
-        App\Middleware\{Auth, Cors, Env} from the Starter Site once code is published
     - Add [App\Middleware\{Auth, Cors, Env}] to the Quick Ref page once they have API Docs
         Possibly just a single stater site middleware topic
 
