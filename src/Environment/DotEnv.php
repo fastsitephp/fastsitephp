@@ -63,6 +63,10 @@ namespace FastSitePHP\Environment;
  * If you prefer to use those features then PHP packages [vlucas/phpdotenv]
  * or [symfony/dotenv] are recommended.
  * 
+ * Because FastSitePHP's DotEnv Class is minimal and has fast performance it can be
+ * used for production sites, however it’s a good idea to load it from middleware
+ * or controller logic on needed routes rather than loading it for every route. 
+ * 
  * @link https://www.npmjs.com/package/dotenv
  * @link https://github.com/vlucas/phpdotenv
  * @link https://github.com/symfony/dotenv

@@ -1,5 +1,198 @@
 [
     {
+        "name": "App\\Middleware\\Cors",
+        "link": "App_Middleware_Cors",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Cors->acceptAuth(Application $app)",
+                "link": "App_Middleware_Cors#fn_acceptAuth"
+            }
+        ]
+    },
+    {
+        "name": "App\\Middleware\\Auth",
+        "link": "App_Middleware_Auth",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Auth->hasAccess(Application $app)",
+                "link": "App_Middleware_Auth#fn_hasAccess"
+            },
+            {
+                "name": "Auth->login(Application $app, $lang)",
+                "link": "App_Middleware_Auth#fn_login"
+            },
+            {
+                "name": "Auth->logout(Application $app)",
+                "link": "App_Middleware_Auth#fn_logout"
+            },
+            {
+                "name": "Auth->addUser(Application $app, $login, $password)",
+                "link": "App_Middleware_Auth#fn_addUser"
+            },
+            {
+                "name": "Auth->updateUser(Application $app, $login, $new_password)",
+                "link": "App_Middleware_Auth#fn_updateUser"
+            },
+            {
+                "name": "Auth->deleteUser(Application $app, $login)",
+                "link": "App_Middleware_Auth#fn_deleteUser"
+            }
+        ]
+    },
+    {
+        "name": "App\\Middleware\\Env",
+        "link": "App_Middleware_Env",
+        "properties": [],
+        "methods": [
+            {
+                "name": "Env->isLocalhost()",
+                "link": "App_Middleware_Env#fn_isLocalhost"
+            },
+            {
+                "name": "Env->isLocalNetwork()",
+                "link": "App_Middleware_Env#fn_isLocalNetwork"
+            },
+            {
+                "name": "Env->isLocalFromProxy()",
+                "link": "App_Middleware_Env#fn_isLocalFromProxy"
+            },
+            {
+                "name": "Env->loadDotEnv(Application $app)",
+                "link": "App_Middleware_Env#fn_loadDotEnv"
+            }
+        ]
+    },
+    {
+        "name": "FastSitePHP\\AppMin",
+        "link": "AppMin",
+        "properties": [
+            {
+                "name": "AppMin->status_code",
+                "link": "AppMin#prop_status_code"
+            },
+            {
+                "name": "AppMin->headers",
+                "link": "AppMin#prop_headers"
+            },
+            {
+                "name": "AppMin->cors_headers",
+                "link": "AppMin#prop_cors_headers"
+            },
+            {
+                "name": "AppMin->no_cache",
+                "link": "AppMin#prop_no_cache"
+            },
+            {
+                "name": "AppMin->template_dir",
+                "link": "AppMin#prop_template_dir"
+            },
+            {
+                "name": "AppMin->error_template",
+                "link": "AppMin#prop_error_template"
+            },
+            {
+                "name": "AppMin->not_found_template",
+                "link": "AppMin#prop_not_found_template"
+            },
+            {
+                "name": "AppMin->error_page_title",
+                "link": "AppMin#prop_error_page_title"
+            },
+            {
+                "name": "AppMin->error_page_message",
+                "link": "AppMin#prop_error_page_message"
+            },
+            {
+                "name": "AppMin->not_found_page_title",
+                "link": "AppMin#prop_not_found_page_title"
+            },
+            {
+                "name": "AppMin->not_found_page_message",
+                "link": "AppMin#prop_not_found_page_message"
+            },
+            {
+                "name": "AppMin->method_not_allowed_title",
+                "link": "AppMin#prop_method_not_allowed_title"
+            },
+            {
+                "name": "AppMin->method_not_allowed_message",
+                "link": "AppMin#prop_method_not_allowed_message"
+            },
+            {
+                "name": "AppMin->strict_url_mode",
+                "link": "AppMin#prop_strict_url_mode"
+            }
+        ],
+        "methods": [
+            {
+                "name": "AppMin->setup($timezone)",
+                "link": "AppMin#fn_setup"
+            },
+            {
+                "name": "AppMin->exceptionHandler($e)",
+                "link": "AppMin#fn_exceptionHandler"
+            },
+            {
+                "name": "AppMin->errorHandler($severity, $message, $file, $line)",
+                "link": "AppMin#fn_errorHandler"
+            },
+            {
+                "name": "AppMin->shutdown()",
+                "link": "AppMin#fn_shutdown"
+            },
+            {
+                "name": "AppMin->escape($text)",
+                "link": "AppMin#fn_escape"
+            },
+            {
+                "name": "AppMin->render($templates, $data = null)",
+                "link": "AppMin#fn_render"
+            },
+            {
+                "name": "AppMin->route($pattern, \\Closure $callback, $method = null)",
+                "link": "AppMin#fn_route"
+            },
+            {
+                "name": "AppMin->get($pattern, \\Closure $callback)",
+                "link": "AppMin#fn_get"
+            },
+            {
+                "name": "AppMin->post($pattern, \\Closure $callback)",
+                "link": "AppMin#fn_post"
+            },
+            {
+                "name": "AppMin->routes()",
+                "link": "AppMin#fn_routes"
+            },
+            {
+                "name": "AppMin->redirect($url, $status_code = 302)",
+                "link": "AppMin#fn_redirect"
+            },
+            {
+                "name": "AppMin->requestedPath()",
+                "link": "AppMin#fn_requestedPath"
+            },
+            {
+                "name": "AppMin->rootUrl()",
+                "link": "AppMin#fn_rootUrl"
+            },
+            {
+                "name": "AppMin->rootDir()",
+                "link": "AppMin#fn_rootDir"
+            },
+            {
+                "name": "AppMin->routeMatches($pattern, $path)",
+                "link": "AppMin#fn_routeMatches"
+            },
+            {
+                "name": "AppMin->run()",
+                "link": "AppMin#fn_run"
+            }
+        ]
+    },
+    {
         "name": "FastSitePHP\\Application",
         "link": "Application",
         "properties": [
@@ -268,134 +461,6 @@
             {
                 "name": "Application->runAfterEvents($content)",
                 "link": "Application#fn_runAfterEvents"
-            }
-        ]
-    },
-    {
-        "name": "FastSitePHP\\AppMin",
-        "link": "AppMin",
-        "properties": [
-            {
-                "name": "AppMin->status_code",
-                "link": "AppMin#prop_status_code"
-            },
-            {
-                "name": "AppMin->headers",
-                "link": "AppMin#prop_headers"
-            },
-            {
-                "name": "AppMin->cors_headers",
-                "link": "AppMin#prop_cors_headers"
-            },
-            {
-                "name": "AppMin->no_cache",
-                "link": "AppMin#prop_no_cache"
-            },
-            {
-                "name": "AppMin->template_dir",
-                "link": "AppMin#prop_template_dir"
-            },
-            {
-                "name": "AppMin->error_template",
-                "link": "AppMin#prop_error_template"
-            },
-            {
-                "name": "AppMin->not_found_template",
-                "link": "AppMin#prop_not_found_template"
-            },
-            {
-                "name": "AppMin->error_page_title",
-                "link": "AppMin#prop_error_page_title"
-            },
-            {
-                "name": "AppMin->error_page_message",
-                "link": "AppMin#prop_error_page_message"
-            },
-            {
-                "name": "AppMin->not_found_page_title",
-                "link": "AppMin#prop_not_found_page_title"
-            },
-            {
-                "name": "AppMin->not_found_page_message",
-                "link": "AppMin#prop_not_found_page_message"
-            },
-            {
-                "name": "AppMin->method_not_allowed_title",
-                "link": "AppMin#prop_method_not_allowed_title"
-            },
-            {
-                "name": "AppMin->method_not_allowed_message",
-                "link": "AppMin#prop_method_not_allowed_message"
-            },
-            {
-                "name": "AppMin->strict_url_mode",
-                "link": "AppMin#prop_strict_url_mode"
-            }
-        ],
-        "methods": [
-            {
-                "name": "AppMin->setup($timezone)",
-                "link": "AppMin#fn_setup"
-            },
-            {
-                "name": "AppMin->exceptionHandler($e)",
-                "link": "AppMin#fn_exceptionHandler"
-            },
-            {
-                "name": "AppMin->errorHandler($severity, $message, $file, $line)",
-                "link": "AppMin#fn_errorHandler"
-            },
-            {
-                "name": "AppMin->shutdown()",
-                "link": "AppMin#fn_shutdown"
-            },
-            {
-                "name": "AppMin->escape($text)",
-                "link": "AppMin#fn_escape"
-            },
-            {
-                "name": "AppMin->render($templates, $data = null)",
-                "link": "AppMin#fn_render"
-            },
-            {
-                "name": "AppMin->route($pattern, \\Closure $callback, $method = null)",
-                "link": "AppMin#fn_route"
-            },
-            {
-                "name": "AppMin->get($pattern, \\Closure $callback)",
-                "link": "AppMin#fn_get"
-            },
-            {
-                "name": "AppMin->post($pattern, \\Closure $callback)",
-                "link": "AppMin#fn_post"
-            },
-            {
-                "name": "AppMin->routes()",
-                "link": "AppMin#fn_routes"
-            },
-            {
-                "name": "AppMin->redirect($url, $status_code = 302)",
-                "link": "AppMin#fn_redirect"
-            },
-            {
-                "name": "AppMin->requestedPath()",
-                "link": "AppMin#fn_requestedPath"
-            },
-            {
-                "name": "AppMin->rootUrl()",
-                "link": "AppMin#fn_rootUrl"
-            },
-            {
-                "name": "AppMin->rootDir()",
-                "link": "AppMin#fn_rootDir"
-            },
-            {
-                "name": "AppMin->routeMatches($pattern, $path)",
-                "link": "AppMin#fn_routeMatches"
-            },
-            {
-                "name": "AppMin->run()",
-                "link": "AppMin#fn_run"
             }
         ]
     },
@@ -1026,6 +1091,10 @@
             {
                 "name": "I18N::getUserDefaultLang()",
                 "link": "Lang_I18N#fn_getUserDefaultLang"
+            },
+            {
+                "name": "I18N::hasLang($lang)",
+                "link": "Lang_I18N#fn_hasLang"
             },
             {
                 "name": "I18N::setup(Application $app)",
@@ -1886,6 +1955,10 @@
             {
                 "name": "Request->contentText()",
                 "link": "Web_Request#fn_contentText"
+            },
+            {
+                "name": "Request->bearerToken()",
+                "link": "Web_Request#fn_bearerToken"
             },
             {
                 "name": "Request->isXhr()",

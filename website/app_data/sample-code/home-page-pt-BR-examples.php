@@ -1665,17 +1665,17 @@ $app->get('/examples/request-headers', function() use ($app) {
     $accept_de = $req->acceptLanguage('de'); // false
 
     // Qulquer cabeçalho pode ser lido ao utilizar a função [header()]:
-    $content_type = $app->header('Content-Type');
-    $user_agent = $app->header('User-Agent');
+    $content_type = $req->header('Content-Type');
+    $user_agent = $req->header('User-Agent');
 
     // Chaves de Cabeçalho ignoram diferenciação de maiúsculas e minúsculas, então
     // todas as seguintes retornam o mesmo valor:
-    $content_type = $app->header('content-type');
-    $content_type = $app->header('CONTENT-TYPE');
-    $content_type = $app->header('Content-Type');
+    $content_type = $req->header('content-type');
+    $content_type = $req->header('CONTENT-TYPE');
+    $content_type = $req->header('Content-Type');
 
     // Todos os cabeçalhos pode ser lidos à partir da função [headers()]:
-    $headers = $app->headers();
+    $headers = $req->headers();
     // EXAMPLE_CODE_END
 
     // Retorne uma Resposta em Texto
@@ -1685,6 +1685,9 @@ $app->get('/examples/request-headers', function() use ($app) {
         ->content(implode("\n", [
             json_encode($accept_en),
             json_encode($accept_de),
+            json_encode($content_type),
+            json_encode($user_agent),
+            json_encode($headers),
         ]));
 });
 

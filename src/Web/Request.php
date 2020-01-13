@@ -641,6 +641,43 @@ class Request
     }
 
     /**
+     * Return a Bearer Token value from the Authorization Request Header. If the
+     * header is not set or the token is invalid then null will be returned.
+     * 
+     * Bearer Tokens are commonly used with API’s and Web Services. Token values
+     * are defined by the app and can include OAuth 2.0, JSON Web Tokens (JWT),
+     * or custom formats.
+     * 
+     * Example Request:
+     *     'Authorization: Bearer abc123'
+     * 
+     * This function returns:
+     *     'abc123'
+     * 
+     * The web standard (RFC 6750) is focused around OAuth 2.0 however it defines
+     * a flexible format for the token value to support various encoded token types:
+     *     Bearer {OAuth 2.0}
+     *     Bearer {JWT}
+     *     Bearer {Hex}
+     *     Bearer {Base64}
+     *     Bearer {Base64url}
+     * 
+     * @link https://tools.ietf.org/html/rfc6750
+     * @return string|null
+     */
+    public function bearerToken()
+    {
+        // Regex is based on the defined format from rfc 6750:
+        //   b64token    = 1*( ALPHA / DIGIT / "-" / "." / "_" / "~" / "+" / "/" ) *"="
+        //   credentials = "Bearer" 1*SP b64token
+        $token = $this->header('Authorization');
+        if ($token === null || preg_match('/^Bearer [A-Za-z0-9\-\._~\+\/]+=*$/', $token) !== 1) {
+            return null;
+        }
+        return substr($token, 7);
+    }
+
+    /**
      * Return true if the request was submitted with the header [X-Requested-With] containing
      * the value [XMLHttpRequest]. This header is sent with jQuery and other popular
      * JavaScript Frameworks when making web service calls.

@@ -1,0 +1,36 @@
+{
+    "name": "App\\Middleware\\Cors",
+    "short_name": "App\\Middleware\\Cors",
+    "link": "App_Middleware_Cors",
+    "namespace": "App\\Middleware",
+    "description": "CORS Middleware (Cross-Origin Resource Sharing)\n\nThis class is included with the starter site and provides a template with common options for CORS Services. Use this class with route filter callback functions so that the OPTIONS request can be handled.\n\nThis class is desinged to be easy to use without making changes and also easy to modify if you need to handle custom CORS options for your site.",
+    "attributes": [
+        "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Access_control_CORS",
+        "@link http:\/\/www.html5rocks.com\/en\/tutorials\/cors\/",
+        "@link http:\/\/www.w3.org\/TR\/cors\/",
+        "@link http:\/\/www.w3.org\/TR\/cors\/#access-control-allow-origin-response-header",
+        "@link https:\/\/en.wikipedia.org\/wiki\/Cross-origin_resource_sharing"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "acceptAuth(Application $app)",
+            "target": "fn_acceptAuth",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Allow all sites to submit [Authorization] and [Content-Type] headers. This function can be used for JSON or GraphQL Services were the API or Web Service is on a different host or domain from the main site.\n\nThis function adds the following headers:\n    Access-Control-Allow-Origin: {Client-Origin}\n    Access-Control-Allow-Headers: Authorization, Content-Type\n    Access-Control-Allow-Credentials: true\n\nIf the client does not submit an origin then the following is used:\n    Access-Control-Allow-Origin: *",
+            "attributes": [
+                "@param Application $app"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Access_control_CORS",
+        "http:\/\/www.html5rocks.com\/en\/tutorials\/cors\/",
+        "http:\/\/www.w3.org\/TR\/cors\/",
+        "http:\/\/www.w3.org\/TR\/cors\/#access-control-allow-origin-response-header",
+        "https:\/\/en.wikipedia.org\/wiki\/Cross-origin_resource_sharing"
+    ]
+}

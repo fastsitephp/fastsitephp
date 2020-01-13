@@ -50,6 +50,12 @@
         display:flex;
         align-items:center;
     }
+    html[lang='ar'] a.btn .icon-container {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 32px;
+        border-bottom-left-radius: 32px;
+    }
     a.btn .arrow {
         display: inline-block;
         width: 0;
@@ -57,6 +63,11 @@
         border-top: 8px solid transparent;
         border-left: 16px solid white;
         border-bottom: 8px solid transparent;
+        margin: 16px;
+    }
+    html[lang='ar'] a.btn .arrow {
+        border-left: 0;
+        border-right: 16px solid white;
         margin: 16px;
     }
     a.btn:hover {
@@ -199,7 +210,11 @@
         1%, 15%, 31%, 45%, 61%, 80%, 90% { opacity: 1; }
     }
 </style>
-<div class="home-page">
+<?php
+// Once full translations are made this will go at the top of the file for the <html> element
+$html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
+?>
+<div class="home-page" dir="<?= $html_dir ?>">
     <div class="page-title">
         <h1>
             <!-- 
@@ -420,7 +435,7 @@
 	    </ul>
     </div>
     <section class="content sample-code">
-        <h2>Sample Code</h2>
+        <h2><?= $app->escape($i18n['sample_code']) ?></h2>
         <pre><code class="language-php"><?= $app->escape($sample_code) ?></code></pre>
     </section>
     <div class="try-playgound">

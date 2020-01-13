@@ -1,0 +1,18 @@
+{
+    "page_title": "Page d'accueil",
+    "page_desc": "Un framework Open Source moderne pour la création de sites Web et d'API hautes performances avec PHP",
+    "better_title": "De meilleurs Sites",
+    "better_desc": "FastSitePHP a été conçu pour des performances rapides, une flexibilité de codage, une stabilité à long terme, une facilité d'utilisation et une meilleure expérience de développement globale. En utilisant FastSitePHP, vous pouvez créer de meilleurs sites plus rapidement que jamais.",
+    "performance_title": "Belle Performance",
+    "performance_desc": "Avec FastSitePHP, des pages complexes peuvent être générées en des milliers de secondes en utilisant seulement une petite quantité de mémoire. Ce niveau de performances permet même aux sites de s'exécuter rapidement sur des ordinateurs peu puissants.",
+    "setup_title": "Facile à configurer et à utiliser",
+    "setup_desc": "FastSitePHP est conçu pour être facile à installer sur n'importe quel système d'exploitation, facile à lire le code, facile à développer et bien plus encore. Avec FastSitePHP, des sites Web et des applications de haute qualité peuvent être développés à un rythme rapide en utilisant moins de lignes de code et une configuration minimale.",
+    "learn_title": "Rapide à apprendre et à déboguer",
+    "learn_desc": "FastSitePHP est bien documenté et est livré avec des exemples pratiques. FastSitePHP fournit des messages d'erreur conviviaux pour les développeurs afin que les erreurs puissent être corrigées rapidement même si vous avez peu ou pas d'expérience en programmation avec PHP.",
+    "security_title": "Une sécurité renforcée",
+    "security_desc": "La sécurité a été soigneusement planifiée dans toutes les fonctionnalités de FastSitePHP afin qu'elle soit à la fois sécurisée et facile à utiliser. Les fonctionnalités de sécurité incluent le cryptage (texte, objets et fichiers), les cookies signés, JWT, CORS, la validation du serveur proxy, la limitation du débit, etc.",
+    "test_title": "Tests unitaires basés sur le Web",
+    "test_desc": "La plupart des frameworks sont testés à partir de l'ordinateur d'un développeur à l'aide d'outils CLI spéciaux; cependant, cela ne garantit pas que cela fonctionnera dans votre environnement. FastSitePHP fournit une méthode de test basée sur le Web afin que tout le code et la vitesse des pages puissent être facilement confirmés dans n'importe quel environnement.",
+    "create_site": "Créez un site instantané sur le terrain de jeu!",
+    "sample_code": "Exemple de Code"
+}

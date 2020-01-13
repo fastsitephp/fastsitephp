@@ -526,7 +526,7 @@ class AppMin
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $script_name = $_SERVER['SCRIPT_NAME'];
 
-        if (strpos($url, $script_name) === 0) {
+        if (strpos($url, $script_name) === 0 && !($url === $script_name && $url === '/')) {
             $url = substr($url, 0, strlen($script_name)) . '/';
         } elseif ((string)$script_name !== '') {
             $data = explode('/', $script_name);

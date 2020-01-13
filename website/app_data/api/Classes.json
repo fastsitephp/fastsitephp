@@ -1,11 +1,23 @@
 [
     {
-        "name": "Application",
-        "link": "Application"
+        "name": "App\\Middleware\\Cors",
+        "link": "App_Middleware_Cors"
+    },
+    {
+        "name": "App\\Middleware\\Auth",
+        "link": "App_Middleware_Auth"
+    },
+    {
+        "name": "App\\Middleware\\Env",
+        "link": "App_Middleware_Env"
     },
     {
         "name": "AppMin",
         "link": "AppMin"
+    },
+    {
+        "name": "Application",
+        "link": "Application"
     },
     {
         "name": "Route",

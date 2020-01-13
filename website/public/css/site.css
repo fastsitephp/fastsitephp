@@ -16,6 +16,9 @@ code, pre {
 /* IE 10 Responsive */
 @-ms-viewport { width: device-width; }
 
+/* Prevent issues with RTL Languages such as Arabic changing SVG Layout */
+svg { direction:ltr; }
+
 /************ Colors ************/
 /*
     Primary colors for this site are based on theme colors from https://secure.php.net/
@@ -186,6 +189,7 @@ a:visited { color:#4F5B93; }
 .site-nav ul.desktop-nav > li.sub-menu ul li:hover { background-color: #BCC1DB; }
 .site-nav ul.desktop-nav > li.sub-menu:hover ul { display:block; }
 .site-nav ul.desktop-nav > li.sub-menu a { display:block; padding:10px 20px; }
+.site-nav ul.desktop-nav > li.sub-menu.i18n-menu a { text-align:center; }
 
 .desktop-nav { display:none; }
 @media screen and (min-width: 700px) {
@@ -305,6 +309,7 @@ pre[class*="language-"]>code
 code[class*="language-"], pre[class*="language-"] {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 12px;
+    direction: ltr;
 }
 @media (min-width:600px) {
     code[class*="language-"], pre[class*="language-"] { font-size:14px; }

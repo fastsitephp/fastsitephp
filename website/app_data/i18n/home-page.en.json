@@ -13,5 +13,6 @@
     "security_desc": "Security has been carefully planned in all features of FastSitePHP so that it is both secure and easy to work with. Security features include Encryption (text, objects, and files), Signed Cookies, JWT, CORS, Proxy Server Validation, Rate Limiting, and more.",
     "test_title": "Web Based Unit Testing",
     "test_desc": "Most frameworks are tested from a developer’s computer using special CLI tools; however this doesn’t guarantee that it will work in your environment. FastSitePHP’s provides a web based method of testing so that all code and page speed can be easily confirmed in any environment.",
-    "create_site": "Create an Instant Site on the Playground!"
+    "create_site": "Create an Instant Site on the Playground!",
+    "sample_code": "Sample Code"
 }
