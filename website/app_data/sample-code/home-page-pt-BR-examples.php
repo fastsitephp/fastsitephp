@@ -4267,7 +4267,7 @@ $app->get('/examples/l10n', function() use ($app) {
     echo $l10n->formatTime($date_time);
     echo '<br>';
     echo '<br>';
--- PAREI AQUI --
+
     // Imprima um Número formatado com diferentes localizações utilizando as
     // funções [locale()] e [formatNumber()]. Posições decimais são opcionais
     // e seu padrão é 0. Este exemplo imprime:
