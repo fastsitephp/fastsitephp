@@ -1,0 +1,12 @@
+// Os dados para criptografar pode ser no formato de:
+// [string, int, float, bool, array, object, and optionally null]
+// e quando descriptografados, os mesmos tipos de dados e valores são retornados.
+$crypto = new \FastSitePHP\Security\Crypto\Encryption();
+$key = $crypto->generateKey();
+$encrypted_text = $crypto->encrypt($data, $key);
+$decrypted_data = $crypto->decrypt($encrypted_text, $key);
+
+// Criptografe e Descriptgrafe utilizando uma Senha
+$crypto->keyType('password');
+$encrypted_text = $crypto->encrypt($data, $password);
+$decrypted_data = $crypto->decrypt($encrypted_text, $password);

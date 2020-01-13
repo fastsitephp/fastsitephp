@@ -1,0 +1,27 @@
+// Conecte a um Banco de Dados
+$db = new \FastSitePHP\Data\Database($dsn, $user, $password);
+
+// Consulta para Múltiplos Registros
+// Retorna um Array de Registros (Array Associativo para cada Registro).
+$sql = 'SELECT * FROM pages';
+$records = $db->query($sql);
+
+// Consulta para um registro. Retorna um Array Associativo ou [null] se não
+// encontrado. Ambas [query()] e [queryOne()] suportam parâmetros opcionais ao
+// consultar.
+$sql = 'SELECT * FROM pages WHERE id = ?';
+$params = [1];
+$record = $db->queryOne($sql, $params);
+
+// Utiliza [execute()] para INSERT, UPDATE, DELETE, CREATE e outras Transações.
+// Além de utilizar [?] você pode também utilizar parâmetros nomeados no formato
+// ":name". Parâmetros nomeados capo tornar o código mais fácil de ler.
+$sql = 'INSERT INTO pages (title, content)';
+$sql .= ' VALUES (:title, :content)';
+$params = [
+    'title'   => 'Banco de Dados de Demonstração',
+    'content' => '<h1>Banco de Dados de Demonstração<h1>',
+];
+$rows_affected = $db->execute($sql, $params);
+
+// Muitos exemplos adicionais pode ser encontrados na página Referência Rápida.

@@ -1,0 +1,11 @@
+$req = new \FastSitePHP\Web\Request();
+
+// Leia o Cabeçalho de Requisição 'User-Agent'
+$user_agent = $req->userAgent();
+
+// De forma segura, leia o IP do Usuário de uma Cabeçalhod e Proxy
+$user_ip = $req->clientIp('from proxy', 'trust local');
+
+// Retorne [true] se o navegador do usuário estiver configurado para aceitar
+// Francês
+$accept_fr = $req->acceptLanguage('fr');
