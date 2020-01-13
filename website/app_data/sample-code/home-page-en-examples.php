@@ -16,7 +16,7 @@ if (!isset($app)) {
 }
 
 // The root page loads the default development autoloader. If a vendor autoloader
-// exists then include it as well. A few examples such as [examples/logging] and 
+// exists then include it as well. A few examples such as [examples/logging] and
 // [examples/markdown] will not work unless third-party libraries are installed.
 if (is_file('../../../vendor/autoload.php')) {
     include '../../../vendor/autoload.php';
@@ -52,7 +52,7 @@ $app->get('/examples', function() use ($app) {
     return implode("\n", $html);
 });
 
-// This commented out code block (and simlar code blocks) are for the Quick Reference Page:
+// This commented out code block (and similar code blocks) are for the Quick Reference Page:
 /*
 // EXAMPLE_CODE_START
 // TITLE: PHP Syntax - Overview
@@ -63,8 +63,8 @@ $app->get('/examples', function() use ($app) {
 // some JavaScript experience it is very easy to get started with PHP.
 
 // PHP Scripts start with [<?php] and individual lines must end with a
-// semicolon [;]. The [echo] statement outputs content. This example if
-// saved as a file simply ouputs 'Hello World!'.
+// semicolon [;]. The [echo] statement outputs/prints content on the screen. This
+// example if saved as a file simply ouputs 'Hello World!'.
 echo 'Hello World!';
 // EXAMPLE_CODE_END
 */
@@ -146,7 +146,7 @@ $app->get('/examples/php-strings', function() use ($app) {
     // To combine or concatenate strings use the dot character [.]:
     $greeting = 'Hello ' . 'World';
 
-    // Spaces are not required between the [.] and the other variables:
+    // Spaces are not required between the dot [.] and the other variables:
     $greeting = 'Hello '.'World';
 
     // You can append to a string using the [.=] operator:
@@ -159,7 +159,7 @@ $app->get('/examples/php-strings', function() use ($app) {
     $greeting = "Hello ${name}";
 
     // Multi-line strings use [<<<] followed by a programmer-defined identifier
-    // and end the string the same identifier starting on the code line followed
+    // and end the string the same identifier starting on a new code line followed
     // by [;]. In this example the identifier is [EOD] for end-of-data. Multiline
     // strings using this syntax support string interpolation.
     $multiline1 = <<<EOD
@@ -208,7 +208,7 @@ EOD;
     // present a problem though if you need to calculate the length of a Unicode
     // String for a user, find the character position, etc. To support different
     // encodings PHP includes Multibyte String Functions. In general they have the
-    // same name and params as other string functions but are prefixed with [mb_*].
+    // same name and params as other string functions but are prefixed with [mb_].
     $unicode = '测试';
     $ulen = strlen($unicode);     // 6
     $ulen2 = mb_strlen($unicode); // 2
@@ -251,7 +251,7 @@ $app->get('/examples/php-logic', function() use ($app) {
         echo '[Number does not equal 5]';
     }
 
-    // [if ... else]. The example aslo shows using the not operator [!].
+    // [if ... else]. The example also shows using the not operator [!].
     //     Prints: '[Number is positive]'
     if (!is_int($number)) {
         echo '[Number is not a integer]';
@@ -481,7 +481,7 @@ $app->get('/examples/php-functions', function() use ($app) {
         return $x + $y;
     }
 
-    // Optional parameters an be by specifing a default value after the variable.
+    // Optional parameters can be specified by assigning a value to the variable.
     function increment($x, $y = 1) {
         return $x += $y;
     }
@@ -542,13 +542,13 @@ $app->get('/examples/php-classes', function() use ($app) {
         public function __construct($number = 0)
         {
             $this->value = $number;
-            echo 'Classed Created with Value: ' . $number . '<br>';
+            echo 'Class Created with Value: ' . $number . '<br>';
         }
 
         // Define a Class Destructor
         public function __destruct()
         {
-            echo 'Classed Destroyed<br><br>';
+            echo 'Class Destroyed<br><br>';
         }
 
         // Public function that returns the object instance [$this]
@@ -566,9 +566,9 @@ $app->get('/examples/php-classes', function() use ($app) {
 
     // Prints:
     /*
-    Classed Created with Value: 0
+    Class Created with Value: 0
     Value: 3
-    Classed Destroyed
+    Class Destroyed
     */
     $math = new Math();
     $math->add(1)->add(2)->show();
@@ -576,7 +576,7 @@ $app->get('/examples/php-classes', function() use ($app) {
 
     // Prints:
     /*
-    Classed Created with Value: 10
+    Class Created with Value: 10
     Value: 15
     ...
     */
@@ -632,13 +632,13 @@ $app->get('/examples/php-encoding', function() {
     print_r($decoded);
     echo "\n";
 
-    // By default an objects are decoded as [stdClass] objects. To return
-    // an array instead pass [true] as the 2nd parameter.
+    // By default objects are decoded as [stdClass] objects. To return an array
+    // instead pass [true] as the 2nd parameter.
     $decoded = json_decode($json, true);
     print_r($decoded);
     echo "\n";
 
-    // If there is an error decoding JSON data null will be returned.
+    // If there is an error decoding JSON data [null] will be returned.
     // If you need to handle invalid JSON you can do so like this:
     if ($decoded === null && json_last_error() !== JSON_ERROR_NONE) {
         throw new \Exception('Error decoding JSON Data: ' . json_last_error_msg());
@@ -650,8 +650,8 @@ $app->get('/examples/php-encoding', function() {
     $decoded = \FastSitePHP\Encoding\Json::decode($json);
 
     // Often though in most code simply calling [json_encode()] or [json_decode()]
-    // will be enough. By default PHP decodes large numbers as floats. If you
-    // want stricter decoding so they come in a strings then you can use additional
+    // will be enough. By default, PHP decodes large numbers as floats. If you
+    // want stricter decoding so they come in strings, then you can use additional
     // options. This is how FastSitePHP's JSON class decodes as it is used in the
     // JWT, Encryption, and SignedData classes. [JSON_BIGINT_AS_STRING] is not
     // avaiable on PHP 5.3 so FastSitePHP uses compatible code.
@@ -871,7 +871,7 @@ $app->get('/examples/app-basic-routes', function() use ($app) {
         // Handle GET request, return rendered template, etc
     });
 
-    // In addition to GET Requests you can handle [ POST, PUT, PATH, and DELETE]
+    // In addition to GET Requests you can handle [ POST, PUT, PATCH, and DELETE]
     // Requests using named functions.
     $app->get('/method', function() { return 'get()'; });
     $app->post('/method', function() { return 'post()'; });
@@ -1061,10 +1061,10 @@ $app->get('/examples/app-route-filter', function() use ($app) {
         return true;
     };
 
-    // When routes are created [get(), route(), post(), etc] the created route
+    // When routes are created [get(), route(), post(), etc], the created route
     // is returned so you can call [filter()] after defining the route.
-    // This page will be returned a Plain Text page because the filter function
-    // sets the Response Header and returned no value.
+    // This page will be returned as Plain Text page because the filter function
+    // sets the Response Header and returns no value.
     $app->get('/text-page', function($name) {
         return 'Hello';
     })->filter($text_response);
@@ -1105,7 +1105,7 @@ $app->get('/examples/app-info', function() use ($app) {
     // If your site does not use a proxy server such as load balancer then these
     // functions can be used for building URL's or other app needs. If your site
     // uses a load balancer with custom host headers then you would want to use
-    // the request object to obtain the root url.
+    // the request object to obtain the root URL.
 
     // Root or Base URL for the Site. This is often needed to build full path
     // URL's on web pages.
@@ -1194,7 +1194,7 @@ $app->get('/examples/app-dynamic', function() use ($app) {
     $obj->test = function() { echo 'test'; };
     // $obj->test();
 
-    // When using FastSitePHP's Application object you can simply assign an use
+    // When using FastSitePHP's Application object you can simply assign and use
     // functions just like in JavaScript or Ruby.
     $app->test = function() { echo 'test'; };
     $app->test();
@@ -1297,8 +1297,8 @@ $app->error(function($response_code, $e) use ($app) {
 // should be defined as [function($content)]; the [$content] parameter defined
 // in the callback is the contents of the response that was sent to the client
 // and it cannot be modified from here. The only way that [after()]  functions
-// will not get called is if there script is terminated early from  PHP's
-// [exit()] statement or if error handling is not setup and an error occurs.
+// will not get called is if their script is terminated early from  PHP's
+// [exit()] statement or if the error handling is not setup and an error occurs.
 $app->after(function($content) {
     echo '[after]';
 });
@@ -1322,7 +1322,7 @@ $app->get('/error-test-1', function() {
     throw new \Exception('Error Test 1');
 });
 
-// Display's Standard Error Page with [after] showing at very bottom
+// Displays Standard Error Page with [after] showing at very bottom
 $app->get('/error-test-2', function() {
     throw new \Exception('Error Test 2');
 });
@@ -1339,9 +1339,9 @@ $app->run();
 // TITLE: PHP Template Example
 <!--
 // This is the contents of the file [template.php] which is shown as an example
-// on this page.  When calling [render()] the Application Object is passed as
+// on this page. When calling [render()] the Application Object is passed as
 // [$app] which allows for [escape()] and other functions to be used. In addition
-// to the standard [if (expression) { code }] sytnax PHP provides an alternative
+// to the standard [if (expression) { code }] syntax PHP provides an alternative
 // syntax for control structures when using templates [if (expr): (code) endif].
 //
 // PHP templates are high performance and use very little memory however the
@@ -1446,7 +1446,7 @@ $app->get('/examples/request-basic', function() use ($app) {
     // The request object can be used obtain info from the client for an
     // HTTP request. This includes query strings, form fields, cookies,
     // headers, and more. The request object also contains functions to
-    // sanitize “clean” and safely read client info.
+    // sanitize (“clean”) and safely read client info.
 
     // Without using a Framework, Query Strings, Form Variables and other
     // User Input can be read through PHP Superglobals [$_GET, $_POST, etc].
@@ -1480,8 +1480,8 @@ $app->get('/examples/request-basic', function() use ($app) {
 
     // The Request object also contains a helper function to handle user input
     // or objects where a value may or may not exist. This can be used to prevent
-    // errors when reading complex JSON object and to to sanitize “clean” data from
-    // any object or array.
+    // errors when reading complex JSON object and to to sanitize (“clean”) data
+    // from any object or array.
     //
     // Function Definititon:
     //     value($data, $key, $format = 'value?', $max_length = null)
@@ -1531,7 +1531,7 @@ $app->get('/examples/request-basic', function() use ($app) {
 $app->route('/examples/request-content', function() use ($app) {
     // NOTE - this function uses [$app->route()] which means
     // it can accept any method [GET, POST, etc]. When using
-    // the defaut [GET] the body and content type will be empty.
+    // the default [GET] the body and content type will be empty.
 
     // EXAMPLE_CODE_START
     // TITLE: HTTP Request Object - Request JSON and Content
@@ -1595,7 +1595,7 @@ $app->get('/examples/request-headers', function() use ($app) {
     $port = $req->port();
 
     // When using functions with 'Accept' Headers an array of data is returned,
-    // and an optional parameter can be passed to return true or false.
+    // and an optional parameter can be passed to return [true] or [false].
     $accept_encoding = $req->acceptEncoding();
     $accept_language = $req->acceptLanguage();
 
@@ -1650,7 +1650,7 @@ $app->get('/examples/request-proxy-headers', function() use ($app) {
     $req = new \FastSitePHP\Web\Request();
 
     // Request Proxy Headers are used for key fields such as client IP when a
-    // web server sites behind a “proxy” server on a local network, for example
+    // web server sits behind a “proxy” server on a local network, for example
     // a load balancer. Reading the values correctly is important for security,
     // however in general with any programming language or framework reading proxy
     // headers if often difficult and requires extra config. FastSitePHP makes
@@ -1695,7 +1695,7 @@ $app->get('/examples/request-proxy-headers', function() use ($app) {
     // avaiable. This defaults to the string 'trust local', however an array
     // of specific IP or IP Ranges (CIDR format) can be used for more specific
     // filtering. Additionally the first parameter [$option] can also be
-    // be modified to read from different Request Headers.
+    // modified to read from different Request Headers.
     $user_ip = $req->clientIp('from proxy', 'trust local');
 
     // In addition to Client IP, proxy values can also be read for
@@ -1731,9 +1731,9 @@ $app->get('/examples/request-server-info', function() use ($app) {
     $server_ip = $req->serverIp();
     $is_local  = $req->isLocal();
 
-    // NOTE - the Web Server IP is often different than than the actual
-    // Network IP. To obtain the network IP (location of the server) use
-    // the Networking Config Object instead:
+    // NOTE - the Web Server IP is often different than the actual Network IP.
+    // To obtain the network IP (location of the server) use the Networking
+    // Config Object instead:
     $config = new \FastSitePHP\Net\Config();
     $net_ip = $config->networkIp();
     // EXAMPLE_CODE_END
@@ -1871,7 +1871,7 @@ $app->get('/examples/response-content-type', function() use ($app) {
 
     // When creating a Response Object the Application Object can be
     // passed and all App settings from [statusCode(), cors(), noCache(), headers(),
-    // cookies(), and json_options] will be passed to the Response Object.
+    // cookies(), and [json_options] will be passed to the Response Object.
     $res = new \FastSitePHP\Web\Response($app);
     // EXAMPLE_CODE_END
 
@@ -1982,7 +1982,7 @@ $app->get('/examples/response-caching', function() use ($app) {
 
     // The optional 2nd parameter accepts the ETag Type of either 'strong' or 'weak'.
     // The default is 'weak' and that is recommended to avoid complex caching errors.
-    // If you need to use 'strong' ETags you would likey want to do extra testing.
+    // If you need to use 'strong' ETags you would likely want to do extra testing.
     $res->etag('hash:sha256', 'weak');
 
     // 'Last-Modified' Response Header. If set and if the client sends back an
@@ -2041,14 +2041,14 @@ $app->route('/examples/cors', function() use ($app) {
     // function. First make sure to set CORS headers from the App Object.
     $app->cors('*');
 
-    // If using the Response Object either pass the App Object to either
-    // the Response when it's created or it's [cors()] function.
+    // If you're using the Response Object, pass the App Object to either the
+    // Response at its creation or to its [cors()] function.
     $res = new \FastSitePHP\Web\Response($app);
     $res->cors($app);
 
     // When passing a string the 'Access-Control-Allow-Origin' is validated
-    // and set, however if you need to pass additional CORS use an array
-    // with the named headers instead.
+    // and set, however, if you need to pass additional CORS, use an array
+    // with named headers instead.
     $app->cors([
         'Access-Control-Allow-Origin' => 'https://www.example.com',
         'Access-Control-Allow-Headers' => 'Authorization, Content-Type',
@@ -2106,8 +2106,8 @@ $app->route('/examples/cors', function() use ($app) {
 
 $app->get('/examples/secure-cookies', function() use ($app) {
     // Keys for Encryption and Signing
-    // IMPORTANT - These are publish keys for testing only, do not use them in production
-    // Use [generateKey()] functions to create your own keys.
+    // IMPORTANT - These are publish keys for testing only, do not use them in production!
+    // Use the [generateKey()] function to create your own keys.
     $app->config['ENCRYPTION_KEY'] = 'eada343fc415625494bfd1b065ba60c2a5c8508d353dbb872378c1356181c84f05c52ff60d1cc157957cbbf0101f9cb7d74b040b57192a6a820b5402132b9ab4';
     $app->config['SIGNING_KEY'] = 'ab2403a36467b59b20cc314bb211e1812668b3bffb00358c161f26fe003073ed';
     $app->config['JWT_KEY'] = 'fkeVxeElykoCBzRTIUjxwTD9MIg71nXxOEQl6HTrIvw=';
@@ -2124,8 +2124,8 @@ $app->get('/examples/secure-cookies', function() use ($app) {
     // $app->config['JWT_KEY'] = 'fkeVxeElykoCBzRTIUjxwTD9MIg71nXxOEQ...';
 
     // The Request object has three functions that use the config keys to read
-    // and verify the secure cookies. If the cookies don't exist, are invalid,
-    // expired, etc then [null] will be returned.
+    // and verify the secure cookies.If the cookies don't exist, are invalid,
+    // are expired etc then [null] will be returned.
     $req = new \FastSitePHP\Web\Request();
     $decrypted = $req->decryptedCookie('encrypted');
     $verified = $req->verifiedCookie('signed');
@@ -2238,7 +2238,7 @@ $app->get('/examples/db-query', function() use ($app) {
     $record = $db->queryOne($sql, $params);
 
     // The [Database] class also contains additional functions such as
-    // [queryValue(), queryList(), querySets()] to simplify and reduce
+    // [queryValue(), queryList() and querySets()] to simplify and reduce
     // the amount code needed when working with databases.
     // EXAMPLE_CODE_END
 
@@ -2257,8 +2257,8 @@ $app->get('/examples/db-query', function() use ($app) {
 $app->get('/examples/db-pdo', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Connect to a Database and run SQL Statements using PDO
-    // Connect to a Database using PHP Data Objects (PDO),
-    // this example uses SQLite with a temp in-memory db.
+    // Connect to a Database using PHP Data Objects (PDO). This example uses
+    // SQLite with a temp in-memory db.
     $dsn = 'sqlite::memory:';
     $user = null;
     $password = null;
@@ -2304,7 +2304,7 @@ $app->get('/examples/db-pdo', function() use ($app) {
         $rows_added += $stmt->rowCount();
     }
 
-    // In addition to using [?] you can also used named parameters in the
+    // In addition to using [?] you can also use named parameters in the
     // format of ":name". Named parameters can make the code easier to read.
     $sql = 'INSERT INTO pages (type_id, title, content)';
     $sql .= ' VALUES (:type_id, :title, :content)';
@@ -2366,7 +2366,7 @@ $app->get('/examples/db-connection', function() use ($app) {
     // different databases. FastSitePHP’s Database class provides a thin wrapper
     // over PDO to reduce the amount of code needed when querying a database.
 
-    // Examples below shows how to build connection strings and run a query for
+    // Examples below show how to build connection strings and run a query for
     // a number of different databases. If you download this site, the code below
     // can be modified and tested for your environment; or simply copy what you
     // need to your site or app.
@@ -2383,7 +2383,7 @@ $app->get('/examples/db-connection', function() use ($app) {
     //     "mysql:host={hostname};dbname={database}";
     //
     // This example also shows using the [MYSQL_ATTR_INIT_COMMAND]
-    // option to se the timezone to UTC when the connection is created.
+    // option to set the timezone to UTC when the connection is created.
     //
     // If you have a site or application that has users in multiple timezones or
     // countries an application design that works well is to save all dates and
@@ -2431,7 +2431,7 @@ $app->get('/examples/db-connection', function() use ($app) {
 
     // ----------------------------------------------------------------------------
     // IBM (using ODBC)
-    // This example shows a connection to and IBM DB2 or AS/400 through iSeries.
+    // This example show a connection to an IBM DB2 or AS/400 through iSeries.
     // ODBC Options will vary based on the driver installed and used.
     $dsn = 'odbc:DRIVER={iSeries Access ODBC Driver};';
     $dsn .= 'HOSTNAME=AS400.EXAMPLE.COM;';
@@ -2475,8 +2475,8 @@ $app->get('/examples/db-connection', function() use ($app) {
     // ----------------------------------------------------------------------------
     // Persistent Connection Option
     //
-    // Many PHP Database drivers supports persistent connections
-    // which can allow for better performance.
+    // Many PHP Database drivers support persistent connections which can allow
+    // for better performance.
     $persistent = false;
 
     // ============================================================================
@@ -2575,7 +2575,7 @@ $app->get('/examples/data-validator', function() use ($app) {
 
     // FastSitePHP Code to Validate Form Post using the above HTML.
     // Form Post Fields come in the PHP Superglobal array [$_POST]
-    // and it simply be passed to the [Validator] class.
+    // and it can simply be passed to the [Validator] class.
     $v = new \FastSitePHP\Data\Validator();
     $v->addRules([
         // Field,  Title,   Rules
@@ -2653,13 +2653,13 @@ $app->get('/examples/http-client', function() use ($app) {
     // Comment this out to run full code.
     return \FastSitePHP\Net\HttpClient::get('https://www.example.com/')->content;
 
-    // To use modify these to a valid values from your system
+    // To use, modify these to valid values from your system
     // Saving a file requires write access in the current directory.
     $save_path = __DIR__ . '/test-download.txt';
     $url = 'https://httpbin.org/anything';
     $file_path = 'C:\Users\Public\Pictures\Thumbnails\Desert.jpg';
     if (!is_file($file_path)) {
-        return 'Modify code to point to a real file';
+        return 'Modify the code to point to a real file';
     }
 
     // EXAMPLE_CODE_START
@@ -2838,7 +2838,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
     // [$timeout = 2;] and run just Gmail SMTP Commands without
     // sending an email.
     //
-    return 'Modify code to run';
+    return 'Modify the code to run';
 
     // Output Plain Text. With this example code when logging is used,
     // messages are sent as soon as they occur.
@@ -2858,7 +2858,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
 
     // The Email Class also has many additional settings and can be created
     // without specifying any parameters. When setting [From] or [Reply-To]
-    // email addresses on of the following formats can be used:
+    // email addresses one of the following formats can be used:
     //   String: 'Email Address'
     //   Array: ['Email', 'Name']
     // And when specifying who to send email to any of the formats can be used:
@@ -2893,7 +2893,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
     $auth_pass = null;
 
     // Create SMTP Client and Send Email.
-    // Once the variable for the SMTP Client is not longer used (or set to null)
+    // Once the variable for the SMTP Client is no longer used or set to null
     // then it automatically sends a 'QUIT' command to the SMTP Server and closes
     // the connection.
     $smtp = new \FastSitePHP\Net\SmtpClient($host, $port);
@@ -2995,7 +2995,7 @@ $app->get('/examples/file-system-sync', function() use ($app) {
     // CLASS: FileSystem\Sync
     // Create a FileSystem Sync Object
     $sync = new FastSitePHP\FileSystem\Sync();
-    
+
     // Sync files and directories (folders) from [dirFrom(path)] to [dirTo(path)].
     // The sync is recursive so all files and directories are synced in all
     // sub-directories. Required functions are [dirFrom, dirTo, and sync].
@@ -3045,7 +3045,7 @@ $app->get('/examples/logging', function() use ($app) {
     // [Psr\Log] Interface.
 
     // Create a file logger. Log messages are appended and the file is created
-    // the when the first message is added.
+    // when the first message is added.
     $file = __DIR__ . '/log.txt';
     $file_logger = new \FastSitePHP\Data\Log\FileLogger($file);
 
@@ -3084,7 +3084,7 @@ $app->get('/examples/logging', function() use ($app) {
     $file_logger->line_break = '^^';
 
     // You can also customize the HTML Logger with your own template:
-    // $html_logger->temlate_file = 'YOUR_TEMPLATE.php';
+    // $html_logger->template_file = 'YOUR_TEMPLATE.php';
     // EXAMPLE_CODE_END
 
     $html = '<html><body style="background-color:green; padding:0;"><div style="padding:20px;">';
@@ -3338,7 +3338,7 @@ $app->get('/examples/jwt-hmac', function() use ($app) {
     $data  = \FastSitePHP\Security\Crypto::decodeJWT($token);
 
     // Encode (Sign) and Decode (Verify) using the JWT Class. When using
-    // default settings with the JWT Class, not timeout is specified, all
+    // default settings with the JWT Class, no timeout is specified, all
     // claims are validated, and a secure key is required.
     $token = $jwt->encode($payload, $key);
     $data  = $jwt->decode($token, $key);
@@ -3605,7 +3605,7 @@ $app->get('/examples/csrf-stateless', function() use ($app) {
     // Stateless CSRF Tokens are not stored in Session but rather use a crypto
     // keyed-hash message authentication code (HMAC) to create and verify the token.
 
-    // A secure secret key is requird.
+    // A secure secret key is required.
     // The key would typically be saved with your app or in config.
     $key = \FastSitePHP\Security\Web\CsrfStateless::generateKey();
 
@@ -3758,7 +3758,7 @@ $app->get('/examples/file-system-security', function() use ($app) {
     // specified directory. Path Traversal Attacks can happen if a user is
     // allowed to specify a file on a file system through input and uses a
     // pattern such as '/../' to obtain files from another directory.
-    
+
     // Examples:
 
     // Assume both files exist and would return [true] from built-in function
@@ -3791,7 +3791,7 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $is_image = \FastSitePHP\FileSystem\Security::fileIsValidImage($image_file);
     // EXAMPLE_CODE_END
 
-    // NOTE - both [$result1, $path_exists_1, $dir_exists_1] all equal [false] because 
+    // NOTE - both [$result1, $path_exists_1, $dir_exists_1] all equal [false] because
     // the files/dirs won't exist. Code here is for example only, modify if you want to test.
     return [$result1, $result2, $path_exists_1, $path_exists_2, $dir_exists_1, $dir_exists_2, $is_image];
 });
@@ -3803,7 +3803,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
     // Rate Limit Class
     $rate_limit = new \FastSitePHP\Security\Web\RateLimit();
 
-    // Using the RateLimit class requires and instance of
+    // Using the RateLimit class requires an instance of
     // [\FastSitePHP\Data\KeyValue\StorageInterface].
     // In this example SQLite is used. When multiple servers are used behind
     // a load balancer an in-memory cache db such as Redis can be used.
@@ -3850,7 +3850,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
 
     // The [RateLimit] class allows for different rate limiting algorithms;
     // the default is 'fixed-window-counter' which puts a fixed amount on
-    // the number of requests for the given duration but allows for bursts.
+    // the number of requests for the given duration, but allows for bursts.
     // The 'token-bucket' allows for rate limiting at a timed rate however
     // it can allow for a higher number requests than the specified [max_allowed].
     //
@@ -3902,7 +3902,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
 $app->get('/examples/image', function() use ($app) {
     // Uncomment [return] line and modify to use a
     // file that exits on your computer
-    return 'Modify code to run';
+    return 'Modify the code to run';
 
     // Image Paths
     $file_path = 'C:\Users\Public\Pictures\Desert.jpg';
@@ -3926,7 +3926,7 @@ $app->get('/examples/image', function() use ($app) {
     $max_height = 200;
     $img->resize($max_width, $max_height);
 
-    // Images can also be cropped to a specific dimensions.
+    // Images can also be cropped to a specific dimension.
     // This can be used with JavaScript or App cropping libraries to allow users
     // to generate thumbnails from a full uploaded image. For example allow
     // a user to crop an uploaded image to a profile thumbnail.
@@ -3947,7 +3947,7 @@ $app->get('/examples/image', function() use ($app) {
     $img->rotate($degrees);
 
     // Save Quality (0 to 100) can be specified when saving JPG or WEBP images.
-    // And Compression-Level (0 to 9) can specified when saving PNG files.
+    // And Compression-Level (0 to 9) can be specified when saving PNG files.
     $img->saveQuality(90);   // Default Quality
     $img->pngCompression(6); // Default Compression-Level
 
@@ -3979,7 +3979,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // structured but minimal in size so if you have different translation needs
     // you can simply copy and modify the class.
 
-    // Translations are saved as JSON files in the one directory using the name
+    // Translations are saved as JSON files in the same directory using the name
     // format of “{name}.{lang}.json”. An optional main file named “_.{lang}.json”
     // if found will loaded first. The main file “_” is useful for storing key
     // translations such as menus, page headers, page footers, etc.
@@ -4005,7 +4005,7 @@ $app->get('/examples/i18n', function() use ($app) {
     \FastSitePHP\Lang\I18N::langFile('header', 'es');
     \FastSitePHP\Lang\I18N::langFile('about', 'es');
 
-    // Typical usage is allow for an app to load a language
+    // Typical usage is allowed for an app to load a language
     // file based on the Requested URL:
     $app->get('/:lang/about', function($lang) {
         \FastSitePHP\Lang\I18N::langFile('about', $lang);
@@ -4032,7 +4032,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // it is set to the app property ($app->lang).
 
     // The other I18N function [textFile()] simply takes a full file path
-    // containing text '{lang}' along with the selected language and then loads
+    // containing the text '{lang}' along with the selected language and then loads
     // the file or if it doesn't exist, the matching file for the fallback language.
     $file_path = $app->config['I18N_DIR'] . '/test-{lang}.txt';
     $content = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
@@ -4041,7 +4041,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // on the 'Accept-Language' Request Header and available languages for the site.
     //
     // This is useful to provide custom content for the user or to redirect to the
-    // user's language when they access the default URL. 
+    // user's language when they access the default URL.
     //
     // Requires config values I18N_DIR and I18N_FALLBACK_LANG.
     $default_lang = \FastSitePHP\Lang\I18N::getUserDefaultLang();
@@ -4091,7 +4091,7 @@ $app->get('/examples/l10n', function() use ($app) {
     $date_time = '2030-01-01 00:00:00';
     $timezones = ['UTC', 'Asia/Tokyo', 'America/Los_Angeles'];
     foreach ($timezones as $timezone) {
-        // Change Timezone
+        // Change the Timezone
         $l10n->timezone($timezone);
         // Print the formated date and time
         echo $l10n->timezone();
@@ -4101,10 +4101,10 @@ $app->get('/examples/l10n', function() use ($app) {
     }
     echo '<br>';
 
-    // Change Timezone back to UTC for the next examples
+    // Change the Timezone back to UTC for the next examples
     $l10n->timezone('UTC');
 
-    // The [$date_time] parameter for functions [formatDateTime(), formatDate(),
+    // The [$date_time] parameter for the functions [formatDateTime(), formatDate(),
     // and formatTime()] is either a Unix Timestamp (int) or a string in format
     // of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'
     $date_time = 1896181200;
@@ -4121,7 +4121,7 @@ $app->get('/examples/l10n', function() use ($app) {
     */
     $locales = ['ko-KR', 'bn-BD', 'en-US', 'de-CH', 'ar'];
     foreach ($locales as $locale) {
-        // Change Locale
+        // Change the Locale
         $l10n->locale($locale);
         // Print the formated date and time
         echo $l10n->locale();

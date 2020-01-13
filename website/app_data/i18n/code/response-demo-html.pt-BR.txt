@@ -1,0 +1,14 @@
+// Enviando uma resposta utilizando o Objeto Aplicação. Por padrão quando uma
+// string é retornada em uma rota o servidor retorna uma resposta HTML.
+$app->get('/app-html', function() {
+    return '<h1>Olá Mundo</h1>';
+});
+
+// O Objeto Response provê várias opções como cabeçalhos de controle de cache e
+// cookies seguros. Este exemplo mostra uma resposta HTML básica, definindo
+// [content()] e retornando o Objeto Response.
+$app->get('/res-html', function() {
+    $res = new \FastSitePHP\Web\Response();
+    $res->content('<h1>Olá Mundo</h1>');
+    return $res;
+});

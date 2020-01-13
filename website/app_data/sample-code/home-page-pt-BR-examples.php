@@ -1,5 +1,7 @@
 <?php
-// Este é um arquivod e rota funcional com muitos exemplos que é executado à partir de [home-page-en.php]
+
+use FastSitePHP\Route;
+// Este é um arquivo de rota funcional com muitos exemplos que é executado à partir de [home-page-en.php]
 // Ao executar de um ambiente local a URL de uma rota será assim:
 //     http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
 // Este arquivo é também usado como um código fonte para páginas de documentação. Por exemplo
@@ -7,7 +9,7 @@
 // blocos de comentário [EXAMPLE_CODE_START] e [EXAMPLE_CODE_END] os quais são utilizados pela classe
 // [\App\Models\ExampleCode] ao carregar este arquivo.
 
-// Se estiver rodando este arquivo diretamente então redirecione para o arquivo
+// Se estiver rodando este arquivo diretamente, então, redirecione para o arquivo
 // principal usando a rota do index '/examples' para este site.
 if (!isset($app)) {
     $url = 'home-page-en.php/examples';
@@ -15,17 +17,18 @@ if (!isset($app)) {
     exit();
 }
 
-// The root page loads the default development autoloader. If a vendor autoloader
-// exists then include it as well. A few examples such as [examples/logging] and
-// [examples/markdown] will not work unless third-party libraries are installed.
+// Esta página principal carrega o autoloader padrão do desenvolvimento. Se um
+// autoloader de um fornecedor existir então inclua isso também. Alguns exemplos
+// como [examples/logging] e [examples/markdown] não funcionarão a não ser que
+// bibliotecas de terceiros sejam instaladas.
 if (is_file('../../../vendor/autoload.php')) {
     include '../../../vendor/autoload.php';
 }
 
-// Default Examples Route
-// Build and display a list of all routes
+// Exemplo de Roda Padrão
+// Crie e mostre uma lista de todas as rotas
 $app->get('/examples', function() use ($app) {
-    // Get URL's for all Routes
+    // Obtém URLs para todas as Routas
     $urls = [];
     foreach ($app->routes() as $route) {
         if ($route->pattern === '/hello/:name?') {
@@ -39,7 +42,7 @@ $app->get('/examples', function() use ($app) {
         $urls[] = $route->pattern;
     }
 
-    // Build and Return HTML
+    // Crie e Retorne HTML
     $html = [
         '<style>ul{list-style-type:none; padding:10px;} li{padding:10px;}</style>',
         '<ul>',
@@ -52,79 +55,83 @@ $app->get('/examples', function() use ($app) {
     return implode("\n", $html);
 });
 
-// This commented out code block (and simlar code blocks) are for the Quick Reference Page:
+// Este bloco de comentário (e blocos similares) são para a página Referência Rápida:
 /*
 // EXAMPLE_CODE_START
-// TITLE: PHP Syntax - Overview
+// TITLE: Sintaxe do PHP - Visão Geral
 <?php
-// PHP is similar to the C style syntax so [if] statements, [for] and [while]
-// loops, [functions], [comments], and more are also similar to other
-// widely used languages such as JavaScript, C#, and Java. If you have
-// some JavaScript experience it is very easy to get started with PHP.
+// A sintaxe PHP é similar a sintaxe C so blocos [if], loops [for] e [while],
+// [funções], [comentários] e mais são também similares a outras linguagens
+// amplamente utilizadas como: JavaScript, C# e Java. Se você tiver alguma
+// experiência com JavaScript é muito fácil começar a usar o PHP.
 
-// PHP Scripts start with [<?php] and individual lines must end with a
-// semicolon [;]. The [echo] statement outputs content. This example if
-// saved as a file simply ouputs 'Hello World!'.
-echo 'Hello World!';
+// Scripts PHP comçam com [<?php] e linhas individuais devem ser finalizadas com
+// um ponto e vírgula [;]. O comando [echo] exibe/imprime na tela um conteúdo.
+// Salvando este exemplo em um arquivo e executando-o, simplesmente exibirá
+// 'Olá Mundo!'.
+echo 'Olá Mundo!';
 // EXAMPLE_CODE_END
 */
 
 $app->get('/examples/php-variables', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Variables
-    // In PHP all variables start with a dollar sign character [$] followed by
-    // the variable name. Variables are created when they are first used and
-    // not declared ahead of time.
-    $value = 'Test';
+    // TITLE: Sintaxe PHP - Variáveis
+    // Em PHP todas as variáveis começam com um cifrão [$] seguido de um nome.
+    // A criação de variáveis em seu primeiro uso Variáveis não precisam ser
+    // declaradas com antecedência e são criadas em seu primeiro uso
+    $value = 'Teste';
 
-    // Variables are dynamically typed in PHP; the data type is determined
-    // by the value of the variable and the type can be changed.
-    $value = (10 * 20);
-    $string = 'String';
-    $number = 123;
+    // A tipagem de variáveis acontece dinamicamente no PHP; tipo de dados é
+    // determinado pelo valor da variável e o tipo pode ser mudado.
+    $value = (10 * 20); //valor
+    $string = 'String'; //cadeia de texto
+    $number = 123; //número
     $decimal = 123.456;
-    $bool = true;
-    $null = null;
+    $bool = true; //boleano
+    $null = null; //nulo
 
-    // Arrays can be defined using [] characters like JavaScript and other languages
-    // when using any recent version of PHP. If using an old version of PHP
-    // (5.3 or below) Arrays need to be defined using the [array()] function.
-    $cities = ['Tokyo', 'São Paulo', 'Jakarta', 'Seoul', 'Manila', 'New York City'];
+    // Arrays podem ser definidos utilizando os caracteres [] como JavaScript
+    // e outras linguagens quando em qualquer versão recente do PHP. Se estiver
+    // utilizando versões anteriores (5.3 ou anterior) Arrays precisam ser
+    // definidos utilizando a função [array()].
+    $cities = ['Tóquio', 'São Paulo', 'Jacarta', 'Seul', 'Manila', 'Nova York']; //cidades
 
-    // An extra comma can be included after the last item
-    $numbers = array(123, 456, 789,);
+    // Uma vírgula extra pode ser inserida depois do último item
+    $numbers = array(123, 456, 789,); //números
 
-    // PHP Array's is actually an ordered map so they are often used like
-    // Dictionaries, Hashes, or Associative Arrays from other languages.
-    $months_days = [
-        'January' => 31,
-        'February' => 28,
-        'March' => 31,
-        'April' => 30,
+    // Os arrays PHP é na verdade um mapa ordenado (map) então eles são muitas
+    // vezes utilizados como Dicionários, Hashes ou Arrays Associativos de outras
+    // linguagens.
+    $dias_do_mes = [
+        'Janeiro' => 31,
+        'Fevereiro' => 28,
+        'Março' => 31,
+        'Abril' => 30,
     ];
 
-    // Objects can be dynamically created in PHP using the built-in [stdClass].
-    $object = new \stdClass;
-    $object->name = 'FastSitePHP';
-    $object->type = 'PHP Framework';
+    // Objetos podem ser dinamicamente criados em PHP utilizando a classe
+    // integrada [stdClass].
+    $objeto = new \stdClass;
+    $objeto->nome = 'FastSitePHP';
+    $objeto->tipo = 'PHP Framework';
 
-    // Object can also be created dynamically when casting from an array.
-    $object2 = (object)[
-        'name' => 'FastSitePHP',
-        'type' => 'PHP Framework',
+    // Objetos também podem ser criados dinamicamente fazendo casting de um array.
+    $objeto2 = (object)[
+        'nome' => 'FastSitePHP',
+        'tipo' => 'PHP Framework',
     ];
 
-    // To check if variable is defined use the [isset()] function
-    $defined1 = isset($object);  // true
-    $defined2 = isset($object3); // false
+    // Para verificar foi definida utilize a função [isset()]
+    $definida1 = isset($objeto);  // true
+    $definida2 = isset($objeto3); // false
 
-    // Additional types include Resources such as a file, and callback functions.
+    // Tipos adicionais incluem recursos como um arquivo e funções de callback.
     // EXAMPLE_CODE_END
 
-    // Return Variables as JSON
+    // Retorne Variáveis como JSON
     $app->json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
     return [
-        'value' => $value,
+        'valor' => $value,
         'cities' => $cities,
         'numbers' => $numbers,
         'months_days' => $months_days,
@@ -137,206 +144,212 @@ $app->get('/examples/php-variables', function() use ($app) {
 
 $app->get('/examples/php-strings', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Strings
-    // Similar to other languages such as JavaScript, Python, and Ruby,
-    // strings in PHP can be either single-quoted or double-quoted.
-    $value = 'Single Quoted String';
-    $value = "Double Quoted String";
+    // TÍTLO: Sintaxe PHP - Strings
+    // Similar a outras linguagens como JavaScript, Python e Ruby,
+    // strings em PHP pode ser cercados por aspas simples ou aspas duplas
+    $value = 'String em Aspas Simples';
+    $value = "String em Aspas Duplas";
 
-    // To combine or concatenate strings use the dot character [.]:
-    $greeting = 'Hello ' . 'World';
+    // Para combinar ou concatenar strings utilize o caracter ponto [.]:
+    $saudacao = 'Olá ' . 'Mundo';
 
-    // Spaces are not required between the [.] and the other variables:
-    $greeting = 'Hello '.'World';
+    // Espaços não são obrigatórios entre o ponto [.] e as outras variáveis:
+    $saudacao = 'Olá '.'Mundo';
 
-    // You can append to a string using the [.=] operator:
-    $greeting = 'Hello';
-    $greeting .= ' World';
+    // Você pode adicionar algo a uma string utilizando o operador [.=]:
+    $saudacao = 'Olá';
+    $saudacao .= ' Mundo';
 
-    // Similar to Python and Ruby, double-quote strings expand variables
-    // for string interpolation. This prints 'Hello World':
-    $name = 'World';
-    $greeting = "Hello ${name}";
+    // Similar ao Python e Ruby, aspas duplas expandem variáveis para
+    // interpolação de texto (string). Isto imprime 'Olá Mundo':
+    $nome = 'Mundo';
+    $saudacao = "Olá ${name}";
 
-    // Multi-line strings use [<<<] followed by a programmer-defined identifier
-    // and end the string the same identifier starting on the code line followed
-    // by [;]. In this example the identifier is [EOD] for end-of-data. Multiline
-    // strings using this syntax support string interpolation.
-    $multiline1 = <<<EOD
-Multi-line
-String
-${name}
-EOD;
+    // Strings the multiplas linhas utilizam [<<<] seguido por um
+    // identificador definido pelo programador e finaliza a string com o
+    // mesmo identificador iniciando em uma nova linha seguido de um [;].
+    // Neste exemplo o identificador foi nomeado de [FDD] para Fim-Dos-Dados.
+    // Strings multi linha utilizando esta sintaxe suportam interpolação
+    // de strings.
+    $multilinha1 = <<<FDD
+Multi linha
+Texto
+${nome}
+FDD;
 
-    // When using ['] characters is similar to using single-quotated strings
-    // so there is no string interpolation. The above example prints 'World'
-    // instead of '${name}' while this version prints '${name}'.
-    $multiline2 = <<<'EOD'
-Multi-line
-String
-${name}
-EOD;
+    // Quando utiliza-se os caracteres ['] é similar a utilizar strings em
+    // aspas simples então não há interpolação de string. O exemplo acima
+    // imprime 'Mundo' ao invés de '${nome}' enquanto esta versão imprime
+    // '${nome}'
+    $multilinha2 = <<<'FDD'
+Multi linha
+Texto
+${nome}
+FDD;
 
-    // Common String Functions using this string:
+    // Funções de String comuns utilizando esta string:
     $value = ' abcdefgh ';
 
-    // String Length and Trim
+    // Comprimento (length) de String e Trim
     $len = strlen($value);        // 10
     $len2 = strlen(trim($value)); // 8
 
-    // String Search, often PHP functions return mixed data types.
-    // [strpos()] and [stripos()] are good examples. If the string
-    // is found an integer with the position is returned otherwise
-    // a boolean value of false is returned.
-    $pos = stripos($value, 'DEF'); // Case-insenstive = 4
-    $pos2 = strpos($value, 'DEF'); // Case-Senstive = false
+    // Busca de String, frequentemente funções PHP retornam tipos de dados
+    // diferentes. [strpos()] e [stripos()] são bons exemplos disso.
+    // Se a string for encontrada, um número inteiro com a posição será retornado,
+    // caso contrário, retornará um valor booleano falso.
+    $pos = stripos($value, 'DEF'); // Sem diferençao de maiúsculas e minúsculas = 4
+    $pos2 = strpos($value, 'DEF'); // Cem diferençao de maiúsculas e minúsculas = false
 
-    // Split to an Array and Join an Array to a String.
-    // Rather than using [split()/join()] PHP uses [explode/implode()].
+    // Dividir para um Array e unir um Array a uma String.
+    // Ao invés de utilizar [split()/join()] PHP utiliza [explode/implode()].
     $value = '123,456,789';
     $array = explode(',', $value);
     $string = implode('_', $array);
 
     // Replace
-    $text = 'Blue and Red';
-    $search = 'Red';
-    $replace = 'Green';
-    $new_value = str_replace($search, $replace, $text);
+    $texto = 'Azul e Vermelho';
+    $busca = 'Vermelho';
+    $substituir = 'Verde';
+    $novo_valor = str_replace($busca, $substituir, $texto);
 
-    // Internally in PHP strings are implemented as an array of bytes so if you
-    // work with binary files or data you use the string data type. This can
-    // present a problem though if you need to calculate the length of a Unicode
-    // String for a user, find the character position, etc. To support different
-    // encodings PHP includes Multibyte String Functions. In general they have the
-    // same name and params as other string functions but are prefixed with [mb_*].
+    // Internamente no PHP strings são implementadas como um array de bytes
+    // então se você trabalha com arquivos ou dados binários você usa o
+    // tipo de dado string. Isto pode apresentar um problem no entanto se
+    // você precisa calcular o comprimento de uma string Unicode para um
+    // usuário, encontrar a posição do caractere etc. To support codificações
+    // diferentes o PHP inclui Funções de String Multibyte. Em termos gerais
+    // elas tem os mesmos nomes e parâmetros que as outras funções de string
+    // têm mas com o prefixo [mb_].
     $unicode = '测试';
     $ulen = strlen($unicode);     // 6
     $ulen2 = mb_strlen($unicode); // 2
     // EXAMPLE_CODE_END
 
-    // Return Variables as JSON
+    // Retorna Variáveis como JSON
     $app->json_options = JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
     return [
-        'greeting' => $greeting,
-        'multiline1' => $multiline1,
-        'multiline2' => $multiline2,
+        'saudacao' => $saudacao,
+        'multilinha1' => $multilinha1,
+        'multilinha2' => $multilinha2,
         'len' => $len,
         'len2' => $len2,
         'pos' => $pos,
         'pos2' => $pos2,
         'array' => $array,
         'string' => $string,
-        'new_value' => $new_value,
+        'novo_valor' => $novo_valor,
         'ulen' => $ulen,
         'ulen2' => $ulen2,
     ];
 });
 
 $app->get('/examples/php-logic', function() use ($app) {
-    // Content is output as plain text
+    // Conteúdo gerado como texto plano
     header('Content-Type: text/plain');
 
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Logic Statements
-    // This example outputs data to the client as it is evaluated:
-    //    var_dump() = PHP function to print a variable and the data type.
-    //    echo "\n"  = Output a new line for formatting.
-    $number = 5;
+    // TITLE: Sintaxe PHP - Declaração Lógica
+    // Este exemplo gera dados para o cliente assim que validados:
+    //    var_dump() = Função PHP que imprime uma variável e tipo de dado.
+    //    echo "\n"  = Gera uma nova lina para formatação.
+    $numero = 5;
 
-    // Basic [if] Statement
-    //     Prints: '[Number equals 5]'
-    if ($number === 5) {
-        echo '[Number equals 5]';
+    // Declaração [if] Básica
+    //     Imprime: '[Número equivale a 5]'
+    if ($numero === 5) {
+        echo '[Número equivale a 5]';
     } else {
-        echo '[Number does not equal 5]';
+        echo '[Número não equivale a 5]';
     }
 
-    // [if ... else]. The example aslo shows using the not operator [!].
-    //     Prints: '[Number is positive]'
-    if (!is_int($number)) {
-        echo '[Number is not a integer]';
-    } elseif ($number < 0) {
-        echo '[Number is negative]';
+    // [if ... else]. O exemplo também mostrado utilizando o operador de
+    // negação [!].
+    //     Imprime: '[Número é positivo]'
+    if (!is_int($numero)) {
+        echo '[Número não é inteiro]';
+    } elseif ($numero < 0) {
+        echo '[Número é negativo]';
     } else {
-        echo '[Number is positive]';
+        echo '[Número é positivo]';
     }
 
-    // Ternary Expression: (expression ? true : false)
-    //     Prints: [Number is even: no]
-    $is_even = ($number % 2 === 0 ? 'yes' : 'no');
-    echo "[Number is even: ${is_even}]";
+    // Expressão Ternária: (expressão ? true : false)
+    //     Prints: [Número é par: não]
+    $is_even = ($numero % 2 === 0 ? 'sim' : 'não');
+    echo "[Número é par: ${is_even}]";
 
-    // The [if] statement can be used to evaluate "truthy" values for
-    // other data types. The 3 statements below all evaluate to false
-    // because the values are empty or zero.
+    // A declaração [if] pode ser utilizada para avaliar valores "verdade" para
+    // outros tipos de dados. As três declarações abaixo avaliam para falso por
+    // que os valores são vazios ou zero.
 
     $empty_array = array();
     if ($empty_array) {
-        echo '[Array has data]';
+        echo '[Array tem dados]';
     } else {
-        echo '[Array is empty]';
+        echo '[Array está vazio]';
     }
 
     $empty_string = '';
     if ($empty_array) {
-        echo '[String has data]';
+        echo '[String tem dados]';
     } else {
-        echo '[String is empty]';
+        echo '[String está vazia]';
     }
 
     $zero = 0;
     if ($zero) {
-        echo '[Number is not Zero]';
+        echo '[Número não é zero]';
     } else {
-        echo '[Number is Zero]';
+        echo '[Número é zero]';
     }
 
-    // It's possible to exclude the middle expression when using the ternary
-    // operator '?:' (expression ?: default). This is known as the Elvis operator
-    // and returns either the result of the first expression if it evaluates
-    // as a "truthy" value or the 2nd expression (default value).
+    // É possível excluir a expressão do meio ao utilizar o operador ternário '?:'
+    // (expressão ?: padrão). Isso é conhecido como o operador Elvis e retorna
+    // o resultado da primeira expressão se for avaliada como uma "verdade" ou
+    // a segunda expressão (valor padrão).
 
-    // Prints:
-    //     [Elvis Operator: Default]
-    $value = ($empty_string ?: 'Default');
-    echo "[Elvis Operator: ${value}]";
+    // Imprime:
+    //     [Operador Elvis: Padrão]
+    $value = ($empty_string ?: 'Padrão');
+    echo "[Operador Elvis: ${value}]";
 
-    // Prints:
+    // Imprime:
     //     [Elvis Operator: 3]
-    $value = ((1 + 2) ?: 'Enter Value');
-    echo "[Elvis Operator: ${value}]";
+    $value = ((1 + 2) ?: 'Entre um Valor');
+    echo "[Operador Elvis: ${value}]";
 
-    // Equal [==] vs. Identical (Strict Mode) [===]
-    // PHP is similar to JavaScript when comparing on data types.
+    // Igual [==] vs. Idêntico (modo estrito) [===]
+    // O PHP é similar ao JavaScript em comparações de tipos de dados
 
-    // These expressions all evalute to [true] because
-    // the data type does not have to match exactly.
+    // Essas expressões avaliam como verdadeiro [true] por que o tipo de dados
+    // não tem de corresponder exatamente.
     echo "\n";
     var_dump(1 == true);
     var_dump(0 == '');
     var_dump(0 == 'a');
     var_dump('1' == '01');
 
-    // These expressions all evalute to [false] because
-    // the data type has to match exactly.
+    // Essas expressões avaliam como falso [false] por que o tipo de dados tem
+    // que corresponder exatamente.
     echo "\n";
     var_dump(1 === true);
     var_dump(0 === '');
     var_dump(0 === 'a');
     var_dump('1' === '01');
 
-    // Not Equal [!=] vs. Not Identical [!==]:
+    // Não Igual [!=] vs. Não Idêntico [!==]:
     echo "\n";
     var_dump(0 != '');  // false
     var_dump(0 !== ''); // true
 
-    // Logical Operators:
+    // Operadores Lógicos:
     echo "\n";
     var_dump(true && true);   // true
     var_dump(false && false); // false
     var_dump(false || true);  // true
 
-    // Arrays can be easily compared in PHP
+    // Arrays podem ser facilmente comparados em PHP
     echo "\n";
     $array1 = [1, 2, 3];
     $array2 = [1, 2, 3];
@@ -344,77 +357,79 @@ $app->get('/examples/php-logic', function() use ($app) {
     var_dump($array1 === $array2); // true
     var_dump($array1 === $array3); // false
 
-    // Switch Statement
-    // Just like the [if] statement the syntax for [switch] is similar
-    // to C style languages such as C and JavaScript so the same
-    // fallthrough rules apply.
+    // Declaração Switch
+    // Assim como a declaração [if] a sintaxe para [switch] é similar às
+    // linguagens baseadas no estido C, como a prória C e JavaScript, então
+    // as mesmas regras podem ser aplicadas.
     //
-    // This example prints the season name from 4-season calendar
-    // in the Northern Hemisphere based on the current month.
+    // Este exemplo imprime o nome da estação à partir do calendário de 4
+    // estações no emisfério norte baseando-se no mês atual.
 
     echo "\n";
     $month = date('F');
 
     switch ($month) {
-        case 'March':
-        case 'April':
-        case 'May':
-            echo 'Spring';
+        case 'Março':
+        case 'Abril':
+        case 'Maio':
+            echo 'Primavera';
             break;
-        case 'June':
-        case 'July':
-        case 'August':
-            echo 'Summer';
+        case 'Junho':
+        case 'Julho':
+        case 'Agosto':
+            echo 'Verão';
             break;
-        case 'September':
-        case 'October':
-        case 'November':
-            echo 'Fall (Autumn)';
+        case 'Setembro':
+        case 'Outubro':
+        case 'Novembro':
+            echo 'Outono';
             break;
-        case 'December':
-        case 'January':
-        case 'February':
-            echo 'Winter';
+        case 'Dezembro':
+        case 'Janeiro':
+        case 'Fevereiro':
+            echo 'Inverno';
             break;
         default:
-            echo 'Error';
+            echo 'Erro';
     }
     // EXAMPLE_CODE_END
 });
 
 $app->get('/examples/php-loops', function() use ($app) {
-    //  Data Source:
+    //  Fonte de Dados:
     //  https://en.wikipedia.org/wiki/List_of_largest_cities
 
-    // Content is output as plain text
+    // Conteúdo é gerado em texto puro
     header('Content-Type: text/plain');
 
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Loops
+    // TITLE: Sintaxe PHP - Loops
     // Just like the logic demo this example also outputs data as it is evaluated.
+    // Assim como a demonstração de lógica, este exemplo também gera dados assim
+    // que validados.
 
-    // Define arrays with the largest cities in the world (by urban area)
+    // Define arrays com as maiores cidades no mundo (por área urbana)
     $cities = [
-        'Tokyo', 'São Paulo', 'Jakarta', 'Seoul', 'Manila',
-        'New York City', 'Shanghai', 'Cairo', 'Delhi',
+        "Tóquio", "São Paulo", "Jacarta", "Seul", "Manila",
+        "Nova York", "Xangai", "Cairo", "Délhi"
     ];
 
-    $cities_population = [
-        'Tokyo'     => '36,923,000',
+    $cities_populacao = [
+        'Tóqui'     => '36,923,000',
         'São Paulo' => '36,842,102',
-        'Jakarta'   => '30,075,310',
-        'Seoul'     => '25,520,000',
+        'Jacarta'   => '30,075,310',
+        'Seul'     => '25,520,000',
         'Manila'    => '24,123,000',
-        'New York'  => '23,689,255',
-        'Shanghai'  => '23,416,000',
+        'Nova York'  => '23,689,255',
+        'Xangai'  => '23,416,000',
         'Cairo'     => '22,439,541',
-        'Delhi'     => '21,753,486',
+        'Délhi'     => '21,753,486',
     ];
 
-    echo 'Largest Cities in the World' . "\n";
+    echo 'Maiores Cidades no Mundo' . "\n";
     echo str_repeat('-', 40) . "\n";
 
-    // Loop through the list of cities using the [foreach] loop.
+    // Fazer um Loop pelas listas de cidades utilizando [foreach].
     //     foreach (array as item)
     foreach ($cities as $city) {
         echo $city;
@@ -422,25 +437,27 @@ $app->get('/examples/php-loops', function() use ($app) {
     }
     echo "\n";
 
-    // Loop through a Dictionary or Associative Array using [foreach]
+    // Fazer um Loop por um Dicionário ou Array Associativo utilizando [foreach]
     //     foreach (array as key => value)
-    foreach ($cities_population as $city => $population) {
-        echo $city . ' = ' . $population;
+    foreach ($cities_population as $city => $populacao) {
+        echo $city . ' = ' . $populacao;
         echo "\n";
     }
     echo "\n";
 
-    // [for] loop using C style syntax, this prints 0...9 on seperate lines
+    // Loop [for] utilizando estilo de sintaxe C, isto imprime 0...9 em linhas
+    // separadas
     for ($n = 0; $n < 10; $n++) {
         echo $n;
         echo "\n";
     }
     echo "\n";
 
-    // [while] and [do-while] loops also use C style syntax so they will be familiar
-    // to JavaScript developers. [continue] and [break] also work as expected.
+    // Loops [while] e [do-while] também utilizam estilo de sintaxe C, então são
+    // familiares para desenvolvedores JavaScript. [continue] e [break]
+    // também funcionam como esperado.
 
-    // Prints even numbers between 0 and 8
+    // Imprime números pares entre 0 e 8
     $n = 0;
     while ($n < 10) {
         if ($n % 2 !== 0) {
@@ -455,7 +472,7 @@ $app->get('/examples/php-loops', function() use ($app) {
     echo "\n";
 
 
-    // Prints 0...4
+    // Imprime 0...4
     $n = 0;
     do {
         if ($n === 5) {
@@ -472,27 +489,29 @@ $app->get('/examples/php-loops', function() use ($app) {
 
 $app->get('/examples/php-functions', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Functions
-    // Defining and calling functions in PHP is similar to other C style languages.
-    // While functions are easily defined in PHP most often popular Frameworks and
-    // PHP projects define classes instead of functions. PHP however has many
-    // built-in functions that are used in development.
+    // TITLE: Sintaxe PHP - Funções
+    // Definir e chamar funções em PHP é similar a outras linguagens estilo C.
+    // Enquanto funções são facilmente definidas em PHP com muita taxa
+    // frameworks populares e projetos PHP definem classes ao invés de funções.
+    // PHP no entanto, tem muitas funções integradas que são utilizadas em
+    // desenvolvimento
     function add($x, $y) {
         return $x + $y;
     }
 
-    // Optional parameters an be by specifing a default value after the variable.
+    // Parâmetros opcionais podem ser especificados atribuindo um valor para
+    // a variável.
     function increment($x, $y = 1) {
         return $x += $y;
     }
 
-    // Callback functions can be defined and set to a variable just as you would
-    // use in JavaScript.
+    // Funções Callback pode ser definidas e atribuídas para uma variável da
+    // mesma forma que seria em JavaScript.
     $subtract = function($x, $y) {
         return $x - $y;
     };
 
-    // This code calls the above functions and prints "2"
+    // Este código chama as funções acima e imprime "2"
     $x = 1;
     $y = 2;
     $z = add($x, $y);      // returns 3
@@ -502,10 +521,12 @@ $app->get('/examples/php-functions', function() use ($app) {
     echo $z;
     echo '<br>';
 
-    // Unlike JavaScript PHP functions do not have access to variables in the
-    // parent scope. The [use] keyword can be used to pass variables from the
-    // parent scope. When using this syntax and setting [$x] in the called function
-    // [$x] does not get set from the parent scope so this code prints "1".
+    // Diferente do JavaScript as funções PHP não tem acesso a variáveis
+    // fora de seu escopo (escopo pai/escopo superior). A palavra chave
+    // [use] pode ser utilizada para passar variáveis fora do escopo da
+    // função. Ao utilizar essa sintaxe e ao definir [$x] na função
+    // chamada, [$x] não é definida à partir do escopo superior então
+    // este código imprime "1".
     $scope_test = function() use ($x) {
         $x = 123;
     };
@@ -513,9 +534,9 @@ $app->get('/examples/php-functions', function() use ($app) {
     echo $x;
     echo '<br>';
 
-    // This version is similar to the above version however the variable [$x] is
-    // passed by-reference using the [&] operator. This version will print "123"
-    // because [$x] gets modified.
+    // Esta versão é similar a versão acima no entanto a variável [$x] é
+    // passada por referência tuilizando o operador [&]. Esta versão
+    // imprimirá "123" por que [$x] é modificada.
     $scope_test = function() use (&$x) {
         $x = 123;
     };
@@ -527,76 +548,76 @@ $app->get('/examples/php-functions', function() use ($app) {
 
 $app->get('/examples/php-classes', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Classes and Objects
-    // Full details of how to define and use classes is beyond the scope of this
-    // quick reference page however the basic syntax is shown below which can
-    // help you get started.
+    // TITLE: Sintaxe PHP - Classes e Objetos
+    // Como definir e utilizar classes em detalhe, foge do escopo desta
+    // página de referência rápida entretanto, a sintaxe básica é mostrada
+    // abaixo o que pode ajudar a começar.
 
     class Math
     {
-        // Define a Member Variable
+        // Define uma Variável Membro
         public $value = 0;
 
-        // Define a Class Constructor with an Optional Parameter.
-        // Defining [__construct] is optional.
-        public function __construct($number = 0)
+        // Define um contrutor de Classe com um parâmetro opcional.
+        // Definir um construtor [__construct] é opcional.
+        public function __construct($numero = 0)
         {
-            $this->value = $number;
-            echo 'Classed Created with Value: ' . $number . '<br>';
+            $this->value = $numero;
+            echo 'Classe criada como valor: ' . $numero . '<br>';
         }
 
-        // Define a Class Destructor
+        // Definir um destruidor de Classe
         public function __destruct()
         {
             echo 'Classed Destroyed<br><br>';
         }
 
-        // Public function that returns the object instance [$this]
-        public function add($number) {
-            $this->value += $number;
+        // Função pública que retorna a instância do objeto [$this]
+        public function add($numero) {
+            $this->value += $numero;
             return $this;
         }
 
-        // Function with no parameter or return value
+        // Função sem parâmetro ou valor de retorno
         public function show()
         {
             echo 'Value: ' . $this->value . '<br>';
         }
     }
 
-    // Prints:
+    // Imprime:
     /*
-    Classed Created with Value: 0
-    Value: 3
-    Classed Destroyed
+    Classe criada com o valor: 0
+    Valor: 3
+    Classe destruída
     */
     $math = new Math();
     $math->add(1)->add(2)->show();
     $math = null;
 
-    // Prints:
+    // Imprime:
     /*
-    Classed Created with Value: 10
-    Value: 15
+    Classe criada como valor: 10
+    Valor: 15
     ...
     */
     $math = new Math(10);
     $math->add(5)->show();
 
-    // Read from a member variable:
+    // Ler de uma variável associada:
     $value = $math->value;
     echo $value . '<br>';
     // EXAMPLE_CODE_END
 });
 
 $app->get('/examples/php-encoding', function() {
-    // Content is output as plain text
+    // Conteúdo é criado em texto puro
     header('Content-Type: text/plain');
 
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Encoding - JSON, Base64, Base64-URL
-    // CLASS: Encoding\Json, Encoding\Base64Url
-    // Create a Basic Object and Array for Encoding
+    // TITLE: Sintaxe PHP - Codificação - JSON, Base64, Base64-URL
+    // CLASS: Codificaççao\Json, Codificação\Base64Url
+    // Criar um objeto e um array básicos para codificar
     $object = new \stdClass;
     $object->string = 'Test';
     $object->number = 123;
@@ -609,10 +630,11 @@ $app->get('/examples/php-encoding', function() {
     ];
 
     // -------------------------------------------
-    // Encode and Decode JSON
+    // Codificar e Decodificar JSON
     // -------------------------------------------
 
-    // Since PHP Array's are used like a Dictionary or Hash, both examples print:
+    // Desde que o array PHP seja utilizado como um Dicionário ou Hash,
+    // ambos exemplos imprimem:
     //     {"string":"Test","number":123,"bool":true}
     $json = json_encode($object);
     echo $json;
@@ -622,64 +644,69 @@ $app->get('/examples/php-encoding', function() {
     echo $json;
     echo "\n\n";
 
-    // Use the 2nd Parameter for formatted JSON
+    // Utilize o segundo parâmetro para JSON formatado
     $json = json_encode($object, JSON_PRETTY_PRINT);
     echo $json;
     echo "\n";
 
-    // Decode and print the object with details using [print_r()]:
+    // Decodifique e imprima o objeto com detalhes utilizando [print_r()]:
     $decoded = json_decode($json);
     print_r($decoded);
     echo "\n";
 
-    // By default an objects are decoded as [stdClass] objects. To return
-    // an array instead pass [true] as the 2nd parameter.
+    // Por padrão objetos são decodificados como objetos da [stdClass].
+    // Para retornar um array ao invés de um objeto passe [true] como o
+    // segundo parâmetro.
     $decoded = json_decode($json, true);
     print_r($decoded);
     echo "\n";
 
-    // If there is an error decoding JSON data null will be returned.
-    // If you need to handle invalid JSON you can do so like this:
+    // Se houver um erro ao decodificar dados JSON será retornado [null].
+    // Se você precisar Se você precisar lidar com um JSON inválido, você pode
+    // fazer dessa forma:
     if ($decoded === null && json_last_error() !== JSON_ERROR_NONE) {
-        throw new \Exception('Error decoding JSON Data: ' . json_last_error_msg());
+        throw new \Exception('Erro decodificando Dados JSON: ' . json_last_error_msg());
     }
 
-    // FastSitePHP includes a JSON helper class which throws exceptions on
-    // JSON errors instead of the default behavior of returning [false] or [null].
+    // O FastSitePHP inclui uma classe auxiliar JSON que lança excessẽs em erros
+    // JSON ao invés de utilizar o comportamento padrão de retornar [false] ou
+    // [null].
     $json = \FastSitePHP\Encoding\Json::encode($object);
     $decoded = \FastSitePHP\Encoding\Json::decode($json);
 
-    // Often though in most code simply calling [json_encode()] or [json_decode()]
-    // will be enough. By default PHP decodes large numbers as floats. If you
-    // want stricter decoding so they come in a strings then you can use additional
-    // options. This is how FastSitePHP's JSON class decodes as it is used in the
-    // JWT, Encryption, and SignedData classes. [JSON_BIGINT_AS_STRING] is not
-    // avaiable on PHP 5.3 so FastSitePHP uses compatible code.
+    /* Muitas vezes no entanto, na maioria dos códigos, simplesmente chamar
+    [json_encode()] ou [json_decode()] será suficliente. Por padrão o PHP
+    decodifica números grandes como ponto flutuante. Se você quer uma
+    decodificação mais estrita para que venham em string, então você pode
+    utilizar opções adicionais. É assim que a classe JSON do FastSitePHP
+    decodifica quando é utilizada nas classes JWT, Encryptione SignedData.
+    [JSON_BIGINT_AS_STRING] não está disponível no PHP 5.3 então o
+    FastSitePHP utiliza código compatível. */
     $decoded = json_decode($json, true, 512, JSON_BIGINT_AS_STRING);
 
     // -------------------------------------------
-    // Encode and Decode Base64
+    // Codifique e Decodifique Base64
     // -------------------------------------------
 
-    // Prints: "VGhpcyBpcyBhIHRlc3Q="
-    $data = 'This is a test';
+    // Imprime: "VGhpcyBpcyBhIHRlc3Q="
+    $data = 'Isto é um teste';
     $base64 = base64_encode($data);
     echo $base64;
     echo "\n";
 
-    // When decoding if there is an error then [false] is returned
+    // Ao decodificar, se houver um erro então [false] é retonado
     $decoded = base64_decode($base64);
     print_r($decoded);
     echo "\n\n";
 
-    // -------------------------------------------
-    // Encode and Decode Base64-URL Format
-    // -------------------------------------------
+    // ---------------------------------------------
+    // Codifique e Decodifique o Formato Base64-URL
+    // ---------------------------------------------
 
-    // PHP does not include built-in functions for Base64-URL format so
-    // FastSitePHP includes a helper class with static methods. They behave
-    // similar to the built-in functions [base64_encode()]  and [base64_decode()]
-    // so if there is an error then [false] is returned.
+    /* O PHP não tem funções internas para o formato Base64-URL então o
+    FastSitePHP inclui uma classe auxiliar com métodos estáticos. Eles se
+    comportam de forma similar às funções integradas [base64_encode()] e
+    [base64_decode()], então, se houver um erro, será retornado [false]. */
 
     $base64url = \FastSitePHP\Encoding\Base64Url::encode($data);
     echo $base64;
@@ -692,31 +719,34 @@ $app->get('/examples/php-encoding', function() {
 });
 
 $app->get('/examples/php-error', function() use ($app) {
-    // Comment out different code to test or place "exit();"
-    // after certain blocks of code.
+    // Comente códigos diferentes para testar or coloque um "exit();" depois
+    // de certos blocos de código.
 
     // EXAMPLE_CODE_START
-    // TITLE: PHP Syntax - Errors and Exceptions
-    // PHP uses both Errors that are triggered and Exceptions that are thrown.
+    // TITLE: Sintaxe PHP - Erros e Exceções
+    // PHP usa ambos Erros, que são provocados, e Exceções que são lançadas.
 
-    // PHP handles errors a differently than many languages. For example in many
-    // languages a "divide by zero" error would either throw an Exception or be
-    // fatal and halt the program and in compiled languages an undefined variable
-    // would not allow the program to run. However when using PHP unless error
-    // reporting is set both of these errors would simply be ignored and the
-    // script could continue with unexpected results. This can make programming
-    // with PHP difficult at first if you are coming from another language.
-    // FastSitePHP makes things easy because it runs code in strict mode and
-    // converts errors to exceptions once [app->setup()] is called.
+    // PHP lida com erros de forma diferente de muitas linguagens. Por exemplo
+    // linguagens um erro "divisão por zero" tanto lançaria uma Exceção ou seria
+    // fatal e interromperia o programa e, em linguagens compiladas uma variável
+    // indefinida não permitiria que o programa rodasse. Entretanto ao utilizar
+    // PHP, a não ser que o relatório de erros esteja definido, ambos os erros
+    // seriam simplesmente ignorados e o script continuaria com resultados
+    // inesperados. Isso pode tornar programar em PHP difícil no início se você
+    // estiver vindo de outra linguagem. FastSitePHP torna as coisas fáceis, por This can make programming
+    // que roda o código em modo estrito e converte erros para execeções assim
+    // que [app->setup()] é chamada.
 
-    // To handle all errors and exceptions globally in PHP, four different functions
-    // have to be first set. These are automatically handled from [app->setup()]:
+    // Para controlar todos os erros e exceções de forma global em PHP, quatro
+    // funções diferentes tem de ser definidas primeiro. Essas são controladas
+    // automaticamente à partir de [app->setup()]:
     //   error_reporting()
     //   set_exception_handler()
     //   set_error_handler()
     //   register_shutdown_function()
 
-    // In PHP [try...catch] logic is similar to many languages such as JavaScript:
+    // Em PHP, a lógica de [try...catch], é similar a muitas linguagens como
+    // JavaScript:
     try {
         throw new \Exception('Test');
     } catch (\Exception $e) {
@@ -724,21 +754,21 @@ $app->get('/examples/php-error', function() use ($app) {
         echo '<br>';
     }
 
-    // Variables can be checked if they might not exist.
-    // This code works and no error is triggered.
+    // A existência de variáveis pode ser verificada.
+    // Eeste código funciona e nenhum erro é desencadeado.
     if (isset($x) === false) {
-        echo 'Variable [$x] is not defined<br>';
+        echo 'A variável [$x] não foi definida<br>';
     }
 
-    // Uncommenting the lines below will trigger different types of errors.
-    // When using PHP default development settings the errors will often cause
-    // an error message in the middle of the code and code after will still
-    // be executed.
+    // Descomentando as linhas abaixo desencadeará tipos diferentes de erros.
+    // Ao utilizar os parâmetros padrão de desenvolvimento PHP os erros, muitas
+    // vezes causarão uma mensagem de erro no meio do código e o código posterior
+    // ainda será executado.
     //
-    // echo $x;     // [E_NOTICE]  = "Undefined variable: x"
-    // echo 1 / 0;  // [E_WARNING] = "Division by zero"
+    // echo $x;     // [E_NOTICE]  = "Variável indefinida: x"
+    // echo 1 / 0;  // [E_WARNING] = "Divisão por zero"
 
-    // FastSitePHP converts Errors to Exceptions so they can be caught.
+    // FastSitePHP converte Erros em Exceções para que eles possam ser capturados
     try {
         echo $x;
     } catch (\Exception $e) {
@@ -757,38 +787,38 @@ $app->get('/examples/php-error', function() use ($app) {
 
 /*
 // EXAMPLE_CODE_START
-// TITLE: Hello World with FastSitePHP
-// CLASS: Application
+// TITLE: Olá Mundo com FastSitePHP
+// CLASS: Applicação
 <?php
-// Only two files are required to run FastSitePHP and they can
-// be in the same directory as [index.php] or the contents can
-// be embedded in the main php page.
+// Somente dois arquivos são necessários para rodar o FastSitePHP e eles podem
+// estar no mesmo diretório que o [index.php] ou seus conteúdos podem ser
+// integrados na página principal PHP.
 require 'Application.php';
 require 'Route.php';
 
-// Create the Application Object and optionally setup
-// Error Handling and a Timezone.
+// Crie o Objeto Application e opcionalmente configure controle de Erro e
+// Fuso um horário.
 $app = new FastSitePHP\Application();
 $app->setup('UTC');
 
-// Define the 'Hello World' default route
+// Defina a rota padrão do 'Olá Mundo'
 $app->get('/', function() {
-    return 'Hello World!';
+    return 'Olá Mundo!';
 });
 
-// Return a JSON Response by returning an Object or an Array
+// Retorne uma resposta JSON como um Objeto ou um Array
 $app->get('/json', function() {
-    return ['Hello' => 'World'];
+    return ['Olá' => 'Mundo'];
 });
 
-// For all other requests, return the URL as a plain text response.
-// The [use] keyword makes the [$app] variable available to the function.
+// Para todas as outras requisições, retorne a URL como resposta em texto puro.
+// A palabra chave [use] torna a variável [$app] disponível para a função.
 $app->get('/*', function() use ($app) {
     $app->header('Content-Type', 'text/plain');
     return $app->requestedPath();
 });
 
-// Run the App
+// Rode a App
 $app->run();
 // EXAMPLE_CODE_END
 */
@@ -797,137 +827,141 @@ $app->run();
 // EXAMPLE_CODE_START
 // CLASS: AppMin
 <?php
-// Only two files are required to run FastSitePHP AppMin and they can
-// be in the same directory as [index.php] or the main php page.
+// Apenas dois arquivos são necessários para rodar o FastSitePHP AppMin e eles
+// podem estar no mesmo diretório que o [index.php] ou da página principal.
 require 'AppMin.php';
 require 'Route.php';
 
-// Create the AppMin Object and optionally setup
-// Error Handling and a Timezone.
+// Crie o Objeto AppMin e opcionalmente configure controle de Erro e
+// Fuso Horário.
 $app = new FastSitePHP\AppMin();
 $app->setup('UTC');
 
-// Define the 'Hello World' default route
+// Define a rota 'Hello World' padrão
 $app->get('/', function() {
-    return 'Hello World!';
+    return 'Olá Mundo!';
 });
 
-// Return a JSON Response by returning an Object or an Array
+// Retorne uma resposta JSON Return a JSON Response retornando um
+// Objeto ou um Array
 $app->get('/json', function() {
-    return ['Hello' => 'World'];
+    return ['Olá' => 'Mundo'];
 });
 
-// Send a Plain Text Response and Custom Header. AppMin is minimal in size so
-// optional URL parameters [:name?] and Wildcard URL's [*] are not supported.
+// Envie uma Resposta em Texto Puro e um Cabeçalho Personalizado. AppMin tem um
+tamanho mínimo, então, parâmetros opcionais de URL como [:name?] e curingas de
+// URL [*] não são suportados.
 $app->get('/hello/:name', function($name) use ($app) {
     $app->headers = [
         'Content-Type' => 'text/plain',
         'X-Custom-Header' => $name,
     ];
-    return 'Hello ' . $name;
+    return 'Olá ' . $name;
 });
 
-// Run the App
+// Rode a App
 $app->run();
 // EXAMPLE_CODE_END
 */
 
 $app->get('/examples/app-basic-routes', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Application Object - Defining Basic Routes
-    // CLASS: Application
-    // The Application Object is the key Object in FastSitePHP. It is used to
-    // define routes, provide request info, render templates, send the response,
-    // and more. If you are using a copy of this site or a starter site the
-    // Application Object will be available as the variable [$app] and routes
-    // are defined in the page [app.php].
+    // TITLE: Objeto Application - Definindo Rotas Básicas
+    // CLASS: Applicação
+    // O Objeto Application é o objeto chabe no FastSitePHP. É utilizado para
+    // definir rotas, fornecer informaçãoes e requisição, renderizar modelos,
+    // enviar a resposta e mais. Se você estiver utilizando uma cópia deste
+    // site ou um site incicial o Objeto Application estará disponível como a
+    // variável [$app] e rotas são definidas na página [app.php].
 
-    // Basic Route
-    // Send an HTML Response when either '/about' or '/about/' is requested
+    // Rota Básica
+    // Envie uma Reposta HTML quando quando '/about' ou '/about/' for requisitado
     $app->get('/about', function() {
-        return '<h1>About Page</h1>';
+        return '<h1>Página About</h1>';
     });
 
-    // By default URL's are case-sensitive however this can be
-    // turned off and then '/ABOUT' would match the above route.
+    // Por padrão URLs diferenciam maiúsculas de minúsculas, entretanto, isso
+    // pode ser desativado e '/ABOUT' corresponderia à rota acima.
     $app->case_sensitive_urls = false;
 
-    // If setting URL strict mode then the above URL would only match
-    // to '/about' and '/about/' would have to be explicitly defined.
+    // Se o mode estrito de URL estiver definido, então, a URL acima apenas
+    // corresponderia a '/about' e '/about/' teria que ser definida
+    // explicitamente.
     $app->strict_url_mode = true;
     $app->get('/about/', function() {
-        return '<h1>About Directory</h1>';
+        return '<h1>Diretório About</h1>';
     });
 
-    // The about call using [get()] matches only 'GET' requests. If you would like
-    // to handle both 'GET' and 'POST' or other methods with the same route you
-    // can define the route using the [route()] function then check the if there is
-    // data sent with the request as shown below. The [route()] function will accept
-    // all request methods.
+    // A chamada de about utilizando [get()] corresponde somente a requisições
+    // 'GET'. Se você gostaria de controlar ambos 'GET' e 'POST' ou outros
+    // métodos com a mesma rota, você pode definir a rota utilizando a função
+    // de rota [route()] e verificar se há dados enviados com a requisição
+    // como mostrado abaixo. A função [route()] aceitará todos os métodos de
+    // requisição.
     $app->route('/form', function() {
         if ($_POST) {
-            // Handle posted form data
+            // Controle dados postados de formulário
         }
-        // Handle GET request, return rendered template, etc
+        // Controle requisições GET, retorne o modelo renderizado etc
     });
 
-    // In addition to GET Requests you can handle [ POST, PUT, PATH, and DELETE]
-    // Requests using named functions.
+    // Em acréscimo às Requisições GET, você pode manipular requisições
+    // [POST, PUT, PATCH, and DELETE] utilizando funções nomeadas.
     $app->get('/method', function() { return 'get()'; });
     $app->post('/method', function() { return 'post()'; });
     $app->put('/method', function() { return 'put()'; });
     $app->patch('/method', function() { return 'patch()'; });
     $app->delete('/method', function() { return 'delete()'; });
 
-    // The same URL can be defined multiple times and the first matching response
-    // will stop additional routes from being evaluated. In this example the route
-    // '/example' will return the text 'Example 2'.
+    // A mesma URL ode ser definida multiplas vezes e a primeira resposta
+    // correspondente impedirá rotas adicionais de serem avaliadas. Neste
+    // exemplo a rota '/example' retornará o texto 'Exemplo 2'.
     $app->get('/example', function() { return null; });
-    $app->get('/example', function() { return 'Example 2'; });
-    $app->get('/example', function() { return 'Example 3'; });
+    $app->get('/example', function() { return 'Exemplo 2'; });
+    $app->get('/example', function() { return 'Exemplo 3'; });
 
-    // In addition to returning a response you can also simply output a response
-    // using [echo] or other functions.
+    // Além de retornar uma resposta, você pode também simplesmente exibir uma
+    // resposta utilizando [echo] ou outras funções.
     $app->get('/echo-response', function() {
         echo 'Output';
     });
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Retorna um Array JSON de todas as Rotas Definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-route-parameter', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Define a Route with a Parameter
-    // Send a response 'Hello FastSitePHP!' for the URL '/hello/FastSitePHP'.
-    // The ':name' text in the route pattern defines a parameter for the route
-    // because it starts with the ':' character.
+    // TITLE: Define uma Rota com um Parâmetro
+    // Envie uma resposta 'Olá FastSitePHP!' para a URL '/hello/FastSitePHP'.
+    // O texto ':name' no modelo de rota define um parâmetro para a rota
+    // por que inicia-se com o caractere ':'.
     $app->get('/hello/:name', function($name) {
-        return 'Hello ' . $name;
+        return 'Olá ' . $name;
     });
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Retorna o Array JSON de todas as Rotas Definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-route-optional-parameter', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Define a Route with an Optional Parameter
-    // Send a response 'Hello World!' for the URL '/hello' or in the case of the
-    // optional [name] variable safely escape and return a message with the name.
-    // The [use] keyword makes the [$app] variable available to the function
-    // and the question mark in the URL pattern ':name?' makes the variable optional.
-    $app->get('/hello/:name?', function($name = 'World') use ($app) {
-        return 'Hello ' . $app->escape($name) . '!';
+    // TITLE: Define uma Rota com um Parâmetro Opcional
+    // Envie uma resposta 'Olá Mundo!' para a URL '/hello' ou no caso da variável
+    // opcional [name] escapa e retorna uma mensagem como nome. A palavra chave
+    // [use] faz a variável [$app] ficar disponível para a função e o ponto de
+    // interrogação no modelo da URL ':name?' torna a variável opcional.
+    $app->get('/hello/:name?', function($name = 'Mundo') use ($app) {
+        return 'Olá ' . $app->escape($name) . '!';
     });
 
-    // In addition to optional parameters a wildcard character '*' can be used at
-    // the end of the URL to handle all requests that match the start of the URL.
-    // In this example the following two URL's would both be matched.
+    // Além os parâmetros opcionais um caracter curringa '*' pode ser utilizado
+    // no final da URL para manipular todas as requisições que correspondem ao
+    // início da URL. Neste exemplo as seguintes  URLs seria ambas correspondidas.
     //     '/hello/world'
     //     '/hello/page1/page2/page3'
     $app->get('/hello/*', function() use ($app) {
@@ -936,84 +970,86 @@ $app->get('/examples/app-route-optional-parameter', function() use ($app) {
     });
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Retorna um Array JSON de toas as Rotas Definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-route-controllers', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Define a Route that maps to a Controller Class
-    // CLASS: Application
-    // Defining routes with callback functions allows for fast prototyping
-    // and works well when minimal logic is used. As code grows in size it
-    // can be organized into controller classes.
+    // TITLE: Defina a Rota que mapeia para uma Classe de Controle
+    // CLASS: Aplicação
+    // Definindo rotas com uma funções callback, permite prototipagem rápida
+    // e funcina bem ao utilizar lógica mínima. Com o crescimento do código,
+    // isso pode ser organizado em classes controller.
 
-    // Optionally specify the Controller Class Root Namespace. When using this if a
-    // class 'Examples' is created then it will map to 'App\Controllers\Examples'.
+    // Opcionalmente especifique o Namespace raiz da classe controller. Ao usar
+    // este arquivo se uma classe 'Exemplos' for criada, então, isso será
+    // mapeado como 'App\Controllers\Examples'.
     $app->controller_root = 'App\Controllers';
 
-    // Similar to [controller_root] is [middleware_root] which applies to
-    // [Route->filter()] and [$app->mount()] functions.
+    // Semelhante a [controller_root], [middleware_root] a qual se aplica às
+    // funções [Route->filter()] e [$app->mount()].
     $app->middleware_root = 'App\Middleware';
 
-    // The two format options are 'class' and 'class.method'. When using only
-    // class name then the route function [route(), get(), post(),  put(), etc]
-    // will be used for the method name of the matching controller.
-    $app->get('/:lang/examples', 'Examples');
-    $app->get('/:lang/examples/:page', 'Examples.getExample');
+    // As duas opções de formato são 'class' e 'class.method'. Ao utilizar só
+    // nome de classe, a funções de rota [route(), get(), post(),  put(), etc]
+    // serao utilizadas para o nome do método do controller correspondente.
+    $app->get('/:lang/examples', 'Exemplos');
+    $app->get('/:lang/examples/:page', 'Exemplo.getExample');
 
-    // Controller Class Example
-    class Examples
+    // Exemplo de Classe de Controle
+    class Exemplos
     {
         public function get(Application $app, $lang) { }
         public function getExample(Application $app, $lang, $page) { }
     }
 
-    // In addition to organizing code into controller classes you can also separate
-    // routes into separate files using the [mount()] function. The mount function
-    // will load a file in the same directory only if the starting part of the
-    // Requested URL matches the Mount URL. An optional 3rd parameter accepts a
-    // callback function or string of 'Class.method' and if false is returned
-    // then the file won't be loaded.
+    // Além de organizar o código em classes de controle, você pode também
+    // separar rotas em arquivos diferentes utilizando a função [mount()]. A
+    // função [mount()] carregará um arquivo no mesmo diretório somente se a
+    // parte inicial da URL requisitada corresponder à URL de Mount. Um terceiro
+    // parâmetro opcional aceita uma função callback ou string de 'Class.method'
+    // e se o retorno for false, o arquivo não será carregado.
     $app->mount('/data/', 'routes-data.php');
     $app->mount('/secure/', 'routes-secure.php', function() {
-        // Logic ...
+        // Lógica ...
         return false;
     });
     $app->mount('/sysinfo/', 'routes-secure.php', 'Env.isLocalhost');
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Returna um Array JSON de todas as rotas definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-route-parameter-validation', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Route Parameter Validation
-    // The Application Object has a [param()] function which can be used to
-    // validate and convert URL parameters to a specific format such as a number.
+    // TITLE: Validação de Parâmetro de Rota
+    // O Objeto da Apicação tem uma função [param()] que pode ser utilizado para
+    // validar e converter os parâmetros da URL para um formato específico como
+    // um número.
 
-    // The function is defined as:
+    // A função é definida como:
     //     param($name, $validation, $converter = null)
 
-    // Parameters:
-    //     Validation = ['any', 'int', 'float', 'bool'], a valid regular expression,
-    //         or a Closure/Callback function. When using 'int|float|bool' the data
-    //         type will automatically be converted.
-    //     Convertor = ['int', 'float', 'bool'] or a Closure/Callback function.
+    // Parâmetros:
+    //     Validation = ['any', 'int', 'float', 'bool'], uma expressão regular
+    //         válida ou uma função Closure/Callback. Ao utilizar
+    //         'int|float|bool' o tipo de dado será automaticamente convertido.
+    //     Convertor = ['int', 'float', 'bool'] ou uma função Closure/Callback.
 
-    // Basic Example
-    //     '/product/123' = Match and [$product_id] will be an integer
-    //     '/product/abc' = 404 Page Not Found
+    // Exemplo Básico
+    //     '/product/123' = Corresponde e [$product_id] será um número inteiro
+    //     '/product/abc' = 404 Página não encontrada
     $app->param(':product_id', 'int');
     $app->get('/product/:product_id', function($product_id) {
         var_dump($product_id);
     });
 
-    // Additional Examples of Defining Parameter Rules. For more see full
-    // documentation and other examples.
+    // Exeplos adicionais de Definição de Regras de Parâmetros. Para mais veja
+    // a documentação completa e outros exemplos.
 
     $range_param = function($value) {
         $num = (int)$value;
@@ -1038,98 +1074,101 @@ $app->get('/examples/app-route-parameter-validation', function() use ($app) {
     $app->param(':regex2', '/^[a-zA-Z]*$/');
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Retorna um Array de JSON de todas as Rotas Definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-route-filter', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Use Route Filters
-    // CLASS: Route
-    // Routes can have custom filter functions assigned to them to run specific
-    // code if a route is matched, perform validation, or another task required
-    // by your site. Filter functions only run if the route is matched to the
-    // requested URL.
+    // TITLE: Utilize Filtros de Rota
+    // CLASS: Rota
+    // Rotas podem ter funções filtro personalizadas atribuídas a elas para
+    // rodar códigos específicos se uma rota for correspondida, realizar
+    // validação ou outra tarefa requisitada pelo seu site. Funções Filtro rodam
+    // somente se a rota corresponder a URL requisitada.
 
-    // Define some callback/closure functions
+    // Definir algumas funções callback/closure
     $text_response = function() use ($app) {
         $app->header('Content-Type', 'text/plain');
     };
     $is_authenticated = function() {
-        // Check User Permissions ...
+        // Verificar Permissões de Usuário ...
         return true;
     };
 
-    // When routes are created [get(), route(), post(), etc] the created route
-    // is returned so you can call [filter()] after defining the route.
-    // This page will be returned a Plain Text page because the filter function
-    // sets the Response Header and returned no value.
+    // Quando rotas são criadas [get(), route(), post(), etc], a rota criada é
+    // retornada para que você possa chamar [filter()] depois de definir a rota.
+    // Esta página será retornada como Texto Puro por que a função filtro define
+    // o Cabeçalho de Resposta e não retorna valor.
     $app->get('/text-page', function($name) {
-        return 'Hello';
+        return 'Olá';
     })->filter($text_response);
 
-    // A route can have multiple filters and for clarity you may want to put
-    // filter functions on seperate lines. This page will only be called if
-    // [$is_authenticated] returns [true] and it will also be a text response.
+    // Uma rota pode ter múltiplos filtros e para clareza você pode colocar
+    // funções filtro em linhas separadas. Esta página será somente chamdada se
+    // [$is_authenticated] retornar [true] e isso for também uma resposta em
+    // texto.
     $app->get('/secure-text-page', function($name) {
-        return 'Hello ' . $name;
+        return 'Olá ' . $name;
     })
     ->filter($is_authenticated)
     ->filter($text_response);
 
-    // The [filter()] function also accepts a string representing
-    // a class and method in the format of 'Class.method'.
+    // A função [filter()] também aceita uma string representando uma classe e
+    // método no formato de 'Classe.método'.
     $app->get('/phpinfo', function($name) {
         phpinfo();
     })
     ->filter('Env.isLocalhost');
 
-    // When using string filters you can specify a root namespace
-    // for the classes using the App property [middleware_root].
+    // Quando usar filtros de string, você pode especificar um namespace raiz
+    // para as classes utilizando a propriedade de App [middleware_root].
     $app->middleware_root = 'App\Middleware';
     // EXAMPLE_CODE_END
 
-    // Return JSON Array of all Defined Routes
+    // Retorne um Array JSON de todas as Rotas Definidas
     $app->json_options = JSON_PRETTY_PRINT;
     return $app->routes();
 });
 
 $app->get('/examples/app-info', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Application Object - Basic Request Info
-    // Many frameworks require special configuration values in order to handle
-    // requests. FastSitePHP figures this out automatically and provides several
-    // functions in the Application Object to return basic request info.
+    // TITLE: Objeto de Aplicação - Informação de Básicas de Requisição
+    // Muitos frameworks requerem valores especiais de configurações para que
+    // possam manipular requisições. O FastSitePHP descobre isso automaticamente
+    // e fornece algmumas funções no Objeto Application para retornar
+    // informações básicas de requisição.
 
-    // If your site does not use a proxy server such as load balancer then these
-    // functions can be used for building URL's or other app needs. If your site
-    // uses a load balancer with custom host headers then you would want to use
-    // the request object to obtain the root url.
+    // Se seu site não usa um servidor proxy como balanceador de carga essas
+    // funções pode ser utilizadas para criar URLs ou outras necessidades do app.
+    //Se seu site utiliza um balanceador de cargas com cabeçalhos personalizados
+    // para o host, então você utilizaria o objeto da requisição para obter a
+    // URL raiz.
 
-    // Root or Base URL for the Site. This is often needed to build full path
-    // URL's on web pages.
+    // URL raiz ou base para o site. Isso é frequentemente necessário para
+    // contruir URL com caminhos completos em páginas web.
     //
-    // Examples:
-    //     # [index.php] specified in the URL
+    // Exemplos:
+    //     # [index.php] especificado no URL
     //     Request: https://www.example.com/index.php/page
     //              https://www.example.com/index.php/page/page2
     //     Returns: https://www.example.com/index.php/
     //
-    //     # [index.php] Located in Root Folder
+    //     # [index.php] Localizado na pasta raiz
     //     Request: https://www.example.com/page
     //              https://www.example.com/page/page2
     //     Returns: https://www.example.com/
     //
-    //     # [index.php] Located under [site1]
+    //     # [index.php] Localizado sob [site1]
     //     Request: https://www.example.com/site1/page
     //              https://www.example.com/site1/page/page2
     //     Returns: https://www.example.com/site1/
     //
     $root_url = $app->rootUrl();
 
-    // Root Directory for the Site. Often needed to build URL's for Static
-    // Resources such as CSS or JavaScript files.
+    // Diretório raiz para o site. Geralmente necessario para contruir URLs para
+    // recursos estáticos como arquivos CSS ou JavaScript.
     //
     //     Request: https://www.example.com/index.php/page
     //              https://www.example.com/index.php/page/page2
@@ -1138,8 +1177,8 @@ $app->get('/examples/app-info', function() use ($app) {
     //
     $root_dir = $app->rootDir();
 
-    // Get the Requested URL which exits after the Root URL. This will be
-    // based on where the [index.php] or entry PHP file is located.
+    // Obtém a URL requisitada que exite depois da URL raiz. Isso será baseado
+    // em onde o [index.php] ou entrada no arquivo PHP estiver localizada.
     //
     //     Request: https://www.example.com/index.php/test/test?test=test
     //              https://www.example.com/index.php/test/test
@@ -1148,21 +1187,21 @@ $app->get('/examples/app-info', function() use ($app) {
     //              https://www.example.com/site1/index.php/test/test
     //     Returns: '/test/test'
     //
-    // In the above example both '/test/test/' and '/test/test' return
-    // '/test/test' when using the default property [$app->strict_url_mode = false]
-    // otherwise the exact URL would be returned.
+    // No exemplo acima ambos '/test/test/' e '/test/test' retornam '/test/test'
+    // quando utiliza-se a propriedade padrão [$app->strict_url_mode = false]
+    // caso contrário a URL exata será retornada.
     //
     $requested_path = $app->requestedPath();
 
-    // Example usage for building URL's:
+    // Exemplo de utilização para contrução de URL:
     $site_css = $app->rootDir() . 'css/site.css';
     $docs_link = $app->rootUrl() . '/documents';
     //
     // <link href="{{ $site_css }}" rel="stylesheet" />
-    // <a href="{{ $docs_link }}">Documents</a>
+    // <a href="{{ $docs_link }}">Documentos</a>
     // EXAMPLE_CODE_END
 
-    // Return as JSON
+    // Retorne como JSON
     $app->json_options = JSON_PRETTY_PRINT;
     return [
         'rootUrl' => $root_url,
@@ -1176,45 +1215,50 @@ $app->get('/examples/app-dynamic', function() use ($app) {
     header('Content-Type: text/plain');
 
     // EXAMPLE_CODE_START
-    // TITLE: Dynamic Functions and Lazy Loading Properties
-    // FastSitePHP allows for the Application Object to be assigned dynamic
-    // functions and lazy loading properties. This allows for custom functions
-    // and resources shared by many routes to be organized under a global object
-    // and can allow for simple and clear dependancy injection.
+    // TITLE: Funçẽs Dinâmicas e Propriedades Lazy Loading
+    // FastSitePHP permite que o objeto da aplicação tenha funções dinamicamente
+    // atribuídas e propriedades lazy loading. Isso permite que funções
+    // personalizadas e recursos compartilhados por muitas rotas serem organizados
+    // sob um ojeto global e pode permitir uma injeção simples e clara de
+    // de dependencia.
 
-    // JavaScript Example - This works to add a function dynamically to an object:
+    // Exemplo JavaScript - Isto funciona para adicionar uma função dinamicamente
+    // a um objeto:
     //
     // var obj = {};
     // obj.test = function() { alert('test'); };
     // obj.test();
 
-    // PHP Example - The function can be assigned to a property however if called
-    // an error is triggered - 'Call to undefined method ...'.
+    // Exemplo PHP - A função pode ser atribuída a uma propriedade, entretanto,
+    // se chamada um erro é acionado - 'Call to undefined method ...'.
     $obj = new \stdClass;
-    $obj->test = function() { echo 'test'; };
+    $obj->test = function() { echo 'teste'; };
     // $obj->test();
 
-    // When using FastSitePHP's Application object you can simply assign an use
-    // functions just like in JavaScript or Ruby.
+    // Ao utilizar o objeto aplicação do FastSitePHP você pode simplesmente
+    // atribuir e usar funções como em JavaScript ou Ruby.
     $app->test = function() { echo 'test'; };
     $app->test();
 
-    // The native PHP function [method_exists()] will not work for custom functions
-    // so to check if either a built-in or custom App method exists use this.
+    // A função nativa de PHP [method_exists()] não funcionará para funções
+    // personalizadas, então para vericar se exite um método integrado ou
+    // personalizado do App use isso.
     $exists = $app->methodExists('test');
 
-    // The [lazyLoad()] function accepts a property name and callback function.
-    // It creates the object as a property of the app only if used. This is ideal
-    // for working with sites where some pages use a resource and some do not.
+    // A função [lazyLoad()] aceita um nome de propriedade e função de callbback.
+    // Isso cria o objeto como uma propriedade do app somente se utilizada. Isso
+    // é ideal para traalhar com sites onde algumas páginas usam um recruso e
+    // outras não.
     $app->lazyLoad('db', function() {
         return $pdo = new \PDO('sqlite::memory:');
     });
 
-    // [$app->db] gets set here on first use.
+    // [$app->db] é definida aqui no primeiro uso.
     $sql = 'CREATE TABLE test (id INTEGER PRIMARY KEY, test)';
     $app->db->query($sql);
 
-    // [$app->db] now works as a standard property as it was previously called.
+    // [$app->db] agora funciona como uma propriedade padrão já que ela foi
+    // previamente chamada.
     $sql = 'SELECT * FROM sqlite_master';
     $records = $app->db->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
     // EXAMPLE_CODE_END
@@ -1227,32 +1271,33 @@ $app->get('/examples/app-dynamic', function() use ($app) {
 
 /*
 // EXAMPLE_CODE_START
-// TITLE: Application Events
+// TITLE: Eventos da Aplicação
 <?php
-// Just like the Hello World Demo this code can be copied to a seperate
-// [index.php] or other file and then tested.
+// Da mesma for que na demonstração Hello World, este código pode ser copiado
+// para um [index.php] separado ou outro arquivo e então testado.
 
-// There are 5 Application callback events:
+// Existem 5 eventos callback da Aplicação:
 //     before(), beforeSend(), after(), notFound(), and error()
-// They can be used to handle custom logic while the application is running.
+// Eles podem ser usados para manipular lógica personalizada enquanto a aplicação
+// está rodando.
 
-// Load Files
+// Carregue Arquivos
 require 'Application.php';
 require 'Route.php';
-// Or use an Autoloader:
+// Ou utilize um Autoloader:
 // require '../../vendor/autoload.php';
 
-// Create and Setup App Object
+// Cria e Configura o objeto App
 $app = new FastSitePHP\Application();
 $app->setup('UTC');
 
 // ------------------------------------------------------------------
-// Define Events
+// Defina Eventos
 // ------------------------------------------------------------------
 
-// [Before] Events will be called from the [run()] function prior to any routes
-// being matched. All Event functions can be called multiple times and will
-// run in order that they are defined.
+// Eventos [Before] serão chamados da função [run()] antes que qualquer rota seja
+// correspondida. Todas funções de evento podem ser chamadas múltiplas vezes e
+// rodarão na ordem que foram definidas.
 $app->before(function() use ($app) {
     $app->content = '[before1]';
 });
@@ -1260,29 +1305,29 @@ $app->before(function() use ($app) {
     $app->content .= '[before2]'; // Append
 });
 
-// [Before Send] Events will be called from the [run()] function after
-// a route has been matched to the requested resource. Functions passed
-// to the [beforeSend()] function should be defined as [function($content)]
-// and they must return a response otherwise a 404 'Not found' response will
-// be sent to the client.
+// Eventos [Before Send] serão chamados da função [run()] depois que uma rota
+// corresponder ao recurso requisitado. Funções passadas para a função
+// [beforeSend()] devem ser definidas como [function($content)] e elas devem
+// retornar uma resposta caso contrário uma resposta 404 'Não econtrada' será
+// enviada para o cliente.
 $app->beforeSend(function($content) {
     return $content . '[beforeSend]';
 });
 
-// [Not Found] Events will be called from the [run()] function after all
-// routes have been checked with no routes matching the requested resource.
-// Functions passed to the [notFound()] function take no parameters and
-// if they return a response then it be handled as a standard route and
-// will call any defined [beforeSend()] functions afterwards.
+// Eventos [Not Found] serão chamados da função [run()] depois que todas as rotas
+// forem verificadas e não houverem rotas que correspondam ao recurso requisistado.
+// Funções passadas para a função [notFound()] não recebem parâmetros e, se elas
+// retornam uma resposta, são tratadas como uma rota padrão e chamará quaisquer
+// funções definidas [beforeSend()] após.
 $app->notFound(function() use ($app) {
     return $app->content . '[notFound]';
 });
 
-// [Error] Events will be triggered if an unhandled Exception is thrown,
-// an error is triggered, or a route is not matched and would trigger a
-// 404 or 405 response. This function can be used to log errors or handle
-// the response with a custom error. If [exit()] is not called then the
-// specified  or standard FastSitePHP error template will be rendered.
+// Eventos [Error] serão acionados se uma exceção não manipulada for lançada, um
+// erro for acionado ou uma rota não corresponder e acionar uma resposta 404 ou
+// 405. Esta função pode ser utilizada para fazer log de erros ou manipular a
+// resposta com um erro personalizado. if [exit()] não for chamada, então o
+// modelo de erro especificado ou padrão do FastSitePHP será renderizado.
 $app->error(function($response_code, $e) use ($app) {
     // $response_code = [null, 404, 405, or 500]
     // $e = [null, Exception, or Throwable]
@@ -1292,43 +1337,43 @@ $app->error(function($response_code, $e) use ($app) {
     }
 });
 
-// [After] Events will be called from the [run()] function after the response
-// has been sent to the client. Functions passed to the [after()] function
-// should be defined as [function($content)]; the [$content] parameter defined
-// in the callback is the contents of the response that was sent to the client
-// and it cannot be modified from here. The only way that [after()]  functions
-// will not get called is if there script is terminated early from  PHP's
-// [exit()] statement or if error handling is not setup and an error occurs.
+// Eventos [After] serão chamados da função [run()] depois que a resposta estiver
+// sido enviada para o cliente. Funções passadas para a função [after()] devem
+// ser definidas como [function($content)]; o parâmetro [$content] definido
+// na callback é o conteúdo da resposta que foi enviada para o cliente e não
+// pode ser modificado à partir daqui. A única forma que funções [after()] não
+// serão chamadas é se seus scripts terminarem por uma declaração PHP [exit()]
+// ou se a manipulação de erros não estiver configurada e algum erro ocorrer.
 $app->after(function($content) {
     echo '[after]';
 });
 
 // ------------------------------------------------------------------
-// Define Routes
+// Deine Rotas
 // ------------------------------------------------------------------
 
-// This response will output the following:
+// Esta resposta resultará no seguinte:
 //     [before1][before2][page][beforeSend][after]
 $app->get('/', function() use ($app) {
     return $app->content . '[page]';
 });
 
-// Call URL '/test' and see the following:
+// Chame a URL '/test' e veja o seguinte:
 //     [before1][before2][notFound][beforeSend][after]
 
-// This response will output the following:
+// Esta resposta resultará no seguinte:
 //    [before1][before2][Custom Error]
 $app->get('/error-test-1', function() {
-    throw new \Exception('Error Test 1');
+    throw new \Exception('Teste de Erro 1');
 });
 
-// Display's Standard Error Page with [after] showing at very bottom
+// Mostra a Página de Erro Padrão com [after] sendo mostrado na parte inferior
 $app->get('/error-test-2', function() {
-    throw new \Exception('Error Test 2');
+    throw new \Exception('Teste de Erro 2');
 });
 
 // ------------------------------------------------------------------
-// Run the App
+// ROda a App
 // ------------------------------------------------------------------
 $app->run();
 // EXAMPLE_CODE_END
@@ -1336,23 +1381,24 @@ $app->run();
 
 /*
 // EXAMPLE_CODE_START
-// TITLE: PHP Template Example
+// TITLE: Modelo PHP de Exemplo
 <!--
-// This is the contents of the file [template.php] which is shown as an example
-// on this page.  When calling [render()] the Application Object is passed as
-// [$app] which allows for [escape()] and other functions to be used. In addition
-// to the standard [if (expression) { code }] sytnax PHP provides an alternative
-// syntax for control structures when using templates [if (expr): (code) endif].
+// Estes são os conteúdos do arquivo [template.php] que é mostrado como um exemplo
+// nesta página. Ao chamar [render()] o Objeto Application é passado como [$app]
+// o que permite que [escape()] e outras funções sejam utilizadas. Alé da sintaxe
+// padrão [if (expression) { code }] o PHP provê uma sintexe alternativa para
+// controlar estruturas ao utilizar modelos [if (expr): (code) endif].
 //
-// PHP templates are high performance and use very little memory however the
-// syntax can be considered more verbose than many modern template formats. If
-// you prefer to use a different template format there are many widely used and
-// high quality template engines for PHP that can be intergrated with FastSitePHP.
+// Os modelos PHP são de alto desempenho e usam pouquíssima memória, entretanto,
+// a sintaxe pode ser considerada mais verbosa que muitos formatos de modelos
+// modernos. Se você preferir utilizar um formato de modelo diferente, existem
+// muitos mecanismos de modelos para PHP amplamente utilizados e de alta
+// qualidade que podem ser integrados ao FastSitePHP.
 -->
 
 <h1><?= $app->escape($page_title) ?></h1>
 <?php if (count($list) === 0): ?>
-    <p>No Records found</p>
+    <p>Não Foram Encontrados Registros</p>
 <?php else: ?>
     <ol>
         <?php foreach ($list as $item): ?>
@@ -1366,49 +1412,49 @@ $app->run();
 
 $app->get('/examples/app-render', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Application - Render Server-Side Template Files
-    // Set the Template Root Directory and Specific Core Files
+    // TITLE: Aplicação - Renderiza Arquivos de Modelo Server-Side
+    // Define o Diretório Modelo Raiz e Arquivos Principais Específicos
     $app->template_dir = __DIR__ . '/views/';
     // $app->header_templates = '_header.php';
     // $app->footer_templates = '_footer.php';
-    // $app->error_template = 'error.php'; // For 500 Responses
-    // $app->not_found_template = '404.php'; // For 404 and 405 Responses
+    // $app->error_template = 'error.php'; // Para respostas 500
+    // $app->not_found_template = '404.php'; // Para respostas 404 e 405
 
-    // Optionally show detailed errors when using the default error
-    // template and set custom error messages. With the default template
-    // detail errors will be displayed when running from localhost.
+    // De forma opcional mostre erros detalhados ao utilizar o modelo de erro
+    // padrão e defina mensagens de erro. Com o modelo padrão, erros detalhados
+    // serão exibidos quando rodar como localhost.
     $app->show_detailed_errors = true;
-    // $app->error_page_title = 'Custom Error Page';
-    // $app->error_page_message = 'Custom Error Message';
-    // $app->not_found_page_title = 'Custom 404 Page';
-    // $app->not_found_page_message = 'Custom 404 Message';
-    // $app->method_not_allowed_title = 'Custom 405 Page';
-    // $app->method_not_allowed_message = 'Custom 405 Message';
+    // $app->error_page_title = 'Página de Erro Personalizada';
+    // $app->error_page_message = 'Mensagem de Erro Personalizadae';
+    // $app->not_found_page_title = 'Página 404 Personalizada';
+    // $app->not_found_page_message = 'Mensagem 404 Personalizada';
+    // $app->method_not_allowed_title = 'Página 405 Personalizada';
+    // $app->method_not_allowed_message = 'Mensagem 405 Personalizada';
 
-    // Define Data for the Template. Variables can be defined in the App's
-    // [locals] property and they can be passed on the render function.
+    // Defina Dados para o Modelo. Variáveis pode ser definidas na propriedade
+    // [locals] da App e elas podem ser passadas na função de renderização.
     $app->locals['year'] = date('Y');
     $data = [
-        'page_title' => 'PHP Template Example',
+        'page_title' => 'Modelo PHP de Exemplo',
         'list' => ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
     ];
 
-    // Render the PHP Template and return a string.
-    // The template source is shown in the above example code section.
+    // Renderiza o Modelo PHP e retorna uma string.
+    // O código fonte do modelo é mostrado na sessão de código do exemplo acima.
     $html = $app->render('template.php', $data);
     // EXAMPLE_CODE_END
     return $html;
 });
 
 $app->get('/examples/app-render-mustache', function() use ($app) {
-    // NOTE - To use Mustache it must be installed and requires
-    // using Composer or modifying the [autoload.php] file.
-    // This renders the file [template.mustache.htm].
+    // NOTA - Para utilizar o Mustache, deve instalá-lo antes e requer que use
+    // o Composer ou modifique o arquivo [autoload.php]. Isso renderiza o arquivo
+    // [template.mustache.htm].
 
     // EXAMPLE_CODE_START
-    // TITLE: Application - Render with a Custom Template Engine
-    // Define a Custom Template Engine that uses the
-    // popular Mustache Template System.
+    // TITLE: Aplicativo - Renderiza com um Mecanismo de Modelo Personalizado
+    // Defina um Mecanismo de Modelo Personalizado que utiliza o popular sistema
+    // de Modelos Mustache.
     $app->engine(function($file, array $data = null) {
         $dir = __DIR__ . '/views/';
         $options = [
@@ -1421,72 +1467,77 @@ $app->get('/examples/app-render-mustache', function() use ($app) {
         return $html;
     });
 
-    // Define Data for the Template
+    // Defina os Dados para o Modelo
     $app->locals['year'] = date('Y');
     $data = [
-        'page_title' => 'Mustache Template Example',
+        'page_title' => 'Exemplo de Modelo Mustache',
         'list' => ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
         'has_list' => true,
     ];
 
-    // Render the Template
+    // Renderiza o Modelo
     $html = $app->render('template.mustache', $data);
 
-    // When using Custom Templates you can define Custom Error and Not Found Pages:
-    // $app->error_template = 'error'; // For 500 Responses
-    // $app->not_found_template = '404'; // For 404 and 405 Responses
+    // Ao utilizar Modelos Personalizados, você pode definir Páginas de Erro e
+    // Não Encontradas Personalizadas:
+    // $app->error_template = 'error'; // Para Respostas 500
+    // $app->not_found_template = '404'; // Para Respostas 404 e 405
     // EXAMPLE_CODE_END
     return $html;
 });
 
 $app->get('/examples/request-basic', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: HTTP Request Object - Reading Query Strings, Form Fields, and Cookies
+    // TITLE: Objeto HTTP Request - Lendo Strings de Consulta, Campos de Formulários e Cookies
     // CLASS: Web\Request
-    // The request object can be used obtain info from the client for an
-    // HTTP request. This includes query strings, form fields, cookies,
-    // headers, and more. The request object also contains functions to
-    // sanitize “clean” and safely read client info.
+    // O objeto Request pode ser utilizado obtendo informaçãoes do cliente
+    // para uma requisição HTTP. Isso inclui strings de consulta, campos de formulários
+    // cookies, cabeçalhos e mais. O objeto Request contém funções para
+    // limpar e de, forma segura, ler informações do cliente.
 
+    // Sem utilizar um framework, strings de consulta, variáveis de formulário,
+    // e outras entradas de usuário, podem ser lidas através de superglobais PHP
     // Without using a Framework, Query Strings, Form Variables and other
-    // User Input can be read through PHP Superglobals [$_GET, $_POST, etc].
-    // Example, read the Query String Field [number]:
-    $number = $_GET['number'];
+    // [$_GET, $_POST, etc].
+    // Exemplo, leia o campo da string de consulta [number]:
+    $numero = $_GET['number'];
 
-    // If the query string [type] does not exist then the above code
-    // would throw an exception so to safely get the value you can first
-    // check if it is set.
-    $number = (isset($_GET['number']) ? $_GET['number'] : null);
+    // Se a string de consulta [type] não existe, então o código acima lançaria
+    // uma exceçãoe e, para obter de forma segura o valor, você poderia
+    // primeiro verificar se foi definida.
+    $numero = (isset($_GET['number']) ? $_GET['number'] : null);
 
-    // An additional line of PHP code can be used to force a numeric value:
-    $number = (int)$number;
+    // Uma linha de código PHP adicional pode ser utilizada para forçar um valor
+    // numérico:
+    $numero = (int)$numero;
 
-    // The Request object can be used instead to safely read the values, convert
-    // data types, etc. To use the Request object simply create one:
+    // A requisição pode ser utilizada então para, seguramente,  ler os valores,
+    // converter tipos de dados etc. Para usar o objeto Requisição, simplesmente
+    // crie um:
     $req = new \FastSitePHP\Web\Request();
 
-    // You can then read query strings by name without including safety logic:
-    $number = $req->queryString('number');
+    // Você pode então ler strings de consultas por nome sem incliur lógica segura:
+    $numero = $req->queryString('number');
 
-    // An optional 2nd parameter can be used to convert to a specific data type.
-    // In this example the value will be converted to an interger if it is valid
-    // otherwise null will be returned.
-    $number = $req->queryString('number', 'int?');
+    // Um segundo parâmetro opcional pode ser utilizado para converter para um
+    // tipo de dados específico. Neste exemplo o valor será convertido para um
+    // número inteiro se for válido, caso contrário, [null] será retornado.
+    $numero = $req->queryString('number', 'int?');
 
-    // In addition to [queryString()] functions [form()] and [cookie()] can be
-    // used in the same manner.
+    // Além de [queryString()] as funções [form()] e [cookie()] podem ser
+    // utilizadas da mesma maneira.
     $value  = $req->form('field');
     $cookie = $req->cookie('name');
 
-    // The Request object also contains a helper function to handle user input
-    // or objects where a value may or may not exist. This can be used to prevent
-    // errors when reading complex JSON object and to to sanitize “clean” data from
-    // any object or array.
+    // O objeto Request, também contém uma função auxiliar para manipular entradas
+    // de usuário e objetos onde um valor pode ou não existir. Isso pode ser
+    // utilizado para prevenir erros quando objetos JSON complexos são lidos e
+    // para limpar dados de qualquer objeto ou array.
     //
-    // Function Definititon:
+    // Definição de Função:
     //     value($data, $key, $format = 'value?', $max_length = null)
     //
-    // Data Example:
+    // Dados de Exemplo:
     //     $_POST['input1'] = 'test';
     //     $_POST['input2'] = '123.456';
     //     $_POST['checkbox1'] = 'on';
@@ -1497,73 +1548,74 @@ $app->get('/examples/request-basic', function() use ($app) {
     //         'items' => [ ['name' => 'item1'], ['name' => 'item2'] ],'
     //    ];
     //
-    // Function Examples:
+    // Funções de Exemplo:
     //    'test'        = $req->value($_POST, 'input1');
-    //    // Truncate the string to 2 characters:
+    //    // Truncar a string para dois caracteres:
     //    'te'          = $req->value($_POST, 'input1',    'string', 2);
     //    123.456       = $req->value($_POST, 'input2',    'float');
-    //    ''            = $req->value($_POST, 'missing',   'string'); // Missing
+    //    ''            = $req->value($_POST, 'missing',   'string'); // Faltando
     //    1             = $req->value($_POST, 'checkbox1', 'checkbox');
-    //    0             = $req->value($_POST, 'checkbox2', 'checkbox'); // Missing
+    //    0             = $req->value($_POST, 'checkbox2', 'checkbox'); // Faltando
     //    true          = $req->value($_POST, 'checkbox1', 'bool');
     //    'FastSitePHP' = $req->value($json,  'app');
     //    'abc'         = $req->value($json,  'strProp',   'string?');
-    //    0             = $req->value($json,  'strProp',   'int');  // Invalid Int
-    //    null          = $req->value($json,  'strProp',   'int?'); // Invalid Int
+    //    0             = $req->value($json,  'strProp',   'int');  // Int Inválido
+    //    null          = $req->value($json,  'strProp',   'int?'); // Int Inválido
     //    123           = $req->value($json,  'numProp',   'int');
     //    'item1'       = $req->value($json,  ['items', 0, 'name']);
     //    'item2'       = $req->value($json,  ['items', 1, 'name']);
-    //    null          = $req->value($json,  ['items', 2, 'name']); // Missing
+    //    null          = $req->value($json,  ['items', 2, 'name']); // Faltando
     //
-    // See full documentation for more. If you need full validation rather than
-    // data cleaning see the [\FastSitePHP\Data\Validator] class.
+    // Veja a documentação completa para mais. Se você precisa de validação
+    // completa ao invés de limpeza de dados veja a classe [\FastSitePHP\Data\Validator].
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne A Reposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
         ->content(implode("\n", [
-            json_encode($number),
+            json_encode($numero),
         ]));
 });
 
 $app->route('/examples/request-content', function() use ($app) {
-    // NOTE - this function uses [$app->route()] which means
-    // it can accept any method [GET, POST, etc]. When using
-    // the defaut [GET] the body and content type will be empty.
+    // NOTA - esta função utiliza [$app->route()] que significa
+    // que pode aceitar qualquer método [GET, POST etc]. Ao utilizar
+    // o [GET] padrão, o tipo do corpo e conteúdo será vazio.
 
     // EXAMPLE_CODE_START
-    // TITLE: HTTP Request Object - Request JSON and Content
+    // TITLE: Objeto HTTP Request - Requisite JSON e Conteúdo
     // CLASS: Web\Request
     // Create the Request Object
     $req = new \FastSitePHP\Web\Request();
 
-    // Get the Request Content Type. This is a helper field that returns
-    // a simple value based on the 'Content-Type' header:
+    // Obtenha o tipo do conteúdo da requisiçao. Isso é um campo auxiliar que
+    // retorna um valor simples baseado no cabeçalho 'Content-Type':
     //     'json'      = 'application/json'
     //     'form'      = 'application/x-www-form-urlencoded'
     //     'xml'       = 'text/xml' or 'application/xml'
     //     'text'      = 'text/plain'
     //     'form-data' = 'multipart/form-data'
-    // If different the raw header value will be returned and if the header
-    // is not defined then [null] will be returned.
+    // Se diferente, o valor puro do cabeçalho será retornado e se o cabeçalho
+    // nao estiver definido, então [null] será retornado.
     $type = $req->contentType();
 
-    // The Request body/content can be read from [content()]. If the Request Type
-    // is JSON then the object will be parsed and an object/array will be returned.
-    // If [contentType() === 'form'] then an array will be returned otherwise the
-    // body/content is returned as a string. In PHP a string can also be used for
-    // binary data as a string is simply array of bytes.
+    // O corpo/conteúdo da requisição pode ser lido à partir de [content()]. Se
+    // o tipo da requisiçao for JSON, então o objeto será analisado e um
+    // objeto/array será retornado. Se [contentType() === 'form'] então um array
+    // será retornado, caso contrário, o corpo/conteúdo é retornado como uma
+    // string. No PHP uma string pode também ser utilizada para dados binários
+    // por que uma string é simplesmente um array de bytes.
     $body = $req->content();
 
-    // The [value()] function can be used to safely read nested values from a
-    // submitted JSON object. See other examples and docs for more on using the
-    // [value() function.
+    // A função [value()] pode ser utilizada para, de forma segura, ler valores
+    // aninhados de um objeto JSON enviado. Veja outros exemplos e documentos
+    // para mais sobre o uso da função [value().
     $value = $req->value($body,  ['items', 0, 'name']);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne uma Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -1576,16 +1628,16 @@ $app->route('/examples/request-content', function() use ($app) {
 
 
 $app->get('/examples/request-headers', function() use ($app) {
-    // Overwrite Request Header
+    // Sobrescreva o Cabeçalho da Requisição
     $_SERVER['HTTP_ACCEPT_LANGUAGE'] = 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4';
 
     // EXAMPLE_CODE_START
-    // TITLE: HTTP Request Object - Header Fields
+    // TITLE: Objeto HTTP Request - Campos de Cabeçalho
     // CLASS: Web\Request
-    // Create the Request Object
+    // Crie o Objeto Request
     $req = new \FastSitePHP\Web\Request();
 
-    // Reading Common Header Fields can be done through functions:
+    // Lendo Campos Comuns de Cabeçalho pode ser feito através de funções:
     $origin = $req->origin();
     $userAgent = $req->userAgent();
     $referrer = $req->referrer();
@@ -1594,14 +1646,14 @@ $app->get('/examples/request-headers', function() use ($app) {
     $host = $req->host();
     $port = $req->port();
 
-    // When using functions with 'Accept' Headers an array of data is returned,
-    // and an optional parameter can be passed to return true or false.
+    // Ao utilizar funções com cabeçahos 'Accept' um array de dados é retornado
+    // e um parâmetro opcional pode ser passado para retornar [true] ou [false]
     $accept_encoding = $req->acceptEncoding();
     $accept_language = $req->acceptLanguage();
 
-    // Example:
-    //    'Accept-Language' Header Value = 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
-    // Returns:
+    // Exemplo:
+    //    Valor do Cabeçalho 'Accept-Language' = 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
+    // Retorna:
     //    [
     //        ['value' => 'ru-RU', 'quality' => null],
     //        ['value' => 'ru',    'quality' => 0.8],
@@ -1612,20 +1664,21 @@ $app->get('/examples/request-headers', function() use ($app) {
     $accept_en = $req->acceptLanguage('en'); // true
     $accept_de = $req->acceptLanguage('de'); // false
 
-    // Any header can be read when using the [header()] function:
+    // Qulquer cabeçalho pode ser lido ao utilizar a função [header()]:
     $content_type = $req->header('Content-Type');
     $user_agent = $req->header('User-Agent');
 
-    // Header Keys are Case-insensitive so the following all return the same value:
+    // Chaves de Cabeçalho ignoram diferenciação de maiúsculas e minúsculas, então
+    // todas as seguintes retornam o mesmo valor:
     $content_type = $req->header('content-type');
     $content_type = $req->header('CONTENT-TYPE');
     $content_type = $req->header('Content-Type');
 
-    // All headers can be read from the [headers()] function:
+    // Todos os cabeçalhos pode ser lidos à partir da função [headers()]:
     $headers = $req->headers();
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne uma Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -1639,73 +1692,78 @@ $app->get('/examples/request-headers', function() use ($app) {
 });
 
 $app->get('/examples/request-proxy-headers', function() use ($app) {
-    // Overwrite Settings and Headers for Demo
+    // Sobrescreva Configuraçõe e Cabeçalhos para Demonstração
     $_SERVER['REMOTE_ADDR'] = '10.0.0.1';
     $_SERVER['HTTP_X_FORWARDED_FOR'] = "' OR '1'='1 --, 127.0.0.1, 54.231.1.5";
 
     // EXAMPLE_CODE_START
-    // TITLE: HTTP Request Object - Proxy Header Fields
+    // TITLE: Objeto HTTP Request - Campos de Cabeçalho de Proxy
     // CLASS: Web\Request
-    // Create the Request Object
+    // Cria o Objeto da Request
     $req = new \FastSitePHP\Web\Request();
+Proxy Header Fields
+    // Cabeçalhos da Request de Proxy são usados por campos chave como IP do
+    // cliente quando um servidor web está atrás de um servidor "proxy" em
+    // uma rede local, por exemplo um balanceador de carga. Ler os valores
+    // corretamente é importante para segurança, entretanto, em geral com qualquer
+    // linguagem de programação ou framework, ler cabeçalhos de proxy é difícil
+    // requer configuração extra. O FastSitePHP torna essa tarefa fácil sem a
+    // necessidade de confguração.
 
-    // Request Proxy Headers are used for key fields such as client IP when a
-    // web server sites behind a “proxy” server on a local network, for example
-    // a load balancer. Reading the values correctly is important for security,
-    // however in general with any programming language or framework reading proxy
-    // headers if often difficult and requires extra config. FastSitePHP makes
-    // the task easy with no config required.
-
-    // For example, simply reading the Client IP of the request can be done
-    // by reading the value of REMOTE_ADDR.
+    // Por exemplo, simplesmente ler o IP do cliente da requisição pode ser
+    // feito lendo o valor de REMOTE_ADDR.
     $client_ip = $_SERVER['REMOTE_ADDR'];
 
-    // If the load balancer is configured to provide the Client IP it will
-    // usually be one of the following Request Headers [X-Forwarded-For,
-    // Client-Ip, or Forwarded]. However since the end user can send data with
-    // the Request Header it must be read correctly. The standardized header
-    // [Forwarded] has a format like this:
+    // Se o balanceador de carga estiver configurado para fornecer o IP do
+    // Cliente, isso será normalmente um dos seguintes cabeçalhos de requisição:
+    // [X-Forwarded-For, Client-Ip ou Forwarded]. Entretanto, desde que o usuário
+    // final possa enviar dados com o cabeçalho de requisição, isso deve ser
+    // lido corretamente. O cabeçalho padronizado [Forwarded] tem um formato
+    // como este:
     //     'for=192.0.2.43, for="[2001:db8:cafe::17]";proto=http;by=203.0.113.43'
-    // While non-standard but widely used headers such as [X-Forwarded-For] use
-    // this format:
+    // Enquanto cabeçalhos não padronizados mas amplamente utilizados tal como
+    // [X-Forwarded-For], utilizam este formato:
     //     'client-ip1, client-ip2, proxy1, proxy2'
-    // FastSitePHP handles both formats.
+    // O FastSitePHP lida com ambos os formatos.
 
-    // For example assume the load balancer is at '10.0.0.1', '10.0.0.2' is used
-    // for additional content filtering, and [X-Forwarded-For] came in with the
-    // the following value:
+    // Por exemplo, assumamos que o balanceador de carga esteja em '10.0.0.1',
+    // '10.0.0.2' é utilizado para filtragem adicional de conteúdo e
+    // [X-Forwarded-For] entrou com o seguinte valor:
+
     //     [REMOTE_ADDR]      =   '10.0.0.1'
     //     [X-Forwarded-For]  =   "' OR '1'='1 --, 127.0.0.1, 54.231.1.5, 10.0.0.2"
-    // In this example, the following was submitted:
+    // Neste exemplo, o seguinte foi enviado:
     //     - Client - A SQL Injection String of "' OR '1'='1 --"
     //     - Client - A localhost IP [127.0.0.1]
     //     - Client - Actual IP [54.231.1.5]
     //     - Server - 10.0.0.2
 
-    // When simply reading Client IP without any parameters the IP of the load
-    // balancer is returned for this example which is '10.0.0.1'.
+    // Ao simplesmente ler o IP do cliente sem parâmetros, o IP do balanceador
+    // de carga é retornado, que para esta exemplificação é '10.0.0.1'.
     $client_ip = $req->clientIp();
 
-    // Then when using the default 'from proxy' setting the correct User IP
-    // value of '54.231.1.5' is returned. If no proxy server is used then the
-    // default settings of 'from proxy' are safe to call.
+    // Então ao utilizar a configuração padrão 'from proxy', o correto IP do
+    // usuário é retornado '54.231.1.5' is returned. Se nenhum servidor de proxy
+    // for utilizado, então é seguro chamar as configurações padrão de
+    // 'from proxy'.
     $user_ip = $req->clientIp('from proxy');
 
-    // When using proxies an optional 2nd parameter of [$trusted_proxies] is
-    // avaiable. This defaults to the string 'trust local', however an array
-    // of specific IP or IP Ranges (CIDR format) can be used for more specific
-    // filtering. Additionally the first parameter [$option] can also be
-    // be modified to read from different Request Headers.
+    // Ao utilizar proxies, um segundo parâmetro opcional de [$trusted_proxies]
+    // está disponível. Este tem sua string definida por padrão como 'trust
+    // local', entretanto um array de um IP específico ou de faixas de IP
+    // (format CIDR) pode ser utilizado para uma filtragem mais específica. Além
+    // disso o primeiro parâmetro [$option], pode também ser modificado para ler
+    // de Cabeçalhos de Requisição diferentes.
     $user_ip = $req->clientIp('from proxy', 'trust local');
 
-    // In addition to Client IP, proxy values can also be read for
+    // Além do IP de Cliente, valores de proxy também podem ser lidos para
     // [Protocol, Host, and Port]:
     $portocal = $req->protocol('from proxy'); // 'http' or 'https'
     $host = $req->host('from proxy');
     $port = $req->port('from proxy');
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -1720,25 +1778,25 @@ $app->get('/examples/request-proxy-headers', function() use ($app) {
 
 $app->get('/examples/request-server-info', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Request Object - Server Info
+    // TITLE: Objeto Request - Informção do Servidor
     // CLASS: Web\Request
-    // The Request Object can return the Server IP and has a helper function
-    // [isLocal()] that returns true only if both the requesting client and
-    // the web server are on localhost ['127.0.0.1' or '::1']. In certain apps
-    // you may want to enable certain features for development or local work
-    // and these functions help with that.
+    // O Objeto Request pode retornar o IP do Servidor e tem uma função auxiliar
+    // [isLocal()] que retorna true somente se ambos, o cliente requerente e o servidor,
+    // estiverem no localhost ['127.0.0.1' ou '::1']. Em certas apps você pode
+    // querer ativar certas funcionalidades para desenvolvimento ou operação
+    // local e estas funções ajudam nisso.
     $req = new \FastSitePHP\Web\Request();
     $server_ip = $req->serverIp();
     $is_local  = $req->isLocal();
 
-    // NOTE - the Web Server IP is often different than than the actual
-    // Network IP. To obtain the network IP (location of the server) use
-    // the Networking Config Object instead:
+    // NOTA - o IP do servidor web é frequentemente diferente do verdadeiro IP
+    // da rede. Para obter o IP da rede (localização do servidor), utilize o
+    // Objeto Networking Config como alternativa:
     $config = new \FastSitePHP\Net\Config();
     $net_ip = $config->networkIp();
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -1751,173 +1809,180 @@ $app->get('/examples/request-server-info', function() use ($app) {
 
 $app->get('/examples/response-content-type', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Response - Content, Status Codes, Headers, Cookies, and Files
+    // TITLE: Resposta - Conteúdo, Códigos de Status, Cabeçalhos, Cookies e Arquivos
     // CLASS: Web\Response
-    // By default when a string is returned in a route the server returns an
-    // HTML response. Without creating a Response Object, the Application Object
-    // can be used to specify a different 'Content-Type' Header which is what
-    // Browsers and HTTP Clients use to determine how to handle the response.
+    // Por padrão, quando uma string é retornada em uma rota, o servidor retorna
+    // uma resposta HTML. Sem criar um Objeto Response, o Objeto Application
+    // pode ser utilizado para especificar um cabeçalho 'Content-Type' diferente
+    // que é o que os Navegadores e Clientes HTTP utilizam para determinar como
+    // lidar com a resposta.
     $app->get('/app-text-response', function() use ($app) {
         $app->header('Content-Type', 'text/plain');
-        return 'Response using the Application Object';
+        return 'Resposta utilizando o Objeto Application';
     });
 
-    // When using the Response Object [contentType()] and [content()]
-    // are the main functions to specify different content types.
+    // Ao utilizar o Objeto Response [contentType()] e [content()] são as
+    // principais funções para especificar diferentes tipos de conteúdo.
     $app->get('/text-response', function() {
         $res = new \FastSitePHP\Web\Response();
-        return $res->contentType('text')->content('Text Response');
+        return $res->contentType('text')->content('Resposta em Texto');
     });
 
-    // When using the Response Object, properties are set through getter/setter
-    // functions and are chainable so they can be used on one line as shown
-    // above or seperated to multiple lines as shown here.
+    // Ao utilizar o Objeto Response, propriedades são definidas através de
+    // funções getter/setter e são encadeáveis para que possam ser utilizadas
+    // em uma linha como mostrado acima ou separadas em multiplas linhas como
+    // é mostrado aqui.
     $app->get('/text-response2', function() {
         return (new \FastSitePHP\Web\Response())
             ->contentType('text')
-            ->content('Text Response 2');
+            ->content('Resposta em Texto 2');
     });
 
-    // Using the Response Object
+    // Utilizando o Objeto Response
     $res = new \FastSitePHP\Web\Response();
 
-    // Set the 'Content-Type' Header.
-    // The following 3 function calls all set the same value.
-    // The difference is that [contentType()] is a helper function which allows
-    // for short-hand values of [html, json, jsonp, text, css, javascript, xml].
+    // Defina o Cabeçalho 'Content-Type'.
+    // Todas as seguintes 3 chamadas de função, definem o mesmo valor. A
+    // diferença é que [contentType()] é uma função auxiliar que permite
+    // valores abreviados de [html, json, jsonp, text, css, javascript, xml].
     $res->contentType('text');
     $res->contentType('text/plain');
     $res->header('Content-Type', 'text/plain');
 
-    // Set Content
-    // For most content types use a string when setting [content()].
+    // Definir Conteúdo
+    // Para a maioria dos tipos de conteúdo, utilize uma string ao definir [content()].
     $res->content('<h1>FastSitePHP</h1>');
 
-    // For JSON Content either Objects and Arrays are used
+    // Para Conteúdo JSON ambos, Objetos e Arrays, são utilizados
     $object = [
-        'title' => 'Demo',
-        'number' => '123',
+        'título' => 'Demonstração',
+        'número' => '123',
     ];
 
     $res
         ->contentType('json')
         ->content($object);
 
-    // The helper [json()] function sets both [contentType()] and [content()]
+    // A função auxiliar [json()] define ambos, [contentType()] e [content()]
     $res->json($object);
 
-    // For formatted JSON set the option [JSON_PRETTY_PRINT] before sending
-    // the Response. By default [JSON_UNESCAPED_UNICODE] is used and JSON
-    // is minimized. Any constant used by [json_encode()] can be set here.
+    // Para JSON formatado, defina a opções [JSON_PRETTY_PRINT] antes de enviar
+    // a resposta. POr padrão [JSON_UNESCAPED_UNICODE] é utilizada e o JSON é
+    // minificado. Qualquer constante utilizada por [json_encode()] pode ser
+    // definida aqui.
     $app->json_options = (JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     $res->jsonOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
-    // Status Codes
-    // [$app] only supports [200, 201, 202, 204, 205, 404, and 500]
-    // and the Response Object allows and handles 304 Responses along
-    // with any other valid or custom status codes.
+    // Códigos de Status
+    // [$app] somente suporta [200, 201, 202, 204, 205, 404 e 500] e o Objeto
+    // Response permite e trata respostas 304 juntamente com qualquer outro
+    // código de status válido ou personalizado.
     $app->statusCode(201);
     $res->statusCode(500);
 
-    // A helper function [pageNotFound()] exists on the Application Object that
-    // can be used to send a 404 response along with default or custom 404 page.
+    // Uma função auxiliar [pageNotFound()] existe no Objeto Aplicação que pode
+    // ser utilizada para enviar uma resposta 404 juntamente com a página 404
+    // padrão ou personalizada.
     $app->get('/document/:name', function($name) use ($app) {
         if ($name !== 'test') {
             return $app->pageNotFound();
         }
-        return 'Test';
+        return 'Teste';
     });
 
-    // Specify a file for the response; the file specified will be streamed to the
-    // client and sent in a memory efficient manner so this function can be called
-    // on very large files with minimal performance impact for the server.
+    // Especifique um arquivo ou a resposta; o arquivo especificado será
+    // transmitido para o cliente e enviado de uma maneira eficiente para a
+    // memória, para que esta função seja chamada em arquivos muito grandes
+    // impactanto minimamente o servidor.
     $file_path = __FILE__;
     $res->file($file_path);
 
-    // Include specific Mime-Type along with Headers for Caching.
-    // Another topic on this page covers caching in more detail.
+    // Incluir Mime-Type específico com Cabeçalhos para Armazenamento em Cache.
+    // Outro tópico nesta página cobre armazenamento em cache em mais detalhe.
     $res->file($file_path, 'text', 'etag:md5', 'private');
 
-    // Example File Usage
+    // Exemplo de Uso de Arquivo
     $app->get('/view-source-code', function() {
         $file_path = __FILE__;
         $res = new \FastSitePHP\Web\Response();
         return $res->file($file_path, 'download');
     });
 
-    // Convert a file name or file type to a mime-type.
+    // Converter o nome ou tipo de um arquivo para um mime-type.
     //
-    // File extensions that map to a Mime type with the function are:
-    //     Text: htm, html, txt, css, csv, md, markdown, jsx
-    //     Image: jpg, jpeg, png, gif, webp, svg, ico
-    //     Application: js, json, xml, pdf, woff
-    //     Video: mp4, webm, ogv, flv
-    //     Audio: mp3, weba, ogg, m4a, aac
+    // Extensões de arquivo que mapeiam para um tipo MIME com a fução são:
+    //     Texto: htm, html, txt, css, csv, md, markdown, jsx
+    //     Imagem: jpg, jpeg, png, gif, webp, svg, ico
+    //     Aplicação: js, json, xml, pdf, woff
+    //     Vídeo: mp4, webm, ogv, flv
+    //     Áudio: mp3, weba, ogg, m4a, aac
     //
-    // If a file type is not associated with a mime-type then a file
-    // download type of 'application/octet-stream' will be returned.
+    // Se um tipo de arquivo não estiver associado com um mime-type, então um
+    // tipo de arquivo de download 'application/octet-stream' será retornado.
     $mime_type = $res->fileTypeToMimeType('video.mp4');
     $mime_type = $res->fileTypeToMimeType('mp4');
 
-    // Set Response Headers and Cookies
+    // Definir Cabeçalhos de Resposta e Cookies
 
-    // Using the Application Object
+    // Utilizando o Objeto Application
     $app->header('X-API-Key', 'App_1234');
     $app->cookie('X-API-Key', 'App_1234');
 
-    // Or using the Response Object
+    // Ou utilizando o Objeto Response
     $res->header('X-API-Key', 'Res_1234');
     $res->cookie('X-API-Key', 'Res_1234');
 
-    // When creating a Response Object the Application Object can be
-    // passed and all App settings from [statusCode(), cors(), noCache(), headers(),
-    // cookies(), and json_options] will be passed to the Response Object.
+    // Ao criar um Objeto Response o Objeto Aplicação pode ser passado e todas
+    // as definições do App de [statusCode(), cors(), noCache(), headers(),
+    // cookies() e [json_options] serão passadas para o Objeto Response.
     $res = new \FastSitePHP\Web\Response($app);
     // EXAMPLE_CODE_END
 
-    // Modify below or copy code from above to test different responses
+    // Modifique abaixo ou copie o código acima para testar diferentes respostas
 
-    // return $res->content('HTML Test with Settings from App');
+    // return $res->content('Teste HTML com Definição de App');
 
     // return $res
     //     ->reset()
     //     ->contentType('text')
     //     ->cookie('X-API-Key', 'Res_123')
-    //     ->content('Text Response');
+    //     ->content('Resposta em texto');
 
     $app->header('Content-Type', 'text/plain')->cookie('X-API-Key', 'App_1234');
-    return 'Response using the Application Object [' . $mime_type . ']';
+    return 'Resposta utilizando o Objeto Application [' . $mime_type . ']';
 });
 
 $app->get('/examples/redirect', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: HTTP Redirects
+    // TITLE: Redirecionamentos HTTP
     // CLASS: Web\Response
-    // HTTP Requests can be redirected using either the App or Response Object.
-    // When using the App Object and calling [redirect()] the PHP script ends
-    // immediately however any events defined from [after()] will be called.
-    // If your site uses Server-side Unit Testing you may want to use the response
-    // object which behaves as a regular route and doesn’t end script execution.
+    // Requisições HTTP pode ser redirecionadas utilizando o objeto App ou o
+    // Response.
+    // Ao utiizar o Objeto Ap e chamar [redirect()], o script PHP finaliza-se
+    // imediatamente, entretanto, quaisquer eventos definidos por [after()] serão
+    // chamados. Se seu site utiliza Server-side Unit Testing, você pode querer
+    // utilizar o objeto resposta que comporta-se como uma rota regular e não
+    // finaliza a execução do script.
 
-    // User makes this request
+    // O usuário faz esta requisição
     $app->get('/page1', function() use ($app) {
         $app->redirect('page3');
     });
 
-    // Or User makes this request
+    // Ou o usuário faz esta requisição
     $app->get('/page2', function() {
         $res = new \FastSitePHP\Web\Response();
         return $res->redirect('page3');
     });
 
-    // User will then see this URL and Response
+    // O usuário verá então esta URL resposta
     $app->get('/page3', function() {
         return 'page3';
     });
 
-    // The default Response Status Code is [302 'Found'] (Temporary Redirect),
-    // and an optional 2nd parameter for both App and Response allow for
-    // additional redirect response status codes:
+    // O Código de Status de Resposta Padrão é [302 'Found'] (Temporary Redirect),
+    // e um segundo parâmetro opcional para ambos App e Response permite códigos
+    // de status de redicionamento adicionais:
     //   301  Moved Permanently
     //   302  Found
     //   303  See Other
@@ -1928,20 +1993,20 @@ $app->get('/examples/redirect', function() use ($app) {
     });
     // EXAMPLE_CODE_END
 
-    // Redirect back to the main examples index
+    // Redirecionar e volta para o índice principal de exemplos
     $app->redirect('./');
 });
 
 $app->get('/examples/response-caching', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Response - Cache Headers and Client-Side Caching
+    // TITLE: Resposta - Cabeçalhos de Cache  e Cache do Lado do Cliente
     // CLASS: Web\Response
-    // Examples below show how to use Response Headers to control how a Browser
-    // or HTTP Client caches a Page or Resource.
+    // Exemlos abaixo mostram como utilizar Cabeçalhos Response para controlar
+    // como um Navegador ou Cliente HTTP armazena uma Página ou Recurso em cache.
 
-    // Prevent a Browser or Client from Caching a Page or File.
-    // Both the Application and the Response Objects have a [noCache()] function.
-    // Calling these functions will send 3 Response Headers to the client:
+    // Evitar que um Navegador ou Cliente Armazene um Arquivo ou Página em Cache.
+    // Ambos os Objetos, Application e Response, têm uma função [noCache()].
+    // Chamando essas funções enviará 3 Cabeçalhos Response para o cliente:
     //     Cache-Control: no-cache, no-store, must-revalidate
     //     Pragma: no-cache
     //     Expires: -1
@@ -1950,105 +2015,118 @@ $app->get('/examples/response-caching', function() use ($app) {
     $res = new \FastSitePHP\Web\Response();
     $res->noCache();
 
-    // If using certain Response Headers the Response Object will send a 304
-    // "Not Modified" Response depending on the Request Headers. 304 Responses
-    // are used by Browsers and other Clients to re-use previously fetched resources
-    // from their cached copy. This allows the user to see static resources more
-    // quickly and reduces the amount of traffic sent from the server.
+    // Se ao utilizar certos Cabeçalhos Response o Objeto Response enviará uma
+    // resposta 304 "Not Modified" dependendo dos cabeçalhos da requisição.
+    // Respostas 304 são utilizadas por Navegadores e outros Clientes pare
+    // reutilizar recursos previamente obtidos de suas cópias armazenadas em
+    // cache. Isto permite que o usuário veja recursos estáticos mais
+    // rapidamente e reduz a quantidade de tráfego enviado do servidor.
 
-    // 'Cache-Control' Response Header. This header has different options to tell
-    // clients how they can cache a page. In this example only end users and not
-    // proxy servers can cache the response and they must re-validate it each time.
-    $res->cacheControl('private, must-revalidate');
+    // Cabeçalho de resposta 'Cache-Control'. Este cabeçalho tem opções
+    // diferentes para informar clientes de como eles podem armazenar uma
+    // página em cache. Neste exemplo, somente usuários finais e não servidores
+    // proxy podem aramazenar em cache a reposta e eles devem revalidar isso
+    // a cada vez.
+    $res->cacheControl('private, must-revalidate'); // privado, deve revalidar
 
-    // 'Expires' Response Header. This header is used to tell a client how long the
-    // content is valid for, however depending on 'Cache-Control' options this value
-    // may be ignored. Setting this value though does not trigger a 304 response and
-    // it's up to the browser or client how to handle it.
-    $res->expires('+1 month');
+    // Cabeçalho de resposta 'Expires'. Este cabeçaho é utilizado para informar
+    // o cliente de por quanto tempo o conteúdo é valido, entretanto dependendo
+    // das opções de 'Cache-Control' este valor pode ser ignorado. Embora,
+    // definindo esse valor não aciona uma resposta 304 e cabe ao navegador ou
+    // cliente como lidar com isso.
+    $res->expires('+1 month'); // mais um mês
 
-    // 'ETag' Response Header (ETag is short for Entity Tag). An ETag represents a
-    // unique value for the content (often using a Hash). Browsers and Clients will
-    // send back an 'If-None-Match' Request Header with the version that they have
-    // cached and if it matches then the Response Object will send a 304 Response
-    // without the content since the browser can use the local copy.
+    // Cabeçalho de Resposta 'ETag' (ETag é uma abreviação para Entity Tag). Uma
+    // ETag representa um valor para o conteúdo (geralmente utilizando uma Hash).
+    // Navegadores e Clientes enviarão um Cabeçalho de Requisição 'If-None-Match'
+    // com a versão que eles tem armazenada e se corresponder, então o Objeto
+    // Response enviará uma resposta 304 sem o conteúdo já que o navegador pode
+    // utilizar a cópia local.
     $res->etag('hash:md5');
 
-    // The [etag()] function also accepts the hash itself or a closure function.
+    // A função [etag()] também aceita a própria hash ou uma função de fechamento.
     $res->etag('0132456789abcdef');
     $res->etag(function($content) {
         return sha256($content);
     });
 
-    // The optional 2nd parameter accepts the ETag Type of either 'strong' or 'weak'.
+    // O segundo parâmetro opcional aceita as ETag do tipo 'strong' ou 'weak'.
+    // O padrão é 'weak' e este é o recomendado para evitar erros complexos de
+    // de armazenamento em cache. Se você precisa utilizar ETags 'strong',
+    // provavelmente você deveria fazer testes extra.
+     The optional 2nd parameter accepts the ETag Type of either 'strong' or 'weak'.
     // The default is 'weak' and that is recommended to avoid complex caching errors.
     // If you need to use 'strong' ETags you would likey want to do extra testing.
     $res->etag('hash:sha256', 'weak');
 
-    // 'Last-Modified' Response Header. If set and if the client sends back an
-    // 'If-Modified-Since' Request Header that matches then a 304 Response will
-    // be sent. When setting the value use a Unix Timestamp or String that can be
-    // parsed by the PHP Function [strtotime()].
+    // Cabeçalho de Resposta 'Last-Modified'. Se estiver definido e o cliente
+    // envia de volta um cabeçalho de requisição 'If-Modified-Since' que
+    // corresponde, então uma resposta 304 é enviada. Ao definir o valor
+    // utilize o um Timestamp Unix ou uma String que pode ser analisada pela
+    // função PHP [strtotime()].
     $res->lastModified('2019-01-01 13:01:30');
 
-    // 'Vary' Response Header. The 'Vary' Response Header can be used to
-    // specify rules for HTTP Caching and also to provide content hints to
-    // Google and other Search Engines.
+    // Cabeçalho de Resposta 'Vary'. O cabeçalho de resposta 'Vary' pode ser
+    // utilizado para especificar regras para armazenamento HTTP em cache e
+    // também prover dicas de contéudo para Google e outros Mecanismos de
+    // Busca.
     $res->vary('User-Agent, Referer');
 
-    // When sending a file as the response you can specify optional parameters
-    // [$cache_type and $cache_control]. Cache Type has 3 valid options shown
-    // below and Cache Control sets the [cacheControl()] function.
+    // Ao enviar um arquivo coo a resposta, você pode especificar parâmetros
+    // opcionais [$cache_type e $cache_control]. Cache Type tem 3 opções válidas
+    // mostradas abaixo e Cache Control defini a função [cacheControl()].
     $file_path = __FILE__;
-    $content_type = 'text';
+    $content_type = 'text'; // texto
     $res->file($file_path, $content_type, 'etag:md5');
-    $res->file($file_path, $content_type, 'etag:sha1',     'private');
-    $res->file($file_path, $content_type, 'last-modified', 'public');
+    $res->file($file_path, $content_type, 'etag:sha1',     'private'); // privado
+    $res->file($file_path, $content_type, 'last-modified', 'public');// público
 
-    // When sending etags with [file()] and using either 'etag:md5' or 'etag:sha1'
-    // the hash is calculated each time. If you use ETags and have large files
-    // or frequently accessed files it would be a good idea to save the hash
-    // when the file is first created and set it through the [etag()] function.
+    // Ao enviar etags com [file()] e utilizando uma das duas 'etag:md5' ou
+    // 'etag:sha1' a hash é calculada a cada vez. Se você utiliza ETags e tem
+    // arquivo grandes ou frequentemente acessados, isso seria uma boa ideia
+    // para salvar a hash quando o arquivo for criado pela primeira vez
+    // definí-la através da função [etag()].
     $saved_hash = '0132456789abcdef';
     $res->file($file_path)->etag($saved_hash);
     // EXAMPLE_CODE_END
 
-    // Modify below to test different cache headers.
-    // To easily test use browser dev tools with caching enabled,
-    // then make changes and see when it sends either 200 or 304
-    // when you refresh the page.
+    // Modifique abaixo para testar diferentes cabeçalhos de cache.
+    // Para facilmente testar utilize as ferramentas de desenvolvimento do
+    // navegador com cache ativado, então faça mudanças e feja quanto isso envia
+    // 200 ou 304 quado a página é recarregada.
     $res->reset();
 
-    // Uncomment one and use it, refresh and you should see a 304.
-    // Then comment it out and uncomment the other value and you
-    // should see a 200 Response Code.
+    // Descomente um e use-o, recarregue e você deveria ver um 304.
+    // Então comente novamente e descomente outro valor e você deveria ver um
+    // código de resposta 200.
     // return $res->file($file_path, 'text', 'etag:md5');
     // return $res->file($file_path, 'text', 'etag:sha1');
 
-    // After the first response you should see a 304 each time
-    // until you make a change on the Response Content.
+    // Após a primeira resposta você deveria ver um 304 a cada vez, até você
+    // fazer uma mudança no conteúdo da resposta.
     $res->etag('hash:md5');
-    return $res->content('Caching Test - Change Me');
+    return $res->content('Teste de Armazenamento em Cache - Altere-me');
 });
 
 $app->route('/examples/cors', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Cross-Origin Resource Sharing (CORS)
+    // TITLE: Cross-Origin Resource Sharing (CORS) - Compartilhamento de recursos entre origens
     // CLASS: Web\Response
-    // CORS is commonly used in Web API's to share data from one site or
-    // domain with another domain (cross-orign resource). To include the
-    // 'Access-Control-Allow-Origin' Header in your response use the [cors()]
-    // function. First make sure to set CORS headers from the App Object.
+    // CORS é comumente utilizado em APIs web para compartilhar dados de um site
+    // ou domínio com outro domínio (recusos entre origens). Para incluir o
+    // cabeçalho 'Access-Control-Allow-Origin' em sua resposta, utilize a função
+    // [cors()]. Primeiro, ceritifique-se de definir os cabeçalhos CORS à partir
+    // do Objeto do App.
     $app->cors('*');
 
-    // If using the Response Object either pass the App Object to either
-    // the Response when it's created or it's [cors()] function.
+    // Se você estiver utilizando o Objeto Response você pode passar o Objeto App para a
+    // resposta em sua criação ou para sua função [cors()].
     $res = new \FastSitePHP\Web\Response($app);
     $res->cors($app);
 
-    // When passing a string the 'Access-Control-Allow-Origin' is validated
-    // and set, however if you need to pass additional CORS use an array
-    // with the named headers instead.
+    // Ao passar uma string o 'Access-Control-Allow-Origin' é validado e definido,
+    // entretanto se você precisar passar CORS adicionais, utilize um array com
+    // cabeçalhos nomeados.
     $app->cors([
         'Access-Control-Allow-Origin' => 'https://www.example.com',
         'Access-Control-Allow-Headers' => 'Authorization, Content-Type',
@@ -2056,33 +2134,34 @@ $app->route('/examples/cors', function() use ($app) {
         'Access-Control-Max-Age' => 86400,
     ]);
 
-    // If calling a POST, PUT, DELETE or other Request Method you may need
-    // to handle OPTIONS requests. When using CORS and an OPTIONS request is
-    // processed, FastSitePHP will automatically set the header
-    // 'Access-Control-Allow-Methods' based on how routes are defined.
-    // To make sure OPTIONS requests are handled first create a function
-    // that sets the CORS value.
+    // Se estiver chamando um POST, PUT, DELETE ou outro Método de Requisição
+    // você provavelmente precisa tratar requisições OPTIONS. Ao utilizar CORS e
+    // uma requisição OPTIONS é processada, FastSItePHP definirá automaticamente
+    // o cabeçalho 'Access-Control-Allow-Methods' baseando-se em como rotas são
+    // definidas.
+    // Para ter certeza que requisições OPTIONS sejam tratadas, primeiro crie
+    // uma função que defina o valor CORS.
     $cors = function () use ($app) {
         $app->cors('*');
     };
 
-    // Assign the Filter Function to the routes that use CORS:
+    // Atribua a Função Filtro para as rotas que utilizam CORS:
     $app->post('/api-data', function() {
-        return [ 'example' => 'POST' ];
+        return [ 'exemplo' => 'POST' ];
     })
     ->filter($cors);
 
     $app->put('/api-data', function() {
-        return [ 'example' => 'PUT' ];
+        return [ 'exemplo' => 'PUT' ];
     })
     ->filter($cors);
 
-    // If you do not want to allow FastSitePHP to handle OPTIONS
-    // requests you can turn it off using this option:
+    // Se você não quer permitir que o FastSitePHP manipule requisições OPTIONS,
+    // você pode desativar isso utilizando esta opção:
     $app->allow_options_requests = false;
     // EXAMPLE_CODE_END
 
-    // Return a JSON Response with Request Info from the Client
+    // Retorne uma resposta JSON com Request Info de um Cliente
     $req = new \FastSitePHP\Web\Request();
     $app->json_options = JSON_PRETTY_PRINT;
     return [
@@ -2105,55 +2184,57 @@ $app->route('/examples/cors', function() use ($app) {
 });
 
 $app->get('/examples/secure-cookies', function() use ($app) {
-    // Keys for Encryption and Signing
-    // IMPORTANT - These are publish keys for testing only, do not use them in production
-    // Use [generateKey()] functions to create your own keys.
+    // Chaves para Criptografia e Assinatura
+    // IMPORTANTE - Estas são chaves publicadas são somente para teste, não utilize-as em produção!
+    // Utilize a função [generateKey()] para criar suas próprias chaves.
     $app->config['ENCRYPTION_KEY'] = 'eada343fc415625494bfd1b065ba60c2a5c8508d353dbb872378c1356181c84f05c52ff60d1cc157957cbbf0101f9cb7d74b040b57192a6a820b5402132b9ab4';
     $app->config['SIGNING_KEY'] = 'ab2403a36467b59b20cc314bb211e1812668b3bffb00358c161f26fe003073ed';
     $app->config['JWT_KEY'] = 'fkeVxeElykoCBzRTIUjxwTD9MIg71nXxOEQl6HTrIvw=';
 
     // EXAMPLE_CODE_START
-    // TITLE: Secure Cookies
-    // FastSitePHP allows for easy handling of Secure Cookies (Encrypted, Signed,
-    // or JWT). To use generate a secure key and save it with app config values.
-    // For more on config and crypto settings see other docs on this site.
-    // Strong keys are important for security and are required by default.
+    // TITLE: Cookies Seguros
+    // O FastSitePHP permite fácil manipulação de Cookies Seguros (Encrypted,
+    // Signed ou JWT). Para utilizar, gere uma chave segura e salve-a com os
+    // valores de configuração da app. Para mais sobre configuração e definições
+    // de criptografia, veja outros documentos neste site. Chaves robustas são
+    // importantes para segurança e são requeridas por padrão.
 
     // $app->config['ENCRYPTION_KEY'] = 'eada343fc415625494bfd1b065ba...';
     // $app->config['SIGNING_KEY'] = 'ab2403a36467b59b20cc314bb211e18...';
     // $app->config['JWT_KEY'] = 'fkeVxeElykoCBzRTIUjxwTD9MIg71nXxOEQ...';
 
-    // The Request object has three functions that use the config keys to read
-    // and verify the secure cookies. If the cookies don't exist, are invalid,
-    // expired, etc then [null] will be returned.
+    // O objeto Resquest tem três funções que utilizam as chaves de configuração
+    // para ler e verificar os cookies seguros. Se os cookies não existirem,
+    // forem inválidos, estiverem expirados etc [null] será retornado.
     $req = new \FastSitePHP\Web\Request();
     $decrypted = $req->decryptedCookie('encrypted');
     $verified = $req->verifiedCookie('signed');
     $jwt = $req->jwtCookie('jwt');
 
-    // Encrypted and Signed Data can be of any basic type [Strings, Numbers,
-    // Objects, etc], while JWT's require an Object or an Array/Dictionary.
-    $text = 'Request Time: ' . date(DATE_RFC2822);
+    // Dados criptografados e assinados podem ser de qualquer tipo básico
+    // [Strings, Números, Objetos etc], enquanto while JWT requer um Objeto ou
+    // um Array/Dicionário.
+    $text = 'Momento da Requisição: ' . date(DATE_RFC2822);
 
     $user = new \stdClass;
     $user->id = 123;
     $user->name = 'Admin';
     $user->role = 'Admin';
 
-    // To send with the Response pass data to the corresponding response method.
-    // An optional 3rd parameter exits for an expiration time for both
-    // [signedCookie()] and [jwtCookie()] that defaults to 1 hour. This
-    // applies to the signed data or JWT and not the cookie itself.
+    // Para enviar com a Response, passe os dados para o método de resposta
+    // correspondente. Um terceiro parâmetro opcional de expiração exite para
+    // ambas [signedCookie()] e [jwtCookie()], que tem como valor padrão 1 hora.
+    // Isto aplica-se para os dados assinados ou JWT e não para o cookie.
     $res = new \FastSitePHP\Web\Response();
     $res->encryptedCookie('encrypted', $text);
     $res->signedCookie('signed', $user, '+20 minutes');
     $res->jwtCookie('jwt', $user, '+20 minutes');
     // EXAMPLE_CODE_END
 
-    // Refresh at least once to see data, the first time you try the URL
-    // null values will be returned.
-    // Return Decrypted and Verified Values.
-    // Use Dev Tools to see the Cookies.
+    // Recarregue pelo menos uma vez para ver os dados. Na primeira vez que você
+    // testar, valores nulos serão retornados.
+    // Retorna Valores Descriptografados e Verificados.
+    // Use as Ferramentas de Desenvolvedores para ver os Cookies.
     return $res->jsonOptions(JSON_PRETTY_PRINT)->json([
         'decrypted' => $decrypted,
         'verified' => $verified,
@@ -2163,17 +2244,20 @@ $app->get('/examples/secure-cookies', function() use ($app) {
 
 $app->get('/examples/db-query', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Connect to a Database and run SQL Statements
+    // TITLE: Conecte a um Banco de Dados e rode Consultas SQL
     // CLASS: Data\Database
-    // FastSitePHP provides a Database class which is a thin wrapper for PDO to
-    // reduce the amount of code needed when querying a database. An additional
-    // example on this page shows how to use PDO.
+    // O FastSitePHP fornece um classe Database que é uma fina camada que
+    // envolve o PDO, reduzindo a quantidade de código necessária ao consultar
+    // um banco de dados. Um exemplo adicional nesta página, mostra como
+    // utilizar PDO.
 
-    // Connect to a Database, this example uses SQLite with a temp in-memory db.
+    // Conecte a um Bando de Dados. Este exemplo utiliza SQLite com um bd
+    // temporário na memória.
     $dsn = 'sqlite::memory:';
     $db = new \FastSitePHP\Data\Database($dsn);
 
-    // Depending on the connection 4 additional parameters can also be used:
+    // Dependendo da conexão, quatro parâmetros adicionais podem também serem
+    // utilizados:
     /*
     $user = null;
     $password = null;
@@ -2182,9 +2266,9 @@ $app->get('/examples/db-query', function() use ($app) {
     $db = new Database($dsn, $user, $password, $persistent, $options);
     */
 
-    // Create tables and test records. The function [execute()] is used for
-    // action queries (INSERT, UPDATE, DELETE, CREATE, etc) and returns the
-    // number of affected rows.
+    // Cria tabelas e registros de teste. A função [execute()] é utilizada para
+    // consulta de ação (INSERT, UPDATE, DELETE, CREATE etc) e retorna o número
+    // de linhas afetadas.
 
     $db->execute('CREATE TABLE page_types (id INTEGER PRIMARY KEY, page_type)');
 
@@ -2192,57 +2276,61 @@ $app->get('/examples/db-query', function() use ($app) {
     $sql .= ' type_id, title, content)';
     $db->execute($sql);
 
-    // This example uses a double-quotes for the string ["] because SQL strings
-    // include the single-quote character ['] for text.
+    // Este exemplo utiliza áspas duplas para a sring ["] por que strings SQL
+    // incluem o caractere áspas simples ['] para texto.
     $sql = "INSERT INTO page_types (id, page_type) VALUES (1, 'text/plain')";
     $rows_added = $db->execute($sql);
 
-    // An optional 2nd parameter for parameters can be used. This is recommended
-    // when for user input to prevent SQL Injection Attacks. The Question Mark [?]
-    // is the placeholder character to use in the SQL statement.
+    // Um segundo parâmetro opcional pode ser utilizado. Isto é recomendado
+    // para prevenir ataques de SQL Injection via entradas de usuário. O ponto
+    // de interrogação [?] é um caractere que representa um espaço reservado
+    // a ser utilizado pela expressão SQL.
     $sql = 'INSERT INTO page_types (id, page_type) VALUES (?, ?)';
     $params = [2, 'text/html'];
     $rows_added += $db->execute($sql, $params);
 
-    // Multiple records can be added (or updated, etc) when using [executeMany()]
+    // Múltiplos registros pode ser adicionados (ou atualizados etc) ao
+    // utilizar [executeMany()]
     $sql = 'INSERT INTO pages (type_id, title, content) VALUES (?, ?, ?)';
     $records = [
-        [1, 'Text Test Page', 'This is a test.'],
-        [2, 'HTML Test Page', '<h1>Test<h1><p>This is a test.</p>'],
+        [1, 'Página de Teste em Texto', 'Isto é um teste.'],
+        [2, 'Página de Teste em HTML', '<h1>Teste<h1><p>Isto é um teste.</p>'],
     ];
     $rows_added += $db->executeMany($sql, $records);
 
-    // In addition to using [?] you can also used named parameters in the
-    // format of ":name". Named parameters can make the code easier to read.
+    // Além de utilizar [?], você também pode utilizar parâmetros nomeados no
+    // formato ":name". Parâmetros nomeados pode fazer com que o código seja
+    // mais fácil de ler.
     $sql = 'INSERT INTO pages (type_id, title, content)';
     $sql .= ' VALUES (:type_id, :title, :content)';
     $params = [
         'type_id' => 1,
-        'title'   => 'Named Parameters',
-        'content' => 'Test with Named Parameters.',
+        'title'   => 'Parâmetros Nomeados',
+        'content' => 'Teste com Parâmetros Nomeados.',
     ];
     $rows_added += $db->execute($sql, $params);
 
-    // Get the id of the last inserted row or sequence value
+    // Obtenha a ID da última linha ou valor sequencial inserido
     $last_id = $db->lastInsertId();
 
-    // Query for Multiple Records
-    // Returns an Array of Records (Associative Array for each Record).
+    // Consulte Múltiplos Registros
+    // Retorna um Array de Registros (Array Associativo para cada Registro).
     $sql = 'SELECT * FROM pages';
     $records = $db->query($sql);
 
-    // Query for one record. Returns an Associative Array or [null] if not found.
-    // Both [query()] and [queryOne()] support optional parameters when querying.
+    // Consulta um registro. Retorna um Array Associativo ou [null] se não
+    // encontrado. Ambas [query()] e [queryOne()] suportam parâmetros opcionais
+    // ao consultar.
     $sql = 'SELECT * FROM pages WHERE id = ?';
     $params = [1];
     $record = $db->queryOne($sql, $params);
 
-    // The [Database] class also contains additional functions such as
-    // [queryValue(), queryList(), querySets()] to simplify and reduce
-    // the amount code needed when working with databases.
+    // A classe [Database] também contém funções adicionais tal como
+    // [queryValue(), queryList() e querySets()] para simplificar e reduzir a
+    // quantidade de código necessária ao trabalhar com bancos de dados.
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -2256,9 +2344,9 @@ $app->get('/examples/db-query', function() use ($app) {
 
 $app->get('/examples/db-pdo', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Connect to a Database and run SQL Statements using PDO
-    // Connect to a Database using PHP Data Objects (PDO),
-    // this example uses SQLite with a temp in-memory db.
+    // TITLE: Conecte a um Banco de Dados e rode Consultas SQL utilizando PDO
+    // Conecte a um Banco de Dados utilizando PHP Data Objects (PDO). Este
+    // exemplo utiliza SQLite com um bd temporário em memória.
     $dsn = 'sqlite::memory:';
     $user = null;
     $password = null;
@@ -2267,7 +2355,7 @@ $app->get('/examples/db-pdo', function() use ($app) {
     ];
     $pdo = new \PDO($dsn, $user, $password, $options);
 
-    // Create tables and test records.
+    // Crie tabelas e registros test.
 
     $pdo->query('CREATE TABLE page_types (id INTEGER PRIMARY KEY, page_type)');
 
@@ -2275,27 +2363,28 @@ $app->get('/examples/db-pdo', function() use ($app) {
     $sql .= ' type_id, title, content)';
     $pdo->query($sql);
 
-    // This example uses a double-quotes for the string ["] because SQL strings
-    // include the single-quote character ['] for text.
+    // Este exemplo utiliza áspas duplas para a sring ["] por que strings SQL
+    // incluem o caractere áspas simples ['] para texto.
     $sql = "INSERT INTO page_types (id, page_type) VALUES (1, 'text/plain')";
     $stmt = $pdo->query($sql);
     $rows_added = $stmt->rowCount();
 
-    // This example uses a prepare statement with an array of parameters. This is
-    // recommended when for user input to prevent SQL Injection Attacks. The
-    // Question Mark [?] is the placeholder character to use in the SQL statement.
+    // Este exemplo utiliza um prepared statement com um array de parâmetros.
+    // Isto é recomendado quando houver uma entrada por usuário para prevenir
+    // ataques de SQL Injection. O ponto e interrogação [?] é um caractere que
+    // representa um espaço reservado a ser utilizado na expressão SQL.
     $sql = 'INSERT INTO page_types (id, page_type) VALUES (?, ?)';
     $params = [2, 'text/html'];
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $rows_added += $stmt->rowCount();
 
-    // Multiple records can be added (or updated, etc) in a loop
-    // using a prepared statement.
+    // Múltiplos registros podem ser adicionados (ou atualizados etc) em um loop
+    // utilizando um prepared statement.
     $sql = 'INSERT INTO pages (type_id, title, content) VALUES (?, ?, ?)';
     $records = [
-        [1, 'Text Test Page', 'This is a test.'],
-        [2, 'HTML Test Page', '<h1>Test<h1><p>This is a test.</p>'],
+        [1, 'Página de Teste em Texto', 'Isto é um teste.'],
+        [2, 'Página de Teste em HTML', '<h1>Teste<h1><p>Isto é um teste.</p>'],
     ];
     $stmt = $pdo->prepare($sql);
 
@@ -2304,43 +2393,44 @@ $app->get('/examples/db-pdo', function() use ($app) {
         $rows_added += $stmt->rowCount();
     }
 
-    // In addition to using [?] you can also used named parameters in the
-    // format of ":name". Named parameters can make the code easier to read.
+    // Além de utilizar [?], você também pode utilizar parâmetros nomeados no
+    // formato ":name". Parâmetros nomeados pode fazer com que o código seja
+    // mais fácil de ler.
     $sql = 'INSERT INTO pages (type_id, title, content)';
     $sql .= ' VALUES (:type_id, :title, :content)';
     $params = [
         'type_id' => 1,
-        'title'   => 'Named Parameters',
-        'content' => 'Test with Named Parameters.',
+        'title'   => 'Parâmetros Nomeados',
+        'content' => 'Teste com Parâmetros Nomeados.',
     ];
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $rows_added += $stmt->rowCount();
 
-    // Get the id of the last inserted row or sequence value
+    // Obtenha a ID da última linha ou valor sequencial inserido
     $last_id = $pdo->lastInsertId();
 
-    // Query for Multiple Records
-    // Returns an Array of Records (Associative Array for each Record).
+    // Consulte Múltiplos Registros
+    // Retorna um Array de Registros (Array Associativo para cada Registro).
     $sql = 'SELECT * FROM pages';
     $stmt = $pdo->query($sql);
     $records = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-    // Query for one record using parameters. Returns an Associative Array
-    // or [false] if not found.
+    // Consulta um registro utilizando parâmetros. Retorna um Array Associativo
+    // ou [false] se não for encontrado.
     $sql = 'SELECT * FROM pages WHERE id = ?';
     $params = [1];
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $record = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-    // Functions [fetchAll()] and [fetch()] also support a number of options
-    // for the return format including Indexed-Arrays using [PDO::FETCH_NUM],
-    // Anonymous Objects using [PDO::FETCH_OBJ] and custom classes using
-    // [PDO::FETCH_CLASS].
+    // As funções [fetchAll()] e [fetch()] também suportam um número de
+    // opções para o valor retornado incluindo Indexed-Arrays utilizando
+    // [PDO::FETCH_NUM], Objetos Anônimos utilizando [PDO::FETCH_OBJ] e
+    // classes personalizadas utilizando [PDO::FETCH_CLASS].
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -2353,41 +2443,47 @@ $app->get('/examples/db-pdo', function() use ($app) {
 });
 
 $app->get('/examples/db-connection', function() use ($app) {
-    // Create a temp SQLite db for Testing and add a few tables
+    // Crie um bd SQLite temporário para Teste e adicione algumas tabelas
     $file_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'test.sqlite';
     $db = new \FastSitePHP\Data\Database('sqlite:' . $file_path);
     $db->execute('CREATE TABLE IF NOT EXISTS page_types (id INTEGER PRIMARY KEY AUTOINCREMENT, page_type)');
     $db->execute('CREATE TABLE IF NOT EXISTS pages (id INTEGER PRIMARY KEY AUTOINCREMENT, type_id, title, content)');
 
     // EXAMPLE_CODE_START
-    // TITLE: Connect to a Database
+    // TITLE: COnectar a um Banco de Dados
     // CLASS: Data\Database
-    // FastSitePHP’s Database class or PHP's built-in PDO class can connect to
-    // different databases. FastSitePHP’s Database class provides a thin wrapper
-    // over PDO to reduce the amount of code needed when querying a database.
+    // A classe Database do FastSitePHP ou a classe PHP integrada PDO,
+    // pode conectar a bancos de dados diferentes. A classe Database do
+    // FastSitePHP fornece um classe Database que é uma fina camada que
+    // envolve o PDO, reduzindo a quantidade de código necessária ao consultar
+    // um banco de dados.
 
-    // Examples below shows how to build connection strings and run a query for
-    // a number of different databases. If you download this site, the code below
-    // can be modified and tested for your environment; or simply copy what you
-    // need to your site or app.
+    // O exemplos abaixo mostram coo construir strings de conexçao e rodar
+    // uma query para um número diferente bancos de dados. Se você baixar
+    // este site, o código abaixo pode ser modificado e testado para seu
+    // ambiente; or simplesmente copie o que você precisa para seu site
+    // ou app.
 
-    // When specifying the hostname (Server Name), you can often specify just the
-    // server name (example: 'db-server') or the fully-qualified domain name (FQDN)
-    // (example 'db-server.example.com') based on how your network is setup.
-    // For example on an internal network simply using the server name will work
-    // but through VPN using the FQDN is often required.
+    // Ao especificar o hostname (Nome do Server), muitas vezes você pode
+    // somente especificar o nome do servidor (exemplo: 'db-server') ou
+    // o nome de domínio totalmente qualificado (FQDN) (example
+    // 'db-server.example.com') baseado-se em como sua rede é configurada.
+    // Por exemplo em uma rede interna, simplesmente utilizando o nome
+    // de servidor funcionará, mas através de uma VPN é geralmente
+    // necessário utilizar o FDQN.
 
     // ----------------------------------------------------------------------------
     // MySQL
-    //   Basic Format:
+    //   Format Básico:
     //     "mysql:host={hostname};dbname={database}";
     //
-    // This example also shows using the [MYSQL_ATTR_INIT_COMMAND]
-    // option to se the timezone to UTC when the connection is created.
+    // Este exemplo também mostra o uso da opção [MYSQL_ATTR_INIT_COMMAND]
+    // para definir o fuso horário para UTC quando a conexão é criada.
     //
-    // If you have a site or application that has users in multiple timezones or
-    // countries an application design that works well is to save all dates and
-    // times in UTC and then format based on the users selected timezone.
+    // Se você tem um site ou aplicação que tem usuários em múltiplos
+    // fuso horários ou países, um modelo de aplicação que funciona bem
+    // é o de salvar todas as datas e horários em UTC e daí formatar
+    // baseando-se no fuso horário selecionado pelo usuário.
     //
     $dsn = 'mysql:host=localhost;dbname=wordpress;charset=utf8';
     $user = 'root';
@@ -2401,7 +2497,7 @@ $app->get('/examples/db-connection', function() use ($app) {
 
     // ----------------------------------------------------------------------------
     // Oracle
-    //   Format:
+    //   Formato:
     //      "oci:dbname=//{hostname}:{port-number}/{database}"
     $dsn = 'oci:dbname=//server:1521/hr';
     $user = 'sys';
@@ -2409,7 +2505,8 @@ $app->get('/examples/db-connection', function() use ($app) {
     $options = [];
     $sql = 'SELECT OWNER, TABLE_NAME FROM ALL_TABLES ORDER BY OWNER, TABLE_NAME';
 
-    // In addition to the standard format you can also specify a full TNS string
+    // Além do formato padrão, você pode também especificar uma string TNS
+    // completa
     $tns = '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)';
     $tns .= '(HOST=server.example.com)(PORT=1521)))';
     $tns .= '(CONNECT_DATA=(SERVICE_NAME=dbname)))';
@@ -2423,16 +2520,17 @@ $app->get('/examples/db-connection', function() use ($app) {
     $options = [];
     $sql = 'SELECT SCHEMA_NAME(schema_id) AS schema_name, name FROM sys.tables';
 
-    // SQL Server (using ODBC)
-    // If the native SQL Server PDO driver is not installed and the
-    // PDO ODBC Driver is installed and a ODBC Connection is setup
-    // you could use this:
+    // SQL Server (utilizando ODBC)
+    // Se o driver PDO nativo de SQL Server não estiver instalado e o
+    // Driver PDO para ODBC estiver e a Conexão ODBC estiver definida,
+    // você poderia utilizar isso:
     $dsn = 'odbc:DRIVER={SQL Server};SERVER=db-server;DATABASE=DbName;';
 
     // ----------------------------------------------------------------------------
-    // IBM (using ODBC)
-    // This example shows a connection to and IBM DB2 or AS/400 through iSeries.
-    // ODBC Options will vary based on the driver installed and used.
+    // IBM (utilizando ODBC)
+    // Este exemplo mostra uma conexão a um IBM DB2 ou AS/400 atraés do
+    // iSeries.
+    // Opções ODBC variarão com base no driver instalado ou utilizado.
     $dsn = 'odbc:DRIVER={iSeries Access ODBC Driver};';
     $dsn .= 'HOSTNAME=AS400.EXAMPLE.COM;';
     $dsn .= 'PORT=56789;';
@@ -2461,10 +2559,10 @@ $app->get('/examples/db-connection', function() use ($app) {
 
     // ----------------------------------------------------------------------------
     // SQLite
-    //   Example using a file path:
+    //   Exemplo utilizando um caminho de arquivo:
     //     'sqlite:/var/www/app_data/db.sqlite'
     //     'sqlite:C:\inetpub\wwwroot\db.sqlite'
-    //   In-Memory Database:
+    //   Banco de Dados em Memória:
     //     'sqlite::memory:'
     $dsn = 'sqlite:' . $file_path;
     $user = null;
@@ -2473,67 +2571,69 @@ $app->get('/examples/db-connection', function() use ($app) {
     $sql = 'SELECT * FROM sqlite_master';
 
     // ----------------------------------------------------------------------------
-    // Persistent Connection Option
+    // Opção e Conexão Persistente
     //
-    // Many PHP Database drivers supports persistent connections
-    // which can allow for better performance.
+    // Muitos drivers de Bancos de Dados PHP suportam conexões persistentes
+    // o que permite um melhor desempenho.
     $persistent = false;
 
     // ============================================================================
-    // Connect using PHP Data Objects (PDO)
+    // Conecte utilizando PHP Data Objects (PDO)
     $options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
     if ($persistent) {
         $options[\PDO::ATTR_PERSISTENT] = true;
     }
     $pdo = new \PDO($dsn, $user, $password, $options);
 
-    // Query using PDO
+    // Consulte utilizando PDO
     $stmt = $pdo->query($sql);
     $records = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
     // =================================================================================
-    // Connect and Query using FastSitePHP's Database class.
-    // Only the DSN (Data Source Name) is a required parameter.
+    // Conecte e Consulte utilizando a classe Database do FastSitePHP.
+    // Somente o DSN (Data Source Name/Nome da Fonte de Dados) é um parâmetro necessário.
     $db = new \FastSitePHP\Data\Database($dsn, $user, $password, $persistent, $options);
     $records = $db->query($sql);
 
     // =================================================================================
-    // In addition to FastSitePHP's Database class [OdbcDatabase] and [Db2Database]
-    // can also be used for supported enviroments, and especially for IBM Databases.
+    // Além da classe Database do FastSitePHP, [OdbcDatabase] e [Db2Database] também
+    // podem ser utilizadas para suportar abientes, e especialmente Bancos de Dados IBM.
     //
-    // When using the class [OdbcDatabase] the DSN will be the same as the PDO DSN
-    // excluding the 'odbc:' prefix.
+    // Ao utilizar a classe [OdbcDatabase] o DSN será o mesmo que o do PDO excluindo
+    // o prefixo 'odbc:'.
     /*
     $odbc = new OdbcDatabase($dsn, $user, $password, $persistent, $options);
     $db2  = new Db2Database($dsn, $user, $password, $persistent, $options);
     */
 
     // ============================================================================
-    // Lazy Loading with FastSitePHP
+    // Lazy Loading com FastSitePHP
     //
-    // FastSitePHP’s Application object has a function [lazyLoad()] which accepts
-    // a property name and callback function. It creates the object as a property
-    // of the app only if used. This is ideal for working with sites where some
-    // pages connect to a database and some pages do not, or if you have a site
-    // that connects to multiple databases but not all pages use each database.
+    // O objeto Application do FastSitePHP tem uma função [lazyLoad()] que aceita
+    // um nome de propriedade e função callback. Isso cria o objeto como uma
+    // propriedade da app somente se utilizada. Isto é ideal para trabalhar com
+    // sites onde algumas páginas conectam a um banco de dados e algumas não, ou
+    // se você tem um site que conecta-se à múltiplos bacos de dados mas nem todas
+    // as páginas utilizam à cada um.
     $app->lazyLoad('db', function() use ($dsn, $user, $password) {
         return new \FastSitePHP\Data\Database($dsn, $user, $password);
     });
 
-    // Query for records. The database gets connected to here only when first used.
+    // Consulta para registros. O banco de dados é conectado aqui somente quando usado pela primeira vez.
     $records = $app->db->query($sql);
 
     // ============================================================================
-    // To obtain a list of available drivers on the computer call [phpinfo()]
-    // and view the result or call the following function to get an array of
-    // driver names. A full list of PDO Drivers can be found at:
+    // Para obter uma lista dos drivers disponíveis no computador chame
+    // [phpinfo()] e veja o resultado ou chame a seguinte função para obter uma
+    // array de nomes de drivers. Uma lista completa de drivers PDO pode ser
+    // encontrada em:
     //   http://php.net/manual/en/pdo.drivers.php
-    // If you need a driver and it is not available or enabled on your server
-    // they are generally easy to install and enable.
+    // Se você precisar de um driver que não estiver disponível ou ativado em
+    // seu servidor, eles geralmente são fáceis de serem instalados e ativados.
     $drivers = \PDO::getAvailableDrivers();
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -2544,8 +2644,8 @@ $app->get('/examples/db-connection', function() use ($app) {
 });
 
 $app->get('/examples/data-validator', function() use ($app) {
-    // Manually set Form POST Values for the Demo. In PHP
-    // Superglobal variables such as [$_POST]  can be overwritten.
+    // Definia manualmente valores POST para a demonstração. Em PHP, variáveis
+    // Superglobais como [$_POST] podem ser sobrescritas.
     $_POST = [
         'age' => '10',
         'phone' => 123,
@@ -2554,75 +2654,79 @@ $app->get('/examples/data-validator', function() use ($app) {
     ];
 
     // EXAMPLE_CODE_START
-    // TITLE: Validating User Input
+    // TITLE: Valiando Entradas de Usuário
     // CLASS: Data\Validator
-    // For many apps validating client side (webpage or app) provides instant
-    // feedback to users and limits need for extra web request, however users
-    // can bypass validation by using DevTools or other methods so for data
-    // that needs to be validated using server-side validation is important.
+    // Para muitos apps validação client side (webpage ou app) fornece retorno
+    // imediato para usuários e limita a necessidade de requisição web extra,
+    // porém usuários podem iludir a validação utilizando DevTools ou outros
+    // métodos, então para os dados que precisam ser validados utilizar
+    // validação server-side é importante.
 
-    // FastSitePHP provides a class that allows for many rules to be easily
-    // defined and run against an object (or Associative Array/Dictionary).
+    // O FastSitePHP provê uma classe que permite que várias regras sejam
+    // facilmente definidas e rodem contra um objeto (ou Array
+    // Associativo/Dictionário).
 
-    // Common rules can simply be copied from HTML Input controls.
+    // Regras comuns podem ser copiadas de forma simples de controles Input HTML.
 
-    // HTML Example:
+    // HTML Exemplo:
     /*
-        <input name="name" title="Name" required>
-        <input name="age" title="Age" required min="13" max="99">
-        <input name="phone" title="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <input name="nome" title="Nome" required>
+        <input name="idade" title="Idade" required min="13" max="99">
+        <input name="telefone" title="Telefone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
     */
 
-    // FastSitePHP Code to Validate Form Post using the above HTML.
-    // Form Post Fields come in the PHP Superglobal array [$_POST]
-    // and it simply be passed to the [Validator] class.
+    // O Código do FastSitePHP Code para Validar Postagem de Formulário
+    // utilizando o HTML acima.
+    // Campos de Postagem de Formulários vem na array PHP Superglobal [$_POST]
+    // e isso pode ser simplesmente passado para a classe [Validator].
     $v = new \FastSitePHP\Data\Validator();
     $v->addRules([
-        // Field,  Title,   Rules
-        ['name',  'Name',  'required'],
-        ['age',   'Age',   'required min="13" max="99"'],
-        ['phone', 'Phone', 'pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"'],
+        // Campo,  Título,  Regras
+        ['nome',  'Nome',  'required'],
+        ['idade',   'Idade',   'required min="13" max="99"'],
+        ['telefone', 'Telefone', 'pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"'],
     ]);
     list($errors, $fields) = $v->validate($_POST);
     if ($errors) {
-        // Error Logic
-        // [$errors] returns an array of error messages for the end user
-        // [$fields] returns an array of unique fields that had an error
-        // along with an array of error messages for each field.
-        // Fields can be used by a client app to highlight form fields, etc.
+        // Lógica de Erros
+        // [$errors] retorna uma array de mensagens de erro para o usuário final
+        // [$fields] retorna uma array de campos únicos que tiveram um erro em
+        // conjunto com uma array de mensagens de erro para cada campo.
+        // Campos pode ser utilizados pelo app cliente para evienciar campos de
+        // formulário, etc.
     }
 
-    // In addition to using strings for the rules you can also use arrays.
-    // This can provide better performance if you have a high traffic site,
-    // however it runs very fast either way.
+    // Além da utilização de strings para as regras você pode também utilizar
+    // arrays. Isso pode conceder melhor desempenho se você tiver um site de
+    // alto tráfego, contudo, isso roda de forma muito rápida de qualquer forma.
     $v = new \FastSitePHP\Data\Validator();
     $v->addRules([
-        ['name',  'Name',  ['required' => true]],
-        ['age',   'Age',   [
+        ['nomes',  'Nome',  ['required' => true]],
+        ['idade',   'Idade',   [
             'required' => true,
             'min' => '13',
             'max' => '99',
         ]],
-        ['phone', 'Phone', ['pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}']],
+        ['telefone', 'Telefone', ['pattern' => '[0-9]{3}-[0-9]{3}-[0-9]{4}']],
     ]);
 
-    // The validator class supports a number of HTML5 rules along
-    // with some custom rules:
+    // A classe Validator suporta um número de regras HTML5 juntamente com
+    // algumas regras personalizadas:
     //     'exists', 'required', 'type', 'minlength', 'maxlength',
     //     'length', 'min', 'max', 'pattern', 'list',
 
-    // The [type] rule supports a number of HTML5 data types along
-    // with many custom data types:
+    // A regra [type] suporta vários tipos de dados HTML5, junto com muitos
+    // tipos de dados personalizados:
     //      'text', 'password', 'tel', 'number', 'range', 'date',
     //      'time', 'datetime', 'datetime-local', 'email', 'url',
     //      'unicode-email', 'int', 'float', 'json', 'base64',
     //      'base64url', 'xml', 'bool', 'timezone', 'ip', 'ipv4',
     //      'ipv6', 'cidr', 'cidr-ipv4', 'cidr-ipv6',
 
-    // In addition to standard rules custom rules can be defined using
-    // callback functions that return true/false or a custom error
-    // message string:
-    $v
+    // Além das regras padrão, regras personalizadas pode ser definidas
+    // utilizando funções callback que retornam true/false ou uma string de
+    // mensagem personalizada de erro
+    $v = new \FastSitePHP\Data\Validator();
         ->addRules([
             ['site_user',     'Site User', 'check-user required'],
             ['site_password', 'Password',  'check-password required'],
@@ -2631,13 +2735,13 @@ $app->get('/examples/data-validator', function() use ($app) {
             return ($value === 'admin');
         })
         ->customRule('check-password', function($value) {
-            return ($value === 'secret' ? true : 'Invalid Password');
+            return ($value === 'secret' ? true : 'Senha Inválida');
         });
 
     list($errors, $fields) = $v->validate($_POST);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -2648,81 +2752,84 @@ $app->get('/examples/data-validator', function() use ($app) {
 });
 
 $app->get('/examples/http-client', function() use ($app) {
-    // Initial Demo that runs unless the code is modified.
-    // Download and return an HTML page.
-    // Comment this out to run full code.
+    // Demonstração inicial que roda a não ser que o código seja modificado.
+    // Baixe e retorne um página HTML.
+    // Comente iso para rodar o código completo.
     return \FastSitePHP\Net\HttpClient::get('https://www.example.com/')->content;
 
-    // To use modify these to a valid values from your system
-    // Saving a file requires write access in the current directory.
+    // Para utilizar, modifique esses para valores válidos em seu sistema
+    // Salvando um arquivo requer acesso de escrita no diretório atual.
     $save_path = __DIR__ . '/test-download.txt';
     $url = 'https://httpbin.org/anything';
     $file_path = 'C:\Users\Public\Pictures\Thumbnails\Desert.jpg';
     if (!is_file($file_path)) {
-        return 'Modify code to point to a real file';
+        return 'Modifique o código para apontar para um arquivo real';
     }
 
     // EXAMPLE_CODE_START
-    // TITLE: Using the HTTP Client
+    // TITLE: Utilizando o Cliente HTTP
     // CLASS: Net\HttpClient, Net\HttpResponse
-    // The HttpClient can be used to simplify communication with other Web Services,
-    // HTTP API’s, and works great for calling and returning the result of local
-    // services – for example an AI/ML (Artificial Intelligence / Machine Learning)
-    // Service written in Python with TensorFlow or scikit-learn.
+    // HttpClient pode ser utilizado para simplificar a comunicação com
+    // outros serviços web, APIs HTTP e funciona muito bem para chamar
+    // e retornar o resultado de serviços locais - por exemplo um serviço
+    // AI/ML (Artificial Intelligence / Machine Learning) escrito em
+    // Python com TensorFlow ou scikit-learn.
 
-    // Perform a simple HTTP GET Request and check the result
+    // Faça um requisição HTTP GET simples e verifique o resultado
     $res = \FastSitePHP\Net\HttpClient::get($url);
     if ($res->error) {
-        // An error would be returned in the event of a major failure such as
-        // a timeout or SSL Cert Error. A 404 or 500 Response from the server
-        // would be handled by checking the [status_code].
+        // Um erro seria retornado em uma eventual falha grave como tempo limite
+        // atingido ou um erro de certificado SSL. Uma resposta 404 ou 500 do
+        // servidor seria tratada verificando o [status_code].
         $error = $res->error;
     } else {
-        $status_code = $res->status_code; // 200, 404, 500, etc
-        $headers = $res->headers; // Array of Response Headers
-        $content = $res->content; // Response Content as a String - HTML, Text, etc
-        $info = $res->info; // Array of Info such as Time Stats
+        $status_code = $res->status_code; // 200, 404, 500 etc
+        $headers = $res->headers; // Array de Cabeçalhos de Resposta
+        $content = $res->content; // Conteúdo da Resposta como uma String - HTML, Texto etc
+        $info = $res->info; // Array de Informações como Estatísticas de Tempo
     }
 
-    // Perform an HTTP GET Request and read the JSON Result. If the Response
-    // Content-Type is 'application/json' then [$res->json] will contain an array
-    // otherwise null. Request Headers can be passed an optional paramater.
+    // Realize uma Requisição HTTP GET e leia o Resultado JSON. Se o Content-Type
+    // da Resposta for 'application/json' então [$res->json] conterá um array
+    // caso contrário, conterá null. Cabeçalhos de Requisição podem receber um
+    // parâmetro opcional.
     $headers = [
         'X-API-Key' => 'ab82050cf5907934fa1d0f6f66284642a01d1ba2280656870c',
-        'X-Custom-Header' => 'Test',
+        'X-Custom-Header' => 'Teste',
     ];
     $res_json = \FastSitePHP\Net\HttpClient::get($url, $headers);
     $json = $res->json;
     $text = $res->content;
 
-    // Submit a HTTP POST Request as JSON and also as a Form.
-    // Data can be either an Array or Object and Headers are optional.
+    // Envie uma Requisição HTTP POST como JSON e também como um Form.
+    // Dados podem ser um Array ou um Objeto e Cabeçalhos são opcionais.
     $data = [
-        'text' => 'test',
+        'text' => 'teste',
         'num' => 123,
     ];
     $res_post = \FastSitePHP\Net\HttpClient::postJson($url, $data, $headers);
     $res_form = \FastSitePHP\Net\HttpClient::postForm($url, $data);
 
-    // When using PHP 5.5 or later 'multipart/form-data' Form Posts are supported
-    // with the PHP built-in class [CURLFile]:
+    // Ao utilizar PHP 5.5 ou mais recente, 'multipart/form-data' Form Posts são
+    // suportados com a classe integrada [CURLFile]:
     /*
     $data = [
-        'field1' => 'test',
+        'field1' => 'teste',
         'file' => new \CURLFile($file_path),
     ];
     */
 
-    // Save the Response Content as a File Download
-    // Just like [postJson()] and [postForm()] Request Headers are optional.
+    // Salve o Conteúdo da Resposta como um Download de Arquivo
+    // Assim como [postJson ()] e [postForm ()] Request Headers são opcionais.
     $res_file = \FastSitePHP\Net\HttpClient::downloadFile($url, $save_path, $headers);
     $saved_path = $res_file->content;
 
-    // The above code demo shows the 4 helper static functions [get(), postJson(),
-    // postForm(), and downloadFile()], additional options are available when using
-    // the HttpClient as an object with the [request()] method.
+    // O código de demonstração acima mostra as quatro funções estáticas
+    // auxiliares [get(), postJson(), postForm() e downloadFile()]. Opções
+    // adicionais estão disponíveis quando utilizar a HttpClient como um
+    // objeto com o mesmo método [request()].
 
-    // Submit a PUT Request with a file as the Request Body
+    // Envie uma Requisição PUT com um arquivo como o Corpo de Requisição
     $http = new \FastSitePHP\Net\HttpClient();
     $res_put = $http->request($url, [
         'method' => 'PUT',
@@ -2731,7 +2838,7 @@ $app->get('/examples/http-client', function() use ($app) {
     ]);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $http_res = $res;
     $res = new \FastSitePHP\Web\Response();
     return $res
@@ -2757,25 +2864,27 @@ $app->get('/examples/http-client', function() use ($app) {
         ]));
 });
 
-// ** NOTE - using the below example requires a localhost GraphQL Service
-//      Then you will need to add a query string or use standard GraphQL POST, examples:
+// ** NOTA - utilizar o exemplo abaixo requer um Serviço GraphQL em localhost
+//      Então você precisará adicionar uma string de consulta ou utilizar um
+//      GraphQL POST padrão. Exemplos:
 //          ?query={countries{iso,country}}
 //          ?query=query($country:String!){regions(country:$country){name}}&variables={"country":"US"}
 //
 // EXAMPLE_CODE_START
-// TITLE: GraphQL Service using HttpClient
+// TITLE: Serviço GraphQL utilizando HttpClient
 // FIND_REPLACE: {"/examples":""}
-// GraphQL is a popular technology for developing API's. It has been ported to
-// many languages including PHP, however the reference implementation, the most
-// commonly used version, and also high in performance is GraphQL with NodeJS
-// and Express. This route can be copied or modified to allow GraphQL from PHP
-// using any GraphQL service on localhost or from another URL.
+// GraphQL é uma tecnologia popular para desenvolver APIs. Ela foi portada para
+// muitas linguagens inclindo PHP, contudo, a implementação referencial, a versão
+// mais comumente utilizada e também de alto desempenho é a GraphQL com NodeJS e
+// Express. Esta rota pode ser copiada ou modificada para permitir utilizar
+// GraphQL à partir do PHP utilizando qualquer serviço GraphQL no localhost ou
+// de outra URL.
 $app->route('/examples/graphql', function() {
     try {
         $url = 'http://localhost:4000/graphql';
 
-        // If an 'Authorization' Request Header was
-        // sent then pass it to the GraphQL Service.
+        // Se um Cabeçalho de Requisisção 'Authorization' foi enviado, então,
+        // passe-o para o Serviço GraphQL.
         $req = new \FastSitePHP\Web\Request();
         $auth = $req->header('Authorization');
         $headers = ($auth === null ? null : ['Authorization' => $auth]);
@@ -2794,17 +2903,17 @@ $app->route('/examples/graphql', function() {
             );
         }
 
-        // Check Response, an error typically would occur not for data
-        // errors but rather HTTP errors (i.e.: If the service is down).
+        // Verifique a Resposta, um erro tipicamente ocorreria não para erros
+        // de dados, mas sim para erros HTTP (i.e.: Se o serviço estiver caído).
         if ($res->error) {
             throw new \Exception($res->error);
         }
 
-        // Return Object for JSON Response
+        // Retorne Objeto para uma Resposta JSON
         return $res->json;
     } catch (\Exception $e) {
-        // Return unexpected error as a 200 response
-        // using standard error format used by GraphQL.
+        // Returne erro inesperado como uma resposta 200 utilizando o formato
+        // de erro padrão usado pelo GraphQL.
         return [
             'errors' => [
                 ['message' => $e->getMessage()]
@@ -2812,7 +2921,8 @@ $app->route('/examples/graphql', function() {
         ];
     }
 })->filter(function() use ($app) {
-    // Use CORS to allow web pages to access this service from any host (URL)
+    // Utilize CORS para permitir que páginas web acessem este serviço de
+    // qualquer host (URL)
     if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] !== 'null') {
         $app->cors([
             'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
@@ -2826,45 +2936,48 @@ $app->route('/examples/graphql', function() {
 // EXAMPLE_CODE_END
 
 $app->get('/examples/smtp-client', function() use ($app) {
-    // NOTE - to run this modify code with an SMTP Server that
-    // you have access to and uncomment the [return] line of
-    // code below. If you have a gmail account you can use it
-    // to test this function. It will likely fail at first and
-    // provide a message of settigs that you need to set in order
-    // to allow gmail to send through SMTP.
+    // NOTA - para rodar isto, modifique o código com um
+    // Servidor SMTP que vocẽ tenha acesso e descomente a
+    // linha [return] do código abaixo. Se você tiver uma
+    // conta GMail, você pode usá-la para testar esta
+    // função. Possivelmente isso falhará de início e
+    // fornecerá uma mensagem de configurações que você
+    // precisa definir para que o gmail funcione para
+    // envio através de SMTP.
     //
-    // If you do not have access to an email server and want to
-    // try this code then comment out the code before the line
-    // [$timeout = 2;] and run just Gmail SMTP Commands without
-    // sending an email.
+    // Se você não tem acesso a um servidor de e-maile quer
+    // testar este código, então, commente o código antes da
+    // linha [$timeout = 2;] e rode somente Comandos SMTP no
+    // Gmail sem enviar um e-mail.
     //
-    return 'Modify code to run';
+    return 'Modifique o código para rodar';
 
-    // Output Plain Text. With this example code when logging is used,
-    // messages are sent as soon as they occur.
+    // Gera Texto Puro. Com este código exemplo, quando logging é utilizado,
+    // mensagens são enviadas assim que elas ocorrem..
     header('Content-Type: text/plain');
 
     // EXAMPLE_CODE_START
-    // TITLE: Send an Email through an SMTP Server
+    // TITLE: Envia um E-mail via um Servidor SMTP
     // CLASS: Net\SmtpClient, Net\Email
-    // Define Email Settings
+    // Defina as Configurações de E-mail
     $from = 'noreply@example.com';
     $to = 'user.name@example.com';
-    $subject = 'Email Test from FastSitePHP at ' . date(DATE_RFC2822);
-    $body = '<h1>Email Title</h1><p style="color:blue;">This is a test.</p>';
+    $subject = 'E-mail de Teste de FastSitePHP em ' . date(DATE_RFC2822);
+    $body = '<h1>Título do E-mail</h1><p style="color:blue;">Isto é um teste.</p>';
 
-    // Create an Email Object
+    // Cria um Objeto E-mail
     $email = new \FastSitePHP\Net\Email($from, $to, $subject, $body);
 
-    // The Email Class also has many additional settings and can be created
-    // without specifying any parameters. When setting [From] or [Reply-To]
-    // email addresses on of the following formats can be used:
+    // A Classe Email também tem várias definições adicionais e pode ser criada
+    // sem especificar quaisquer parâmetros. Ao definir os endereços de e-mail
+    // de [From] ou [Reply-To], um os seguintes formatos pode ser utilizado:
     //   String: 'Email Address'
     //   Array: ['Email', 'Name']
-    // And when specifying who to send email to any of the formats can be used:
-    //   String 'Email Address'
-    //   Array: ['Email', 'Name']
-    //   Array: ['Email Address 1', 'Email Address 2', '...']
+    // E quando especificar para quem enviar o e-mail para qualquer um dos
+    // formatos, pode utilizar:
+    //   String 'Endereço de E-mail'
+    //   Array: ['E-mail', 'Nome']
+    //   Array: ['Endereço de E-mail 1', 'Endereço de E-mail 2', '...']
     /*
     $email = new \FastSitePHP\Net\Email();
     $email
@@ -2877,25 +2990,26 @@ $app->get('/examples/smtp-client', function() use ($app) {
         ->header('X-Transaction-ID', '123abc');
     */
 
-    // File attachements are also supported:
+    // Arquivos anexos também são suportados:
     //
     // $email->attachFile($file_path);
 
-    // SMTP Servers that support Unicode Emails can use [allowUnicodeEmails(true)].
-    // When used the SMTP Client sends a SMTPUTF8 option if the server supports it.
+    // Servidores SMTP que suportam E-mails Unicode pode utilizar
+    // [allowUnicodeEmails(true)]. Quando utilizado, O Cliente SMTP envia uma
+    // opção SMTPUTF8 se o servidor suportá-la.
     //
     // $email->allowUnicodeEmails(true)->from('无回复@example.com');
 
-    // SMTP Settings
+    // Configurações SMTP
     $host = 'smtp.example.com';
     $port = 25;
     $auth_user = null;
     $auth_pass = null;
 
-    // Create SMTP Client and Send Email.
-    // Once the variable for the SMTP Client is not longer used (or set to null)
-    // then it automatically sends a 'QUIT' command to the SMTP Server and closes
-    // the connection.
+    // Cria Cliente SMTP e Envia E-mail.
+    // Uma vez que a váriavel para o Client SMTP não estiver mais em uso ou
+    // definida como null, então, um comando 'QUIT' é automaticamente enviado
+    // para o Servidor SMTP e a conexão é fechada.
     $smtp = new \FastSitePHP\Net\SmtpClient($host, $port);
     if ($auth_user !== null) {
         $smtp->auth($auth_user, $auth_pass);
@@ -2903,15 +3017,17 @@ $app->get('/examples/smtp-client', function() use ($app) {
     $smtp->send($email);
     $smtp = null;
 
-    // Additional options can be specified for timeout (in seconds) and for logging
+    // Opções adicionais podem ser especificadas, em segundos, para timeout e
+    // para logging
     $timeout = 2;
     $debug_callback = function($message) {
         echo '[' . date('H:i:s') . '] ' . trim($message) . "\n";
     };
 
-    // The [SmtpClient] Class also supports an easy to use API for communicating
-    // with SMTP Servers. In this example Gmail is used and several commands are
-    // performed. Messages are logged to the [$debug_callback] function.
+    // A Classe [SmtpClient] também suporta uma API de fácil utilização para
+    // comunicar com Servidores SMTP. Neste exemplo Gmail é utilizado e diversos
+    // comandos são realizados. Mensagens são logadas para a função
+    // [$debug_callback].
     $host = 'smtp.gmail.com';
     $port = 587;
     $smtp2 = new \FastSitePHP\Net\SmtpClient($host, $port, $timeout, $debug_callback);
@@ -2920,9 +3036,10 @@ $app->get('/examples/smtp-client', function() use ($app) {
     $smtp2->quit();
     $smtp2->close();
 
-    // One or more emails can also be sent using App Config Values or System
-    // Enviroment Variables. This type of setup can be used to prevent sensitive
-    // authentication info from being saved with the main code logic.
+    // Um ou mais e-mails pode também ser enviados utilizando Valores de
+    // Configuração de App ou Variáveis de Ambiente do Systema. Este tipo de
+    // configuração pode ser utilizada para prevenir que dados de autenticação
+    // sensíveis sejam salvos com o código lógico principal.
     /*
     $app->config['SMTP_HOST'] = $host;
     $app->config['SMTP_PORT'] = $port;
@@ -2939,17 +3056,18 @@ $app->get('/examples/file-system-search', function() use ($app) {
     $dir_path = __DIR__ . '/../../vendor/fastsitephp';
 
     // EXAMPLE_CODE_START
-    // TITLE: Search for Files and Directories (Folders)
+    // TITLE: Busque por Arquivos e Diretórios (Pastas)
     // CLASS: FileSystem\Search
-    // Create a FileSystem Search Object
+    // Crie um Objeto Search do Sistema de Arquivos
     $search = new \FastSitePHP\FileSystem\Search();
 
-    // For basic usage specify a root directory with the [dir()] command and then
-    // call either [files()] or [dirs()]. An array of matching names will be returned.
+    // Para utilização básica, especifique um diretório raiz com o comando
+    // [dir()] e então chame [files()] ou [dirs()]. Um array the nomes correspondentes
+    // será retornado.
     $files = $search->dir($dir_path)->files();
 
-    // Functions are chainable so breaking them up
-    // one per line can make the code easier to read.
+    // Funções são encadeáveis então quebrá-las em uma por linha pode tornar o
+    // código mais fácil de ler.
     $dirs = $search
         ->dir($dir_path)
         ->dirs();
@@ -2960,11 +3078,12 @@ $app->get('/examples/file-system-search', function() use ($app) {
         ->dir($dir_path)
         ->urlFiles($url_root);
 
-    // A number of different criteria functions exist and can be used to filter
-    // the results. In this example a recursive search is used to find PHP files
-    // that contain the text 'FileSystem'. When a recursive search is used the
-    // full file paths are returned unless [includeRoot(false)] is set.
-    // See documentation and examples for all functions.
+    // Existem várias funções com critérios diferentes e podem ser utilizadas
+    // para filtrar os resultados. Neste exemplo uma busca recursiva é utilizada
+    // para encontrar arquivos PHP que contenham o texto 'FileSystem'. Quando
+    // uma busca recursiva é utilizada, o caminho completo dos arquivos é
+    // retornado a não ser que [includeRoot(false)] esteja definida.
+    // Veja a documentação e exemplos para todas as funções.
     $files = $search
         ->dir($dir_path)
         ->recursive(true)
@@ -2973,7 +3092,7 @@ $app->get('/examples/file-system-search', function() use ($app) {
         ->files();
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -2987,20 +3106,20 @@ $app->get('/examples/file-system-search', function() use ($app) {
 
 $app->get('/examples/markdown', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Convert Markdown to HTML using PHP
-    // FastSitePHP includes the high performance library Parsedown for
-    // converting Markdown format to HTML.
+    // TITLE: Converta Markdown para HTML utilizando PHP
+    // O FastSitePHP inclui a biblioteca de alto desempenho Parsedown para
+    // converter o formato Markdown para HTML.
 
-    // Make sure to load the vendor autoloader
+    // Certifique-se de carrear o autorloader do fornecedor
     require '../../../vendor/autoload.php';
 
-    // Create Parsedown Object
+    // Crie o Objeto Parsedown
     $Parsedown = new Parsedown();
 
-    // Convert to HTML from a Text String
-    $html = $Parsedown->text('Hello **FastSitePHP**!');
+    // Converta para HTML de uma String de Texto
+    $html = $Parsedown->text('Olá **FastSitePHP**!');
 
-    // Read a File and convert to HTML
+    // Leia um Arquivo e converta para HTML
     $file_path = __DIR__ . '/views/example.md';
     $md = file_get_contents($file_path);
     $html = $Parsedown->text($md);
@@ -3012,50 +3131,52 @@ $app->get('/examples/logging', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Logging
     // CLASS: Data\Log\FileLogger, Data\Log\HtmlLogger
-    // FastSitePHP includes two logging classes that implement the widely used
-    // [Psr\Log] Interface.
+    // O FastSitePHP inclui duas classes de logging que implementam a amplamente
+    // utilizada Interface [Psr\Log].
 
-    // Create a file logger. Log messages are appended and the file is created
-    // the when the first message is added.
+    // Cria um arquivo logger. Mensagens de log são adicionadas e o arquivo é
+    // criado quando a primeira mensagem é adicionada.
     $file = __DIR__ . '/log.txt';
     $file_logger = new \FastSitePHP\Data\Log\FileLogger($file);
 
-    // Create an HTML Logger
-    // This class can be used for temporary development logs because it outputs an
-    // HTML table of logged messages after the response is sent or depending on
-    // options can be used to replace the original response. The parameter
-    // [$replace_response] is optional.
+    // Crie um Logger HTML
+    // Esta classe pode ser utilizada para logs temporários de desenvolvimento
+    // porque isto gera uma tabela HTML das mensagens regsitradas depois que a
+    // resposta é enviada ou, dependendo das opções, pode ser utilizada para
+    // substituir a resposta original. O parâmetro [$replace_response] é opcional.
     $replace_response = false;
     $html_logger = new \FastSitePHP\Data\Log\HtmlLogger($app, $replace_response);
 
-    // Log messages using one of the following functions:
+    // Registre mensagens utilizando uma das seguintes funções:
     //     emergency(), alert(), critical(), error(),
     //     warning(), notice(), info(), debug()
-    $file_logger->info('This is a Test.');
-    $html_logger->error('Application Test');
+    $file_logger->info('Isto é um teste.');
+    $html_logger->error('Aplicação de Teste');
 
-    // Additionally data can be passed to the message with placeholders
-    $html_logger->info('User {name} created', [
+    // Dados adicionais podem ser passados para a mensagem através de espaços
+    // reservados
+    $html_logger->info('Usuário {name} criado', [
         'name' => 'Admin'
     ]);
 
-    // The date format can be any valid value for the PHP function [date()].
-    // Default is [\DateTime::ISO8601].
+    // O formato de data pode ser qualquer valor válido para a função [date()] do PHP.
+    // O padrão é [\DateTime::ISO8601].
     $file_logger->date_format = 'Y-m-d H:i:s';
 
-    // For the file logger the output format can be controlled by properties.
+    // Para o arquivo de registro o formato gerado pode ser controlado pelas
+    // propriedades.
     //
-    // Default Format:
+    // Formato Padrão:
     //     '{date} {level} - {message}{line_break}';
     //
-    // Line Breaks default based on the OS:
+    // Quebras de Linha padrão baseando-se no Sistema Operacional (SO):
     //     "\r\n" - Windows
-    //     "\n"   - Other OS's
+    //     "\n"   - Outros SOs
     $file_logger->log_format = '[{level}] {message}{line_break}';
     $file_logger->line_break = '^^';
 
-    // You can also customize the HTML Logger with your own template:
-    // $html_logger->temlate_file = 'YOUR_TEMPLATE.php';
+    // Você pode também persolalizar o HTML Logger com seu próprio modelo:
+    // $html_logger->temlate_file = 'SEU_MODELO.php';
     // EXAMPLE_CODE_END
 
     $html = '<html><body style="background-color:green; padding:0;"><div style="padding:20px;">';
@@ -3067,31 +3188,32 @@ $app->get('/examples/logging', function() use ($app) {
 
 $app->get('/examples/network-info', function() {
     // EXAMPLE_CODE_START
-    // TITLE: Get Network and Server Info
+    // TITLE: Obtenha Informações de Rede e do Servidor
     // CLASS: Net\Config
-    // Create a Networking Config Object
+    // Crie um Objeto de Configuração de Rede
     $config = new \FastSitePHP\Net\Config();
 
-    // Get a (fqdn) 'fully-qualified domain name' for the server ['server.example.com']
+    // Obtenha um (fqdn) 'fully-qualified domain name' para o servidor ['servidor.example.com']
     $host = $config->fqdn();
 
-    // Get the Network IPv4 Address for the computer or server
+    // Obtenha o endreço IPv4 da Rede para o computador ou servidor
     $ip = $config->networkIp();
 
-    // Get a list of all IPv4 Addresses for the computer or server
+    // Obtenha uma lista de todos os endereços IPv4 para o computador ou servidor
     $ip_list = $config->networkIpList();
 
-    // Get a text string of info from the server using one of the following commands:
-    // - Linux / Unix = [ip addr] or [ifconfig]
+    // Obtenha um string de texto de informaçoes do servidor utilizando um
+    // dos seguintes comandos:
+    // - Linux / Unix = [ip addr] ou [ifconfig]
     // - Mac          = [ifconfig]
     // - Windows      = [ipconfig]
     $info = $config->networkInfo();
 
-    // Convert the Network Info String to an Object
+    // Convere a String de Informações de Rede em um Objeto
     $info = $config->parseNetworkInfo($info);
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Format e retorna como uma resposta em texto
     $ip_list = json_encode($ip_list, JSON_PRETTY_PRINT);
     $info = json_encode($info, JSON_PRETTY_PRINT);
     $res = new \FastSitePHP\Web\Response();
@@ -3110,16 +3232,17 @@ $app->get('/examples/network-info', function() {
 
 $app->get('/examples/environ-system', function() {
     // EXAMPLE_CODE_START
-    // TITLE: Get Environment and System Info
+    // TITLE: Obtém Informações de Ambiente e Sistema
     // CLASS: Environment\System
-    // Create an Environment System Object
+    // Cria um Objeto do Sistema de Ambiente
     $sys = new \FastSitePHP\Environment\System();
 
-    // Get an array of basic information related to the Operating System
+    // Obtém um array de informações básicas relacionadas ao Sistema Operacional
     // [ 'OS Type', 'Version Info', 'Release Version', 'Host Name', 'CPU Type' ]
     $os_info = $sys->osVersionInfo();
 
-    // Get a text string of detailed system info using one of the following commands:
+    // Obtém uma string de texto de informações detalhadas do sistema utilizando
+    // um dos seguintes comandos:
     // - Linux   = File: '/etc/os-release'
     // - FreeBSD = uname -mrs
     // - IBM AIX = uname -a
@@ -3127,19 +3250,19 @@ $app->get('/examples/environ-system', function() {
     // - Windows = ver
     $info = $sys->systemInfo();
 
-    // Get an array of information related to free, used, and total space for
-    // a filesystem drive or disk partition. This function allows for specific
-    // drives or partitions to be specified.
+    // Obtém um array de informações relacionado espaço livre, usado e total
+    // para um drive do sistema de arquivos ou partição do disco. Esta função
+    // permite que drives específicos ou partições sejam especificadas.
     // - *nix    = $sys->diskSpace('/dev/disk0')
     // - Windows = $sys->diskSpace('C:')
     $disk_space = $sys->diskSpace();
 
-    // Windows only function that returns an array of drive letters
-    // mapped to the server. Returns an empty array for other OS's.
+    // Função somente de Windows que retorna um array de letras de unidades
+    // mapeadas para o servidor. Retorna um array vazio para outros SOs.
     $mapped_drives = $sys->mappedDrives();
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3155,36 +3278,38 @@ $app->get('/examples/environ-system', function() {
 });
 
 $app->get('/examples/environ-dotenv', function() {
-    // In order to run this without error add a [.env]
-    // file to this directory or modify the code below.
-    // Using default code an error will be thrown until
+    // Para rodar isto sem erros, adicione um arquivo [.env] a este diretório
+    // ou modifique o código abaixo.
+    // Utilizando código padrão, um erro será lançado até que as chaves
+    // necessárias também sejam adicionadas.
+    Using default code an error will be thrown until
     // required keys are also added.
     $dir = __DIR__;
     $file_path = __DIR__ . '/.env';
 
     // EXAMPLE_CODE_START
-    // TITLE: Use a [.env] File
+    // TITLE: Utilize um arquivo [.env]
     // CLASS: Environment\DotEnv
-    // Loads environment variables from a [.env] file into [getenv()] and [$_ENV].
-    // FastSitePHP's DotEnv is a port of the Node package [dotenv] so the same
-    // syntax used by node projects is supported.
+    // Carrega variáveis de ambiente de um arquivo [.env] para dentro de
+    // [getenv()] e [$_ENV]. O FastSitePHP DotEnv é um porte do pacote Node
+    // [dotenv] então a mesma sintaxe utilizada por projetos Node é suportada.
     $vars = \FastSitePHP\Environment\DotEnv::load($dir);
 
-    // Use variables from the file after reading it. Variables are only set
-    // from the file if they do not already exist.
+    // Utilize variáveis de um arquivo depois de lê-lo. Variáveis são somente
+    // definidas de um arquivo se elas ainda não existirem.
     $value = getenv('DB_CONNECTION');
     $value = $_ENV['DB_CONNECTION'];
 
-    // Load a file using [.env] file format. The full path of the file is
-    // specified so it can be named anything.
+    // Carregue um arquivo utilizando o formato [.env]. O caminho completo do
+    // arquivo é especificado de forma que possa receber qualquer nome.
     $vars = \FastSitePHP\Environment\DotEnv::loadFile($file_path);
 
-    // Optionally require keys to exist in the file.
+    // Opcionalmente, exija que hajam chaves no arquivo.
     $required_vars = ['DB_ORACLE', 'DB_SQL_SERVER'];
     $vars = \FastSitePHP\Environment\DotEnv::load($dir, $required_vars);
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate  retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3195,29 +3320,30 @@ $app->get('/examples/encryption', function() use ($app) {
     $data = ['User'=>'Admin', 'Password'=>'123'];
 
     // EXAMPLE_CODE_START
-    // TITLE: Security - Encrypt and Decrypt Data
+    // TITLE: Segurança - Criptografe e Descriptografe Dados
     // CLASS: Security\Crypto\Encryption, Security\Crypto
-    // Generate a Key for Encryption.
-    // The key is a long hex string of secure random bytes.
-    // The key would typically be saved with your app or in config.
+    // Gere uma Chave para Criptografia.
+    // A chave é uma longa string hexadecimal de bytes aleatórios seguros.
+    // A chave seria tipicamente salva com seu app ou nas configurações.
     $crypto = new \FastSitePHP\Security\Crypto\Encryption();
     $key = $crypto->generateKey();
 
-    // Encrypt and Decrypt using the Crypto Helper Class with Config Settings.
-    // Data of different data types can be encrypted and returned in the
-    // same format (string, int, object, etc).
+    // Criptografe e Descriptografe utilizando a classe auxiliar Cypto com
+    // definições de configuração.
+    // Dados de diferentes tipos de dados pode ser criptografados e retornados
+    // no mesmo formato (string, int, objeto etc).
     $app->config['ENCRYPTION_KEY'] = $key;
     $encrypted_text = \FastSitePHP\Security\Crypto::encrypt($data);
     $decrypted_data = \FastSitePHP\Security\Crypto::decrypt($encrypted_text);
 
-    // Encrypt and Decrypt using the Encryption Class. This class
-    // provides many additional options that are not in the helper class.
+    // Criptografe e Descriptografe utilizando a classe Encryption. Esta classe
+    // fornece muitas opções adicionais que não estão na classe auxiliar.
     $encrypted_text = $crypto->encrypt($data, $key);
     $decrypted_data = $crypto->decrypt($encrypted_text, $key);
 
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3229,42 +3355,45 @@ $app->get('/examples/encryption', function() use ($app) {
 });
 
 $app->get('/examples/file-encryption', function() use ($app) {
-    // Build a Random File
+    // Gere um Arquivo Aleatório
     $rand = \bin2hex(\FastSitePHP\Security\Crypto\Random::bytes(6));
     $file_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'crypto_test_' . $rand;
-    file_put_contents($file_path, 'This is a Test');
+    file_put_contents($file_path, 'Isto é um Teste');
 
     // EXAMPLE_CODE_START
-    // TITLE: Security - Encrypt and Decrypt a File
+    // TITLE: Segurança - Criptografe e Descriptografe um Arquivo
     // CLASS: Security\Crypto\FileEncryption, Security\Crypto
-    // FastSitePHP allows for fast authenticated encryption of any size file
-    // (even large files that are many gigs in size). The code used for encryption
-    // is compatible with shell commands and a Bash Script [encrypt.sh] that works
-    // on Linux and Unix Computers. The Bash Script can be downloaded from this site,
-    // and will work on most Linux OS's without having to install anything.
+    // O FastSitePHP permite uma autenticação de criptografia rápida de qualquer
+    // tamanho de arquivo(mesmo grandes arquivos que estão nos gigabytes de
+    // tamanho). O código utilizado para a criptografia é compatível com comandos
+    // de shell e um script Bash [encrypt.sh] que funciona em Computadores
+    // Linux e Unix. O script Bash pode ser baixado deste site e funcionará na
+    // maioria dos sistemas Linux sem que nada seja instalado.
 
-    // Generate a Key for Encryption
+    // Gere uma Chave para Criptografia
     $crypto = new \FastSitePHP\Security\Crypto\FileEncryption();
     $key = $crypto->generateKey();
 
-    // Build file paths of files to save based on the original name
+    // Construa caminhos de arquivos para salvar, baseando-se no nome original
     $enc_file = $file_path . '.enc';
     $output_file = $enc_file . '.decrypted';
 
-    // Encrypt and Decrypt using the Crypto Helper Class with Config Settings.
-    // A [FileEncryption] class also exists with additional options.
+    // Criptografe e Descriptografe utilizando a classe auxiliar Crypto com
+    // definições de configuração. Uma classe [FileEncryption] também existe com
+    // opções adicionais.
     $app->config['ENCRYPTION_KEY'] = $key;
     \FastSitePHP\Security\Crypto::encryptFile($file_path, $enc_file);
     \FastSitePHP\Security\Crypto::decryptFile($enc_file, $output_file);
     // EXAMPLE_CODE_END
 
-    // Read Files for the Response
+    // Leia Arquivos para a Resposta
     $contents_start = file_get_contents($file_path);
     $contents_enc = bin2hex(file_get_contents($enc_file));
     $contents_dec = file_get_contents($output_file);
 
-    // Delete created files
-    // To see files comment out this code, then view most recent files in temp folder.
+    // Apague aquivos criados
+    // Para ver aquivos, descomente este código, então, veja os arquivos mais
+    // recentes na pasta temporária.
 	$files = array($file_path, $enc_file, $output_file);
 	foreach ($files as $file) {
 		if (is_file($file)) {
@@ -3272,7 +3401,7 @@ $app->get('/examples/file-encryption', function() use ($app) {
 		}
 	}
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3287,37 +3416,40 @@ $app->get('/examples/file-encryption', function() use ($app) {
 
 $app->get('/examples/jwt-hmac', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - Encode and Decode a JSON Web Token (JWT)
+    // TITLE: Segurança - Codifique e Decodifique um Token JSON Web (JWT)
     // CLASS: Security\Crypto\JWT, Security\Crypto
-    // The JWT Payload can be either an Object or an Array (Dictionary).
+    // A carga do JWT pode ser um Objeto ou um Array (Dicionário).
     $payload = [
         'User' => 'John Doe',
         'Roles' => ['Admin', 'SQL Editor']
     ];
 
-    // Generate a Key for Encoding (Signing).
-    // The key is a long hex string of secure random bytes.
-    // The key would typically be saved with your app or in config.
+    // Gere um Chave para Codificação (Assinando).
+    // A chave é uma longa string hexadecimal de bytes aleatórios seguros.
+    // A chave seria tipicamente salva com seu app ou nas configurações.
     $jwt = new \FastSitePHP\Security\Crypto\JWT();
     $key = $jwt->generateKey();
 
-    // Encode and Decode JWT with the Crypto Helper Class with Config Settings.
-    // When using the default parameters with the helper class the data has a
-    // 1-hour timeout.
+    // Codifique e Decodifique o JWT com a Classe Auxiliar Crypto e Definições
+    // de Configuração.
+    // Ao utilizar os parâmetros padrão com ao classe auxiliar, os dados tem
+    // validade de uma hora.
     $app->config['JWT_KEY'] = $key;
     $token = \FastSitePHP\Security\Crypto::encodeJWT($payload);
     $data  = \FastSitePHP\Security\Crypto::decodeJWT($token);
 
-    // Encode (Sign) and Decode (Verify) using the JWT Class. When using
-    // default settings with the JWT Class, not timeout is specified, all
-    // claims are validated, and a secure key is required.
+    // Codifique (Assine) e Decodifique (Verifique) utilizando a classe JWT. Ao
+    // utilizar as definições padrão com a classe JWT, nenhuma expiração é
+    // especificada, todas as reinvindicações são validadas e uma chave é
+    // necessária.
     $token = $jwt->encode($payload, $key);
     $data  = $jwt->decode($token, $key);
 
-    // Add Claims to the Payload and use an Insecure Key for Compatibility
-    // with other sites (Often online demos of JWT are shown using simple
-    // passwords for the key). By default keys are required to be secure
-    // with proper length and in either Base64 or Hex format.
+    // Adicione Reinvidicações à Carga Válida e utilize uma Chave Insegura para
+    // Compatibilidade com ouros sits (Geralmente demonstrações online de JWT
+    // são mostradas utilizando senhas simples para a chave). Por padrão, chaves
+    // necessitam ser seguras, com comprimento apropriado e no formato Base64 ou
+    // Hexadecimal.
 
     $payload = $jwt->addClaim($payload, 'exp', '+10 minutes');
     $payload = $jwt->addClaim($payload, 'iss', 'example.com');
@@ -3331,7 +3463,7 @@ $app->get('/examples/jwt-hmac', function() use ($app) {
     $data  = $jwt->decode($token, $insecure_key);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3344,14 +3476,14 @@ $app->get('/examples/jwt-hmac', function() use ($app) {
 
 $app->get('/examples/jwt-rsa', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - Encode and Decode JWT using RSA
+    // TITLE: Segurança - Codifique e Decodifique o JWT utilizado RSA
     // CLASS: Security\Crypto\JWT
-    // The JWT Payload can be either an Object or an Array (Dictionary).
+    // A carga do JWT pode ser um Objeto ou um Array (Dicionário)
     $payload = new \stdClass;
     $payload->User = 'John Doe';
     $payload->Roles = ['Admin', 'SQL Editor'];
 
-    // Create JWT Class, specify 'RS256' Algoritm, and generate Key Pair
+    // Crie uma Classe JWT, especifique o Algorítmo 'RS256 e gere um Par de Chaves
     $jwt = new \FastSitePHP\Security\Crypto\JWT();
     $jwt
         ->algo('RS256')
@@ -3364,7 +3496,7 @@ $app->get('/examples/jwt-rsa', function() use ($app) {
     $data  = $jwt->decode($token, $public_key);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3381,34 +3513,35 @@ $app->get('/examples/signed-data', function() use ($app) {
     $data = ['User'=>'Admin', 'Roles'=>['Admin']];
 
     // EXAMPLE_CODE_START
-    // TITLE: Security - Sign and Verify Data
+    // TITLE: Segurança - Sign and Verify Data
     // CLASS: Security\Crypto\SignedData, Security\Crypto
-    // Using the [SignedData] is similar in concept to using JWT.
-    // A client can read the data but not modify it.
+    // Utilizar [SignedData] tem um conceito parecido ao de utilizar JWT.
+    // Um cliente pode ler os dados mas não moficá-los.
 
-    // Generate a Key for Signing.
-    // The key is a long hex string of secure random bytes.
-    // The key would typically be saved with your app or in config.
+    // Gere uma Chave para Assinar.
+    // A chave é uma longa string hexadecimal de bytes aleatórios seguros.
+    // A chave seria tipicamente salva com seu app ou nas configurações.
     $csd = new \FastSitePHP\Security\Crypto\SignedData();
     $key = $csd->generateKey();
 
-    // Sign and Verify using the Crypto Helper Class with Config Settings.
-    // When using the default parameters with the helper class the data has
-    // a 1-hour timeout. Data of different data types can be signed and
-    // verified to the original format (string, int, object, etc).
+    // Assine e Verifique utilizando a Classe Auxiliar Cypto com Definições de
+    // Configuração. Ao utilizar os parâmetros padrão com a classe auxiliar, os
+    // dados exipiram em uma hora. Dados para diferentes tipos de dados podem
+    // ser assinados e verificados em seu format original (string, int, object,
+    // etc).
     $app->config['SIGNING_KEY'] = $key;
     $signed_text   = \FastSitePHP\Security\Crypto::sign($data);
     $verified_data = \FastSitePHP\Security\Crypto::verify($signed_text);
 
-    // Sign and Verify using the SignedData Class. The SignedData Class
-    // allows for additional options and doesn't use config settings.
-    // The parameter [$expire_time] is optional.
+    // Assina e Verifica utilizando a Classe SignedData Class. A Classe
+    // SignedData permite opções adicionais e não utiliza definições de
+    // configuração. O parâmetro [$expire_time] é opcional.
     $expire_time   = '+20 minutes';
     $signed_text   = $csd->sign($data, $key, $expire_time);
     $verified_data = $csd->verify($signed_text, $key);
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3424,40 +3557,41 @@ $app->get('/examples/password', function() use ($app) {
     $argon_verified = null;
 
     // EXAMPLE_CODE_START
-    // TITLE: Security - Hash and Verify Passwords
+    // TITLE: Segurança - Hash e Verifique Senhas
     // CLASS: Security\Password
-    // Saving User Passwords using a one-way hashing function is important for
-    // secure applications. FastSitePHP’s Password class provides support for
-    // bcrypt (default) and Argon2.
+    // Salvando Senhas de Usuário utilizando uma função hash unidirecional é
+    // importante para segurar aplicações. A classe Password do FastSitePHP
+    // provê suporte para bcypt (padrão) e Argon2.
 
-    // Example of a User Password, this value should not be saved to a database
+    // Exemplo de uma Senha de Usuário. Este valor não deveria ser gravado em
+    // um banco de dados
     $password = 'Password123';
 
-    // Create a Password Object
+    // Crie um Objeto Password
     $pw = new \FastSitePHP\Security\Password();
 
-    // Hash the Password, this will create hash text that looks like this:
+    // Hash de Senha. Isto criará uma hash textual que parece que isso:
     //   '$2y$10$cDpu8TnONBhpBFPEKTTccu/mYhSppqNLDNCfOYLfBWI3K/FzFgC2y'
-    // The value will change everytime and is safe to save to a database.
+    // O valor mudará toda vez e é seguro gravá-lo em um banco de dados.
     $hash = $pw->hash($password);
 
-    // Verify a Password - returns [true] or [false]
+    // Verifique a Senha - retorna [true] ou [false]
     $verified = $pw->verify($password, $hash);
 
-    // Create a randomly generated password that is 12 characters in length
-    // and contains the following:
-    //   4 Uppercase Letters (A - Z)
-    //   4 Lowercase Letters (a - z)
-    //   2 Digits (0 - 9)
-    //   2 Special Characters (~, !, @, #, $, %, ^, &, *, ?, -, _)
+    // Cria uma senha aleatoriamente gerada que tem 12 caracteres de
+    // comprimento e contém o seguinte:
+    //   4 Letras Maiúsculas (A - Z)
+    //   4 Letras Minúsculas (a - z)
+    //   2 Dígitos (0 - 9)
+    //   2 Caracteres Especiais (~, !, @, #, $, %, ^, &, *, ?, -, _)
     $strong_password = $pw->generate();
 
-    // Specify a different BCrypt Cost of 12 instead of the default value 10
+    // Especifique um custo BCrypt de 12 ao invés do valor padrão 10
     $pw->cost(12);
     $hash2 = $pw->hash($password);
     $verified2 = $pw->verify($password, $hash2);
 
-    // When using PHP 7.2 or later Argon2 can be used
+    // Ao utilizar PHP 7.2 ou mais recente, Argon2 pode ser utilizada
     if (PHP_VERSION_ID >= 70200) {
         $pw->algo('Argon2');
         $argon_hash = $pw->hash($password);
@@ -3465,7 +3599,7 @@ $app->get('/examples/password', function() use ($app) {
     }
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3482,19 +3616,19 @@ $app->get('/examples/password', function() use ($app) {
 
 $app->get('/examples/create-rsa-key-pair', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - Generate a new RSA Key Pair
+    // TITLE: Segurança - Gere um novo Par de Chaves RSA
     // CLASS: Security\Crypto\PublicKey
-    // Generate a new RSA Key Pair
+    // Gere um novo Par de Chaves RSA
     $key_pair = \FastSitePHP\Security\Crypto\PublicKey::generateRsaKeyPair();
     list($private_key, $public_key) = $key_pair;
 
-    // Generate a new 3072-Bit RSA Key
+    // Gere uma nova chave RSA 3072-Bit
     $bits = 3072;
     $key_pair = \FastSitePHP\Security\Crypto\PublicKey::generateRsaKeyPair($bits);
     list($private_key2, $public_key2) = $key_pair;
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3508,17 +3642,18 @@ $app->get('/examples/create-rsa-key-pair', function() use ($app) {
 
 $app->get('/examples/random-bytes', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Generate a string of random bytes
+    // TITLE: Gere uma string de bytes aleatórios
     // CLASS: Security\Crypto\Random
-    // Generate cryptographically secure pseudo-random bytes that
-    // are suitable for cryptographic use and secure applications.
+    // Gere bytes pseudo-aleatórios criptograficamente seguros, adequados para
+    // uso criptográfico e aplicativos seguros.
     $bytes = \FastSitePHP\Security\Crypto\Random::bytes(32);
 
-    // Convert the bytes to another format:
+    // Converte os byts para outro formato:
     $hex_bytes = bin2hex($bytes);
     $base64_bytes = base64_encode($bytes);
 
-    // When using PHP 7 or newer you can simply call [random_bytes()]
+    // Ao utilizar PHP 7 ou mais recente, você pode simplesmente chamar
+    // [random_bytes()]
     $bytes = random_bytes(32);
     // EXAMPLE_CODE_END
 
@@ -3527,40 +3662,41 @@ $app->get('/examples/random-bytes', function() use ($app) {
 
 $app->get('/examples/csrf-session', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - CSRF using Session
+    // TITLE: Segurança - CSRF utlizando Session
     // CLASS: Security\Web\CsrfSession
-    // One call to a static function creates a token on GET Requests
-    // and validates it with Requests POST, PUT, DELETE, etc.
-    // If there is an error with the token then an exception is
-    // thrown which will cause 500 response with the error page.
+    // Uma chamada para um função estática cria um token em Requisições GET e
+    // valida isso com Requisiçõs POST, PUT, DELETE etc. Se não há erro com o
+    // token, então um exceção é lançada, o que causará uma resposta 500 com a
+    // página de erro.
     \FastSitePHP\Security\Web\CsrfSession::setup($app);
 
-    // The token is assigned a locals value in the Application Object
+    // O token recebe um valor locals no Objeto da Aplicação
     $token = $app->locals['csrf_token'];
 
-    // This allows it to be used with templating code.
-    // Tokens are validated from [setup()] but not automatically added
-    // to forms so they must be added through templating or by code.
+    // Isto permite que seja utilizado com código de modelo. Tokens são
+    // validados à partir por [setup()] mas não automaticamente adicionado a
+    // formulários, então eles devem ser adicionados através de modelos ou por
+    // código.
     //
     // <meta name="X-CSRF-Token" content="{{ $csrf_token }}">
     // <input name="X-CSRF-Token" value="{{ $csrf_token }}">
 
-    // A good place to call this function is on route filters
-    // of pages that use authentication. Example:
+    // Um bom lugar para chamar esta função é nos filtros de rota das páginas
+    // que utilizam autenticação. Exemplo:
 
-    // Create a filter function to assign to multiple routes
+    // Crie uma função filtro para atribuir para multiplas rotas
     $csrf_session = function() use ($app) {
         \FastSitePHP\Security\Web\CsrfSession::setup($app);
     };
 
-    // Use the function when defining a route
+    // Utilize a função quando definir uma rotaUse the function when defining a route
     $app->get('/form', function() use ($app) {
         return $app->render('form.php');
     })
     ->filter($csrf_session);
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3571,41 +3707,43 @@ $app->get('/examples/csrf-session', function() use ($app) {
 
 $app->get('/examples/csrf-stateless', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - Stateless CSRF
+    // TITLE: Segurança - Stateless CSRF
     // CLASS: Security\Web\CsrfStateless
-    // Stateless CSRF Tokens are not stored in Session but rather use a crypto
-    // keyed-hash message authentication code (HMAC) to create and verify the token.
+    // Tokens Stateless CSRF não são armazenados em Sessão, mas ao invés disso
+    // utilizam um código de autenticação de mensagem criptografada com hash
+    // (HMAC) para criar e verificar o token.
 
-    // A secure secret key is requird.
-    // The key would typically be saved with your app or in config.
+    // Uma chave segura secreta é requerida.
+    // A chave seria tipicamente salva com seu app ou nas configurações.
     $key = \FastSitePHP\Security\Web\CsrfStateless::generateKey();
 
-    // To use the Key it must be saved to either a config value or
-    // an environment variable before calling [setup()].
+    // Para utilizar a Chave, essa deve ser salva em um valor de configuração ou
+    // em uma variável de ambiente antes de chamar [setup()].
     $app->config['CSRF_KEY'] = $key;
     // putenv("CSRF_KEY=${key}");
 
-    // A unique identifier for the user is also required. This doesn't have
-    // to be secret and can be a simple as an numeric field in a database.
+    // Um identificador único para o usário é também necessário. Isto não tem de
+    // ser um segredo e pode ser simplesmente um campo númerico em um banco de
+    // dados.
     $user_id = 1;
 
-    // Setup and validate stateless CSRF Tokens
+    // Configura e valida token stateless CSRF
     \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id);
 
-    // Optionally add a timeout, this CSRF token will expire after 5 minutes
+    // Opcionally add a timeout, this CSRF token will expire after 5 minutes
     $expire_time = '+5 minutes';
     \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id, $expire_time);
 
-    // The same logic is used when using the [CsrfSession] class so
-    // the token is assigned a locals value in the Application Object
-    // which allows for it to be used with templating code.
+    // A mesma lógica é utilizada ao usar a classe [CsrfSession], então o token
+    // é atribuído um valor locals no Objeto da Aplicação permitindo que seja
+    // utilizado com código de modelo.
     $token = $app->locals['csrf_token'];
     //
     // <meta name="X-CSRF-Token" content="{{ $csrf_token }}">
     // <input name="X-CSRF-Token" value="{{ $csrf_token }}">
 
-    // Also just like [CsrfSession] a good place to call [setup()]
-    // is on route filter functions.
+    // Também da mesma forma que [CsrfSession] um bom lugar para chamar
+    // [setup()] é nas funções filtro de rota.    // is on route filter functions.
     $csrf = function() use ($app, $user_id) {
         \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id);
     };
@@ -3616,7 +3754,7 @@ $app->get('/examples/csrf-stateless', function() use ($app) {
     ->filter($csrf);
     // EXAMPLE_CODE_END
 
-    // Format and return as a text response
+    // Formate e retorne como uma resposta em texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3628,26 +3766,27 @@ $app->get('/examples/csrf-stateless', function() use ($app) {
 
 $app->get('/examples/net-ip', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: IP Addresses and Validation
+    // TITLE: Endereços IP e Validações
     // CLASS: Net\IP
-    // With FastSitePHP you can easily compare an IP Address to an accepted range
-    // of IP’s using CIDR Notation. CIDR Notation (Classless Inter-Domain Routing)
-    // is a compact representation of an IP address and its associated routing
-    // prefix. It is used regularly when working with digital networks and often
-    // needed for websites when handling IP Addresses for security.
+    // Com o FastSitePHP você pode facilmente comparar um endereço de IP a uma
+    // reconhecida faixa de IPs utilizando Notação CIDR. Notação CIDR
+    // (Classless Inter-Domain Routing) é uma representação compacta de endereços
+    // de IP e os prefixos de suas rotas associadas. Isto é utilizado regularmente
+    // ao trabalhar com redes digitais e frequentemente necessário para websites
+    // quando lidando com endereços de IP por segurança.
 
-    // Check if IP Address '10.10.120.12' is in the '10.0.0.0/8' range
-    // Returns [true]
+    // Verifique se o endereço de IP '10.10.120.12' está na faixa '10.0.0.0/8'
+    // Retorna [true]
     $matches = \FastSitePHP\Net\IP::cidr('10.0.0.0/8', '10.10.120.12');
 
     // Check if IP Address '10.10.120.12' is in the '172.16.0.0/12' range
-    // Returns [false]
+    // Retorna [false]
     $matches2 = \FastSitePHP\Net\IP::cidr('172.16.0.0/12', '10.10.120.12');
 
-    // IPv6 is also supported
+    // IPv6 também é suportado
     $matches3 = \FastSitePHP\Net\IP::cidr('fe80::/10', 'fe80::b091:1117:497a:9dc1');
 
-    // Get an array of Private Network Addresses in CIDR Notation
+    // Obtém um array de Endereços de Rede Privados em Notação CIDR
     //   [
     //     '127.0.0.0/8',      // IPv4 localhost
     //     '10.0.0.0/8',       // IPv4 Private Network, RFC1918 24-bit block
@@ -3660,14 +3799,15 @@ $app->get('/examples/net-ip', function() use ($app) {
     //   ]
     $private_addr = \FastSitePHP\Net\IP::privateNetworkAddresses();
 
-    // The array from [privateNetworkAddresses()] can be used with the [cidr()]
-    // function to check if an IP address is from a private network or from the
-    // public internet. The [cidr()] function accepts the CIDR Parameter as
-    // either an array or a string.
+    // O array de [privateNetworkAddresses()] pode ser utilizado com a função
+    // [cidr()] para verificar se um endereço de IP é de uma rede privada ou de
+    // da internet pública. A função [cidr()] aceita o Parâmetro CIDR como um
+    // array ou uma string.
     $matches4 = \FastSitePHP\Net\IP::cidr($private_addr, '10.10.120.12');
 
-    // Get Info about a CIDR string when calling [cidr()] with only 1 parameter.
-    // This example returns the following:
+    // Obtém informações sobre a sting CIDR ao chamar [cidr()] com somente 1
+    // parâmetro.
+    // Este exemplo retorna o seguinte:
     //   [
     //     'CIDR_Notation' => '10.63.5.183/24',
     //     'Address_Type' => 'IPv4',
@@ -3686,7 +3826,7 @@ $app->get('/examples/net-ip', function() use ($app) {
     //  ]
     $info = \FastSitePHP\Net\IP::cidr('10.63.5.183/24');
 
-    // Example of CIDR Info when using IPv6:
+    // Exemplo de informaççoes CIDR quando utiliza IPv6:
     //   [
     //     'CIDR_Notation' => 'fe80::b091:1117:497a:9dc1/48',
     //     'Address_Type' => 'IPv6',
@@ -3701,7 +3841,7 @@ $app->get('/examples/net-ip', function() use ($app) {
     $info_ip6 = \FastSitePHP\Net\IP::cidr('fe80::b091:1117:497a:9dc1/48');
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3721,125 +3861,135 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $image_file = __DIR__ . '/files/favicon.png';
 
     // EXAMPLE_CODE_START
-    // TITLE: File System Security
+    // TITLE: Segurança de Sistema de Arquivos
     // CLASS: FileSystem\Security
-    // The FileSystem Security Class contains functions for validating files.
+    // A Classe FileSystem Security contém funções para validar arquivos.
 
-    // Prevent Path Traversal Attacks by verifying if a file name exists in a
-    // specified directory. Path Traversal Attacks can happen if a user is
-    // allowed to specify a file on a file system through input and uses a
-    // pattern such as '/../' to obtain files from another directory.
+    // Previna ataques Path Traversal verificando se um nome de arquivo existe
+    // em um diretório específico. Ataque Path Transversal podem ocorrer se um
+    // usuário tem concedida a permissão de especificar um arquivo em um
+    // sistema de arquivos através e input e usa um padrão como '/../' para
+    // obter arquivos de outro diretório.
 
-    // Examples:
+    // Exemplos:
 
-    // Assume both files exist and would return [true] from built-in function
-    // [is_file()]. [false] would be returned for the 2nd file when using
-    // [Security::dirContainsFile()].
+    // Assuma que ambos os arquivos existem e retornariam [true] da fução
+    // integrada [is_file()]. [false] seria retornado para o segundo arquivo
+    // ao utilizar [Security::dirContainsFile()].
     $file1 = 'user_image.jpg';
     $file2 = '../../index.php';
     $file_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsFile($dir, $file1);
     $file_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsFile($dir, $file2);
 
-    // The function [dirContainsFile()] only allows for files directly under the root
-    // folder so another function exists to search sub-directories [dirContainsPath()].
-    $path1 = 'icons/clipboard.svg'; // Returns [true]
-    $path2 = '../../app/index.php'; // Returns [false]
+    // A função [dirContainsFile()] só permite que arquivos diretamente sob a
+    // pasta raiz então outra função existe para procurar subdiretórios a
+    // [dirContainsPath()].
+    $path1 = 'icons/clipboard.svg'; // Retorna  [true]
+    $path2 = '../../app/index.php'; // Retorna  [false]
     $path_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path1);
     $path_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path2);
 
-    // [dirContainsDir()] can be used to check directories/folders.
+    // [dirContainsDir()] pode ser utilizada para verificar diretórios/pastas.
     $dir1 = 'icons';
     $dir2 = '../../app';
     $dir_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsDir($dir, $file1);
     $dir_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsDir($dir, $file2);
 
-    // Validate Image Files
-    // The [fileIsValidImage()] function can be used to verify if image files
-    // created from user input are valid. For example a malicious user may try
-    // to rename a PHP script or executable file as an image and upload it to
-    // a site. Returns [true] if an image file [jpg, gif, png, webp, svg]
-    // is valid and the file's extension matches the image type.
+    // Valide Arquivos de Imagm
+    // A função [fileIsValidImage()] pode ser utilizada para verificar se
+    // arquivos de imagem criados de outro input de usuário, são válidos. Por
+    // exemplo um usuário malicioso pode tentar renomear um script PHP ou
+    // arquivo executável como se fosse uma imagem e enviá-lo para um site.
+    // Retorna [true] se um arquivo de imagem [jpg, gif, png, webp, svg] for
+    // válido e a extensão do arquivo corresponder ao tipo de imagem.
     $is_image = \FastSitePHP\FileSystem\Security::fileIsValidImage($image_file);
     // EXAMPLE_CODE_END
 
-    // NOTE - both [$result1, $path_exists_1, $dir_exists_1] all equal [false] because
-    // the files/dirs won't exist. Code here is for example only, modify if you want to test.
+    // NOTA - [$result1, $path_exists_1, $dir_exists_1] são todas iguais a
+    // [false] por que os arquivos/diretórios não existirão. O código aqui é só
+    // para exemplificação, modifique-o se você quiser fazer testes.
     return [$result1, $result2, $path_exists_1, $path_exists_2, $dir_exists_1, $dir_exists_2, $is_image];
 });
 
 $app->get('/examples/rate-limiting', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Security - Rate Limiting
+    // TITLE: Segurança - Limitação de Frequência
     // CLASS: Security\Web\RateLimit
-    // Rate Limit Class
+    // Classe de Limitação de Frequência
     $rate_limit = new \FastSitePHP\Security\Web\RateLimit();
 
-    // Using the RateLimit class requires and instance of
-    // [\FastSitePHP\Data\KeyValue\StorageInterface].
-    // In this example SQLite is used. When multiple servers are used behind
-    // a load balancer an in-memory cache db such as Redis can be used.
+    // Utilizando a classe RateLimit requer uma instância de [\FastSitePHP\Data
+    // \KeyValue\StorageInterface].
+    // Neste exemlo SQLite é utilizado. Quando multiplos servidores são
+    // usados atrás de um balanceador de carga, um bd de cache em memória como
+    // o Redis pode ser utilizado.
     $file_path = sys_get_temp_dir() . '/ratelimit-cache.sqlite';
     $storage = new \FastSitePHP\Data\KeyValue\SqliteStorage($file_path);
 
-    // There are 2 required options [storage] and [id].
-    // [id] represents the user - IP Address, User ID, etc.
+    // Há duas opções obrigatórias [storage] e [id]. [id] representa o usuário -
+    // Endereço de IP, ID de Usuário etc.
     //
-    // [max_allowed] and [duration] will commonly be used and represent
-    // the rate at which the event is allowed. If not specified then a
-    // default of 1 is used which allows for 1 request per second.
+    // [max_allowed] e [duration] serão comumente utilizadas e representam a
+    // taxa na qual o evento é permitido. Se não especificado, então, um
+    // padrão de 1 é usado o qual permite 1 requisição por segundo.
     $options = [
-        'max_allowed' => 1, // Requests, Events, etc
-        'duration' => 1, // In seconds
+        'max_allowed' => 1, // Requisições, Eventos etc
+        'duration' => 1, // Em segundos
         'storage' => $storage,
         'id' => $_SERVER['REMOTE_ADDR'],
     ];
 
-    // Check the Request
+    // Verifique a Requisição
     list($allowed, $headers) = $rate_limit->allow($options);
     // $allowed = bool
-    // $headers = Array of headers that can be used for logic
-    //            or sent with the response
+    // $headers = Array de cabeçalhos pode ser utilizado para lógica ou
+    //            ou enviado com a resposta
 
-    // One thing to be aware of when filtering by IP is that many users can have
-    // the same IP if they are accessing your site from the same office or location.
+    // Uma coisa para estar ciente ao filtrar por IP é que vários usuários podem
+    // estar como o mesmo IP se eles estiverem acessando seu site de um mesmo
+    // escritório ou localização.
 
-    // Option examples:
+    // Exemplos de opções:
 
-    // Limit to 10 requests every 20 seconds
+    // Limitar a 10 requisições a cada 20 segundos
     $options = [ 'max_allowed' => 10, 'duration' => 20, ];
 
-    // Limit to 2 requests per minute
+    // Limitar a 2 requisições por minuto
     $options = [ 'max_allowed' => 2, 'duration' => 60, ];
 
-    // Limit to 2 requests per day
+    // Limitar a 2 requisições por dia
     $options = [ 'max_allowed' => 10, 'duration' => (60 * 60 * 24), ];
 
-    // If using the [RateLimit] class for multiple
-    // uses then you need to specify an optional key.
+    // Se estiver utilizando a classe [RateLimit] para múltiplas utilizações,
+    // então, você precisa especificar uma chave opcional.
     $options = [ 'key' => 'messages-sent' ];
     $options = [ 'key' => 'acounts-created' ];
 
-    // The [RateLimit] class allows for different rate limiting algorithms;
-    // the default is 'fixed-window-counter' which puts a fixed amount on
-    // the number of requests for the given duration but allows for bursts.
-    // The 'token-bucket' allows for rate limiting at a timed rate however
-    // it can allow for a higher number requests than the specified [max_allowed].
+    // A classe [RateLimit] permite diferentes algorítimos de limitação de
+    // taxa; o padrão é 'fixed-window-counter' o qual coloca uma quantidade
+    // fixa no número de requisições para a duração dada, mas permite rajadas.
+    // O 'token-bucket' permite limitar a taxa por uma taxa
+    // cronometrada, entretanto, isso pode permitir um número maior de requisições
+    // do que o especificado [max_allowed].
     //
-    // For basic usage with a small number of [max_allowed] such as
-    // "1 request per second" they will behave the same, however if specifying
-    // a larger number such as "10 requests per 20 seconds" then there will
-    // be a difference so if you are using rate limiting for web requests with
-    // a larger number you may want to compare the differences using example code
-    // and see related links in the API docs.
+    // Para utilização básica com um número pequeno de [max_allowed] tal como
+    // "1 requisição por segundo",  ele comportarão-se da mesma forma, no
+    // entanto, se especificar um número maior como "10 requisições por 20
+    // segundos", então, haverá um diferença, assim se você estiver utilizando
+    // limitação de taxa para requisições web com um número grande você
+    // pode querer comparar as diferenças utilizando código exemplo e ver links
+    // relacionados nos documentos da API.
     //
     $options = [ 'algo' => 'fixed-window-counter' ];
     $options = [ 'algo' => 'token-bucket' ];
 
-    // The [filterRequest()] function can be used to filter the request.
-    // When used if the user's rate limit is reached then a 429 [Too Many Requests]
-    // response is sent and [exit()] is called to stop the script execution.
+    // A função [filterRequest()] pode ser utilizada para filtrar a requisição.
+    // Ao ser utilizada, se a limitação de taxa do usuário é atingida,
+    // então, uma resposta 409 [Too Many Requests] é enviada e [exit()] é
+    // chamada para parar a execução do script.
     $filter_request = function() use ($app, $storage) {
-        // Get User IP (example if using a load-balancer)
+        // Obtém o IP de Usuário (exemplo se estiver utilizando um balanceador
+        // de carga)
         $req = new \FastSitePHP\Web\Request();
         $user_ip = $req->clientIp('from proxy');
 
@@ -3852,15 +4002,16 @@ $app->get('/examples/rate-limiting', function() use ($app) {
     };
     $app->get('/api', function() {})->filter($filter_request);
 
-    // When using [filterRequest()] the following Response Headers can sent
-    // to the client depending on which options are used:
-    //   Retry-After            Standard Header
-    //   X-RateLimit-Limit      Human readable description of the rate limit
-    //   X-RateLimit-Remaining  Requests allowed for the given time frame
-    //   X-RateLimit-Reset      Unix Timestamp for the limit to reset
+    // Quando utilizar [filterRequest()] os seguintes Cabeçalos de Response
+    // podem ser enviados para o cliente dependendo de quais opções são
+    // utilizadas
+    //   Retry-After            Cabeçalho Padrão
+    //   X-RateLimit-Limit      Descrição legível por humanos do limite da taxa
+    //   X-RateLimit-Remaining  Requisições permitidas para o período de tempo dado
+    //   X-RateLimit-Reset      Registro de data e hora Unix para o limite redefinir
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3871,67 +4022,75 @@ $app->get('/examples/rate-limiting', function() use ($app) {
 });
 
 $app->get('/examples/image', function() use ($app) {
-    // Uncomment [return] line and modify to use a
-    // file that exits on your computer
-    return 'Modify code to run';
+    // Descomente a linha [return] e modifique-a para utilizar um arquivo que
+    // exista em seu computador
+    return '';
 
-    // Image Paths
+    // Caminhos da Imagem
     $file_path = 'C:\Users\Public\Pictures\Desert.jpg';
     $save_path = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'Modified Test Image.jpg';
 
     // EXAMPLE_CODE_START
-    // TITLE: Open and Edit Images Files
+    // TITLE: Abra e Edite Arquivos de Imagens
     // CLASS: Media\Image
-    // Use the Media Image Class to open an image. If the image is invalid or the
-    // file extension doesn't match the file type then an exception will be thrown.
-    // Supported file extensions = [jpg, jpeg, gif, png, webp]
+    // Utilize a Classe Media Image para abrir uma imagem. Se a imagem for
+    // inválida ou a extensão do arquivo não corresponder ao tipo de arquivo,
+    // então, uma exceção será lançada. Extenções de arquivos suportadas =
+    // [jpg, jpeg, gif, png, webp]
     $img = new \FastSitePHP\Media\Image();
     $img->open($file_path);
 
-    // Generate a Thumbnail or Resize the Image to a specified max width and height.
+    // Gera uma Miniatura ou Redimensiona a Imagem para um máximo especificado
+    // de largura e altura.
     //
-    // When both width and height are specified the image will be sized to the
-    // smaller of the two values so it fits. If only width or only height are
-    // specified then image will be sized proportionally to the value.
+    // Quando ambas largura e altura são especificadas, a imagem será
+    // redimensionada para o menor dos dois valores para que ela se ajuste. Se
+    // somente a largura ou somente a altura for especificada, então, a imagem
+    // será dimensionada proporcionalmente para o valor.
     $max_width = 200; // Pixels
     $max_height = 200;
     $img->resize($max_width, $max_height);
 
-    // Images can also be cropped to a specific dimensions.
-    // This can be used with JavaScript or App cropping libraries to allow users
-    // to generate thumbnails from a full uploaded image. For example allow
-    // a user to crop an uploaded image to a profile thumbnail.
+    // Imagens pode também ser coratadas para uma dimensão especificada.
+    // Isto pode ser utilizado com JavaScript ou bibliotecas de corte para Apps
+    // para permitir que usuários gerem miniaturas de uma imagem completa enviada.
+    // Por exemplo, permita o usuário cortar uma imagem enviada para uma
+    // miniatura de perfil.
     $left = 50;
     $top = 40;
     $width = 120;
     $height = 80;
-    $target_width = $width * 2; // Optional
-    $target_height = $height * 2; // Optional
+    $target_width = $width * 2; // Opcional
+    $target_height = $height * 2; // Opcional
     $img->crop($left, $top, $width, $height, $target_width, $target_height);
 
-    // Images can be rotated which is useful for sites that allow users to upload
-    // images because images can often upload with incorrect rotation depending on
-    // the mobile device or a user may simply want to change the rotation.
+    // Imagens podem ser rotacionadas o que é útil para sites que permitem
+    // usuários enviar imagens, por que imagens podem, geralmente, ser enviadas
+    // com a rotação incorreta dependendo do dispositivo móvel ou um usuário
+    // pode simplesmente querer modificar a rotação.
     $degrees = 180;
     $img->rotateLeft();
     $img->rotateRight();
     $img->rotate($degrees);
 
-    // Save Quality (0 to 100) can be specified when saving JPG or WEBP images.
-    // And Compression-Level (0 to 9) can specified when saving PNG files.
-    $img->saveQuality(90);   // Default Quality
-    $img->pngCompression(6); // Default Compression-Level
+    // Qualidade de Salvamento (0 to 100) pode ser especificada quando for
+    // salvar imagen JPG ou WEBP. E Nível de Compressão (0 to 9) pode ser
+    // especificado ao salvar arquivos PNG.
+    $img->saveQuality(90);   // Qualidade Padrão
+    $img->pngCompression(6); // Nível de Compressão Padrão
 
-    // Overwrite an existing image by simply calling [save()] without
-    // a path or save to a new file by specifying a full file path.
+    // Sobrescreva uma imagem existente simplesmente chamando [save()] sem um
+    // caminho ou salve para um novo arquivo especificando um caminho completo
+    // de arquivo.
     $img->save($save_path);
 
-    // Optionally close the image to free memory when finished working with it.
-    // This happens automatically when the variable is no longer used.
+    // Opcionalmente feche a imagem para liberar memória quando terminar de
+    // trabalhar com ela. Isto acontece automaticamente quando a variável não é
+    // mais utilizada.
     $img->close();
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -3943,73 +4102,78 @@ $app->get('/examples/image', function() use ($app) {
 
 $app->get('/examples/i18n', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Handle Language Translations for a Site or App
+    // TITLE: Manipule Traduções de Idiomas para um Site ou Aplicação
     // CLASS: Lang\I18N
-    // FastSitePHP provides an easy to use Internationalization (i18n) API for
-    // sites and apps that need to support multiple languages. The code is
-    // structured but minimal in size so if you have different translation needs
-    // you can simply copy and modify the class.
+    // O FastSitePHP provê uma API de Internacionalização (i18n) de fácil
+    // utilização para sites e apps que precisam suportar múltiplos idiomas.
+    // O código é estruturado mas mínimo em seu tamanho, assim se você tem
+    // necessidades diferentes de tradução, você pode simplesmente copiar e
+    // modificar a classe.
 
-    // Translations are saved as JSON files in the one directory using the name
-    // format of “{name}.{lang}.json”. An optional main file named “_.{lang}.json”
-    // if found will loaded first. The main file “_” is useful for storing key
-    // translations such as menus, page headers, page footers, etc.
+    // Traduções são salvas como arquivos JSON no mesmo diretório utilizando o
+    // formato de nome “{nome}.{idioma}.json”. Um arquivo principal opcional
+    // nomeado “_.{idioma}.json” se encontrado será lido primeiro. O arquivo
+    // principal "_" é útil para armazenar traduções chave tal como menus,
+    // cabeçalho de página, rodapés de páginas etc.
 
-    // An optional fallback language can be specified so that missing translations
-    // default to another language. This allows partially translated sites to use
-    // this API.
+    // Um idoma de fallback opcional pode ser especificado assim traduções
+    // não encontradas são obtidas de outro idioma. Isto permite que sites
+    // parcialmente traduzidos utilizem esta API.
 
-    // Since the API is simple and easy to use there are only two functions to call:
-    // [langFile()] and [textFile()].
+    // Já que a API é simples e fácil de utilizar, existem somente duas funções
+    // para chamar:
+    // [langFile()] e [textFile()].
 
-    // Example Files:
+    // Arquivos de Exemplo:
     //     _.en.json
     //     _.es.json
     //     header.en.json
     //     header.es.json
     //     about.en.json
 
-    // Using this code the above files will be loaded in the order listed.
+    // Utilizando este código, os aquivos acima serão carregados na ordem listada.
     $app->config['I18N_DIR'] = __DIR__ . '/i18n';
     $app->config['I18N_FALLBACK_LANG'] = 'en';
 
     \FastSitePHP\Lang\I18N::langFile('header', 'es');
     \FastSitePHP\Lang\I18N::langFile('about', 'es');
 
-    // Typical usage is allow for an app to load a language
-    // file based on the Requested URL:
+    // Uso típico é permitido para um app carregar um arquivo de idioma
+    // baseando-se na URL Requisitada:
     $app->get('/:lang/about', function($lang) {
         \FastSitePHP\Lang\I18N::langFile('about', $lang);
     });
 
-    // [setup()] can be called for each request to make sure
-    // that a language file is always loaded for template rendering when
-    // [$app->render()] is called.
+    // [setup()] pode ser chamada por cada requisição para ter certeza que o
+    // arquivo de idioma seja sempre carregado para a renderização de um modelo
+    // quando [$app->render()] é chamada.
     //
-    // This is useful if your site uses PHP or other templates for rendering
-    // and expects the [i18n] default file to always be available. For example
-    // an unexpected error or call to [$app->pageNotFound()] can trigger a
-    // template to be rendered.
+    // Isto é útil se seu site utiliza PHP ou outros modelos para renderizar e
+    // espera que o arquivo [i18n] padrão sempre esteja disponível. Por exemplo
+    // um erro inesperado ou chamada de [$app->pageNotFound()] pode acionar um
+    // modelo para que seja renderizado.
     \FastSitePHP\Lang\I18N::setup($app);
 
-    // Loaded translations are set to the app property ($app->locals['i18n'])
-    // so that they can be used with template rendering and the calling page.
+    // Traduções carregadas são definidas na propriedade da app
+    // ($app->locals['i18n']), de forma que elas podem ser utilizadas com
+    // renderização de modelo e chamada de página.
 
-    // When using a URL format of [https://www.example.com/{lang}/{pages}]
-    // and a fallback language the user will be re-directed to the same page
-    // with the fallback language if the specified language doesn't exist.
+    // Ao utilizar um formato de URL [https://www.example.com/{lang}/{pages}]
+    // e um idioma fallback, o usuário será redirecionado para a mesma página
+    // com o idioma fallback se o idioma especificado não existir.
 
-    // When [langFile()] is called and the language is verified as valid
-    // it is set to the app property ($app->lang).
+    // Quando [langFile()] é chaada e o idioma é verificado como válido, isto é
+    // definido na propriedade do app ($app->lang).
 
-    // The other I18N function [textFile()] simply takes a full file path
-    // containing text '{lang}' along with the selected language and then loads
-    // the file or if it doesn't exist, the matching file for the fallback language.
+    // A outra função I18N [textFile()] simplesmente recebe um caminho completo
+    // de arquivo contento o texto '{lang}' juntamente com o idioma selecionado
+    // e então carrega o arquivo ou, se este não existir, o arquivo que
+    // corresponde ao idioma de fallback.
     $file_path = $app->config['I18N_DIR'] . '/test-{lang}.txt';
     $content = \FastSitePHP\Lang\I18N::textFile($file_path, $app->lang);
     // EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')
@@ -4021,29 +4185,31 @@ $app->get('/examples/i18n', function() use ($app) {
 
 $app->get('/examples/l10n', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Formatting Dates, Times, and Numbers
+    // TITLE: Formatando Datas, Horas e Números
     // CLASS: Lang\L10N
-    // FastSitePHP provides an easy to use Localization (l10n) API to allow date
-    // and number formatting with a user’s local language and regional settings.
+    // O FastSitePHP provê uma API de Localização (l10n) de fácil utilização
+    // para permirtir formatação de datas e números com a linguagem local do
+    // usuário e configurações regionais.
 
-    // Create a new Lang L10N Object
+    // Cria um novo Objeto Lang L10N
     $l10n = new \FastSitePHP\Lang\L10N();
 
-    // Settings can optionally be passed when the class is first created.
+    // Definições são passadas de forma opcional quando a classe é criada
     /*
-    $locale = 'en-US';
-    $timezone = 'America/Los_Angeles';
+    $locale = 'pt-BR';
+    $timezone = 'America/Sao_Paulo';
     $l10n = new \FastSitePHP\Lang\L10N($locale, $timezone);
     */
 
-    // Use the [timezone()] function to get or set the timezone that will be used
-    // when formatting dates and times.
+    // Utiliza a função [timezone()] para obter ou definir o fuso horário que
+    // será utilizado ao formatar datas e horários.
     //
-    // If you have a site or application that has users in multiple timezones or
-    // countries an application design that works well is to save all dates and
-    // times in UTC and then format based on the users selected timezone.
+    // Se você tem um site ou aplicação que tenha usuários em múltiplos fusos
+    // horários our países, um design de aplicação que funciona bem é salvar
+    // todas as datas e horários em UTC e daí formatá-los baseando-se no fuso
+    // horário escolhido pelo usuário.
     //
-    // This example prints:
+    // Este exemplo imprime:
     /*
         UTC                 = 2030-01-01 00:00
         Asia/Tokyo          = 2030-01-01 09:00
@@ -4052,9 +4218,9 @@ $app->get('/examples/l10n', function() use ($app) {
     $date_time = '2030-01-01 00:00:00';
     $timezones = ['UTC', 'Asia/Tokyo', 'America/Los_Angeles'];
     foreach ($timezones as $timezone) {
-        // Change Timezone
+        // Mude o Fuso Horário
         $l10n->timezone($timezone);
-        // Print the formated date and time
+        // Imprime a data e horário formatados
         echo $l10n->timezone();
         echo ' = ';
         echo $l10n->formatDateTime($date_time);
@@ -4062,17 +4228,17 @@ $app->get('/examples/l10n', function() use ($app) {
     }
     echo '<br>';
 
-    // Change Timezone back to UTC for the next examples
+    // Mude o Fuso Horário de volta para UTC para os próximos exemplos
     $l10n->timezone('UTC');
 
-    // The [$date_time] parameter for functions [formatDateTime(), formatDate(),
-    // and formatTime()] is either a Unix Timestamp (int) or a string in format
-    // of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'
+    // O parâmetro [$date_time] para as funções [formatDateTime(), formatDate()
+    // e formatTime()] é um carimbo de data/hora Unix (int) ou uma string no
+    // formato de 'YYYY-MM-DD HH:MM:SS' ou 'YYYY-MM-DD'
     $date_time = 1896181200;
     $date_time = '2030-02-01 13:00:00';
 
-    // Print Date Time with different locales using [locale()] and
-    // [formatDateTime()] functions. This example prints:
+    // Imprima Data e Hora com localizações diferentes utilizando as funções
+    // [locale()] e [formatDateTime()]. Este exemplo imprime:
     /*
         ko    = 2030. 2. 1. 오후 1:00
         bn    = ১/২/২০৩০ ১:০০ PM
@@ -4082,9 +4248,9 @@ $app->get('/examples/l10n', function() use ($app) {
     */
     $locales = ['ko-KR', 'bn-BD', 'en-US', 'de-CH', 'ar'];
     foreach ($locales as $locale) {
-        // Change Locale
+        // Mude a Localização
         $l10n->locale($locale);
-        // Print the formated date and time
+        // Imprima a data e hora formatados
         echo $l10n->locale();
         echo ' = ';
         echo $l10n->formatDateTime($date_time);
@@ -4092,8 +4258,8 @@ $app->get('/examples/l10n', function() use ($app) {
     }
     echo '<br>';
 
-    // In addition to [formatDateTime()] functions [formatDate()] and
-    // [formatTime()] can be used to show only a date or time. Prints:
+    // Além de [formatDateTime()] as funções [formatDate()] e [formatTime()]
+    // podem ser utilizadas para mostrar somente uma data ou hora. Imprime:
     /*
         01/02/2030
         13:00:00
@@ -4105,49 +4271,50 @@ $app->get('/examples/l10n', function() use ($app) {
     echo '<br>';
     echo '<br>';
 
-    // Print a formatted Number with different locales using [locale()] and
-    // [formatNumber()] functions. Decimal places are optional and default
-    // to 0. This example prints:
+    // Imprima um Número formatado com diferentes localizações utilizando as
+    // funções [locale()] e [formatNumber()]. Posições decimais são opcionais
+    // e seu padrão é 0. Este exemplo imprime:
     /*
         en-US =  1,234,567,890.12345
         en-IN = 1,23,45,67,890.12345
         fr    =  1 234 567 890,12345
         fa    =  ۱٬۲۳۴٬۵۶۷٬۸۹۰٫۱۲۳۴۵
     */
-    $number = 1234567890.12345;
+    $numero = 1234567890.12345;
     $decimals = 5;
     $locales = ['en-US', 'en-IN', 'fr', 'fa'];
     foreach ($locales as $locale) {
-        // [locale()] is a chainable getter and setter function
-        // so it can be set and read from the same line.
+        // [locale()] é uma função getter e setter encadeável assim ela pode ser
+        // definida e lida de uma mesma linha.
         echo $l10n->locale($locale)->locale();
         echo ' = ';
-        echo $l10n->formatNumber($number, $decimals);
+        echo $l10n->formatNumber($numero, $decimals);
         echo '<br>';
     }
 
-    // Get supported Locales, Languages, and Timezones
+    // Obtenha Localizações, Idiomas e Fusos Horários suportados
     $locales    = $l10n->supportedLocales();
     $langugages = $l10n->supportedLanguages();
     $timezones  = $l10n->supportedTimezones();
     // EXAMPLE_CODE_END
 
-    echo '<br><b>Locales:</b><br>';
+    echo '<br><b>Localizações:</b><br>';
     echo json_encode($locales);
-    echo '<br><br><b>Languages:</b><br>';
+    echo '<br><br><b>Idiomas:</b><br>';
     echo json_encode($langugages);
-    echo '<br><br><b>Timezones:</b><br>';
+    echo '<br><br><b>Fusos Horários:</b><br>';
     echo json_encode($timezones);
 });
 
-// NOTE - Use this as a template for new routes, spaces need to be added between '// EXAMPLE_', etc
+// NOTA - Utilize isto como um modelo para novas rotas, espaços precisam ser
+// adicionados entre '// EXAMPLE_', etc
 /*
 $app->get('/examples/template', function() use ($app) {
     //EXAMPLE_CODE_START
-    //TITLE: New Route Template, Fix Spaces to work
+    //TITLE: Novo Modelo de Rota, Repare os Espacço para que funcione
     //EXAMPLE_CODE_END
 
-    // Return Text Response
+    // Retorne Resposta em Texto
     $res = new \FastSitePHP\Web\Response();
     return $res
         ->contentType('text')

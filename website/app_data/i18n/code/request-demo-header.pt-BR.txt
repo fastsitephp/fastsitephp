@@ -1,0 +1,26 @@
+$req = new \FastSitePHP\Web\Request();
+
+// Retorne um array de todos os Campos de Cabeçalhos de Requisição HTTP.
+// Nomes de cabeçalhos serão convertidos para maiúsculas assim os seguintes
+// nomes ['Content-type', 'Content-Type'e 'CONTENT-TYPE'] seriam retornados por
+// esta função 'Content-Type' para a chave no array.
+$headers = $req->headers();
+
+// Retorne o valor de um Campo de Cabeçalho enviado com uma Requisição HTTP.
+// Se não enviado [null] será retornado. Chaves são insensíveis à maiúsculas e
+// minúsculas, assim as seguintes retornam todas o mesmo valor.
+$value = $req->header('Content-Type');
+$value = $req->header('CONTENT-TYPE');
+
+// Utiliando uma funcionalidade integrada ao PHP sem o FastSitePHP ou outras
+// Requisições de frameworks, Cabeçalhos podem ser lidos da Superglobal do PHP
+// a array $_SERVER. Por exemplo 'User-Agent' será 'HTTP_USER_AGENT'. Isto
+// aplica-se a todos os cabeçalhos exceto para 'Authorization', 'Content-Type' e
+// 'Content-Length'. Para ler esses três cabeçalhos diretamente consulte o
+// o código fonte do FastSitePHP.
+$name = 'HTTP_USER_AGENT';
+$value = (isset($_SERVER[$name]) ? $_SERVER[$name] : null);
+
+// Quanto estiver utilizando PHP 7 ou mais recente, o operador coalescente nulo
+// pode ser usado.
+$value = ($_SERVER[$name] ?? null);
