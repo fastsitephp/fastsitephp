@@ -20,7 +20,7 @@ $email
     ->body($body);
 
 // Send email using Simple Mail Transfer Protocol (SMTP).
-// Settings [$smtp = null] after use automatically calls [$smtp->quit()]
+// Setting [$smtp = null] after use, automatically calls [$smtp->quit()]
 // and [$smtp->close()], however it also happens automatically after the
 // object is no longer used.
 $smtp = new \FastSitePHP\Net\SmtpClient($host, $port);
