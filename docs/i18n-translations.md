@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations.
+This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations. If you would like to help with translations feel free to open an issue or simply submit translation changes.
 
 This document itself does NOT need to be translated rather it specifies what files and code should be updated.
 
