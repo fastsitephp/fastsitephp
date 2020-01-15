@@ -24,6 +24,12 @@ ini_set('display_errors', 'on');
 // PHP Autoloader (dynamically load classes)
 include __DIR__ . '/../autoload.php';
 
+// Create FastSitePHP object to handle errors. This will convert PHP errors
+// to exceptions and display them in an easier to read CLI format.
+$app = new \FastSitePHP\Application();
+$app->setup('UTC');
+$app->show_detailed_errors = true;
+
 // -----------------------------------------------------------------
 // Validate Folders and Downloaded Repositories
 // -----------------------------------------------------------------
