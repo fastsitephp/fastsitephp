@@ -7,10 +7,34 @@
     <loc>https://www.fastsitephp.com/pt-BR/</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/playground</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/playground</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/playground</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/playground</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/playground</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/playground</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/getting-started</loc>
@@ -19,10 +43,34 @@
     <loc>https://www.fastsitephp.com/pt-BR/getting-started</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/getting-started</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/getting-started</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/getting-started</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/getting-started</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/quick-reference</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/quick-reference</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/quick-reference</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/quick-reference</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/quick-reference</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/quick-reference</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples</loc>
@@ -31,10 +79,34 @@
     <loc>https://www.fastsitephp.com/pt-BR/examples</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/examples</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/documents</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/documents</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/documents</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/documents</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/documents</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/documents</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/documents/edit-with-atom</loc>
@@ -70,7 +142,28 @@
     <loc>https://www.fastsitephp.com/pt-BR/api</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/api</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/api</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/api</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/api</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/api/AppMin</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/api/App_Middleware_Auth</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/api/App_Middleware_Cors</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/en/api/App_Middleware_Env</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/api/Application</loc>
@@ -199,10 +292,34 @@
     <loc>https://www.fastsitephp.com/pt-BR/examples/request-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/examples/request-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/request-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/request-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/request-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/response-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/examples/response-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/examples/response-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/response-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/response-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/response-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples/database-demo</loc>
@@ -211,10 +328,34 @@
     <loc>https://www.fastsitephp.com/pt-BR/examples/database-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/examples/database-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/database-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/database-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/database-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/email-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/examples/email-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/examples/email-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/email-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/email-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/email-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/en/examples/l10n-demo</loc>
@@ -223,9 +364,33 @@
     <loc>https://www.fastsitephp.com/pt-BR/examples/l10n-demo</loc>
   </url>
   <url>
+    <loc>https://www.fastsitephp.com/es/examples/l10n-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/l10n-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/l10n-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/l10n-demo</loc>
+  </url>
+  <url>
     <loc>https://www.fastsitephp.com/en/examples/encryption-demo</loc>
   </url>
   <url>
     <loc>https://www.fastsitephp.com/pt-BR/examples/encryption-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/es/examples/encryption-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/zh-CN/examples/encryption-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/fr/examples/encryption-demo</loc>
+  </url>
+  <url>
+    <loc>https://www.fastsitephp.com/ar/examples/encryption-demo</loc>
   </url>
 </urlset>
