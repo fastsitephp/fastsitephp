@@ -32,9 +32,36 @@ sudo bash create-fast-site.sh
 wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/sync-server-from-github.sh
 bash sync-server-from-github.sh
 
+# 3) Delete downloaded scripts
+rm *.sh
+
 # Normally this file is used to sync the server and now it will be Installed so
 # if you run it then no files will be changed because the server is up to date.
 bash /var/www/scripts/sync-server-from-github.sh
+
+# Optional Unit Testing
+# This will test the Framework from the server that you are running on.
+# Unit tests are designed to test the current web server.
+# All or most tests should succeed. For example Apache and IIS allow for
+# Strong etags but nginx does not so a few tests are expected fail for nginx.
+wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+unzip master.zip
+cp -r ~/fastsitephp-master/tests /var/www/html/tests
+
+# Run and Verify all Unit Tests
+#     http://{host}/tests/index.htm
+#
+# To run all tests edit the HTML file and 
+# set all values to true:
+#   runTimeConsumingTasks = true
+#   runTestsWithRSA = true
+#   etc
+# sudo nano /var/www/html/tests/index.htm
+#
+# Delete Unit Tests and downloaded files after running
+sudo rm -R /var/www/html/tests
+sudo rm -R ~/fastsitephp-master
+rm master.zip
 
 # ------------------------------------------
 # Original Commands used for Manual Setup
