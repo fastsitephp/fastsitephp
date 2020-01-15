@@ -42,7 +42,6 @@ class Sitemap
             '/:lang/examples/response/:type',
             '/:lang/examples/database-demo/:page',
             '/:lang/examples/encryption/generate-key',
-            '/:lang/translators-needed',
             '/:lang/security-issue',
         ];
         $include_files = [

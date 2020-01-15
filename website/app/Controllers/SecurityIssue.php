@@ -13,8 +13,11 @@ class SecurityIssue
     /**
      * Route function for URL '/:lang/security-issue'.
      * 
-     * This page is linked from the [README.md] file and provides a form
-     * for developers to submit private messages for translation services.
+     * This page is linked from several [README.md] files and provides a form
+     * for developers to submit private messages regarding security issues:
+     * 
+     *     https://github.com/fastsitephp/playground
+     *     https://github.com/dataformsjs/playground
      * 
      * Testing this page requires setup of a [.env] file with the needed
      * settings. The code in this page provides a good example of handling

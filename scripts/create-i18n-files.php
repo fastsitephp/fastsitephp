@@ -77,7 +77,6 @@ $files = $search
     ->dir($starter_dir)
     ->fileTypes(['json'])
     ->includeRegExNames(['/.' . LANG_COPY_FROM . '.json$/'])
-    ->excludeNames(['translators-needed.en.json'])
     ->fullPath(true)
     ->files();
 

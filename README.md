@@ -239,6 +239,7 @@ $app->run();
 
 **All contributions are welcome.** For major changes including new classes, breaking changes to existing code, updating existing graphics and files, please open an issue first to discuss what you would like to change. Some examples of items to contribute:
 
+* Additional Translations
 * Typos and Grammar Mistakes - If you see any please fix and submit.
 * Adding additional demo pages - The demo pages typically use more HTML, CSS, and JavaScript than PHP so if you are a web developer and do not know PHP you can easily learn it during development.
 * Additional Unit Tests and Testing Methods
@@ -247,14 +248,6 @@ $app->run();
 * New Ideas - If you have ideas on how to improve then please open an issue to discuss.
 
 The [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) file contains the full list of items that are currently pending and is good place to start.
-
-## :moneybag: Paid Translators Needed!
-
-**Are you fluent in English and another language? <a href="https://www.fastsitephp.com/en/translators-needed" target="_blank">If so then please get in touch</a>.**
-
-FastSitePHP is looking for paid translators so that it can be translated into multiple languages quickly. Translations can be done in many steps so even if you have just an hour or two it will be enough to help and earn some money.
-
-Languages currently needed: Arabic, French, German, Italian, Japanese, Persian, Russian, Spanish
 
 ## :question: FAQ
 

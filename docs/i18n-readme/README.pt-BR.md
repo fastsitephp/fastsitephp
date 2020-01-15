@@ -233,14 +233,6 @@ $app->run();
 
 O arquivo [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) contém a lista completa de itens pendentes e é um lugar para começar.
 
-## :moneybag: Procura-se Tradutores Remunerados!
-
-**Você é fluente em Inglês e outra língua? <a href="https://www.fastsitephp.com/en/translators-needed" target="_blank">Se sim por favor entre em contato</a>.**
-
-FastSitePHP está procurando por tradutores pagos para que possa ser traduzido para vários idiomas rapidamente. Traduções podem ser feitas em várias etapas assim, mesmo se você tiver somente uma ou duas horas será o suficiente para ajudar e será pago por isso.
-
-Idiomas atualmente precisando de tradutores: Arabic, Chinese Simplified (zh-Hans), French, German, Italian, Japanese, Korean, Persian, Russian
-
 ## :question: FAQ
 
 **Por o FastSitePHP foi Criado?**

@@ -136,7 +136,6 @@ $app->get('/:lang/documents', 'Documents');
 $app->get('/:lang/documents/:page', 'Documents.getDoc');
 $app->get('/:lang/api', 'API');
 $app->get('/:lang/api/:class', 'API.getClass');
-$app->route('/:lang/translators-needed', 'TranslatorsNeeded');
 $app->route('/:lang/security-issue', 'SecurityIssue');
 $app->get('/downloads/:file', 'Downloads');
 $app->get('/site/generate-sitemap', 'Sitemap')->filter('Env.isLocalhost');

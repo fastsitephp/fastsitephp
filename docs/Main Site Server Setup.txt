@@ -141,7 +141,7 @@ sudo rm /var/www/html/.htaccess
 sudo rm /var/www/html/Web.config
 sudo rm /var/www/html/index.html
 
-# Setup [.env] file which is used for the [/en/translators-needed] page
+# Setup [.env] file which is used for the [/en/security-issue] page
 sudo nano /var/www/app_data/.env
 
 # Keys (copy from values local file)
@@ -161,7 +161,7 @@ sudo chmod 0775 -R /var/www
 tail -n 1 /var/log/apache2/error.log
 
 # Make sure that sending an email works
-# http://44.227.18.120/en/translators-needed
+# http://44.227.18.120/en/security-issue
 
 # Run and Verify all Unit Tests
 # http://44.227.18.120/tests/index.htm
