@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * This is an optional install Script for FastSitePHP's [Starter Site] and
