@@ -23,7 +23,7 @@ Este tutorial fornece instruções com um guia passo a passo de como configurar 
 
 <div class="quick-tip">
     <h3>Dica Rápida</h3>
-    <p>Se você precisa somente do PHP para desenvolvimento local você pode pular o processo de instalação do IIS e ir direto para <a href="#install_php">instalando o  PHP</a> ou ver links adicionais nesta sessão da página.</p>
+    <p>Se você precisa somente do PHP para desenvolvimento local você pode pular o processo de instalação do IIS e ir direto para <a href="#install_php">instalando o  PHP</a> ou ver links adicionais nesta seção da página.</p>
 </div>
 
 ### Web Platform Installer

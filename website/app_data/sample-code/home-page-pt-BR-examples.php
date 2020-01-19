@@ -1440,7 +1440,7 @@ $app->get('/examples/app-render', function() use ($app) {
     ];
 
     // Renderiza o Modelo PHP e retorna uma string.
-    // O código fonte do modelo é mostrado na sessão de código do exemplo acima.
+    // O código fonte do modelo é mostrado na seção de código do exemplo acima.
     $html = $app->render('template.php', $data);
     // EXAMPLE_CODE_END
     return $html;
