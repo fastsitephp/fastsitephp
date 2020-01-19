@@ -222,14 +222,14 @@ $app->run();
 
 ## :handshake: Contribuindo
 
-**Todas as contribuições são bem vindas.** Para mudanças significativas incluindo novas classes, mudanças disruptivas no código existente, atualizando gráficos e arquivos, por favor abra um pedido antes para discutir o que você gostaria de mudar. Alguns exemplo de itens para contribuir:
+**Todas as contribuições são bem vindas.** Para mudanças significativas incluindo novas classes, mudanças disruptivas no código existente, atualizando gráficos e arquivos, por favor antes abra uma questão para discutirmos o que você gostaria de mudar. Alguns exemplo de itens para contribuir:
 
 * Erros de digitação e gramática - Se vir algum por favor corrija e envie.
 * Adicionando mais páginas de demonstração - As páginas de demonstração normalmente utilzam mais HTML, CSS e JavaScript que PHP, então se você é um desenvolvedor web e não sabe PHP pode facilmente aprender durante o desenvolvimento.
 * Testes de unidade adicionais e metodologias de teste
 * Documentação e Tutoriais adicionais
 * Classes e funcionalidades adicionais
-* Novas ideias - Se você tem ideias de como melhorar por favor abra um pedido para que possamos discutir.
+* Novas ideias - Se você tem ideias de como melhorar por favor abra uma questão para que possamos discutir.
 
 O arquivo [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) contém a lista completa de itens pendentes e é um lugar para começar.
 
