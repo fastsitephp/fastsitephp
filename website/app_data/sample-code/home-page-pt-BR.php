@@ -129,7 +129,7 @@ $app->get('/server', function() {
 // para as rotas correspondentes à partir do diretório atual. Este é um arquivo
 // que provê muitos outros exemplos. Se você baixar este site, este código
 // e outros exemplos podem ser encontrados em [app_data/sample-code].
-$app->mount('/examples', 'home-page-en-examples.php');
+$app->mount('/examples', 'home-page-pt-BR-examples.php');
 
 // -------------------------------
 // Roda a aplicação

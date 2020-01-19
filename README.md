@@ -8,6 +8,24 @@
 
 _If you are seeing this message then you are one of the earliest visitors!_ 🌠👍
 
+<table>
+	<tbody>
+		<tr align="center"><td colspan="2">
+<g-emoji class="g-emoji" alias="globe_with_meridians" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f310.png"><img class="emoji" alt="globe_with_meridians" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f310.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_americas" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30e.png"><img class="emoji" alt="earth_americas" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30e.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_asia" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30f.png"><img class="emoji" alt="earth_asia" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30f.png"></g-emoji> <g-emoji class="g-emoji" alias="earth_africa" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png"><img class="emoji" alt="earth_africa" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/1f30d.png"></g-emoji>
+		</td></tr>
+		<tr>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.es.md">Español</a>
+			</td>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.es.md">Bienvenido a FastSitePHP</a></td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.pt-BR.md">Português (do Brasil)</a>
+			</td>
+			<td><a href="https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.pt-BR.md">Bem vindo ao FastSitePHP</a></td>
+		</tr>
+	</tbody>
+</table>
+
 FastSitePHP is a new web framework that uses PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is also minimal in size so it quick to download and easy to get started. Although it’s new (first published in November of 2019) FastSitePHP was written over many years and is extremely stable containing a large number of unit tests.
 
 This repository contains FastSitePHP’s Framework and main Website.
@@ -72,7 +90,7 @@ A starter site for FastSitePHP also exists that includes several examples pages 
 [https://github.com/fastsitephp/starter-site](https://github.com/fastsitephp/starter-site)
 
 <p align="center">
-<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2019-06-17/home-page.png" alt="FastSitePHP Starter Site" width="500">
+<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site" width="500">
 </p>
 
 ## :page_facing_up: Example Code
@@ -236,7 +254,7 @@ The [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master
 
 FastSitePHP is looking for paid translators so that it can be translated into multiple languages quickly. Translations can be done in many steps so even if you have just an hour or two it will be enough to help and earn some money.
 
-Languages currently needed: Arabic, French, German, Italian, Japanese, Persian, Russian
+Languages currently needed: Arabic, French, German, Italian, Japanese, Persian, Russian, Spanish
 
 ## :question: FAQ
 
@@ -263,7 +281,7 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-All versions of PHP from 5.3 to 7.3.
+All versions of PHP from 5.3 to 7.4.
 
 ## :memo: License
 

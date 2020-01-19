@@ -42,11 +42,16 @@
 			// Variables needed for nav links
 			switch ($app->lang) {
 				case 'es':
+				case 'pt-BR':
 					$github = 'https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-readme/README.' . $app->lang . '.md';
 					break;
 				default:
 					$github = 'https://github.com/fastsitephp/fastsitephp';
 			}
+			
+			// Once full translations are made this will go at the top of the file for the <html> element
+			$html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
+
 			$current_page = $app->requestedPath();
 			if ($current_page !== '') {
 				$components = explode('/', $current_page);
@@ -55,6 +60,7 @@
 			if ($current_page === '') {
 				$current_page = '/';
 			}
+
 			$is_resources_page = (
 				isset($nav_active_link)
 				&& (
@@ -65,7 +71,7 @@
 				)
 			);
 			?>
-			<nav class="site-nav">
+			<nav class="site-nav" dir="<?= $html_dir ?>">
 				<div class="mobile-nav">
 					<span class="site-title"><a href="<?= $app->rootUrl() . $app->lang ?>/">
 						<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -135,14 +141,20 @@
 						<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 						</li>
+						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+						</li>
 						<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 						</li>
 						<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 							<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 						</li>
-						<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-							<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+						<li<?= ($app->lang === 'fr' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'fr' . $current_page) ?>">Français</a>
+						</li>
+						<li<?= ($app->lang === 'ar' ? ' class="active"' : '') ?>>
+							<a href="<?= $app->escape($app->rootUrl() . 'ar' . $current_page) ?>">العربية</a>
 						</li>
 					</ul>
 				</div>
@@ -198,14 +210,20 @@
 							<li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
 							</li>
+							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+							</li>
 							<li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
 							</li>
 							<li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
 								<a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
 							</li>
-							<li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-								<a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
+							<li<?= ($app->lang === 'fr' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'fr' . $current_page) ?>">Français</a>
+							</li>
+							<li<?= ($app->lang === 'ar' ? ' class="active"' : '') ?>>
+								<a href="<?= $app->escape($app->rootUrl() . 'ar' . $current_page) ?>">العربية</a>
 							</li>
 						</ul>
 					</li>

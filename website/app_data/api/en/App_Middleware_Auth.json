@@ -1,0 +1,96 @@
+{
+    "name": "App\\Middleware\\Auth",
+    "short_name": "App\\Middleware\\Auth",
+    "link": "App_Middleware_Auth",
+    "namespace": "App\\Middleware",
+    "description": "Auth Middleware\n\nThis class is included with the starter site and is intended as a starting point and template for authentication and provides a number of options for creating secure sites using authentication.\n\nThis class can be used as-is without any changes or you can remove features that you do not need to reduce the size of the code. If you intend on using this class with a site that has many users spending time to remove un-needed code is recommended because it\u2019s a good practice as it will help you understand the full security of your site and various security options. A good starting point is to search for \"$this->method\" and \"$method\" and remove methods and all related code that you do not use.\n\nBy default this class uses JSON Web Tokens (JWT) with a 1 hour timeout and session cookie for the storage format. Request and Response headers using a Bearer Token are also included for authentication with API\u2019s and Web Services. In addition to JWT this class supports Signed Cookies, Encrypted Cookies, and PHP Sessions. To change the storage format modify the private [$method] property of this class.\n\nA new token\/cookie will be sent to the client with each response so that the user can keep browswing the site as long as they remain active within the expiration time.\n\nWhen first used this class will create a [.env] file with secure config settings, a SQLite database for users, and a demo admin user. LDAP can be used for network validation (for example: Windows Active Directory on a Corporate Network) instead of a database by modifying the private [$type] property of this class. To use your own database instead of SQLite search for \"connectToDb\" to find where SQLite is used and then modify the code.\n\nPublic functions for routing and for filtering routes:\n    login($app, $lang)\n    logout($app)\n    hasAccess($app)\n\nPublic functions for editing users in the demo db:\n    addUser($app, $login, $password)\n    updateUser($app, $login, $new_password)\n    deleteUser($app, $login)\n\nSee also:\n    setupDemo()\n    validateDbUser()\n    validateLdapUser()\n    How this class is used from [app\/app.php], search for \"Auth.\"\n\nIMPORTANT - If you end up using this class without making any changes then you MUST change the password on the example Admin user to a secure\/strong password. This can be done with a temporary route on your site by copying and modifying the example code below:\n\n    $app->get('\/admin\/update-user', function() use ($app) {\n        $auth = new \\App\\Middleware\\Auth();\n        return $auth->addUser($app, 'name', 'password');\n        return $auth->updateUser($app, 'name', 'new_password');\n        return $auth->deleteUser($app, 'name');\n    });\n\nOr define routes for a localhost admin user, example:\n\n    $app->get('\/auth\/add\/:name\/:password', 'Auth.addUser')->filter('Env.isLocalhost');\n    $app->get('\/auth\/update\/:name\/:new_password', 'Auth.updateUser')->filter('Env.isLocalhost');\n    $app->get('\/auth\/delete\/:name', 'Auth.deleteUser')->filter('Env.isLocalhost');",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "hasAccess(Application $app)",
+            "target": "fn_hasAccess",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Check if a user has access based on the Request. This function is intended to be used as a route filter function. If the user does not have access this function will return a 401 Unauthorized Response with a login page.\n\nIf the request header [Content-Type] = 'application\/json' and the user does not have access then a 401 JSON Response will returned instead of the login page.",
+            "attributes": [
+                "@param Application $app",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "login(Application $app, $lang)",
+            "target": "fn_login",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Login method. Returns a JSON response for the login page.\n\nIn the starter site template this is called from the URL:\n  POST '\/:lang\/auth\/login'",
+            "attributes": [
+                "@param Application $app",
+                "@param string $lang",
+                "@return Response"
+            ],
+            "returnType": "Response",
+            "links": []
+        },
+        {
+            "definition": "logout(Application $app)",
+            "target": "fn_logout",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Logout and redirect to the site root URL.\n\nIn the starter site template this is called from the URL:\n  GET|POST|{ANY} '\/auth\/logout'\n\nWhen JWT, Signed Cookies, or Encrypted Cookies are used the previously used Access Token will still be valid until it expires (or unless the site config crypto keys or settings are changed). The logout feature is simply intended for websites so a user can logout. As long as HTTPS is used then the previous token cannot be monitored and will be cleared from the browser cache on logout. This is by design because tokens are not invalidated from this class once a user logs out. If you need to track tokens per user and include additional limitations then this would be part of the logic for your app.",
+            "attributes": [
+                "@param Application $app",
+                "@return Response"
+            ],
+            "returnType": "Response",
+            "links": []
+        },
+        {
+            "definition": "addUser(Application $app, $login, $password)",
+            "target": "fn_addUser",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a user to the example SQLite database",
+            "attributes": [
+                "@param Application $app",
+                "@param string $login",
+                "@param string $password",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "updateUser(Application $app, $login, $new_password)",
+            "target": "fn_updateUser",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Change the password for a user in the example SQLite database",
+            "attributes": [
+                "@param Application $app",
+                "@param string $login",
+                "@param string $new_password",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "deleteUser(Application $app, $login)",
+            "target": "fn_deleteUser",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Delete a user from the example SQLite database",
+            "attributes": [
+                "@param Application $app",
+                "@param string $login",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        }
+    ],
+    "links": []
+}

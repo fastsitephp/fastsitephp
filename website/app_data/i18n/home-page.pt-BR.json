@@ -13,5 +13,6 @@
     "security_desc": "A segurança foi cuidadosamente planejada em todas os aspectos do FastSitePHP tornando-o seguro e fácil de utilizar. Características de segurança incluem Criptografia (texto, objetos e arquivos), Cookies Assinados, JWR, CORS, Validação de Servidor Proxy, Limitação de Taxas e muito mais.",
     "test_title": "Testes de Unidade Baeadas em Web",
     "test_desc": "A maioria dos frameworks são testados à partir de um computador de desenvolvedor usando ferramentas CLI especiais; No entanto isso não garante que funcionará no seu ambiente. O FastSitePHP fornece um método baseado em web para teste, fazendo com que toda a velocidade de código e pagina seja facilmente confirmada em qualquer ambiente.",
-    "create_site": "Criem um Site Instantâneo no Code Playground!"
+    "create_site": "Criem um Site Instantâneo no Code Playground!",
+    "sample_code": "Código de Amostra"
 }

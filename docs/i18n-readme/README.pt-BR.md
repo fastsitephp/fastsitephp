@@ -71,7 +71,7 @@ Um site inicial também existe e inclui vários páginas de exemplo e fornece um
 [https://github.com/fastsitephp/starter-site](https://github.com/fastsitephp/starter-site)
 
 <p align="center">
-<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2019-06-17/home-page.png" alt="Site inicial FastSitePHP" width="500">
+<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="Site inicial FastSitePHP" width="500">
 </p>
 
 ## :page_facing_up: Código de Exemplo
@@ -266,7 +266,7 @@ Enquanto o site era desenvolvido o framework e componentes foram sendo substitu�
 
 **Quais versões do PHP são suportadas?**
 
-Todas as versões do PHP da 5.3 a 7.3.
+Todas as versões do PHP da 5.3 a 7.4.
 
 ## :memo: Licença
 

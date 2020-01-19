@@ -49,6 +49,8 @@ class Route
      * then all filter functions for it are called. If one or more
      * of the filter functions returns [false] then the route is skipped.
      * Filter functions are not required to return anything.
+     * If a filter function returns a Response Object then it will be
+     * sent to the client and the controller for the route will not be called.
      * 
      * @param \Closure|string $callback
      * @return $this

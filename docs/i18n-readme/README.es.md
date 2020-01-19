@@ -72,7 +72,7 @@ También existe un sitio de inicio para FastSitePHP que incluye varias páginas 
 [https://github.com/fastsitephp/starter-site](https://github.com/fastsitephp/starter-site)
 
 <p align="center">
-<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2019-06-17/home-page.png" alt="FastSitePHP Starter Site" width="500">
+<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site" width="500">
 </p>
 
 ## :page_facing_up: Código de ejemplo
@@ -260,7 +260,7 @@ Para el sitio que se está desarrollando, el marco y los componentes se reemplaz
 
 **¿Qué versiones de PHP son compatibles?**
 
-Todas las versiones de PHP de 5.3 a 7.3.
+Todas las versiones de PHP de 5.3 a 7.4.
 
 ## :memo: Licencia
 

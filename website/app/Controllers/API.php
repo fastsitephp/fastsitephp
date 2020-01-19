@@ -10,7 +10,7 @@ use FastSitePHP\FileSystem\Security;
  * API Controller
  * 
  * JSON files used by this Class are generated from the script:
- *     vendor\FastSitePHP\scripts\create-api-json-files.php
+ *     fastsitephp\scripts\create-api-json-files.php
  */
 class API
 {
@@ -79,8 +79,13 @@ class API
         $app->locals['i18n']['page_title'] .= ' | ' . $class->name;
 
         // Create a Github link to the source code for the clas
-        $class->github = 'https://github.com/fastsitephp/fastsitephp/blob/master/src/';
-        $class->github .= str_replace('\\', '/', str_replace('FastSitePHP\\', '', $class->name));
+        if (strpos($class->name, 'App') === 0) {
+            $class->github = 'https://github.com/fastsitephp/starter-site/blob/master/app/';
+            $class->github .= str_replace('\\', '/', str_replace('App\\', '', $class->name));
+        } else {
+            $class->github = 'https://github.com/fastsitephp/fastsitephp/blob/master/src/';
+            $class->github .= str_replace('\\', '/', str_replace('FastSitePHP\\', '', $class->name));    
+        }
         $class->github .= '.php';
 
         // Render

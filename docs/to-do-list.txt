@@ -20,29 +20,16 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-*) Minor fix for edge case error needed for running local PHP Server:
-    - if [http://localhost:3000] is used instead of [http://localhost:3000/] then
-        [$app->rootUrl()] returns [http://localhost:3000//]
-    - See workaround here on line 90
-        https://github.com/dataformsjs/website/blob/master/app/app.php
-    - This is a core function so if an update is made full unit tests need to
-      run and be confirmed in a variety of environments:
-        Windows/IIS
-        Linux (Apache and nginx),
-        Apple Mac (Apache),
-        local PHP server (on both Windows and macOS)
-
 *) Starter Site
-    - Need to add i18n nav menus for both mobile and desktop
-      The HTML and CSS needed for this can be copied from the main site and modified as needed.
-    - Add a Auth Demo page to the Starter-Site
-        It will use JWT with a Cookie and not PHP session
-    - Need a new [scripts/sync-server.sh] Script
-        - See similar script for main server
-            https://github.com/fastsitephp/fastsitephp/blob/master/scripts/sync-server-from-github.sh
-        - The version for the starter site will be based on the main server script
-          but apply to the stater site only and it will include comments (and in repository readme file)
-          on how to use and customize for a private site. 
+    - Add Mobile Menu (like the main site)
+    - Once Mobile Menu and additional translations are added a new release will be published
+    - Add [App\Middleware\{Auth, Cors, Env}] to the Quick Ref page once they have API Docs
+        Possibly just a single stater site middleware topic
+
+*) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
+    - Search code for [$html_dir], currently 2 files are affected
+    - Another posible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
+      for partial translatons. 
 
 *) Known Site Issues
     - Old Safari/iOS (Tested iPad 2/iOS 9)
@@ -74,6 +61,16 @@ TODO List
         https://docs.microsoft.com/en-us/windows/wsl/install-win10
         https://docs.microsoft.com/en-us/windows/wsl/about
     - In the future add support for more Linux OS's
+
+*) Starter Site - Future options and features
+    - Add Unit Testing
+        - Likely include CLI Testing for the Auth middleware class to start
+        - Using phpunit - https://phpunit.de/ or custom classes has not been decided on and likely
+          won't until this is added (PHPUnit has limitations such as only running in latest PHP,
+          and it their docs they ware against using it on a production webserver)
+        - Another option may be similar to how testing is handled with the main site
+          and use web based testing (possibly from client-side JS using puppeteer for CLI)
+    - Future - possible mobile apps (iOS and Android) to work with a starter site 
 
 *) Documentation to create
     - Publishing releases
@@ -425,7 +422,6 @@ TODO List
     Web\SiteMapBuilder
         May or may not be created, at the very least docs are needed on how to create one
     Web\StaticSiteBuilder
-    Classes for Authentication including Two-Factor Auth - to be decided later
 
 *) Unit Testing
     - The below items are a lower priority than having all classes fully tested
@@ -468,6 +464,10 @@ TODO List
     - Add Unit Tests for Variables in mount path - Currently the feature is verified ont the site itself
         $app->mount('/:lang/examples/', 'routes-examples.php');
     - Add Unit Tests for [$page_title, $message] params on error callback
+    - Unit test error:
+        'An item from [Route->filter()] for URL [%s %s] was called and ...'
+    - Also add unit testing for filter functions that return a response object.
+      This is now used for Auth on the starter site which helps confirm that the feature works without unit testing for now.
 
 *) Web\Response
     - Create and Expand on Unit Tests for the following functions:
@@ -488,13 +488,14 @@ TODO List
     - Add Unit Tests for 429 - 'Too Many Requests' responses
 
 *) Web\Request
-    queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
-    form() - ...
-    url() - return full URL including query string. Just like [host()] and other user input headers this
+    - queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
+    - form() - ...
+    - url() - return full URL including query string. Just like [host()] and other user input headers this
         needs to hanlde proxy servers and since it's related to security it must be carefully developed and tested.
-    Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
+    - Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
         The reason is that Apache can remove it from $_SERVER, however it's handled here.
-    origin() - need to unit test string value of 'null'
+    - origin() - need to unit test string value of 'null'
+    - bearerToken() - need to unit test, this feature is used on the Starter Site Auth demo
 
 *) Initial Unit Test [/check-server-config]
     If a 500 response is returned then JavaScript should provide a message that JSON support is
@@ -549,6 +550,20 @@ TODO List
 
 *) PHP 7.1+ test with 'sha3-384', 'sha3-512', etc
     https://en.wikipedia.org/wiki/SHA-3#Examples_of_SHA-3_variants
+
+*) Security\Crypto\SignedData
+    - Add new functions:
+        SignedData->expireTime(signed_text) - returns int/timestamp or null
+        SignedData->isExpired(signed_text) - returns bool
+    - These will only be used for reporting on the time stamp if desired by an app
+      and not for security. 
+    - SignedData uses a timestamp format compatible with JavaScript, here is a quick 
+      example of how to convert it for PHP functions (Unix Timestamp in Seconds): 
+        $token = $_COOKIE['USER'];
+        $exp = (float)explode('.', $token)[2];
+        $exp = $exp / 1000;
+        $exp = (int)$exp;
+    - Adding these functions requires unit testing
 
 *) Create Unit Tests for CSRF Classes
     - Verify that the 3 type of tokens work (Session, Stateless, Stateless with expire date)
