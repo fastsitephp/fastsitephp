@@ -4032,7 +4032,7 @@ $app->get('/examples/image', function() use ($app) {
     // CLASS: Media\Image
     // Utilize a Classe Media Image para abrir uma imagem. Se a imagem for
     // inválida ou a extensão do arquivo não corresponder ao tipo de arquivo,
-    // então, uma exceção será lançada. Extenções de arquivos suportadas =
+    // então, uma exceção será lançada. Extensões de arquivos suportadas =
     // [jpg, jpeg, gif, png, webp]
     $img = new \FastSitePHP\Media\Image();
     $img->open($file_path);

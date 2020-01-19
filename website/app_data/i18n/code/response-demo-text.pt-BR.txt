@@ -1,4 +1,4 @@
-// O Objeto da Aplicação permite Cabeçalhos Response básicosutilizando a função
+// O Objeto da Aplicação permite Cabeçalhos Response básicos utilizando a função
 // [header()]. Isto ajuda a evitar a criação de um Objeto Response se isto não
 // for necessário, entretanto, um objeto resposta pode ser preferido por questão
 // de clareza.
@@ -7,7 +7,7 @@ $app->get('/app-text', function() {
     return 'Olá Mundo';
 });
 
-// Ao utiliza  Objeto Response, propriedades são definidas através de funções
+// Ao utilizar Objeto Response, propriedades são definidas através de funções
 // getter/setter e são encadeáveis.
 $app->get('/res-text', function() {
     return (new \FastSitePHP\Web\Response())
