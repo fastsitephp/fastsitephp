@@ -27,7 +27,7 @@ This tutorial provides instructions with a step by step guide on how to setup a 
 </div>
 
 ### Web Platform Installer
-Microsoft’s Web Platform Installer can be used to install multiple version of PHP both on regular desktops (Windows 10, etc) for development and on Windows Servers for production.
+Microsoft’s Web Platform Installer (WebPI) can be used to install multiple version of PHP both on regular desktops (Windows 10, etc) for development and on Windows Servers for production.
 * https://www.microsoft.com/web/downloads/platform.aspx
 
 ### Alternative Development Environments for PHP with Windows
@@ -49,13 +49,13 @@ If installing PHP on a Windows Server you will likely use Remote Desktop Connect
 
 &nbsp;
 
-Open RDC by searching for “Remote” in the start menu; once opened you will see a login screen.
+Open RDC by searching for “Remote” ou "mstsc" in the start menu; once opened you will see a login screen.
 
 ![Remote Desktop Connection (RDC)](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/00_RDC.png)
 
 &nbsp;
 
-Specifying “.\” in front of the user name will use the local network of the computer that you are connecting to rather than your domain. This may or may not be needed depending on where and how you are connecting.
+Specifying “.\” before the user name will use the local network of the computer that you are connecting to rather than your domain. This may or may not be needed depending on where and how you are connecting.
 
 ![Remote Desktop Connection (RDC) Login](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/01_RDC_Auth.png)
 
@@ -114,7 +114,7 @@ Download Microsoft's Web Platform Installer. [https://www.microsoft.com/web/down
 
 &nbsp;
 
-Windows Servers typically block most sites and downloads by default so you may see this warning if using IE. To work-around the issue, change IE Security Settings, download the Web Platform Installer from another browser if available, or download from another computer and copy the installer through RDC.
+Windows Servers typically block most sites and downloads by default so you may see this warning if using IE. To work-around the issue, change IE Security Settings, download the Web Platform Installer from another browser (a portable version for example) if available, or download from another computer and copy the installer through RDC.
 
 ![IE Download Warning](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/10_Download_Warning.png)
 
@@ -132,7 +132,7 @@ Once installed you’ll see it in the Start Menu.
 
 &nbsp;
 
-Search for “php” or a specific version such as “php 7.3”. The Web Platform Installer provides many different versions of PHP and various extensions. 
+Search for “php” or a specific version such as “php 7.3”. The Web Platform Installer provides many different versions of PHP and various extensions.
 
 ![Web Platform Installer - PHP Search](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/13_Search_For_PHP.png)
 

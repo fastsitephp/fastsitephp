@@ -6,11 +6,11 @@
 
 ---
 ## Overview
-FastSitePHP includes the ability to encrypt files using both a PHP Class and a compatible Bash Script. Bash is the default shell on many versions of Linux and on macOS; it is also widely available on other Unix OS’s. Bash can also [run on Windows using the Windows Subsystem for Linux](file-encryption-windows) or third-party tools.
+FastSitePHP includes the ability to encrypt files using both a PHP Class and a compatible Bash Script. Bash is the default shell on many versions of Linux and on macOS; it is also widely available on other Unix Like OS’s such as the BSD's (FreeBSD, NetBSD, OpenBSD, DragonFlyBSD etc). Bash can also [run on Windows using the Windows Subsystem for Linux](file-encryption-windows) or third-party tools.
 
 This page shows how to use the bash script and provides details on how it works.
 
-Screenshots on this page were created on Mac using SSH and Terminal to connect to an Amazon Web Services (AWS) Lightsail Servers. The IP addresses and any server info shown on the screenshots are from temporary severs that no longer exists.
+Screenshots on this page were created on Mac using SSH and Terminal to connect to an Amazon Web Services (AWS) Lightsail Servers. The IP addresses and any server info shown on the screenshots are from temporary servers that no longer exists.
 
 ### File Encryption API and Bash Script
 * [📄 Class [Security\Crypto\FileEncryption]](../api/Security_Crypto_FileEncryption)
@@ -21,7 +21,7 @@ Screenshots on this page were created on Mac using SSH and Terminal to connect t
 ---
 ## Running the Script
 
-To run using Bash run the command `bash encrypt.sh` from your shell or terminal program or to run directly run the command `./encrypt.sh`. If you first need to set execute permissions run `chmod +x encrypt.sh` however this typically won't be required.
+To run using Bash run the command `bash encrypt.sh` from your shell or terminal program or to run directly run the command `./encrypt.sh`, but you first need to make it executable by setting the permissions running `chmod +x encrypt.sh` however this typically won't be required.
 
 When you run the script without any options or using the `./encrypt.sh -h` Help Option you will see info for the command, usage, options, and examples.
 
@@ -78,7 +78,7 @@ The script is safe to run and prompts you before overwriting any files. Addition
 
 &nbsp;
 
-On most systems you can install the command globally using `sudo mv encrypt.sh /usr/local/bin/encrypt`. You can then simply use the command `encrypt` from shell/terminal.
+On most systems you can install the command globally using `sudo mv encrypt.sh /usr/local/bin/encrypt`. You can then simply use the command `encrypt` from any place on your shell/terminal.
 
 ![Install [encrypt.sh] Globally](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_bash/06_Install_Global_Command.png)
 
@@ -191,8 +191,8 @@ xxd -l 16 -p /dev/urandom
 # Value for this Demo: 0ee221ef9e00dfa69efb3b1112bfbb2f
 
 # Encrypt (creates a new file "crypto_test_10mb.enc")
-# The algorighm 'aes-256-cbc' is used, some systems also support the secure
-# algorighm 'aes-256-ctr' however it will not work on all systems which is
+# The algorithm 'aes-256-cbc' is used, some systems also support the secure
+# algorithm 'aes-256-ctr' however it will not work on all systems which is
 # why [encrypt.sh] only supports 'aes-256-cbc'.
 openssl enc -aes-256-cbc \
     -in crypto_test_10mb \

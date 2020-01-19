@@ -6,7 +6,7 @@
 
 ---
 ## Overview
-FastSitePHP includes the ability to encrypt files using both a PHP Class and a compatible Bash Script. Bash is the default shell on many versions of Linux and on macOS; it is also widely available on other Unix OS’s.
+FastSitePHP includes the ability to encrypt files using both a PHP Class and a compatible Bash Script. Bash is the default shell on many versions of Linux and on macOS; it is also widely available on other Unix Like OS’s such as the BSD's (FreeBSD, NetBSD, OpenBSD, DragonFlyBSD etc).
 
 Windows 10 and Windows Server 1709 and later provide support for the Windows Subsystem for Linux which allows for Linux Programs, Bash Scripts, and more to run on Windows.
 
@@ -30,11 +30,11 @@ These print screens were created on an Amazon Web Services (AWS) EC2 Instance of
 
 To copy files to Windows Nano Server you can use Powershell, however if Powershell is not an option and you need to copy a text file you can open an instance of Notepad by typing `notepad.exe` into the Windows Command Line before logging into Linux.
 
-In this example the file [encrypt.sh] was saved to the folder [C:\Users\Administrator\Documents]; and in the Linux you can access the C Drive (or other drives) from [/mnt/c]. 
+In this example the file [encrypt.sh] was saved to the folder [C:\Users\Administrator\Documents]; and in the Linux you can access the C Drive (or other drives) from [/mnt/], being [/mnt/c] for the C drive.
 
 To run a bash script navigate to the directory of the script and then run either `bash {script}` or `./{script}`.
 
-You can see in this example there was an error when first running the script. This happened because Windows Notepad saved the Bash Script with Windows Line Breaks rather than Unix Line Breaks; to fix this run the command `sed -i 's/\r$//' encrypt.sh`. The script will then run as expected.
+You can see in this example there was an error when first running the script. This happened because Windows Notepad saved the Bash Script with Windows Line Breaks (CR/LF) rather than Unix Line Breaks (LF); to fix this run the command `sed -i 's/\r$//' encrypt.sh`. The script will then run as expected.
 
 ![Windows Nano Server - Open Notepad and Create Script](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_win/01_Create_Encrypt_SH_File.png)
 

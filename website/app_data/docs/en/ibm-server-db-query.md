@@ -16,7 +16,7 @@
 
 ---
 ## Overview
-This page provides a brief overview of database development using FastSitePHP with an IBM Database on an IBM Server. FastSitePHP provides several database classes which reduces the amount of code needed to query databases using PHP. One of the classes [[Data\Db2Database](../api/Data_Db2Database)] is specifically for IBM DB2 and AS/400 Databases. 
+This page provides a brief overview of database development using FastSitePHP with an IBM Database on an IBM Server. FastSitePHP provides several database classes which reduces the amount of code needed to query databases using PHP. One of the classes [[Data\Db2Database](../api/Data_Db2Database)] is specifically for IBM DB2 and AS/400 Databases.
 
 PHP is supported for IBM Servers and typically the most recent version of PHP can even be installed on old IBM AIX Servers. This allows for modern scripting and much faster development when working on older IBM Servers. This document doesn’t cover how to install PHP on an IBM iSeries Server and assumes you have access to an IBM Server and that PHP is already setup; this would typically be done by an administrator of the IBM Server and not a developer.
 
@@ -41,7 +41,7 @@ A script that comes with FastSitePHP [scripts\ibm-db2-test.php] provides details
 ## Starting an IBM Server Session
 If you are in an IBM Environment then you may this setup or a similar setup from the Windows Start Menu.
 
-![Start and IBM Session](https://dydn9njgevbmp.cloudfront.net/img/docs/as400/01_IBM_Start_Session.png)
+![Start an IBM Session](https://dydn9njgevbmp.cloudfront.net/img/docs/as400/01_IBM_Start_Session.png)
 
 &nbsp;
 
