@@ -1,4 +1,4 @@
-// Returne uma Resposta JSON retornando um Objeto ou uma Array
+// Retorne uma Resposta JSON retornando um Objeto ou uma Array
 $app->get('/app-json-object', function() {
     $object = new \stdClass;
     $object->greeting = 'Olá Mundo';
@@ -21,7 +21,7 @@ $app->get('/res-json', function() {
     $res->contentType('application/json');
     $res->header('Content-Type', 'application/json');
 
-    // Para JSON Content Objetos e Arrays são utilizados
+    // Para JSON Content, Objetos e Arrays são utilizados
     $data = ['greeting' => 'Olá Mundo'];
     $res->content($object);
 

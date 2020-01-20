@@ -67,14 +67,13 @@ sudo bash create-fast-site.sh -n
 
 ### Apache and PHP Installation on Ubuntu (Detailed)
 ~~~
-# Update [apt] Package Manager
-# The [upgrade] is not required but recommend (however, it takes many minutes)
+# Update the [apt] Package Manager List with [update]
 sudo apt update
+# The [upgrade] is not required but recommend (however, it takes many minutes)
 sudo apt upgrade
 
 # Install Apache and PHP
-sudo apt install apache2
-sudo apt install php
+sudo apt install apache2 php
 
 # Enable PHP for Apache
 sudo apt install libapache2-mod-php
@@ -96,10 +95,10 @@ sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
 # install script to run.
 sudo apt install php7.2-zip
 
-# Optional - Enable a Fallback page so that [index.php] 
+# Optional - Enable a Fallback page so that [index.php]
 # does not show in the URL.
 sudo nano /etc/apache2/apache2.conf
-# Scroll through the file and look for line:
+# Scroll through the file and look for the line:
 #    <Directory /var/www/>
 # Under it add the line:
 #    FallbackResource /index.php
@@ -169,11 +168,11 @@ ls ~
 
 ### Apache and PHP Installation on Red Hat, CentoOS, Fedora
 ~~~
-# Update Package Manager
+# Update the Package Manager's List
 sudo yum update –y
 
 # Optional install [vim-common] for hex command [xxd] support.
-# This is required is using FastSitePHP or the included shell
+# This is required if using FastSitePHP or the included shell
 # script for file encryption.
 sudo yum install vim-common
 
@@ -227,13 +226,13 @@ vi /usr/local/etc/apache24/Includes/php.conf
 </IfModule>
 ~~~
 ~~~
-#Save using:
+# Save using:
 # {esc} :wq
 
 # Make sure the file looks correct
 cat /usr/local/etc/apache24/Includes/php.conf
 
-# Copy [php.ini] and create Test [phpinfo.php] file
+# Copy [php.ini] and create a Test [phpinfo.php] file
 cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
 cd /usr/local/www/apache24/data
 echo "<?php echo phpinfo(); ?>" | tee phpinfo.php
@@ -251,15 +250,16 @@ This example was performed on Ubuntu using an Amazon AWS Lightsail Server and co
 
 &nbsp;
 
-Update Advanced Package Tool (APT) `sudo apt update`
+Update the Advanced Package Tool (APT) List
+* `sudo apt update`
 
-![Update Advanced Package Tool (APT)](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/00_apt_get_update.png)
+![Update using the Advanced Package Tool (APT)](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/00_apt_get_update.png)
 
 &nbsp;
 
-The update outputs log info as it runs and should complete quickly. Once it is updated you’ll be able to type on the terminal again.
+The update process outputs log info as it runs and should complete quickly. Once it is updated you’ll be able to type on the terminal again.
 
-![APT Updated](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/01_apt_get_update_complete.png)
+![APT Packages List Updated](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/01_apt_get_update_complete.png)
 
 &nbsp;
 
@@ -286,7 +286,7 @@ Optional - Enable a Fallback page so that [index.php] does not show in the URL. 
 
 &nbsp;
 
-Scroll through the file and look for line: `<Directory /var/www/>`. Add the line `FallbackResource /index.php` under it. In this example `CGIPassAuth On` is also added so that the HTTP Request Header [Authorization] is made avaialble to PHP using `$_SERVER['HTTP_AUTHORIZATION']`; however it is not required when using the FastSitePHP Request Object. The nano exit/save/etc menus will show at the bottom of the screen.
+Scroll through the file and look for line: `<Directory /var/www/>`. Add the line `FallbackResource /index.php` under it. In this example `CGIPassAuth On` is also added so that the HTTP Request Header [Authorization] is made available to PHP using `$_SERVER['HTTP_AUTHORIZATION']`; however it is not required when using the FastSitePHP Request Object. The nano exit/save/etc menus will show at the bottom of the screen.
 
 ![Edit Apache Config with Nano](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/06_edit_apache_config.png)
 
