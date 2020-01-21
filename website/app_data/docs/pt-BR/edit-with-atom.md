@@ -16,9 +16,9 @@
 
 ---
 ## Visão Geral
-O Editor Atom do GitHub é um Editor de Código popular para Desenvolvedores. Ele pode ser instalado gratuitamente em Windows, Mac e Linux e inclui suporte integrado ao PHP.
+O Editor Atom do GitHub é um Editor de Código popular para Desenvolvedores. Ele pode ser instalado gratuitamente em Windows, macOS e Linux e inclui suporte integrado ao PHP.
 
-Um plugin Servidor de PHP amplamente utilizado é recomandado aqui para desenvolvimento PHP.
+Um plugin Servidor de PHP amplamente utilizado é recomendado aqui para desenvolvimento PHP.
 
 https://atom.io/
 
@@ -29,7 +29,7 @@ https://atom.io/
 
 https://atom.io/packages/php-server
 
-Quando você instala o PHP em seu computador você pode utilizar a extensão PHP Server com o Atom para rodar um site. Isso funciona perfeitamente com FastSitePHP, simplesmente clique como botão direito no arquivo [index.php] e selecione [PHP Server here].
+Quando você instala o PHP em seu computador você pode utilizar a extensão PHP Server com o Atom para rodar um site. Isso funciona perfeitamente com FastSitePHP, simplesmente clique com o botão direito no arquivo [index.php] e selecione [PHP Server here].
 
 ![Pacote PHP Server para o Atom](https://dydn9njgevbmp.cloudfront.net/img/docs/edit_with_atom/1_Run_PHP_Server.png)
 
@@ -37,4 +37,4 @@ Quando você instala o PHP em seu computador você pode utilizar a extensão PHP
 
 Você então verá o FastSitePHP ser iniciado (ou o site inicia) em seu navegador padrão.
 
-![Visão so Site](https://dydn9njgevbmp.cloudfront.net/img/docs/edit_with_atom/2_View_Site.png)
+![Visão do Site](https://dydn9njgevbmp.cloudfront.net/img/docs/edit_with_atom/2_View_Site.png)

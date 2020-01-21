@@ -1,7 +1,7 @@
 {
     "page_title": "API FastSite",
     "class_list": "Lista de Classes",
-    "properties_methods": "Propriedades e Metodos",
+    "properties_methods": "Propriedades e Métodos",
     "properties": "Propriedades",
     "name": "Nome",
     "data_type": "Tipo de Dados",
@@ -13,7 +13,7 @@
     "getter_setter": "Propriedade Getter / Setter",
     "returns": "Returna",
     "filter_placeholder": "Filtra classes nesta página. Por exemplo digite 'Email' ou 'JWT'",
-    "filter_disabled": "Se você visualizar esta página com um Navegador ou Systema Operacional mais recente você poderá filtrar as classes.",
+    "filter_disabled": "Se você visualizar esta página com um Navegador ou Sistema Operacional mais recente você poderá filtrar as classes.",
     "filter_all": "Mostrando {count} Classes",
     "filter_filtered": "Mostrando {displayed} de {count} Classes",
     "related_links": "Links Relacionados",

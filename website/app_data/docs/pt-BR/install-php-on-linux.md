@@ -1,6 +1,6 @@
 # Instalar o Apache ou o nginx e o PHP em um Servidor Linux ou Unix
 <style>
-    .logo- ficar preso simplesmente busque na internet por recursos adicionaisx; margin-right:20px;}
+    .logo- ficar preso simplesmente busque na internet por recursos adicionais; margin-right:20px;}
     .logo-images span { font-size:100px; margin-right: 40px; margin-top: -5px; }
     @media (min-width:500px) {
         .logo-images { flex-direction:row; }
@@ -34,7 +34,7 @@ Se você estiver conectando a um Servidor Linux em Nuvem à partir do Windows ou
 
 
 ---
-## Código de Rererência Rápida
+## Código de Referência Rápida
 Esta seção mostra várias opções de instalação diferentes para Linux utilizando o shell (terminal / command-prompt). Se você estiver familiarizado com o uso do shell e está instalando em um dos SOs listados, você pode utilizar esta referência rápida. Estas instruções atualmente fornecem um visão geral da instalação inicial. Dependendo de qual é o seu SO você pode querer instalar extensões adicionais do Apache para atualizar diversos arquivos de configuração.
 
 ### Configuração Rápida
@@ -46,7 +46,7 @@ Esta seção mostra várias opções de instalação diferentes para Linux utili
 
 # Este script  e seguro para rodar várias vezes por que ele verifica se os
 # programas, como o php, já estão instalados e pergunta a você antes de
-# sobrecrever um site existente.
+# sobrescrever um site existente.
 
 # Sistemas Operacionais Suportados (mais serão adicionados no futuro):
 #   Ubuntu 18.04 LTS
@@ -78,7 +78,7 @@ sudo apt install apache2 php
 # Habilitar o PHP no Apache
 sudo apt install libapache2-mod-php
 
-# Um versão do comando alternativo existe para installar o Apache, MySQL e PHP.
+# Um versão do comando alternativo existe para instalar o Apache, MySQL e PHP.
 # Dependendo da versão do comando você será acionado para fornecer uma senha
 # ou definir uma mais tarde para MySQL.
 #
@@ -101,7 +101,7 @@ sudo nano /etc/apache2/apache2.conf
 #    <Directory /var/www/>
 # Abaixo disso adicione a linha:
 #    FallbackResource /index.php
-# Salbe utilizando:
+# Salve utilizando:
 #    {control+s} -> {control+x}
 #    or {control+x} -> {y} -> {enter}
 
@@ -271,7 +271,7 @@ Install Apache, PHP, and then enable PHP for Apache and PHP. Detailed log info w
 
 &nbsp;
 
-Deterninar a versão PHP instalada; estará claramente disponível no log do instalador. Isto pode ser utilizado para opcionalmente installar diversas extensões. Exemplo: `sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml`
+Determinar a versão PHP instalada; estará claramente disponível no log do instalador. Isto pode ser utilizado para opcionalmente instalar diversas extensões. Exemplo: `sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml`
 
 ![Obter Versão do PHP](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/03_install_php.png)
 
@@ -285,7 +285,7 @@ Opcional - Habilite uma página Fallback para que o [index.php] não seja mostra
 
 &nbsp;
 
-Role pelo arquivo e procure pela linha: `<Directory /var/www/>`. Adicione a linha `FallbackResource /index.php` abaixo dela. Neste exemplo `CGIPassAuth On` é tabém adicionada para que o Cabeçalho de Requisição HTTP [Authorization] seja disponibilizado para o PHP ao utilizar `$_SERVER['HTTP_AUTHORIZATION']`; contudo, isto não é necessário ao utilizar o Objeto Request do FastSitePHP. Os menus exit/save/etc do nano serão mostrados no rodapé da tela.
+Role pelo arquivo e procure pela linha: `<Directory /var/www/>`. Adicione a linha `FallbackResource /index.php` abaixo dela. Neste exemplo `CGIPassAuth On` é também adicionada para que o Cabeçalho de Requisição HTTP [Authorization] seja disponibilizado para o PHP ao utilizar `$_SERVER['HTTP_AUTHORIZATION']`; contudo, isto não é necessário ao utilizar o Objeto Request do FastSitePHP. Os menus exit/save/etc do nano serão mostrados no rodapé da tela.
 
 ![Edite a Configuração do Apache com o Nano](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_linux/v1/06_edit_apache_config.png)
 

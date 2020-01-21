@@ -3846,7 +3846,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
     // If using the [RateLimit] class for multiple
     // uses then you need to specify an optional key.
     $options = [ 'key' => 'messages-sent' ];
-    $options = [ 'key' => 'acounts-created' ];
+    $options = [ 'key' => 'accounts-created' ];
 
     // The [RateLimit] class allows for different rate limiting algorithms;
     // the default is 'fixed-window-counter' which puts a fixed amount on

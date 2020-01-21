@@ -28,7 +28,7 @@ if (is_file('../../../vendor/autoload.php')) {
 // Exemplo de Roda Padrão
 // Crie e mostre uma lista de todas as rotas
 $app->get('/examples', function() use ($app) {
-    // Obtém URLs para todas as Routas
+    // Obtém URLs para todas as Rotas
     $urls = [];
     foreach ($app->routes() as $route) {
         if ($route->pattern === '/hello/:name?') {
@@ -65,7 +65,7 @@ $app->get('/examples', function() use ($app) {
 // amplamente utilizadas como: JavaScript, C# e Java. Se você tiver alguma
 // experiência com JavaScript é muito fácil começar a usar o PHP.
 
-// Scripts PHP comçam com [<?php] e linhas individuais devem ser finalizadas com
+// Scripts PHP começam com [<?php] e linhas individuais devem ser finalizadas com
 // um ponto e vírgula [;]. O comando [echo] exibe/imprime na tela um conteúdo.
 // Salvando este exemplo em um arquivo e executando-o, simplesmente exibirá
 // 'Olá Mundo!'.
@@ -87,7 +87,7 @@ $app->get('/examples/php-variables', function() use ($app) {
     $string = 'String'; //cadeia de texto
     $number = 123; //número
     $decimal = 123.456;
-    $bool = true; //boleano
+    $bool = true; //booleano
     $null = null; //nulo
 
     // Arrays podem ser definidos utilizando os caracteres [] como JavaScript
@@ -144,13 +144,13 @@ $app->get('/examples/php-variables', function() use ($app) {
 
 $app->get('/examples/php-strings', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TÍTLO: Sintaxe PHP - Strings
+    // TITLE: Sintaxe PHP - Strings
     // Similar a outras linguagens como JavaScript, Python e Ruby,
     // strings em PHP pode ser cercados por aspas simples ou aspas duplas
     $value = 'String em Aspas Simples';
     $value = "String em Aspas Duplas";
 
-    // Para combinar ou concatenar strings utilize o caracter ponto [.]:
+    // Para combinar ou concatenar strings utilize o caractere ponto [.]:
     $saudacao = 'Olá ' . 'Mundo';
 
     // Espaços não são obrigatórios entre o ponto [.] e as outras variáveis:
@@ -165,7 +165,7 @@ $app->get('/examples/php-strings', function() use ($app) {
     $nome = 'Mundo';
     $saudacao = "Olá ${name}";
 
-    // Strings the multiplas linhas utilizam [<<<] seguido por um
+    // Strings the múltiplas linhas utilizam [<<<] seguido por um
     // identificador definido pelo programador e finaliza a string com o
     // mesmo identificador iniciando em uma nova linha seguido de um [;].
     // Neste exemplo o identificador foi nomeado de [FDD] para Fim-Dos-Dados.
@@ -198,8 +198,8 @@ FDD;
     // diferentes. [strpos()] e [stripos()] são bons exemplos disso.
     // Se a string for encontrada, um número inteiro com a posição será retornado,
     // caso contrário, retornará um valor booleano falso.
-    $pos = stripos($value, 'DEF'); // Sem diferençao de maiúsculas e minúsculas = 4
-    $pos2 = strpos($value, 'DEF'); // Cem diferençao de maiúsculas e minúsculas = false
+    $pos = stripos($value, 'DEF'); // Sem diferenciação de maiúsculas e minúsculas = 4
+    $pos2 = strpos($value, 'DEF'); // Cem diferenciação de maiúsculas e minúsculas = false
 
     // Dividir para um Array e unir um Array a uma String.
     // Ao invés de utilizar [split()/join()] PHP utiliza [explode/implode()].
@@ -359,11 +359,11 @@ $app->get('/examples/php-logic', function() use ($app) {
 
     // Declaração Switch
     // Assim como a declaração [if] a sintaxe para [switch] é similar às
-    // linguagens baseadas no estido C, como a prória C e JavaScript, então
+    // linguagens baseadas no estilo C, como a própria C e JavaScript, então
     // as mesmas regras podem ser aplicadas.
     //
     // Este exemplo imprime o nome da estação à partir do calendário de 4
-    // estações no emisfério norte baseando-se no mês atual.
+    // estações no hemisfério norte baseando-se no mês atual.
 
     echo "\n";
     $month = date('F');
@@ -415,7 +415,7 @@ $app->get('/examples/php-loops', function() use ($app) {
     ];
 
     $cities_populacao = [
-        'Tóqui'     => '36,923,000',
+        'Tóquio'     => '36,923,000',
         'São Paulo' => '36,842,102',
         'Jacarta'   => '30,075,310',
         'Seul'     => '25,520,000',
@@ -535,7 +535,7 @@ $app->get('/examples/php-functions', function() use ($app) {
     echo '<br>';
 
     // Esta versão é similar a versão acima no entanto a variável [$x] é
-    // passada por referência tuilizando o operador [&]. Esta versão
+    // passada por referência utilizando o operador [&]. Esta versão
     // imprimirá "123" por que [$x] é modificada.
     $scope_test = function() use (&$x) {
         $x = 123;
@@ -558,7 +558,7 @@ $app->get('/examples/php-classes', function() use ($app) {
         // Define uma Variável Membro
         public $value = 0;
 
-        // Define um contrutor de Classe com um parâmetro opcional.
+        // Define um construtor de Classe com um parâmetro opcional.
         // Definir um construtor [__construct] é opcional.
         public function __construct($numero = 0)
         {
@@ -616,7 +616,7 @@ $app->get('/examples/php-encoding', function() {
 
     // EXAMPLE_CODE_START
     // TITLE: Sintaxe PHP - Codificação - JSON, Base64, Base64-URL
-    // CLASS: Codificaççao\Json, Codificação\Base64Url
+    // CLASS: Codificação\Json, Codificação\Base64Url
     // Criar um objeto e um array básicos para codificar
     $object = new \stdClass;
     $object->string = 'Test';
@@ -675,7 +675,7 @@ $app->get('/examples/php-encoding', function() {
     $decoded = \FastSitePHP\Encoding\Json::decode($json);
 
     /* Muitas vezes no entanto, na maioria dos códigos, simplesmente chamar
-    [json_encode()] ou [json_decode()] será suficliente. Por padrão o PHP
+    [json_encode()] ou [json_decode()] será suficiente. Por padrão o PHP
     decodifica números grandes como ponto flutuante. Se você quer uma
     decodificação mais estrita para que venham em string, então você pode
     utilizar opções adicionais. É assim que a classe JSON do FastSitePHP
@@ -694,7 +694,7 @@ $app->get('/examples/php-encoding', function() {
     echo $base64;
     echo "\n";
 
-    // Ao decodificar, se houver um erro então [false] é retonado
+    // Ao decodificar, se houver um erro então [false] é retornado
     $decoded = base64_decode($base64);
     print_r($decoded);
     echo "\n\n";
@@ -734,7 +734,7 @@ $app->get('/examples/php-error', function() use ($app) {
     // seriam simplesmente ignorados e o script continuaria com resultados
     // inesperados. Isso pode tornar programar em PHP difícil no início se você
     // estiver vindo de outra linguagem. FastSitePHP torna as coisas fáceis, por This can make programming
-    // que roda o código em modo estrito e converte erros para execeções assim
+    // que roda o código em modo estrito e converte erros para exceções assim
     // que [app->setup()] é chamada.
 
     // Para controlar todos os erros e exceções de forma global em PHP, quatro
@@ -788,7 +788,7 @@ $app->get('/examples/php-error', function() use ($app) {
 /*
 // EXAMPLE_CODE_START
 // TITLE: Olá Mundo com FastSitePHP
-// CLASS: Applicação
+// CLASS: Aplicação
 <?php
 // Somente dois arquivos são necessários para rodar o FastSitePHP e eles podem
 // estar no mesmo diretório que o [index.php] ou seus conteúdos podem ser
@@ -812,7 +812,7 @@ $app->get('/json', function() {
 });
 
 // Para todas as outras requisições, retorne a URL como resposta em texto puro.
-// A palabra chave [use] torna a variável [$app] disponível para a função.
+// A palavra chave [use] torna a variável [$app] disponível para a função.
 $app->get('/*', function() use ($app) {
     $app->header('Content-Type', 'text/plain');
     return $app->requestedPath();
@@ -867,11 +867,11 @@ $app->run();
 $app->get('/examples/app-basic-routes', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Objeto Application - Definindo Rotas Básicas
-    // CLASS: Applicação
-    // O Objeto Application é o objeto chabe no FastSitePHP. É utilizado para
-    // definir rotas, fornecer informaçãoes e requisição, renderizar modelos,
+    // CLASS: Aplicação
+    // O Objeto Application é o objeto chave no FastSitePHP. É utilizado para
+    // definir rotas, fornecer informações e requisição, renderizar modelos,
     // enviar a resposta e mais. Se você estiver utilizando uma cópia deste
-    // site ou um site incicial o Objeto Application estará disponível como a
+    // site ou um site inicial o Objeto Application estará disponível como a
     // variável [$app] e rotas são definidas na página [app.php].
 
     // Rota Básica
@@ -913,7 +913,7 @@ $app->get('/examples/app-basic-routes', function() use ($app) {
     $app->patch('/method', function() { return 'patch()'; });
     $app->delete('/method', function() { return 'delete()'; });
 
-    // A mesma URL ode ser definida multiplas vezes e a primeira resposta
+    // A mesma URL ode ser definida múltiplas vezes e a primeira resposta
     // correspondente impedirá rotas adicionais de serem avaliadas. Neste
     // exemplo a rota '/example' retornará o texto 'Exemplo 2'.
     $app->get('/example', function() { return null; });
@@ -959,7 +959,7 @@ $app->get('/examples/app-route-optional-parameter', function() use ($app) {
         return 'Olá ' . $app->escape($name) . '!';
     });
 
-    // Além os parâmetros opcionais um caracter curringa '*' pode ser utilizado
+    // Além os parâmetros opcionais um caractere curinga '*' pode ser utilizado
     // no final da URL para manipular todas as requisições que correspondem ao
     // início da URL. Neste exemplo as seguintes  URLs seria ambas correspondidas.
     //     '/hello/world'
@@ -980,7 +980,7 @@ $app->get('/examples/app-route-controllers', function() use ($app) {
     // TITLE: Defina a Rota que mapeia para uma Classe de Controle
     // CLASS: Aplicação
     // Definindo rotas com uma funções callback, permite prototipagem rápida
-    // e funcina bem ao utilizar lógica mínima. Com o crescimento do código,
+    // e funciona bem ao utilizar lógica mínima. Com o crescimento do código,
     // isso pode ser organizado em classes controller.
 
     // Opcionalmente especifique o Namespace raiz da classe controller. Ao usar
@@ -994,7 +994,7 @@ $app->get('/examples/app-route-controllers', function() use ($app) {
 
     // As duas opções de formato são 'class' e 'class.method'. Ao utilizar só
     // nome de classe, a funções de rota [route(), get(), post(),  put(), etc]
-    // serao utilizadas para o nome do método do controller correspondente.
+    // serão utilizadas para o nome do método do controller correspondente.
     $app->get('/:lang/examples', 'Exemplos');
     $app->get('/:lang/examples/:page', 'Exemplo.getExample');
 
@@ -1027,7 +1027,7 @@ $app->get('/examples/app-route-controllers', function() use ($app) {
 $app->get('/examples/app-route-parameter-validation', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Validação de Parâmetro de Rota
-    // O Objeto da Apicação tem uma função [param()] que pode ser utilizado para
+    // O Objeto da Aplicação tem uma função [param()] que pode ser utilizado para
     // validar e converter os parâmetros da URL para um formato específico como
     // um número.
 
@@ -1048,7 +1048,7 @@ $app->get('/examples/app-route-parameter-validation', function() use ($app) {
         var_dump($product_id);
     });
 
-    // Exeplos adicionais de Definição de Regras de Parâmetros. Para mais veja
+    // Exemplos adicionais de Definição de Regras de Parâmetros. Para mais veja
     // a documentação completa e outros exemplos.
 
     $range_param = function($value) {
@@ -1106,7 +1106,7 @@ $app->get('/examples/app-route-filter', function() use ($app) {
     })->filter($text_response);
 
     // Uma rota pode ter múltiplos filtros e para clareza você pode colocar
-    // funções filtro em linhas separadas. Esta página será somente chamdada se
+    // funções filtro em linhas separadas. Esta página será somente chamada se
     // [$is_authenticated] retornar [true] e isso for também uma resposta em
     // texto.
     $app->get('/secure-text-page', function($name) {
@@ -1137,7 +1137,7 @@ $app->get('/examples/app-info', function() use ($app) {
     // TITLE: Objeto de Aplicação - Informação de Básicas de Requisição
     // Muitos frameworks requerem valores especiais de configurações para que
     // possam manipular requisições. O FastSitePHP descobre isso automaticamente
-    // e fornece algmumas funções no Objeto Application para retornar
+    // e fornece algumas funções no Objeto Application para retornar
     // informações básicas de requisição.
 
     // Se seu site não usa um servidor proxy como balanceador de carga essas
@@ -1147,7 +1147,7 @@ $app->get('/examples/app-info', function() use ($app) {
     // URL raiz.
 
     // URL raiz ou base para o site. Isso é frequentemente necessário para
-    // contruir URL com caminhos completos em páginas web.
+    // construir URL com caminhos completos em páginas web.
     //
     // Exemplos:
     //     # [index.php] especificado no URL
@@ -1167,7 +1167,7 @@ $app->get('/examples/app-info', function() use ($app) {
     //
     $root_url = $app->rootUrl();
 
-    // Diretório raiz para o site. Geralmente necessario para contruir URLs para
+    // Diretório raiz para o site. Geralmente necessário para construir URLs para
     // recursos estáticos como arquivos CSS ou JavaScript.
     //
     //     Request: https://www.example.com/index.php/page
@@ -1193,7 +1193,7 @@ $app->get('/examples/app-info', function() use ($app) {
     //
     $requested_path = $app->requestedPath();
 
-    // Exemplo de utilização para contrução de URL:
+    // Exemplo de utilização para construção de URL:
     $site_css = $app->rootDir() . 'css/site.css';
     $docs_link = $app->rootUrl() . '/documents';
     //
@@ -1219,8 +1219,8 @@ $app->get('/examples/app-dynamic', function() use ($app) {
     // FastSitePHP permite que o objeto da aplicação tenha funções dinamicamente
     // atribuídas e propriedades lazy loading. Isso permite que funções
     // personalizadas e recursos compartilhados por muitas rotas serem organizados
-    // sob um ojeto global e pode permitir uma injeção simples e clara de
-    // de dependencia.
+    // sob um objeto global e pode permitir uma injeção simples e clara de
+    // de dependência.
 
     // Exemplo JavaScript - Isto funciona para adicionar uma função dinamicamente
     // a um objeto:
@@ -1241,13 +1241,13 @@ $app->get('/examples/app-dynamic', function() use ($app) {
     $app->test();
 
     // A função nativa de PHP [method_exists()] não funcionará para funções
-    // personalizadas, então para vericar se exite um método integrado ou
+    // personalizadas, então para verificar se exite um método integrado ou
     // personalizado do App use isso.
     $exists = $app->methodExists('test');
 
     // A função [lazyLoad()] aceita um nome de propriedade e função de callbback.
     // Isso cria o objeto como uma propriedade do app somente se utilizada. Isso
-    // é ideal para traalhar com sites onde algumas páginas usam um recruso e
+    // é ideal para trabalhar com sites onde algumas páginas usam um recurso e
     // outras não.
     $app->lazyLoad('db', function() {
         return $pdo = new \PDO('sqlite::memory:');
@@ -1308,14 +1308,14 @@ $app->before(function() use ($app) {
 // Eventos [Before Send] serão chamados da função [run()] depois que uma rota
 // corresponder ao recurso requisitado. Funções passadas para a função
 // [beforeSend()] devem ser definidas como [function($content)] e elas devem
-// retornar uma resposta caso contrário uma resposta 404 'Não econtrada' será
+// retornar uma resposta caso contrário uma resposta 404 'Não encontrada' será
 // enviada para o cliente.
 $app->beforeSend(function($content) {
     return $content . '[beforeSend]';
 });
 
 // Eventos [Not Found] serão chamados da função [run()] depois que todas as rotas
-// forem verificadas e não houverem rotas que correspondam ao recurso requisistado.
+// forem verificadas e não houverem rotas que correspondam ao recurso requisitado.
 // Funções passadas para a função [notFound()] não recebem parâmetros e, se elas
 // retornam uma resposta, são tratadas como uma rota padrão e chamará quaisquer
 // funções definidas [beforeSend()] após.
@@ -1349,7 +1349,7 @@ $app->after(function($content) {
 });
 
 // ------------------------------------------------------------------
-// Deine Rotas
+// Define Rotas
 // ------------------------------------------------------------------
 
 // Esta resposta resultará no seguinte:
@@ -1386,7 +1386,7 @@ $app->run();
 // Estes são os conteúdos do arquivo [template.php] que é mostrado como um exemplo
 // nesta página. Ao chamar [render()] o Objeto Application é passado como [$app]
 // o que permite que [escape()] e outras funções sejam utilizadas. Alé da sintaxe
-// padrão [if (expression) { code }] o PHP provê uma sintexe alternativa para
+// padrão [if (expression) { code }] o PHP provê uma sintaxe alternativa para
 // controlar estruturas ao utilizar modelos [if (expr): (code) endif].
 //
 // Os modelos PHP são de alto desempenho e usam pouquíssima memória, entretanto,
@@ -1425,7 +1425,7 @@ $app->get('/examples/app-render', function() use ($app) {
     // serão exibidos quando rodar como localhost.
     $app->show_detailed_errors = true;
     // $app->error_page_title = 'Página de Erro Personalizada';
-    // $app->error_page_message = 'Mensagem de Erro Personalizadae';
+    // $app->error_page_message = 'Mensagem de Erro Personalizada';
     // $app->not_found_page_title = 'Página 404 Personalizada';
     // $app->not_found_page_message = 'Mensagem 404 Personalizada';
     // $app->method_not_allowed_title = 'Página 405 Personalizada';
@@ -1490,7 +1490,7 @@ $app->get('/examples/request-basic', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Objeto HTTP Request - Lendo Strings de Consulta, Campos de Formulários e Cookies
     // CLASS: Web\Request
-    // O objeto Request pode ser utilizado obtendo informaçãoes do cliente
+    // O objeto Request pode ser utilizado obtendo informações do cliente
     // para uma requisição HTTP. Isso inclui strings de consulta, campos de formulários
     // cookies, cabeçalhos e mais. O objeto Request contém funções para
     // limpar e de, forma segura, ler informações do cliente.
@@ -1503,7 +1503,7 @@ $app->get('/examples/request-basic', function() use ($app) {
     $numero = $_GET['number'];
 
     // Se a string de consulta [type] não existe, então o código acima lançaria
-    // uma exceçãoe e, para obter de forma segura o valor, você poderia
+    // uma exceção e, para obter de forma segura o valor, você poderia
     // primeiro verificar se foi definida.
     $numero = (isset($_GET['number']) ? $_GET['number'] : null);
 
@@ -1516,7 +1516,7 @@ $app->get('/examples/request-basic', function() use ($app) {
     // crie um:
     $req = new \FastSitePHP\Web\Request();
 
-    // Você pode então ler strings de consultas por nome sem incliur lógica segura:
+    // Você pode então ler strings de consultas por nome sem incluir lógica segura:
     $numero = $req->queryString('number');
 
     // Um segundo parâmetro opcional pode ser utilizado para converter para um
@@ -1590,7 +1590,7 @@ $app->route('/examples/request-content', function() use ($app) {
     // Create the Request Object
     $req = new \FastSitePHP\Web\Request();
 
-    // Obtenha o tipo do conteúdo da requisiçao. Isso é um campo auxiliar que
+    // Obtenha o tipo do conteúdo da requisição. Isso é um campo auxiliar que
     // retorna um valor simples baseado no cabeçalho 'Content-Type':
     //     'json'      = 'application/json'
     //     'form'      = 'application/x-www-form-urlencoded'
@@ -1602,7 +1602,7 @@ $app->route('/examples/request-content', function() use ($app) {
     $type = $req->contentType();
 
     // O corpo/conteúdo da requisição pode ser lido à partir de [content()]. Se
-    // o tipo da requisiçao for JSON, então o objeto será analisado e um
+    // o tipo da requisição for JSON, então o objeto será analisado e um
     // objeto/array será retornado. Se [contentType() === 'form'] então um array
     // será retornado, caso contrário, o corpo/conteúdo é retornado como uma
     // string. No PHP uma string pode também ser utilizada para dados binários
@@ -1646,7 +1646,7 @@ $app->get('/examples/request-headers', function() use ($app) {
     $host = $req->host();
     $port = $req->port();
 
-    // Ao utilizar funções com cabeçahos 'Accept' um array de dados é retornado
+    // Ao utilizar funções com cabeçalhos 'Accept' um array de dados é retornado
     // e um parâmetro opcional pode ser passado para retornar [true] ou [false]
     $accept_encoding = $req->acceptEncoding();
     $accept_language = $req->acceptLanguage();
@@ -1664,7 +1664,7 @@ $app->get('/examples/request-headers', function() use ($app) {
     $accept_en = $req->acceptLanguage('en'); // true
     $accept_de = $req->acceptLanguage('de'); // false
 
-    // Qulquer cabeçalho pode ser lido ao utilizar a função [header()]:
+    // Qualquer cabeçalho pode ser lido ao utilizar a função [header()]:
     $content_type = $req->header('Content-Type');
     $user_agent = $req->header('User-Agent');
 
@@ -1692,7 +1692,7 @@ $app->get('/examples/request-headers', function() use ($app) {
 });
 
 $app->get('/examples/request-proxy-headers', function() use ($app) {
-    // Sobrescreva Configuraçõe e Cabeçalhos para Demonstração
+    // Sobrescreva Configurações e Cabeçalhos para Demonstração
     $_SERVER['REMOTE_ADDR'] = '10.0.0.1';
     $_SERVER['HTTP_X_FORWARDED_FOR'] = "' OR '1'='1 --, 127.0.0.1, 54.231.1.5";
 
@@ -1701,14 +1701,14 @@ $app->get('/examples/request-proxy-headers', function() use ($app) {
     // CLASS: Web\Request
     // Cria o Objeto da Request
     $req = new \FastSitePHP\Web\Request();
-Proxy Header Fields
+
     // Cabeçalhos da Request de Proxy são usados por campos chave como IP do
     // cliente quando um servidor web está atrás de um servidor "proxy" em
     // uma rede local, por exemplo um balanceador de carga. Ler os valores
     // corretamente é importante para segurança, entretanto, em geral com qualquer
     // linguagem de programação ou framework, ler cabeçalhos de proxy é difícil
     // requer configuração extra. O FastSitePHP torna essa tarefa fácil sem a
-    // necessidade de confguração.
+    // necessidade de configuração.
 
     // Por exemplo, simplesmente ler o IP do cliente da requisição pode ser
     // feito lendo o valor de REMOTE_ADDR.
@@ -1778,7 +1778,7 @@ Proxy Header Fields
 
 $app->get('/examples/request-server-info', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Objeto Request - Informção do Servidor
+    // TITLE: Objeto Request - Informação do Servidor
     // CLASS: Web\Request
     // O Objeto Request pode retornar o IP do Servidor e tem uma função auxiliar
     // [isLocal()] que retorna true somente se ambos, o cliente requerente e o servidor,
@@ -1830,7 +1830,7 @@ $app->get('/examples/response-content-type', function() use ($app) {
 
     // Ao utilizar o Objeto Response, propriedades são definidas através de
     // funções getter/setter e são encadeáveis para que possam ser utilizadas
-    // em uma linha como mostrado acima ou separadas em multiplas linhas como
+    // em uma linha como mostrado acima ou separadas em múltiplas linhas como
     // é mostrado aqui.
     $app->get('/text-response2', function() {
         return (new \FastSitePHP\Web\Response())
@@ -1893,7 +1893,7 @@ $app->get('/examples/response-content-type', function() use ($app) {
     // Especifique um arquivo ou a resposta; o arquivo especificado será
     // transmitido para o cliente e enviado de uma maneira eficiente para a
     // memória, para que esta função seja chamada em arquivos muito grandes
-    // impactanto minimamente o servidor.
+    // impactando minimamente o servidor.
     $file_path = __FILE__;
     $res->file($file_path);
 
@@ -1910,7 +1910,7 @@ $app->get('/examples/response-content-type', function() use ($app) {
 
     // Converter o nome ou tipo de um arquivo para um mime-type.
     //
-    // Extensões de arquivo que mapeiam para um tipo MIME com a fução são:
+    // Extensões de arquivo que mapeiam para um tipo MIME com a função são:
     //     Texto: htm, html, txt, css, csv, md, markdown, jsx
     //     Imagem: jpg, jpeg, png, gif, webp, svg, ico
     //     Aplicação: js, json, xml, pdf, woff
@@ -1958,7 +1958,7 @@ $app->get('/examples/redirect', function() use ($app) {
     // CLASS: Web\Response
     // Requisições HTTP pode ser redirecionadas utilizando o objeto App ou o
     // Response.
-    // Ao utiizar o Objeto Ap e chamar [redirect()], o script PHP finaliza-se
+    // Ao utilizar o Objeto Ap e chamar [redirect()], o script PHP finaliza-se
     // imediatamente, entretanto, quaisquer eventos definidos por [after()] serão
     // chamados. Se seu site utiliza Server-side Unit Testing, você pode querer
     // utilizar o objeto resposta que comporta-se como uma rota regular e não
@@ -1982,7 +1982,7 @@ $app->get('/examples/redirect', function() use ($app) {
 
     // O Código de Status de Resposta Padrão é [302 'Found'] (Temporary Redirect),
     // e um segundo parâmetro opcional para ambos App e Response permite códigos
-    // de status de redicionamento adicionais:
+    // de status de redirecionamento adicionais:
     //   301  Moved Permanently
     //   302  Found
     //   303  See Other
@@ -2001,7 +2001,7 @@ $app->get('/examples/response-caching', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Resposta - Cabeçalhos de Cache  e Cache do Lado do Cliente
     // CLASS: Web\Response
-    // Exemlos abaixo mostram como utilizar Cabeçalhos Response para controlar
+    // Exemplos abaixo mostram como utilizar Cabeçalhos Response para controlar
     // como um Navegador ou Cliente HTTP armazena uma Página ou Recurso em cache.
 
     // Evitar que um Navegador ou Cliente Armazene um Arquivo ou Página em Cache.
@@ -2025,11 +2025,11 @@ $app->get('/examples/response-caching', function() use ($app) {
     // Cabeçalho de resposta 'Cache-Control'. Este cabeçalho tem opções
     // diferentes para informar clientes de como eles podem armazenar uma
     // página em cache. Neste exemplo, somente usuários finais e não servidores
-    // proxy podem aramazenar em cache a reposta e eles devem revalidar isso
+    // proxy podem armazenar em cache a reposta e eles devem revalidar isso
     // a cada vez.
     $res->cacheControl('private, must-revalidate'); // privado, deve revalidar
 
-    // Cabeçalho de resposta 'Expires'. Este cabeçaho é utilizado para informar
+    // Cabeçalho de resposta 'Expires'. Este cabeçalho é utilizado para informar
     // o cliente de por quanto tempo o conteúdo é valido, entretanto dependendo
     // das opções de 'Cache-Control' este valor pode ser ignorado. Embora,
     // definindo esse valor não aciona uma resposta 304 e cabe ao navegador ou
@@ -2054,21 +2054,18 @@ $app->get('/examples/response-caching', function() use ($app) {
     // O padrão é 'weak' e este é o recomendado para evitar erros complexos de
     // de armazenamento em cache. Se você precisa utilizar ETags 'strong',
     // provavelmente você deveria fazer testes extra.
-     The optional 2nd parameter accepts the ETag Type of either 'strong' or 'weak'.
-    // The default is 'weak' and that is recommended to avoid complex caching errors.
-    // If you need to use 'strong' ETags you would likey want to do extra testing.
     $res->etag('hash:sha256', 'weak');
 
     // Cabeçalho de Resposta 'Last-Modified'. Se estiver definido e o cliente
     // envia de volta um cabeçalho de requisição 'If-Modified-Since' que
     // corresponde, então uma resposta 304 é enviada. Ao definir o valor
-    // utilize o um Timestamp Unix ou uma String que pode ser analisada pela
+    // utilize um Timestamp Unix ou uma String que pode ser analisada pela
     // função PHP [strtotime()].
     $res->lastModified('2019-01-01 13:01:30');
 
     // Cabeçalho de Resposta 'Vary'. O cabeçalho de resposta 'Vary' pode ser
     // utilizado para especificar regras para armazenamento HTTP em cache e
-    // também prover dicas de contéudo para Google e outros Mecanismos de
+    // também prover dicas de conteúdo para Google e outros Mecanismos de
     // Busca.
     $res->vary('User-Agent, Referer');
 
@@ -2092,7 +2089,7 @@ $app->get('/examples/response-caching', function() use ($app) {
 
     // Modifique abaixo para testar diferentes cabeçalhos de cache.
     // Para facilmente testar utilize as ferramentas de desenvolvimento do
-    // navegador com cache ativado, então faça mudanças e feja quanto isso envia
+    // navegador com cache ativado, então faça mudanças e veja quando isso envia
     // 200 ou 304 quado a página é recarregada.
     $res->reset();
 
@@ -2113,9 +2110,9 @@ $app->route('/examples/cors', function() use ($app) {
     // TITLE: Cross-Origin Resource Sharing (CORS) - Compartilhamento de recursos entre origens
     // CLASS: Web\Response
     // CORS é comumente utilizado em APIs web para compartilhar dados de um site
-    // ou domínio com outro domínio (recusos entre origens). Para incluir o
+    // ou domínio com outro domínio (recursos entre origens). Para incluir o
     // cabeçalho 'Access-Control-Allow-Origin' em sua resposta, utilize a função
-    // [cors()]. Primeiro, ceritifique-se de definir os cabeçalhos CORS à partir
+    // [cors()]. Primeiro, certifique-se de definir os cabeçalhos CORS à partir
     // do Objeto do App.
     $app->cors('*');
 
@@ -2203,7 +2200,7 @@ $app->get('/examples/secure-cookies', function() use ($app) {
     // $app->config['SIGNING_KEY'] = 'ab2403a36467b59b20cc314bb211e18...';
     // $app->config['JWT_KEY'] = 'fkeVxeElykoCBzRTIUjxwTD9MIg71nXxOEQ...';
 
-    // O objeto Resquest tem três funções que utilizam as chaves de configuração
+    // O objeto Request tem três funções que utilizam as chaves de configuração
     // para ler e verificar os cookies seguros. Se os cookies não existirem,
     // forem inválidos, estiverem expirados etc [null] será retornado.
     $req = new \FastSitePHP\Web\Request();
@@ -2276,7 +2273,7 @@ $app->get('/examples/db-query', function() use ($app) {
     $sql .= ' type_id, title, content)';
     $db->execute($sql);
 
-    // Este exemplo utiliza áspas duplas para a sring ["] por que strings SQL
+    // Este exemplo utiliza áspas duplas para a string ["] por que strings SQL
     // incluem o caractere áspas simples ['] para texto.
     $sql = "INSERT INTO page_types (id, page_type) VALUES (1, 'text/plain')";
     $rows_added = $db->execute($sql);
@@ -2363,7 +2360,7 @@ $app->get('/examples/db-pdo', function() use ($app) {
     $sql .= ' type_id, title, content)';
     $pdo->query($sql);
 
-    // Este exemplo utiliza áspas duplas para a sring ["] por que strings SQL
+    // Este exemplo utiliza áspas duplas para a string ["] por que strings SQL
     // incluem o caractere áspas simples ['] para texto.
     $sql = "INSERT INTO page_types (id, page_type) VALUES (1, 'text/plain')";
     $stmt = $pdo->query($sql);
@@ -2458,7 +2455,7 @@ $app->get('/examples/db-connection', function() use ($app) {
     // envolve o PDO, reduzindo a quantidade de código necessária ao consultar
     // um banco de dados.
 
-    // O exemplos abaixo mostram coo construir strings de conexçao e rodar
+    // O exemplos abaixo mostram coo construir strings de conexão e rodar
     // uma query para um número diferente bancos de dados. Se você baixar
     // este site, o código abaixo pode ser modificado e testado para seu
     // ambiente; or simplesmente copie o que você precisa para seu site
@@ -2528,7 +2525,7 @@ $app->get('/examples/db-connection', function() use ($app) {
 
     // ----------------------------------------------------------------------------
     // IBM (utilizando ODBC)
-    // Este exemplo mostra uma conexão a um IBM DB2 ou AS/400 atraés do
+    // Este exemplo mostra uma conexão a um IBM DB2 ou AS/400 através do
     // iSeries.
     // Opções ODBC variarão com base no driver instalado ou utilizado.
     $dsn = 'odbc:DRIVER={iSeries Access ODBC Driver};';
@@ -2597,7 +2594,7 @@ $app->get('/examples/db-connection', function() use ($app) {
 
     // =================================================================================
     // Além da classe Database do FastSitePHP, [OdbcDatabase] e [Db2Database] também
-    // podem ser utilizadas para suportar abientes, e especialmente Bancos de Dados IBM.
+    // podem ser utilizadas para suportar ambientes, e especialmente Bancos de Dados IBM.
     //
     // Ao utilizar a classe [OdbcDatabase] o DSN será o mesmo que o do PDO excluindo
     // o prefixo 'odbc:'.
@@ -2664,7 +2661,7 @@ $app->get('/examples/data-validator', function() use ($app) {
 
     // O FastSitePHP provê uma classe que permite que várias regras sejam
     // facilmente definidas e rodem contra um objeto (ou Array
-    // Associativo/Dictionário).
+    // Associativo/Dicionário).
 
     // Regras comuns podem ser copiadas de forma simples de controles Input HTML.
 
@@ -2692,7 +2689,7 @@ $app->get('/examples/data-validator', function() use ($app) {
         // [$errors] retorna uma array de mensagens de erro para o usuário final
         // [$fields] retorna uma array de campos únicos que tiveram um erro em
         // conjunto com uma array de mensagens de erro para cada campo.
-        // Campos pode ser utilizados pelo app cliente para evienciar campos de
+        // Campos pode ser utilizados pelo app cliente para evidenciar campos de
         // formulário, etc.
     }
 
@@ -2874,7 +2871,7 @@ $app->get('/examples/http-client', function() use ($app) {
 // TITLE: Serviço GraphQL utilizando HttpClient
 // FIND_REPLACE: {"/examples":""}
 // GraphQL é uma tecnologia popular para desenvolver APIs. Ela foi portada para
-// muitas linguagens inclindo PHP, contudo, a implementação referencial, a versão
+// muitas linguagens incluindo PHP, contudo, a implementação referencial, a versão
 // mais comumente utilizada e também de alto desempenho é a GraphQL com NodeJS e
 // Express. Esta rota pode ser copiada ou modificada para permitir utilizar
 // GraphQL à partir do PHP utilizando qualquer serviço GraphQL no localhost ou
@@ -2883,7 +2880,7 @@ $app->route('/examples/graphql', function() {
     try {
         $url = 'http://localhost:4000/graphql';
 
-        // Se um Cabeçalho de Requisisção 'Authorization' foi enviado, então,
+        // Se um Cabeçalho de Requisição 'Authorization' foi enviado, então,
         // passe-o para o Serviço GraphQL.
         $req = new \FastSitePHP\Web\Request();
         $auth = $req->header('Authorization');
@@ -2912,7 +2909,7 @@ $app->route('/examples/graphql', function() {
         // Retorne Objeto para uma Resposta JSON
         return $res->json;
     } catch (\Exception $e) {
-        // Returne erro inesperado como uma resposta 200 utilizando o formato
+        // Retorne erro inesperado como uma resposta 200 utilizando o formato
         // de erro padrão usado pelo GraphQL.
         return [
             'errors' => [
@@ -2945,8 +2942,8 @@ $app->get('/examples/smtp-client', function() use ($app) {
     // precisa definir para que o gmail funcione para
     // envio através de SMTP.
     //
-    // Se você não tem acesso a um servidor de e-maile quer
-    // testar este código, então, commente o código antes da
+    // Se você não tem acesso a um servidor de e-mail e quer
+    // testar este código, então, comente o código antes da
     // linha [$timeout = 2;] e rode somente Comandos SMTP no
     // Gmail sem enviar um e-mail.
     //
@@ -3007,7 +3004,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
     $auth_pass = null;
 
     // Cria Cliente SMTP e Envia E-mail.
-    // Uma vez que a váriavel para o Client SMTP não estiver mais em uso ou
+    // Uma vez que a variável para o Client SMTP não estiver mais em uso ou
     // definida como null, então, um comando 'QUIT' é automaticamente enviado
     // para o Servidor SMTP e a conexão é fechada.
     $smtp = new \FastSitePHP\Net\SmtpClient($host, $port);
@@ -3037,7 +3034,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
     $smtp2->close();
 
     // Um ou mais e-mails pode também ser enviados utilizando Valores de
-    // Configuração de App ou Variáveis de Ambiente do Systema. Este tipo de
+    // Configuração de App ou Variáveis de Ambiente do Sistema. Este tipo de
     // configuração pode ser utilizada para prevenir que dados de autenticação
     // sensíveis sejam salvos com o código lógico principal.
     /*
@@ -3110,7 +3107,7 @@ $app->get('/examples/markdown', function() use ($app) {
     // O FastSitePHP inclui a biblioteca de alto desempenho Parsedown para
     // converter o formato Markdown para HTML.
 
-    // Certifique-se de carrear o autorloader do fornecedor
+    // Certifique-se de carrear o autoloader do fornecedor
     require '../../../vendor/autoload.php';
 
     // Crie o Objeto Parsedown
@@ -3141,7 +3138,7 @@ $app->get('/examples/logging', function() use ($app) {
 
     // Crie um Logger HTML
     // Esta classe pode ser utilizada para logs temporários de desenvolvimento
-    // porque isto gera uma tabela HTML das mensagens regsitradas depois que a
+    // porque isto gera uma tabela HTML das mensagens registradas depois que a
     // resposta é enviada ou, dependendo das opções, pode ser utilizada para
     // substituir a resposta original. O parâmetro [$replace_response] é opcional.
     $replace_response = false;
@@ -3175,8 +3172,8 @@ $app->get('/examples/logging', function() use ($app) {
     $file_logger->log_format = '[{level}] {message}{line_break}';
     $file_logger->line_break = '^^';
 
-    // Você pode também persolalizar o HTML Logger com seu próprio modelo:
-    // $html_logger->temlate_file = 'SEU_MODELO.php';
+    // Você pode também personalizar o HTML Logger com seu próprio modelo:
+    // $html_logger->template_file = 'SEU_MODELO.php';
     // EXAMPLE_CODE_END
 
     $html = '<html><body style="background-color:green; padding:0;"><div style="padding:20px;">';
@@ -3196,20 +3193,20 @@ $app->get('/examples/network-info', function() {
     // Obtenha um (fqdn) 'fully-qualified domain name' para o servidor ['servidor.example.com']
     $host = $config->fqdn();
 
-    // Obtenha o endreço IPv4 da Rede para o computador ou servidor
+    // Obtenha o endereço IPv4 da Rede para o computador ou servidor
     $ip = $config->networkIp();
 
     // Obtenha uma lista de todos os endereços IPv4 para o computador ou servidor
     $ip_list = $config->networkIpList();
 
-    // Obtenha um string de texto de informaçoes do servidor utilizando um
+    // Obtenha um string de texto de informações do servidor utilizando um
     // dos seguintes comandos:
     // - Linux / Unix = [ip addr] ou [ifconfig]
     // - Mac          = [ifconfig]
     // - Windows      = [ipconfig]
     $info = $config->networkInfo();
 
-    // Convere a String de Informações de Rede em um Objeto
+    // Converte a String de Informações de Rede em um Objeto
     $info = $config->parseNetworkInfo($info);
     // EXAMPLE_CODE_END
 
@@ -3440,12 +3437,12 @@ $app->get('/examples/jwt-hmac', function() use ($app) {
 
     // Codifique (Assine) e Decodifique (Verifique) utilizando a classe JWT. Ao
     // utilizar as definições padrão com a classe JWT, nenhuma expiração é
-    // especificada, todas as reinvindicações são validadas e uma chave é
+    // especificada, todas as reivindicações são validadas e uma chave é
     // necessária.
     $token = $jwt->encode($payload, $key);
     $data  = $jwt->decode($token, $key);
 
-    // Adicione Reinvidicações à Carga Válida e utilize uma Chave Insegura para
+    // Adicione Reivindicações à Carga Válida e utilize uma Chave Insegura para
     // Compatibilidade com ouros sits (Geralmente demonstrações online de JWT
     // são mostradas utilizando senhas simples para a chave). Por padrão, chaves
     // necessitam ser seguras, com comprimento apropriado e no formato Base64 ou
@@ -3516,7 +3513,7 @@ $app->get('/examples/signed-data', function() use ($app) {
     // TITLE: Segurança - Sign and Verify Data
     // CLASS: Security\Crypto\SignedData, Security\Crypto
     // Utilizar [SignedData] tem um conceito parecido ao de utilizar JWT.
-    // Um cliente pode ler os dados mas não moficá-los.
+    // Um cliente pode ler os dados mas não modificá-los.
 
     // Gere uma Chave para Assinar.
     // A chave é uma longa string hexadecimal de bytes aleatórios seguros.
@@ -3526,7 +3523,7 @@ $app->get('/examples/signed-data', function() use ($app) {
 
     // Assine e Verifique utilizando a Classe Auxiliar Cypto com Definições de
     // Configuração. Ao utilizar os parâmetros padrão com a classe auxiliar, os
-    // dados exipiram em uma hora. Dados para diferentes tipos de dados podem
+    // dados expiram em uma hora. Dados para diferentes tipos de dados podem
     // ser assinados e verificados em seu format original (string, int, object,
     // etc).
     $app->config['SIGNING_KEY'] = $key;
@@ -3648,7 +3645,7 @@ $app->get('/examples/random-bytes', function() use ($app) {
     // uso criptográfico e aplicativos seguros.
     $bytes = \FastSitePHP\Security\Crypto\Random::bytes(32);
 
-    // Converte os byts para outro formato:
+    // Converte os bytes para outro formato:
     $hex_bytes = bin2hex($bytes);
     $base64_bytes = base64_encode($bytes);
 
@@ -3662,10 +3659,10 @@ $app->get('/examples/random-bytes', function() use ($app) {
 
 $app->get('/examples/csrf-session', function() use ($app) {
     // EXAMPLE_CODE_START
-    // TITLE: Segurança - CSRF utlizando Session
+    // TITLE: Segurança - CSRF utilizando Session
     // CLASS: Security\Web\CsrfSession
     // Uma chamada para um função estática cria um token em Requisições GET e
-    // valida isso com Requisiçõs POST, PUT, DELETE etc. Se não há erro com o
+    // valida isso com Requisições POST, PUT, DELETE etc. Se não há erro com o
     // token, então um exceção é lançada, o que causará uma resposta 500 com a
     // página de erro.
     \FastSitePHP\Security\Web\CsrfSession::setup($app);
@@ -3684,7 +3681,7 @@ $app->get('/examples/csrf-session', function() use ($app) {
     // Um bom lugar para chamar esta função é nos filtros de rota das páginas
     // que utilizam autenticação. Exemplo:
 
-    // Crie uma função filtro para atribuir para multiplas rotas
+    // Crie uma função filtro para atribuir para múltiplas rotas
     $csrf_session = function() use ($app) {
         \FastSitePHP\Security\Web\CsrfSession::setup($app);
     };
@@ -3722,15 +3719,15 @@ $app->get('/examples/csrf-stateless', function() use ($app) {
     $app->config['CSRF_KEY'] = $key;
     // putenv("CSRF_KEY=${key}");
 
-    // Um identificador único para o usário é também necessário. Isto não tem de
-    // ser um segredo e pode ser simplesmente um campo númerico em um banco de
+    // Um identificador único para o usuário é também necessário. Isto não tem de
+    // ser um segredo e pode ser simplesmente um campo numérico em um banco de
     // dados.
     $user_id = 1;
 
     // Configura e valida token stateless CSRF
     \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id);
 
-    // Opcionally add a timeout, this CSRF token will expire after 5 minutes
+    // Opcionalmente adicione um tempo de expiração, este token CSRF expirará depois de 5 minutos
     $expire_time = '+5 minutes';
     \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id, $expire_time);
 
@@ -3743,7 +3740,7 @@ $app->get('/examples/csrf-stateless', function() use ($app) {
     // <input name="X-CSRF-Token" value="{{ $csrf_token }}">
 
     // Também da mesma forma que [CsrfSession] um bom lugar para chamar
-    // [setup()] é nas funções filtro de rota.    // is on route filter functions.
+    // [setup()] é nas funções filtro de rota.
     $csrf = function() use ($app, $user_id) {
         \FastSitePHP\Security\Web\CsrfStateless::setup($app, $user_id);
     };
@@ -3826,7 +3823,7 @@ $app->get('/examples/net-ip', function() use ($app) {
     //  ]
     $info = \FastSitePHP\Net\IP::cidr('10.63.5.183/24');
 
-    // Exemplo de informaççoes CIDR quando utiliza IPv6:
+    // Exemplo de informações CIDR quando utiliza IPv6:
     //   [
     //     'CIDR_Notation' => 'fe80::b091:1117:497a:9dc1/48',
     //     'Address_Type' => 'IPv6',
@@ -3873,7 +3870,7 @@ $app->get('/examples/file-system-security', function() use ($app) {
 
     // Exemplos:
 
-    // Assuma que ambos os arquivos existem e retornariam [true] da fução
+    // Assuma que ambos os arquivos existem e retornariam [true] da função
     // integrada [is_file()]. [false] seria retornado para o segundo arquivo
     // ao utilizar [Security::dirContainsFile()].
     $file1 = 'user_image.jpg';
@@ -3895,7 +3892,7 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $dir_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsDir($dir, $file1);
     $dir_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsDir($dir, $file2);
 
-    // Valide Arquivos de Imagm
+    // Valide Arquivos de Imagem
     // A função [fileIsValidImage()] pode ser utilizada para verificar se
     // arquivos de imagem criados de outro input de usuário, são válidos. Por
     // exemplo um usuário malicioso pode tentar renomear um script PHP ou
@@ -3920,7 +3917,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
 
     // Utilizando a classe RateLimit requer uma instância de [\FastSitePHP\Data
     // \KeyValue\StorageInterface].
-    // Neste exemlo SQLite é utilizado. Quando multiplos servidores são
+    // Neste exemplo SQLite é utilizado. Quando múltiplos servidores são
     // usados atrás de um balanceador de carga, um bd de cache em memória como
     // o Redis pode ser utilizado.
     $file_path = sys_get_temp_dir() . '/ratelimit-cache.sqlite';
@@ -3963,7 +3960,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
     // Se estiver utilizando a classe [RateLimit] para múltiplas utilizações,
     // então, você precisa especificar uma chave opcional.
     $options = [ 'key' => 'messages-sent' ];
-    $options = [ 'key' => 'acounts-created' ];
+    $options = [ 'key' => 'accounts-created' ];
 
     // A classe [RateLimit] permite diferentes algorítimos de limitação de
     // taxa; o padrão é 'fixed-window-counter' o qual coloca uma quantidade
@@ -4002,7 +3999,7 @@ $app->get('/examples/rate-limiting', function() use ($app) {
     };
     $app->get('/api', function() {})->filter($filter_request);
 
-    // Quando utilizar [filterRequest()] os seguintes Cabeçalos de Response
+    // Quando utilizar [filterRequest()] os seguintes Cabeçalhos de Response
     // podem ser enviados para o cliente dependendo de quais opções são
     // utilizadas
     //   Retry-After            Cabeçalho Padrão
@@ -4051,7 +4048,7 @@ $app->get('/examples/image', function() use ($app) {
     $max_height = 200;
     $img->resize($max_width, $max_height);
 
-    // Imagens pode também ser coratadas para uma dimensão especificada.
+    // Imagens pode também serem cortadas para uma dimensão especificada.
     // Isto pode ser utilizado com JavaScript ou bibliotecas de corte para Apps
     // para permitir que usuários gerem miniaturas de uma imagem completa enviada.
     // Por exemplo, permita o usuário cortar uma imagem enviada para uma
@@ -4116,7 +4113,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // principal "_" é útil para armazenar traduções chave tal como menus,
     // cabeçalho de página, rodapés de páginas etc.
 
-    // Um idoma de fallback opcional pode ser especificado assim traduções
+    // Um idioma de fallback opcional pode ser especificado assim traduções
     // não encontradas são obtidas de outro idioma. Isto permite que sites
     // parcialmente traduzidos utilizem esta API.
 
@@ -4162,7 +4159,7 @@ $app->get('/examples/i18n', function() use ($app) {
     // e um idioma fallback, o usuário será redirecionado para a mesma página
     // com o idioma fallback se o idioma especificado não existir.
 
-    // Quando [langFile()] é chaada e o idioma é verificado como válido, isto é
+    // Quando [langFile()] é chamada e o idioma é verificado como válido, isto é
     // definido na propriedade do app ($app->lang).
 
     // A outra função I18N [textFile()] simplesmente recebe um caminho completo
@@ -4188,7 +4185,7 @@ $app->get('/examples/l10n', function() use ($app) {
     // TITLE: Formatando Datas, Horas e Números
     // CLASS: Lang\L10N
     // O FastSitePHP provê uma API de Localização (l10n) de fácil utilização
-    // para permirtir formatação de datas e números com a linguagem local do
+    // para permitir formatação de datas e números com a linguagem local do
     // usuário e configurações regionais.
 
     // Cria um novo Objeto Lang L10N
@@ -4294,14 +4291,14 @@ $app->get('/examples/l10n', function() use ($app) {
 
     // Obtenha Localizações, Idiomas e Fusos Horários suportados
     $locales    = $l10n->supportedLocales();
-    $langugages = $l10n->supportedLanguages();
+    $languages = $l10n->supportedLanguages();
     $timezones  = $l10n->supportedTimezones();
     // EXAMPLE_CODE_END
 
     echo '<br><b>Localizações:</b><br>';
     echo json_encode($locales);
     echo '<br><br><b>Idiomas:</b><br>';
-    echo json_encode($langugages);
+    echo json_encode($languages);
     echo '<br><br><b>Fusos Horários:</b><br>';
     echo json_encode($timezones);
 });
@@ -4311,7 +4308,7 @@ $app->get('/examples/l10n', function() use ($app) {
 /*
 $app->get('/examples/template', function() use ($app) {
     //EXAMPLE_CODE_START
-    //TITLE: Novo Modelo de Rota, Repare os Espacço para que funcione
+    //TITLE: Novo Modelo de Rota, Repare os Espaços para que funcione
     //EXAMPLE_CODE_END
 
     // Retorne Resposta em Texto

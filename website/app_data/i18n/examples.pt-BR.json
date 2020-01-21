@@ -10,7 +10,7 @@
     "img-alt-crypto": "Criptografia",
     "request-demo": "Lendo a Requisição HTTP",
     "response-demo": "Usando a Objeto Resposta do HTTP",
-    "database-demo": "Conect ao um Bando de Dados e execute instruções SQL",
+    "database-demo": "Conecte ao um Bando de Dados e execute instruções SQL",
     "email-demo": "Envie e-mail usando o cliente SMTP",
     "l10n-demo": "Demonstração Localização (L10N) - Formatação Datal e Numérica",
     "encryption-demo": "Demonstração de Criptografia"

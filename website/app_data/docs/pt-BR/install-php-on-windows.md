@@ -68,7 +68,7 @@ Talvez seja exibido um alerta de certificado ao conectar. Isto é um alerta comu
 ---
 ## Instalar o IIS em um Desktop Windows
 
-Se você estiver utilizando um Computador Destkop com Windows com Windows 10, você pode instalar o IIS à partir de [Programas e Recursos] ativando-o na lista como um Recurso do Windows. Utilizando o IIS para desenvolvimento PHP não é necessário apra desenvolvimento PHP por que o PHP possui um Servidor Web integrado.
+Se você estiver utilizando um Computador Destkop com Windows com Windows 10, você pode instalar o IIS à partir de [Programas e Recursos] ativando-o na lista como um Recurso do Windows. Utilizando o IIS para desenvolvimento PHP não é necessário para desenvolvimento PHP por que o PHP possui um Servidor Web integrado.
 
 ![Instalar o PHP no Windows Desktop](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/03_Win7_Install.png)
 
@@ -114,7 +114,7 @@ Baixe o Web Platform Installer da Microsoft. [https://www.microsoft.com/web/down
 
 &nbsp;
 
-Os Serviores Windows tipicamente bloqueiam a maioria dos sites e downloads por padrão, assim talvez você veja este alerta ao utilizar o IE. Para  typically block most sites and downloads by default so you may see this warning if using IE. Para contornar a questão, modifique as Configurações de Segurança do IE, baixe o Web Platform Installer à partir de outro navegador (uma versão portátil, por exemplo) se disponível, ou baixe em outro computador e copie o instalador via RDC.
+Os Servidores Windows tipicamente bloqueiam a maioria dos sites e downloads por padrão, assim talvez você veja este alerta ao utilizar o IE. Para  typically block most sites and downloads by default so you may see this warning if using IE. Para contornar a questão, modifique as Configurações de Segurança do IE, baixe o Web Platform Installer à partir de outro navegador (uma versão portátil, por exemplo) se disponível, ou baixe em outro computador e copie o instalador via RDC.
 
 ![Alerta de Download do IE](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/10_Download_Warning.png)
 
@@ -138,7 +138,7 @@ Busque por “php” ou por uma versão específica como “php 7.3”. O Web Pl
 
 &nbsp;
 
-Neste exemplo nós vamos instalar o PHP 7.3.1 que é a última versão do PHP (no momento da criação deste tutorial), e nós vamos instalar os Drivers do SQL Server para PHP no IIS. Você notará que há uma opção para cada versão do PHP para instalar para o [IIS Express]. O IIS Express é utilizado para desenvolvimento local e não a versão copleta do IIS, então nós não o selecionamos aqui.
+Neste exemplo nós vamos instalar o PHP 7.3.1 que é a última versão do PHP (no momento da criação deste tutorial), e nós vamos instalar os Drivers do SQL Server para PHP no IIS. Você notará que há uma opção para cada versão do PHP para instalar para o [IIS Express]. O IIS Express é utilizado para desenvolvimento local e não a versão completa do IIS, então nós não o selecionamos aqui.
 
 ![Web Platform Installer - Instalar o PHP](https://dydn9njgevbmp.cloudfront.net/img/docs/install_php_windows/14_Install_PHP.png)
 
@@ -163,7 +163,7 @@ Neste exemplo um erro ocorreu durante a instalação, contudo, foi para uma exte
 
 &nbsp;
 
-A pasta web raiz padrão ao utilizar o IIS é [C:\inetpub\wwwroot]. Aqui, um arquivo [phpinfo.php] é adiciondor utilizando o Notepad. Este arquivo mostrará a versão do PHP, versão de configuração etc.
+A pasta web raiz padrão ao utilizar o IIS é [C:\inetpub\wwwroot]. Aqui, um arquivo [phpinfo.php] é adicionado utilizando o Notepad. Este arquivo mostrará a versão do PHP, versão de configuração etc.
 
 ~~~
 <?php
@@ -187,7 +187,7 @@ O local de instalação pode variar em seu servidor, contudo, aqui está instala
 ---
 ## Configures o Site Inicial do FastSitePHP
 
-Baixe o Site Inicial do FastSitePHP à partir de https://www.fastsitephp.com/downloads/starter-site ou diretaente do GitHub https://github.com/fastsitephp/starter-site/archive/master.zip
+Baixe o Site Inicial do FastSitePHP à partir de https://www.fastsitephp.com/downloads/starter-site ou diretamente do GitHub https://github.com/fastsitephp/starter-site/archive/master.zip
 
 Qualquer um dos links resulta no download do arquivo `starter-site-master.zip`.
 

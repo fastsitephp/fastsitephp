@@ -8,7 +8,7 @@
 ## Visão Geral
 O FastSitePHP inclui a habilidade de criptografar arquivos utilizando ambos uma Classe PHP e um Script Bash compatível. Bash é o shell padrão em várias distribuições Linux e no macOS; e está também amplamente disponível em outros SOs baseados em Unix como os BSDs (FreeBSD, NetBSD, OpenBSD, DragonFlyBSD etc)
 
-Windows 10, Windows Server 1709 e mais recentes, fornecem supore ao Subsistema Windows para Linux (WSL) que permite programas Linux, Scripts Bash e mais rodarem no Windows.
+Windows 10, Windows Server 1709 e mais recentes, fornecem suporte ao Subsistema Windows para Linux (WSL) que permite programas Linux, Scripts Bash e mais rodarem no Windows.
 
 Este documento mostra a execução do script [encrypt.sh] no WSL e pode ser utilizado como uma referência geral para rodar Scripts Bash no Windows.
 
@@ -40,7 +40,7 @@ Você pode ver que neste exemplo houve um erro quando ao rodar pela primeira vez
 
 ---
 ## Rodando o Script
-Quando você roda o script sem quaisquer opções, utilizando uma das formas `bash encrypt.sh` ou `./encrypt.sh`, ou se você utiliza a opção `-h`, então você verá a tela de ajuda que fornece um visão geral do script, opçãoes de utilização e exemplos de como utilizá-lo.
+Quando você roda o script sem quaisquer opções, utilizando uma das formas `bash encrypt.sh` ou `./encrypt.sh`, ou se você utiliza a opção `-h`, então você verá a tela de ajuda que fornece um visão geral do script, opções de utilização e exemplos de como utilizá-lo.
 
 ![Ajuda para Criptografar Script Bash](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_win/02_Encrypt_Shell_Help.png)
 
@@ -54,6 +54,6 @@ A opção `-t` rodará Testes de Unidade para confirmar que o script funciona em
 
 ---
 ## Criptografando Arquivos Grandes
-Um teste com arquivo grande utilizando a opção `-l` criará, criptografará e descriptografará arquivos de 1Gb a 3GB e confirma que seu sistema pode rodar arquivos de qualquer tamanho. Isto é o ideal para criptografar backups por que você pode 'zippar' ou comprimir muitos arquivos para um grande arquivo compactado e então criptgrafa utilizando o script.
+Um teste com arquivo grande utilizando a opção `-l` criará, criptografará e descriptografará arquivos de 1Gb a 3GB e confirma que seu sistema pode rodar arquivos de qualquer tamanho. Isto é o ideal para criptografar backups por que você pode 'zipar' ou comprimir muitos arquivos para um grande arquivo compactado e então criptografa utilizando o script.
 
 ![Teste de Criptografia de Arquivos Grandes com Script Bash](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_win/05_Encrypt_Shell_Large_File_Tests.png)
