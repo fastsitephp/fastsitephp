@@ -1,6 +1,8 @@
 # Instalar o Apache ou o nginx e o PHP em um Servidor Linux ou Unix
 <style>
-    .logo- ficar preso simplesmente busque na internet por recursos adicionais; margin-right:20px;}
+    .logo-images { display:inline-flex; flex-direction:column; }
+    .logo-images img { display:inline; width:150px; height:150px; }
+    .logo-images img[alt='Linux'] { height:120px; width:120px; margin-top:20px; margin-right:20px;}
     .logo-images span { font-size:100px; margin-right: 40px; margin-top: -5px; }
     @media (min-width:500px) {
         .logo-images { flex-direction:row; }
