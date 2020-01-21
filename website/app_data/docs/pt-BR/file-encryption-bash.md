@@ -72,7 +72,7 @@ Esta captura de tela mostra um exemplo de descriptografia de arquivo utilizando 
 
 &nbsp;
 
-O script é seguro para rodar e pergunta a você antes de sobrescrever quasiquer arquivos. Além disso se ocorrer um erro ou o arquivo não puder ser descriptografado uma mensagem de erro clara.
+O script é seguro para rodar e pergunta a você antes de sobrescrever quaisquer arquivos. Além disso se ocorrer um erro ou o arquivo não puder ser descriptografado uma mensagem de erro clara.
 
 ![Erro ao Descriptografar](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_bash/05_Decryption_Error.png)
 
@@ -85,7 +85,7 @@ Na maioria dos sistema você pode instalar o comando para acesso global utilizan
 ---
 ## Testes de Unidade
 
-Este script tem a habilidade de rodar testes de unidade utilizando  a opção `./encrypt.sh -t`. Teste de Unidade ajuda a verificar se seu sistema funciona apropriadamenete.
+Este script tem a habilidade de rodar testes de unidade utilizando  a opção `./encrypt.sh -t`. Teste de Unidade ajuda a verificar se seu sistema funciona apropriadamente.
 
 ![Teste de Unidade em Bash](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_bash/07_Encrypt_Unit_Test.png)
 
@@ -133,7 +133,7 @@ dd if=/dev/zero of=crypto_test_10mb bs=10m count=1
 md5 crypto_test_10mb
 md5sum crypto_test_10mb
 
-# Viualizar o início do arquivo
+# Visualizar o início do arquivo
 head -c 256 crypto_test_10mb | hexdump -C -v
 
 # ---------------------------------------------------
@@ -179,7 +179,7 @@ echo $enc_key
 echo $hmac_key
 
 # -----------------------------------
-# Critpgrafe
+# Criptografe
 # -----------------------------------
 
 # Gere o Vetor de Inicialização (IV).
@@ -191,7 +191,7 @@ echo $hmac_key
 xxd -l 16 -p /dev/urandom
 # Valor para esta Demonstração: 0ee221ef9e00dfa69efb3b1112bfbb2f
 
-# Critpgrafe (cria um novo arquivo "crypto_test_10mb.enc")
+# Criptografe (cria um novo arquivo "crypto_test_10mb.enc")
 # O algorítmo 'aes-256-cbc' é utilizado, alguns sistema também suportam o
 # algorítmo seguro 'aes-256-ctr', contudo, isto não funcionará em todos os
 # sistemas, que é porque [encrypt.sh] suporta somente 'aes-256-cbc'.
@@ -277,7 +277,7 @@ echo $file_hmac
 # comandos corretos enquanto remover bytes do início de um arquivo requereria
 # que o arquivo inteiro fosse copiado, que é porque o IV e o HMAC são anexados
 # ao final do arquivo ao invés do início do arquivo. Em Linux e na maioria dos
-# computadores Unix o comando [truncate] existirá equanto em macOS isso não
+# computadores Unix o comando [truncate] existirá enquanto em macOS isso não
 # existirá a não ser que seja manualmente instalado, então um script Ruby de uma
 # linha é utilizado.
 #
@@ -376,7 +376,7 @@ md5sum crypto_test_10mb.dec
 tail -c 256 crypto_test_10mb.dec | hexdump -C -v
 
 # Se utilizar [encrypt.sh] o arquivo criptografado pode ser descriptografado
-# utilizando os seguints comandos:
+# utilizando os seguintes comandos:
 key=b2e8ff4746c1006adafeb42235554363acf22391941b86b22a7b28c8a591ea4f6c3516271b9c008ab4279e5904995aa943117331e3e968560cedb5c7c17266ab
 ./encrypt.sh -d -i crypto_test_10mb.enc -o crypto_test_10mb.dec -k "$key"
 

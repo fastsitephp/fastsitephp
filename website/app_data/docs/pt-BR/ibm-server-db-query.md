@@ -18,7 +18,7 @@
 ## Visão Geral
 Esta página fornece uma breve visão de desenvolvimento com banco de dados utilizando o FastSitePHP com um Banco de Dados IBM em um Servidor IBM. O FastSitePHP fornece várias classes de banco de dados que reduzem a quantidade de código necessária para consultar bancos de dados utilizando PHP. Uma das classes a [[Data\Db2Database](../api/Data_Db2Database)] é especialmente para bancos e dados IBM DB2 e AS/400.
 
-PHP é suportado em Servidores IBM e tipicamente a versão mais recente do PHP pode ser instalada em velhos Servidores AIX. Isto permite scripts modernos e desenvolvimento bem mais rápido ao utilizar Servidores IBM antigos. Este documento não cobre como instalar o PHP em um Serviro IBM iSeries e assume que você tem acesso a um Servidor IBM e que o PHP já está configura; isto seria tipicamente feito por um administrador do Servidor IBM e não um desenvolvedor.
+PHP é suportado em Servidores IBM e tipicamente a versão mais recente do PHP pode ser instalada em velhos Servidores AIX. Isto permite scripts modernos e desenvolvimento bem mais rápido ao utilizar Servidores IBM antigos. Este documento não cobre como instalar o PHP em um Servidor IBM iSeries e assume que você tem acesso a um Servidor IBM e que o PHP já está configura; isto seria tipicamente feito por um administrador do Servidor IBM e não um desenvolvedor.
 
 ### Links
 * https://www.ibm.com/it-infrastructure/power/os/ibm-i
@@ -29,7 +29,7 @@ PHP é suportado em Servidores IBM e tipicamente a versão mais recente do PHP p
 
 ### API e Script de Teste
 * [📄 Class [Data\Db2Database]](../api/Data_Db2Database)
-* <a href="https://github.com/fastsitephp/fastsitephp/blob/master/scripts/ibm-db2-test.php">📜 Arquivod Script de Teste IBM [scripts/ibm-db2-test.php]</a>
+* <a href="https://github.com/fastsitephp/fastsitephp/blob/master/scripts/ibm-db2-test.php">📜 Arquivo Script de Teste IBM [scripts/ibm-db2-test.php]</a>
 
 ---
 ## Copiando Arquivos
@@ -51,7 +51,7 @@ Logue com sua conta uma vez que você iniciar o programa.
 
 ---
 ## Rodando um Terminal ou Programa de Linha de Comando de um IBM iSeries
-O menu padrão será provavelmente personalizado por um distribuidor de software como um sistema de ERP, então o comando pode ser diferente em seu servidor. Neste exemplo o comand [AZ] é utilizado para trazer o [Menu Principal IBM i] padrão.
+O menu padrão será provavelmente personalizado por um distribuidor de software como um sistema de ERP, então o comando pode ser diferente em seu servidor. Neste exemplo o comando [AZ] é utilizado para trazer o [Menu Principal IBM i] padrão.
 
 ![Rodar o Comando de Menu no Servidor IBM](https://dydn9njgevbmp.cloudfront.net/img/docs/as400/03_AZ_Command.png)
 

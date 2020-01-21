@@ -22,11 +22,11 @@ O FastSitePHP inclui muitos componentes independentes que podem ser utilizados s
 
 |<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Samples.svg" alt="Rápido de aprender e depurar" width="60">|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Security-Lock.svg" alt="Segurança Robusta" width="60">|
 |---|---|
-|**Rápido de aprender e depurar** O FastSitePHP é bem documentado e vem com exemplos práticos. O FastSitePHP provê mensagens de erro amigáveis fazendo com que erros possam ser corrigidos rapidamente mesmo se você tiver pouca ou nenhuma experiência com PHP.|**Securança Robusta** A segurança foi cuidadosamente planejada em todas as funcionalidades do FastSitePHP de forma que ele é seguro e de fácil utilização. As funcionalidades de segurança incluem criptografia (texto, objetos e arquivos files), cookies assinados, JWT, CORS, validação de servidores Proxy, Rate Limiting e mais.|
+|**Rápido de aprender e depurar** O FastSitePHP é bem documentado e vem com exemplos práticos. O FastSitePHP provê mensagens de erro amigáveis fazendo com que erros possam ser corrigidos rapidamente mesmo se você tiver pouca ou nenhuma experiência com PHP.|**Segurança Robusta** A segurança foi cuidadosamente planejada em todas as funcionalidades do FastSitePHP de forma que ele é seguro e de fácil utilização. As funcionalidades de segurança incluem criptografia (texto, objetos e arquivos files), cookies assinados, JWT, CORS, validação de servidores Proxy, Rate Limiting e mais.|
 
 ## :rocket: Teste isso online!
 
-O site principal do FastSitePHP fornece um local para desenvolvimento o Code Playground onde você pode utilizar PHP, HTML, JavaScript, CSS e mais. Não há nada para installar e você pode trabalhar diretamente com PHP no servidor. Se você nunca teve contato com PHP antes esta é um boa maneira de aprender PHP.
+O site principal do FastSitePHP fornece um local para desenvolvimento o Code Playground onde você pode utilizar PHP, HTML, JavaScript, CSS e mais. Não há nada para instalar e você pode trabalhar diretamente com PHP no servidor. Se você nunca teve contato com PHP antes esta é um boa maneira de aprender PHP.
 
 [https://www.fastsitephp.com/en/playground](https://www.fastsitephp.com/en/playground)
 
@@ -36,7 +36,7 @@ O site principal do FastSitePHP fornece um local para desenvolvimento o Code Pla
 
 ## :rocket: Começando
 
-**Começar com PHP e o FastSitePHP é extemamente fácil.** Se não tiver PHP instalado siga as instruções para Windows, Mac e Linux on the getting started page:
+**Começar com PHP e o FastSitePHP é extremamente fácil.** Se não tiver PHP instalado siga as instruções para Windows, Mac e Linux on the getting started page:
 <a href="https://www.fastsitephp.com/en/getting-started" target="_blank">https://www.fastsitephp.com/en/getting-started</a>
 
 Assim que o PHP estiver instalado você pode rodar o site da linha de comando como mostrado abaixo ou se você utiliza um editor de código ou IDE [Visual Studio Code, GitHub Atom, etc] então você pode rodar o site diretamente. Veja a página acima Começando para mais.
@@ -170,7 +170,7 @@ $app->get('/whats-my-ip', function() {
 
 // Define uma função que retorna verdadeiro (true) se a requisição web
 // está vindo de uma rede local (por exemplo 127.0.0.1 ou 10.0.0.1). Esta
-// função será utilizada em um filtro para mostar ou ocultar rotas.
+// função será utilizada em um filtro para mostrar ou ocultar rotas.
 $is_local = function() {
     // Compare a requisição e IP usando Classless Inter-Domain Routing (CIDR)
     $req = new \FastSitePHP\Web\Request();
@@ -225,7 +225,7 @@ $app->run();
 **Todas as contribuições são bem vindas.** Para mudanças significativas incluindo novas classes, mudanças disruptivas no código existente, atualizando gráficos e arquivos, por favor antes abra uma questão para discutirmos o que você gostaria de mudar. Alguns exemplo de itens para contribuir:
 
 * Erros de digitação e gramática - Se vir algum por favor corrija e envie.
-* Adicionando mais páginas de demonstração - As páginas de demonstração normalmente utilzam mais HTML, CSS e JavaScript que PHP, então se você é um desenvolvedor web e não sabe PHP pode facilmente aprender durante o desenvolvimento.
+* Adicionando mais páginas de demonstração - As páginas de demonstração normalmente utilizam mais HTML, CSS e JavaScript que PHP, então se você é um desenvolvedor web e não sabe PHP pode facilmente aprender durante o desenvolvimento.
 * Testes de unidade adicionais e metodologias de teste
 * Documentação e Tutoriais adicionais
 * Classes e funcionalidades adicionais
@@ -248,7 +248,7 @@ Enquanto o site era desenvolvido o framework e componentes foram sendo substitu�
 * Suporte a banco de dados já integrado. Todos os principais fornecedores (Microsoft, Oracle, etc) tem dado suporte ao PHP por anos com extensões de banco de dados nativas de alto desempenho.
 * Funciona em qualquer ambiente. A mais recente versão do  PHP pode funcionar virtualmente em qualquer servidor ou computador. Isso inclui Windows IIS, Linux/Apache, Raspberry Pi e mesmo em servidores IBM legados.
 * Desenvolvimento e configuração de servidor rápidos - simplesmente faça mudanças no arquivo PHP e recarregue a página. Não há processo de compilação para compilar programas e serviços para parar e reiniciar quando forem feitas mudanças.
-* Aprender uma linguagem adicioal permite aprender novas ideias e conceitos e melhora suas habilidades gerais.
+* Aprender uma linguagem adicional permite aprender novas ideias e conceitos e melhora suas habilidades gerais.
 * Renda - mais linguagens = mais dinheiro e um melhor currículo. Enquanto em média PHP paga menos que muitas outras linguagens populares; sites grandes e sites que dependem de empresas de design geralmente pagam mais _(alta renda)_ por desenvolvimento em PHP. Tendo PHP em seu currículo permite novas oportunidades. Além disso se você está pagando desenvolvedores para desenvolverem um site em PHP isso pode resultar em um site mais em conta.
 
 **Qual o tamanho do FastSitePHP?**
