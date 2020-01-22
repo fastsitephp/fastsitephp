@@ -1,7 +1,7 @@
 {
     "page_title": "Problema de Segurança",
     "security": "Segurança",
-    "security_issue": "Você pode utilizar este formulário para enviar uma mensagem privada para o autor se você acredita que encontrou um problema de segurança com o FastSitePHP ou o  DataFormsJS Playground.",
+    "security_issue": "Você pode utilizar este formulário para enviar uma mensagem privada para o autor se você acredita que encontrou um problema de segurança com o FastSitePHP ou o DataFormsJS Code Playground.",
     "thank_you_message": "Sua mensagem foi enviada. Obrigado por sua ajuda! Procure por um e-mail enviado por [%s]; você talvez precise adicioná-lo à sua lista de permitidos(whitelist).",
     "submit": "Enviar"
 }

@@ -128,7 +128,7 @@ echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
 # http://your-server.example.com/phpinfo.php
 
 # After you view the [phpinfo.php] link it's a good idea to delete it:
-rm phpinfo.php
+sudo rm phpinfo.php
 
 # Bonus! - Install the FastSitePHP Starter Site
 
