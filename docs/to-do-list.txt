@@ -475,6 +475,7 @@ TODO List
         https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     - New function [asFile(content, name)] that returns regular content as a file download
     - Add Unit Tests for 429 - 'Too Many Requests' responses
+    - Add Unit Tests for the error message 'Unhandled Response Status Code of...' from statusCode()
 
 *) Web\Request
     - queryString() - More unit tests that verify all $format options (currently they are verified in [value()])

@@ -2,6 +2,12 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Next Release (Changes on Master Branch)
+
+* **Thanks Nicolas CARPi for opening the issue related to the following items:** https://github.com/NicolasCARPi
+* `FastSitePHP\Web\Response` - Fixed declared variable types in PHPDoc Comments and a bug with an error message on `statusCode()`.
+* Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP works with older versions of PHP but they will be dropped in the future.
+
 ## 1.2.0 (January 10, 2020)
 
 * The core `Application` object now handles route `filter` functions that return a `Response` object instead of a `bool`. This allows for easier unit testing of custom middleware. See code example below.
