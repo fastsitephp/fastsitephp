@@ -10,7 +10,7 @@
 // If running this file directly then redirect to the main file
 // using the index route '/examples' for this file.
 if (!isset($app)) {
-    $url = 'home-page-en.php/examples';
+    $url = 'home-page-zh-CN.php/examples';
     header('Location: ' . $url, true, 302);
     exit();
 }
@@ -4178,11 +4178,54 @@ $app->get('/examples/l10n', function() use ($app) {
     echo json_encode($timezones);
 });
 
+$app->get('/examples/starter-site', function() use ($app) {
+    // This route is included so code shows in the API docs, but it doesn't run here.
+    // Download and run the starter site to try the actual classes because they are
+    // not included with the framework.  
+    return '<a href="https://github.com/fastsitephp/starter-site">Try it on the starter site</a>';
+
+    // EXAMPLE_CODE_START
+    // TITLE: Starter Site Middleware
+    // CLASS: App\Middleware\Cors, App\Middleware\Auth, App\Middleware\Env
+
+    // The FastSitePHP Starter Site includes several examples pages and provides
+    // a basic directory/file structure. The site is designed to provide structure
+    // for basic content (JavaScript, CSS, etc) while remaining small in size so
+    // that it is easy to remove files you don’t need and customize it for your site.
+    //
+    //     https://github.com/fastsitephp/starter-site
+    //
+    // Core Middleware classes are provided and can be modified for your site.
+    //
+    // To use them specify the 'Class.method' on route filter functions or
+    // when mounting additional files.
+
+    // Require a user to be logged in in order to use a page
+    $app->get('/secure-page', 'SecureController')->filter('Auth.hasAccess');
+
+    // Require an authenticated user and use CORS
+    $app
+        ->get('/api/:record_type', 'ApiController.getData')
+        ->filter('Cors.acceptAuth')
+        ->filter('Auth.hasAccess');
+
+    // Only run a route from localhost
+    $app->get('/server-info', function() {
+        phpinfo();
+    })
+    ->filter('Env.isLocalhost');
+    
+    // Only load a file if running from localhost
+    $app->mount('/sysinfo/', 'routes-sysinfo.php', 'Env.isLocalhost');
+    // EXAMPLE_CODE_END
+});
+
 // NOTE - Use this as a template for new routes, spaces need to be added between '// EXAMPLE_', etc
 /*
 $app->get('/examples/template', function() use ($app) {
     //EXAMPLE_CODE_START
     //TITLE: New Route Template, Fix Spaces to work
+    //CLASS: Dir\Class1, Dir\Class2
     //EXAMPLE_CODE_END
 
     // Return Text Response

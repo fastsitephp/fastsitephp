@@ -24,8 +24,6 @@ TODO List
 *) Starter Site
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
-    - Add [App\Middleware\{Auth, Cors, Env}] to the Quick Ref page once they have API Docs
-        Possibly just a single stater site middleware topic
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected
