@@ -11,7 +11,7 @@ TODO List
 |   *) More Documentation
 |   *) More Unit Testing
 |       - All classes and code must be Unit tested (ideally every line).
-          Currently all core classes are tested but not all code.
+|         Currently all core classes are tested but not all code.
 |       - A number of manual test files from [fastsitephp/scripts/testing-*.php]
 |         need to be converted unit tests under [fastsitephp/tests/*]
 |   *) Additional Classes and Features
@@ -87,19 +87,15 @@ TODO List
         # Download composer to directory
             php composer.phar require fastsitephp/fastsitephp
             php composer.phar create-project fastsitephp/starter-site my-app
-    - READE.md
-        - Link to the starter site Repository
-        - Document local development URL's?
-            http://localhost:3000/FastSitePHP/website/public/en/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
-            http://localhost:3000/FastSitePHP/tests/index.htm
+    - Document local development URL's
+        http://localhost:3000/FastSitePHP/website/public/en/
+        http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
+        http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
+        http://localhost:3000/FastSitePHP/tests/index.htm
     - Step by Step Setup of Sites
-        - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
         - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
         - Framework (how to run examples when downloading directly)
         - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
-        - These docs may be linked from Getting Started Page as well once created
     - Update images and content on [edit-with-vs-code] and related docs with
         the published version of FastSitePHP and how to download the site
         or use [git clone] to download it.
@@ -124,6 +120,7 @@ TODO List
             document.querySelectorAll('h3')
         Then create a <ul> link list in the [Overview] topic
         Alternativly a Tab Layout could be used but that would likely take more time than it's worth
+        Another option would be a seperate document per OS and then all docs can have easy links to each other
     - Add detailed nginx install guide after layout has been made easier to use
         # See also the most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
         sudo apt update
@@ -228,14 +225,6 @@ TODO List
         - Or should there be an "Install [php logo]" and similar items?
         - Or leave as-is? Need to try several different options
     - All Examples should have more Graphics and Icons
-    - home page
-        - Try animating all reason-to-use SVG images but not all at once
-          For example animate each one for 1 second on a rotating basis so only 1 image
-          is animating at at time. This can take a long time as each image should have
-          a custom animation similar to how to rocketship works. For example the
-          "Great Performance" icon could have the needle move quickly for a second, while
-          the lightswitch could turn on and off. This may or may not be done as it can
-          take a while.
     - Stater Site
         - create nice svg icons for each of the resource links
     - Playground
@@ -438,7 +427,8 @@ TODO List
         "Response Object - Cache Headers Test - 5b - 304 Response for Strong ETag", "test-web-response.php/cache-headers-5"
       Related link:
         https://forum.nginx.org/read.php?29,251164,251966
-      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx
+      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx.
+      Likely just keep it (and document it) as the Unit Tests are meant to show what a web server supports
 
 *) Unit Testing JS Clarification
     [responseContains] should be replaced with [responseMatchesOne] for a number of Tests
@@ -595,8 +585,9 @@ TODO List
       shell on all FreeBSD installs. A more reliable method is needed. Currently the code below should
       work in theory however it now gives permission errors on later commands even for the '/tmp' folder.
       A lot more research and testing is needed it seems in order to make large file encryption work
-      with FreeBSD.
-
+      with FreeBSD. See raw commands for encrypting with FreeBSD at the bottom of page:
+        https://www.fastsitephp.com/en/documents/file-encryption-bash
+      Development Code from testing:
         $truncate_cmd_2 = null;
         if (PHP_OS === 'Darwin') {
             $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';
