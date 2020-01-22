@@ -78,7 +78,7 @@ sudo apt install apache2 php
 # Habilitar o PHP no Apache
 sudo apt install libapache2-mod-php
 
-# Um versão do comando alternativo existe para instalar o Apache, MySQL e PHP.
+# Uma versão do comando alternativo existe para instalar o Apache, MySQL e PHP.
 # Dependendo da versão do comando você será acionado para fornecer uma senha
 # ou definir uma mais tarde para MySQL.
 #
