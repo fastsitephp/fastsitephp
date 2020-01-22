@@ -80,7 +80,7 @@ sudo apt install apache2 php
 # Habilitar o PHP no Apache
 sudo apt install libapache2-mod-php
 
-# Um versão do comando alternativo existe para instalar o Apache, MySQL e PHP.
+# Uma versão do comando alternativo existe para instalar o Apache, MySQL e PHP.
 # Dependendo da versão do comando você será acionado para fornecer uma senha
 # ou definir uma mais tarde para MySQL.
 #
@@ -105,9 +105,9 @@ sudo nano /etc/apache2/apache2.conf
 #    FallbackResource /index.php
 # Salve utilizando:
 #    {control+s} -> {control+x}
-#    or {control+x} -> {y} -> {enter}
+#    ou {control+x} -> {y} -> {enter}
 
-# Opcional - Ative a Compressão Gzip para Resposta JSON
+# Opcional - Ative a Compressão Gzip para Respostas JSON
 #   (Isto não é ativado por padrão no Apache)
 sudo nano /etc/apache2/mods-available/deflate.conf
 # Adicione o seguinte sob comandos similares:
@@ -129,7 +129,7 @@ echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
 # http://your-server.example.com/phpinfo.php
 
 # Depois que você vir o link do arquivo [phpinfo.php], é uma boa ideia deletá-lo:
-rm phpinfo.php
+sudo rm phpinfo.php
 
 # Bonus! - Instale o Site Inicial do FastSitePHP
 
@@ -148,7 +148,7 @@ cp -r ~/starter-site-master/public/. /var/www/html
 ls /var/www
 ls -la /var/www/html
 
-# Instalar o FastSitePHP (~470 kb) e Dependências (~20 - 40 kb)
+# Instalar o FastSitePHP (~470 kb) e suas Dependências (~20 - 40 kb)
 php /var/www/scripts/install.php
 
 # Apague os arquivos que não sejam necessários incluindo a página padrão do Apache

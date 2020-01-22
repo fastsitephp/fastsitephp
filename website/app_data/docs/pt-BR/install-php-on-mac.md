@@ -1,4 +1,4 @@
-# Installar o Apache e o PHP no macOS
+# Instalar o Apache e o PHP no macOS
 <style>
     .logo-images { display:inline-flex; flex-direction:column; }
     .logo-images img { display:inline; width:150px; height:150px; }
