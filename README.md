@@ -274,13 +274,13 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-The current version of FastSitePHP works and is unit tested with all version of PHP from `5.3` to `7.4` on Apache, nginx, and IIS.
+The current version of FastSitePHP works and is unit tested with all version of PHP from `5.3` to `7.4` on Apache, nginx, and IIS. While core routing and features work with old versions of PHP certain features of FastSitePHP require recent builds of PHP such as `7.2+`.
 
 IMPORTANT - Even though old versions of PHP such as 5.3 are currently supported you should never use them on a public facing website. Old versions of PHP are no longer secure and not supported by the PHP Group.
 
 In fact if you are running a server with any version of PHP 5 you should consider upgrading to PHP 7. PHP 7 is significantly faster, provides much better security, and a large number of new features.
 
-In the future older version of PHP will be dropped for FastSitePHP however if you are working in a corporate environment with internal servers that have an old version of PHP you can use it with FastSitePHP.
+In the future older version of PHP will be dropped for FastSitePHP however if you are working in a corporate environment or work with an enterprise Linux vendor that backfills security patches to older versions of PHP (for example RedHat) then FastSitePHP should easily work with your environment.
 
 For a list of Supported PHP Version that are considered secure see this link: https://www.php.net/supported-versions.php
 

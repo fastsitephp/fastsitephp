@@ -32,9 +32,12 @@
 
         <MissingClosureReturnType errorLevel="info" />
         <MissingReturnType errorLevel="info" />
-        <!-- MissingPropertyType gives warnings on private class properties that do not need PHPDoc comments -->
+
+        <!--
+            MissingPropertyType gives warnings on private class properties that do not need PHPDoc comments
+        -->
         <MissingPropertyType errorLevel="info">
-            <errorLevel type="suppress">     
+            <errorLevel type="suppress">
                 <file name="src\FileSystem\Sync.php" />
                 <file name="src\FileSystem\Search.php" />
                 <file name="src\Net\Email.php" />
@@ -46,6 +49,7 @@
                 <file name="src\Security\Password.php" />
             </errorLevel>
         </MissingPropertyType>
+
         <InvalidDocblock errorLevel="info" />
         <MisplacedRequiredParam errorLevel="info" />
 
@@ -66,7 +70,7 @@
                 https://github.com/vimeo/psalm/issues/2297
         -->
     	<UnresolvableInclude errorLevel="info">
-            <errorLevel type="suppress">     
+            <errorLevel type="suppress">
                 <file name="src\Application.php" />
                 <file name="src\AppMin.php" />
                 <file name="src\Security\Password.php" />
@@ -75,14 +79,16 @@
         </UnresolvableInclude>
 
     	<UndefinedThisPropertyFetch errorLevel="info">
-            <errorLevel type="suppress">     
+            <errorLevel type="suppress">
                 <file name="src\Data\AbstractVendorDatabase.php" />
             </errorLevel>
         </UndefinedThisPropertyFetch>
 
-        <!-- Ignore PHP 7.2+ constants if running psalm from and older build of PHP -->
+        <!--
+            Ignore PHP 7.2+ constants if running psalm from and older build of PHP
+        -->
         <UndefinedConstant errorLevel="error">
-            <errorLevel type="suppress">     
+            <errorLevel type="suppress">
                 <file name="src\Security\Password.php" />
             </errorLevel>
         </UndefinedConstant>
