@@ -114,6 +114,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * @param string $file_path - Input file to encrypt, this file will not be modified
      * @param string $enc_file - Path to save the encrypted (output) file
      * @param string $key - Key in hexadecimal format
+     * @return void
      * @throws \Exception
      */
     public function encryptFile($file_path, $enc_file, $key)
@@ -210,6 +211,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * @param string $enc_file - Encrypted file, this file will not be modified
      * @param string $output_file - Path to save the decrypted file
      * @param string $key - Key in hexadecimal format
+     * @return void
      * @throws \Exception
      */
     public function decryptFile($enc_file, $output_file, $key)
@@ -446,6 +448,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      *     sudo restorecon -Rv /var/www/app_data
      *     sudo chown apache:apache -R /var/www/app_data/*
      * 
+     * @return void
      * @link https://opensource.com/article/18/7/sysadmin-guide-selinux
      * @link https://wiki.centos.org/HowTos/SELinux
      * @link https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/ch-selinux
@@ -579,6 +582,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
     /**
      * Validation that runs from both [encryptFile()] and [decryptFile()]
      * 
+     * @return void
      * @throws \Exception
      */
     private function validateFileSetup()
@@ -700,6 +704,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * parts of the calling functions to fail.
      * 
      * @param string $file_path
+     * @return void
      * @throws \Exception
      */
     private function validateFileName($file_path)
@@ -723,6 +728,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * on an invalid or small file.
      * 
      * @param string $enc_file
+     * @return void
      * @throws \Exception
      */
     private function validateFileSizeDec($enc_file)

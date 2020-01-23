@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<psalm
+    totallyTyped="false"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <LessSpecificReturnType errorLevel="info" />
+
+        <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+
+        <DeprecatedMethod errorLevel="info" />
+        <DeprecatedProperty errorLevel="info" />
+        <DeprecatedClass errorLevel="info" />
+        <DeprecatedConstant errorLevel="info" />
+        <DeprecatedFunction errorLevel="info" />
+        <DeprecatedInterface errorLevel="info" />
+        <DeprecatedTrait errorLevel="info" />
+
+        <InternalMethod errorLevel="info" />
+        <InternalProperty errorLevel="info" />
+        <InternalClass errorLevel="info" />
+
+        <MissingClosureReturnType errorLevel="info" />
+        <MissingReturnType errorLevel="info" />
+        <!-- MissingPropertyType gives warnings on private class properties that do not need PHPDoc comments -->
+        <MissingPropertyType errorLevel="info">
+            <errorLevel type="suppress">     
+                <file name="src\FileSystem\Sync.php" />
+                <file name="src\FileSystem\Search.php" />
+                <file name="src\Net\Email.php" />
+                <file name="src\Net\SmtpClient.php" />
+                <file name="src\Security\Crypto\AbstractCrypto.php" />
+                <file name="src\Security\Crypto\Encryption.php" />
+                <file name="src\Security\Crypto\FileEncryption.php" />
+                <file name="src\Security\Crypto\JWT.php" />
+                <file name="src\Security\Password.php" />
+            </errorLevel>
+        </MissingPropertyType>
+        <InvalidDocblock errorLevel="info" />
+        <MisplacedRequiredParam errorLevel="info" />
+
+        <PropertyNotSetInConstructor errorLevel="info" />
+        <MissingConstructor errorLevel="info" />
+        <MissingClosureParamType errorLevel="info" />
+        <MissingParamType errorLevel="info" />
+
+        <RedundantCondition errorLevel="info" />
+
+        <DocblockTypeContradiction errorLevel="info" />
+        <RedundantConditionGivenDocblockType errorLevel="info" />
+
+        <!--
+            Ideally the <referencedMethod> node would be used here, example:
+                <referencedMethod name="FastSitePHP\Application::render" />
+            However it doesn't work on <UnresolvableInclude> so files have to be excluded:
+                https://github.com/vimeo/psalm/issues/2297
+        -->
+    	<UnresolvableInclude errorLevel="info">
+            <errorLevel type="suppress">     
+                <file name="src\Application.php" />
+                <file name="src\AppMin.php" />
+                <file name="src\Security\Password.php" />
+                <file name="src\Data\Log\HtmlLogger.php" />
+            </errorLevel>
+        </UnresolvableInclude>
+
+    	<UndefinedThisPropertyFetch errorLevel="info">
+            <errorLevel type="suppress">     
+                <file name="src\Data\AbstractVendorDatabase.php" />
+            </errorLevel>
+        </UndefinedThisPropertyFetch>
+
+        <!-- Ignore PHP 7.2+ constants if running psalm from and older build of PHP -->
+        <UndefinedConstant errorLevel="error">
+            <errorLevel type="suppress">     
+                <file name="src\Security\Password.php" />
+            </errorLevel>
+        </UndefinedConstant>
+
+        <RawObjectIteration errorLevel="info" />
+
+        <InvalidStringClass errorLevel="info" />
+    </issueHandlers>
+</psalm>

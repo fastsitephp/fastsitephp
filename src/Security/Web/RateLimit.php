@@ -45,6 +45,7 @@ class RateLimit
      * The same options used for [allow()] are used here.
      *
      * @param array $options
+     * @return void
      * @throws \Exception
      */
     public function filterRequest(Application $app, array $options)

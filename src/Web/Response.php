@@ -1497,6 +1497,7 @@ class Response
      * returns a response object and would normally not be manually called. This function
      * handles sending Response Headers, Cookies, and Content.
      *
+     * @return void
      * @throws \Exception
      */
     public function send()

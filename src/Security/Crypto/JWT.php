@@ -364,6 +364,7 @@ class JWT implements CryptoInterface
     /**
      * Called from [decode()] to validate the JWT Header
      * @param array $header
+     * @return void
      * @throws \Exception
      */
     private function validateHeader($header)
@@ -416,6 +417,7 @@ class JWT implements CryptoInterface
      * Used to validate claims when decoding.
      * Claims are validated in the order that they appear in the RFC.
      * @param array $payload
+     * @return void
      * @throws \Exception
      * @link https://tools.ietf.org/html/rfc7519#section-4.1
      */
@@ -603,6 +605,7 @@ class JWT implements CryptoInterface
      *
      * @param mixed $algo
      * @param string $calling_function
+     * @return void
      * @throws \Exception
      */
     private function validateAlgo($algo, $calling_function)

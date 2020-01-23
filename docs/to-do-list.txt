@@ -21,6 +21,19 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Finish linting updates related to this issue:
+    https://github.com/fastsitephp/fastsitephp/issues/11
+    - How to lint:
+        - Download the file [psalm.phar] from link below to root directory of the fastsitephp Repository
+            https://github.com/vimeo/psalm/releases
+        - Then run:
+            php psalm.phar > psalm_result.tx
+        - View results in the text file
+    - Virtually all of the issues are related to PHPDoc comments
+        - For example: MissingReturnType often is fixed with adding [@retun void] to the function comments
+    - Any actual code changes will require full unit testing
+    - The total time to fix everything is expected to be 4 to 5 hours or more
+
 *) Starter Site
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published

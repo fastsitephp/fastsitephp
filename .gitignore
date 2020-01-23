@@ -17,5 +17,10 @@ composer.lock
 composer.phar
 composer-setup.php
 
+# PHP Liniting
+# https://github.com/vimeo/psalm
+psalm.phar
+psalm*.txt
+
 # Misc files used by the app for testing
 log.txt

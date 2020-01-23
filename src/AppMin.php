@@ -46,7 +46,7 @@ class AppMin
 
     /**
      * HTTP Response Headers for CORS
-     * @var array
+     * @var array|null
      */
     public $cors_headers = null;
 
@@ -140,6 +140,7 @@ class AppMin
      * Setup error handling and optionally set a time-zone for the application
      *
      * @param string|null $timezone
+     * @return void
      * @throws \Exception
      */
     public function setup($timezone)

@@ -666,6 +666,7 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      * @param int $iv_length
      * @param int $tag_length
      * @param int $hash_length
+     * @return void
      * @throws \Exception
      */
     private function validateSize($encrypted_bytes, $iv_length, $tag_length, $hash_length)
@@ -691,6 +692,7 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      * if decryption failed then false will be returned.
      *
      * @param string $decrypted_text
+     * @return void
      * @throws \Exception
      */
     private function validateDecryption($decrypted_text)
