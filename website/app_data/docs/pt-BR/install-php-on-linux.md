@@ -37,7 +37,7 @@ Se você estiver conectando a um Servidor Linux em Nuvem à partir do Windows ou
 
 ---
 ## Código de Referência Rápida
-Esta seção mostra várias opções de instalação diferentes para Linux utilizando o shell (terminal / command-prompt). Se você estiver familiarizado com o uso do shell e está instalando em um dos SOs listados, você pode utilizar esta referência rápida. Estas instruções atualmente fornecem um visão geral da instalação inicial. Dependendo de qual é o seu SO você pode querer instalar extensões adicionais do Apache para atualizar diversos arquivos de configuração.
+Esta seção mostra várias opções de instalação diferentes para Linux utilizando o shell (terminal / command-prompt). Se você estiver familiarizado com o uso do shell e está instalando em um dos SOs listados, você pode utilizar esta referência rápida. Estas instruções atualmente fornecem um visão geral da instalação inicial. Dependendo de qual é o seu SO você talvez queira instalar extensões adicionais do Apache para atualizar diversos arquivos de configuração.
 
 ### Configuração Rápida
 
@@ -66,7 +66,7 @@ sudo bash create-fast-site.sh -a
 sudo bash create-fast-site.sh -n
 ~~~
 
-### Instalação de Apache e PHP Installation no Ubuntu (Detalhada)
+### Instalação do Apache e do PHP no Ubuntu (Detalhada)
 ~~~
 # Atualize a lista do Gerenciador de Pacotes [apt] com [update]
 sudo apt update

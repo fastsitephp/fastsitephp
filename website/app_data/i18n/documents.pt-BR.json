@@ -7,13 +7,13 @@
     "img-alt-atom": "Editor de Texto Atom",
     "img-alt-editor": "Editor de Código",
     "img-alt-crypto": "Criptografia",
-    "install-php-on-linux": "Instale o Apache ou nginx e PHP em um servidor Linux ou Unix",
-    "install-php-on-windows": "Instalar IIS e PHP em um Servidor ou Desktop Windows",
-    "install-php-on-mac": "Instalar Apache e PHP em um Mac",
-    "edit-with-vs-code": "Usa o Visual Studio Code para Desenvolvimento PHP",
-    "edit-with-atom": "Usa o GitHub Atom Editor para Desenvolvimento PHP",
-    "edit-with-other": "Utilizando Outro Editor de Código e IDE para Desenvolvimento PHP",
-    "file-encryption-bash": "Criptografia de arquivo usando o script Bash compatível [encrypt.sh]",
-    "file-encryption-windows": "Criptografia de arquivo usando o script Bash [encrypt.sh] no Windows",
-    "ibm-server-db-query": "Usando a Classe Db2Database com um Servidor IBM iSeries"
+    "install-php-on-linux": "Instalar o Apache ou nginx e PHP em um servidor Linux ou Unix",
+    "install-php-on-windows": "Instalar o IIS e o PHP em um Servidor ou Desktop Windows",
+    "install-php-on-mac": "Instalar o Apache e o PHP em um Mac",
+    "edit-with-vs-code": "Utilizar o Visual Studio Code para Desenvolvimento PHP",
+    "edit-with-atom": "Utilizar o Atom Editor do GitHub para Desenvolvimento PHP",
+    "edit-with-other": "Utilizando Outro Editor de Código ou IDE para Desenvolvimento PHP",
+    "file-encryption-bash": "Criptografia de arquivo utilizando o script Bash compatível [encrypt.sh]",
+    "file-encryption-windows": "Criptografia de arquivo utilizando o script Bash [encrypt.sh] no Windows",
+    "ibm-server-db-query": "Utilizar a Classe Db2Database com um Servidor IBM iSeries"
 }
