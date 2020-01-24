@@ -274,15 +274,15 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-The current version of FastSitePHP works and is unit tested with all version of PHP from `5.3` to `7.4` on Apache, nginx, and IIS. While core routing and features work with old versions of PHP certain features of FastSitePHP require recent builds of PHP such as `7.2+`.
+The current version of FastSitePHP works and is unit tested with all versions of PHP from `5.3` to `7.4` on Apache, nginx, and IIS. While core routing and most features work with old versions of PHP certain features of FastSitePHP require recent builds of PHP such as `7.2+`.
 
-IMPORTANT - Even though old versions of PHP such as 5.3 are currently supported you should avoid using them on a public facing website if possible. Old versions of PHP are no longer considered secure and not supported by the PHP Group.
+IMPORTANT - Even though old versions of PHP such as 5.3 are currently supported you should avoid using them on a public facing website if possible. Old versions of PHP are no longer supported by the PHP Group.
 
 In fact if you are running a server with any version of PHP 5 you should consider upgrading to PHP 7. PHP 7 is significantly faster, provides much better security, and a large number of new features.
 
-For a list of Supported PHP Version that are considered secure see this link: https://www.php.net/supported-versions.php
+For a list of Supported PHP Versions see this link: https://www.php.net/supported-versions.php
 
-Additionally if you are running have a support license for your of Linux (for example: RedHat Enterprise Linux) and are running and old version of PHP your vendor will likely backfill PHP security patches to your version of PHP which allows for older versions of PHP to remain secure even though they are no longer supported by the PHP Group.
+Additionally if you are running Linux and have a support license for your of Linux (for example: RedHat Enterprise Linux) and are running and old version of PHP your vendor will likely backfill PHP security patches to your version of PHP which allows for older versions of PHP to remain secure even though they are no longer supported by the PHP Group.
 
 ## :memo: License
 
