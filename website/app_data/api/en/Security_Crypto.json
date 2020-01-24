@@ -108,9 +108,9 @@
             "description": "Decode and Verify a JWT. If the token is not valid null will be returned.",
             "attributes": [
                 "@param string $token",
-                "@return array - The payload that was originally encoded."
+                "@return array|null - The payload that was originally encoded."
             ],
-            "returnType": "array - The payload that was originally encoded.",
+            "returnType": "array | null - The payload that was originally encoded.",
             "links": []
         }
     ],

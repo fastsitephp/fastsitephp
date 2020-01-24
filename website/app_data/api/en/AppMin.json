@@ -37,9 +37,9 @@
             "defaultValue": "null",
             "description": "HTTP Response Headers for CORS",
             "attributes": [
-                "@var array"
+                "@var array|null"
             ],
-            "dataType": "array",
+            "dataType": "array\nnull",
             "links": []
         },
         {
@@ -184,6 +184,7 @@
             "description": "Setup error handling and optionally set a time-zone for the application",
             "attributes": [
                 "@param string|null $timezone",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -196,7 +197,7 @@
             "isGetterSetter": false,
             "description": "Application defined exception handler function",
             "attributes": [
-                "@param $e"
+                "@param \\Exception|\\Throwable $e"
             ],
             "returnType": null,
             "links": []
@@ -208,10 +209,10 @@
             "isGetterSetter": false,
             "description": "Application defined error handler function",
             "attributes": [
-                "@param $severity",
-                "@param $message",
-                "@param $file",
-                "@param $line",
+                "@param int $severity",
+                "@param string $message",
+                "@param string $file",
+                "@param int $line",
                 "@return bool",
                 "@throws \\ErrorException"
             ],

@@ -283,6 +283,7 @@
                 "@link http:\/\/php.net\/manual\/en\/datetime.configuration.php",
                 "@link http:\/\/php.net\/manual\/en\/function.date-default-timezone-set.php",
                 "@param string|null $timezone",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -302,7 +303,8 @@
                 "@link http:\/\/php.net\/manual\/en\/function.set-exception-handler.php",
                 "@link http:\/\/php.net\/manual\/en\/language.exceptions.php",
                 "@link http:\/\/php.net\/manual\/en\/class.throwable.php",
-                "@param $e"
+                "@param \\Exception|\\Throwable $e",
+                "@return void"
             ],
             "returnType": null,
             "links": [
@@ -321,10 +323,10 @@
                 "@link http:\/\/php.net\/manual\/en\/language.errors.php",
                 "@link http:\/\/php.net\/manual\/en\/function.set-error-handler.php",
                 "@link http:\/\/php.net\/manual\/en\/class.errorexception.php",
-                "@param $severity",
-                "@param $message",
-                "@param $file",
-                "@param $line",
+                "@param int $severity",
+                "@param string $message",
+                "@param string $file",
+                "@param int $line",
                 "@return bool",
                 "@throws \\ErrorException"
             ],
@@ -342,6 +344,7 @@
             "isGetterSetter": false,
             "description": "Application defined error handler function for fatal errors. This function is set as an error handler when the function [setup()] is called. This function is executed by PHP when script execution is finishing and allows for fatal errors not caught by the error handler function to be handled. This function converts the errors to an ErrorException object and calls the [exceptionHandler()] function which then allows for the website or application to handle the error. This function is public so PHP can call it but it should not be called directly.",
             "attributes": [
+                "@return void",
                 "@link http:\/\/php.net\/manual\/en\/function.register-shutdown-function.php"
             ],
             "returnType": null,
@@ -357,8 +360,8 @@
             "description": "Allow for methods\/functions to be added dynamically to the Application Object using a PHP 'magic method'. In PHP this is called method overloading however the term is used differently in PHP than most programming languages. Objects can always have properties dynamically added however if a function\/closure is dynamically added it cannot be called unless the magic method [__call()] is implemented. This implementation of [__call()] allows for functions to be defined in a manner similar to how a function can be added dynamically in JavaScript. One difference in PHP is that a function added dynamically to the Application object will not have access to the [$this] variable that built-in functions have.\n\nJavaScript Example - This works to add a function dynamically to an object:\n\n    var obj = {};\n    obj.test = function() { alert('test'); };\n    obj.test()\n\nPHP Example - The property can be added but the function cannot be called and the following code would trigger an error. However using the [__call()] magic method if the following function were defined for a class then it can be called.\n\n    $obj = new \\stdClass;\n    $obj->test = function() { echo 'test'; };\n    $obj->test();",
             "attributes": [
                 "@link http:\/\/php.net\/manual\/en\/language.oop5.overloading.php",
-                "@param $name",
-                "@param $arguments",
+                "@param string $name",
+                "@param mixed $arguments",
                 "@return mixed",
                 "@throws \\BadMethodCallException"
             ],
@@ -375,7 +378,7 @@
             "description": "Return true if either a built-in or dynamic a named method exists for the Application object. Typically [method_exists()] can be used however this Class allows for dynamic methods to be defined.",
             "attributes": [
                 "@link http:\/\/php.net\/manual\/en\/function.method-exists.php",
-                "@param $name",
+                "@param string $name",
                 "@return bool"
             ],
             "returnType": "bool",
@@ -390,7 +393,7 @@
             "isGetterSetter": false,
             "description": "PHP Magic Method which is called if a property is accessed that doesn't exist on the object. It is used here to check for properties defined from [lazyLoad()] and create them the first time they are used.",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@return mixed"
             ],
             "returnType": "mixed",
@@ -420,10 +423,10 @@
             "attributes": [
                 "@link https:\/\/en.wikipedia.org\/wiki\/List_of_HTTP_status_codes",
                 "@param int|null $new_value (default: null)",
-                "@return $this|int",
+                "@return $this|int|null",
                 "@throws \\Exception"
             ],
-            "returnType": "$this | int",
+            "returnType": "$this | int | null",
             "links": [
                 "https:\/\/en.wikipedia.org\/wiki\/List_of_HTTP_status_codes"
             ]
@@ -508,7 +511,7 @@
                 "@link http:\/\/php.net\/manual\/en\/function.setcookie.php",
                 "@link http:\/\/php.net\/manual\/en\/features.cookies.php",
                 "@link http:\/\/php.net\/manual\/en\/reserved.variables.cookies.php",
-                "@param $name",
+                "@param string $name",
                 "@param string $value",
                 "@param int $expire    Defaults to 0 which makes the cookie expire at the end of the session",
                 "@param string $path (default: '')",
@@ -531,7 +534,7 @@
             "isGetterSetter": false,
             "description": "Send an empty value for a named cookie and expired time to tell the browser or client to clear the cookie.",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@param string $path (default: '')",
                 "@param string $domain (default: '')",
                 "@param bool $secure (default: false)",
@@ -628,7 +631,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Send a 404 'Not found' response to the client and end script execution. This uses the same template that would be returned from calling [$app->pageNotFound()].",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -929,7 +934,8 @@
             "isGetterSetter": false,
             "description": "Call all closure functions defined from [after()]. This function is public however it would normally not be called. It is used by FastSitePHP internally after sending the response.",
             "attributes": [
-                "@param string $content"
+                "@param mixed $content",
+                "@return void"
             ],
             "returnType": null,
             "links": []

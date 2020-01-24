@@ -269,7 +269,7 @@
                 "@link http:\/\/php.net\/manual\/en\/function.setcookie.php",
                 "@link http:\/\/php.net\/manual\/en\/features.cookies.php",
                 "@link http:\/\/php.net\/manual\/en\/reserved.variables.cookies.php",
-                "@param $name",
+                "@param string $name",
                 "@param string $value",
                 "@param int $expire    Defaults to 0 which makes the cookie expire at the end of the session",
                 "@param string $path (default: '')",
@@ -292,7 +292,7 @@
             "isGetterSetter": false,
             "description": "Send an empty value for a named cookie and expired time to tell the browser or client to clear the cookie.",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@param string $path (default: '')",
                 "@param string $domain (default: '')",
                 "@param bool $secure (default: false)",
@@ -309,7 +309,7 @@
             "isGetterSetter": false,
             "description": "Create a secure cookie that can be read by clients client but not tampered with. Cookies sent using this method need to be read with [Request->verifiedCookie()] to verify that they are not tampered with or expired. The default expiration time is 1 hour and it applies to the signed data and not the cookie itself.\n\nUsing this function requires the Application Config Value 'SIGNING_KEY'.\n\nSee also [encryptedCookie()] and [jwtCookie()].",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@param string $value",
                 "@param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie",
                 "@param int $expire - Defaults to 0 which makes the cookie expire at the end of the session",
@@ -329,7 +329,7 @@
             "isGetterSetter": false,
             "description": "Create a secure cookie with a JSON Web Token (JWT). Cookies sent using this method need to be read with [Request->jwtCookie()] to verify that they are not tampered with or expired. The default expiration time is 1 hour and it applies to the JWT and not the cookie itself.\n\nUsing this function requires the Application Config Value 'JWT_KEY'.\n\nSee also [encryptedCookie()] and [signedCookie()].",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@param string $value",
                 "@param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie",
                 "@param int $expire - Defaults to 0 which makes the cookie expire at the end of the session",
@@ -349,7 +349,7 @@
             "isGetterSetter": false,
             "description": "Create a secure and secret cookie that cannot be read by clients. Cookies sent using this method need to be read with [Request->decryptedCookie()].\n\nUsing this function requires the Application Config Value 'ENCRYPTION_KEY'.\n\nSee also [signedCookie()] and [jwtCookie()].",
             "attributes": [
-                "@param $name",
+                "@param string $name",
                 "@param string $value",
                 "@param int $expire    Defaults to 0 which makes the cookie expire at the end of the session",
                 "@param string $path (default: '')",
@@ -399,17 +399,17 @@
             "definition": "file($file_path = null, $content_type = null, $cache_type = null, $cache_control = null)",
             "target": "fn_file",
             "isStatic": false,
-            "isGetterSetter": false,
+            "isGetterSetter": true,
             "description": "Specify a file for the response; the file specified will be streamed to the client and sent in a memory efficient manner so this function can be called on very large files with minimal performance impact for the server. The contents of the file are not modified when calling this function so it cannot be used to render templates. This function is ideal for sending file download responses and media files such as images or video.\n\nThis function provides several optional parameters to specify the response content type and caching headers:\n\n$content_type The content type to set for contentType() such as 'text', 'html' or 'download' to specify 'application\/octet-stream' and related headers for a file download. If not set then the mime type is determined from the file extension using the function fileTypeToMimeType().\n\n$cache_type Value to set for either ETag or Last-Modified headers which allow for Cached Responses of 304 'Not Modified'. Valid options are: 'etag:md5', 'etag:sha1', and 'last-modified'. All values are calculated from the file directly. When calculating Etag based on a hash be aware that the value will be calculated each time this function is called so in the case of large files that are 100's of megabytes or more in size it can delay the initial streamed response by as much as a few seconds. If very large files are used with this function and ETag is needed then an alternative solution such as saving a hash of the file and setting it through the etag() function can be used to improve performance.\n\n$cache_control Value for the 'Cache-Control' header which gets set from the function cacheControl().",
             "attributes": [
                 "@param string|null $file_path",
                 "@param string|null $content_type",
                 "@param string|null $cache_type",
                 "@param string|null $cache_control",
-                "@return $this",
+                "@return $this|string",
                 "@throws \\Exception"
             ],
-            "returnType": "$this",
+            "returnType": "$this | string",
             "links": []
         },
         {
@@ -449,6 +449,7 @@
             "isGetterSetter": false,
             "description": "Send the Response to the Client. This function gets called automatically if a route returns a response object and would normally not be manually called. This function handles sending Response Headers, Cookies, and Content.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
