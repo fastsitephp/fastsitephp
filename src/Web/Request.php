@@ -88,7 +88,7 @@ class Request
      * 
      * Using this function requires the Application Config Value 'SIGNING_KEY'.
      * 
-     * @param $name - Name of the Signed Cookie
+     * @param string $name - Name of the Signed Cookie
      * @return mixed
      */
     public function verifiedCookie($name)
@@ -105,7 +105,7 @@ class Request
      * 
      * Using this function requires the Application Config Value 'JWT_KEY'.
      * 
-     * @param $name - Name of the JWT Cookie
+     * @param string $name - Name of the JWT Cookie
      * @return mixed
      */
     public function jwtCookie($name)
@@ -122,7 +122,7 @@ class Request
      * 
      * Using this function requires the Application Config Value 'ENCRYPTION_KEY'.
      * 
-     * @param $name - Name of the Encrypted Cookie
+     * @param string $name - Name of the Encrypted Cookie
      * @return mixed
      */
     public function decryptedCookie($name)
@@ -302,47 +302,38 @@ class Request
             // Optional value, returns the value as-is or null if not set
             case 'value?':
                 return $value;
-                break;
             // Always return a string type and an empty string if no data.
             // Whitespace is trimmed (spaces, tabs, new lines, etc).
             case 'string':
                 $value = ($isset ? trim($value) : '');
                 return $value;
-                break;
             // Return string data type or null if not set or
             // the string is empty. Whitespace is trimmed.
             case 'string?':
                 $value = ($isset ? trim($value) : '');
                 return ($value === '' ? null : $value);
-                break;
             // Always return a string and keep any whitespace
             case 'string with whitespace':
                 return ($isset ? (string)$value : '');
-                break;
             // Always return an int data type, if the value was
             // not set or a valid integer then it will return zero.
             case 'int':
                 return ($isset && filter_var($value, FILTER_VALIDATE_INT) !== false ? (int)$value : 0);
-                break;
             // Return int or null
             case 'int?':
                 return ($isset && filter_var($value, FILTER_VALIDATE_INT) !== false ? (int)$value : null);
-                break;
             // Always return an float/double data type, if the value
             // was not set or a valid float then it will return zero.
             case 'float':
                 return ($isset && filter_var($value, FILTER_VALIDATE_FLOAT) !== false ? (float)$value : (float)0);
-                break;
             // Return float or null
             case 'float?':
                 return ($isset && filter_var($value, FILTER_VALIDATE_FLOAT) !== false ? (float)$value : null);
-                break;
             // Return a boolean (true or false).
             // returns true if the value is '1', 'true', 'on', or 'yes'
             // and false for all other values.
             case 'bool':
                 return ($isset && filter_var($value, FILTER_VALIDATE_BOOLEAN) === true ? true : false);
-                break;
             // Return a boolean (true|false) or null
             case 'bool?':
                 // Using strict bool validation values so the following rules apply:
@@ -350,7 +341,6 @@ class Request
                 // returns false if the value is '0', 'false', 'off', or 'no'
                 // returns null for all other values
                 return ($isset ? filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : null);
-                break;
             // Check the value of an HTML Submitted Form Field Checkbox
             // and convert it to a database bit value of 1 or 0. HTML
             // Posted Forms if checked will have the value set to 'on'
@@ -359,19 +349,16 @@ class Request
             // allow return true/false if that is desired over 1/0.
             case 'checkbox':
                 return ($isset && $value === 'on' ? 1 : 0);
-                break;
             // Return a valid email address or null
             case 'email?':
                 $value = ($isset ? filter_var($value, FILTER_VALIDATE_EMAIL) : false);
                 return ($value !== false ? $value : null);
-                break;
             // Return a valid url address beginning with 'http://' or 'https://' or null
             case 'url?':
                 // FILTER_VALIDATE_URL accepts many types of URL's as valid such as
                 // 'mailto:' so this function also requires 'http/https' at the start.
                 $value = ($isset ? filter_var($value, FILTER_VALIDATE_URL) : false);
                 return ($value !== false && (stripos($value, 'http://') === 0 || stripos($value, 'https://') === 0) ? $value : null);
-                break;
             // Invalid Parameter
             default:
                 if (is_string($format)) {
@@ -1225,7 +1212,7 @@ class Request
      *
      * @param null|string           $option
      * @param array|string|null     $trusted_proxies
-     * @return string|null
+     * @return int
      */
     public function port($option = null, $trusted_proxies = 'trust local')
     {

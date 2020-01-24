@@ -402,9 +402,6 @@ class I18N
      */
     public static function setup(Application $app)
     {
-        // Use the Global Application Object
-        global $app;
-
         // Fallback language is required
         if (!isset($app->config['I18N_FALLBACK_LANG'])) {
             throw new \Exception('The app config value [I18N_FALLBACK_LANG] needs to be set before calling this function.');

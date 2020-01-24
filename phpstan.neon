@@ -1,0 +1,84 @@
+parameters:
+    ignoreErrors:
+        -
+            message: '#Access to an undefined property#'
+            path: src/Data/AbstractVendorDatabase.php
+        -
+            message: '#Undefined variable#'
+            paths:
+                - src/Data/AbstractVendorDatabase.php
+                - src/Templates/error-cli.php
+                - src/Templates/error.php
+                - src/Templates/html-template.php
+        -
+            message: '#Variable \$e might not be defined#'
+            paths:
+                - src/Templates/error-cli.php
+                - src/Templates/error.php
+        -
+            message: '#Call to an undefined method Throwable::getSeverity()#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#Access to an undefined property Throwable::\$severityText#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#PHPDoc tag @param has invalid value#'
+            path: src/Data/AbstractDatabase.php
+        -
+            message: '#class resource#'
+            path: src/Data/AbstractVendorDatabase.php
+        -
+            message: '#type resource#'
+            path: src/Data/AbstractVendorDatabase.php
+        -
+            message: '#PHPDoc tag @param for parameter (s+) with type array|null is not subtype of native type array#'
+            paths:
+                - src/Data/Database.php
+                - src/Data/Log/AbstractLogger.php
+                - src/Environment/DotEnv.php
+                - src/Net/HttpClient.php
+        -
+            message: '#Comparison operation (.+) results in an error#'
+            path: src/Lang/L10N.php
+        -
+            message: '#Binary operation (.+) results in an error#'
+            path: src/Net/IP.php
+        -
+            message: '#Call to an undefined method object#'
+            path: src/Templates/error-cli.php
+        -
+            message: '#Strict comparison using === between string|false and null will always evaluate to false.#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#Result of || is always true#'
+            paths:
+                - src/Data/Validator.php
+                - src/Security/Crypto/JWT.php
+                - src/Web/Request.php
+                - src/Web/Response.php
+        -
+            message: '#Result of && is always false#'
+            paths:
+                - src/Encoding/Base64Url.php
+                - src/Net/IP.php
+                - src/Polyfill/hex_compat.php
+                - src/Templates/error.php
+        -
+            message: '#Comparison operation ">" between int<min, 0>|false and 0 is always false.#'
+            path: src/Application.php
+        -
+            message: '#Unreachable statement - code above always terminates#'
+            paths:
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+        -
+            message: '#Strict comparison using === between string and null will always evaluate to false#'
+            paths:
+                - src/Security/Crypto/FileEncryption.php
+        

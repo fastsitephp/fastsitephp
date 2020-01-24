@@ -4,9 +4,9 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 ## Next Release (Changes on Master Branch)
 
-* **Thanks Nicolas CARPi for opening the issue related to the following items:** https://github.com/NicolasCARPi
-* Adding support for linting with `https://github.com/vimeo/psalm`, this requires mostly PHPDoc Comment updates for the many classes
-* Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP works with older versions of PHP but they will be dropped in the future.
+* **Thanks Nicolas CARPi for opening the issue related to the following items** https://github.com/NicolasCARPi
+* Adding support for PHP linting with https://github.com/phpstan/phpstan or https://github.com/vimeo/psalm, this requires mostly PHPDoc Comment updates for the many classes _(Currently in Progress)_
+* Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP supports older versions of PHP that are widely used by not considered secure.
 
 ## 1.2.0 (January 10, 2020)
 

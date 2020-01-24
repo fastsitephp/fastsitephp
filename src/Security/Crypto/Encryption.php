@@ -179,16 +179,12 @@ class Encryption extends AbstractCrypto implements CryptoInterface
         switch ($this->return_format) {
             case 'base64url':
                 return Base64Url::encode($ciphertext);
-                break;
             case 'base64':
                 return base64_encode($ciphertext);
-                break;
             case 'hex':
                 return bin2hex($ciphertext);
-                break;
             case 'bytes':
                 return $ciphertext;
-                break;
             default:
                 $error = 'Unexpected Error from [%s->%s()], the property [returnFormat()] must be one of the following valid values [base64url, base64, hex, bytes]. This error can only happen when invalid changes are made this class.';
                 $error = sprintf($error, __CLASS__, __FUNCTION__);

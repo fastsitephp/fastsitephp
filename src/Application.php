@@ -489,7 +489,7 @@ class Application
      * @link http://php.net/manual/en/function.set-exception-handler.php
      * @link http://php.net/manual/en/language.exceptions.php
      * @link http://php.net/manual/en/class.throwable.php
-     * @param $e
+     * @param \Exception|\Throwable $e
      * @return void
      */
     public function exceptionHandler($e)
@@ -509,10 +509,10 @@ class Application
      * @link http://php.net/manual/en/language.errors.php
      * @link http://php.net/manual/en/function.set-error-handler.php
      * @link http://php.net/manual/en/class.errorexception.php
-     * @param $severity
-     * @param $message
-     * @param $file
-     * @param $line
+     * @param int $severity
+     * @param string $message
+     * @param string $file
+     * @param int $line
      * @return bool
      * @throws \ErrorException
      */
@@ -549,6 +549,7 @@ class Application
      * for the website or application to handle the error. This function is public so PHP
      * can call it but it should not be called directly.
      *
+     * @return void
      * @link http://php.net/manual/en/function.register-shutdown-function.php
      */
     public function shutdown()
@@ -572,7 +573,7 @@ class Application
      * is null otherwise for PHP 5 and instance of an Exception Object or for
      * PHP 7 and instance of a Throwable Object.
      *
-     * @param $response_code
+     * @param int $response_code
      * @param null|\Exception|\Throwable $e
      * @param null|array $allowed_methods   Used for 405 'Method Not Allowed' Responses
      * @throws \Exception
@@ -787,7 +788,7 @@ class Application
      * this Class allows for dynamic methods to be defined.
      *
      * @link http://php.net/manual/en/function.method-exists.php
-     * @param $name
+     * @param string $name
      * @return bool
      */
     public function methodExists($name)
@@ -803,7 +804,7 @@ class Application
      * exist on the object. It is used here to check for properties defined
      * from [lazyLoad()] and create them the first time they are used.
      *
-     * @param $name
+     * @param string $name
      * @return mixed
      */
     public function __get($name)
@@ -888,20 +889,16 @@ class Application
             case 500: // Internal Server Error
                 $this->status_code = $new_value;
                 return $this;
-                break;
             // If only statusCode() is called without a parameter
             // then return the current value or null if not set.
             case null:
                 return $this->status_code;
-                break;
             // Supported by Response Object Only. Provide a helpful
             // message to the developer on how to fix this.
             case 304: // Not Modified
                 throw new \Exception(sprintf('[304] is an invalid option for [%s->%s()]. Support for 304 [Not Modified] Responses are only available when calling [FastSitePHP\Web\Response()->%s] and using the Response Object as the Route\'s Return Value.', __CLASS__, __FUNCTION__, __FUNCTION__));
-                break;
             default:
                 throw new \Exception(sprintf('Unhandled Response Status Code for [%s->%s()]. Support for other Status Codes is available when calling [FastSitePHP\Web\Response()->%s] and using the Response Object as the Route\'s Return Value.', __CLASS__, __FUNCTION__, __FUNCTION__));
-                break;
         }
     }
 
@@ -1755,7 +1752,7 @@ class Application
                         return $this;
                     }
                 } else {
-                    throw new \Exception(sprintf('Mount condition for URL [%s %s] was defined as a [%s] but it should be defined as either a Closure function or a string in the format of \'Class.method\'.', $url_path, gettype($callback)));
+                    throw new \Exception(sprintf('Mount condition for URL [%s] was defined as a [%s] but it should be defined as either a Closure function or a string in the format of \'Class.method\'.', $url_path, gettype($condition)));
                 }
             }
 

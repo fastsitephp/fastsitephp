@@ -107,7 +107,7 @@ YSBUZXN0IHVzaW5nIFNpbXBsaWZpZWQgQ2hpbmVzZQ0K5rWL6K+VDQo=
     runHttpUnitTest("Net - SMTP and Email - Verify MD5 Hashes of Class Files", "test-net-smtp.php/class-hashes", {
         response: {
             Email: "6ad938065059f769f5e318bfca7bef678723aa1e94e3ffe6fc92b37ad26155ed1c11e11cfd472196232036acc2535cf1",
-            SmtpClient: "e02a59f8e3e623b3b37446c69ec7c8434706cc048a1ccc606d75a723fca1104de4eb7cdb459e28f6f25b78bf1d6ae6cf"
+            SmtpClient: "f4e56b1ad5a5260676ec37b3515e684bbe1b53e5e3ad1a2445dcdc3ec11d95e595c503059dd366d548350c28a30eaab1"
         }
     });
 

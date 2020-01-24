@@ -187,7 +187,7 @@ class Crypto
      * Decode and Verify a JWT. If the token is not valid null will be returned.
      *
      * @param string $token
-     * @return array - The payload that was originally encoded.
+     * @return array|null - The payload that was originally encoded.
      */
     public static function decodeJWT($token)
     {

@@ -253,7 +253,7 @@ abstract class AbstractCrypto
      * @param string $str
      * @param int $start
      * @param int $length
-     * @return int
+     * @return string
      */
     protected function substr($str, $start, $length)
     {
@@ -267,7 +267,7 @@ abstract class AbstractCrypto
      * Get or set a hashing algorithm.
      * Used with properties [hashing_algorithm] and [pbkdf2_algorithm].
      *
-     * @param string $algorithm
+     * @param string|null $algorithm
      * @param string $function_name
      * @param string $key_size_prop
      * @param string $hash_prop
@@ -301,7 +301,7 @@ abstract class AbstractCrypto
     /**
      * Get or set a string property
      *
-     * @param string $value
+     * @param string|null $value
      * @param string $function_name
      * @param string $prop_name
      * @param array $valid_values

@@ -339,7 +339,7 @@ class HttpClient
      * @link http://php.net/manual/en/context.ssl.php
      * @link http://php.net/manual/en/reserved.variables.httpresponseheader.php
      * @param string $url
-     * @param array $options
+     * @param array|null $options
      * @return HttpResponse
      * @throws \Exception
      */
@@ -463,7 +463,7 @@ class HttpClient
      * Automatically parse JSON to an Associative Array
      *
      * @param HttpResponse $res
-     * @param array $options
+     * @param array|null $options
      * @return HttpResponse
      */
     private function parseJson(HttpResponse $res, $options)
@@ -502,8 +502,8 @@ class HttpClient
      * By default the version of Curl or PHP is included with the Request.
      *
      * @param bool $curl
-     * @param array $options
-     * @return string
+     * @param array|null $options
+     * @return string|null
      */
     private function userAgent($curl, $options)
     {

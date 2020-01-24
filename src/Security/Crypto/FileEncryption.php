@@ -448,7 +448,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      *     sudo restorecon -Rv /var/www/app_data
      *     sudo chown apache:apache -R /var/www/app_data/*
      * 
-     * @return void
+     * @return array
      * @link https://opensource.com/article/18/7/sysadmin-guide-selinux
      * @link https://wiki.centos.org/HowTos/SELinux
      * @link https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/ch-selinux

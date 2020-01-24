@@ -995,7 +995,7 @@ class Response
      * @link http://php.net/manual/en/function.setcookie.php
      * @link http://php.net/manual/en/features.cookies.php
      * @link http://php.net/manual/en/reserved.variables.cookies.php
-     * @param $name
+     * @param string $name
      * @param string $value
      * @param int $expire    Defaults to 0 which makes the cookie expire at the end of the session
      * @param string $path (default: '')
@@ -1045,7 +1045,7 @@ class Response
      * Send an empty value for a named cookie and expired time to tell the browser or
      * client to clear the cookie.
      * 
-     * @param $name
+     * @param string $name
      * @param string $path (default: '')
      * @param string $domain (default: '')
      * @param bool $secure (default: false)
@@ -1067,7 +1067,7 @@ class Response
      * 
      * See also [encryptedCookie()] and [jwtCookie()].
      *
-     * @param $name
+     * @param string $name
      * @param string $value
      * @param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie
      * @param int $expire - Defaults to 0 which makes the cookie expire at the end of the session
@@ -1093,7 +1093,7 @@ class Response
      * 
      * See also [encryptedCookie()] and [signedCookie()].
      *
-     * @param $name
+     * @param string $name
      * @param string $value
      * @param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie
      * @param int $expire - Defaults to 0 which makes the cookie expire at the end of the session
@@ -1117,7 +1117,7 @@ class Response
      * 
      * See also [signedCookie()] and [jwtCookie()].
      * 
-     * @param $name
+     * @param string $name
      * @param string $value
      * @param int $expire    Defaults to 0 which makes the cookie expire at the end of the session
      * @param string $path (default: '')
@@ -1641,7 +1641,7 @@ class Response
                         }
 
                         // Reset the ETag value using the etag() function
-                        // because so that it will correctly format the value.
+                        // so that it will correctly format the value.
                         $this->etag($etag_value, $this->etag_type);
                         $etag = $this->etag();
                     }
