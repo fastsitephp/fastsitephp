@@ -37,7 +37,7 @@ TODO List
         PHP extensions - see https://github.com/phan/phan/wiki/Getting-Started
     - Commands to run each of the linters:
         php phpstan.phar analyse --level 6 -a autoload.php -c phpstan.neon src > phpstan_results.txt
-        php psalm.phar > psalm_results.tx
+        php psalm.phar > psalm_results.txt
         php phan.phar > phan_results.txt
     - For [phan] a file needs to be added as [.phan/config.php] based on the default template from the project home
         page. Then use ["target_php_version" => '5.6',]. This will only be checked into source later if [phan]
