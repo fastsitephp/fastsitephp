@@ -423,7 +423,7 @@ class HttpClient
         // Make the request
         $res = new HttpResponse();
         $context = stream_context_create($http_options);
-        $res->content = file_get_contents($url, null, $context);
+        $res->content = file_get_contents($url, false, $context);
         $res->headers = array();
 
         // Parse Headers

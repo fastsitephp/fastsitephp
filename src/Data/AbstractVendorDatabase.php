@@ -52,7 +52,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
 
     /**
      * Connection for the Database
-     * @var null|\resource
+     * @var null|resource
      */
     public $db = null;
 
@@ -115,7 +115,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
     /**
      * Used internally to check function calls
      *
-     * @param bool|\resource $result
+     * @param bool|resource $result
      * @throws \Exception
      */
     private function checkResult($result)
@@ -134,8 +134,8 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
      * Run a SQL Query (SELECT, INSERT, ...) and return a Database Resource
      *
      * @param string $sql
-     * @param string|null $params
-     * @return \resource
+     * @param array|null $params
+     * @return resource
      * @throws \Exception
      */
     private function runQuery($sql, $params)

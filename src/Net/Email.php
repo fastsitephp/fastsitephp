@@ -648,7 +648,7 @@ class Email
      *
      * @param string $prop
      * @param string $type
-     * @param string|null $new_value
+     * @param string|bool|null $new_value
      * @return string|null|$this
      */
     private function field($prop, $type, $new_value)

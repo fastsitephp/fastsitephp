@@ -335,7 +335,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 $saved_hmac = $this->runCmd($cmd, __FUNCTION__, 'read file hmac', 64);
 
                 // Truncate the HMAC Bytes from the end of the file
-                $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
+                $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
                 $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
 
                 // Calculate the File HMAC
@@ -353,7 +353,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             }
 
             // Truncate the IV (last 16 bytes of the file)
-            $cmd = str_replace('{{bytes}}', 16, $truncate_cmd);
+            $cmd = str_replace('{{bytes}}', '16', $truncate_cmd);
             $this->runCmd($cmd, __FUNCTION__, 'truncate file iv');
 
             // Decrypt using openssl command line
@@ -641,7 +641,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * @param string $cmd - Command to run
      * @param string $type - Calling function
      * @param string $line - Debug info
-     * @param bool $output_size - If not null the command must output data of the specified size. Since output is in hex it will be 2x the byte size.
+     * @param int|null $output_size - If not null the command must output data of the specified size. Since output is in hex it will be 2x the byte size.
      * @return string|null
      * @throws \Exception
      */

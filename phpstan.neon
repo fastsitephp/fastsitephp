@@ -1,4 +1,18 @@
+# This file is used for linting FastSitePHP with the PHP Static Analysis Tool [phpstan]: 
+#   https://github.com/phpstan/phpstan
+#
+# This is currently in active development, see comments in related issue:
+#   https://github.com/fastsitephp/fastsitephp/issues/13
+#
+# Currently all code through extensive Unit Testing so most errors need to be excluded
+# based phpstan's on strict checking of PHP Code using PHPDoc Comments and expected types.
+# For example many php built-in functions will return [false] on failure while phpstan
+# assumes they return int|string|etc. FastSitePHP is built around PHP's flexibility
+# and is similar to using JavaScript or Python while PHP Static Analysis Tool seem
+# to assume code should be more like C# or Java.
+
 parameters:
+    checkMissingIterableValueType: false
     ignoreErrors:
         -
             message: '#Access to an undefined property#'
@@ -28,12 +42,6 @@ parameters:
         -
             message: '#PHPDoc tag @param has invalid value#'
             path: src/Data/AbstractDatabase.php
-        -
-            message: '#class resource#'
-            path: src/Data/AbstractVendorDatabase.php
-        -
-            message: '#type resource#'
-            path: src/Data/AbstractVendorDatabase.php
         -
             message: '#PHPDoc tag @param for parameter (s+) with type array|null is not subtype of native type array#'
             paths:
@@ -81,4 +89,46 @@ parameters:
             message: '#Strict comparison using === between string and null will always evaluate to false#'
             paths:
                 - src/Security/Crypto/FileEncryption.php
-        
+        -
+            # The items on the next error are based on phpstan assuming a user always passes a string if the PHPDoc Block
+            # specifies a string. These are error that can be matched based on [is_string()].
+            # These branches are reachable as confirmed in Unit Tests.
+            message: '#Else branch is unreachable because previous condition is always true#'
+            paths:
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+        -
+            # These errors are similar ot the above where phpstan assumes user cannot pass invalid input.
+            # And some of these are related to mixed types not being handled by phpstan.
+            # These conditions are reachable as confirmed in Unit Tests.
+            message: '#Strict comparison using (.*) will always evaluate to false#'
+            paths:
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Net/HttpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+        -
+            # Below check is logic based on differnces between 32-bit and 64-bit builds of PHP.
+            message: '#Comparison operation (.*) between int and 2147483647 is always true#'
+            paths:
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/SignedData.php
+        -
+            # According to PHP Docs int should be passed and it has been confirmed to work
+            # and used on production sites.
+            message: '#of function ini_set expects string, int given.#'
+            path: src/Data/OdbcDatabase.php
+        -
+            # This is tested and confirmed to work on both 32-bit and 64-bit systems
+            message: '#bcpow expects string, int given#'
+            path: src/Net/IP.php
+        -
+            message: '#function openssl_pkey_export expects string, null given#'
+            path: src/Security/Crypto/PublicKey.php
+        -
+            message: '#function set_exception_handler expects#'
+            path: src/AppMin.php
+        -
+            message: '#register_shutdown_function expects callable#'
+            path: src/AppMin.php

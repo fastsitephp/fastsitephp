@@ -687,7 +687,7 @@ class Encryption extends AbstractCrypto implements CryptoInterface
      * Check the result from [\openssl_decrypt()],
      * if decryption failed then false will be returned.
      *
-     * @param string $decrypted_text
+     * @param string|bool $decrypted_text
      * @return void
      * @throws \Exception
      */

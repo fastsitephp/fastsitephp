@@ -269,7 +269,7 @@ abstract class AbstractCrypto
      *
      * @param string|null $algorithm
      * @param string $function_name
-     * @param string $key_size_prop
+     * @param string|null $key_size_prop
      * @param string $hash_prop
      * @return string|$this
      * @throws \Exception

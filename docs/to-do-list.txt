@@ -36,7 +36,7 @@ TODO List
     - [phpstan] and [psalm] should work out of the box while [phan] requires additional 
         PHP extensions - see https://github.com/phan/phan/wiki/Getting-Started
     - Commands to run each of the linters:
-        php phpstan.phar analyse --level 4 --autoload-file=autoload.php -c phpstan.neon src > phpstan_results.txt
+        php phpstan.phar analyse --level 6 -a autoload.php -c phpstan.neon src > phpstan_results.txt
         php psalm.phar > psalm_results.tx
         php phan.phar > phan_results.txt
     - For [phan] a file needs to be added as [.phan/config.php] based on the default template from the project home
@@ -44,8 +44,8 @@ TODO List
         will be kept for linting.
     - Currently [phpstan] has been used to make changes the quickest, because it allows different levels
         of linting (0 to 8) and the config file [phpstan.neon] is realatively easy to update.
-        With the present code there are zero (0) errors when testing [--level 0] to [--level 3].
-        The next steps are to update levels at 4 of 8 one at a time.            
+        With the present code there are zero (0) errors when testing [--level 0] to [--level 5].
+        The next steps are to update levels at 6 of 8 one at a time.            
     - Virtually all of the issues are related to PHPDoc comments
         - For example: psalm MissingReturnType often is fixed with adding [@retun void] to the function comments
     - Any actual code changes will require full unit testing
