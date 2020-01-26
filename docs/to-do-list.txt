@@ -6,11 +6,12 @@ TODO List
 |   In General:
 |
 |   *) Translations
+|      https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md
 |   *) More Examples (for all or most classes and features)
 |   *) More Documentation
 |   *) More Unit Testing
 |       - All classes and code must be Unit tested (ideally every line).
-          Currently all core classes are tested but not all code.
+|         Currently all core classes are tested but not all code.
 |       - A number of manual test files from [fastsitephp/scripts/testing-*.php]
 |         need to be converted unit tests under [fastsitephp/tests/*]
 |   *) Additional Classes and Features
@@ -20,11 +21,22 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+*) Finish linting updates related to this issue:
+    https://github.com/fastsitephp/fastsitephp/issues/11
+    - How to lint:
+        - Download the file [psalm.phar] from link below to root directory of the fastsitephp Repository
+            https://github.com/vimeo/psalm/releases
+        - Then run:
+            php psalm.phar > psalm_result.tx
+        - View results in the text file
+    - Virtually all of the issues are related to PHPDoc comments
+        - For example: MissingReturnType often is fixed with adding [@retun void] to the function comments
+    - Any actual code changes will require full unit testing
+    - The total time to fix everything is expected to be 4 to 5 hours or more
+
 *) Starter Site
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
-    - Add [App\Middleware\{Auth, Cors, Env}] to the Quick Ref page once they have API Docs
-        Possibly just a single stater site middleware topic
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected
@@ -86,19 +98,15 @@ TODO List
         # Download composer to directory
             php composer.phar require fastsitephp/fastsitephp
             php composer.phar create-project fastsitephp/starter-site my-app
-    - READE.md
-        - Link to the starter site Repository
-        - Document local development URL's?
-            http://localhost:3000/FastSitePHP/website/public/en/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
-            http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
-            http://localhost:3000/FastSitePHP/tests/index.htm
+    - Document local development URL's
+        http://localhost:3000/FastSitePHP/website/public/en/
+        http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/
+        http://localhost:3000/FastSitePHP/website/app_data/sample-code/home-page-en.php/examples
+        http://localhost:3000/FastSitePHP/tests/index.htm
     - Step by Step Setup of Sites
-        - Starter Site will be added for optional install to [install-php-on-linux], [install-php-on-windows], [install-php-on-mac]
         - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
         - Framework (how to run examples when downloading directly)
         - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
-        - These docs may be linked from Getting Started Page as well once created
     - Update images and content on [edit-with-vs-code] and related docs with
         the published version of FastSitePHP and how to download the site
         or use [git clone] to download it.
@@ -123,6 +131,7 @@ TODO List
             document.querySelectorAll('h3')
         Then create a <ul> link list in the [Overview] topic
         Alternativly a Tab Layout could be used but that would likely take more time than it's worth
+        Another option would be a seperate document per OS and then all docs can have easy links to each other
     - Add detailed nginx install guide after layout has been made easier to use
         # See also the most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
         sudo apt update
@@ -227,14 +236,6 @@ TODO List
         - Or should there be an "Install [php logo]" and similar items?
         - Or leave as-is? Need to try several different options
     - All Examples should have more Graphics and Icons
-    - home page
-        - Try animating all reason-to-use SVG images but not all at once
-          For example animate each one for 1 second on a rotating basis so only 1 image
-          is animating at at time. This can take a long time as each image should have
-          a custom animation similar to how to rocketship works. For example the
-          "Great Performance" icon could have the needle move quickly for a second, while
-          the lightswitch could turn on and off. This may or may not be done as it can
-          take a while.
     - Stater Site
         - create nice svg icons for each of the resource links
     - Playground
@@ -437,7 +438,8 @@ TODO List
         "Response Object - Cache Headers Test - 5b - 304 Response for Strong ETag", "test-web-response.php/cache-headers-5"
       Related link:
         https://forum.nginx.org/read.php?29,251164,251966
-      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx
+      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx.
+      Likely just keep it (and document it) as the Unit Tests are meant to show what a web server supports
 
 *) Unit Testing JS Clarification
     [responseContains] should be replaced with [responseMatchesOne] for a number of Tests
@@ -486,6 +488,7 @@ TODO List
         https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     - New function [asFile(content, name)] that returns regular content as a file download
     - Add Unit Tests for 429 - 'Too Many Requests' responses
+    - Add Unit Tests for the error message 'Unhandled Response Status Code of...' from statusCode()
 
 *) Web\Request
     - queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
@@ -594,8 +597,9 @@ TODO List
       shell on all FreeBSD installs. A more reliable method is needed. Currently the code below should
       work in theory however it now gives permission errors on later commands even for the '/tmp' folder.
       A lot more research and testing is needed it seems in order to make large file encryption work
-      with FreeBSD.
-
+      with FreeBSD. See raw commands for encrypting with FreeBSD at the bottom of page:
+        https://www.fastsitephp.com/en/documents/file-encryption-bash
+      Development Code from testing:
         $truncate_cmd_2 = null;
         if (PHP_OS === 'Darwin') {
             $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';

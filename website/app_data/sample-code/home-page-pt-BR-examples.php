@@ -12,7 +12,7 @@ use FastSitePHP\Route;
 // Se estiver rodando este arquivo diretamente, então, redirecione para o arquivo
 // principal usando a rota do index '/examples' para este site.
 if (!isset($app)) {
-    $url = 'home-page-en.php/examples';
+    $url = 'home-page-pt-BR.php/examples';
     header('Location: ' . $url, true, 302);
     exit();
 }
@@ -439,7 +439,7 @@ $app->get('/examples/php-loops', function() use ($app) {
 
     // Fazer um Loop por um Dicionário ou Array Associativo utilizando [foreach]
     //     foreach (array as key => value)
-    foreach ($cities_population as $city => $populacao) {
+    foreach ($cities_populacao as $city => $populacao) {
         echo $city . ' = ' . $populacao;
         echo "\n";
     }
@@ -2724,6 +2724,7 @@ $app->get('/examples/data-validator', function() use ($app) {
     // utilizando funções callback que retornam true/false ou uma string de
     // mensagem personalizada de erro
     $v = new \FastSitePHP\Data\Validator();
+    $v
         ->addRules([
             ['site_user',     'Site User', 'check-user required'],
             ['site_password', 'Password',  'check-password required'],
@@ -3279,8 +3280,6 @@ $app->get('/examples/environ-dotenv', function() {
     // ou modifique o código abaixo.
     // Utilizando código padrão, um erro será lançado até que as chaves
     // necessárias também sejam adicionadas.
-    Using default code an error will be thrown until
-    // required keys are also added.
     $dir = __DIR__;
     $file_path = __DIR__ . '/.env';
 
@@ -4303,12 +4302,56 @@ $app->get('/examples/l10n', function() use ($app) {
     echo json_encode($timezones);
 });
 
+$app->get('/examples/starter-site', function() use ($app) {
+    // This route is included so code shows in the API docs, but it doesn't run here.
+    // Download and run the starter site to try the actual classes because they are
+    // not included with the framework.  
+    return '<a href="https://github.com/fastsitephp/starter-site">Try it on the starter site</a>';
+
+    // EXAMPLE_CODE_START
+    // TITLE: Starter Site Middleware
+    // CLASS: App\Middleware\Cors, App\Middleware\Auth, App\Middleware\Env
+
+    // The FastSitePHP Starter Site inclui várias páginas de exemplos e fornece uma
+    // estrutura básica de diretório / arquivo. O site foi projetado para fornecer
+    // estrutura para conteúdo básico (JavaScript, CSS etc.), mantendo um tamanho
+    // pequeno, para facilitar a remoção de arquivos desnecessários e a
+    // personalização para o seu site.
+    //
+    //     https://github.com/fastsitephp/starter-site
+    //
+    // Core Middleware classes are provided and can be modified for your site.
+    //
+    // To use them specify the 'Class.method' on route filter functions or
+    // when mounting additional files.
+
+    // Require a user to be logged in in order to use a page
+    $app->get('/secure-page', 'SecureController')->filter('Auth.hasAccess');
+
+    // Require an authenticated user and use CORS
+    $app
+        ->get('/api/:record_type', 'ApiController.getData')
+        ->filter('Cors.acceptAuth')
+        ->filter('Auth.hasAccess');
+
+    // Only run a route from localhost
+    $app->get('/server-info', function() {
+        phpinfo();
+    })
+    ->filter('Env.isLocalhost');
+    
+    // Only load a file if running from localhost
+    $app->mount('/sysinfo/', 'routes-sysinfo.php', 'Env.isLocalhost');
+    // EXAMPLE_CODE_END
+});
+
 // NOTA - Utilize isto como um modelo para novas rotas, espaços precisam ser
 // adicionados entre '// EXAMPLE_', etc
 /*
 $app->get('/examples/template', function() use ($app) {
     //EXAMPLE_CODE_START
     //TITLE: Novo Modelo de Rota, Repare os Espaços para que funcione
+    //CLASS: Dir\Class1, Dir\Class2
     //EXAMPLE_CODE_END
 
     // Retorne Resposta em Texto

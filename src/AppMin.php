@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -46,7 +46,7 @@ class AppMin
 
     /**
      * HTTP Response Headers for CORS
-     * @var array
+     * @var array|null
      */
     public $cors_headers = null;
 
@@ -140,6 +140,7 @@ class AppMin
      * Setup error handling and optionally set a time-zone for the application
      *
      * @param string|null $timezone
+     * @return void
      * @throws \Exception
      */
     public function setup($timezone)

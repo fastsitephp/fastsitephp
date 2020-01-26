@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -45,6 +45,7 @@ class RateLimit
      * The same options used for [allow()] are used here.
      *
      * @param array $options
+     * @return void
      * @throws \Exception
      */
     public function filterRequest(Application $app, array $options)

@@ -10,15 +10,19 @@
 	Site: http://conradsollitt.com
 	From: Los Angeles, California, USA
 
+	See all Contributors on GitHub:
+	https://github.com/fastsitephp/fastsitephp/graphs/contributors
+
 /* SITE */
 	Last updated: 2019
 	Languages: English
 	Doctype: HTML5
 	IDE:
 		Visual Studio Code:    https://code.visualstudio.com/
+		GitHub Atom:  	       https://atom.io/
 		Panic Inc, Coda 2:     https://panic.com/coda/
 		JetBrains PhpStorm:    https://www.jetbrains.com/phpstorm/
-		Microsoftr WebMatrix:  https://en.wikipedia.org/wiki/Microsoft_WebMatrix
+		Microsoft WebMatrix:   https://en.wikipedia.org/wiki/Microsoft_WebMatrix
 	Design:
 		https://www.sketch.com/
 		https://editor.method.ac/

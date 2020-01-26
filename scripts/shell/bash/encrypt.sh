@@ -895,6 +895,10 @@ create_empty_file ()
         # commands is expected to exist on any recent OS. If [truncate] were
         # not included then decryption commands would fail. [dd] should work
         # for the Core Unit Tests but may fail on the large file tests.
+        #
+        # Warning for the [dd] command: Unix admin joke: "dd stands for disk destroyer"
+		# If you are using it manually enter it with caution:
+		# https://opensource.com/article/18/7/how-use-dd-linux
         if [[ -n "$3" ]]; then
             dd if=/dev/zero of="$1" bs="$3" count=1 &> /dev/null
         else

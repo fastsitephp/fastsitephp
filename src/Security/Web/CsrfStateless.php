@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -42,6 +42,8 @@ class CsrfStateless
     /**
      * Return a key that can be used to generate and validate Stateless
      * CSRF Tokens. The key must be kept private and not shared with end users.
+     * 
+     * @return void
      */
     public static function generateKey()
     {
@@ -72,6 +74,7 @@ class CsrfStateless
      * @param string|int $user_id - A unique identifier for the user. This doesn't have to be secret and can be a simple as an numeric field in a database.
      * @param null|string|float $expire_time - An option expiration time for the token. The format is a Unix Timestamp in milliseconds or a string value that can be used by the PHP function [strtotime()], for example '+1 hour'.
      * @param string $key - Defaults to ['X-CSRF-Token'], the key must be included in either a form field or request header when the request is submitted.
+     * @return void
      * @throws \Exception
      */
     public static function setup(Application $app, $user_id, $expire_time = null, $key = 'X-CSRF-Token')

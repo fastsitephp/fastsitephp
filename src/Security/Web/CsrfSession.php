@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -34,6 +34,7 @@ class CsrfSession
      * @link https://en.wikipedia.org/wiki/Cross-site_request_forgery
      * @param Application @app
      * @param string $key - Defaults to ['X-CSRF-Token'], the key must be included in either a form field or request header when the request is submitted.
+     * @return void
      * @throws \Exception
      */
     public static function setup(Application $app, $key = 'X-CSRF-Token')

@@ -64,7 +64,7 @@ O framework FastSitePHP pode também ser instalado usando o Composer. Quando ins
 composer require fastsitephp/fastsitephp
 ~~~
 
-### Comece com um Site Inicial (~32 kb)
+### Comece com um Site Inicial (~62 kb)
 
 Um site inicial também existe e inclui vários páginas de exemplo e fornece uma estrutura básica de diretório/arquivo. É pequeno e rápido para configurar.
 
@@ -232,14 +232,6 @@ $app->run();
 * Novas ideias - Se você tem ideias de como melhorar por favor abra uma questão para que possamos discutir.
 
 O arquivo [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) contém a lista completa de itens pendentes e é um lugar para começar.
-
-## :moneybag: Procura-se Tradutores Remunerados!
-
-**Você é fluente em Inglês e outra língua? <a href="https://www.fastsitephp.com/en/translators-needed" target="_blank">Se sim por favor entre em contato</a>.**
-
-FastSitePHP está procurando por tradutores pagos para que possa ser traduzido para vários idiomas rapidamente. Traduções podem ser feitas em várias etapas assim, mesmo se você tiver somente uma ou duas horas será o suficiente para ajudar e será pago por isso.
-
-Idiomas atualmente precisando de tradutores: Arabic, Chinese Simplified (zh-Hans), French, German, Italian, Japanese, Korean, Persian, Russian
 
 ## :question: FAQ
 

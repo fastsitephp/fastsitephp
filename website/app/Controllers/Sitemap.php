@@ -33,7 +33,11 @@ class Sitemap
         // *** Add new lanauges here once the content is ready
         $langs = [
             'en',
-            'pt-BR'
+            'pt-BR',
+            'es',
+            'zh-CN',
+            'fr',
+            'ar',
         ];
         // Only change [docs] and [api] languages if content has been created
         $docs_langs = ['en'];
@@ -42,7 +46,6 @@ class Sitemap
             '/:lang/examples/response/:type',
             '/:lang/examples/database-demo/:page',
             '/:lang/examples/encryption/generate-key',
-            '/:lang/translators-needed',
             '/:lang/security-issue',
         ];
         $include_files = [

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -23,7 +23,7 @@ class Response
     /**
      * HTTP Response Status Code
      *
-     * @var string|null
+     * @var int|null
      */
     private $status_code = null;
 
@@ -255,7 +255,7 @@ class Response
 
         // If invalid then thrown an Exception
         $error = 'Unhandled Response Status Code of [%s] for [%s->%s()].';
-        if (is_int($error)) {
+        if (is_int($new_value)) {
             $error = sprintf($error, $new_value, __CLASS__, __FUNCTION__);
         } else {
             $error = sprintf($error, 'type: ' . gettype($new_value), __CLASS__, __FUNCTION__);
@@ -1321,7 +1321,7 @@ class Response
      * @param string|null $content_type
      * @param string|null $cache_type
      * @param string|null $cache_control
-     * @return $this
+     * @return $this|string
      * @throws \Exception
      */
     public function file($file_path = null, $content_type = null, $cache_type = null, $cache_control = null)
@@ -1497,6 +1497,7 @@ class Response
      * returns a response object and would normally not be manually called. This function
      * handles sending Response Headers, Cookies, and Content.
      *
+     * @return void
      * @throws \Exception
      */
     public function send()

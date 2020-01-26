@@ -32,9 +32,36 @@ sudo bash create-fast-site.sh
 wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/sync-server-from-github.sh
 bash sync-server-from-github.sh
 
+# 3) Delete downloaded scripts
+rm *.sh
+
 # Normally this file is used to sync the server and now it will be Installed so
 # if you run it then no files will be changed because the server is up to date.
 bash /var/www/scripts/sync-server-from-github.sh
+
+# Optional Unit Testing
+# This will test the Framework from the server that you are running on.
+# Unit tests are designed to test the current web server.
+# All or most tests should succeed. For example Apache and IIS allow for
+# Strong etags but nginx does not so a few tests are expected fail for nginx.
+wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+unzip master.zip
+cp -r ~/fastsitephp-master/tests /var/www/html/tests
+
+# Run and Verify all Unit Tests
+#     http://{host}/tests/index.htm
+#
+# To run all tests edit the HTML file and 
+# set all values to true:
+#   runTimeConsumingTasks = true
+#   runTestsWithRSA = true
+#   etc
+# sudo nano /var/www/html/tests/index.htm
+#
+# Delete Unit Tests and downloaded files after running
+sudo rm -R /var/www/html/tests
+sudo rm -R ~/fastsitephp-master
+rm master.zip
 
 # ------------------------------------------
 # Original Commands used for Manual Setup
@@ -141,7 +168,7 @@ sudo rm /var/www/html/.htaccess
 sudo rm /var/www/html/Web.config
 sudo rm /var/www/html/index.html
 
-# Setup [.env] file which is used for the [/en/translators-needed] page
+# Setup [.env] file which is used for the [/en/security-issue] page
 sudo nano /var/www/app_data/.env
 
 # Keys (copy from values local file)
@@ -161,7 +188,7 @@ sudo chmod 0775 -R /var/www
 tail -n 1 /var/log/apache2/error.log
 
 # Make sure that sending an email works
-# http://44.227.18.120/en/translators-needed
+# http://44.227.18.120/en/security-issue
 
 # Run and Verify all Unit Tests
 # http://44.227.18.120/tests/index.htm

@@ -106,6 +106,9 @@ function createNullFile($file_path, $file_size)
 			$cmd = 'truncate -s ' . $file_size . ' "' . $file_path . '"';
 			break;
 		case 'dd':
+			// Warning for the [dd] command: Unix admin joke: "dd stands for disk destroyer"
+			// If you are using it manually enter it with caution:
+			// https://opensource.com/article/18/7/how-use-dd-linux
 			$cmd = 'dd if=/dev/zero of="' . $file_path . '" bs=' . $file_size . ' count=1';
 			break;
 		default:

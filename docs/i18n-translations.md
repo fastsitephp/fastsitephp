@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations.
+This document provides a brief overview of changes needed when adding new languages to FastSitePHP. Three different repositories need to be updated for full site translations. If you would like to help with translations feel free to open an issue or simply submit translation changes.
 
 This document itself does NOT need to be translated rather it specifies what files and code should be updated.
 
@@ -17,9 +17,11 @@ fastsitephp     {root-directory}
 
 If you need to install PHP see documents for (Windows, macOS, and Linux) from: https://www.fastsitephp.com/en/getting-started
 
-Currently specific languages are desired and translation work can be paid. For more see: https://www.fastsitephp.com/en/translators-needed
-
 Files are copied from English, Google Translate or other sites are used for initial translations, and then human translators fix errors from machine translations.
+
+Languages currently needed: Arabic, French, German, Italian, Japanese, Persian, Russian
+
+Languages currently being tranlsated: Chinese Simplified (zh-CN), Chinese Traditional (zh-TW), Korean, Portuguese
 
 ## Generating the files
 

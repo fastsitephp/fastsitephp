@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
+ * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -293,7 +293,7 @@ class Application
     /**
      * Custom view engine defiend from the engine() function
      *
-     * @var array
+     * @var array|null|\Closure
      */
     private $view_engine = null;
 
@@ -405,6 +405,7 @@ class Application
      * @link http://php.net/manual/en/datetime.configuration.php
      * @link http://php.net/manual/en/function.date-default-timezone-set.php
      * @param string|null $timezone
+     * @return void
      * @throws \Exception
      */
     public function setup($timezone)
@@ -489,6 +490,7 @@ class Application
      * @link http://php.net/manual/en/language.exceptions.php
      * @link http://php.net/manual/en/class.throwable.php
      * @param $e
+     * @return void
      */
     public function exceptionHandler($e)
     {
@@ -755,8 +757,8 @@ class Application
      *     $obj->test();
      *
      * @link http://php.net/manual/en/language.oop5.overloading.php
-     * @param $name
-     * @param $arguments
+     * @param string $name
+     * @param mixed $arguments
      * @return mixed
      * @throws \BadMethodCallException
      */
@@ -864,7 +866,7 @@ class Application
      *
      * @link https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
      * @param int|null $new_value (default: null)
-     * @return $this|int
+     * @return $this|int|null
      * @throws \Exception
      */
     public function statusCode($new_value = null)
@@ -1194,7 +1196,7 @@ class Application
      * @link http://php.net/manual/en/function.setcookie.php
      * @link http://php.net/manual/en/features.cookies.php
      * @link http://php.net/manual/en/reserved.variables.cookies.php
-     * @param $name
+     * @param string $name
      * @param string $value
      * @param int $expire    Defaults to 0 which makes the cookie expire at the end of the session
      * @param string $path (default: '')
@@ -1244,7 +1246,7 @@ class Application
      * Send an empty value for a named cookie and expired time to tell the browser or
      * client to clear the cookie.
      *
-     * @param $name
+     * @param string $name
      * @param string $path (default: '')
      * @param string $domain (default: '')
      * @param bool $secure (default: false)
@@ -1541,6 +1543,8 @@ class Application
      * Send a 404 'Not found' response to the client and end script execution.
      * This uses the same template that would be returned from calling
      * [$app->pageNotFound()].
+     * 
+     * @return void
      */
     public function sendPageNotFound()
     {
@@ -2856,6 +2860,7 @@ class Application
      * HTTP Methods allowed for the URL. This function gets called from [run()].
      *
      * @param string $url
+     * @return void
      */
     private function sendOptionsResponse($url)
     {
@@ -2990,6 +2995,7 @@ class Application
      * or custom Response Class would need to be used instead.
      *
      * @param string $content
+     * @return void
      * @throws \Exception
      */
     private function sendResponse($content)
@@ -3077,7 +3083,8 @@ class Application
      * public however it would normally not be called. It is used by
      * FastSitePHP internally after sending the response.
      *
-     * @param string $content
+     * @param mixed $content
+     * @return void
      */
     public function runAfterEvents($content)
     {

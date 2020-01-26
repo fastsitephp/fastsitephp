@@ -121,7 +121,8 @@ Full understanding of these commands requires good knowledge of encryption terms
 
 # First create an empty 10 MB file named "crypto_test_10mb" for testing.
 # Mac uses [mkfile] while Linux or Unix will use one of the other commands.
-# [dd] is included for documentation purposes however it is very slow for this.
+# [dd] is included for documentation purposes however it is very slow for this
+# and in general [dd] (often called "disk destroyer") should be used with caution.
 mkfile -n 10m crypto_test_10mb
 xfs_mkfile 10m crypto_test_10mb
 fallocate -l 10m crypto_test_10mb

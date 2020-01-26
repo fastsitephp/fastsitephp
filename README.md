@@ -83,7 +83,7 @@ The FastSitePHP Framework can also be installed using Composer. When installed f
 composer require fastsitephp/fastsitephp
 ~~~
 
-### Start with a Starter Site (~32 kb)
+### Start with a Starter Site (~62 kb)
 
 A starter site for FastSitePHP also exists that includes several examples pages and provides a basic directory/file structure. It’s small in size and quick to setup.
 
@@ -239,6 +239,7 @@ $app->run();
 
 **All contributions are welcome.** For major changes including new classes, breaking changes to existing code, updating existing graphics and files, please open an issue first to discuss what you would like to change. Some examples of items to contribute:
 
+* Additional Translations
 * Typos and Grammar Mistakes - If you see any please fix and submit.
 * Adding additional demo pages - The demo pages typically use more HTML, CSS, and JavaScript than PHP so if you are a web developer and do not know PHP you can easily learn it during development.
 * Additional Unit Tests and Testing Methods
@@ -247,14 +248,6 @@ $app->run();
 * New Ideas - If you have ideas on how to improve then please open an issue to discuss.
 
 The [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) file contains the full list of items that are currently pending and is good place to start.
-
-## :moneybag: Paid Translators Needed!
-
-**Are you fluent in English and another language? <a href="https://www.fastsitephp.com/en/translators-needed" target="_blank">If so then please get in touch</a>.**
-
-FastSitePHP is looking for paid translators so that it can be translated into multiple languages quickly. Translations can be done in many steps so even if you have just an hour or two it will be enough to help and earn some money.
-
-Languages currently needed: Arabic, French, German, Italian, Japanese, Persian, Russian, Spanish
 
 ## :question: FAQ
 
@@ -281,7 +274,15 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-All versions of PHP from 5.3 to 7.4.
+The current version of FastSitePHP works and is unit tested with all version of PHP from `5.3` to `7.4` on Apache, nginx, and IIS. While core routing and features work with old versions of PHP certain features of FastSitePHP require recent builds of PHP such as `7.2+`.
+
+IMPORTANT - Even though old versions of PHP such as 5.3 are currently supported you should never use them on a public facing website. Old versions of PHP are no longer secure and not supported by the PHP Group.
+
+In fact if you are running a server with any version of PHP 5 you should consider upgrading to PHP 7. PHP 7 is significantly faster, provides much better security, and a large number of new features.
+
+In the future older version of PHP will be dropped for FastSitePHP however if you are working in a corporate environment or work with an enterprise Linux vendor that backfills security patches to older versions of PHP (for example RedHat) then FastSitePHP should easily work with your environment.
+
+For a list of Supported PHP Version that are considered secure see this link: https://www.php.net/supported-versions.php
 
 ## :memo: License
 
