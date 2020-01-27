@@ -252,11 +252,20 @@ function xxdPath()
 // Define options to test.
 // To see how this function would error simply change '1g' to '1m'.
 $tests = array(
+    // One small file for quick testing
+    array(
+        'size' => '10m',
+        'hash_plain' => 'f1c9645dbc14efddc7d8a322685f26eb',
+        'hash_enc' => '371b4aad41c87bc27bb6cdd58c2c7c48',
+    ),
+    // 1 GB file - this may take a few minutes
     array(
         'size' => '1g',
         'hash_plain' => 'cd573cfaace07e7949bc0c46028904ff',
         'hash_enc' => '6caa8477d12b6cafb47a2ddc2969bcbd',
     ),
+    // 3 GB file - this verifies the system can handle large files
+    // over a max 32-bit length in file size.
     array(
         'size' => '3g',
         'hash_plain' => 'c698c87fb53058d493492b61f4c74189',

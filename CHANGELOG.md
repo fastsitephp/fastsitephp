@@ -4,6 +4,9 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 ## Next Release (Changes on Master Branch)
 
+* Improved Framework support with FreeBSD
+  * `FileEncryption` Class now has improved support for large file encryption (2+ GB) on a basic FreeBSD Server Setup
+  * Additional documentation on FreeBSD Server Setup: https://www.fastsitephp.com/en/documents/install-php-on-linux
 * Fixed a bug with `FastSitePHP\Encoding\Json::encode()` that prevented it from working when using PHP `5.3`. This did not affect any other version of PHP.
 
 * **Thanks Nicolas CARPi for opening the issue related to the following items** https://github.com/NicolasCARPi

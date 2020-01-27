@@ -634,59 +634,6 @@ TODO List
       all places [isAEAD_Mode()] with Password Key Type (PBKDF2)
 
 *) FastSitePHP\Security\Crypto\FileEncryption
-    - This has worked in the past with some FreeBSD installed however it is not working most recently
-      when tested on AWS and DigitalOcean Cloud Servers. The issue is that "$()" does not work from
-      shell on all FreeBSD installs. A more reliable method is needed. Currently the code below should
-      work in theory however it now gives permission errors on later commands even for the '/tmp' folder.
-      A lot more research and testing is needed it seems in order to make large file encryption work
-      with FreeBSD. See raw commands for encrypting with FreeBSD at the bottom of page:
-        https://www.fastsitephp.com/en/documents/file-encryption-bash
-      Development Code from testing:
-        $truncate_cmd_2 = null;
-        if (PHP_OS === 'Darwin') {
-            $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';
-        } elseif (PHP_OS === 'FreeBSD') {
-            // One-liner works on shell but not with PHP [exec()]
-            // $truncate_cmd = 'set length = `stat -f%z "{{file}}"`; set new_length = `expr $length - {{bytes}}`; truncate -s $new_length "{{file}}" 2>&1;';
-            $truncate_cmd = 'expr `stat -f%z "{{file}}"` - {{bytes}}';
-            $truncate_cmd_2 = 'truncate -s {{length}} "{{file}}" 2>&1';
-        } else {
-            $truncate_cmd = 'truncate -s $(( $(stat -c%s "{{file}}" 2>/dev/null || stat -f%z "{{file}}") - {{bytes}} )) "{{file}}" 2>&1';
-        }
-
-        // Update truncate command as it will only run on the temp file
-        $truncate_cmd = str_replace('{{file}}', $tmp_file, $truncate_cmd);
-        if ($truncate_cmd_2 !== null) {
-            $truncate_cmd_2 = str_replace('{{file}}', $tmp_file, $truncate_cmd_2);
-        }
-
-                // Truncate the HMAC Bytes from the end of the file
-                if ($truncate_cmd_2 === null) {
-                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
-                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
-                } else {
-                    // ------------
-                    // Using this version will fail on [$truncate_cmd_2]
-                    // with a permissions error.
-                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
-                    $length = shell_exec($cmd);
-                    if ($length === null) {
-                        throw new \Exception('Command Failed: ' . $cmd);
-                    }
-                    // ------------
-                    // Using this version will cause the next command to fail with
-                    // a permissions error even though the syntax is correct.
-                    // This is just for testing as [filesize()] cannot be used
-                    // for large files on 32-bit systems or versions of PHP.
-                    // $length = filesize($tmp_file);
-                    // ------------
-                    $cmd = str_replace('{{length}}', $length, $truncate_cmd_2);
-                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
-                }
-
-                ## Also above code once working needs to be used for truncating IV
-
-
     - Modify Unit Test function [encryptAndDecryptFile()] and add new routes to
       test for File Encryption with Passwords. At least one standard sha512/200_000
       and one custom PBKDF2 params. For now code has been manually verified using
@@ -698,6 +645,16 @@ TODO List
 		// Verify that the enrypted file can be read by PHP
         if (!is_file($enc_file)) {
       A doc or general comment should explain which errors are not unit tested and why
+    - Additional Unit Testing with a 32-Bit FreeBSD System
+        - Search for all comments related to [$truncate_cmd_2] in the following file:
+            fastsitephp/src/Security/Crypto/FileEncryption.php
+        - Bascially there is a permissions issue with the `truncate` on some tested 64-Bit VM's
+        - There is a work around for 64-Bit systems
+        - For large file testing see:
+            fastsitephp/scripts/crypto-test-large-file.php
+        - And for FreeBSD file encryption step by step see:
+            https://www.fastsitephp.com/en/documents/file-encryption-bash
+
 
 *) File Encryption Shell File [encrypt.sh]
     - Automatically handle ".enc" extension if [-o] not specified?

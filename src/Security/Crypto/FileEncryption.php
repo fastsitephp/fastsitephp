@@ -277,9 +277,15 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         // exist unless manually installed so a one-line Ruby command line script is used.
         // Examples:
         //   ruby -e 'File.truncate("file.enc.tmp", File.size("file.enc.tmp")-32)'
-        //   truncate -s $(( $(stat -c%s file.enc.tmp 2>/dev/null || stat -f%z file.enc.tmp) - 32 )) file.enc.tmp 2>&1		
+        //   truncate -s $(( $(stat -c%s file.enc.tmp 2>/dev/null || stat -f%z file.enc.tmp) - 32 )) file.enc.tmp 2>&1
+        $truncate_cmd_2 = null;
         if (PHP_OS === 'Darwin') {
             $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';
+        } elseif (PHP_OS === 'FreeBSD') {
+            // One-liner works on shell but not with PHP [exec()]
+            // $truncate_cmd = 'set length = `stat -f%z "{{file}}"`; set new_length = `expr $length - {{bytes}}`; truncate -s $new_length "{{file}}" 2>&1;';
+            $truncate_cmd = 'expr `stat -f%z "{{file}}"` - {{bytes}}';
+            $truncate_cmd_2 = 'truncate -s {{length}} "{{file}}" 2>&1';
         } else {
             $truncate_cmd = 'truncate -s $(( $(stat -c%s "{{file}}" 2>/dev/null || stat -f%z "{{file}}") - {{bytes}} )) "{{file}}" 2>&1';
         }
@@ -318,6 +324,9 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
 
         // Update truncate command as it will only run on the temp file
         $truncate_cmd = str_replace('{{file}}', $tmp_file, $truncate_cmd);
+        if ($truncate_cmd_2 !== null) {
+            $truncate_cmd_2 = str_replace('{{file}}', $tmp_file, $truncate_cmd_2);
+        }
 
         // The next block of code will create and process the temporary
         // file. In case it fails handle the exception and delete the
@@ -335,11 +344,38 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 $saved_hmac = $this->runCmd($cmd, __FUNCTION__, 'read file hmac', 64);
 
                 // Truncate the HMAC Bytes from the end of the file
-                $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
-                $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
+                if ($truncate_cmd_2 === null) {
+                    $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
+                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
+                } else {
+                    // FreeBSD                    
+                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
+                    $length = shell_exec($cmd);
+                    if ($length === null) {
+                        $error = 'Unable to get file size needed to truncate HMAC from file. Possible permissions error.';
+                        if ($this->display_cmd_error_detail) {
+                            $error .= ' Command: ' . $cmd;
+                        }
+                        throw new \Exception($error);
+                    }
+                    // On 32-bit builds of PHP use the [truncate] command, however getting
+                    // it to work on a basic system setup is complex and typically it will
+                    // just delete the tmp file and give a permissions error so if running
+                    // on a 64-bit system use the built-in PHP file functions instead.
+                    // On 32-bit systems the PHP file functions are not safe for files larger
+                    // than 2 GB which is why they are not used on 32-bit systems.
+                    if (PHP_INT_SIZE === 4) {
+                        $cmd = str_replace('{{length}}', $length, $truncate_cmd_2);
+                        $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
+                    } else {
+                        $handle = fopen($tmp_file, 'r+');
+                        ftruncate($handle, (int)trim($length));
+                        fclose($handle);    
+                    }
+                }
 
                 // Calculate the File HMAC
-                $cmd = 'cat "' . $tmp_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . '  -binary | xxd -l 32 -c 32 -p';
+                $cmd = 'cat "' . $tmp_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . '  -binary | ' . $xxd . ' -l 32 -c 32 -p';
                 $file_hmac = $this->runCmd($cmd, __FUNCTION__, 'openssl dgst', 64);
 
                 // Verify that the Saved HMAC and Caculated HMAC are Equal.
@@ -353,8 +389,29 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             }
 
             // Truncate the IV (last 16 bytes of the file)
-            $cmd = str_replace('{{bytes}}', '16', $truncate_cmd);
-            $this->runCmd($cmd, __FUNCTION__, 'truncate file iv');
+            if ($truncate_cmd_2 === null) {
+                $cmd = str_replace('{{bytes}}', '16', $truncate_cmd);
+                $this->runCmd($cmd, __FUNCTION__, 'truncate file iv');
+            } else {
+                // FreeBSD
+                $cmd = str_replace('{{bytes}}', 16, $truncate_cmd);
+                $length = shell_exec($cmd);
+                if ($length === null) {
+                    $error = 'Unable to get file size needed to truncate IV from file. Possible permissions error.';
+                    if ($this->display_cmd_error_detail) {
+                        $error .= ' Command: ' . $cmd;
+                    }
+                    throw new \Exception($error);
+                }
+                if (PHP_INT_SIZE === 4) {
+                    $cmd = str_replace('{{length}}', $length, $truncate_cmd_2);
+                    $this->runCmd($cmd, __FUNCTION__, 'truncate file iv');
+                } else {
+                    $handle = fopen($tmp_file, 'r+');
+                    ftruncate($handle, (int)trim($length));
+                    fclose($handle);
+                }
+            }
 
             // Decrypt using openssl command line
             $cmd = 'openssl enc -d -aes-256-cbc -in "' . $tmp_file . '" -out "' . $output_file . '" -iv ' . $iv . '  -K ' . $key_enc . ' 2>&1';
@@ -661,7 +718,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             $error = sprintf('[%s] failed at [%s] with an exit status other than 0.', $type, $line);
             switch ($exit_status) {
                 case 127:
-                    $text = ' One of the command line executables used was not found. This can happen if the command doesn’t exist on the server or if the web server account user can’t see the command. To obtain info related to command paths and the web user call the function [%s->checkFileSetup()].';
+                    $text = ' One of the command line executables used or a file path was not found. This can happen if the command doesn’t exist on the server or if the web server account user can’t see the command. To obtain info related to command paths and the web user call the function [%s->checkFileSetup()].';
                     $error .= sprintf($text, __CLASS__);
                     break;
                 default:

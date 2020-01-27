@@ -205,12 +205,19 @@ service apache24 start
 # View Site
 # http://your-server.example.com/
 
-# Install PHP (use PHP version number and install optional packages)
+# Install PHP by Version (php73 = 7.3)
 pkg install mod_php73
+
+# Use PHP version number and install optional packages.
+# By default FreeBSD installs fewer extensions than other systems.
+# FastSitePHP will work with the base install for routing and core
+# features, however to use all features of FastSitePHP and pass all
+# Unit Tests for the Framework many optional extensions are needed.
 pkg install php73-json php73-filter php73-hash php73-ctype
 pkg install php73-openssl php73-mbstring php73-zip
 pkg install php73-xml php73-bcmath
 pkg install php73-pdo php73-pdo_sqlite
+pkg install php73-simplexml php73-xmlwriter
 
 # Create new file:
 vi /usr/local/etc/apache24/Includes/php.conf
