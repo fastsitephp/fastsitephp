@@ -208,7 +208,9 @@ service apache24 start
 # Install PHP (use PHP version number and install optional packages)
 pkg install mod_php73
 pkg install php73-json php73-filter php73-hash php73-ctype
-pkg install php73-openssl php73-mbstring
+pkg install php73-openssl php73-mbstring php73-zip
+pkg install php73-xml php73-bcmath
+pkg install php73-pdo php73-pdo_sqlite
 
 # Create new file:
 vi /usr/local/etc/apache24/Includes/php.conf
@@ -239,9 +241,57 @@ echo "<?php echo phpinfo(); ?>" | tee phpinfo.php
 service apache24 restart
 # http://your-server.example.com/phpinfo.php
 
-# Optional Set file permissions so you can copy files
-chown ec2-user /usr/local/www/apache24/*
-chown ec2-user /usr/local/www/*
+# Optional - Install [vim-console] which contains [xxd]
+# that is used for large file encryption.
+pkg install vim-console
+
+# Optional - Set file permissions so you can copy files
+chown -R ec2-user:www /usr/local/www
+chmod 2775 /usr/local/www
+find /usr/local/www -type d -exec chmod 2775 {} \;
+find /usr/local/www -type f -exec chmod 0664 {} \;
+
+# Install FastSitePHP Starter Site
+cd ~
+fetch https://github.com/fastsitephp/starter-site/archive/master.zip
+unzip master.zip
+
+# Copy Files
+cp -r ~/starter-site-master/app /usr/local/www/apache24/app
+cp -r ~/starter-site-master/app_data /usr/local/www/apache24/app_data
+cp -r ~/starter-site-master/scripts /usr/local/www/apache24/scripts
+cp -r ~/starter-site-master/public/. /usr/local/www/apache24/data
+ls /usr/local/www/apache24
+ls -la /usr/local/www/apache24/data
+
+# Install FastSitePHP (~470 kb) and Dependencies (~20 - 40 kb)
+php /usr/local/www/apache24/scripts/install.php
+
+# Delete files that are not needed including the Apache default page
+# The [.htaccess] file being deleted is a version for local development
+# that is copied from the starter site (it's not needed for production).
+rm /usr/local/www/apache24/data/.htaccess
+rm /usr/local/www/apache24/data/Web.config
+rm /usr/local/www/apache24/data/index.html
+rm /usr/local/www/apache24/data/phpinfo.php
+
+# Remove the downloaded files
+rm -r ~/starter-site-master
+rm master.zip
+
+# Optional - Run Unit Tests
+cd ~
+fetch https://github.com/fastsitephp/fastsitephp/archive/master.zip
+unzip master.zip
+cp -r ~/fastsitephp-master/tests /usr/local/www/apache24/data/tests
+
+# Run and Verify all Unit Tests
+#     http://{host}/tests/index.htm
+
+# Delete Unit Tests and downloaded files after running
+sudo rm -R /usr/local/www/apache24/data/tests
+sudo rm -R ~/fastsitephp-master
+rm ~/master.zip
 ~~~
 
 ---
