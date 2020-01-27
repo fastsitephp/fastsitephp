@@ -35,13 +35,13 @@
         color: white;
         border-radius: 32px;
         transition: all 0.2s;
-    }    
+    }
     a.btn .text {
         padding: 15px 30px;
         font-size: 16px;
         line-height: 16px;
     }
-    a.btn .icon-container { 
+    a.btn .icon-container {
         background-color: hsla(23, 100%, 53%, 1);
         background-image: linear-gradient(hsla(23, 100%, 68%, 1), hsla(23, 100%, 48%, 1));
         border-top-right-radius: 32px;
@@ -76,7 +76,7 @@
         box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
         transform: translateY(-3px);
     }
-    a.btn:hover .icon-container { 
+    a.btn:hover .icon-container {
         background-color: #FFAB76;
         background-image: linear-gradient(hsla(23, 100%, 83%, 1), hsla(23, 100%, 63%, 1));
     }
@@ -118,7 +118,7 @@
         transform: scale3d(1, 1, 1);
         transition: transform .2s ease-in-out;
     }
-    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
         /* IE Only - Card Images will appear slightly larger, if using max-width they stretch */
         ul.cards li img {
             max-height: inherit;
@@ -136,14 +136,14 @@
         transition: color .2s ease-in-out;
         color:hsla(229, 30%, 60%, 1);
     }
-    
+
     /* Card Hover */
     ul.cards li:hover { box-shadow: 0 0 40px 0 rgba(0,0,0,.5); }
     ul.cards li:hover img { transform: scale3d(1.1, 1.1, 1.1) rotate(-5deg); }
     ul.cards li:hover div.text h3 { margin-left:20px; color:hsla(229, 30%, 35%, 1); }
     ul.cards li:hover div.text h3.hover10 { margin-left:10px; color:hsla(229, 30%, 35%, 1); }
     ul.cards li:hover div.text p { color:hsla(229, 30%, 50%, 1); }
-    
+
     /* Card Media Queries */
     @media screen and (min-width: 500px) {
         ul.cards li { flex-direction: row; }
@@ -156,7 +156,7 @@
     @media screen and (min-width: 700px) {
         ul.cards li { margin: 0 auto 40px auto; }
     }
-    
+
     @media screen and (min-width: 768px) {
         ul.cards {
             flex-flow: row wrap;
@@ -217,7 +217,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 <div class="home-page" dir="<?= $html_dir ?>">
     <div class="page-title">
         <h1>
-            <!-- 
+            <!--
             After [Copy SVG Code] from Sketch the following changes were made when pasting here:
                 Add [id="svg-title-text"]
                 Add <title> and <desc> with "FastSitePHP"
@@ -230,7 +230,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                         <stop stop-color="#4F5B93" stop-opacity="0.8" offset="0%"></stop>
                         <stop stop-color="#4F5B93" offset="100%"></stop>
                     </linearGradient>
-                    <text id="text-2" font-family="Corbel" font-size="84" font-weight="normal">
+                    <text id="text-2" font-family="Roboto" font-size="79" font-weight="normal">
                         <tspan x="32" y="131">FastSitePHP</tspan>
                     </text>
                     <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
@@ -431,7 +431,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                     <h3><?= $app->escape($i18n['test_title']) ?></h3>
 			    	<p><?= $app->escape($i18n['test_desc']) ?></p>
 		    	</div>
-		    </li>            
+		    </li>
 	    </ul>
     </div>
     <section class="content sample-code">

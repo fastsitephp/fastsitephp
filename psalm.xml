@@ -27,7 +27,7 @@
             However it doesn't work on many note types so errors are generally excluded by file:
                 https://github.com/vimeo/psalm/issues/2297
         -->
-
+      
         <DeprecatedMethod errorLevel="info" />
         <DeprecatedProperty errorLevel="info" />
         <DeprecatedClass errorLevel="info" />
@@ -108,7 +108,6 @@
         <RawObjectIteration errorLevel="info" />
 
         <InvalidStringClass errorLevel="info" />
-
         <PossiblyNullArgument errorLevel="info">
             <errorLevel type="suppress">
                 <file name="src\Web\Response.php" />
