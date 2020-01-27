@@ -808,8 +808,12 @@ TODO List
     - See file [scripts\testing-ratelimit.php]
 
 *) Basic FreeBSD Doc with min requirements:
-	pkg install mod_php71 php71-json php71-filter php71-hash php71-ctype php71-openssl php71-mbstring php71-xml php71-bcmath php71-gd
-	# without [php71-json] most tests will fail
+	- Doc here, using this almost all Unit Tests pass:
+        https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Currently 2 fail due to DNS not working
+        http://{host}/tests/test-net-smtp.php/connect-to-gmail
+        http://{host}/tests/test-net-config.php/network-ip
+    - What is needed to allow PHP to use DNS on FreeBSD?
 
 *) Add documentation regarding errors that cannot be unit tested but are in place for safety
    This includes at least 4 errors with text "This error can only happen when invalid changes are made this class."

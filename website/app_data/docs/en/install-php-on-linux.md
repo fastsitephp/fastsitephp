@@ -218,6 +218,7 @@ pkg install php73-openssl php73-mbstring php73-zip
 pkg install php73-xml php73-bcmath
 pkg install php73-pdo php73-pdo_sqlite
 pkg install php73-simplexml php73-xmlwriter
+pkg install php73-session
 
 # Create new file:
 vi /usr/local/etc/apache24/Includes/php.conf
