@@ -59,14 +59,14 @@
 
             // Set this to [true] to include time-consuming routes that may 2-30 seconds.
             // This can be set to [false] durning regular development.
-            window.runTimeConsumingTasks = false;
+            window.runTimeConsumingTasks = true;
 
             // JWT RSA Tests, not all PHP installs support RSA so turn off if needed.
             // These tests often may take a second or more as well.
             // On tested Macs, RSA runs extremely slow with the longest test taking
             // over a minute.
-            window.runTestsWithRSA = false;
-            window.runTestsThatCreateRSAKey = false;
+            window.runTestsWithRSA = true;
+            window.runTestsThatCreateRSAKey = true;
 
             // The SMTP Client makes a call to [smtp.gmail.com] at port 587.
             // If the computer for testing doesn't have internet access the test will fail.

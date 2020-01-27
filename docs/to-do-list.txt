@@ -23,17 +23,58 @@ TODO List
 
 *) Finish linting updates related to this issue:
     https://github.com/fastsitephp/fastsitephp/issues/11
-    - How to lint:
-        - Download the file [psalm.phar] from link below to root directory of the fastsitephp Repository
-            https://github.com/vimeo/psalm/releases
-        - Then run:
-            php psalm.phar > psalm_result.tx
-        - View results in the text file
+    - Note the term "liniting" is from JavaScript and Python while PHP Developers typically use "Static Code Analyzers"
+    - Currently three (3) different linters are being tested:
+        https://github.com/phpstan/phpstan
+        https://github.com/vimeo/psalm
+        https://github.com/phan/phan
+    - All three may be kept or only one, this will be decided in the near future
+    - There are currently no plans to add any of these as depenancies as
+        they are very large and not required in order for FastSitePHP to work.
+        Rather the [*.phar] files are downloaded directly from the release page
+        of each project, example [https://github.com/phpstan/phpstan/releases]
+    - [phpstan] and [psalm] should work out of the box while [phan] requires additional 
+        PHP extensions - see https://github.com/phan/phan/wiki/Getting-Started
+    - Commands to run each of the linters:
+        php phpstan.phar analyse --level 6 -a autoload.php -c phpstan.neon src > phpstan_results.txt
+        php psalm.phar > psalm_results.txt
+        php phan.phar > phan_results.txt
+    - For [phan] a file needs to be added as [.phan/config.php] based on the default template from the project home
+        page. Then use ["target_php_version" => '5.6',]. This will only be checked into source later if [phan]
+        will be kept for linting.
+    - Currently [phpstan] has been used to make changes the quickest, because it allows different levels
+        of linting (0 to 8) and the config file [phpstan.neon] is realatively easy to update.
+        With the present code there are zero (0) errors when testing [--level 0] to [--level 5].
+        The next steps are to update levels at 6 of 8 one at a time.            
     - Virtually all of the issues are related to PHPDoc comments
-        - For example: MissingReturnType often is fixed with adding [@retun void] to the function comments
+        - For example: psalm MissingReturnType often is fixed with adding [@retun void] to the function comments
     - Any actual code changes will require full unit testing
-    - The total time to fix everything is expected to be 4 to 5 hours or more
-
+    - The total time to fix everything is expected to be several days to a week or more of work
+        however since most issues are false positives related to PHPDoc comments and validating with 
+        [phpstan] is up to level 4 plus FastSitePHP goes through extensive unit testing to actually validate
+        the code full linting might not be needed. 
+    - Print screens of error examples and how to fix:
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/0-phpstan-results.png
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/1-phpstan-code-check.png
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/2-phpstan-config-update.png
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/3-php-pslam-error.png
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/4-php-pslam-code-before.png
+        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/5-php-pslam-code-fixed.png
+    - Linting current notes (these are false positives and need to be ignored or opened with project provider):
+        - All issues can be quickly tested on the playground site, example:
+            https://www.fastsitephp.com/en/playground
+            $app->get('/', function() {
+                var_dump(strtotime(null));
+                echo '<br>';
+                var_dump(gettype(null));
+                echo '<br>';
+                var_dump(strpos(null, 'application/javascript'));
+            });
+        - [vimeo/psalm] - It triggers many errors around null calls to php built-in functions that are valid
+            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1538:68 - Argument 1 of strpos cannot be null, possibly null value provided
+            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1583:512 - Argument 3 of sprintf cannot be null, possibly null value provided
+            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1718:58 - Argument 1 of strtotime cannot be null, possibly null value provided
+        
 *) Starter Site
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
@@ -463,8 +504,9 @@ TODO List
         This includes allowing 304 so an app can use a fully custom 304 response if needed
     - Create Unit Tests for [error-cli.php], this can be done by calling [shell_exec()] or [exec()] with [php] and a custom script
     - Likely add a property for CLI errors such as [error_template_cli]
-    - Add Unit Tests for Variables in mount path - Currently the feature is verified ont the site itself
+    - Add Unit Tests for Variables in mount path - Currently the feature is verified on the site itself
         $app->mount('/:lang/examples/', 'routes-examples.php');
+        Also unit test for error 'Mount condition for URL ...'
     - Add Unit Tests for [$page_title, $message] params on error callback
     - Unit test error:
         'An item from [Route->filter()] for URL [%s %s] was called and ...'
@@ -592,59 +634,6 @@ TODO List
       all places [isAEAD_Mode()] with Password Key Type (PBKDF2)
 
 *) FastSitePHP\Security\Crypto\FileEncryption
-    - This has worked in the past with some FreeBSD installed however it is not working most recently
-      when tested on AWS and DigitalOcean Cloud Servers. The issue is that "$()" does not work from
-      shell on all FreeBSD installs. A more reliable method is needed. Currently the code below should
-      work in theory however it now gives permission errors on later commands even for the '/tmp' folder.
-      A lot more research and testing is needed it seems in order to make large file encryption work
-      with FreeBSD. See raw commands for encrypting with FreeBSD at the bottom of page:
-        https://www.fastsitephp.com/en/documents/file-encryption-bash
-      Development Code from testing:
-        $truncate_cmd_2 = null;
-        if (PHP_OS === 'Darwin') {
-            $truncate_cmd = 'ruby -e \'File.truncate("{{file}}", File.size("{{file}}")-{{bytes}})\' 2>&1';
-        } elseif (PHP_OS === 'FreeBSD') {
-            // One-liner works on shell but not with PHP [exec()]
-            // $truncate_cmd = 'set length = `stat -f%z "{{file}}"`; set new_length = `expr $length - {{bytes}}`; truncate -s $new_length "{{file}}" 2>&1;';
-            $truncate_cmd = 'expr `stat -f%z "{{file}}"` - {{bytes}}';
-            $truncate_cmd_2 = 'truncate -s {{length}} "{{file}}" 2>&1';
-        } else {
-            $truncate_cmd = 'truncate -s $(( $(stat -c%s "{{file}}" 2>/dev/null || stat -f%z "{{file}}") - {{bytes}} )) "{{file}}" 2>&1';
-        }
-
-        // Update truncate command as it will only run on the temp file
-        $truncate_cmd = str_replace('{{file}}', $tmp_file, $truncate_cmd);
-        if ($truncate_cmd_2 !== null) {
-            $truncate_cmd_2 = str_replace('{{file}}', $tmp_file, $truncate_cmd_2);
-        }
-
-                // Truncate the HMAC Bytes from the end of the file
-                if ($truncate_cmd_2 === null) {
-                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
-                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
-                } else {
-                    // ------------
-                    // Using this version will fail on [$truncate_cmd_2]
-                    // with a permissions error.
-                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
-                    $length = shell_exec($cmd);
-                    if ($length === null) {
-                        throw new \Exception('Command Failed: ' . $cmd);
-                    }
-                    // ------------
-                    // Using this version will cause the next command to fail with
-                    // a permissions error even though the syntax is correct.
-                    // This is just for testing as [filesize()] cannot be used
-                    // for large files on 32-bit systems or versions of PHP.
-                    // $length = filesize($tmp_file);
-                    // ------------
-                    $cmd = str_replace('{{length}}', $length, $truncate_cmd_2);
-                    $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
-                }
-
-                ## Also above code once working needs to be used for truncating IV
-
-
     - Modify Unit Test function [encryptAndDecryptFile()] and add new routes to
       test for File Encryption with Passwords. At least one standard sha512/200_000
       and one custom PBKDF2 params. For now code has been manually verified using
@@ -656,6 +645,16 @@ TODO List
 		// Verify that the enrypted file can be read by PHP
         if (!is_file($enc_file)) {
       A doc or general comment should explain which errors are not unit tested and why
+    - Additional Unit Testing with a 32-Bit FreeBSD System
+        - Search for all comments related to [$truncate_cmd_2] in the following file:
+            fastsitephp/src/Security/Crypto/FileEncryption.php
+        - Bascially there is a permissions issue with the `truncate` on some tested 64-Bit VM's
+        - There is a work around for 64-Bit systems
+        - For large file testing see:
+            fastsitephp/scripts/crypto-test-large-file.php
+        - And for FreeBSD file encryption step by step see:
+            https://www.fastsitephp.com/en/documents/file-encryption-bash
+
 
 *) File Encryption Shell File [encrypt.sh]
     - Automatically handle ".enc" extension if [-o] not specified?
@@ -809,8 +808,12 @@ TODO List
     - See file [scripts\testing-ratelimit.php]
 
 *) Basic FreeBSD Doc with min requirements:
-	pkg install mod_php71 php71-json php71-filter php71-hash php71-ctype php71-openssl php71-mbstring php71-xml php71-bcmath php71-gd
-	# without [php71-json] most tests will fail
+	- Doc here, using this almost all Unit Tests pass:
+        https://www.fastsitephp.com/en/documents/install-php-on-linux
+    - Currently 2 fail due to DNS not working
+        http://{host}/tests/test-net-smtp.php/connect-to-gmail
+        http://{host}/tests/test-net-config.php/network-ip
+    - What is needed to allow PHP to use DNS on FreeBSD?
 
 *) Add documentation regarding errors that cannot be unit tested but are in place for safety
    This includes at least 4 errors with text "This error can only happen when invalid changes are made this class."

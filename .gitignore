@@ -24,3 +24,15 @@ psalm*.txt
 
 # Misc files used by the app for testing
 log.txt
+
+# PHP Static Code Analyzers (Liniting)
+# https://github.com/vimeo/psalm
+# https://github.com/phan/phan
+# https://github.com/phpstan/phpstan
+.phan/
+psalm.phar
+psalm*.txt
+phan.phar
+phan*.txt
+phpstan.phar
+phpstan*.txt

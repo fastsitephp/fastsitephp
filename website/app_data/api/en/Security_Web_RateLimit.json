@@ -22,6 +22,7 @@
             "description": "Filter the request if it is allowed based on a rate limit. If the user's rate limit is reached then a 429 [Too Many Requests] response is sent and [exit()] is called to stop the script execution.\n\nThe same options used for [allow()] are used here.",
             "attributes": [
                 "@param array $options",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,

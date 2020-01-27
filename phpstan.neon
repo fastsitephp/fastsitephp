@@ -1,0 +1,134 @@
+# This file is used for linting FastSitePHP with the PHP Static Analysis Tool [phpstan]: 
+#   https://github.com/phpstan/phpstan
+#
+# This is currently in active development, see comments in related issue:
+#   https://github.com/fastsitephp/fastsitephp/issues/13
+#
+# Currently all code through extensive Unit Testing so most errors need to be excluded
+# based phpstan's on strict checking of PHP Code using PHPDoc Comments and expected types.
+# For example many php built-in functions will return [false] on failure while phpstan
+# assumes they return int|string|etc. FastSitePHP is built around PHP's flexibility
+# and is similar to using JavaScript or Python while PHP Static Analysis Tool seem
+# to assume code should be more like C# or Java.
+
+parameters:
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        -
+            message: '#Access to an undefined property#'
+            path: src/Data/AbstractVendorDatabase.php
+        -
+            message: '#Undefined variable#'
+            paths:
+                - src/Data/AbstractVendorDatabase.php
+                - src/Templates/error-cli.php
+                - src/Templates/error.php
+                - src/Templates/html-template.php
+        -
+            message: '#Variable \$e might not be defined#'
+            paths:
+                - src/Templates/error-cli.php
+                - src/Templates/error.php
+        -
+            message: '#Call to an undefined method Throwable::getSeverity()#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#Access to an undefined property Throwable::\$severityText#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#PHPDoc tag @param has invalid value#'
+            path: src/Data/AbstractDatabase.php
+        -
+            message: '#PHPDoc tag @param for parameter (s+) with type array|null is not subtype of native type array#'
+            paths:
+                - src/Data/Database.php
+                - src/Data/Log/AbstractLogger.php
+                - src/Environment/DotEnv.php
+                - src/Net/HttpClient.php
+        -
+            message: '#Comparison operation (.+) results in an error#'
+            path: src/Lang/L10N.php
+        -
+            message: '#Binary operation (.+) results in an error#'
+            path: src/Net/IP.php
+        -
+            message: '#Call to an undefined method object#'
+            path: src/Templates/error-cli.php
+        -
+            message: '#Strict comparison using === between string|false and null will always evaluate to false.#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+        -
+            message: '#Result of || is always true#'
+            paths:
+                - src/Data/Validator.php
+                - src/Security/Crypto/JWT.php
+                - src/Web/Request.php
+                - src/Web/Response.php
+        -
+            message: '#Result of && is always false#'
+            paths:
+                - src/Encoding/Base64Url.php
+                - src/Net/IP.php
+                - src/Polyfill/hex_compat.php
+                - src/Templates/error.php
+        -
+            message: '#Comparison operation ">" between int<min, 0>|false and 0 is always false.#'
+            path: src/Application.php
+        -
+            message: '#Unreachable statement - code above always terminates#'
+            paths:
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+        -
+            message: '#Strict comparison using === between string and null will always evaluate to false#'
+            paths:
+                - src/Security/Crypto/FileEncryption.php
+        -
+            # The items on the next error are based on phpstan assuming a user always passes a string if the PHPDoc Block
+            # specifies a string. These are error that can be matched based on [is_string()].
+            # These branches are reachable as confirmed in Unit Tests.
+            message: '#Else branch is unreachable because previous condition is always true#'
+            paths:
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+        -
+            # These errors are similar ot the above where phpstan assumes user cannot pass invalid input.
+            # And some of these are related to mixed types not being handled by phpstan.
+            # These conditions are reachable as confirmed in Unit Tests.
+            message: '#Strict comparison using (.*) will always evaluate to false#'
+            paths:
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Net/HttpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+        -
+            # Below check is logic based on differnces between 32-bit and 64-bit builds of PHP.
+            message: '#Comparison operation (.*) between int and 2147483647 is always true#'
+            paths:
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/SignedData.php
+        -
+            # According to PHP Docs int should be passed and it has been confirmed to work
+            # and used on production sites.
+            message: '#of function ini_set expects string, int given.#'
+            path: src/Data/OdbcDatabase.php
+        -
+            # This is tested and confirmed to work on both 32-bit and 64-bit systems
+            message: '#bcpow expects string, int given#'
+            path: src/Net/IP.php
+        -
+            message: '#function openssl_pkey_export expects string, null given#'
+            path: src/Security/Crypto/PublicKey.php
+        -
+            message: '#function set_exception_handler expects#'
+            path: src/AppMin.php
+        -
+            message: '#register_shutdown_function expects callable#'
+            path: src/AppMin.php

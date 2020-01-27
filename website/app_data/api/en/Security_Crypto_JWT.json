@@ -59,10 +59,10 @@
             "attributes": [
                 "@param string $token",
                 "@param string $key",
-                "@return array - The payload that was originally encoded.",
+                "@return array|null - The payload that was originally encoded.",
                 "@throws \\Exception"
             ],
-            "returnType": "array - The payload that was originally encoded.",
+            "returnType": "array | null - The payload that was originally encoded.",
             "links": []
         },
         {

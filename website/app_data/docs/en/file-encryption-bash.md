@@ -162,6 +162,11 @@ sudo yum install vim-common
 su -
 pkg install vim-console
 
+# If using FreeBSD with the root accountyou will need to re-create
+# the empty 10 MB file under root:
+#
+# truncate -s 10m crypto_test_10mb
+
 # A key can be assigned to a variable [key] and
 # then split into the 2 needed keys. Example:
 key=$(xxd -l 64 -c 64 -p /dev/urandom)

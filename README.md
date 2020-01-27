@@ -274,15 +274,13 @@ For the site being developed the framework and components were replaced one by o
 
 **Which versions of PHP are supported?**
 
-The current version of FastSitePHP works and is unit tested with all version of PHP from `5.3` to `7.4` on Apache, nginx, and IIS. While core routing and features work with old versions of PHP certain features of FastSitePHP require recent builds of PHP such as `7.2+`.
+The current version of FastSitePHP works and is unit tested with all versions of PHP from `5.3` to `7.4` on `Apache`, `nginx`, and `IIS` using both `32-bit` and `64-bit` builds of PHP. While core routing and most features work with old versions of PHP a few features of FastSitePHP require recent builds of PHP such as `7.2+`.
 
-IMPORTANT - Even though old versions of PHP such as 5.3 are currently supported you should never use them on a public facing website. Old versions of PHP are no longer secure and not supported by the PHP Group.
+Even though old versions of PHP such as 5.3 are currently supported by FastSitePHP they are no longer supported by the PHP Group and no longer receive security patches from the PHP Group. If you are running a PHP site on a public facing web server with any version of PHP 5 you should consider upgrading to PHP 7 if possible. PHP 7 is significantly faster, provides much better security, and a large number of new features.
 
-In fact if you are running a server with any version of PHP 5 you should consider upgrading to PHP 7. PHP 7 is significantly faster, provides much better security, and a large number of new features.
+For a list of Supported PHP Versions from the PHP Group see this link: https://www.php.net/supported-versions.php
 
-In the future older version of PHP will be dropped for FastSitePHP however if you are working in a corporate environment or work with an enterprise Linux vendor that backfills security patches to older versions of PHP (for example RedHat) then FastSitePHP should easily work with your environment.
-
-For a list of Supported PHP Version that are considered secure see this link: https://www.php.net/supported-versions.php
+Additionally if you are running Linux and have a support license for your of Linux (for example: RedHat Enterprise Linux) and are running and old version of PHP your vendor will likely backfill PHP security patches to your version of PHP which allows for older versions of PHP to remain secure even though they are no longer supported by the PHP Group.
 
 ## :memo: License
 

@@ -20,9 +20,9 @@
             "defaultValue": "null",
             "description": "Connection for the Database",
             "attributes": [
-                "@var null|\\resource"
+                "@var null|resource"
             ],
-            "dataType": "null\n\\resource",
+            "dataType": "null\nresource",
             "links": []
         }
     ],

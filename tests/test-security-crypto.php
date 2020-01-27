@@ -755,7 +755,7 @@ function runCmd($cmd, $expect_ouput = false)
 	if ($error !== null) {
 		switch ($exit_status) {
 			case 127:
-				$error .= ' One of the command line executables used was not found. This can happen if the command doesn?t exist on the server or if the web server account user can?t see the command.';
+				$text = ' One of the command line executables used or a file path was not found. This can happen if the command doesn’t exist on the server or if the web server account user can’t see the command. To obtain info related to command paths and the web user call the function [%s->checkFileSetup()].';
 				break;
 			default:
 				$error .= ' You may need to check read/write permissions on the directory or files being used.';

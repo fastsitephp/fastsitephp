@@ -43,7 +43,7 @@ class CsrfStateless
      * Return a key that can be used to generate and validate Stateless
      * CSRF Tokens. The key must be kept private and not shared with end users.
      * 
-     * @return void
+     * @return string
      */
     public static function generateKey()
     {
@@ -70,7 +70,7 @@ class CsrfStateless
      * @link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
      * @link https://en.wikipedia.org/wiki/Cross-site_request_forgery
      * @link https://en.wikipedia.org/wiki/HMAC
-     * @param Application @app
+     * @param Application $app
      * @param string|int $user_id - A unique identifier for the user. This doesn't have to be secret and can be a simple as an numeric field in a database.
      * @param null|string|float $expire_time - An option expiration time for the token. The format is a Unix Timestamp in milliseconds or a string value that can be used by the PHP function [strtotime()], for example '+1 hour'.
      * @param string $key - Defaults to ['X-CSRF-Token'], the key must be included in either a form field or request header when the request is submitted.

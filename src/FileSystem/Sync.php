@@ -280,7 +280,7 @@ class Sync
      * be used for CLI output, however if used on a web server then <br> will be used
      * for line breaks.
      *
-     * @return string
+     * @return void
      */
     function printResults()
     {

@@ -22,7 +22,7 @@ class HttpResponse
      * 
      * The error code is the value returned by [curl_errno()].
      * 
-     * @var int
+     * @var int|string
      */
     public $error = 0;
 

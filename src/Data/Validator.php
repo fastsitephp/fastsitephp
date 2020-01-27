@@ -704,7 +704,7 @@ class Validator
      * @param string $rule
      * @param string $param
      * @param string $field
-     * @return int
+     * @return int|float
      * @throws \Exception
      */
     private function numParam($rule, $param, $field)

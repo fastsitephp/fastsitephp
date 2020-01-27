@@ -176,7 +176,7 @@ class AppMin
     /**
      * Application defined exception handler function
      *
-     * @param $e
+     * @param \Exception|\Throwable $e
      */
     public function exceptionHandler($e)
     {
@@ -186,10 +186,10 @@ class AppMin
     /**
      * Application defined error handler function
      *
-     * @param $severity
-     * @param $message
-     * @param $file
-     * @param $line
+     * @param int $severity
+     * @param string $message
+     * @param string $file
+     * @param int $line
      * @return bool
      * @throws \ErrorException
      */
@@ -226,7 +226,7 @@ class AppMin
      * is null otherwise for PHP 5 and instance of an Exception Object or for
      * PHP 7 and instance of a Throwable Object.
      *
-     * @param $response_code
+     * @param int $response_code
      * @param null|\Exception|\Throwable $e
      * @param null|array $allowed_methods   Used for 405 'Method Not Allowed' Responses
      * @throws \Exception

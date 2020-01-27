@@ -42,9 +42,9 @@
             "attributes": [
                 "@param string $key",
                 "@param string $value",
-                "@return string"
+                "@return void"
             ],
-            "returnType": "string",
+            "returnType": null,
             "links": []
         },
         {

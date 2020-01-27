@@ -72,59 +72,59 @@ set_time_limit(0);
 
 function createNullFile($file_path, $file_size)
 {
-	// Choose commands to look up based on Mac or Linux/Unix
-	if (PHP_OS === 'Darwin') {
-		$cmds = array('mkfile', 'dd');
-	} else {
-		$cmds = array('xfs_mkfile', 'fallocate', 'truncate', 'dd');
-	}
-	
-	// Check to see if the command exists using the [which] command.
-	// If running manually from the command line [type] can be used
-	// to provide additional info.
-	$file_cmd = null;
-	foreach ($cmds as $cmd) {
-		$file_cmd = exec('which ' . $cmd);
-		if (!($file_cmd === null || $file_cmd === '')) {
-			$file_cmd = $cmd;
-			break;
-		}
-	}
-	
-	// Build the command
-	switch ($file_cmd) {
-		case 'mkfile':
-			$cmd = 'mkfile -n ' . $file_size . ' "' . $file_path . '"';
-			break;
-		case 'xfs_mkfile':
-			$cmd = 'xfs_mkfile ' . $file_size . ' "' . $file_path . '"';
-			break;
-		case 'fallocate':
-			$cmd = 'fallocate -l ' . $file_size . ' "' . $file_path . '"';
-			break;
-		case 'truncate':
-			$cmd = 'truncate -s ' . $file_size . ' "' . $file_path . '"';
-			break;
-		case 'dd':
-			// Warning for the [dd] command: Unix admin joke: "dd stands for disk destroyer"
-			// If you are using it manually enter it with caution:
-			// https://opensource.com/article/18/7/how-use-dd-linux
-			$cmd = 'dd if=/dev/zero of="' . $file_path . '" bs=' . $file_size . ' count=1';
-			break;
-		default:
-			throw new \Exception('Unexpected Error - Unable to find a commnad on this OS for creating empty files.');
-			break;
-	}
-	$cmd .= ' 2>&1'; // Make sure errors are displayed
-	runCmd($cmd);
-	
-	// Make sure that the file was created
-	if (is_file($file_path)) {
-		echo '<p>File created: [' . $file_path . ']</p>';
-	} else {
-		echo 'Command [' . $file_cmd . '] ran successfully but file [' . $file_path . '] was not found. Check to see if it was created and if permissions are correct.';
-		exit();
-	}
+    // Choose commands to look up based on Mac or Linux/Unix
+    if (PHP_OS === 'Darwin') {
+        $cmds = array('mkfile', 'dd');
+    } else {
+        $cmds = array('xfs_mkfile', 'fallocate', 'truncate', 'dd');
+    }
+    
+    // Check to see if the command exists using the [which] command.
+    // If running manually from the command line [type] can be used
+    // to provide additional info.
+    $file_cmd = null;
+    foreach ($cmds as $cmd) {
+        $file_cmd = exec('which ' . $cmd);
+        if (!($file_cmd === null || $file_cmd === '')) {
+            $file_cmd = $cmd;
+            break;
+        }
+    }
+    
+    // Build the command
+    switch ($file_cmd) {
+        case 'mkfile':
+            $cmd = 'mkfile -n ' . $file_size . ' "' . $file_path . '"';
+            break;
+        case 'xfs_mkfile':
+            $cmd = 'xfs_mkfile ' . $file_size . ' "' . $file_path . '"';
+            break;
+        case 'fallocate':
+            $cmd = 'fallocate -l ' . $file_size . ' "' . $file_path . '"';
+            break;
+        case 'truncate':
+            $cmd = 'truncate -s ' . $file_size . ' "' . $file_path . '"';
+            break;
+        case 'dd':
+            // Warning for the [dd] command: Unix admin joke: "dd stands for disk destroyer"
+            // If you are using it manually enter it with caution:
+            // https://opensource.com/article/18/7/how-use-dd-linux
+            $cmd = 'dd if=/dev/zero of="' . $file_path . '" bs=' . $file_size . ' count=1';
+            break;
+        default:
+            throw new \Exception('Unexpected Error - Unable to find a commnad on this OS for creating empty files.');
+            break;
+    }
+    $cmd .= ' 2>&1'; // Make sure errors are displayed
+    runCmd($cmd);
+    
+    // Make sure that the file was created
+    if (is_file($file_path)) {
+        echo '<p>File created: [' . $file_path . ']</p>';
+    } else {
+        echo 'Command [' . $file_cmd . '] ran successfully but file [' . $file_path . '] was not found. Check to see if it was created and if permissions are correct.';
+        exit();
+    }
 }
 
 // This function creates a compatible file for [Crypto->decryptFile()]
@@ -133,19 +133,19 @@ function createNullFile($file_path, $file_size)
 // excludes some of the validation.
 function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv) 
 {
-	// Make sure any previous test files were deleted
-	if (is_file($enc_file)) {
-		throw new \Exception(sprintf('File encryption failed because the file for encryption [%s] already exists. Delete your previous test files and try again.', $enc_file));
+    // Make sure any previous test files were deleted
+    if (is_file($enc_file)) {
+        throw new \Exception(sprintf('File encryption failed because the file for encryption [%s] already exists. Delete your previous test files and try again.', $enc_file));
     }
     
-	// Validate disk space (Not on 32-Bit PHP though)
-	if (PHP_INT_SIZE !== 4) {
-	    $file_size = filesize($file_path);
-	    $disk_space = disk_free_space(dirname($enc_file));
-	    $ten_megabytes = (1024 * 1024 * 10);
-	    if (($file_size + $ten_megabytes) > $disk_space) {
-	        throw new \Exception(sprintf('File encryption failed because there is not enough disk space available on [%s] for file [%s]. The function [%s] requires the disk to have least the size of the file to encrypt plus an additional 10 megabytes.', dirname($enc_file), $file_path, __FUNCTION__));
-	    }
+    // Validate disk space (Not on 32-Bit PHP though)
+    if (PHP_INT_SIZE !== 4) {
+        $file_size = filesize($file_path);
+        $disk_space = disk_free_space(dirname($enc_file));
+        $ten_megabytes = (1024 * 1024 * 10);
+        if (($file_size + $ten_megabytes) > $disk_space) {
+            throw new \Exception(sprintf('File encryption failed because there is not enough disk space available on [%s] for file [%s]. The function [%s] requires the disk to have least the size of the file to encrypt plus an additional 10 megabytes.', dirname($enc_file), $file_path, __FUNCTION__));
+        }
     }
     
     // Get path for the [xxd] command
@@ -160,7 +160,7 @@ function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv)
     runCmd($cmd);
     
     // HMAC the file using SHA-256 and append the result to end of the file
-	$cmd = 'cat "' . $enc_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . ' -binary >> "' . $enc_file . '" 2>&1';
+    $cmd = 'cat "' . $enc_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . ' -binary >> "' . $enc_file . '" 2>&1';
     runCmd($cmd);
     
     // Verify that the enrypted file can be read by PHP
@@ -172,26 +172,26 @@ function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv)
 // Compare an md5 hash of the created file with the valid known value.
 function checkHash($file, $expected_hash)
 {
-	// Calculate md5 using openssl as openssl is required for file encryption
-	// and will be installed on all systems by default. This can also be 
-	// calculated using the following commands:
-	// macOS/FreeBSD: [md5 -q {{file}}]
-	// Linux:         [md5sum {{file}} | cut -d ' ' -f 1]
-	$cmd = 'openssl dgst -binary -md5 ' . $file . ' | ' . xxdPath() . ' -p';
-	
-	// Calculate md5 from shell command
-	$file_hash = runCmd($cmd, true);
-	echo '<p><strong>md5:</strong> [' . $file_hash . ']</p>';
+    // Calculate md5 using openssl as openssl is required for file encryption
+    // and will be installed on all systems by default. This can also be 
+    // calculated using the following commands:
+    // macOS/FreeBSD: [md5 -q {{file}}]
+    // Linux:         [md5sum {{file}} | cut -d ' ' -f 1]
+    $cmd = 'openssl dgst -binary -md5 ' . $file . ' | ' . xxdPath() . ' -p';
+    
+    // Calculate md5 from shell command
+    $file_hash = runCmd($cmd, true);
+    echo '<p><strong>md5:</strong> [' . $file_hash . ']</p>';
 
-	// NOTE - This is a manual test so time safe compare is not needed
-	// however to compare hashes in a secure manner use [hash_equals()].
-	if ($file_hash !== $expected_hash) {
-		echo '<p><strong style="color:red; border:2px solid red; padding:10px; margin:10px auto; display:inline-block;">';
-		echo 'Fatal error when working with large files on this computer or server because the md5 value of the created file does not match the known valid value.';
-		echo '</strong></p>';
-		echo '<strong>Expected:</strong> ' . $expected_hash;
-		exit();
-	}
+    // NOTE - This is a manual test so time safe compare is not needed
+    // however to compare hashes in a secure manner use [hash_equals()].
+    if ($file_hash !== $expected_hash) {
+        echo '<p><strong style="color:red; border:2px solid red; padding:10px; margin:10px auto; display:inline-block;">';
+        echo 'Fatal error when working with large files on this computer or server because the md5 value of the created file does not match the known valid value.';
+        echo '</strong></p>';
+        echo '<strong>Expected:</strong> ' . $expected_hash;
+        exit();
+    }
 }
 
 // Run a shell command and check the result
@@ -200,49 +200,49 @@ function runCmd($cmd, $expect_ouput = false)
     // Run the command saving the exit status and all output to an array
     // var_dump($cmd);
     // exit();
-	exec($cmd, $output, $exit_status);
-	
-	// If the return value/code from the program was 0 then 
-	// it ran successfully otherwise there was an error. 
-	// This applies to most Unix/Linux/Mac/Windows programs.
-	
-	$expected_count = ($expect_ouput ? 1 : 0);
-	$error = null;
-	
-	if ($exit_status !== 0) {
-		$error = sprintf('[%s] failed with an exit status other than 0.', $cmd);
-	} elseif (count($output) !== $expected_count) {
-		$error = sprintf('[%s] failed with unexpected output.', $cmd);
-	}
-	
-	if ($error !== null) {
-		switch ($exit_status) {
-			case 127:
-				$error .= ' One of the command line executables used was not found. This can happen if the command doesn’t exist on the server or if the web server account user can’t see the command.';
-				break;
-			default:
-				$error .= ' You may need to check read/write permissions on the directory or files being used.';
-				break;
-		}
-		$error .= sprintf(' [exit status: %d] [output: %s]', $exit_status, implode(', ', $output));
-		throw new \Exception($error);
-	}
-	
-	// Return single output line or null
-	return ($expect_ouput ? $output[0] : null);
+    exec($cmd, $output, $exit_status);
+    
+    // If the return value/code from the program was 0 then 
+    // it ran successfully otherwise there was an error. 
+    // This applies to most Unix/Linux/Mac/Windows programs.
+    
+    $expected_count = ($expect_ouput ? 1 : 0);
+    $error = null;
+    
+    if ($exit_status !== 0) {
+        $error = sprintf('[%s] failed with an exit status other than 0.', $cmd);
+    } elseif (count($output) !== $expected_count) {
+        $error = sprintf('[%s] failed with unexpected output.', $cmd);
+    }
+    
+    if ($error !== null) {
+        switch ($exit_status) {
+            case 127:
+                $error .= ' One of the command line executables used was not found. This can happen if the command doesn’t exist on the server or if the web server account user can’t see the command.';
+                break;
+            default:
+                $error .= ' You may need to check read/write permissions on the directory or files being used.';
+                break;
+        }
+        $error .= sprintf(' [exit status: %d] [output: %s]', $exit_status, implode(', ', $output));
+        throw new \Exception($error);
+    }
+    
+    // Return single output line or null
+    return ($expect_ouput ? $output[0] : null);
 }
 
 // See comments in [Crypto->xxdPath()] 
 function xxdPath()
 {
-	if (PHP_OS === 'FreeBSD' &&
-		strpos(getenv('PATH'), '/usr/local/bin') === false &&
-		is_file('/usr/local/bin/xxd')
-	) {
-    	return '/usr/local/bin/xxd';
-	} else {
-    	return 'xxd';
-	}
+    if (PHP_OS === 'FreeBSD' &&
+        strpos(getenv('PATH'), '/usr/local/bin') === false &&
+        is_file('/usr/local/bin/xxd')
+    ) {
+        return '/usr/local/bin/xxd';
+    } else {
+        return 'xxd';
+    }
 }
 
 // ---------------------------------------------------------
@@ -252,16 +252,25 @@ function xxdPath()
 // Define options to test.
 // To see how this function would error simply change '1g' to '1m'.
 $tests = array(
-	array(
-		'size' => '1g',
-		'hash_plain' => 'cd573cfaace07e7949bc0c46028904ff',
-		'hash_enc' => '6caa8477d12b6cafb47a2ddc2969bcbd',
-	),
-	array(
-		'size' => '3g',
-		'hash_plain' => 'c698c87fb53058d493492b61f4c74189',
-		'hash_enc' => 'f5aeeb7d2cd73d358783f39a3aaa5821',
-	),
+    // One small file for quick testing
+    array(
+        'size' => '10m',
+        'hash_plain' => 'f1c9645dbc14efddc7d8a322685f26eb',
+        'hash_enc' => '371b4aad41c87bc27bb6cdd58c2c7c48',
+    ),
+    // 1 GB file - this may take a few minutes
+    array(
+        'size' => '1g',
+        'hash_plain' => 'cd573cfaace07e7949bc0c46028904ff',
+        'hash_enc' => '6caa8477d12b6cafb47a2ddc2969bcbd',
+    ),
+    // 3 GB file - this verifies the system can handle large files
+    // over a max 32-bit length in file size.
+    array(
+        'size' => '3g',
+        'hash_plain' => 'c698c87fb53058d493492b61f4c74189',
+        'hash_enc' => 'f5aeeb7d2cd73d358783f39a3aaa5821',
+    ),
 );
 
 // Uncomment to skip the 3gb test
@@ -270,47 +279,47 @@ $tests = array(
 // Run each test (1gb file and a 3gb file).
 // Files will be saved the same directory as this PHP script file.
 foreach ($tests as $test) {
-	$file_path = dirname(__FILE__) . '/temp_large_file_' . $test['size'] . 'b';
-	$enc_file = $file_path . '.enc';
-	$output_file = $enc_file . '.decrypted';
-	
-	// Print Script Start Time
-	echo '<div style="margin:20px; padding:10px 20px; border:2px solid #4F5B93;"><p><strong>Start Time</strong><br>';
-	echo date('H:i:s', time());
-	echo '</p>';
-	
-	// Create the file (the file created will be filled with null-bytes ASCII 0)
-	if (!is_file($file_path)) {
-		createNullFile($file_path, $test['size']);
-	}
-	
-	// Check md5 of the created file
-	checkHash($file_path, $test['hash_plain']);
-	
-	// Encrypt the file
-	createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv);
-	echo '<p>File encrypted: [' . $enc_file . ']</p>';
-	checkHash($enc_file, $test['hash_enc']);
-	
-	// Decrypt the file
-	$key = $key_enc . $key_hmac;
-	$crypto->decryptFile($enc_file, $output_file, $key);
-	echo '<p>File decrypted: [' . $output_file . ']</p>';
-	checkHash($output_file, $test['hash_plain']);
-	
-	// Show Success/Result Message if code execution makes it here
-	$file_info = ($test['size'] === '1g' ? 'a 1 GB file' : 'files larger than 2 GB');
-	echo <<<HTML
+    $file_path = dirname(__FILE__) . '/temp_large_file_' . $test['size'] . 'b';
+    $enc_file = $file_path . '.enc';
+    $output_file = $enc_file . '.decrypted';
+    
+    // Print Script Start Time
+    echo '<div style="margin:20px; padding:10px 20px; border:2px solid #4F5B93;"><p><strong>Start Time</strong><br>';
+    echo date('H:i:s', time());
+    echo '</p>';
+    
+    // Create the file (the file created will be filled with null-bytes ASCII 0)
+    if (!is_file($file_path)) {
+        createNullFile($file_path, $test['size']);
+    }
+    
+    // Check md5 of the created file
+    checkHash($file_path, $test['hash_plain']);
+    
+    // Encrypt the file
+    createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv);
+    echo '<p>File encrypted: [' . $enc_file . ']</p>';
+    checkHash($enc_file, $test['hash_enc']);
+    
+    // Decrypt the file
+    $key = $key_enc . $key_hmac;
+    $crypto->decryptFile($enc_file, $output_file, $key);
+    echo '<p>File decrypted: [' . $output_file . ']</p>';
+    checkHash($output_file, $test['hash_plain']);
+    
+    // Show Success/Result Message if code execution makes it here
+    $file_info = ($test['size'] === '1g' ? 'a 1 GB file' : 'files larger than 2 GB');
+    echo <<<HTML
 <p><strong style="color:green; border:2px solid green; padding:10px; margin:10px auto; display:inline-block;">
-	Success, file was encrypted then decrypted correctly so this computer/server can correctly encrypt and decrypt {$file_info}.
+    Success, file was encrypted then decrypted correctly so this computer/server can correctly encrypt and decrypt {$file_info}.
 </strong></p>
 <p>
-	This script does not delete the test files so after the result is verified you should delete the created files to get back disk space.
+    This script does not delete the test files so after the result is verified you should delete the created files to get back disk space.
 </p>
 HTML;
-	
-	// Print Script End Time
-	echo '<p><strong>End Time</strong><br>';
-	echo date('H:i:s', time());
-	echo '</p></div>';
+    
+    // Print Script End Time
+    echo '<p><strong>End Time</strong><br>';
+    echo date('H:i:s', time());
+    echo '</p></div>';
 }

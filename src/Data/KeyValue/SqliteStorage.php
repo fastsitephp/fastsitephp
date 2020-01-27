@@ -57,7 +57,7 @@ class SqliteStorage implements StorageInterface
      * 
      * @param string $key
      * @param string $value
-     * @return string
+     * @return void
      */
     public function set($key, $value)
     {

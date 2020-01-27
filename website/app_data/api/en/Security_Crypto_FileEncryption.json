@@ -29,6 +29,7 @@
                 "@param string $file_path - Input file to encrypt, this file will not be modified",
                 "@param string $enc_file - Path to save the encrypted (output) file",
                 "@param string $key - Key in hexadecimal format",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -44,6 +45,7 @@
                 "@param string $enc_file - Encrypted file, this file will not be modified",
                 "@param string $output_file - Path to save the decrypted file",
                 "@param string $key - Key in hexadecimal format",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -56,11 +58,12 @@
             "isGetterSetter": false,
             "description": "If either [encryptFile()] or [decryptFile()] fails this function can be used to check the setup on the current computer or server. It returns relevant information for debugging such as the file path of all used commands, the current user, and the path variable.\n\nExample of Data Returned:\n  {\n      \"valid\": true,\n      \"whoami\": \"www-data\",\n      \"path\": \"\/usr\/local\/sbin:\/usr\/local\/bin:\/usr\/sbin:\/usr\/bin:\/sbin:\/bin\",\n      \"getenforce\": null,\n      \"commands\": {\n          \"openssl\": \"\/usr\/bin\/openssl\",\n          \"echo\": \"\/bin\/echo\",\n          ...\n          ...\n      }\n  }\n\nThe return property [getenforce] checks if Security-Enhanced Linux (SELinux) is installed. SELinux is included with various Linux OS's including Red Hat Enterprise Edition and CoreOS. SELinux provides additional security features that can prevent Apache and PHP from writing files unless configured to allow writing. If the shell command [getenforce] runs then SELinux is installed. Permissions may vary system to system however one example to allow writing by Apache\/PHP to the directory [\/var\/www\/data] and subdirectories is this:\n\n    sudo semanage fcontext -a -t httpd_sys_rw_content_t \"\/var\/www\/app_data(\/.*)?\"\n    sudo restorecon -Rv \/var\/www\/app_data\n    sudo chown apache:apache -R \/var\/www\/app_data\/*",
             "attributes": [
+                "@return array",
                 "@link https:\/\/opensource.com\/article\/18\/7\/sysadmin-guide-selinux",
                 "@link https:\/\/wiki.centos.org\/HowTos\/SELinux",
                 "@link https:\/\/access.redhat.com\/documentation\/en-us\/red_hat_enterprise_linux\/5\/html\/deployment_guide\/ch-selinux"
             ],
-            "returnType": null,
+            "returnType": "array",
             "links": [
                 "https:\/\/opensource.com\/article\/18\/7\/sysadmin-guide-selinux",
                 "https:\/\/wiki.centos.org\/HowTos\/SELinux",
