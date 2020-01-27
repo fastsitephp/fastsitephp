@@ -1540,7 +1540,7 @@ class Application
      * Send a 404 'Not found' response to the client and end script execution.
      * This uses the same template that would be returned from calling
      * [$app->pageNotFound()].
-     * 
+     *
      * @return void
      */
     public function sendPageNotFound()

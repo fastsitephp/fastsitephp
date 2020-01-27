@@ -5,18 +5,18 @@
 // encrypt, and decrypt a 3 gb file. Some file systems have a 2 gb file limit
 // (2^31 in bytes) so if this script successfully runs then functions [encryptFile()]
 // and [decryptFile] from the class [FastSitePHP\Security\Crypto\FileEncryption]
-// can be used on the computer with large files. To verify this file this 
-// script encrypts the file using a known IV/Key and also verifies the file 
+// can be used on the computer with large files. To verify this file this
+// script encrypts the file using a known IV/Key and also verifies the file
 // hash as each file is created.
 //
 // Run time will vary greatly depending upon how fast the server is however
 // this script is generally expected to run in about 5 minutes on most servers.
-// On some servers this can run in as little as 2 minutes and currently the 
+// On some servers this can run in as little as 2 minutes and currently the
 // longest runtime was seen at 25 minutes.
 //
 // In addition to this script to test the PHP code you can manually test
 // the shell commands using a bash script at [shell/bash/encrypt.sh].
-// The bash script doesn't require PHP and should run on most Linux OS's 
+// The bash script doesn't require PHP and should run on most Linux OS's
 // wihtout having to install anything.
 //
 // Instructions
@@ -24,7 +24,7 @@
 //    viewed from your brower. If copying to a different location then
 //    modify the statement that loads the autoloader [autoload.php] so
 //    that it loads the correct files.
-// 2) Run the script from a browser and wait till it completes. If there is a 
+// 2) Run the script from a browser and wait till it completes. If there is a
 //    permissions error then correct the permissions and run again.
 // 3) You will see either a success or error message depending upon the result.
 // 4) Manually delete the files when done as they will take a lot of disk space.
@@ -39,11 +39,11 @@ $app = new \FastSitePHP\Application();
 $app->setup('UTC');
 $app->show_detailed_errors = true;
 
-// Create the Crypto Object and specify secret keys and IV used 
-// for encryption and decryption. 
+// Create the Crypto Object and specify secret keys and IV used
+// for encryption and decryption.
 //
 // IMPORTANT - Since this is a published "secret key" DO NOT copy it
-// and use it in your applications/site. To create secret keys for your 
+// and use it in your applications/site. To create secret keys for your
 // application see the [generateKey()] function from the [Crypto] class.
 $crypto = new \FastSitePHP\Security\Crypto\FileEncryption();
 $crypto->displayCmdErrorDetail(true);
@@ -53,11 +53,11 @@ $key_enc  = 'b2e8ff4746c1006adafeb42235554363acf22391941b86b22a7b28c8a591ea4f';
 $key_hmac = '6c3516271b9c008ab4279e5904995aa943117331e3e968560cedb5c7c17266ab';
 
 // This test uses a known hard-coded IV for encryption.
-// In real applications the IV should always be secure, random, 
+// In real applications the IV should always be secure, random,
 // and generated each time data is encrypted.
 $iv = '0ee221ef9e00dfa69efb3b1112bfbb2f';
 
-// Make sure there is no timeout because this script 
+// Make sure there is no timeout because this script
 // will likely take about 5 mintues or more to run.
 set_time_limit(0);
 
@@ -78,7 +78,7 @@ function createNullFile($file_path, $file_size)
     } else {
         $cmds = array('xfs_mkfile', 'fallocate', 'truncate', 'dd');
     }
-    
+
     // Check to see if the command exists using the [which] command.
     // If running manually from the command line [type] can be used
     // to provide additional info.
@@ -90,7 +90,7 @@ function createNullFile($file_path, $file_size)
             break;
         }
     }
-    
+
     // Build the command
     switch ($file_cmd) {
         case 'mkfile':
@@ -117,7 +117,7 @@ function createNullFile($file_path, $file_size)
     }
     $cmd .= ' 2>&1'; // Make sure errors are displayed
     runCmd($cmd);
-    
+
     // Make sure that the file was created
     if (is_file($file_path)) {
         echo '<p>File created: [' . $file_path . ']</p>';
@@ -131,13 +131,13 @@ function createNullFile($file_path, $file_size)
 // and is based on [encryptFile()] however it uses a known IV
 // rather than securely generating a random IV and this function
 // excludes some of the validation.
-function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv) 
+function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv)
 {
     // Make sure any previous test files were deleted
     if (is_file($enc_file)) {
         throw new \Exception(sprintf('File encryption failed because the file for encryption [%s] already exists. Delete your previous test files and try again.', $enc_file));
     }
-    
+
     // Validate disk space (Not on 32-Bit PHP though)
     if (PHP_INT_SIZE !== 4) {
         $file_size = filesize($file_path);
@@ -147,38 +147,38 @@ function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv)
             throw new \Exception(sprintf('File encryption failed because there is not enough disk space available on [%s] for file [%s]. The function [%s] requires the disk to have least the size of the file to encrypt plus an additional 10 megabytes.', dirname($enc_file), $file_path, __FUNCTION__));
         }
     }
-    
+
     // Get path for the [xxd] command
     $xxd = xxdPath();
-    
+
     // Encrypt using openssl command line
     $cmd = 'openssl enc -aes-256-cbc -in "' . $file_path . '" -out "' . $enc_file . '" -iv ' . $iv . '  -K ' . $key_enc . ' 2>&1';
     runCmd($cmd);
-    
+
     // Append IV to the end of the file
     $cmd = 'echo ' . $iv . ' | ' . $xxd . ' -r -p >> "' . $enc_file  . '" 2>&1';
     runCmd($cmd);
-    
+
     // HMAC the file using SHA-256 and append the result to end of the file
     $cmd = 'cat "' . $enc_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . ' -binary >> "' . $enc_file . '" 2>&1';
     runCmd($cmd);
-    
+
     // Verify that the enrypted file can be read by PHP
     if (!is_file($enc_file)) {
         throw new \Exception(sprintf('File encryption failed because the encrypted file [%s] was not found after commands successfully ran. The error is unexpected so you may want to verify permissions for the web server or user running PHP and if the file was actually created.', $enc_file));
-    }	
+    }
 }
 
 // Compare an md5 hash of the created file with the valid known value.
 function checkHash($file, $expected_hash)
 {
     // Calculate md5 using openssl as openssl is required for file encryption
-    // and will be installed on all systems by default. This can also be 
+    // and will be installed on all systems by default. This can also be
     // calculated using the following commands:
     // macOS/FreeBSD: [md5 -q {{file}}]
     // Linux:         [md5sum {{file}} | cut -d ' ' -f 1]
     $cmd = 'openssl dgst -binary -md5 ' . $file . ' | ' . xxdPath() . ' -p';
-    
+
     // Calculate md5 from shell command
     $file_hash = runCmd($cmd, true);
     echo '<p><strong>md5:</strong> [' . $file_hash . ']</p>';
@@ -201,20 +201,20 @@ function runCmd($cmd, $expect_ouput = false)
     // var_dump($cmd);
     // exit();
     exec($cmd, $output, $exit_status);
-    
-    // If the return value/code from the program was 0 then 
-    // it ran successfully otherwise there was an error. 
+
+    // If the return value/code from the program was 0 then
+    // it ran successfully otherwise there was an error.
     // This applies to most Unix/Linux/Mac/Windows programs.
-    
+
     $expected_count = ($expect_ouput ? 1 : 0);
     $error = null;
-    
+
     if ($exit_status !== 0) {
         $error = sprintf('[%s] failed with an exit status other than 0.', $cmd);
     } elseif (count($output) !== $expected_count) {
         $error = sprintf('[%s] failed with unexpected output.', $cmd);
     }
-    
+
     if ($error !== null) {
         switch ($exit_status) {
             case 127:
@@ -227,12 +227,12 @@ function runCmd($cmd, $expect_ouput = false)
         $error .= sprintf(' [exit status: %d] [output: %s]', $exit_status, implode(', ', $output));
         throw new \Exception($error);
     }
-    
+
     // Return single output line or null
     return ($expect_ouput ? $output[0] : null);
 }
 
-// See comments in [Crypto->xxdPath()] 
+// See comments in [Crypto->xxdPath()]
 function xxdPath()
 {
     if (PHP_OS === 'FreeBSD' &&
@@ -282,31 +282,31 @@ foreach ($tests as $test) {
     $file_path = dirname(__FILE__) . '/temp_large_file_' . $test['size'] . 'b';
     $enc_file = $file_path . '.enc';
     $output_file = $enc_file . '.decrypted';
-    
+
     // Print Script Start Time
     echo '<div style="margin:20px; padding:10px 20px; border:2px solid #4F5B93;"><p><strong>Start Time</strong><br>';
     echo date('H:i:s', time());
     echo '</p>';
-    
+
     // Create the file (the file created will be filled with null-bytes ASCII 0)
     if (!is_file($file_path)) {
         createNullFile($file_path, $test['size']);
     }
-    
+
     // Check md5 of the created file
     checkHash($file_path, $test['hash_plain']);
-    
+
     // Encrypt the file
     createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv);
     echo '<p>File encrypted: [' . $enc_file . ']</p>';
     checkHash($enc_file, $test['hash_enc']);
-    
+
     // Decrypt the file
     $key = $key_enc . $key_hmac;
     $crypto->decryptFile($enc_file, $output_file, $key);
     echo '<p>File decrypted: [' . $output_file . ']</p>';
     checkHash($output_file, $test['hash_plain']);
-    
+
     // Show Success/Result Message if code execution makes it here
     $file_info = ($test['size'] === '1g' ? 'a 1 GB file' : 'files larger than 2 GB');
     echo <<<HTML
@@ -317,7 +317,7 @@ foreach ($tests as $test) {
     This script does not delete the test files so after the result is verified you should delete the created files to get back disk space.
 </p>
 HTML;
-    
+
     // Print Script End Time
     echo '<p><strong>End Time</strong><br>';
     echo date('H:i:s', time());
