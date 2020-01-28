@@ -56,6 +56,20 @@ TODO List
     - Running:
         wget https://www.fastsitephp.com/downloads/create-fast-site.sh
         sudo bash create-fast-site.sh
+    - Need doc on how to unit test with nginx:
+        1) sudo nano /etc/nginx/sites-available/fastsitephp
+            Replace:
+                location ~ \.php$ {
+            With:
+                location ~ \.php {
+        3) sudo nano /etc/nginx/snippets/fastcgi-php.conf
+            Replace:
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            With:
+                fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
+        3) sudo systemctl reload nginx
+        4) Run Tests (after copying the `tests` directory)
+        *) With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow        
     - Need to test with the Windows Subsystem for Linux
         https://docs.microsoft.com/en-us/windows/wsl/install-win10
         https://docs.microsoft.com/en-us/windows/wsl/about
@@ -78,6 +92,7 @@ TODO List
             while the master must have them commented out. For the initial release this was done manuall.
     - How Unit Testing works
         - Markdown doc needs to be created in [docs] folder and linked from readme
+        - Search this file for "unit test with nginx" which needs to be documented.
     - How Linting works:
         - This could be a new markdown file linked from the readme in the [docs] folder
         - Either as a seperate doc or a larger doc such as "Editing the Framework Code"

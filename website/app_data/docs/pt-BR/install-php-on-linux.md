@@ -170,7 +170,9 @@ ls ~
 # This will test the Framework from the server that you are running on.
 # Unit tests are designed to be tested directly on a web server.
 # This helps confirm which features are supported in your environment
-# based on your server config.
+# based on your server config. Note - If you are using nginx as the
+# webserver then additional setup will likely be required in the config
+# files in order for the unit tests to run.
 cd ~
 wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
 unzip master.zip
