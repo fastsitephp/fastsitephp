@@ -22,6 +22,10 @@ TODO List
 --------------------------------------------------------------------------
         
 *) Starter Site
+    - Finish full PHP 5.3 support, switch code under [app] and [app/Controllers] back to PHP 5.4 syntax
+        and add a new script which will be called from [scripts\install.php] that converts the files back to 5.3 format if needed.
+        This is being activly tested on AWS using [Amazon Linux AMI] because the default php install version is 5.3.
+        NOTE - php 7.3 can be installed on [Amazon Linux AMI] but it appears the default version of 5.3 is still supported.
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
 
