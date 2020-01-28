@@ -141,20 +141,20 @@
                         <li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
                         </li>
-                        <li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-                            <a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
-                        </li>
                         <li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
-                        </li>
-                        <li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
-                            <a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
                         </li>
                         <li<?= ($app->lang === 'fr' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->escape($app->rootUrl() . 'fr' . $current_page) ?>">Français</a>
                         </li>
+                        <li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
+                            <a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (Brasil)</a>
+                        </li>
                         <li<?= ($app->lang === 'ar' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->escape($app->rootUrl() . 'ar' . $current_page) ?>">العربية</a>
+                        </li>
+                        <li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+                            <a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
                         </li>
                     </ul>
                 </div>
@@ -210,20 +210,20 @@
                             <li<?= ($app->lang === 'en' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->escape($app->rootUrl() . 'en' . $current_page) ?>">English</a>
                             </li>
-                            <li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
-                                <a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
-                            </li>
                             <li<?= ($app->lang === 'es' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->escape($app->rootUrl() . 'es' . $current_page) ?>">Español</a>
-                            </li>
-                            <li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
-                                <a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (do Brasil)</a>
                             </li>
                             <li<?= ($app->lang === 'fr' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->escape($app->rootUrl() . 'fr' . $current_page) ?>">Français</a>
                             </li>
+                            <li<?= ($app->lang === 'pt-BR' ? ' class="active"' : '') ?>>
+                                <a href="<?= $app->escape($app->rootUrl() . 'pt-BR' . $current_page) ?>">Português (Brasil)</a>
+                            </li>
                             <li<?= ($app->lang === 'ar' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->escape($app->rootUrl() . 'ar' . $current_page) ?>">العربية</a>
+                            </li>
+                            <li<?= ($app->lang === 'zh-CN' ? ' class="active"' : '') ?>>
+                                <a href="<?= $app->escape($app->rootUrl() . 'zh-CN' . $current_page) ?>">中文 (简体)</a>
                             </li>
                         </ul>
                     </li>

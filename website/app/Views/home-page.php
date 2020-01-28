@@ -361,7 +361,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
             (function() {
                 "use strict"; // Invoke Strict Mode
 
-                // Check Device Type from the User-Agenet
+                // Check Device Type from the User-Agent
                 var ua = navigator.userAgent;
                 var removeFilters = (ua.indexOf("Mac OS X") > -1 &&
                     ua.indexOf("Chrome/") === -1 &&
