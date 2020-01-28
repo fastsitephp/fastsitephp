@@ -221,6 +221,9 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
             After [Copy SVG Code] from Sketch the following changes were made when pasting here:
                 Add [id="svg-title-text"]
                 Add <title> and <desc> with "FastSitePHP"
+                * On the Sketch Version 62 (latest tested version in 1/2020) the export did not work well
+                  so the next line was manually used. 
+                Replace [font-family="Corbel"] with font-family="Helvetica, Arial" and set font-size="76"
             -->
             <svg id="svg-title-text" width="440px" height="107px" viewBox="31 51 440 107" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>FastSitePHP</title>
@@ -230,7 +233,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                         <stop stop-color="#4F5B93" stop-opacity="0.8" offset="0%"></stop>
                         <stop stop-color="#4F5B93" offset="100%"></stop>
                     </linearGradient>
-                    <text id="text-2" font-family="Roboto" font-size="79" font-weight="normal">
+                    <text id="text-2" font-family="Helvetica, Arial" font-size="76" font-weight="normal">
                         <tspan x="32" y="131">FastSitePHP</tspan>
                     </text>
                     <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-3">
