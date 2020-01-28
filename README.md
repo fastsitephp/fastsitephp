@@ -282,6 +282,15 @@ For a list of Supported PHP Versions from the PHP Group see this link: https://w
 
 Additionally if you are running Linux and have a support license for your of Linux (for example: RedHat Enterprise Linux) and are running and old version of PHP your vendor will likely backfill PHP security patches to your version of PHP which allows for older versions of PHP to remain secure even though they are no longer supported by the PHP Group.
 
+**How does Unit Testing work?**
+
+FastSitePHP’s provides a web based method of testing so that all code and page speed can be easily confirmed in any environment. PHP has many differences with how it is used on different OS’s (Linux, Windows, etc), Web Severs (Apache, nginx, IIS), and builds (32-bit, 64-bit, missing extensions, etc) which cannot be easily tested using mock environments.
+
+For example using a mock environment from CLI tests would often work because file permissions will be correct and config will be correct on a developer’s machine. This will often not be the case on a live server so the web based Unit Testing shows which features will work and are supported in your environment.
+
+To run the tests start a web server and then open the file `tests/index.htm` with a web browser. The `tests` directory/folder can simply be copied to any server that supports PHP and you can run tests. If you are testing on a production server you should delete the `tests` directory after running tests.
+In the future additional documentation and print screens with more details and how to use will be provided.
+
 ## :memo: License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
