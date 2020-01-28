@@ -41,7 +41,7 @@ bash /var/www/scripts/sync-server-from-github.sh
 
 # Optional Unit Testing
 # This will test the Framework from the server that you are running on.
-# Unit tests are designed to test the current web server.
+# Unit tests are designed to be tested directly on a web server.
 # All or most tests should succeed. For example Apache and IIS allow for
 # Strong etags but nginx does not so a few tests are expected fail for nginx.
 wget https://github.com/fastsitephp/fastsitephp/archive/master.zip

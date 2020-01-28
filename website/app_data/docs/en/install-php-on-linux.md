@@ -164,6 +164,30 @@ ls ~
 
 # View your site
 # http://your-server.example.com/
+
+# Optional - Unit Testing
+# This will test the Framework from the server that you are running on.
+# Unit tests are designed to be tested directly on a web server.
+# This helps confirm which features are supported in your environment
+# based on your server config.
+cd ~
+wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+unzip master.zip
+cp -r ~/fastsitephp-master/tests /var/www/html/tests
+
+# Run and Verify all Unit Tests
+#     http://{host}/tests/index.htm
+#
+# If desired turn off certain tests by editing the HTML file:
+#   runTimeConsumingTasks = false
+#   runTestsWithRSA = false
+#   etc
+# sudo nano /var/www/html/tests/index.htm
+#
+# Delete Unit Tests and downloaded files after running
+sudo rm -R /var/www/html/tests
+sudo rm -R ~/fastsitephp-master
+rm master.zip
 ~~~
 
 ### Apache and PHP Installation on Red Hat, CentoOS, Fedora
