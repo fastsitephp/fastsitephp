@@ -2,7 +2,7 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
-## Next Release (Changes on Master Branch)
+## 1.2.1 (January 27, 2020)
 
 * Improved Framework support with FreeBSD
   * `FileEncryption` Class now has improved support for large file encryption (2+ GB) on a basic FreeBSD Server Setup
@@ -13,6 +13,7 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Adding support for PHP linting with https://github.com/phpstan/phpstan
   * For info on how to run `phpstan` see comments in file: https://github.com/fastsitephp/fastsitephp/blob/master/phpstan.neon
 * Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP supports older versions of PHP that are widely used by not considered secure.
+* Updated `README.md` with a brief description of how Unit Testing works.
 
 ## 1.2.0 (January 10, 2020)
 
