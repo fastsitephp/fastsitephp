@@ -10,7 +10,8 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Fixed a bug with `FastSitePHP\Encoding\Json::encode()` that prevented it from working when using PHP `5.3`. This did not affect any other version of PHP.
 
 * **Thanks Nicolas CARPi for opening the issue related to the following items** https://github.com/NicolasCARPi
-* Adding support for PHP linting with https://github.com/phpstan/phpstan or https://github.com/vimeo/psalm, this requires mostly PHPDoc Comment updates for the many classes _(Currently in Progress)_
+* Adding support for PHP linting with https://github.com/phpstan/phpstan
+  * For info on how to run `phpstan` see comments in file: https://github.com/fastsitephp/fastsitephp/blob/master/phpstan.neon
 * Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP supports older versions of PHP that are widely used by not considered secure.
 
 ## 1.2.0 (January 10, 2020)
