@@ -54,6 +54,12 @@ html.samsung body {
     background-image: none;
 }
 
+/* Older iOS - iOS 9 (example iPad2) */
+@supports (-webkit-overflow-scrolling: touch) {
+    header,
+    footer { flex: 1 0 auto; }
+}
+
 body > main {
     flex: 1 0 auto;
     padding: 50px 0;
