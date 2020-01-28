@@ -93,6 +93,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
     /**
      * Class Deconstructor. Calls [close()] automatically
      * unless using a Persistent Connection.
+     * @return void
      */
     function __destruct()
     {
@@ -103,6 +104,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
 
     /**
      * Close the connection
+     * @return void
      */
     public function close()
     {
@@ -116,6 +118,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
      * Used internally to check function calls
      *
      * @param bool|resource $result
+     * @return void
      * @throws \Exception
      */
     private function checkResult($result)

@@ -45,6 +45,13 @@ class Time
 
     /**
      * Language 'en'
+     * 
+     * @param int $years
+     * @param int $days
+     * @param int $hours
+     * @param int $minutes
+     * @param int $seconds
+     * @return string
      */
     private static function english($years, $days, $hours, $minutes, $seconds)
     {

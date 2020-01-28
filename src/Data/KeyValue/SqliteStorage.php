@@ -87,6 +87,7 @@ class SqliteStorage implements StorageInterface
      * Remove (delete) a key exists from the database.
      * 
      * @param string $key
+     * @return void
      */
     public function remove($key)
     {

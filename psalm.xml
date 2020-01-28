@@ -68,7 +68,11 @@
 
         <PropertyNotSetInConstructor errorLevel="info" />
         <MissingConstructor errorLevel="info" />
-        <MissingClosureParamType errorLevel="info" />
+        <MissingClosureParamType errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Utilities\debug.php" />
+            </errorLevel>
+        </MissingClosureParamType>
         <MissingParamType errorLevel="info" />
 
         <RedundantCondition errorLevel="info" />
@@ -96,6 +100,14 @@
             </errorLevel>
         </UndefinedThisPropertyFetch>
 
+    	<UndefinedGlobalVariable>
+            <errorLevel type="suppress">
+                <file name="src\Templates\error-cli.php" />
+                <file name="src\Templates\error.php" />
+                <file name="src\Templates\html-template.php" />
+            </errorLevel>
+        </UndefinedGlobalVariable>
+
         <!--
             Ignore PHP 7.2+ constants if running psalm from and older build of PHP
         -->
@@ -113,5 +125,52 @@
                 <file name="src\Web\Response.php" />
             </errorLevel>
         </PossiblyNullArgument>
+
+        <MissingClosureReturnType errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Application.php" />
+                <file name="src\Data\Log\HtmlLogger.php" />
+                <file name="src\Utilities\debug.php" />
+                <file name="src\Encoding\Json.php" />
+                <file name="src\Net\IP.php" />
+                <file name="src\Web\Response.php" />
+            </errorLevel>
+        </MissingClosureReturnType>
+
+        <MissingClosureParamType errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Application.php" />
+                <file name="src\Data\Log\HtmlLogger.php" />
+                <file name="src\Encoding\Json.php" />
+                <file name="src\Net\HttpClient.php" />
+                <file name="src\Net\IP.php" />
+                <file name="src\Web\Response.php" />
+            </errorLevel>
+        </MissingClosureParamType>
+
+        <!--
+            Interface classes and some Abstract files are more readable when not using PHPDoc Comments.
+            Additionally well tested protected and private props do not need always typehints.
+            Including PHPDocs wiht every single private and protected prop can make the code less 
+            readable as props will be displayed over many screens rather than together.
+        -->
+        <MissingReturnType errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Security\Crypto\CryptoInterface.php" />
+                <file name="src\Data\KeyValue\StorageInterface.php" />
+                <file name="src\Data\DatabaseInterface.php" />
+            </errorLevel>
+        </MissingReturnType>
+        <MissingParamType errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Data\DatabaseInterface.php" />
+                <file name="src\Data\KeyValue\StorageInterface.php" />
+                <file name="src\Security\Crypto\CryptoInterface.php" />
+            </errorLevel>
+        </MissingParamType>
+
+        <!--
+            <file name="" />
+        -->
     </issueHandlers>
 </psalm>

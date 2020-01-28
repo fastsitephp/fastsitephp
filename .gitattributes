@@ -18,6 +18,7 @@
 # .gitignore      export-ignore
 # autoload.php    export-ignore
 # index.php       export-ignore
+# phpstan.neon    export-ignore
 
 # Auto detect text files and perform LF normalization
 * text=auto

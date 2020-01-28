@@ -116,6 +116,7 @@ class I18N
      *
      * @param string $file_name - Name of the file, example 'about' which returns 'about.fr.json' if language [fr] is selected
      * @param string $lang - User's Selected Language
+     * @return void
      * @throws \Exception
      */
     public static function langFile($file_name, $lang)
@@ -398,6 +399,7 @@ class I18N
      * template to be rendered.
      *
      * @param \FastSitePHP\Application $app
+     * @return void
      * @throws \Exception
      */
     public static function setup(Application $app)
@@ -426,6 +428,7 @@ class I18N
      * used in other parts of this code.
      *
      * @param string $lang
+     * @return void
      * @throws \Exception
      */
     private static function validateLang($lang)

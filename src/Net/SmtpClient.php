@@ -67,6 +67,7 @@ class SmtpClient
      * @param int|null $port
      * @param int $timeout
      * @param \Closure $debug_callback
+     * @return void
      * @throws \Exception
      */
     function __construct($host = null, $port = null, $timeout = 5, \Closure $debug_callback = null)
@@ -85,6 +86,8 @@ class SmtpClient
      * Class Destructor
      * Automatically send a QUIT command to the server
      * and close the socket connection.
+     *
+     * @return void
      */
     function __destruct()
     {
@@ -112,6 +115,7 @@ class SmtpClient
      * requires an Auth User.
      *
      * @param array $emails - Array of [\FastSitePHP\Net\Email] objects
+     * @return void
      * @throws \Exception
      */
     public static function sendEmails(array $emails)
@@ -163,6 +167,7 @@ class SmtpClient
      * Send an email
      *
      * @param \FastSitePHP\Net\Email $email
+     * @return void
      * @throws \Exception
      */
     public function send(Email $email)
@@ -209,6 +214,7 @@ class SmtpClient
      * @param string|null $host
      * @param int|null $port
      * @param int $timeout
+     * @return void
      * @throws \Exception
      */
     public function connect($host, $port, $timeout = 5)
@@ -234,6 +240,8 @@ class SmtpClient
     /**
      * Close SMTP Server Connection. If calling this manually
      * then [quit()] should be called first.
+     *
+     * @return void
      */
     public function close()
     {
@@ -355,6 +363,7 @@ class SmtpClient
      *
      * @param null|string $client - See comments in [ehlo()]
      * @return array - Reply lines from the server from the EHLO command
+     * @return void
      * @throws \Exception
      */
     public function startTls($client = null)
@@ -392,6 +401,7 @@ class SmtpClient
      *
      * @param string $user
      * @param string $password
+     * @return void
      * @throws \Exception
      */
     public function auth($user, $password)
@@ -427,6 +437,7 @@ class SmtpClient
      *
      * @param string $user
      * @param string $password
+     * @return void
      * @throws \Exception
      */
     public function authLogin($user, $password)
@@ -444,6 +455,7 @@ class SmtpClient
      *
      * @param string $user
      * @param string $password
+     * @return void
      * @throws \Exception
      */
     public function authPlain($user, $password)
@@ -462,6 +474,7 @@ class SmtpClient
      *
      * @param string $email
      * @param bool $utf8 - Defaults to false
+     * @return void
      * @throws \Exception
      */
     public function mailFrom($email, $utf8 = false)
@@ -480,6 +493,7 @@ class SmtpClient
      * This is handled automatically from the [send()] function.
      *
      * @param string $email
+     * @return void
      * @throws \Exception
      */
     public function rcptTo($email)
@@ -509,6 +523,7 @@ class SmtpClient
      * Send a RSET (Reset) Command to the SMTP Server.
      * This would be used to cancel an message.
      *
+     * @return void
      * @throws \Exception
      */
     public function rset()
@@ -520,6 +535,7 @@ class SmtpClient
      * Send a NOOP (No operation) Command to the SMTP Server.
      * This can be used to verify if the connection is ok.
      *
+     * @return void
      * @throws \Exception
      */
     public function noop()
@@ -532,6 +548,7 @@ class SmtpClient
      * This is handled automatically from the [send()] function.
      *
      * @param string $data
+     * @return void
      * @throws \Exception
      */
     public function data($data)
@@ -562,6 +579,7 @@ class SmtpClient
      * Send a QUIT Command to the SMTP Server.
      * This gets call automatically when the object instance is destroyed.
      *
+     * @return void
      * @throws \Exception
      */
     public function quit()
@@ -620,6 +638,7 @@ class SmtpClient
      *
      * @param string $type
      * @param string|null $message
+     * @return void
      */
     private function log($type, $message)
     {
@@ -636,6 +655,7 @@ class SmtpClient
      * Null (character 0) is also checked.
      *
      * @param string $line
+     * @return void
      * @throws \Exception
      */
     private function validateLine($line)

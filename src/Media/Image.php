@@ -334,6 +334,7 @@ Class Image
 
     /**
      * Close Image to free memory
+     * @return void
      */
     public function close()
     {

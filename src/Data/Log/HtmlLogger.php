@@ -58,6 +58,8 @@ class HtmlLogger extends AbstractLogger
      * Return HTML that will be used to show the logged messages. 
      * This function gets called to replace the current route or 
      * after the response is sent.
+     * 
+     * @return string
      */
     public function getHtml()
     {

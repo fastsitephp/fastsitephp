@@ -14,7 +14,7 @@ namespace FastSitePHP;
 use \Closure;
 
 /**
- * When [$app->get()], [$app->post()] and other methods are 
+ * When [$app->get()], [$app->post()] and other methods are
  * called a new Route Object is created.
  */
 class Route
@@ -34,7 +34,7 @@ class Route
 
     /**
      * Request Method to match ['GET', 'POST', etc]
-     * @var string
+     * @var string|null
      */
     public $method = null;
 
@@ -43,7 +43,7 @@ class Route
      * @var array
      */
     public $filter_callbacks = array();
-    
+
     /**
      * Add a filter function to the route. If the route is matched
      * then all filter functions for it are called. If one or more
@@ -51,11 +51,11 @@ class Route
      * Filter functions are not required to return anything.
      * If a filter function returns a Response Object then it will be
      * sent to the client and the controller for the route will not be called.
-     * 
+     *
      * @param \Closure|string $callback
      * @return $this
      */
-    public function filter($callback) 
+    public function filter($callback)
     {
         $this->filter_callbacks[] = $callback;
         return $this;

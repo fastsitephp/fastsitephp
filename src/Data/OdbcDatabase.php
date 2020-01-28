@@ -64,6 +64,7 @@ class OdbcDatabase extends AbstractVendorDatabase implements DatabaseInterface
      * 
      * @link http://php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultlrl
      * @param int $size - Defaults to 100000 (100,000)
+     * @return void
      */
     public function allowLargeTextValues($size = 100000)
     {

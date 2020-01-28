@@ -76,6 +76,7 @@ abstract class AbstractDatabase
      * 
      * @link http://php.net/manual/en/language.references.php
      * @param array &$data
+     * @return void
      */
     protected function trimArray(&$data)
     {

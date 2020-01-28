@@ -649,7 +649,7 @@ class Email
      * @param string $prop
      * @param string $type
      * @param string|bool|null $new_value
-     * @return string|null|$this
+     * @return string|bool|null|$this
      */
     private function field($prop, $type, $new_value)
     {
@@ -664,6 +664,7 @@ class Email
      * Make sure that a text line does not contain any line breaks or null characters.
      *
      * @param string $line
+     * @return void
      * @throws \Exception
      */
     private function validateLine($line)

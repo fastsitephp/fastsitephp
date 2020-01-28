@@ -177,6 +177,7 @@ class AppMin
      * Application defined exception handler function
      *
      * @param \Exception|\Throwable $e
+     * @return void
      */
     public function exceptionHandler($e)
     {
@@ -209,6 +210,7 @@ class AppMin
 
     /**
      * Application defined error handler function for fatal errors
+     * @return void
      */
     public function shutdown()
     {
@@ -229,6 +231,7 @@ class AppMin
      * @param int $response_code
      * @param null|\Exception|\Throwable $e
      * @param null|array $allowed_methods   Used for 405 'Method Not Allowed' Responses
+     * @return void
      * @throws \Exception
      */
     private function sendErrorPage($response_code, $e = null, $allowed_methods = null)
@@ -442,6 +445,7 @@ class AppMin
      *
      * @param string $url
      * @param int $status_code
+     * @return void
      * @throws \Exception
      */
     public function redirect($url, $status_code = 302)
@@ -638,6 +642,7 @@ class AppMin
      * and sends a response. Routes, settings, validation rules, etc need to be
      * defined prior to calling this function.
      *
+     * @return void
      * @throws \Exception
      */
     public function run()
@@ -736,6 +741,7 @@ class AppMin
      * HTTP Methods allowed for the URL. This function gets called from [run()].
      *
      * @param string $url   Requested URL
+     * @return void
      */
     private function sendOptionsResponse($url)
     {
@@ -845,6 +851,7 @@ class AppMin
      * Private function that sends the actual HTTP Response.
      *
      * @param string $content
+     * @return void
      * @throws \Exception
      */
     private function sendResponse($content)

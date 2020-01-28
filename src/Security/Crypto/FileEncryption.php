@@ -349,7 +349,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                     $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
                 } else {
                     // FreeBSD                    
-                    $cmd = str_replace('{{bytes}}', 32, $truncate_cmd);
+                    $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
                     $length = shell_exec($cmd);
                     if ($length === null) {
                         $error = 'Unable to get file size needed to truncate HMAC from file. Possible permissions error.';
@@ -394,7 +394,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 $this->runCmd($cmd, __FUNCTION__, 'truncate file iv');
             } else {
                 // FreeBSD
-                $cmd = str_replace('{{bytes}}', 16, $truncate_cmd);
+                $cmd = str_replace('{{bytes}}', '16', $truncate_cmd);
                 $length = shell_exec($cmd);
                 if ($length === null) {
                     $error = 'Unable to get file size needed to truncate IV from file. Possible permissions error.';

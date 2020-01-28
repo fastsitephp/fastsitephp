@@ -141,6 +141,7 @@ class Crypto
      *
      * @param string $file_path - Input file to encrypt, this file will not be modified
      * @param string $enc_file - Path to save the encrypted (output) file
+     * @return void
      */
     public static function encryptFile($file_path, $enc_file)
     {
@@ -158,6 +159,7 @@ class Crypto
      *
      * @param string $enc_file - Encrypted file, this file will not be modified
      * @param string $output_file - Path to save the decrypted file
+     * @return void
      */
     public static function decryptFile($enc_file, $output_file)
     {

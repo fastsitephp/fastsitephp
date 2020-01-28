@@ -1,8 +1,11 @@
-# This file is used for linting FastSitePHP with the PHP Static Analysis Tool [phpstan]: 
+# This file is used for linting FastSitePHP with the PHP Static Analysis Tool [phpstan]:
 #   https://github.com/phpstan/phpstan
 #
-# This is currently in active development, see comments in related issue:
-#   https://github.com/fastsitephp/fastsitephp/issues/13
+# To lint the code base:
+#     1) Download [phpstan.phar] from:
+#        https://github.com/phpstan/phpstan/releases
+#     2) Run:
+#        php phpstan.phar analyse --level 8 -a autoload.php -c phpstan.neon src > phpstan_results.txt
 #
 # Currently all code through extensive Unit Testing so most errors need to be excluded
 # based phpstan's on strict checking of PHP Code using PHPDoc Comments and expected types.
@@ -10,9 +13,24 @@
 # assumes they return int|string|etc. FastSitePHP is built around PHP's flexibility
 # and is similar to using JavaScript or Python while PHP Static Analysis Tool seem
 # to assume code should be more like C# or Java.
+#
+# Alternative options that have been tested. Just like [phpstan] running these would
+# need a lot of config files so currently only [phpstan] is used.
+#    https://github.com/vimeo/psalm
+#    https://github.com/phan/phan
+#
+# Simliar to [phpstan] a (*.phar) file would be downloaded and ran.
+#    php psalm.phar > psalm_results.txt
+#    php phan.phar > phan_results.txt
+#
+# IMPORTANT - If editing the code base do not fix "errors" based on [phpstan].
+# Rather if the related code is fully unit tested then exclude the error in this file.
+# If the code is not fully testsed then it should be or it needs to be carefully
+# reviewed and manually tested.
 
 parameters:
     checkMissingIterableValueType: false
+    inferPrivatePropertyTypeFromConstructor: false
     ignoreErrors:
         -
             message: '#Access to an undefined property#'
@@ -30,16 +48,6 @@ parameters:
                 - src/Templates/error-cli.php
                 - src/Templates/error.php
         -
-            message: '#Call to an undefined method Throwable::getSeverity()#'
-            paths:
-                - src/Application.php
-                - src/AppMin.php
-        -
-            message: '#Access to an undefined property Throwable::\$severityText#'
-            paths:
-                - src/Application.php
-                - src/AppMin.php
-        -
             message: '#PHPDoc tag @param has invalid value#'
             path: src/Data/AbstractDatabase.php
         -
@@ -49,9 +57,6 @@ parameters:
                 - src/Data/Log/AbstractLogger.php
                 - src/Environment/DotEnv.php
                 - src/Net/HttpClient.php
-        -
-            message: '#Comparison operation (.+) results in an error#'
-            path: src/Lang/L10N.php
         -
             message: '#Binary operation (.+) results in an error#'
             path: src/Net/IP.php
@@ -127,8 +132,130 @@ parameters:
             message: '#function openssl_pkey_export expects string, null given#'
             path: src/Security/Crypto/PublicKey.php
         -
-            message: '#function set_exception_handler expects#'
-            path: src/AppMin.php
+            # Interface classes and some Abstract files are more readable when not using PHPDoc Comments.
+            # Additionally well tested protected and private props do not need always typehints.
+            # Including PHPDocs wiht every single private and protected prop can make the code less
+            # readable as props will be displayed over many screens rather than together.
+            message: '#Property (.+) has no typehint specified#'
+            paths:
+                - src/Data/AbstractDatabase.php
+                - src/Data/Db2Database.php
+                - src/Data/OdbcDatabase.php
+                - src/Data/KeyValue/SqliteStorage.php
+                - src/Data/Log/HtmlLogger.php
+                - src/FileSystem/Search.php
+                - src/FileSystem/Sync.php
+                - src/Lang/L10N.php
+                - src/Lang/I18N.php
+                - src/Media/Image.php
+                - src/Net/Email.php
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Security/Password.php
         -
-            message: '#register_shutdown_function expects callable#'
-            path: src/AppMin.php
+            # See above comments
+            message: '#Method (.+) no typehint specified#'
+            paths:
+                - src/Data/AbstractDatabase.php
+                - src/Data/DatabaseInterface.php
+                - src/Data/KeyValue/StorageInterface.php
+                - src/Security/Crypto/CryptoInterface.php
+        -
+            # See above comments
+            message: '#Method (.+) no return typehint specified#'
+            paths:
+                - src/Data/DatabaseInterface.php
+                - src/Data/KeyValue/StorageInterface.php
+                - src/Security/Crypto/CryptoInterface.php
+        -
+            # PHP uses and allows mixed types in many functions however phpstan is very stict
+            # and will give many false positives for calls that will work plus it seems to have
+            # errors related to the return types of built-in functions in some cases.
+            # FastSitePHP goes though a lot of unit testing for these items so they can
+            # be ignored once the code is tested.
+            message: '#Parameter (.+) expects (.+) given#'
+            paths:
+                - src/AppMin.php
+                - src/Application.php
+                - src/Net/Email.php
+                - src/Net/HttpClient.php
+                - src/Net/SmtpClient.php
+                - src/Environment/DotEnv.php
+                - src/Environment/System.php
+                - src/FileSystem/Search.php
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+                - src/Media/Image.php
+                - src/Net/Config.php
+                - src/Security/Crypto/AbstractCrypto.php
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Security/Crypto/SignedData.php
+                - src/Security/Web/CsrfStateless.php
+                - src/Net/IP.php
+                - src/Encoding/Json.php
+        -
+            # Similar issue to the above error
+            message: '#Method (.+) should return (.+) but returns#'
+            paths:
+                - src/AppMin.php
+                - src/Application.php
+                - src/Data/Database.php
+                - src/Data/Log/HtmlLogger.php
+                - src/Net/Email.php
+                - src/Security/Crypto/Encryption.php
+                - src/Net/HttpClient.php
+                - src/Environment/System.php
+                - src/Lang/I18N.php
+                - src/Net/Config.php
+                - src/Security/Crypto/SignedData.php
+                - src/Security/Password.php
+        -
+            # Similar issue to the above error. This one aslo applies to getter/setter functions.
+            message: '#Argument of an invalid type#'
+            paths:
+                - src/Data/Database.php
+                - src/Encoding/Utf8.php
+                - src/Net/Email.php
+                - src/Lang/I18N.php
+        -
+            # Getter/Setting type functions are not handled well by phpstan
+            message: '#Cannot call method#'
+            paths:
+                - src/Application.php
+                - src/FileSystem/Sync.php
+                - src/Lang/L10N.php
+                - src/Security/Crypto/FileEncryption.php
+        -
+            message: '#Cannot access offset#'
+            paths:
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/PublicKey.php
+        -
+            message: '#Offset (.+) does not exist on#'
+            paths:
+                - src/Lang/Time.php
+                - src/Lang/I18N.php
+                - src/Net/HttpClient.php
+        -
+            message: '#Cannot assign offset#'
+            paths:
+                - src/Net/Config.php
+                - src/Net/SmtpClient.php
+        -
+            message: '#Property (.+) does not accept#'
+            path: src/Net/HttpClient.php
+        -
+            message: '#Cannot call method#'
+            paths:
+                - src/AppMin.php
+                - src/Data/Database.php
+        -
+            message: '#Cannot access property#'
+            paths:
+                - src/Application.php
+                - src/AppMin.php
+                - src/FileSystem/Security.php
+                - src/Net/Config.php

@@ -20,60 +20,6 @@ TODO List
 |   All contributions are welcome.
 |
 --------------------------------------------------------------------------
-
-*) Finish linting updates related to this issue:
-    https://github.com/fastsitephp/fastsitephp/issues/11
-    - Note the term "liniting" is from JavaScript and Python while PHP Developers typically use "Static Code Analyzers"
-    - Currently three (3) different linters are being tested:
-        https://github.com/phpstan/phpstan
-        https://github.com/vimeo/psalm
-        https://github.com/phan/phan
-    - All three may be kept or only one, this will be decided in the near future
-    - There are currently no plans to add any of these as depenancies as
-        they are very large and not required in order for FastSitePHP to work.
-        Rather the [*.phar] files are downloaded directly from the release page
-        of each project, example [https://github.com/phpstan/phpstan/releases]
-    - [phpstan] and [psalm] should work out of the box while [phan] requires additional 
-        PHP extensions - see https://github.com/phan/phan/wiki/Getting-Started
-    - Commands to run each of the linters:
-        php phpstan.phar analyse --level 6 -a autoload.php -c phpstan.neon src > phpstan_results.txt
-        php psalm.phar > psalm_results.txt
-        php phan.phar > phan_results.txt
-    - For [phan] a file needs to be added as [.phan/config.php] based on the default template from the project home
-        page. Then use ["target_php_version" => '5.6',]. This will only be checked into source later if [phan]
-        will be kept for linting.
-    - Currently [phpstan] has been used to make changes the quickest, because it allows different levels
-        of linting (0 to 8) and the config file [phpstan.neon] is realatively easy to update.
-        With the present code there are zero (0) errors when testing [--level 0] to [--level 5].
-        The next steps are to update levels at 6 of 8 one at a time.            
-    - Virtually all of the issues are related to PHPDoc comments
-        - For example: psalm MissingReturnType often is fixed with adding [@retun void] to the function comments
-    - Any actual code changes will require full unit testing
-    - The total time to fix everything is expected to be several days to a week or more of work
-        however since most issues are false positives related to PHPDoc comments and validating with 
-        [phpstan] is up to level 4 plus FastSitePHP goes through extensive unit testing to actually validate
-        the code full linting might not be needed. 
-    - Print screens of error examples and how to fix:
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/0-phpstan-results.png
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/1-phpstan-code-check.png
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/2-phpstan-config-update.png
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/3-php-pslam-error.png
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/4-php-pslam-code-before.png
-        https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/5-php-pslam-code-fixed.png
-    - Linting current notes (these are false positives and need to be ignored or opened with project provider):
-        - All issues can be quickly tested on the playground site, example:
-            https://www.fastsitephp.com/en/playground
-            $app->get('/', function() {
-                var_dump(strtotime(null));
-                echo '<br>';
-                var_dump(gettype(null));
-                echo '<br>';
-                var_dump(strpos(null, 'application/javascript'));
-            });
-        - [vimeo/psalm] - It triggers many errors around null calls to php built-in functions that are valid
-            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1538:68 - Argument 1 of strpos cannot be null, possibly null value provided
-            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1583:512 - Argument 3 of sprintf cannot be null, possibly null value provided
-            [0;31mERROR[0m: PossiblyNullArgument - src\Web\Response.php:1718:58 - Argument 1 of strtotime cannot be null, possibly null value provided
         
 *) Starter Site
     - Add Mobile Menu (like the main site)
@@ -130,6 +76,20 @@ TODO List
         - Ideally there would be a better workflow, possibly a seperate "Release" branch
         - Currently releases need [export-ignore] lines in [.gitattributes]
             while the master must have them commented out. For the initial release this was done manuall.
+    - How Unit Testing works
+        - Markdown doc needs to be created in [docs] folder and linked from readme
+    - How Linting works:
+        - This could be a new markdown file linked from the readme in the [docs] folder
+        - Either as a seperate doc or a larger doc such as "Editing the Framework Code"
+        - See comments in file:
+            fastsitephp\phpstan.neon
+        - Related Print screens
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/0-phpstan-results.png
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/1-phpstan-code-check.png
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/2-phpstan-config-update.png
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/3-php-pslam-error.png
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/4-php-pslam-code-before.png
+            https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/5-php-pslam-code-fixed.png
     - Document on how to use Composer
         # Windows
         # First install composer
