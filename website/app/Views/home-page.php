@@ -224,6 +224,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                 * On the Sketch Version 62 (latest tested version in 1/2020) the export did not work well
                   so the next line was manually used. 
                 Replace [font-family="Corbel"] with font-family="Helvetica, Roboto, Arial" and set font-size="76"
+                Also search JavaScript on this page for '#text-2' as Corbel is being used with Windows
             -->
             <svg id="svg-title-text" width="440px" height="107px" viewBox="31 51 440 107" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>FastSitePHP</title>
@@ -356,6 +357,8 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
             // This Script is intended to be ran inline on the page immediately
             // after the SVG for the Rocketship.
             //
+            // Also update the Page Title font for Windows.
+            //
             /* Validates with [jshint] */
             /* jshint strict: true */
             (function() {
@@ -374,6 +377,15 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                     Array.prototype.forEach.call(svgElements, function(g) {
                         g.setAttribute("filter", "");
                     });
+                }
+
+                // Use Corbel with Windows
+                if (ua.indexOf('Windows NT') !== -1) {
+                    var text2 = document.querySelector('#text-2');
+                    if (text2 !== null && text2.getAttribute('font-family') === 'Helvetica, Roboto, Arial') {
+                        text2.setAttribute('font-family', 'Corbel, Helvetica, Roboto, Arial');
+                        text2.setAttribute('font-size', '84');
+                    }
                 }
             })();
         </script>
