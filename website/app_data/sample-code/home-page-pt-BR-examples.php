@@ -4305,7 +4305,7 @@ $app->get('/examples/l10n', function() use ($app) {
 $app->get('/examples/starter-site', function() use ($app) {
     // This route is included so code shows in the API docs, but it doesn't run here.
     // Download and run the starter site to try the actual classes because they are
-    // not included with the framework.  
+    // not included with the framework.
     return '<a href="https://github.com/fastsitephp/starter-site">Try it on the starter site</a>';
 
     // EXAMPLE_CODE_START
@@ -4320,27 +4320,28 @@ $app->get('/examples/starter-site', function() use ($app) {
     //
     //     https://github.com/fastsitephp/starter-site
     //
-    // Core Middleware classes are provided and can be modified for your site.
+    // As classes de Middleware são fornecidas e podem ser modificadas para
+    // o seu site.
     //
-    // To use them specify the 'Class.method' on route filter functions or
-    // when mounting additional files.
+    // Para utilizá-las especifique 'Class.method' nas funções filtro da rota
+    // ou quando montando arquivos adicionais.
 
-    // Require a user to be logged in in order to use a page
+    // Exige um usuário logado para utilizar a págin
     $app->get('/secure-page', 'SecureController')->filter('Auth.hasAccess');
 
-    // Require an authenticated user and use CORS
+    // Exige um usuário autenticado e utilize CORS
     $app
         ->get('/api/:record_type', 'ApiController.getData')
         ->filter('Cors.acceptAuth')
         ->filter('Auth.hasAccess');
 
-    // Only run a route from localhost
+    // Somente rode uma rota de localhost
     $app->get('/server-info', function() {
         phpinfo();
     })
     ->filter('Env.isLocalhost');
-    
-    // Only load a file if running from localhost
+
+    // Somente carregue um arquivo se estiver rodando à partir de localhost
     $app->mount('/sysinfo/', 'routes-sysinfo.php', 'Env.isLocalhost');
     // EXAMPLE_CODE_END
 });
