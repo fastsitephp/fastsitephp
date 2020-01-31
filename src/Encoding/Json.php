@@ -30,17 +30,20 @@ namespace FastSitePHP\Encoding;
 class Json
 {
     /**
-     * Encode data to a JSON String. By default JSON_UNESCAPED_UNICODE is used and
-     * [$options] can be set to any valid value for [json_encode()].
+     * Encode data to a JSON String. By default when using PHP 5.4+ JSON_UNESCAPED_UNICODE
+     * is used for [$options]. [$options] can be set to any valid value for [json_encode()].
      *
      * @param mixed $data
-     * @param int $options (Optional)
+     * @param int|null $options (Optional)
      * @return string
      * @throws \Exception
      */
-    public static function encode($data, $options = JSON_UNESCAPED_UNICODE)
+    public static function encode($data, $options = null)
     {
-        $json = json_encode($data, $options);
+        if ($options === null && PHP_VERSION_ID >= 50400) {
+            $options = JSON_UNESCAPED_UNICODE;
+        }
+        $json = json_encode($data, $options);        
         if ($json === false) {
             if (PHP_VERSION_ID < 50500) {
                 require_once __DIR__ . '/../Polyfill/json_last_error_msg_compat.php';

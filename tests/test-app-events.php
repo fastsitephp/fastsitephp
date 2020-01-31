@@ -103,7 +103,7 @@ $app->notFound(function() use ($app) {
 // as shown below. [error()] events do not trigger beforeSend() or notFound() but do 
 // end up calling after() functions. Code cannot be called after run() when an error occurs.
 
-$app->error(function($response_code, \Exception $e) use ($app) {
+$app->error(function($response_code, $e) use ($app) {
     switch ($app->requestedPath()) {
         case '/error-with-events':
             $app->error_data = sprintf('[error1:[%d]:[%s]]', $response_code, $e->getMessage());

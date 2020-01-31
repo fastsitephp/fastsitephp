@@ -160,7 +160,7 @@ class JWT implements CryptoInterface
      *
      * @param string $token
      * @param string $key
-     * @return array - The payload that was originally encoded.
+     * @return array|null - The payload that was originally encoded.
      * @throws \Exception
      */
     public function decode($token, $key)
@@ -241,7 +241,7 @@ class JWT implements CryptoInterface
         $expected = $this->claimType($claim);
         $type = gettype($value);
         if ($type !== $expected) {
-            $error = 'Error adding JWT Claim. Field [%s] should be a [%] but received a [%s].';
+            $error = 'Error adding JWT Claim. Field [%s] should be a [%s] but received a [%s].';
             $error = sprintf($error, $claim, $expected, $type);
             throw new \Exception($error);
         }
@@ -342,7 +342,7 @@ class JWT implements CryptoInterface
             throw new \Exception($error);
         } elseif (count(explode('.', $token)) !== 3) {
             $error = 'Invalid token passed to [%s->%s()]. Format must be in the format of \'header.payload.signature\'.';
-            $error = sprintf($error, __CLASS__, __FUNCTION__, gettype($token));
+            $error = sprintf($error, __CLASS__, __FUNCTION__);
             throw new \Exception($error);
         }
 

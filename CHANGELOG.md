@@ -4,9 +4,14 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 ## Next Release (Changes on Master Branch)
 
-* **Thanks Nicolas CARPi for opening the issue related to the following items:** https://github.com/NicolasCARPi
-* Adding support for linting with `https://github.com/vimeo/psalm`, this requires mostly PHPDoc Comment updates for the many classes
-* Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP works with older versions of PHP but they will be dropped in the future.
+* Improved Framework support with FreeBSD
+  * `FileEncryption` Class now has improved support for large file encryption (2+ GB) on a basic FreeBSD Server Setup
+  * Additional documentation on FreeBSD Server Setup: https://www.fastsitephp.com/en/documents/install-php-on-linux
+* Fixed a bug with `FastSitePHP\Encoding\Json::encode()` that prevented it from working when using PHP `5.3`. This did not affect any other version of PHP.
+
+* **Thanks Nicolas CARPi for opening the issue related to the following items** https://github.com/NicolasCARPi
+* Adding support for PHP linting with https://github.com/phpstan/phpstan or https://github.com/vimeo/psalm, this requires mostly PHPDoc Comment updates for the many classes _(Currently in Progress)_
+* Updated `README.md` file with warning about using older versions of PHP. Currently FastSitePHP supports older versions of PHP that are widely used by not considered secure.
 
 ## 1.2.0 (January 10, 2020)
 

@@ -54,7 +54,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
     * Run a SQL Query (SELECT, INSERT, ...) and return a PDOStatement object
     *
     * @param string $sql
-    * @param string $params
+    * @param array|null $params
     * @return \PDOStatement
     * @throws \Exception
     */

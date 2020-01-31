@@ -13,9 +13,9 @@
             "defaultValue": "0",
             "description": "Error code if there is a major failure with an HTTP Request such as a timeout or SSL Cert Error.  0 if no error.\n\nThe error code is the value returned by [curl_errno()].",
             "attributes": [
-                "@var int"
+                "@var int|string"
             ],
-            "dataType": "int",
+            "dataType": "int\nstring",
             "links": []
         },
         {

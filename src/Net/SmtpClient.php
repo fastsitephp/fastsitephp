@@ -619,7 +619,7 @@ class SmtpClient
      * Log to callback if one was defined when the class was created
      *
      * @param string $type
-     * @param string $message
+     * @param string|null $message
      */
     private function log($type, $message)
     {

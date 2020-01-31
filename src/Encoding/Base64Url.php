@@ -38,10 +38,12 @@ class Base64Url
     }
     
     /**
-     * Decode Base64-URL to a string
+     * Decode Base64-URL to a string. Returns the decoded data or false on failure.
+     * The returned data may be binary. This uses the same behavior as calling the PHP
+     * built-in function [base64_decode()].
      * 
      * @param string $data
-     * @return string
+     * @return string|false
      * @throws \Exception
      */
     public static function decode($data)

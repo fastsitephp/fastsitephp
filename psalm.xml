@@ -18,6 +18,16 @@
 
         <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
 
+        <!--
+            Ideally the <referencedMethod> node would be used in many place, examples:
+                <UnresolvableInclude>
+                    <referencedMethod name="FastSitePHP\Application::render" />
+                <PossiblyNullArgument errorLevel="info">
+                    <referencedMethod name="FastSitePHP\Web\Response::send" />
+            However it doesn't work on many note types so errors are generally excluded by file:
+                https://github.com/vimeo/psalm/issues/2297
+        -->
+      
         <DeprecatedMethod errorLevel="info" />
         <DeprecatedProperty errorLevel="info" />
         <DeprecatedClass errorLevel="info" />
@@ -34,12 +44,15 @@
         <MissingReturnType errorLevel="info" />
 
         <!--
-            MissingPropertyType gives warnings on private class properties that do not need PHPDoc comments
+            MissingPropertyType gives warnings on private and protected class properties that do not need PHPDoc comments
         -->
         <MissingPropertyType errorLevel="info">
             <errorLevel type="suppress">
+                <file name="src\Data\Db2Database.php" />
+                <file name="src\Data\OdbcDatabase.php" />
                 <file name="src\FileSystem\Sync.php" />
                 <file name="src\FileSystem\Search.php" />
+                <file name="src\Lang\L10N.php" />
                 <file name="src\Net\Email.php" />
                 <file name="src\Net\SmtpClient.php" />
                 <file name="src\Security\Crypto\AbstractCrypto.php" />
@@ -60,21 +73,20 @@
 
         <RedundantCondition errorLevel="info" />
 
-        <DocblockTypeContradiction errorLevel="info" />
+        <DocblockTypeContradiction errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Web\Request.php" />
+            </errorLevel>
+        </DocblockTypeContradiction>
         <RedundantConditionGivenDocblockType errorLevel="info" />
 
-        <!--
-            Ideally the <referencedMethod> node would be used here, example:
-                <referencedMethod name="FastSitePHP\Application::render" />
-            However it doesn't work on <UnresolvableInclude> so files have to be excluded:
-                https://github.com/vimeo/psalm/issues/2297
-        -->
     	<UnresolvableInclude errorLevel="info">
             <errorLevel type="suppress">
                 <file name="src\Application.php" />
                 <file name="src\AppMin.php" />
                 <file name="src\Security\Password.php" />
                 <file name="src\Data\Log\HtmlLogger.php" />
+                <file name="src\Security\Crypto\Random.php" />
             </errorLevel>
         </UnresolvableInclude>
 
@@ -96,5 +108,10 @@
         <RawObjectIteration errorLevel="info" />
 
         <InvalidStringClass errorLevel="info" />
+        <PossiblyNullArgument errorLevel="info">
+            <errorLevel type="suppress">
+                <file name="src\Web\Response.php" />
+            </errorLevel>
+        </PossiblyNullArgument>
     </issueHandlers>
 </psalm>

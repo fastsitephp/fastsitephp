@@ -122,6 +122,14 @@ $res = $http->request('https://httpbin.org/anything', array(
 ));
 print_r($res);
 
+$http = new \FastSitePHP\Net\HttpClient();
+$res = $http->request('https://httpbin.org/anything', array(
+    'mode' => 'php',
+    'headers' => $headers,
+    'parse_json' => false,
+));
+print_r($res);
+
 // PUT or POST a file
 // $data = array('test' => '123');
 // $http = new \FastSitePHP\Net\HttpClient();
