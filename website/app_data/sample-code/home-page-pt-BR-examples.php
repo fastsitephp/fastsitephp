@@ -4303,10 +4303,11 @@ $app->get('/examples/l10n', function() use ($app) {
 });
 
 $app->get('/examples/starter-site', function() use ($app) {
-    // This route is included so code shows in the API docs, but it doesn't run here.
-    // Download and run the starter site to try the actual classes because they are
-    // not included with the framework.
-    return '<a href="https://github.com/fastsitephp/starter-site">Try it on the starter site</a>';
+    // Essa rota está inclusa para que o código seja exibido nos documentos da
+    // API, mas não é executado aqui. Faça o download e execute o site inicial
+    // para experimentar as classes reais, porque elas não estão incluídas no
+    // framework.
+    return '<a href="https://github.com/fastsitephp/starter-site">Teste-a no Site Inicial</a>';
 
     // EXAMPLE_CODE_START
     // TITLE: Starter Site Middleware
