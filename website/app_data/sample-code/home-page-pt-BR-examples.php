@@ -4327,7 +4327,7 @@ $app->get('/examples/starter-site', function() use ($app) {
     // Para utilizá-las especifique 'Class.method' nas funções filtro da rota
     // ou quando montando arquivos adicionais.
 
-    // Exige um usuário logado para utilizar a págin
+    // Exige um que o usuário esteja logado para utilizar uma página
     $app->get('/secure-page', 'SecureController')->filter('Auth.hasAccess');
 
     // Exige um usuário autenticado e utilize CORS
