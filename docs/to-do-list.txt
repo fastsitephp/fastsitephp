@@ -20,7 +20,7 @@ TODO List
 |   All contributions are welcome.
 |
 --------------------------------------------------------------------------
-        
+
 *) Starter Site
     - Finish full PHP 5.3 support, switch code under [app] and [app/Controllers] back to PHP 5.4 syntax
         and add a new script which will be called from [scripts\install.php] that converts the files back to 5.3 format if needed.
@@ -46,6 +46,9 @@ TODO List
             https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
         Example page:
             https://www.fastsitephp.com/en/api
+    - Improve Accessibility and Best Practices based on Chrome DevTools Lightsail Audit
+        - Need to support HTTP/2 on the servers in addition to http/1.1
+        - Remove duplicate [id] in the SVG on home page and other minor items
 
 *) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
