@@ -1,0 +1,191 @@
+{
+    "name": "FastSitePHP\\Media\\Image",
+    "short_name": "Media\\Image",
+    "link": "Media_Image",
+    "namespace": "FastSitePHP\\Media",
+    "description": "Allow an image file to be opened, manipulated, and saved. This class provides basic functionally and is not full featured with filters or advanced features. It is intended to provide needed core functionally when working with image file uploads and for thumbnail generation.\n\nFor additional PHP image libraries see the following projects:",
+    "attributes": [
+        "@link http:\/\/image.intervention.io\/",
+        "@link https:\/\/kosinix.github.io\/grafika\/",
+        "@link https:\/\/phpimageworkshop.com\/",
+        "@link https:\/\/murze.be\/a-package-to-easily-manipulate-images-in-php",
+        "@link https:\/\/github.com\/claviska\/SimpleImage",
+        "@link https:\/\/github.com\/spatie\/image-optimizer",
+        "@link https:\/\/github.com\/mohuishou\/ImageOCR"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct($image_path = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor - Optionally open an image",
+            "attributes": [
+                "@param null|string $image_path"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "__destruct()",
+            "target": "fn___destruct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Destructor - Free memory by closing image when done.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "open($image_path)",
+            "target": "fn_open",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Open a image file (jpg, png, gif, or webp). Image type is determined by the file extension. If the file contains an invalid image then an E_WARNING error will be triggered causing an ErrorException to be thrown when using the default error setup. Opening a [*.webp] image requires PHP 5.4 or greater.",
+            "attributes": [
+                "@param string $image_path - Full path of the image",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "resize($max_width = null, $max_height = null)",
+            "target": "fn_resize",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Resize an image to a specified max width and height.\n\nWhen both width and height are specified the image will be sized to the smaller of the two values so it fits.\n\nIf only width or only height are specified then image will be sized to that value.",
+            "attributes": [
+                "@param null|int $max_width",
+                "@param null|int $max_height",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "crop($left, $top, $width, $height, $target_width = null, $target_height = null)",
+            "target": "fn_crop",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Resize an image to a specified max width and height.\n\nThis can be used with JavaScript or App cropping libraries to allow users to generate thumbnails from a full uploaded image. For example allow a user to crop an uploaded image to a profile thumbnail.\n\nTarget Width and Height are optional and can be used to force images to a specific size. For example if you want to allow users to generate a 50x50 profile thumbnail on every crop then use target width and height.",
+            "attributes": [
+                "@param int $left - X Coordinate",
+                "@param int $top -  Y Coordinate",
+                "@param int $width",
+                "@param int $height",
+                "@param null|int $target_width",
+                "@param null|int $target_height",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "rotateLeft()",
+            "target": "fn_rotateLeft",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Rotate an image 90 degrees left (counter-clockwise).",
+            "attributes": [
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "rotateRight()",
+            "target": "fn_rotateRight",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Rotate an image 90 degrees right (clockwise).",
+            "attributes": [
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "rotate($degrees)",
+            "target": "fn_rotate",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Rotate an image by the given angle.",
+            "attributes": [
+                "@param float $degrees",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "saveQuality($new_value = null)",
+            "target": "fn_saveQuality",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify the save quality (0 to 100) to be used when saving JPG or WEBP files.\n\nDefaults to 90.",
+            "attributes": [
+                "@param null|int $new_value",
+                "@return int|$this"
+            ],
+            "returnType": "int | $this",
+            "links": []
+        },
+        {
+            "definition": "pngCompression($new_value = null)",
+            "target": "fn_pngCompression",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify the save PNG save compression-level (0 to 9). Defaults to 6.\n\nFor more on this topic refer to the links:",
+            "attributes": [
+                "@link http:\/\/marcjschmidt.de\/blog\/2013\/10\/25\/php-imagepng-performance-slow.html",
+                "@link https:\/\/tinypng.com\/",
+                "@link https:\/\/compresspng.com\/",
+                "@param null|int $new_value",
+                "@return int|$this"
+            ],
+            "returnType": "int | $this",
+            "links": [
+                "http:\/\/marcjschmidt.de\/blog\/2013\/10\/25\/php-imagepng-performance-slow.html",
+                "https:\/\/tinypng.com\/",
+                "https:\/\/compresspng.com\/"
+            ]
+        },
+        {
+            "definition": "save($file_name = null)",
+            "target": "fn_save",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Save the image. If no file name is specified then the name of the opened file will be overwritten otherwise if only a file name is specified then a new file will be saved in the same directory\/folder. Additionally full paths can be specified to save to a different directory\/folder.\n\nSaving a [*.webp] image requires PHP 5.4 or greater, however using PHP 7 or later is recommended if saving WEBP because saving might silently fail on old versions of PHP.",
+            "attributes": [
+                "@param null|string $file_name",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "close()",
+            "target": "fn_close",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Close Image to free memory",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": [
+        "http:\/\/image.intervention.io\/",
+        "https:\/\/kosinix.github.io\/grafika\/",
+        "https:\/\/phpimageworkshop.com\/",
+        "https:\/\/murze.be\/a-package-to-easily-manipulate-images-in-php",
+        "https:\/\/github.com\/claviska\/SimpleImage",
+        "https:\/\/github.com\/spatie\/image-optimizer",
+        "https:\/\/github.com\/mohuishou\/ImageOCR"
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\Random",
+    "short_name": "Security\\Crypto\\Random",
+    "link": "Security_Crypto_Random",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "Generates cryptographically secure pseudo-random bytes.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "bytes($length)",
+            "target": "fn_bytes",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "This function calls [random_bytes()] for newer versions of PHP and if using any version of PHP 5 then the function is first polyfilled using compatibility functions from the [paragonie\/random_compat] library. [paragonie\/random_compat] is widely used and known to be secure. It is used in WordPress and many other projects.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.random-bytes.php",
+                "@link https:\/\/github.com\/paragonie\/random_compat",
+                "@param int $length",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.random-bytes.php",
+                "https:\/\/github.com\/paragonie\/random_compat"
+            ]
+        }
+    ],
+    "links": []
+}

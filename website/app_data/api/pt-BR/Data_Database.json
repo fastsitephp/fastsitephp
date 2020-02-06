@@ -1,0 +1,179 @@
+{
+    "name": "FastSitePHP\\Data\\Database",
+    "short_name": "Data\\Database",
+    "link": "Data_Database",
+    "namespace": "FastSitePHP\\Data",
+    "description": "The Database class provides a thin wrapper for PHP Data Objects to reduce the amount of code needed when querying a database.",
+    "attributes": [
+        "@link http:\/\/php.net\/manual\/en\/book.pdo.php",
+        "@link http:\/\/php.net\/manual\/en\/pdo.drivers.php"
+    ],
+    "properties": [
+        {
+            "name": "db",
+            "target": "prop_db",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "PDO Object for the Database",
+            "attributes": [
+                "@var null|PDO"
+            ],
+            "dataType": "null\nPDO",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "__construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class constructor. Creates Db Connection using PDO.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/pdo.construct.php",
+                "@link http:\/\/php.net\/manual\/en\/features.persistent-connections.php",
+                "@param string $dsn - Database Connection String (Data Source Name)",
+                "@param null|string $user - User Name for the Connection",
+                "@param null|string $password - Password for the User",
+                "@param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.",
+                "@param null|array $options - Init options for the database"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/php.net\/manual\/en\/pdo.construct.php",
+                "http:\/\/php.net\/manual\/en\/features.persistent-connections.php"
+            ]
+        },
+        {
+            "definition": "query($sql, array $params = null)",
+            "target": "fn_query",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a Query and return results as any array of records. Records are each associative arrays. If no records are found an empty array is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "queryOne($sql, array $params = null)",
+            "target": "fn_queryOne",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single record and return it as a associative array or return null if the record does not exist.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array|null"
+            ],
+            "returnType": "array | null",
+            "links": []
+        },
+        {
+            "definition": "queryValue($sql, array $params = null)",
+            "target": "fn_queryValue",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for a single value from the first column of the first record found. If no records were found null is returned.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "queryList($sql, array $params = null)",
+            "target": "fn_queryList",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for an array of values from the first column of all records found.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "querySets($sql, array $params = null)",
+            "target": "fn_querySets",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Query for and return multiple Row Sets from a single query. This feature works in most databases but is not available for SQLite.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "execute($sql, array $params = null)",
+            "target": "fn_execute",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Run a SQL Action Statement (INSERT, UPDATE, DELETE, etc) and return the number or rows affected. If multiple statments are passed then the returned row count will likely be for only the last query.",
+            "attributes": [
+                "@param string $sql",
+                "@param array|null $params",
+                "@return int - Row count of the last query"
+            ],
+            "returnType": "int - Row count of the last query",
+            "links": []
+        },
+        {
+            "definition": "lastInsertId($name = null)",
+            "target": "fn_lastInsertId",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns the ID of the last inserted row or sequence value. This calls the PDO function [lastInsertId()]. Additionally if using SQL the last ID can be obtained from the following queries:\n\n    MySQL:      SELECT LAST_INSERT_ID()\n    SQLite:     SELECT last_insert_rowid()\n    SQL Server: SELECT SCOPE_IDENTITY()\n                SELECT @@IDENTITY\n    IBM:        SELECT IDENTITY_VAL_LOCAL() FROM SYSIBM.SYSDUMMY1\n\nOracle and PostgreSQL uses Sequence Objects of Auto-Numbers.\n\nExample if using SQL with [queryValue()]:\n    $id = $db->queryValue('SELECT SCOPE_IDENTITY()');",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/pdo.lastinsertid.php",
+                "@param string|null $name - Optional name of the sequence object from which the ID should be returned.",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/pdo.lastinsertid.php"
+            ]
+        },
+        {
+            "definition": "executeMany($sql, array $records)",
+            "target": "fn_executeMany",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Prepare a SQL Statement and run many record parameters against it. This can be used for transacations such as bulk record inserts. Returns the total number of rows affected for all queries.",
+            "attributes": [
+                "@param string $sql",
+                "@param array $records",
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        },
+        {
+            "definition": "trimStrings($new_value = null)",
+            "target": "fn_trimStrings",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether spaces on strings should be trimmed when calling [query(), queryOne(), queryValue(), queryList(), querySets()].\n\nWhen called strings are trimmed after the records are queried and before the function returns the result.\n\nOften legacy databases will use [CHAR] text fields over [VARCHAR] or similar types. For example when using a [CHAR] field:\n    Field: [name] CHAR(20)\n    Data saved as \"John                \"\n\nWhen querying by default the spaces will be returned however if this function is set to [true] then \"John\" would be returned.\n\nDefaults to [false]. Calling this function takes extra memory vs not using it so if you have a high traffic site and want to trim strings you may want to do so in the SQL Statement and keep this [false].\n\nFor a small amount of records (several hundred or less) this has little or not noticeable impact however if using a large set of records (1,000+) this setting may cause a about a 10% increase in memory or more.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        }
+    ],
+    "links": [
+        "http:\/\/php.net\/manual\/en\/book.pdo.php",
+        "http:\/\/php.net\/manual\/en\/pdo.drivers.php"
+    ]
+}

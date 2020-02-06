@@ -1,0 +1,131 @@
+{
+    "name": "FastSitePHP\\Net\\HttpClient",
+    "short_name": "Net\\HttpClient",
+    "link": "Net_HttpClient",
+    "namespace": "FastSitePHP\\Net",
+    "description": "HTTP Client\n\nThis class provides a simple and secure API and wraps either CURL or PHP Stream Context depending on what is available. Common HTTP requests can be made with one line of code using static helper functions.",
+    "attributes": [],
+    "properties": [
+        {
+            "name": "cainfo_path",
+            "target": "prop_cainfo_path",
+            "isStatic": true,
+            "defaultValue": "__DIR__ . '\/cacert.pem'",
+            "description": "Some OS's (often Windows and Mac) will not support HTTPS by default unless a file is downloaded and [php.ini] is updated outside of PHP. The downloaded file handles [HTTPS] validation. A copy of the file [cacert.pem] is included in this directory in case it doesn't exist on the OS, however the file needs to be updated from time to time to keep current. This property allows an app to specify it's own version of the file in another directory.",
+            "attributes": [
+                "@link https:\/\/curl.haxx.se\/docs\/caextract.html - Download URL for [cacert.pem]",
+                "@link http:\/\/www.php.net\/manual\/en\/curl.configuration.php#ini.curl.cainfo",
+                "@var string"
+            ],
+            "dataType": "string",
+            "links": [
+                "https:\/\/curl.haxx.se\/docs\/caextract.html - Download URL for [cacert.pem]",
+                "http:\/\/www.php.net\/manual\/en\/curl.configuration.php#ini.curl.cainfo"
+            ]
+        },
+        {
+            "name": "allow_insecure",
+            "target": "prop_allow_insecure",
+            "isStatic": true,
+            "defaultValue": "false",
+            "description": "Allow HTTPS to be ignored. This should only be used as last resort in trusted environments as it breaks security. Instead it is better to set [HttpClient::$cainfo_path].",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "get($url, array $headers = null)",
+            "target": "fn_get",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Submit a GET Request and optionally specify an array of Request Headers.",
+            "attributes": [
+                "@param string $url",
+                "@param array|null $headers - Optional array of [key => value]",
+                "@return HttpResponse"
+            ],
+            "returnType": "HttpResponse",
+            "links": []
+        },
+        {
+            "definition": "postJson($url, $data, array $headers = null)",
+            "target": "fn_postJson",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Submit a POST Request with JSON Data as the Request Body.",
+            "attributes": [
+                "@param string $url",
+                "@param array|object $data",
+                "@param array|null $headers",
+                "@return HttpResponse"
+            ],
+            "returnType": "HttpResponse",
+            "links": []
+        },
+        {
+            "definition": "postForm($url, $fields, array $headers = null)",
+            "target": "fn_postForm",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Submit a POST Request with Form Data. If sending a form with files and form type 'multipart\/form-data' use the PHP class CURLFile. See examples for more.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/class.curlfile.php",
+                "@param string $url",
+                "@param array|object $fields",
+                "@param array|null $headers",
+                "@return HttpResponse"
+            ],
+            "returnType": "HttpResponse",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/class.curlfile.php"
+            ]
+        },
+        {
+            "definition": "downloadFile($url, $path, array $headers = null)",
+            "target": "fn_downloadFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Submit a GET Request and save the Response Body to a file. [HttpResponse->content] will contain the saved file path.",
+            "attributes": [
+                "@param string $url",
+                "@param string $path - Full path of the file to save",
+                "@param array|null $headers",
+                "@return HttpResponse"
+            ],
+            "returnType": "HttpResponse",
+            "links": []
+        },
+        {
+            "definition": "request($url, array $options = null)",
+            "target": "fn_request",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Submit a Request and return an HttpResponse object.\n\nOptions:\n  'mode' = null or 'curl' or 'php'\n      Defaults to null which uses curl. This option is defined for unit testing. Leaving the default works best.\n  'method' = 'GET', 'POST', 'PUT', etc\n      Defaults to 'GET'\n  'headers' = Array of Request Headears [key => value]\n  'json' = Array or Object of Data to send with the Request\n  'form' = Array or Object of Form Data, see additional comments in [postForm()]\n  'send_file' = Full path of a file to send as the Request Body\n  'save_file' = Full path where to save the response, if set then [HttpResponse->content] will contain the saved file path\n  'timeout' = Timeout in Seconds\n      Defaults to 0 which means the code stops until the request completes.\n      When using curl mode this value applies to both the inital connection and the curl request.\n  'parse_json' = true\/false - By default if a JSON response is returned the [$res->content]\n      will be parsed to [$res->json] as an Associative Array. It can be turned off by setting this to false",
+            "attributes": [
+                "@param string $url",
+                "@param array|null $options",
+                "@return HttpResponse"
+            ],
+            "returnType": "HttpResponse",
+            "links": []
+        },
+        {
+            "definition": "certPath()",
+            "target": "fn_certPath",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the location for the [cacert.pem] file (the name can vary from system to system). Also see comments in for static property [cainfo_path].",
+            "attributes": [
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": []
+}

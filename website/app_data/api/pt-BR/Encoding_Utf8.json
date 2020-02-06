@@ -1,0 +1,29 @@
+{
+    "name": "FastSitePHP\\Encoding\\Utf8",
+    "short_name": "Encoding\\Utf8",
+    "link": "Encoding_Utf8",
+    "namespace": "FastSitePHP\\Encoding",
+    "description": "UTF-8 Encoding\n\nFor most PHP sites UTF-8 is the default character set and using this class is not needed. This class is useful for forcing different character sets to UTF-8 prior to JSON or XML encoding.\n\nThe PHP function [json_encode()] requires UTF-8 prior to encoding, otherwise it will trigger an error:\n    JSON_ERROR_UTF8 - 'Malformed UTF-8 characters, possibly incorrectly encoded'\n\nFor example, IBM i-Series Servers use EBCDIC character encoding which correctly translates to UTF-8 for most characters, however it will trigger the error for some characters.\n\nAnother example is on FastSitePHP's Encryption Unit Tests, an array of binary strings need to be converted to UTF-8 prior to JSON encoding and hashing. Using this for binary data in most situations is not recommended, rather if you are working with binary files or data use binary format directly.",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/UTF-8"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "encode($data)",
+            "target": "fn_encode",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Encode data to UTF-8",
+            "attributes": [
+                "@param mixed $data",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/UTF-8"
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "name": "FastSitePHP\\Encoding\\Base64Url",
+    "short_name": "Encoding\\Base64Url",
+    "link": "Encoding_Base64Url",
+    "namespace": "FastSitePHP\\Encoding",
+    "description": "Base64-URL Safe Encoding\n\nPHP has built-in support for Base64 Encoding but not Base64-URL encoding. This class encodes and decodes Base64-URL safe strings.\n\nThe difference between Base64 and Base64-URL is that Base64-URL uses '-_' characters instead of '+\/' and doesn't include '=' padding.",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/Base64",
+        "@link https:\/\/tools.ietf.org\/html\/rfc4648#section-5",
+        "@link https:\/\/tools.ietf.org\/html\/rfc7515#appendix-C"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "encode($data)",
+            "target": "fn_encode",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Encode a string as Base64-URL",
+            "attributes": [
+                "@param string $data",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "decode($data)",
+            "target": "fn_decode",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Decode Base64-URL to a string",
+            "attributes": [
+                "@param string $data",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/Base64",
+        "https:\/\/tools.ietf.org\/html\/rfc4648#section-5",
+        "https:\/\/tools.ietf.org\/html\/rfc7515#appendix-C"
+    ]
+}

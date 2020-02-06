@@ -1,0 +1,41 @@
+{
+    "name": "FastSitePHP\\Encoding\\Json",
+    "short_name": "Encoding\\Json",
+    "link": "Encoding_Json",
+    "namespace": "FastSitePHP\\Encoding",
+    "description": "Encode to JSON and decode from JSON.\n\nThis classes uses the built-in [json_encode()] and [json_decode()] functions however rather than returning [false] or [null] on errors an exception is thrown.\n\nThis class will also create a polyfill function for [json_last_error_msg()] on old versions of PHP if there is an error, and provides compatible code for JSON_BIGINT_AS_STRING when decoding. By default PHP converts large integers to floating-point numbers. When this class is used to decode large ints are converted to strings to prevent data loss.\n\nFor most code calling the built-in [json_encode()] and [json_decode()] functions are recommend over this. The main reason to use this class is for JSON_BIGINT_AS_STRING support on old versions of PHP.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "encode($data, $options = JSON_UNESCAPED_UNICODE)",
+            "target": "fn_encode",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Encode data to a JSON String. By default JSON_UNESCAPED_UNICODE is used and [$options] can be set to any valid value for [json_encode()].",
+            "attributes": [
+                "@param mixed $data",
+                "@param int $options (Optional)",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "decode($text)",
+            "target": "fn_decode",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Decode a JSON string back to data. This is equivalent to using the following settings with the built-in function:\n\n    $data = json_decode($text, true, 512, JSON_BIGINT_AS_STRING);\n\nWhen objects are decoded they are returned as PHP Associative Arrays.",
+            "attributes": [
+                "@param string $text",
+                "@return mixed",
+                "@throws \\Exception"
+            ],
+            "returnType": "mixed",
+            "links": []
+        }
+    ],
+    "links": []
+}

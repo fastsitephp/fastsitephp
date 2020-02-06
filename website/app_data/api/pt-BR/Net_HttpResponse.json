@@ -1,0 +1,87 @@
+{
+    "name": "FastSitePHP\\Net\\HttpResponse",
+    "short_name": "Net\\HttpResponse",
+    "link": "Net_HttpResponse",
+    "namespace": "FastSitePHP\\Net",
+    "description": "This class is returned from HTTP Request functions when using the [HttpClient] class.",
+    "attributes": [],
+    "properties": [
+        {
+            "name": "error",
+            "target": "prop_error",
+            "isStatic": false,
+            "defaultValue": "0",
+            "description": "Error code if there is a major failure with an HTTP Request such as a timeout or SSL Cert Error.  0 if no error.\n\nThe error code is the value returned by [curl_errno()].",
+            "attributes": [
+                "@var int"
+            ],
+            "dataType": "int",
+            "links": []
+        },
+        {
+            "name": "status_code",
+            "target": "prop_status_code",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Status Code of the Response [200, 404, 500, etc].",
+            "attributes": [
+                "@var int|null"
+            ],
+            "dataType": "int\nnull",
+            "links": []
+        },
+        {
+            "name": "headers",
+            "target": "prop_headers",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "HTTP Response Headers",
+            "attributes": [
+                "@var array|null"
+            ],
+            "dataType": "array\nnull",
+            "links": []
+        },
+        {
+            "name": "content",
+            "target": "prop_content",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Response Body as a Text String. PHP Strings are array's of bytes so binary responses will also be in string format.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "json",
+            "target": "prop_json",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Response Body parsed to an Array for JSON Responses. This can be turned off by setting the option [parse_json = false] from [HttpClient->request()].",
+            "attributes": [
+                "@var array|null"
+            ],
+            "dataType": "array\nnull",
+            "links": []
+        },
+        {
+            "name": "info",
+            "target": "prop_info",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Array of detailed information for the request and response from [curl_getinfo()]. Example ($res->info['CURLINFO_TOTAL_TIME']) if set will return the total transaction time in seconds.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.curl-getinfo.php",
+                "@var array|null"
+            ],
+            "dataType": "array\nnull",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.curl-getinfo.php"
+            ]
+        }
+    ],
+    "methods": [],
+    "links": []
+}

@@ -1,0 +1,122 @@
+{
+    "name": "FastSitePHP\\Lang\\I18N",
+    "short_name": "Lang\\I18N",
+    "link": "Lang_I18N",
+    "namespace": "FastSitePHP\\Lang",
+    "description": "Internationalization (I18N) API\n\nThis class provides an easy to use API for sites and apps that need to support multiple languages.\n\n[i18n] is spelled \"Internationalisation\" in British English. [i18n] is an acronym\/numeronym that represents (\"i\" + 18 characters + \"n\"). The difference is US English uses \"z\" while British English uses an \"s\" in the spelling of the word.\n\nUsing this class requires a global [\\FastSitePHP\\Application] object to be assigned to the variable [$app].",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/Internationalization_and_localization",
+        "@link https:\/\/www.w3.org\/International\/questions\/qa-i18n"
+    ],
+    "properties": [
+        {
+            "name": "loaded_files",
+            "target": "prop_loaded_files",
+            "isStatic": true,
+            "defaultValue": "[]",
+            "description": "Array of file paths loaded when calling [langFile()] in the order that they were loaded. This property is primarily used for Unit Testing however it can also be useful to help so unexpected translations in case multiple files are loaded.",
+            "attributes": [
+                "@var array"
+            ],
+            "dataType": "array",
+            "links": []
+        },
+        {
+            "name": "opened_text_files",
+            "target": "prop_opened_text_files",
+            "isStatic": true,
+            "defaultValue": "[]",
+            "description": "Array of file paths opened when calling [textFile()] in the order that they were loaded. Just like [$loaded_files] this property is primarily used for Unit Testing.",
+            "attributes": [
+                "@var array"
+            ],
+            "dataType": "array",
+            "links": []
+        },
+        {
+            "name": "redirect_on_missing_lang",
+            "target": "prop_redirect_on_missing_lang",
+            "isStatic": true,
+            "defaultValue": "false",
+            "description": "The default behavior if using a fallback language and the language is not matched is to send a 404 response when calling [langFile()].\n\nIf this is set to [true] then the user will be redirected to the same page using the fallback language. For this feature to work the requested URL must have the language parameter after the host (example: \"https:\/\/www.example.com\/{lang}\/{pages}\").",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "langFile($file_name, $lang)",
+            "target": "fn_langFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "This function read JSON files from a directory specified in the config setting ($app->config['I18N_DIR']) and then loaded translations are set to the app property ($app->locals['i18n']) so that they can be used with template rendering and from the calling page. When the language is verified as valid it is set to the app property ($app->lang).\n\nAll JSON files need to be in the same directory and have a format of [{name}.{lang}.json]. An optional main file named [_.{lang}.json] if found will first be loaded when this function is called.\n\nA fallback language can be specified so that missing translations default to another language. This allows partially translated sites to use this API. Fallback language is set as config setting ($app->config['I18N_FALLBACK_LANG']).\n\nIf a fallback language is defined and the language specified is not matched and the requested url has a format of [https:\/\/www.example.com\/{lang}\/{pages}] then this function will redirect to the fallback language and end PHP processing.\n\nThe file specified as a parameter to this function (or optional fallback) is required to exist; if not an exception is thrown. This paramater is not intended to be a based on user input however the generated file name is validated for security in case an app sets the value based on user input.\n\nExample Files:\n    _.en.json\n    _.es.json\n    header.en.json\n    header.es.json\n    about.en.json\n\nExample Code:\n    \/\/ Assuming the files above exist they would be loaded\n    \/\/ in the order shown above based on this code.\n    $app->config['I18N_DIR'] = __DIR__ . '\/i18n';\n    $app->config['I18N_FALLBACK_LANG'] = 'en';\n    I18N::langFile('header', 'es');\n    I18N::langFile('about', 'es');\n\n    \/\/ Typical usage is allow for an app to load a language\n    \/\/ file based on the Requested URL:\n    $app->get('\/:lang\/about', function($lang) {\n        I18N::langFile('about', $lang);",
+            "attributes": [
+                "@param string $file_name - Name of the file, example 'about' which returns 'about.fr.json' if language [fr] is selected",
+                "@param string $lang - User's Selected Language",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "textFile($file_path, $lang)",
+            "target": "fn_textFile",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return the contents of a file based on the User's selected language.\n\nJust like the function [langFile()] ths function uses a fallback language from the Application config settings to handle partially translated sites.\n\n[$file_path] is a full file path requires the text '{lang}' anywhere in the file path. The '{lang}' value gets replaced wiht the user's selected language. This paramater is intended to be hard-coded by the app and users should not have the ability to input their own file paths as it would be a security risk.\n\nThe file is required to exist (either selected language or fallback language) otherwise an exception is thrown.\n\nExample Code:\n    \/\/ Config Option\n    $app->config['I18N_FALLBACK_LANG'] = 'en';\n\n    \/\/ Typical usage is allow for an app to load file content\n    \/\/ based on the the User's Selected Language:\n    $app->get('\/:lang\/sample-code', function($lang) {\n        $file_path = __DIR__ . '\/..\/app_data\/files\/sample-code-{lang}.txt'\n        return I18N::textFile($file_path, $lang);",
+            "attributes": [
+                "@param string $file_path - Full file path containing '{lang}' in the path",
+                "@param string $lang - User's Selected language",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "getUserDefaultLang()",
+            "target": "fn_getUserDefaultLang",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return the default language for the user based on the 'Accept-Language' request header and available languages for the site.\n\nThis is useful to provide custom content for the user or to redirect to the user's language when they access the default URL.\n\nRequires config values:\n    $app->config['I18N_DIR']\n    $app->config['I18N_FALLBACK_LANG']\n\nExample usage:\n    $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '\/');",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "hasLang($lang)",
+            "target": "fn_hasLang",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return true if the language is supported by the site. For a language to be supported it must include a '_.{lang}.json' file in the [I18N_DIR] directory.\n\nRequires config value:\n    $app->config['I18N_DIR']",
+            "attributes": [
+                "@param string $lang",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "setup(Application $app)",
+            "target": "fn_setup",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Static function that can be called for each request to make sure that a language file is always loaded for template rendering when [$app->render()] is called.\n\nThis is useful if your site uses PHP or other templates for rendering and expects the [i18n] default file to always be available. For example an unexpected error or call to [$app->pageNotFound()] can trigger a template to be rendered.",
+            "attributes": [
+                "@param \\FastSitePHP\\Application $app",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/Internationalization_and_localization",
+        "https:\/\/www.w3.org\/International\/questions\/qa-i18n"
+    ]
+}

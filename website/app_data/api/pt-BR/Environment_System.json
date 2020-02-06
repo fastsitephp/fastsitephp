@@ -1,0 +1,72 @@
+{
+    "name": "FastSitePHP\\Environment\\System",
+    "short_name": "Environment\\System",
+    "link": "Environment_System",
+    "namespace": "FastSitePHP\\Environment",
+    "description": "System and OS Info",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "osVersionInfo()",
+            "target": "fn_osVersionInfo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns an array of basic information related to the Operating System. This typically includes human readable information such as the OS Version. On some older UNIX platforms this function may instead return the OS that PHP was built on but this is not expected on Windows, Linux, or Mac.\n\nFor detailed system information see the function [systemInfo()] in this class. See also [\\FastSitePHP\\Net\\Config->fqdn()]\n\nKeys in the Returned Array:\n    [ 'OS Type', 'Version Info', 'Release Version', 'Host Name', 'CPU Type' ]",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "systemInfo()",
+            "target": "fn_systemInfo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a string of System Info from the OS. If System info can't be determined then null will be returned. This function works with various OS's including Windows, Mac, and recent versions of Linux. It runs the following commands:\n\n    Linux:   cat \/etc\/os-release\n    Windows: ver\n    Mac:     system_profiler SPHardwareDataType SPSoftwareDataType\n    FreeBSD: uname -mrs\n    IBM AIX: uname -a\n\nIf running on Linux and the file [\/etc\/os-release] doesn't exist system info can possibly be obtained from one of the following commands:\n\n    lsb_release -a\n    cat \/etc\/*-release\n    cat \/etc\/*_version\n\nOn Windows detailed info may be obtained by using the command [systeminfo] instead however calling [systeminfo] often takes 10 - 30 seconds to run.\n\nFreeBSD also supports the command [freebsd-version] which will likely include the same info as this function.\n\nFor IBM iSeries (AS\/400) Newer versions of the OS inlude commands [lscfg, oslevel, prtconf] however often the OS is not updated so this function simply returns [uname -a].",
+            "attributes": [
+                "@link https:\/\/www.linux.org\/docs\/man5\/os-release.html",
+                "@link https:\/\/docs.microsoft.com\/en-us\/windows-server\/administration\/windows-commands\/systeminfo",
+                "@link https:\/\/docs.microsoft.com\/en-us\/windows-server\/administration\/windows-commands\/ver",
+                "@link https:\/\/www.freebsd.org\/cgi\/man.cgi?query=freebsd-version",
+                "@link https:\/\/www.ibm.com\/developerworks\/aix\/library\/au-aix_cmds\/index.html",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": [
+                "https:\/\/www.linux.org\/docs\/man5\/os-release.html",
+                "https:\/\/docs.microsoft.com\/en-us\/windows-server\/administration\/windows-commands\/systeminfo",
+                "https:\/\/docs.microsoft.com\/en-us\/windows-server\/administration\/windows-commands\/ver",
+                "https:\/\/www.freebsd.org\/cgi\/man.cgi?query=freebsd-version",
+                "https:\/\/www.ibm.com\/developerworks\/aix\/library\/au-aix_cmds\/index.html"
+            ]
+        },
+        {
+            "definition": "diskSpace($drive = null)",
+            "target": "fn_diskSpace",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of information related to free, used, and total space for a filesystem drive or disk partition. The returned values include the size calculated in Bytes, Megabytes, Gigabytes, and Percent. If this function is called with no parameters then the default drive or disk will be used. To get info for specific drive call this function with the disk partition (Mac, Linux) or Drive Letter (Windows), for example '\/dev\/disk0' or 'D:'. Internally this function uses PHP functions [disk_free_space()] and [disk_total_space()].\n\nKeys in the Returned Array:\n  [ 'Drive',\n    'Free Space Bytes', 'Free Space MB', 'Free Space GB', 'Free Space Percent',\n    'Used Space Bytes', 'Used Space MB', 'Used Space GB', 'Used Space Percent',\n    'Total Space Bytes', 'Total Space MB', 'Total Space GB' ]",
+            "attributes": [
+                "@param null|string $drive",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "mappedDrives()",
+            "target": "fn_mappedDrives",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Windows only function that returns an array of drive letters mapped to the server. For example if the server running PHP has drives C, D, and Z mapped then this function will return array('C:', 'D:', 'Z:'). I this function is called from a Non-Windows computer then an empty array will be returned.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        }
+    ],
+    "links": []
+}

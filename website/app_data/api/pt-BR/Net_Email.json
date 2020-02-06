@@ -1,0 +1,245 @@
+{
+    "name": "FastSitePHP\\Net\\Email",
+    "short_name": "Net\\Email",
+    "link": "Net_Email",
+    "namespace": "FastSitePHP\\Net",
+    "description": "Email Message API\n\nThis classes is used for sending emails along with the [SmtpClient] class. See docs in [SmtpClient] for more.\n\nIn general this classes provides getter\/setter functions for common email fields and the format of email addresses and header fields are validated when set. Unicode Email Addresses are supported when [allowUnicodeEmails(true)] is called.",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/MIME",
+        "@link https:\/\/en.wikipedia.org\/wiki\/Email_address"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct($from = null, $to = null, $subject = null, $body = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor Key email fields can be defined when an object is created",
+            "attributes": [
+                "@param string|null $from",
+                "@param string|null $to",
+                "@param string|null $subject",
+                "@param string|null $body"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "from($new_value = null)",
+            "target": "fn_from",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the [From] Email Address, this function accepts a string with an Email address or an array with ['Email', 'Name'].",
+            "attributes": [
+                "@param null|string|array $new_value",
+                "@return null|string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "replyTo($new_value = null)",
+            "target": "fn_replyTo",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the [Reply-To] Email Address, this function accepts a string with an Email address or an array with ['Email', 'Name'].\n\n[Reply-To] does not show by default when viewing an Email, however if a user clicks [Reply] then it appears. This is useful if you want to send the email from a no-reply email but still allow a user to reply.",
+            "attributes": [
+                "@param null|string|array $new_value",
+                "@return null|string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "to($new_value = null)",
+            "target": "fn_to",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set [To] Email Addresses. This function can set one or many email addresses at the same time.\n\nAccepted options:\n    Null - Returns a list of Email Address Strings to Send to.\n    Array of [Email Address Strings]\n    'email address'\n    Array with ['Email', 'Name']",
+            "attributes": [
+                "@param null|array|string $new_value",
+                "@return array|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "cc($new_value = null)",
+            "target": "fn_cc",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set [CC] Email Addresses. This function uses the same format as the [to()] function.",
+            "attributes": [
+                "@param null|array|string $new_value",
+                "@return array|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "bcc($new_value = null)",
+            "target": "fn_bcc",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set [BCC] Email Addresses. This function uses the same format as the [to()] function.",
+            "attributes": [
+                "@param null|array|string $new_value",
+                "@return array|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "subject($new_value = null)",
+            "target": "fn_subject",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the Subject of the email.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return null|string|$this"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "body($new_value = null)",
+            "target": "fn_body",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the Body of the email.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return null|string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "isHtml($new_value = null)",
+            "target": "fn_isHtml",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the type of email to send:\n    HTML = true (Default)\n    Text = false",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "priority($new_value = null)",
+            "target": "fn_priority",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Sends both [X-Priority] and [Importance] headers. When setting specify one of ['High', 'Normal', or 'Low'].",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return null|string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "header($name, $new_value = null)",
+            "target": "fn_header",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set a Custom Email Header",
+            "attributes": [
+                "@link https:\/\/www.iana.org\/assignments\/message-headers\/message-headers.xhtml",
+                "@param string $name",
+                "@param null|string $new_value",
+                "@return $this|null|string",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | null | string",
+            "links": [
+                "https:\/\/www.iana.org\/assignments\/message-headers\/message-headers.xhtml"
+            ]
+        },
+        {
+            "definition": "safeHeaderNames($new_value = null)",
+            "target": "fn_safeHeaderNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "By default only characters [A-Z], [a-z], [0-9], and [-] are allowed for Custom Header Field Names when using the [header()] function. Setting this value to false will allow any character other than New-Lines (CR, LF), Null (char 0), and [:] to be used.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "attachFile($file_path)",
+            "target": "fn_attachFile",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a file attachment to the email.\n\nIMPORTANT - File paths should generally not be passed as user parameters because a user could specify files other than the intended file. If an App does need to allow the user to specify a file then the code should be carefully reviewed and tested for security.\n\nTypical usage of this feature would be having a script generate a report and then the report gets attached to an email sent to users on an automated schedule.",
+            "attributes": [
+                "@param string $file_path - Full Path of a File that exists",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "allowUnicodeEmails($new_value = null)",
+            "target": "fn_allowUnicodeEmails",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Set to true to allow Unicode Emails to be sent. When the [SmtpClient] Class sends the email it checks this and if set to [true] sends the option SMTPUTF8 if supported by the SMTP Server.\n\nSetting this value is only required if using Unicode Email Addresses and it is not required for sending content with Unicode characters (Subject, Body, Attachement File Names, Headers, etc).\n\nThis function defaults to false so that email address validation uses strict rules.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "encodeFileNames($new_value = null)",
+            "target": "fn_encodeFileNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether attached file names should be UTF-8 encoded. Defaults to false.\n\nIf set to true then the following MIME Header:\n  \"Content-Disposition: attachment; filename*=UTF-8''{encoded_name}\" is included in the email message. For modern SMTP Servers and widely used email providers this is generally not needed even when the file name includes Unicode Characters.",
+            "attributes": [
+                "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Headers\/Content-Disposition",
+                "@link https:\/\/tools.ietf.org\/html\/rfc5987",
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": [
+                "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Headers\/Content-Disposition",
+                "https:\/\/tools.ietf.org\/html\/rfc5987"
+            ]
+        },
+        {
+            "definition": "message()",
+            "target": "fn_message",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Email message as a String encoded as UTF-8 using Base64 for the [SmtpClient] to send with the DATA command. This function is public but generally only needs to be called internally by the [SmtpClient] Class.",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/MIME",
+        "https:\/\/en.wikipedia.org\/wiki\/Email_address"
+    ]
+}

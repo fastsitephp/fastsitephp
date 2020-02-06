@@ -1,0 +1,939 @@
+{
+    "name": "FastSitePHP\\Application",
+    "short_name": "Application",
+    "link": "Application",
+    "namespace": "FastSitePHP",
+    "description": "A classe Application contém o código principal para o FastSitePHP. Isto inclui tratamento global de erro, renderização de modelo, requisição de roteamento, eventos da aplicação, métodos básicos de resposta, envio da resposta e muito mais.",
+    "attributes": [],
+    "properties": [
+        {
+            "name": "template_dir",
+            "target": "prop_template_dir",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Localização dos aquivos de modelo que são renderizados ao utilizar a função [render()].",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "header_templates",
+            "target": "prop_header_templates",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Arquivo de Modelo de cabeçalho ou um array de nomes de arquivos. Se definido, o modelo ou modelos serão renderizados antes do arquivo ou arquivos especificados na função [render()].",
+            "attributes": [
+                "@var string|array|null"
+            ],
+            "dataType": "string\narray\nnull",
+            "links": []
+        },
+        {
+            "name": "footer_templates",
+            "target": "prop_footer_templates",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Arquivo de Modelo de cabeçalho ou um array de nomes de arquivos. Se definido, o modelo ou modelos serão renderizados antes do arquivo ou arquivos especificados na função [render()].",
+            "attributes": [
+                "@var string|array|null"
+            ],
+            "dataType": "string\narray\nnull",
+            "links": []
+        },
+        {
+            "name": "error_template",
+            "target": "prop_error_template",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Arquivo modelo de erro ou um array de nomes de arquivos. O modelo de erro será renderizado quando a Aplicação lancar uma exceção não capturada ou acionar um erro não tratado e o código de status da resposta retornar com um modelo de erro for 500. Se não for definido, então o modelo [error.php] padrão localizado sob o diretório [Templates] será utilizado.",
+            "attributes": [
+                "@var string|array|null"
+            ],
+            "dataType": "string\narray\nnull",
+            "links": []
+        },
+        {
+            "name": "not_found_template",
+            "target": "prop_not_found_template",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Arquivo de modelo não encontrado ou ou uma array de nomes de arquivos. O modelo não-encontrado será renderizado quando o cliente requisita uma página que não tem rota correspondente ou se é requisitado com o método errado (exemplo GET ao invés de POST); os códigos de status da respostas retornam com um modelo não-encontrado são [404 => 'Não Encontrado'] ou [405 => 'Método Não Permitido']. Se esta propriedade é deixada como padrão null e um [error_template] é especificado no [error_template] será utilizado. Se não for definido, então o modelo [error.php] padrão localizado sob o diretório [Templates] será utilizados.",
+            "attributes": [
+                "@var string|array|null"
+            ],
+            "dataType": "string\narray\nnull",
+            "links": []
+        },
+        {
+            "name": "show_detailed_errors",
+            "target": "prop_show_detailed_errors",
+            "isStatic": false,
+            "defaultValue": "false",
+            "description": "Se definido para [true], então os detalhes completos do erro serão mostrados no modelo de erro padrão. Ao utilizar o modelo de erro padrão rodando diretamente no localhost (em ambos cliente e servidor), detalhes completos do erro serão automaticamente mostados. Estas regras aplicariam-se somente a modelos personalizados de erro se eles foram configurados igualmente.",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        },
+        {
+            "name": "error_page_title",
+            "target": "prop_error_page_title",
+            "isStatic": false,
+            "defaultValue": "\"Ocorreu um erro\"",
+            "description": "Título para Respostas de erro 500, disponíveis como [$page_title] para o modelo de erro.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "error_page_message",
+            "target": "prop_error_page_message",
+            "isStatic": false,
+            "defaultValue": "\"Ocorreu um erro ao processar sua requisição.\"",
+            "description": "Mensagem para Respostas de Erro 500, disponível como [$message] para o modelo de erro.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "not_found_page_title",
+            "target": "prop_not_found_page_title",
+            "isStatic": false,
+            "defaultValue": "\"404 - Página não encontrada\"",
+            "description": "Título para Respostas de erro 404 'Não Encontrado', disponível como [$page_title] para o modelo.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "not_found_page_message",
+            "target": "prop_not_found_page_message",
+            "isStatic": false,
+            "defaultValue": "\"A página requisitada não pôde ser encontrada.\"",
+            "description": "Mensagem para Respostas 404 'Não Encontrado', disponível como [$message] para o modelo.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "method_not_allowed_title",
+            "target": "prop_method_not_allowed_title",
+            "isStatic": false,
+            "defaultValue": "\"Erro - Método Não Permitido\"",
+            "description": "Título para as Respostas 405 'Método não Permitido', disponível como [$page_title] para o modelo.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "method_not_allowed_message",
+            "target": "prop_method_not_allowed_message",
+            "isStatic": false,
+            "defaultValue": "\"Uma requisição [{method}] foi enviada, entretanto esta rota somente permite métodos [{allowed_methods}].\"",
+            "description": "Mensagens de Resposta 405 'Método não Permitido', disponível como [$message] para o modelo.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "strict_url_mode",
+            "target": "prop_strict_url_mode",
+            "isStatic": false,
+            "defaultValue": "false",
+            "description": "A propriedade [strict_url_mode] é definida para o valor padrão false permique a URL requisitada tenha um caracter de finalização [\/] no fim da URL e ainda corresponda a rota. Por exemplo, uma requisição para '\/about\/' com a roa '\/about' corresponderá por padrão, contudo, se [strict_url_mode] estiver definido como true então '\/about\/' e '\/about' seriam URLs diferentes.",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        },
+        {
+            "name": "case_sensitive_urls",
+            "target": "prop_case_sensitive_urls",
+            "isStatic": false,
+            "defaultValue": "true",
+            "description": "A propriedade [case_sensitive_urls] permite que URLs sejam correspondidas utilizando letras maiúsculas\/ minúsculas de modo estrito ou para corresponder indiferente de ser maiúscula ou minúscula. Por exemplo uma requisição por '\/ABOUT' com a rota '\/about' não corresponderão por padrão, porém, se [case_sensitive_urls] estiver definida para false, então a requisição corresponderia à rota.",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        },
+        {
+            "name": "allow_options_requests",
+            "target": "prop_allow_options_requests",
+            "isStatic": false,
+            "defaultValue": "true",
+            "description": "A propriedade [allow_options_requests] que tem seu padrão definido permite que a aplicação automaticamente trate requisições HTTP OPTIONS. Quando definido para false, requisições OPTIONS seriam tratadas como requisição padrão e caberia à aplicação manipulá-la.\n\nRequisições OPTIONS são em sua maioria comumente utilizadas para Cross-Origin Resource Sharing (CORS) e para APIs web personalizadas. Um web site padrão utilizado somente por um navegador e sem serviços CORS não necessitará, geralmente, tratar requisições OPTIONS.",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        },
+        {
+            "name": "allow_methods_override",
+            "target": "prop_allow_methods_override",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Valor string que se definido sobrescreverá o campo padrão 'Allow' Header Response para uma requisição OPTIONS. Por exemplo, se o Cabeçalho padrão 'Allow' para uma rota específica retorna o valor 'HEAD, GET, POST, OPTIONS', mas você prefere que retorne 'HEAD, GET, PUT, OPTIONS', então esses valores iriam aqui.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "controller_root",
+            "target": "prop_controller_root",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Especifique um caminho de rota raiz para controladores de rota que utilizam uma callback de string. Por exemplo se [$app->get('\/page', 'Page')] é utilizado com esse valor definido para 'App\\Controllers', então a classe 'App\\Controllers\\Page' será carregada \npara a rota.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "middleware_root",
+            "target": "prop_middleware_root",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Especifique um caminho de rota raiz para classes intermediárias que utilizam uma callback de string. Isto aplica-se a [Route->filter()] e [$app->mount()] callbacks. Por exemplo se [$route->filter('Auth.isUser')] é utilizada com este valor definido como 'App\\Middleware', então 'App\\Middleware\\Auth->isUser()' serão chamadas em rotas correspondentes.",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "lang",
+            "target": "prop_lang",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Especifique um idioma para a aplicação. Isto é definido automaticametne se utilizar a classe [FastSitePHP\\Lang\\I18N].",
+            "attributes": [
+                "@var string|null"
+            ],
+            "dataType": "string\nnull",
+            "links": []
+        },
+        {
+            "name": "json_options",
+            "target": "prop_json_options",
+            "isStatic": false,
+            "defaultValue": "0",
+            "description": "Especifique opções para [json_encode()] quando uma Resposta JSON é retornada. Exemplo:\n    $app->json_options = (JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);\n\nAo utilizar PHP 5.4 ou mais recente, isto será definido para JSON_UNESCAPED_UNICODE na resposta se não houverem modificações.",
+            "attributes": [
+                "@var int"
+            ],
+            "dataType": "int",
+            "links": []
+        },
+        {
+            "name": "locals",
+            "target": "prop_locals",
+            "isStatic": false,
+            "defaultValue": "[]",
+            "description": "A propriedade locals contém uma array de variáveis que podem ser definidas através da aplicação e utilizada na função render() de modelos PHP e mecanismos de renderização personalizados. A propriedade locals é uma array PHP básica, então adicionar uma nova variável é manipulada simplesmente definindo-a (e.g.: [$app->locals['name'] = 'FastSitePHP';] e então a variável [$name] tornaria-se disponível à partir de um modelo chamado na função render()).",
+            "attributes": [
+                "@var array"
+            ],
+            "dataType": "array",
+            "links": []
+        },
+        {
+            "name": "config",
+            "target": "prop_config",
+            "isStatic": false,
+            "defaultValue": "[]",
+            "description": "A propriedade config contém uma arrau de variáveis que pode ser definida e utilizada através de um website ou aplicação. Não há requisitos para utilziar isto, no entanto, utilizando isto permite que valores de configuração específicos do site sejam organizados e fáceis de localizar. Algumas classes inclusas como parte do framework FastSitePHP utilizam-se disto incluindo a I18N e a Crypto.",
+            "attributes": [
+                "@var array"
+            ],
+            "dataType": "array",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "setup($timezone)",
+            "target": "fn_setup",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Configure a manipulação de erros e opcionalmente defina um fuso horário para a aplicação.\n\nErros e Exceções: PHP tem um modelo de erros e exceções que é único quando comparado a várias outras linguagens de programação. Basicamente o PHP 5 contém ambos erros e exceções e ambos devem ser manipulados de forma diferente por uma aplicação se todos os erros e exceções forem manipulados. Além disso o PHP fornece suporte para níveis diferentes de relatórios de erro e utilizando as confgurações padrão do servidor PHP, faz com que nem todos os erros sejam manipulados, então se um desenvolvedor vier de outra liguagem de programação, isso pode causar muita confusão. Exemplos disso inclui uma variável indefinida que poderia impedir um programa compilado de ser compilado mostrará somente alerta de erro no PHP e, dependendo das configurações, o script pode continuar enquanto um erro de divisão por zero, que lançaria uma exceção ou causaria um erro de execução em outra liguagem, cause um tipo de erro de tipo alerta e pode permimitir que o script contine. O FastSitePHP ajuda a simplificar a manipulação de erros e exceções trantando todos os erros como exceções que pode ser manipulados com um bloco de código try\/catch, poermitindo que todos os erros e exceções sejam manipulados utilizando uma função callback error() e renderizando todos os erros e exceções no mesmo modelo com um código de resposta 500 'Internal Server Error'.\n\nFuso Horário: Definindo um fuso horário é requisito ao chamar funções date\/time do PHP. Se não houver fuso horário definido e uma função date\/time é chamada, então o PHP acionará erros E_NOTICE ou E_WARNING. Se null é passado como o parâmetro para esta função, então ela não definirá o fuso horário, caso contrário o fuso horário será definido e se o valor não for válido, então um erro ou exceção ocorrerá e o modelo padrão de erro será renderizado. O parâmetro $timezone, se definido, deve ser para um fuso horário válido para a função PHP date_default_timezone_set() ou para o varlo 'date.timezone' que utiliza o parâmetro de configuração 'date.timezone' do [php.ini] para o fuso horário. Por padrão o valor seria vazio ao instalar o PHP. Se o PHP for instalado no Windows utilizando o Microsoft's Web Platform Installer, então o valor do parâmetro no [php.ini] provavelmente estará definido para o fuso horário do servidor.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/timezones.php",
+                "@link http:\/\/php.net\/manual\/en\/datetime.configuration.php",
+                "@link http:\/\/php.net\/manual\/en\/function.date-default-timezone-set.php",
+                "@param string|null $timezone",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/php.net\/manual\/en\/timezones.php",
+                "http:\/\/php.net\/manual\/en\/datetime.configuration.php",
+                "http:\/\/php.net\/manual\/en\/function.date-default-timezone-set.php"
+            ]
+        },
+        {
+            "definition": "exceptionHandler($e)",
+            "target": "fn_exceptionHandler",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Função de manipuação de exceções definida por Application. Esta função é definida como a manipuladora quando a função [setup()] é chamada. Passando uma exceção para esta função rodará quaisquer funções de callback [error()] e enviará uma Resposta de Código 500 com o modelo do erro para o cliente. O FastSitePHP fornece um modelo de erro padrão e permite que modelos personalizados de erros sejam atribuidos à partir da propriedade [error_template]. Esta função é pública então o PHP pode chamá-la, mas na marioria dos casos esta função não seria chamada diretamente de um website ou aplicação, mas sim lea é utilizada para tratar exceções que são lançadas. Para o PHP 5 o parâmetro $e precisa ser uma instância do Objeto Exception e no PHP 7 uma instância do Objeto Throwable.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.set-exception-handler.php",
+                "@link http:\/\/php.net\/manual\/en\/language.exceptions.php",
+                "@link http:\/\/php.net\/manual\/en\/class.throwable.php",
+                "@param $e"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.set-exception-handler.php",
+                "http:\/\/php.net\/manual\/en\/language.exceptions.php",
+                "http:\/\/php.net\/manual\/en\/class.throwable.php"
+            ]
+        },
+        {
+            "definition": "errorHandler($severity, $message, $file, $line)",
+            "target": "fn_errorHandler",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Função de manipuação de erro definida por Application. Esta função é definida como uma manipuladora de erro quando a função [setup()] é chamada. Para erros que não são ignorados pela utilização do operador de controle de erro [@], esta função converterá o erro em um objeto ErrorException e lançará a exceção que então será manipulada pela função [exceptionHandler()]. Esta função é pública então o PHP pode chamá-la, mas na maioria dos casos esta função não seria chamada diretamente de um website ou aplicação, mas é sim utilizada para manipular os erros gerados.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/language.errors.php",
+                "@link http:\/\/php.net\/manual\/en\/function.set-error-handler.php",
+                "@link http:\/\/php.net\/manual\/en\/class.errorexception.php",
+                "@param $severity",
+                "@param $message",
+                "@param $file",
+                "@param $line",
+                "@return bool",
+                "@throws \\ErrorException"
+            ],
+            "returnType": "bool",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/language.errors.php",
+                "http:\/\/php.net\/manual\/en\/function.set-error-handler.php",
+                "http:\/\/php.net\/manual\/en\/class.errorexception.php"
+            ]
+        },
+        {
+            "definition": "shutdown()",
+            "target": "fn_shutdown",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Função definida por Application para tratar erros fatais. Esta função é definida como uma manipuladora de erro quando a função [setup()] é chamada. Esta função é executada pelo PHP quando a execução do script é finalizada e permite que erros fatais não capturados pela função de manipuçação de erros sejam tratados. Esta função converte os erros em um objeto ErrorException e chamda a função [exceptionHandler()] que, então, permite o website ou aplicação tratar o erro. Esta função é pública, então o PHP pode chamá-la, mas não deve ser chamada diretamente.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.register-shutdown-function.php"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.register-shutdown-function.php"
+            ]
+        },
+        {-- PAREI AQUI --
+            "definition": "__call($name, $arguments)",
+            "target": "fn___call",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Allow for methods\/functions to be added dynamically to the Application Object using a PHP 'magic method'. In PHP this is called method overloading however the term is used differently in PHP than most programming languages. Objects can always have properties dynamically added however if a function\/closure is dynamically added it cannot be called unless the magic method [__call()] is implemented. This implementation of [__call()] allows for functions to be defined in a manner similar to how a function can be added dynamically in JavaScript. One difference in PHP is that a function added dynamically to the Application object will not have access to the [$this] variable that built-in functions have.\n\nJavaScript Example - This works to add a function dynamically to an object:\n\n    var obj = {};\n    obj.test = function() { alert('test'); };\n    obj.test()\n\nPHP Example - The property can be added but the function cannot be called and the following code would trigger an error. However using the [__call()] magic method if the following function were defined for a class then it can be called.\n\n    $obj = new \\stdClass;\n    $obj->test = function() { echo 'test'; };\n    $obj->test();",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/language.oop5.overloading.php",
+                "@param $name",
+                "@param $arguments",
+                "@return mixed",
+                "@throws \\BadMethodCallException"
+            ],
+            "returnType": "mixed",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/language.oop5.overloading.php"
+            ]
+        },
+        {
+            "definition": "methodExists($name)",
+            "target": "fn_methodExists",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if either a built-in or dynamic a named method exists for the Application object. Typically [method_exists()] can be used however this Class allows for dynamic methods to be defined.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.method-exists.php",
+                "@param $name",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.method-exists.php"
+            ]
+        },
+        {
+            "definition": "__get($name)",
+            "target": "fn___get",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "PHP Magic Method which is called if a property is accessed that doesn't exist on the object. It is used here to check for properties defined from [lazyLoad()] and create them the first time they are used.",
+            "attributes": [
+                "@param $name",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "lazyLoad($name, \\Closure $function)",
+            "target": "fn_lazyLoad",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Define a lazy load property which will call a function the first time the property is accessed. This is ideal for a site that has multiple or optional database connections so they can be connected to only when used.",
+            "attributes": [
+                "@param string $name",
+                "@param \\Closure $function",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "statusCode($new_value = null)",
+            "target": "fn_statusCode",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the response status code by number (for example 200 for 'OK' or 404 for 'Not Found'). By default the PHP will set a status of 200 so setting a status code is usually only needed for other status codes other than 200. This gets sent when the response is sent to the client. If this function is called without a status code passed as a parameter then it will return the current status code otherwise when setting a status code it will return the Application object so it can be used in chainable methods.",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/List_of_HTTP_status_codes",
+                "@param int|null $new_value (default: null)",
+                "@return $this|int",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | int",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/List_of_HTTP_status_codes"
+            ]
+        },
+        {
+            "definition": "header($name, $value = null)",
+            "target": "fn_header",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Define an HTTP Header to be sent with the Response. Additionally previously defined Header fields can be read and cleared using this function. To set a Header field specify both $name and $value parameters. To read the value of a Header field specify only the $name parameter; if the value has been defined it will be returned otherwise if it has not been defined then null will be returned. To clear a Header field pass an empty string '' for the $value parameter. If setting or clearing a Header field then the Application Object will be returned so it can be called as a chainable method.\n\nThe Class [\\FastSitePHP\\Web\\Response] also has this function defined. The difference is that Application version is used for basic responses and headers are not validated. If a Response Object is used then headers defined by the Application Object will not be sent. This function is defined here so that responses can be sent without having to load and create a full Response Object.\n\nExamples:\n    Set the Response Header 'Content-Type' to 'text\/plain'\n    $app->header('Content-Type', 'text\/plain')\n\n    Get the Response Header 'Content-Type' that has been set.\n    If no value has been set then null will be returned.\n    $value = $app->header('Content-Type')\n\n    Clear the Response Header 'Content-Type' that has been set\n    $app->header('Content-Type', '')",
+            "attributes": [
+                "@param string $name",
+                "@param mixed $value",
+                "@return $this|mixed|null",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | mixed | null",
+            "links": []
+        },
+        {
+            "definition": "headers()",
+            "target": "fn_headers",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of Headers fields defined from the header() function that will be or have been sent with the HTTP Response if a basic string or array response is used. If a Response Object is used then headers defined by the Application Object will not be sent.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "noCache($no_cache = true)",
+            "target": "fn_noCache",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Set Response Headers that tell the browser or client to not cache the response.\n\nThis function defines the following response headers:\n    Cache-Control: no-cache, no-store, must-revalidate\n    Pragma: no-cache\n    Expires: -1\n\nFor most clients and all modern browsers 'Cache-Control' will take precedence over 'Expires' when both tags exist. The 'Expires' header per HTTP Specs must be defined as an HTTP-Date value, and when an invalid value such as '0' is used then the client should treat the content as already expired, however in reality certain older versions of Internet Explorer may end up caching the response if '0' is used so '-1' is used for the 'Expires' header. At the time of writing both Google and Microsoft use 'Expires: -1' for their homepages. The header 'Pragma' is for old HTTP 1.0 clients that do not support either 'Cache-Control' or 'Expires'.\n\nThis function exists in both [FastSitePHP\\Application] and [FastSitePHP\\Web\\Response] classes; calling the function from the Application object specifies the headers only when a route returns a basic response and calling the function from the Response object specifies the headers only when the route returns a Response object.",
+            "attributes": [
+                "@link http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec14.html#sec14.21",
+                "@link http:\/\/blogs.msdn.com\/b\/ieinternals\/archive\/2012\/01\/31\/avoid-using-meta-to-specify-expires-or-pragma-in-html-markup.aspx",
+                "@param bool|mixed $no_cache    If null the current option is returned. If true then cache headers are sent with the response, and if false then they are not. Defaults to true.",
+                "@return $this|mixed"
+            ],
+            "returnType": "$this | mixed",
+            "links": [
+                "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec14.html#sec14.21",
+                "http:\/\/blogs.msdn.com\/b\/ieinternals\/archive\/2012\/01\/31\/avoid-using-meta-to-specify-expires-or-pragma-in-html-markup.aspx"
+            ]
+        },
+        {
+            "definition": "cors($origin_or_headers = null)",
+            "target": "fn_cors",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set a values for Cross-Origin Resource Sharing (CORS) Response Headers. For security reasons browsers will restrict content that is from a different domain when using JavaScript (for example: calling a Web Service from XMLHttpRequest). CORS is a web standard that allows for restricted resources to work on domains other than the domain where the resource is hosted.\n\nThis function is flexible and allows for setting the most common header 'Access-Control-Allow-Origin' as a string value or it can set multiple CORS Headers by specifying an array. To clear any CORS Headers call this function with an empty string and to get defined CORS Headers call this function without any parameters.\n\nCORS Headers are sent with both the OPTIONS request method and the calling method. Because OPTIONS requests are required for certain response types the cors() function should often be called in a filter() function or a before() event function.\n\nExamples:\n    $app->cors(*);\n\n    $app->cors(array(\n        'Access-Control-Allow-Origin' => '*',\n        'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Authorization',\n    ));",
+            "attributes": [
+                "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Access_control_CORS",
+                "@link http:\/\/www.html5rocks.com\/en\/tutorials\/cors\/",
+                "@link http:\/\/www.w3.org\/TR\/cors\/",
+                "@link http:\/\/www.w3.org\/TR\/cors\/#access-control-allow-origin-response-header",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Cross-origin_resource_sharing",
+                "@param null|string|array $origin_or_headers",
+                "@return $this|null|array",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this | null | array",
+            "links": [
+                "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Access_control_CORS",
+                "http:\/\/www.html5rocks.com\/en\/tutorials\/cors\/",
+                "http:\/\/www.w3.org\/TR\/cors\/",
+                "http:\/\/www.w3.org\/TR\/cors\/#access-control-allow-origin-response-header",
+                "https:\/\/en.wikipedia.org\/wiki\/Cross-origin_resource_sharing"
+            ]
+        },
+        {
+            "definition": "cookie($name, $value = '', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+            "target": "fn_cookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Define a cookie to be sent with the response along with the response headers. Internally this calls the PHP function setcookie(). To delete a cookie use the function [clearCookie()]. To read cookies use the [cookie()] function of the [FastSitePHP\\Web\\Request] Object or use the PHP superglobal array $_COOKIE.",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.setcookie.php",
+                "@link http:\/\/php.net\/manual\/en\/features.cookies.php",
+                "@link http:\/\/php.net\/manual\/en\/reserved.variables.cookies.php",
+                "@param $name",
+                "@param string $value",
+                "@param int $expire    Defaults to 0 which makes the cookie expire at the end of the session",
+                "@param string $path (default: '')",
+                "@param string $domain (default: '')",
+                "@param bool $secure (default: false)",
+                "@param bool $httponly (default: false)",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.setcookie.php",
+                "http:\/\/php.net\/manual\/en\/features.cookies.php",
+                "http:\/\/php.net\/manual\/en\/reserved.variables.cookies.php"
+            ]
+        },
+        {
+            "definition": "clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)",
+            "target": "fn_clearCookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send an empty value for a named cookie and expired time to tell the browser or client to clear the cookie.",
+            "attributes": [
+                "@param $name",
+                "@param string $path (default: '')",
+                "@param string $domain (default: '')",
+                "@param bool $secure (default: false)",
+                "@param bool $httponly (default: false)",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "cookies()",
+            "target": "fn_cookies",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Array of Cookies that will be sent with the response.",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "escape($text)",
+            "target": "fn_escape",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Convert special characters to HTML entities. This function is a wrapper for the php function:\n    htmlspecialchars($text, ENT_QUOTES, 'UTF-8', true)\n\nCharacters escaped are:\n    \" = &quot;\n    & = &amp;\n    ' = &#039;\n    < = &lt;\n    > = &gt;",
+            "attributes": [
+                "@param string $text",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "engine(\\Closure $callback)",
+            "target": "fn_engine",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Define a callback closure function for rendering template files using variables passed by the application. This allows for custom rendering engines to be used in addition to the native PHP and Text file templates. The required callback definition for defining a rendering engine is [function($file, array $data = null)]; the actual variable names can be different however the array typehint and optional 2nd parameter must be defined. For an example of defining a custom rending engine see Quick Reference Page.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "render($files, array $data = null)",
+            "target": "fn_render",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Render a single template file or an array of template files using variables specified in the $data parameter and also variables defined from the [locals] property. In addition templates rendered using PHP or a custom rendering engine will have the variable [$app] defined as a reference to this Application Object Instance. The default format used for templates are PHP templates, however including plain text files works as well. To override the default view engine define one using the [engine()] function before calling [render()]. Template files call be specified by name as long as the property [template_dir] is defined. Addition properties related to this function are [header_templates], [footer_templates], [error_template], and [not_found_template].",
+            "attributes": [
+                "@param array|string $files",
+                "@param array|null $data",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "errorPage($page_title, $message, $e = null)",
+            "target": "fn_errorPage",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Render the html error template using a custom page title, message, and optional exception. This function only renders the HTML and does not set status code or send the response.",
+            "attributes": [
+                "@param string $page_title",
+                "@param string $message",
+                "@param null|\\Exception|\\Throwable $e",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "pageNotFound()",
+            "target": "fn_pageNotFound",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Set the status code to 404 'Not found' and render and return the 404 error template. This function will render template specified in the property [not_found_template] if one is defined otherwise the default 404 page. Custom [page_title] and [message] variables can be defined for the template from properties [not_found_page_title] and [not_found_page_message].",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "sendPageNotFound()",
+            "target": "fn_sendPageNotFound",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a 404 'Not found' response to the client and end script execution. This uses the same template that would be returned from calling [$app->pageNotFound()].",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "before(\\Closure $callback)",
+            "target": "fn_before",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called from the [run()] function prior to any routes being matched. Closure functions passed to the [before()] function should be defined as [function()] because no parameters are passed. If multiple functions are defined then they are called in the order that they were added. An example of using a [before()] function is to check the session for logged in user permissions that can then be checked against route filter functions to see if the user has access to the request resource.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "notFound(\\Closure $callback)",
+            "target": "fn_notFound",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called from the [run()] function after all routes have been checked with no routes matching the requested resource. Closure functions passed to the [notFound()] function take no parameters and if they return a response then it be handled as a standard route and will call any defined [beforeSend()] functions afterwards. If no value is returned from the function then each function is checked in order added and if none of the [notFound()] functions return a response then a 404 'Not found' response is sent to the client. Examples of using a [notFound()] function would be to define rules dynamic routing where the application would handle routes mapped to dynamic controllers or to log 404 response codes.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "beforeSend(\\Closure $callback)",
+            "target": "fn_beforeSend",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called from the [run()] function after a route has been matched to the requested resource. Closure functions passed to the [beforeSend()] function should be defined as [function($content)] and they must return a response otherwise a 404 'Not found' response will be sent to the client. The [$content] parameter defined in the callback is the contents of the response that will be sent to the client. If multiple functions are defined then they are called in the order that they were added. An example of using a [beforeSend()] function would be adding a CSRF Token (Cross-Site Request Forgery) to all html forms and then also adding a [before()] function that checks if the token is present on each Form POST.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "after(\\Closure $callback)",
+            "target": "fn_after",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called from the [run()] function after the response has been sent to the client. Closure functions passed to the [after()] function should be defined as [function($content)]; the [$content] parameter defined in the callback is the contents of the response that was sent to the client. If multiple functions are defined then they are called in the order that they were added. If FastSitePHP is set to handle errors and exceptions from the [setup()] function then functions defined here get called after the error response has been sent. The only way that [after()] functions will not get called is if there script is terminated early from PHP's exit() statement or if error handling is not setup and an error occurs.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "error(\\Closure $callback)",
+            "target": "fn_error",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called from the private function [sendErrorPage()] function if an error or an exception occurs and the FastSitePHP is set to handle errors and exceptions from the [setup()] function. Closure functions passed to the [error()] function should be defined as [function($response_code, $e, $page_title, $message)]. The [error()] function allow for an application to log error responses however it does not prevent the error response from rendering. To override the error template and 500 status code and send a different response a closure function defined here would need to handle the response and call PHP's exit() statement.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "onRender(\\Closure $callback)",
+            "target": "fn_onRender",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add closure functions that will be called whenever [render()] is called. The events will run before templates are rendered but once template paths are confirmed to be valid. This is usefull for making sure that specific variables are included in [$app->locals] prior to template rendering.",
+            "attributes": [
+                "@param \\Closure $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "mount($url_path, $file, $condition = null)",
+            "target": "fn_mount",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Load a PHP file based on the requested URL and an optional condition closure function. The [$url_path] parameter accepts the starting part of a URL. For example [\/api] will match all requested URL's starting with [\/api]. This allows for routes or functions related to specific routes to be loaded only if they are needed. The optional condition function should return true or false if defined and allows for the mount path to be skipped even if the requested URL matches. An example of this would be allowing for certain routes to only load on specific environments such as localhost. The [$file] parameter accepts either a file name which will then cause the file to be loaded in the same directory of the calling file or a full file path.",
+            "attributes": [
+                "@param string $url_path",
+                "@param string $file",
+                "@param \\Closure|string|null $condition",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "route($pattern, $callback, $method = null)",
+            "target": "fn_route",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP Request, if the parameter $method is not specified then the route will match all requests with the matching url. To map to a specific HTTP method the method would be included in the parameter (e.g.: 'GET') or in the case of common methods the function named the same name as the route could be used instead [e.g.: $app->get($path, $func)]. When the route is matched [e.g.: requested url = '\/about' and route = $app->route('\/about', $callback)] then the callback method will get called based on filter logic from the $app->run() function.",
+            "attributes": [
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@param string|null $method (default: null)",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": []
+        },
+        {
+            "definition": "get($pattern, $callback)",
+            "target": "fn_get",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP 'GET' Request",
+            "attributes": [
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": []
+        },
+        {
+            "definition": "post($pattern, $callback)",
+            "target": "fn_post",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP 'POST' Request",
+            "attributes": [
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": []
+        },
+        {
+            "definition": "put($pattern, $callback)",
+            "target": "fn_put",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP 'PUT' Request",
+            "attributes": [
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": []
+        },
+        {
+            "definition": "delete($pattern, $callback)",
+            "target": "fn_delete",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP 'DELETE' Request",
+            "attributes": [
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": []
+        },
+        {
+            "definition": "patch($pattern, $callback)",
+            "target": "fn_patch",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a route for an HTTP 'PATCH' Request",
+            "attributes": [
+                "@link http:\/\/tools.ietf.org\/html\/rfc5789",
+                "@param string $pattern",
+                "@param \\Closure|string $callback",
+                "@return Route"
+            ],
+            "returnType": "Route",
+            "links": [
+                "http:\/\/tools.ietf.org\/html\/rfc5789"
+            ]
+        },
+        {
+            "definition": "routes()",
+            "target": "fn_routes",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Array of Defined Routes",
+            "attributes": [
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "redirect($url, $status_code = 302)",
+            "target": "fn_redirect",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Redirect the user to another page or site. This must be called prior to headers and content being sent to the user. Calling this function ends the script execution however any events defined by the [after()] function will run.\n\nStatus Code can optionally be specified as the 2nd parameter. The default Status Code used is [302 'Found'] (Temporary Redirect). If Status Code [301 'Moved Permanently'] is used Web Browsers will typically cache the result so careful testing and consideration should be done if using a Status Code of 301. Other supported Status Codes are: [303 'See Other'], [307 'Temporary Redirect'], and [308 'Permanent Redirect'].\n\nExample:\n\n    \/\/ User makes this request\n    $app->get('\/page1', function() use ($app) {\n        $app->redirect('page2');\n    });\n\n    \/\/ User will then see this URL and Response\n    $app->get('\/page2', function() {\n        return 'page2';\n    });",
+            "attributes": [
+                "@link http:\/\/en.wikipedia.org\/wiki\/URL_redirection",
+                "@param string $url",
+                "@param int $status_code",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": [
+                "http:\/\/en.wikipedia.org\/wiki\/URL_redirection"
+            ]
+        },
+        {
+            "definition": "requestedPath()",
+            "target": "fn_requestedPath",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Requested Path (Page only, excluding site, base directory, query strings, etc). This will return the same result regardless of the Web Server used and it will be based on where the [index.php] or entry PHP file is located.\n\nRequest Examples:\n    https:\/\/www.example.com\/index.php\/test\/test?test=test\n    https:\/\/www.example.com\/index.php\/test\/test\n    https:\/\/www.example.com\/test\/test\/\n    https:\/\/www.example.com\/test\/test\n    https:\/\/www.example.com\/site1\/index.php\/test\/test\n\nReturns:\n    '\/test\/test'\n\nIn the above example both '\/test\/test\/' and '\/test\/test' return '\/test\/test' when using the default property [$app->strict_url_mode = false] otherwise the exact URL would be returned.",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "rootUrl()",
+            "target": "fn_rootUrl",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Site Root URL; the URL returned is the base URL for all pages.\n\nExamples:\n\n    # [index.php] specified in the URL\n    Request: https:\/\/www.example.com\/index.php\/page\n    Request: https:\/\/www.example.com\/index.php\/page\/page2\n    Returns: https:\/\/www.example.com\/index.php\/\n\n    # [index.php] Located in Root Folder\n    Request: https:\/\/www.example.com\/page\n    Request: https:\/\/www.example.com\/page\/page2\n    Returns: https:\/\/www.example.com\/\n\n    # [index.php] Located under [site1]\n    Request: https:\/\/www.example.com\/site1\/page\n    Request: https:\/\/www.example.com\/site1\/page\/page2\n    Returns: https:\/\/www.example.com\/site1\/",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "rootDir()",
+            "target": "fn_rootDir",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Site Root Directory; the Directory returned is generally the base Directory for all resources (JS, CSS, IMG Files, etc).\n\nRequest Examples:\n    https:\/\/www.example.com\/index.php\/page\n    https:\/\/www.example.com\/index.php\/page\/page2\n    https:\/\/www.example.com\/page\n\nReturns:\n    https:\/\/www.example.com\/",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "param($name, $validation, $converter = null)",
+            "target": "fn_param",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Define validation and conversion rules for a route variable. The definition of the parameter variable defined here gets checked by the function [routeMatches()] when [run()] is called.",
+            "attributes": [
+                "@param string $name",
+                "@param string|\\Closure $validation",
+                "@param string|\\Closure|null $converter (default: null)",
+                "@return $this",
+                "@throws \\Exception"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "routeMatches($pattern, $path)",
+            "target": "fn_routeMatches",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Check if a the current url path matches a defined route. This function returns an array or parsed arguments if the route matches and boolean value of false if it does not match. If the route matches and there are no defined parameters then the array returned is an empty array. A wild-card character '*' can be used at the very end of the route definition and then the url path must match up until the wild-card character. Specific variables will be validated or converted if defined in the function $app->param(). Optional variables can be defined with a '?' character at the end of the variable name. A request for '\/about\/' with route '\/about' will match by default, however if [strict_url_mode] is set to true then '\/about\/' and '\/about' would be separate URL's.\n\nExamples:\n    $app->routeMatches('\/page1', '\/page2');\n        returns false\n\n    $app->routeMatches('\/show-all', '\/show-all');\n        returns array()\n\n    # [string] data type returned\n    $app->routeMatches('\/record\/:id', '\/record\/123');\n        returns array('123')\n\n    # [int] data type based on param()\n    $app->param(':id', 'int');\n    $app->routeMatches('\/record\/:id', '\/record\/123');\n        returns array(123)\n\n    # Only a ':' character is required to indicate a variable\n    $app->routeMatches('\/record\/:', '\/record\/123');\n        returns array('123')\n\n    $app->routeMatches('\/:record\/:view\/:id', '\/orders\/edit\/123');\n        returns array('orders', 'edit', '123')\n\n    # Optional variables ending with '?'\n    $app->routeMatches('\/search-by-date\/:year?\/:month?\/:day?', '\/search-by-date\/2015\/12');\n        returns array('2015', '12')\n\n    $app->routeMatches('\/page-list\/*', '\/page-list\/page1\/page2')\n        returns array()",
+            "attributes": [
+                "@param string $pattern",
+                "@param string $path",
+                "@return array|bool",
+                "@throws \\Exception"
+            ],
+            "returnType": "array | bool",
+            "links": []
+        },
+        {
+            "definition": "run()",
+            "target": "fn_run",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "This is the main function that processes the request, determines the route, and sends a response. Routes, settings, validation rules, etc need to be defined prior to calling this function.",
+            "attributes": [
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "runAfterEvents($content)",
+            "target": "fn_runAfterEvents",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Call all closure functions defined from [after()]. This function is public however it would normally not be called. It is used by FastSitePHP internally after sending the response.",
+            "attributes": [
+                "@param string $content"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": []
+}

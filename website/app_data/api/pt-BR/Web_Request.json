@@ -1,0 +1,408 @@
+{
+    "name": "FastSitePHP\\Web\\Request",
+    "short_name": "Web\\Request",
+    "link": "Web_Request",
+    "namespace": "FastSitePHP\\Web",
+    "description": "The Request Class represents an HTTP request and can be used to read content submitted by the browser or client.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "queryString($name, $format = 'value?')",
+            "target": "fn_queryString",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a Request QueryString Value using format options from the [value()] function. Returns Null if the QueryString doesn't exist.\n\nWith native PHP Code Query String values can also be read from the [$_GET] Superglobal array. Example:\n\n    $value = (isset($_GET['name']) ? $_GET['name'] : null)",
+            "attributes": [
+                "@param string $name",
+                "@param string $format (Optional)",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "form($name, $format = 'value?')",
+            "target": "fn_form",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a Request Form Field Value using format options from the [value()] function. Returns Null if the Form Field doesn't exist.\n\nWith native PHP Form Field values can also be read from the [$_POST] Superglobal array. Example:\n\n    $value = (isset($_POST['name']) ? $_POST['name'] : null)",
+            "attributes": [
+                "@param string $name",
+                "@param string $format (Optional)",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "cookie($name, $format = 'value?')",
+            "target": "fn_cookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a Request Cookie Value using format options from the [value()] function. Returns Null if the Cookie doesn't exist.\n\nWith native PHP Code Cookie values can also be read from the [$_COOKIE] Superglobal array. Example:\n\n    $value = (isset($_COOKIE['name']) ? $_COOKIE['name'] : null)",
+            "attributes": [
+                "@param string $name",
+                "@param string $format (Optional)",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "verifiedCookie($name)",
+            "target": "fn_verifiedCookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Use to read secure cookies that were created from [Response->signedCookie()]. Returns null if cookie is not set or if it cannot be verified.\n\nUsing this function requires the Application Config Value 'SIGNING_KEY'.",
+            "attributes": [
+                "@param $name - Name of the Signed Cookie",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "jwtCookie($name)",
+            "target": "fn_jwtCookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Use to read secure cookies that were created from [Response->jwtCookie()]. Returns null if cookie is not set or if it cannot be verified.\n\nUsing this function requires the Application Config Value 'JWT_KEY'.",
+            "attributes": [
+                "@param $name - Name of the JWT Cookie",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "decryptedCookie($name)",
+            "target": "fn_decryptedCookie",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Use to read secure and secret cookies that were created from [Response->encryptedCookie()]. Returns null if cookie is not set or if it cannot be decrypted.\n\nUsing this function requires the Application Config Value 'ENCRYPTION_KEY'.",
+            "attributes": [
+                "@param $name - Name of the Encrypted Cookie",
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "value($data, $key, $format = 'value?', $max_length = null)",
+            "target": "fn_value",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Helper function to handle user input or objects where a value may or may not exist. This function is very flexible and depending upon the parameters checks if an array key, object property, or an array of keys\/properties exists and returns the value in the desired format. This function is ideal for handling user input from PHP superglobals ($_GET, $_POST, $_COOKIE, $_SESSION) and data from JSON Objects.\n\nThis function can be used to sanitize (clean) data and return it in a needed format (example zero [0] for an integer instead of an invalid string or error message).\n\nOptions for the return format are specified in the parameter [$format]. Options that end with a question mark '?' will return either null or the value while options that do not end with a question mark are always converted to the specific data type:\n\n    'value?'\n    Optional value, returns the value as-is or null if not set\n\n    'string'\n    Always return a string type and an empty string if no data.\n    Whitespace is trimmed (spaces, tabs, new lines, etc).\n\n    'string?'\n    Return string data type or null if not set or\n    the string is empty. Whitespace is trimmed.\n\n    'string with whitespace'\n    Always return a string and keep any whitespace\n\n    'int'\n    Always return an int data type, if the value was\n    not set or a valid integer then it will return zero.\n\n    'int?'\n    Return int or null\n\n    'float'\n    Always return an float\/double data type, if the value\n    was not set or a valid float then it will return zero.\n\n    'float?'\n    Return float or null\n\n    'bool'\n    Return a boolean (true or false).\n    returns true if the value is '1', 'true', 'on', or 'yes'\n    and false for all other values.\n\n    'bool?'\n    Return a boolean (true|false) or null\n    Using strict bool validation values so the following rules apply:\n    returns true if the value is '1', 'true', 'on', or 'yes'\n    returns false if the value is '0', 'false', 'off', or 'no'\n    returns null for all other values\n\n    'checkbox'\n    Check the value of an HTML Submitted Form Field Checkbox\n    and convert it to a database bit value of 1 or 0. HTML\n    Posted Forms if checked will have the value set to 'on'\n    otherwise the field name will not be included in the POST.\n    Specifying $format of 'bool' for a checkbox field will\n    allow return true\/false if that is desired over 1\/0.\n\n    'email?'\n    Return a valid email address or null\n\n    'url?'\n    Return a valid url address beginning with 'http:\/\/' or 'https:\/\/' or null\n\nExamples:\n    $_POST['input1'] = 'test';\n    $_POST['input2'] = '123.456';\n    $_POST['checkbox1'] = 'on';\n    $json = json_decode('{\"app\":\"FastSitePHP\",\"strProp\":\"abc\",\"numProp\":\"123\",\"items\":[{\"name\":\"item1\"},{\"name\":\"item2\"}]}');\n\n    'test'        = $req->value($_POST, 'input1');\n    'te'          = $req->value($_POST, 'input1', 'string', 2); \/\/ Truncate string to 2 characters\n    123.456       = $req->value($_POST, 'input2', 'float');\n    ''            = $req->value($_POST, 'missing', 'string'); \/\/ Missing Item\n    1             = $req->value($_POST, 'checkbox1', 'checkbox');\n    0             = $req->value($_POST, 'checkbox2', 'checkbox'); \/\/ Missing Item\n    true          = $req->value($_POST, 'checkbox1', 'bool');\n    'FastSitePHP' = $req->value($json, 'app');\n    'abc'         = $req->value($json, 'strProp', 'string?');\n    0             = $req->value($json, 'strProp', 'int'); \/\/ Invalid Int\n    null          = $req->value($json, 'strProp', 'int?'); \/\/ Invalid Int\n    123           = $req->value($json, 'numProp', 'int');\n    'item1'       = $req->value($json, array('items', 0, 'name'));\n    'item2'       = $req->value($json, array('items', 1, 'name'));\n    null          = $req->value($json, array('items', 2, 'name')); \/\/ Missing Item",
+            "attributes": [
+                "@param object|array $data     Object or Array where the key or property will be optionally defined",
+                "@param string|int|array $key  Key or property to lookup",
+                "@param string $format         Desired return format, see list of options",
+                "@param null|int $max_length   Max string length, if larger than string is truncated",
+                "@return mixed",
+                "@throws \\Exception"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "header($name)",
+            "target": "fn_header",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the value of a Header Field sent with the HTTP Request. If the key does not exist for then this function will return null. Header values are read directly from the PHP Superglobal $_SERVER Array.\n\nExamples:\n    $content_type = $req->header('Content-Type')\n    $user_agent = $req->header('User-Agent')\n\n    Header Keys are Case-insensitive so the following all return the same value\n    $value = $req->header('content-type')\n    $value = $req->header('CONTENT-TYPE')\n    $value = $req->header('Content-Type')",
+            "attributes": [
+                "@param string $name",
+                "@return string|null",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "headers()",
+            "target": "fn_headers",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return an array of all HTTP Request Headers Fields. Header names will be capitalized so the following names ['Content-type', 'Content-Type', and 'CONTENT-TYPE'] would all be returned by this function as 'Content-Type' for the key in the array.",
+            "attributes": [
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "method()",
+            "target": "fn_method",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the Request Method as a string ['GET', 'POST', 'PUT', etc].",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "contentType()",
+            "target": "fn_contentType",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Read the specified request header 'Content-Type' and return a text string with a simple value 'json|form|text|xml|form-data' to indicate the type of request content, if unknown then the actual value, or if not set then null. This function can be used to show the return format of the input() function. The difference between 'form' and 'form-data' is 'form' is used to indicate a simple html form posted as 'application\/x-www-form-urlencoded' while 'form-data' is for forms with possible files posted as 'multipart\/form-data'. If the return type is 'form-data' then the input must be read using superglobal variables $_POST and $_FILES because content() and contentText() use 'php:\/\/input' which does not read from multipart forms.",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "content()",
+            "target": "fn_content",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Read the request input stream and return the result as as an object, array, text, or null based on the specified content-type. This function is a different from contentText() which always returns the request input as a text string. This would commonly be used to handle posted JSON data or put form values to a web service. The supported return type formats are:\n    *) 'json' which returns an associative array if text is parsed or\n       null if invalid json\n    *) 'form' which returns an associative array of the\n       parsed form values\n    *) All other input types are returned as text and it's\n       up to the app developer to handle them. XML is not handled\n       by default because there are multiple XML Libraries built\n       into PHP and it would be up to the app developer to determine\n       the best one to use plus XML is now becoming a lot less\n       common and typically being replaced with JSON services.",
+            "attributes": [
+                "@return mixed"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "contentText()",
+            "target": "fn_contentText",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Read the request input stream and return the result as text. This reads 'php:\/\/input' which can only be read once prior to PHP 5.6; this function saves the result and can be read over and over. The return value is always a string regardless of type. This would commonly be used to handle posted JSON data or put form values to a web service. To return request input in the actual format sent from the client use the function input().",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "bearerToken()",
+            "target": "fn_bearerToken",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a Bearer Token value from the Authorization Request Header. If the header is not set or the token is invalid then null will be returned.\n\nBearer Tokens are commonly used with API\u2019s and Web Services. Token values are defined by the app and can include OAuth 2.0, JSON Web Tokens (JWT), or custom formats.\n\nExample Request:\n    'Authorization: Bearer abc123'\n\nThis function returns:\n    'abc123'\n\nThe web standard (RFC 6750) is focused around OAuth 2.0 however it defines a flexible format for the token value to support various encoded token types:\n    Bearer {OAuth 2.0}\n    Bearer {JWT}\n    Bearer {Hex}\n    Bearer {Base64}\n    Bearer {Base64url}",
+            "attributes": [
+                "@link https:\/\/tools.ietf.org\/html\/rfc6750",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": [
+                "https:\/\/tools.ietf.org\/html\/rfc6750"
+            ]
+        },
+        {
+            "definition": "isXhr()",
+            "target": "fn_isXhr",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if the request was submitted with the header [X-Requested-With] containing the value [XMLHttpRequest]. This header is sent with jQuery and other popular JavaScript Frameworks when making web service calls.\n\nAn example of using this function for on a site would be if a Web Form allows for both Form POST's and Web Service Calls to the same URL. For this example the server code could check if the function was submitted as an xhr request and if so return JSON otherwise return HTML.",
+            "attributes": [
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "origin()",
+            "target": "fn_origin",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get the value of the 'Origin' Request Header if set or null if not set. This header value is submitted by Web Browsers for Cross-Origin Resource Sharing (CORS) Requests. This function can be used with the cors() function to handle CORS Requests. In JavaScript the origin of a web site can be determined from the property [window.location.origin]. For reference links related to the 'Origin' Header refer to the cors() function.\n\nIf a page is being viewed directly from the file system [window.location.origin] will show 'file:\/\/' and submit a string value of 'null' to the server. The string value of null is handled and returned as null with this function.",
+            "attributes": [
+                "@return null"
+            ],
+            "returnType": "null",
+            "links": []
+        },
+        {
+            "definition": "userAgent()",
+            "target": "fn_userAgent",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get the value of the 'User-Agent' Request Header or null if not submitted. The 'User-Agent' header is a string that often provides info related to what Browser or HTTP client the user is using and what OS they are on. The header value is commonly spoofed meaning requests will say they are a specific browser and OS when they are in fact something else so user agent values generally cannot be relied upon. However if a site is tracking User Agent strings then it can provide a general overview of who is using the site and what devices or browsers they are using. In JavaScript the User Agent can be determined from the property [navigator.userAgent].",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/User_agent",
+                "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation",
+                "@return null"
+            ],
+            "returnType": "null",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/User_agent",
+                "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation"
+            ]
+        },
+        {
+            "definition": "referrer()",
+            "target": "fn_referrer",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get the value of the 'Referer' Request Header. The Referer Header provides address of a web page or web site that linked to the current request. This value will also be set by search engines (e.g.: Google or Bing) when a user is coming from the search engine. The Referer header is a defined web standard and was originally defined as a misspelled English word so it has been kept as a misspelled word for technical purposes; just like JavaScript this function uses the correctly English Spelling. In JavaScript from a Web Browser this value can be determined from the property [document.referrer].",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/HTTP_referer",
+                "@return null"
+            ],
+            "returnType": "null",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/HTTP_referer"
+            ]
+        },
+        {
+            "definition": "clientIp($option = null, $trusted_proxies = 'trust local')",
+            "target": "fn_clientIp",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the IP Address of the remote client (the end-user) that is requesting the webpage or resource. For security if no options are specified this function will return the server variable REMOTE_ADDR. However depending upon the environment, the server variable REMOTE_ADDR might not the IP Address of the remote client but rather the IP Address of the a Proxy Server such as a Load Balancer. For websites that use a proxy server this function provides a number of options to securely read the IP Address of the client. If you do not use a proxy server then call this function without passing any arguments if you need the client's IP address.\n\nReading the remote client IP Address is a possible source of attacks by malicious clients for insecure web frameworks and code. FastSitePHP is designed for security out of the box so using this function with default parameters is secure however if using a proxy server the actual web server and environment must also be properly configured. For an example of this type of attack see comments in the function [isLocal()].\n\nThe server variable REMOTE_ADDR on most server environments will always contain the IP Address of the connecting client. Generally this value is always safe to read. If a proxy server is used and configured to provide the client's IP Address then it will likely be sent in a Request Header such as 'X-Forwarded-For', 'Client-IP', or 'Forwarded'. These request headers typically use the following format:\n\n   X-Forwarded-For: Client1, Client2, Proxy1, Proxy2\n   (Example): 127.0.0.1, 54.231.1.14, 10.0.0.1, 10.0.0.2\n\nIn this example only the value Client2 would be safe to read as it is the last \"untrusted\" IP Address to reach a \"trusted\" proxy server. The IP Address specified in Client1 could be anything (for example 127.0.0.1 to spoof localhost or a SQL Injection Attack) which is why only the value from Client2 would be valid for IP Reporting or Logging. The terms \"untrusted\" and \"trusted\" are commonly used when referring to proxy servers and they mean that an \"untrusted\" client is one that exists on the public internet while a \"trusted\" client is a known computer (usually on a private network) that you have control over or trust as providing valid IP info.\n\nThis function has two parameters [$options] and [$trusted_proxies]:\n\n    $options (string or null):\n        *) Defaults to null which returns REMOTE_ADDR and results in remote\n           IP Addresses not being checked.\n        *) 'from proxy' - If specified this will check the following three server variables\n           [ 'HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'HTTP_FORWARDED' ] which maps to\n           Request Headers [ 'X-Forwarded-For', 'Client-IP', 'Forwarded' ]. Each of the\n           Headers is checked and the matching header is used to lookup the IP Address.\n           If multiple headers exist with different IP Addresses then an exception\n           is raised with this option because it would not be possible for the application\n           to know which header is correct. The three headers checked are the most\n           common headers used for specifying the client's IP Address. Headers\n           'X-Forwarded-For' and 'Client-IP' are non-standard headers but widely used.\n           The header 'Forwarded' is part of Web Standard RFC 7239 however it is relatively\n           new (defined in 2014) and not yet widely used.\n        *) 'HTTP_X_FORWARDED_FOR' or the key of a Server Variable for the Request Header\n           that contains the Client's IP Address from the Proxy Server. For example if\n           the client's IP Address is sent in the request header 'X-Forwarded-For' then\n           the server variable 'HTTP_X_FORWARDED_FOR' will contain the value of the header.\n           Even though FastSitePHP allows for the simple option 'from proxy', entering the\n           actual server variable is good practice because it allows the application to\n           ignore all other headers. In some cases a valid public client can also be behind\n           a proxy server that uses one of the headers which is different than the header\n           used by the web server. In this case if the headers are not correctly modified\n           by the proxy server then this function will raise an exception because\n           it doesn't know which header value to use.\n\n    $trusted_proxies (string or array):\n        *) This option only applies if the parameter [$option] is not null.\n        *) 'trust local' - The default value. This uses CIDR Notation string\n           values returned from the array [$app->privateNetworkAddresses()]\n           and also allows for Web Standard RFC 7239 Obfuscated and\n           Unknown Identifiers.\n        *) Optionally this parameter can be set with a string or an array of\n           specific IP Addresses or CIDR Notation IP Ranges to trust.\n        *) If using a proxy server then the default value 'trust local' should\n           be used for most websites as it is secure and only allows for\n           IP Addresses that would appear on a private network to be trusted.\n\nExamples:\n    Remote Address and one 'X-Forwarded-For' header on a private network\n        REMOTE_ADDR = '10.1.1.1'\n        HTTP_X_FORWARDED_FOR = '54.231.1.4, 10.1.1.2'\n\n        '10.1.1.1' = req->clientIp()\n        Function called without any parameters so the value from REMOTE_ADDR is returned\n\n        '54.231.1.4' = req->clientIp('from proxy')\n        '54.231.1.4' = req->clientIp('from proxy', 'trust local')\n        '54.231.1.4' = req->clientIp('from proxy', $app->privateNetworkAddresses())\n        Client IP Address is returned when using 'from proxy' as the function\n        determines the proxy addresses. 'trust local' is the default option and\n        it uses an array of CIDR Notation String Values from the function\n        [$app->privateNetworkAddresses()].\n\n        '10.1.1.2' = req->clientIp('from proxy', '10.1.1.1')\n        Only the IP Address '10.1.1.1' is trusted so '10.1.1.2' is returned\n\n        '54.231.1.4' = req->clientIp('HTTP_X_FORWARDED_FOR')\n        Client IP Address is returned when using the specific server variable as an option\n\n    Three Client IP Addresses specified (\"' OR '1'='1' --\", 127.0.0.1, 54.231.1.5).\n    The left-most address is an attempted SQL Injection String while the 2nd address\n    '127.0.0.1' is an attempt to spoof localhost permissions. Only the 3rd Address\n    '54.231.1.5' is the IP Address that the client actually connected from.\n        REMOTE_ADDR = '10.0.0.1'\n        HTTP_X_FORWARDED_FOR = \"' OR '1'='1 --, 127.0.0.1, 54.231.1.5\"\n\n        '10.0.0.1' = req->clientIp()\n        Function called without any parameters so the value from REMOTE_ADDR is returned\n\n        '54.231.1.5' = req->clientIp('from proxy')\n        The correct Client IP Address is returned and the two left-most values are ignored\n\n    The Client Connects from their own proxy '54.231.1.7' and specified the final Client IP\n    '54.231.1.6' in two Request Headers 'X-Forwarded-For' and 'Client-Ip'. An internal\n    Proxy Server is configured to only handle 'X-Forwarded-For'.\n        REMOTE_ADDR = '10.0.0.2'\n        HTTP_X_FORWARDED_FOR = '54.231.1.6, 54.231.1.7'\n        HTTP_CLIENT_IP = '54.231.1.6'\n\n        req->clientIp('from proxy')\n        An Exception is thrown because the IP Request Headers are\n        incompatible and the client cannot be determined.\n\n        '54.231.1.7' = req->clientIp('HTTP_X_FORWARDED_FOR')\n        The correct Client IP is returned because the correct server variable is specified.\n\n    Client IP supports both IPv4 and IPv6. In this example an IPv6 Unique local address\n    ('fc00::\/7') is specified as the trusted proxy. In CIDR Notation the address 'fc00::\/7'\n    also covers the IP Range 'fd00::\/8' which is why REMOTE_ADDR starts with 'fddb:'.\n        REMOTE_ADDR = 'fddb:1273:5643::1234'\n        HTTP_X_FORWARDED_FOR = '2001:4860:4801:1318:0:6006:1300:b075'\n\n        '2001:4860:4801:1318:0:6006:1300:b075' = req->clientIp('from proxy')\n        The correct public IPv6 Address (in this case a Googlebot) is returned",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/X-Forwarded-For",
+                "@link https:\/\/tools.ietf.org\/html\/rfc7239",
+                "@link http:\/\/docs.aws.amazon.com\/ElasticLoadBalancing\/latest\/DeveloperGuide\/x-forwarded-headers.html",
+                "@link http:\/\/httpd.apache.org\/docs\/2.2\/mod\/mod_proxy.html#x-headers",
+                "@param null|string           $option",
+                "@param array|string|null     $trusted_proxies",
+                "@return string|null",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | null",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/X-Forwarded-For",
+                "https:\/\/tools.ietf.org\/html\/rfc7239",
+                "http:\/\/docs.aws.amazon.com\/ElasticLoadBalancing\/latest\/DeveloperGuide\/x-forwarded-headers.html",
+                "http:\/\/httpd.apache.org\/docs\/2.2\/mod\/mod_proxy.html#x-headers"
+            ]
+        },
+        {
+            "definition": "protocol($option = null, $trusted_proxies = 'trust local')",
+            "target": "fn_protocol",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the protocol (a string value of either 'http' or 'https') that was used to make the request. If the web server is behind a proxy server (for example a load balancer) then optional parameters allow for the protocol to be safely read from a proxy request header. If not using a proxy server then functions rootDir() and rootUrl() can be used to easily obtain needed URLs for the hosted site instead of using this function.\n\nFor reading proxy headers functions clientIp(), protocol(), host(), and port() all share similar parameters; refer to clientIp() documentation for detailed comments on the options. For protocol() if the [option] parameter is set to 'from proxy' then the value is read from the request header 'X-Forwarded-Proto' (server variable X_FORWARDED_PROTO). To use a different proxy request header use the corresponding server variable name as the [option] parameter. If using a proxy header variable the value from the proxy header should be either 'http' or 'https'.",
+            "attributes": [
+                "@param null|string           $option",
+                "@param array|string|null     $trusted_proxies",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "host($option = null, $trusted_proxies = 'trust local', array $allowed_hosts = null)",
+            "target": "fn_host",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the host value (domain name) for the request. If the host value contains a port number (for example 'site:8080' then it will be included with the host in return value). If the web server is behind a proxy server (for example a load balancer) then optional parameters allow for the host to be safely read from a proxy request header. If not using a proxy server then functions rootDir() and rootUrl() can be used to easily obtain needed URLs for the hosted site instead of using this function.\n\nFor reading proxy headers functions clientIp(), protocol(), host(), and port() all share similar parameters; refer to clientIp() documentation for detailed comments on the options. For host() if the [option] parameter is set to 'from proxy' then the value is read from the request header 'X-Forwarded-Host' (server variable X_FORWARDED_HOST). To use a different proxy request header use the corresponding server variable name as the [option] parameter.\n\nFor proxy server values an optional array of allowed hosts can be defined for validation using the [allowed_host] parameter. If the array is defined and the proxy host does not match then an exception is thrown. This can help prevent attacks when using a proxy server that specifies a different domain from the actual web server. Values in the array are matched to the host based on an exact match (case-insensitive) or can also be matched using one of two wildcard card characters: [*] which matches to one or more of any character and [#] which matches to a numeric value of digits.\n\n[$allowed_hosts] Examples:\n    'domain.tld'   - matches [domain.tld] and [DOMAIN.TLD] but not [www.domain.tld]\n    '*.domain.tld' - matches [sub.domain.tld] and [sub. sub2.domain.tld] but not [domain.tld]\n    'Domain.tld:#' - matches [domain.tld:8080]",
+            "attributes": [
+                "@param null|string           $option",
+                "@param array|string|null     $trusted_proxies",
+                "@param array|null            $allowed_hosts",
+                "@return string|null",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "port($option = null, $trusted_proxies = 'trust local')",
+            "target": "fn_port",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the port number for the request. In most cases the end user would connect to a server using port 80 for HTTP and port 443 for secure HTTPS requests. Other port numbers may be used in development or on server environments. If the web server is behind a proxy server (for example a load balancer) then optional parameters allow for the port number to be safely read from a proxy request header. If not using a proxy server then functions rootDir() and rootUrl() can be used to easily obtain needed URLs for the hosted site instead of using this function.\n\nFor reading proxy headers functions clientIp(), protocol(), host(), and port() all share similar parameters; refer to clientIp() documentation for detailed comments on the options. For port() if the [option] parameter is set to 'from proxy' then the value is read from the request header 'X-Forwarded-Port' (server variable X_FORWARDED_PORT). To use a different proxy request header use the corresponding server variable name as the [option] parameter.",
+            "attributes": [
+                "@param null|string           $option",
+                "@param array|string|null     $trusted_proxies",
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "serverIp()",
+            "target": "fn_serverIp",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the IP Address that the Web Server is running from. When running on localhost or using PHP's Built-in Development Web Server this function will likely return '127.0.0.1' (IPv4) or '::1' (IPv6) and if running a PHP Script from the command line without a web server then this function will likely return null. For default Apache installations this function will get the IP Address from the server variable SERVER_ADDR and for default IIS installations this function will get the IP Address from the server variable LOCAL_ADDR. To get the Network IP Address of the Computer see the function [FastSitePHP\\Net\\Config->networkIp()].",
+            "attributes": [
+                "@return string|null"
+            ],
+            "returnType": "string | null",
+            "links": []
+        },
+        {
+            "definition": "isLocal()",
+            "target": "fn_isLocal",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if the request is running from localhost '127.0.0.1' (IPv4) or '::1' (IPv6) and if the web server software is also running on localhost. This function can be used to show or hide specific site features for developers or administrators. This function would likely always be safe to call as it does not use IP Addresses from a proxy server however it is possible that a misconfigured sever or server code that overwrites server variables could provide incorrect info. If using this function make sure to test the site in various environments to see that it behaves as expected. The reference link provides an example of how a misconfigured server can cause errors with server software thinking its running in localhost when it's not. In regards to the reference link this function would not have failed as it's checking both Client and Server IP Addresses.",
+            "attributes": [
+                "@link http:\/\/blog.ircmaxell.com\/2012\/11\/anatomy-of-attack-how-i-hacked.html",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": [
+                "http:\/\/blog.ircmaxell.com\/2012\/11\/anatomy-of-attack-how-i-hacked.html"
+            ]
+        },
+        {
+            "definition": "accept($mime_type = null)",
+            "target": "fn_accept",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Parse the 'Accept' Request Header into an array or if an optional parameter is specified then check if the 'Accept' Header contains the specified MIME Type and return true or false. See also comments for the function [acceptLanguage()] because all [accept*()] functions have similar behavior.",
+            "attributes": [
+                "@param null|string $mime_type",
+                "@return array|bool"
+            ],
+            "returnType": "array | bool",
+            "links": []
+        },
+        {
+            "definition": "acceptCharset($character_encoding = null)",
+            "target": "fn_acceptCharset",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Parse the 'Accept-Charset' Request Header into an array or if an optional parameter is specified then check if the 'Accept-Charset' Header contains the specified Character Encoding and return true or false. See also comments for the function [acceptLanguage()] because all [accept*()] functions have similar behavior.\n\nNOTE - this header is no longer commonly used and for web browsers and it is safe for servers to assume that UTF-8 is the accepted character encoding method.",
+            "attributes": [
+                "@param null|string $character_encoding",
+                "@return array|bool"
+            ],
+            "returnType": "array | bool",
+            "links": []
+        },
+        {
+            "definition": "acceptEncoding($content_encoding = null)",
+            "target": "fn_acceptEncoding",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Parse the 'Accept-Encoding' Request Header into an array or if an optional parameter is specified then check if the 'Accept-Encoding' Header contains the specified Content Encoding and return true or false. See also comments for the function [acceptLanguage()] because all [accept*()] functions have similar behavior.",
+            "attributes": [
+                "@param null|string $content_encoding",
+                "@return array|bool"
+            ],
+            "returnType": "array | bool",
+            "links": []
+        },
+        {
+            "definition": "acceptLanguage($language = null)",
+            "target": "fn_acceptLanguage",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "For HTTP there are several standard 'Accept*' Request Headers that can be used for content negotiation by a web server to determine how to respond.\n\nParse the 'Accept-Language' Request Header into an array or if an optional parameter is specified then check if the 'Accept-Language' Header contains the specified Language and return true or false.\n\nExample:\n    'Accept-Language' Header Value = 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'\n\n    acceptLanguage():\n    returns array(\n        array('value' => 'ru-RU', 'quality' => null),\n        array('value' => 'ru',    'quality' => 0.8),\n        array('value' => 'en-US', 'quality' => 0.6),\n        array('value' => 'en',    'quality' => 0.4),\n    );\n\n    acceptLanguage('en'): true\n    acceptLanguage('de'): false",
+            "attributes": [
+                "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation",
+                "@link https:\/\/www.w3.org\/International\/questions\/qa-accept-lang-locales",
+                "@param null|string $language",
+                "@return array|bool"
+            ],
+            "returnType": "array | bool",
+            "links": [
+                "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Content_negotiation",
+                "https:\/\/www.w3.org\/International\/questions\/qa-accept-lang-locales"
+            ]
+        }
+    ],
+    "links": []
+}
