@@ -122,7 +122,7 @@ Entendimento completo desses comandos requer bom conhecimento de termos de cript
 # Primeiro crie um arquivo vazio de 10MB como nome "crypto_test_10mb" para teste.
 # macOS utiliza [mkfile] enquanto Linux ou Unix usará um dos outros comandos.
 # [dd] está incluso para o propósito de documentação, porém, ele é muito lento para isso e
-# geralmente o [dd], comumente chamado de "destruidor de disco", deve ser usado com cautela.
+# em geral o [dd], comumente chamado de "destruidor de disco", deve ser usado com cautela.
 mkfile -n 10m crypto_test_10mb
 xfs_mkfile 10m crypto_test_10mb
 fallocate -l 10m crypto_test_10mb
