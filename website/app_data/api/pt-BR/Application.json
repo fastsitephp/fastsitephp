@@ -349,7 +349,7 @@
                 "http:\/\/php.net\/manual\/en\/function.register-shutdown-function.php"
             ]
         },
-        {-- PAREI AQUI --
+        {
             "definition": "__call($name, $arguments)",
             "target": "fn___call",
             "isStatic": false,

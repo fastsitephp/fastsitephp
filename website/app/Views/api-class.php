@@ -101,6 +101,16 @@
     }
     ul.link-list { margin-left: 2em; }
     ul.link-list li { line-height: 1.4em; }
+    .only-code-has-i18n { 
+        border: 1px solid hsla(23, 100%, 43%, 1);
+        background-color: #FFAB76;
+        background-image: linear-gradient(hsla(23, 100%, 63%, 1), #FFAB76);
+        padding: 1em;
+        margin-bottom: 20px;
+    }
+    .only-code-has-i18n h3 {
+        margin-bottom: 20px;
+    }
 </style>
 <div class="flex">
     <section class="content class-list">
@@ -119,6 +129,14 @@
     </section>
     <section class="content class-info">
         <h1><?= $app->escape($class->name) ?></h1>
+        <?php if ($example_code && isset($i18n['only_code_is_translated'])): ?>
+            <div class="only-code-has-i18n">
+                <?php if ($example_code && isset($i18n['quick_tip'])): ?>
+                    <h3><?= $app->escape($i18n['quick_tip']) ?></h3>
+                <?php endif ?>
+                <p><a href="#example-code"><?= $app->escape($i18n['only_code_is_translated']) ?></a></p>
+            </div>
+        <?php endif ?>
         <p><?= $app->escapeDesc($class->description) ?></p>
         <h3 class="source-code"><?= $app->escape($i18n['source_code']) ?></h3>
         <p><a href="<?= $app->escape($class->github) ?>" target="_blank"><img src="../../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32"></a></p>
@@ -132,7 +150,7 @@
         <?php endif ?>
 
         <?php if ($example_code): ?>
-            <h2><?= $app->escape($i18n['example_code']) ?></h2>
+            <h2 id="example-code"><?= $app->escape($i18n['example_code']) ?></h2>
             <?php foreach ($example_code as $code): ?>
                 <section class="content sample-code">
                     <?php if ($code->title): ?>

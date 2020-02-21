@@ -616,7 +616,7 @@ $app->get('/examples/php-encoding', function() {
 
     // EXAMPLE_CODE_START
     // TITLE: Sintaxe PHP - Codificação - JSON, Base64, Base64-URL
-    // CLASS: Codificação\Json, Codificação\Base64Url
+    // CLASS: Encoding\Json, Encoding\Base64Url
     // Criar um objeto e um array básicos para codificar
     $object = new \stdClass;
     $object->string = 'Test';
@@ -788,7 +788,7 @@ $app->get('/examples/php-error', function() use ($app) {
 /*
 // EXAMPLE_CODE_START
 // TITLE: Olá Mundo com FastSitePHP
-// CLASS: Aplicação
+// CLASS: Application
 <?php
 // Somente dois arquivos são necessários para rodar o FastSitePHP e eles podem
 // estar no mesmo diretório que o [index.php] ou seus conteúdos podem ser
@@ -867,7 +867,7 @@ $app->run();
 $app->get('/examples/app-basic-routes', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Objeto Application - Definindo Rotas Básicas
-    // CLASS: Aplicação
+    // CLASS: Application
     // O Objeto Application é o objeto chave no FastSitePHP. É utilizado para
     // definir rotas, fornecer informações e requisição, renderizar modelos,
     // enviar a resposta e mais. Se você estiver utilizando uma cópia deste
@@ -978,7 +978,7 @@ $app->get('/examples/app-route-optional-parameter', function() use ($app) {
 $app->get('/examples/app-route-controllers', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Defina a Rota que mapeia para uma Classe de Controle
-    // CLASS: Aplicação
+    // CLASS: Application
     // Definindo rotas com uma funções callback, permite prototipagem rápida
     // e funciona bem ao utilizar lógica mínima. Com o crescimento do código,
     // isso pode ser organizado em classes controller.
@@ -1082,7 +1082,7 @@ $app->get('/examples/app-route-parameter-validation', function() use ($app) {
 $app->get('/examples/app-route-filter', function() use ($app) {
     // EXAMPLE_CODE_START
     // TITLE: Utilize Filtros de Rota
-    // CLASS: Rota
+    // CLASS: Route
     // Rotas podem ter funções filtro personalizadas atribuídas a elas para
     // rodar códigos específicos se uma rota for correspondida, realizar
     // validação ou outra tarefa requisitada pelo seu site. Funções Filtro rodam

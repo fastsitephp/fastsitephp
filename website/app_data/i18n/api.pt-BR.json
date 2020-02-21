@@ -17,5 +17,7 @@
     "filter_all": "Mostrando {count} Classes",
     "filter_filtered": "Mostrando {displayed} de {count} Classes",
     "related_links": "Links Relacionados",
-    "source_code": "Código Fonte"
+    "source_code": "Código Fonte",
+    "quick_tip": "Dica Rápida",
+    "only_code_is_translated": "Code comments are in Português to help you use the class, however most class and function descriptions have not yet been translated."
 }

@@ -8,7 +8,7 @@ use FastSitePHP\FileSystem\Security;
 
 /**
  * API Controller
- * 
+ *
  * JSON files used by this Class are generated from the script:
  *     fastsitephp\scripts\create-api-json-files.php
  */
@@ -16,7 +16,7 @@ class API
 {
     /**
      * Route function for URL '/:lang/api'
-     * 
+     *
      * @param Application $app
      * @param string $lang
      * @return string
@@ -37,7 +37,7 @@ class API
 
     /**
      * Route function for URL '/:lang/api/:class'
-     * 
+     *
      * @param Application $app
      * @param string $lang
      * @param string $class
@@ -47,7 +47,7 @@ class API
     {
         I18N::langFile('api', $lang);
 
-        // Because [$class] comes directly from the user, first make 
+        // Because [$class] comes directly from the user, first make
         // sure the [en] folder contains the file name.
         $dir = $app->config['APP_DATA'] . 'api/en';
         if (!Security::dirContainsFile($dir, $class . '.json')) {
@@ -59,14 +59,14 @@ class API
         $file_path = $app->config['APP_DATA'] . 'api/{lang}/' . $class . '.json';
         $json = I18N::textFile($file_path, $lang);
         $class = json_decode($json);
-        
+
         // Get Example Code for the Class
         $example = new ExampleCode($app);
         $code = $example->getCode($class->short_name);
 
         // Get Class List for the Sidebar
         $file_path = $app->config['APP_DATA'] . 'api/Classes.json';
-        $classes = json_decode(file_get_contents($file_path));        
+        $classes = json_decode(file_get_contents($file_path));
 
         // Define a custom function for template rendering.
         // Convert new-lines to <br> and preserve white-space.
@@ -84,7 +84,7 @@ class API
             $class->github .= str_replace('\\', '/', str_replace('App\\', '', $class->name));
         } else {
             $class->github = 'https://github.com/fastsitephp/fastsitephp/blob/master/src/';
-            $class->github .= str_replace('\\', '/', str_replace('FastSitePHP\\', '', $class->name));    
+            $class->github .= str_replace('\\', '/', str_replace('FastSitePHP\\', '', $class->name));
         }
         $class->github .= '.php';
 
