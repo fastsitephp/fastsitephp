@@ -1,0 +1,246 @@
+{
+    "name": "FastSitePHP\\Security\\Crypto\\Encryption",
+    "short_name": "Security\\Crypto\\Encryption",
+    "link": "Security_Crypto_Encryption",
+    "namespace": "FastSitePHP\\Security\\Crypto",
+    "description": "Encryption\n\nThis class is designed to provide secure and easy to use encryption and decryption for an application or site. Encryption is often used with cookies and web data to keep the data secret and also verify that the data has not been tampered with.\n\nBy default many different data types are supported for encryption [string, int, float, bool, array, object, and null] and when decrypted they are returned in the original format. File encryption is handled separately by the [FileEncryption] Class.\n\nThis class is designed to work with PHP 5.3 and above and when using PHP 7.1 or above Authenticated Encryption Block Modes of GCM and CCM are available.\n\nThe type of encryption that this class uses is Advanced Encryption Standard (AES) which is a Symmetric Key Block Cipher meaning that the same key used for encryption must also be used decryption; and that data is encrypted in blocks of text rather than one byte at a time. Additionally when using default and recommended settings Authenticated Encryption is performed using either HMAC (CBC and CTR modes) or GCM mode.\n\nDefault Algorthims:\n    'aes-256-cbc' - Encryption Algorithm - AES (Rigndeal) with a 256-bit\n                    key using CBC mode. CTR and GCM modes are also supported\n                    depending upon the version of PHP being used.\n    'sha256'      - Hashing Algorithm for HMAC",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/Advanced_Encryption_Standard",
+        "@link https:\/\/en.wikipedia.org\/wiki\/Authenticated_encryption"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "generateKey()",
+            "target": "fn_generateKey",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return a new key in hex format based on the size of the needed key. Keys are generated using random bytes from the System's CSPRNG (Cryptographically secure pseudorandom number generator).\n\nThe same key must be used for both encryption and decryption and the key should be kept secret in a secure manner and should not be shared publicly.",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "encrypt($data, $key, $aad = '')",
+            "target": "fn_encrypt",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Encrypt data \"plaintext\" from a format of [string, int, float, bool, array, object, and optionally null] to string format \"ciphertext\" that cannot be ready unless someone has the key used for encryption. The default format of returned ciphertext is base64-url and the function [decrypt()] is used to read the encrypted data.\n\nThe key is a string value in hexadecimal format that can be securely generated using [generateKey()].\n\nThe parameter [aad]; an acronym for (Additional authentication data) is optional associated data. It is built-in to GCM and CCM block modes and when using other modes such as CBC or CTR it is included with the HMAC calculation. AAD is used to link or attach plaintext information to the encrypted data in a manner that prevents the AAD from being changed or separated from the encrypted data. Using AAD is not common and requires careful planning.\n\nFunction Properties used with [encrypt()] and [decrypt()]:\n  Create a secure key\n    [generateKey()]\n\n  Functions for App Logic (doesn't affect security):\n    [allowNull()] - Set to [true] to allow null values to be encrypted\n    [exceptionOnError()] - Used with [decrypt()]\n    [dataFormat()] - Allow any data type 'type-byte' (default) or 'strings-only'\n    [returnFormat()] - Change return format, defaults to 'base64url'\n\n  Functions that change how Crypto Works:\n    [encryptionAlgorithm()] - Change the encryption algorithrm\n    [hashingAlgorithm()] - Change the HMAC algorithrm\n    [keyType()] - 'key' or 'password' - Default to 'key'\n    [pbkdf2Algorithm()] - For use with 'password' Key type\n    [pbkdf2Iterations()] - For use with 'password' Key type\n    [keySizeEnc()] - Change Key Size Requirements\n    [encryptThenAuthenticate()] - Set to [false] to disable Authentication\n\nBy default only secure settings are used so changing most encryption options is not recommend unless you have detailed knowledge of cryptography or have specific app needs. One security option that is safe to change without knowning the details of how to use it is [encryptionAlgorithm('aes-256-gcm')] if all of your servers have PHP 7.1 or greater. This will provide faster encryption and decryption and the ciphertext will be slightly smaller in size.",
+            "attributes": [
+                "@param mixed $data",
+                "@param string $key",
+                "@param string $aad",
+                "@return string",
+                "@throws \\Exception"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "decrypt($encrypted_text, $key, $aad = '')",
+            "target": "fn_decrypt",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Decrypt a string that was encrypted with [encrypt()]. Using the default properties the data is returned in the original format if decryption was successful and null is returned if the string cannot be decrypted.\n\nIf setting the option [exceptionOnError(true)] then an Exception will be thrown if the encrypted text (ciphertext) cannot be decrypted.\n\nThe same key and settings used with encryption must also be used here. If AAD (Additional authenticated data) was used [encrypt()] then the same value must also be used here.",
+            "attributes": [
+                "@param string $encrypted_text",
+                "@param string $key",
+                "@param string $aad",
+                "@return mixed",
+                "@throws \\Exception"
+            ],
+            "returnType": "mixed",
+            "links": []
+        },
+        {
+            "definition": "encryptionAlgorithm($new_value = null)",
+            "target": "fn_encryptionAlgorithm",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the Encryption Algorithm to use. When setting the algorithm any algorithm specified in [\\openssl_get_cipher_methods()] can be used.\n\nThe default encryption algorithm used is AES (Rigndeal) with a 256-bit key using CBC mode. This class is also verified to work with AES using CTR and GCM depending upon the version of PHP being used. If the algorithm is changed to a different key size (example: 'aes-128-cbc') then the value of [keySizeEnc()] will be changed automatically.\n\nAlgorithms Verified against Standard Test Vectors:\n    'aes-256-cbc' - Default, works in all supported versions of PHP\n    'aes-192-cbc'\n    'aes-128-cbc'\n    'aes-256-ctr' - Requires PHP 5.5+\n    'aes-192-ctr'\n    'aes-128-ctr'\n    'aes-256-gcm' - Requires PHP 7.1+",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/function.openssl-get-cipher-methods.php",
+                "@param string|null $new_value",
+                "@return string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | $this",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/function.openssl-get-cipher-methods.php"
+            ]
+        },
+        {
+            "definition": "returnFormat($new_value = null)",
+            "target": "fn_returnFormat",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or Set the the return format for Encryption and the input format for Decryption. Defaults to ('base64url'), all options:\n    [ 'base64url', 'base64', 'hex', 'bytes' ]",
+            "attributes": [
+                "@param string|null $new_value",
+                "@return string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "dataFormat($new_value = null)",
+            "target": "fn_dataFormat",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or Set the data format to use for Encryption and Decryption. There are two options:\n    'type-byte' (Default):\n        This allows for any data type (string, number, object, etc)\n        to  be encrypted and returned in the same format on decryption.\n        This works by converting data to a string prior to encryption\n        and appending a single byte to the end of the string which\n        represents what the original data type is. Objects and arrays\n        are converted using JSON which allows for this code to be easily\n        portable to other programming languages.\n    'string-only':\n        When this property is set only strings can be passed to the\n        function [encrypt()].",
+            "attributes": [
+                "@param string|null $new_value",
+                "@return string|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "keySizeEnc($new_bit_length = null)",
+            "target": "fn_keySizeEnc",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the required key size for Encryption. This value is changed automatically when setting [encryptionAlgorithm()]. The default value is 256 (32 Bytes) which is the key size for 'aes-256-cbc'.\n\nIMPORTANT - This should only be manually set if compatibility with other code is needed or for Unit Testing. Often online samples of AES use insecure passwords such as 'password' when showing encryption demos which is one of the reasons that this setting was created. The main reason this function exists is for Unit Testing. Additionally if using an Encryption Algorithm other than AES then you may need to set this value.",
+            "attributes": [
+                "@param int|null $new_bit_length",
+                "@return int|$this",
+                "@throws \\Exception"
+            ],
+            "returnType": "int | $this",
+            "links": []
+        },
+        {
+            "definition": "isAEAD_Mode()",
+            "target": "fn_isAEAD_Mode",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns true if the encryption algorithm specified is using AEAD (Authenticated Encryption with Associated Data) Block Cipher Modes of either GCM or CCM. These two modes of operation are only available on PHP 7.1 and later.",
+            "attributes": [
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "__construct()",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nIf using PHP 5.3 then functions [bin2hex()] and [hex2bin()] and OpenSSL Constant [OPENSSL_RAW_DATA] are polyfilled.\n\nIf using PHP 5.5 or below then [hash_equals()] is polyfilled.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "exceptionOnError($new_value = null)",
+            "target": "fn_exceptionOnError",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set how invalid values are handled on decryption and verification. By default functions [decrypt()] and [verify()] will return null if data cannot be decrypted or verified respectively. When [exceptionOnError()] is set to [true] then these two functions will throw an exception instead of returning null. This allows for the default behavior of [decrypt()] and [verify()] to allow calling code to handle nulls easily rather than try\/catch blocks and if details are needed on why encryption or data verification failed then then this property can be set to [true].",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "allowNull($new_value = null)",
+            "target": "fn_allowNull",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "When [allowNull()] is set to the default value [false] then function [encrypt()] and [sign()] will not accept null data parameters and instead will throw an exception. The reason for this is because [decrypt()] and [verify()] return nulls by default if data cannot be decrypted or verified. If it makes sense for your application to encrypt or sign null values then set this property to [true] and likely set [exceptionOnError()] to true so that decryption and authentication can properly validate the null values.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "hashingAlgorithm($new_value = null)",
+            "target": "fn_hashingAlgorithm",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the Hashing Algorithm to use with classes [Encryption] and [SignedData]. Defaults to 'sha256'. Only Algorthims allowed for PHP function [hash_hmac()] are supported.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "encryptThenAuthenticate($new_value = null)",
+            "target": "fn_encryptThenAuthenticate",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set whether to use authenticated encryption. When set to [true] text or data is encrypted using the specified encryption algorithm (default 'aes-256-cbc') then the encrypted bytes are hashed using hmac with the specified hashing algorithm (default 'sha256'). If set to [false] then data or text is only encrypted and the decrypted data cannot be verified if it has been tampered with or not. Authenticating encrypted data is a critical step for data integrity so it's important that this property should be left as the default value [true] unless compatibility with data encrypted outside of this class is needed.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "keyType($new_value = null)",
+            "target": "fn_keyType",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the key type which is a string value of either 'key' or 'password'. The default value is 'key' which results in encryption functions validating that the key parameter used for encryption and decryption to match the required length. When using 'password' then keys are generated each time from PBKDF2 (Password-Based Key Derivation Function 2). PBKDF2 takes a considerable amount of CPU so using the 'password' option requires carefull consideration as it can make a site more susceptible to Denial of Service (DoS) attacks if a lot of requests are sent to service or page that uses PBKDF2.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "pbkdf2Algorithm($new_value = null)",
+            "target": "fn_pbkdf2Algorithm",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the PBKDF2 Hashing Algorithm to use with the option [keyType('password')]. Defaults to 'sha512'. Only Algorthims allowed for PHP function [hash_pbkdf2()] are supported.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "pbkdf2Iterations($new_value = null)",
+            "target": "fn_pbkdf2Iterations",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the number of PBKDF2 iterations to use with option [keyType('password')]. Defaults to 200000 [200,000].\n\nIf you have an older server 200,000 might be too slow and you could use 100,000, however if you change this setting you would need to track what was encrypted with a different number.",
+            "attributes": [
+                "@param null|int $new_value",
+                "@return int|$this"
+            ],
+            "returnType": "int | $this",
+            "links": []
+        },
+        {
+            "definition": "keySizeHmac()",
+            "target": "fn_keySizeHmac",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get the key size used for HMAC Hashing. This value is set automatically when calling [hashingAlgorithm()] and for security cannot be changed to a different value. The default value is 256-bit (32 Bytes) which is the output length for hashing with 'sha256'.",
+            "attributes": [
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/Advanced_Encryption_Standard",
+        "https:\/\/en.wikipedia.org\/wiki\/Authenticated_encryption"
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "name": "FastSitePHP\\Data\\KeyValue\\SqliteStorage",
+    "short_name": "Data\\KeyValue\\SqliteStorage",
+    "link": "Data_KeyValue_SqliteStorage",
+    "namespace": "FastSitePHP\\Data\\KeyValue",
+    "description": "Store Key-Value Pairs in a SQLite Database.\n\nThis class uses the [FastSitePHP\\Data\\KeyValue\\StorageInterface] class interface.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct($file_path)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nSpecify a path for the SQLite Database. The database file will be created if it does not exist and the table [key_value_pairs] will be added.",
+            "attributes": [
+                "@param string $file_path"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "get($key, $default_value = null)",
+            "target": "fn_get",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Get a saved value with an optional default value if it doesn't exist or is null.",
+            "attributes": [
+                "@param string $key",
+                "@param mixed $default_value",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "set($key, $value)",
+            "target": "fn_set",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Set a value for a named key.",
+            "attributes": [
+                "@param string $key",
+                "@param string $value",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        },
+        {
+            "definition": "exists($key)",
+            "target": "fn_exists",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Check if a key exists in the database.",
+            "attributes": [
+                "@param string $key",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "remove($key)",
+            "target": "fn_remove",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Remove (delete) a key exists from the database.",
+            "attributes": [
+                "@param string $key"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": []
+}

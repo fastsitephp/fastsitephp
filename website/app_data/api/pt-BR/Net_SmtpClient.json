@@ -1,0 +1,330 @@
+{
+    "name": "FastSitePHP\\Net\\SmtpClient",
+    "short_name": "Net\\SmtpClient",
+    "link": "Net_SmtpClient",
+    "namespace": "FastSitePHP\\Net",
+    "description": "SMTP Client\n\nThis class provides a simple API for communicating with SMTP Servers to send emails. Emails are created from the [FastSitePHP\\Net\\Email] class and this class has no dependencies other than the [Email] class.\n\nThis class implements Simple Mail Transfer Protocol as defined in RFC 5321 and various extensions including:\n    AUTH        RFC 2554\n    STARTTLS    RFC 3207\n    SMTPUTF8    RFC 6531\n\nSupported Verbs:\n    EHLO    HELO    STARTTLS    AUTH    MAIL    RCPT\n    VRFY    RSET    NOOP        DATA    HELP    QUIT\n\nSupported Auth Methods:\n    LOGIN    PLAIN",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/Simple_Mail_Transfer_Protocol",
+        "@link http:\/\/www.samlogic.net\/articles\/smtp-commands-reference.htm",
+        "@link https:\/\/aws.amazon.com\/blogs\/messaging-and-targeting\/debugging-smtp-conversations-part-1-how-to-speak-smtp\/",
+        "@link https:\/\/docs.microsoft.com\/en-us\/exchange\/mail-flow\/test-smtp-with-telnet?view=exchserver-2019",
+        "@link https:\/\/tools.ietf.org\/html\/rfc5321"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "__construct($host = null, $port = null, $timeout = 5, \\Closure $debug_callback = null)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor Optionally connect to SMTP Server and define a Debug Callback. This is the recommended method for connecting to an SMTP Server because it automatically handles SMTP EHLO and STARTTLS commands.\n\nDefaults to a 5 second timeout. Generally, communication with SMTP Servers is very fast and if a page were to freeze for many seconds a User may be likely to try and refresh it so a quick timeout of 5 seconds is used. The timeout applies both to the initial connection to the server and when reading of each reply.\n\n[debug_callback] includes all send and reply text which can include the authentication password and private emails. When used with Authentication or emails it should only be used for debugging purposes.",
+            "attributes": [
+                "@param string|null $host",
+                "@param int|null $port",
+                "@param int $timeout",
+                "@param \\Closure $debug_callback",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "__destruct()",
+            "target": "fn___destruct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Destructor Automatically send a QUIT command to the server and close the socket connection.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "sendEmails(array $emails)",
+            "target": "fn_sendEmails",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Static helper function that sends emails using config values defined in either the [app->config] array or as environment variables.\n\nFor sites that store sensitive information in the environment or special config files using this function prevents the need to hard-code SMTP and Auth values in the source. At a minimum values for [SMTP_HOST] and [SMTP_PORT] are required. [SMTP_TIMEOUT] defaults to 5 seconds if not set; [SMTP_USER] and [SMTP_PASSWORD] are only needed if you SMTP Server requires an Auth User.",
+            "attributes": [
+                "@param array $emails - Array of [\\FastSitePHP\\Net\\Email] objects",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "send(Email $email)",
+            "target": "fn_send",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send an email",
+            "attributes": [
+                "@param \\FastSitePHP\\Net\\Email $email",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "connect($host, $port, $timeout = 5)",
+            "target": "fn_connect",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Connect to the SMTP Server, see comments in the Class Constructor because that is the main method of connecting to an SMTP Server.",
+            "attributes": [
+                "@param string|null $host",
+                "@param int|null $port",
+                "@param int $timeout",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "close()",
+            "target": "fn_close",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Close SMTP Server Connection. If calling this manually then [quit()] should be called first.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "ehlo($client = null)",
+            "target": "fn_ehlo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send an EHLO (Extended Hello) Command to the SMTP Server and read the reply lines which define supported extensions. This must be called after connecting to the server and also after sending STARTTLS.",
+            "attributes": [
+                "@param null|string $client - Optionally pass a client name to send to the server, by default the FQDN of the current server is used. See the function [fqdn()].",
+                "@return array - Reply lines from the server",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - Reply lines from the server",
+            "links": []
+        },
+        {
+            "definition": "helo($client = null)",
+            "target": "fn_helo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a HELO (Hello) Command to the SMTP Server. This is typically used by very old servers that do not support EHLO.",
+            "attributes": [
+                "@param null|string $client - See comments in [ehlo()]",
+                "@return array - Reply lines from the server",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - Reply lines from the server",
+            "links": []
+        },
+        {
+            "definition": "fqdn()",
+            "target": "fn_fqdn",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return the default FQDN 'fully-qualified domain name' used with Extended HELLO (EHLO) or HELLO (HELO) commands.\n\nIf the server name can be determined and it's part of a domain then the return value will be in the fromat of [server.example.com]. Other return values include the Web Server Host, or Server IP Address.\n\nA send\/reply example if this function returns [server.example.com] and connects to [smtp.gmail.com] from public IP [54.231.17.108]:\n  send: EHLO server.example.com\n  reply: 250-smtp.gmail.com at your service, [54.231.17.108]\n\nPer RFC 5321 and 2821, Section [4.1.1.1] a FQDN is sent if available and if not then an IP Address is sent.\n\nPer RFC 5321 and 2821, Section [4.1.4] the domain element is used by the server for logging purposes only and it does not decide to route an email based on this value.",
+            "attributes": [
+                "@link https:\/\/www.ietf.org\/rfc\/rfc2821.txt",
+                "@link https:\/\/tools.ietf.org\/html\/rfc5321",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": [
+                "https:\/\/www.ietf.org\/rfc\/rfc2821.txt",
+                "https:\/\/tools.ietf.org\/html\/rfc5321"
+            ]
+        },
+        {
+            "definition": "startTls($client = null)",
+            "target": "fn_startTls",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a STARTTLS (Start Transport Layer Security) Command to the SMTP Server and once returned send a new EHLO Command.\n\nThis gets called by default when using Port 587.\n\nWhen using PHP 5.6 or greater [TLS 1.2], [TLS 1.1], and [TLS 1.0] are supported and when using PHP 5.5 or below only [TLS 1.0] is supported.",
+            "attributes": [
+                "@param null|string $client - See comments in [ehlo()]",
+                "@return array - Reply lines from the server from the EHLO command",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - Reply lines from the server from the EHLO command",
+            "links": []
+        },
+        {
+            "definition": "auth($user, $password)",
+            "target": "fn_auth",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Authenticate using the AUTH Command an a supported Auth method of either [AUTH LOGIN] or [AUTH PLAIN]. The method to call is determined based on the server's response.\n\nSupported Auth Methods will come back from the EHLO command, examples:\n  Gmail:\n    250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH\n  AWS:\n    reply: 250-AUTH PLAIN LOGIN",
+            "attributes": [
+                "@param string $user",
+                "@param string $password",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "authLogin($user, $password)",
+            "target": "fn_authLogin",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Submit AUTH LOGIN credentials to the SMTP Server. This will typically be done over Secure Port 587.",
+            "attributes": [
+                "@param string $user",
+                "@param string $password",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "authPlain($user, $password)",
+            "target": "fn_authPlain",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Submit AUTH PLAIN credentials to the SMTP Server. This will typically be done over Secure Port 587.",
+            "attributes": [
+                "@param string $user",
+                "@param string $password",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "mailFrom($email, $utf8 = false)",
+            "target": "fn_mailFrom",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send the MAIL FROM Command to the SMTP Server and optionally include SMTPUTF8 if Unicode Emails Addresses are needed. This gets called once for the [From] Email Address. This is handled automatically from the [send()] function.",
+            "attributes": [
+                "@param string $email",
+                "@param bool $utf8 - Defaults to false",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "rcptTo($email)",
+            "target": "fn_rcptTo",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send the RCPT TO Command to the SMTP Server. This gets called for each person the email is being sent to. This is handled automatically from the [send()] function.",
+            "attributes": [
+                "@param string $email",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "vrfy($email)",
+            "target": "fn_vrfy",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a VRFY (Verify) Command with an Email Address to the Server. This is an older SMTP Command that is usually ignored by servers since spammers could use it to check for existance of an email.",
+            "attributes": [
+                "@param string $email",
+                "@return array - Reply lines from the server",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - Reply lines from the server",
+            "links": []
+        },
+        {
+            "definition": "rset()",
+            "target": "fn_rset",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a RSET (Reset) Command to the SMTP Server. This would be used to cancel an message.",
+            "attributes": [
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "noop()",
+            "target": "fn_noop",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a NOOP (No operation) Command to the SMTP Server. This can be used to verify if the connection is ok.",
+            "attributes": [
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "data($data)",
+            "target": "fn_data",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send email message using the DATA command. This is handled automatically from the [send()] function.",
+            "attributes": [
+                "@param string $data",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "help()",
+            "target": "fn_help",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send the HELP Command to the SMTP Server and return the rely lines.\n\nExample return values:\n  From Exchange:\n    214-This server supports the following commands:\n    214 HELO EHLO STARTTLS RCPT DATA RSET MAIL QUIT HELP AUTH BDAT\n  From Gmail:\n    214 2.0.0  https:\/\/www.google.com\/search?btnI&q=RFC+5321 {{random_id}} - gsmtp",
+            "attributes": [
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "quit()",
+            "target": "fn_quit",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Send a QUIT Command to the SMTP Server. This gets call automatically when the object instance is destroyed.",
+            "attributes": [
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "supports($extension)",
+            "target": "fn_supports",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true\/false if an extension is supported based on the Server's response from the EHLO command.\n\nThis does not handle the size attribute, instead use the [size()] function.\n\nExample:\n  $smtp->supports('SMTPUTF8') Returns [true]\n  if the EHLO response contains either '250-SMTPUTF8' or '250 SMTPUTF8'",
+            "attributes": [
+                "@param string $extension",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "size()",
+            "target": "fn_size",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns the maximum allowed message size in bytes based on the Server's response from the EHLO command.\n\nReturns -1 if [SIZE] was not specified from the server",
+            "attributes": [
+                "@return int"
+            ],
+            "returnType": "int",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/Simple_Mail_Transfer_Protocol",
+        "http:\/\/www.samlogic.net\/articles\/smtp-commands-reference.htm",
+        "https:\/\/aws.amazon.com\/blogs\/messaging-and-targeting\/debugging-smtp-conversations-part-1-how-to-speak-smtp\/",
+        "https:\/\/docs.microsoft.com\/en-us\/exchange\/mail-flow\/test-smtp-with-telnet?view=exchserver-2019",
+        "https:\/\/tools.ietf.org\/html\/rfc5321"
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "FastSitePHP\\Lang\\Time",
+    "short_name": "Lang\\Time",
+    "link": "Lang_Time",
+    "namespace": "FastSitePHP\\Lang",
+    "description": "Helper class to display time text strings.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "secondsToText($seconds)",
+            "target": "fn_secondsToText",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Convert the number of seconds into an English text string.\n\nExample:\n    Time::secondsToText(129680) = 1 Day, 12 Hours, 1 Minute, and 20 Seconds\n    Time::secondsToText(120)    = 2 Minutes\n    Time::secondsToText(119)    = 1 Minute and 59 Seconds\n    Time::secondsToText(10)     = 10 Seconds\n\nFor a basic numeric format of 'HH:MM:SS' you can instead use a PHP built-in function as long as the time is less than 24 hours:\n    date('H:i:s', $seconds)",
+            "attributes": [
+                "@param int $seconds",
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": []
+}

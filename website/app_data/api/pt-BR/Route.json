@@ -1,0 +1,74 @@
+{
+    "name": "FastSitePHP\\Route",
+    "short_name": "Route",
+    "link": "Route",
+    "namespace": "FastSitePHP",
+    "description": "When [$app->get()], [$app->post()] and other methods are called a new Route Object is created.",
+    "attributes": [],
+    "properties": [
+        {
+            "name": "pattern",
+            "target": "prop_pattern",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "URL Pattern to match for the route to get called",
+            "attributes": [
+                "@var string"
+            ],
+            "dataType": "string",
+            "links": []
+        },
+        {
+            "name": "controller",
+            "target": "prop_controller",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Controller Closure function or string that refers to a class or class and method.",
+            "attributes": [
+                "@var string|\\Closure"
+            ],
+            "dataType": "string\n\\Closure",
+            "links": []
+        },
+        {
+            "name": "method",
+            "target": "prop_method",
+            "isStatic": false,
+            "defaultValue": "null",
+            "description": "Request Method to match ['GET', 'POST', etc]",
+            "attributes": [
+                "@var string"
+            ],
+            "dataType": "string",
+            "links": []
+        },
+        {
+            "name": "filter_callbacks",
+            "target": "prop_filter_callbacks",
+            "isStatic": false,
+            "defaultValue": "[]",
+            "description": "Array of filter functions for the route",
+            "attributes": [
+                "@var array"
+            ],
+            "dataType": "array",
+            "links": []
+        }
+    ],
+    "methods": [
+        {
+            "definition": "filter($callback)",
+            "target": "fn_filter",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Add a filter function to the route. If the route is matched then all filter functions for it are called. If one or more of the filter functions returns [false] then the route is skipped. Filter functions are not required to return anything. If a filter function returns a Response Object then it will be sent to the client and the controller for the route will not be called.",
+            "attributes": [
+                "@param \\Closure|string $callback",
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        }
+    ],
+    "links": []
+}

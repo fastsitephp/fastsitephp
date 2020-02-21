@@ -1,0 +1,31 @@
+{
+    "name": "FastSitePHP\\Security\\Web\\CsrfSession",
+    "short_name": "Security\\Web\\CsrfSession",
+    "link": "Security_Web_CsrfSession",
+    "namespace": "FastSitePHP\\Security\\Web",
+    "description": "Session-Based CSRF Tokens",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "setup(Application $app, $key = 'X-CSRF-Token')",
+            "target": "fn_setup",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Setup and validate session-based CSRF Tokens. A good place to call this function is on route filters of pages that use authentication.\n\nThis will assign the token to app property $app->locals['csrf_token'] which then must be included with the form or response. When using [$app->render()] the value will be available as variable [$csrf_token].\n\nFor usage see demo code.",
+            "attributes": [
+                "@link https:\/\/www.owasp.org\/index.php\/Cross-Site_Request_Forgery_(CSRF)",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Cross-site_request_forgery",
+                "@param Application @app",
+                "@param string $key - Defaults to ['X-CSRF-Token'], the key must be included in either a form field or request header when the request is submitted.",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": [
+                "https:\/\/www.owasp.org\/index.php\/Cross-Site_Request_Forgery_(CSRF)",
+                "https:\/\/en.wikipedia.org\/wiki\/Cross-site_request_forgery"
+            ]
+        }
+    ],
+    "links": []
+}

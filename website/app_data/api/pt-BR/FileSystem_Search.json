@@ -1,0 +1,246 @@
+{
+    "name": "FastSitePHP\\FileSystem\\Search",
+    "short_name": "FileSystem\\Search",
+    "link": "FileSystem_Search",
+    "namespace": "FastSitePHP\\FileSystem",
+    "description": "File System Search\n\nThis Class has functions for searching the local file system for files and directories. Additionally URL Lists can be built from a list of files.\n\nThis class works by setting the root search directory\/folder [dir()], setting various search options, and then calling one of [files(), dirs(), or urlFiles($url_root)] functions.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "dir($new_value = null)",
+            "target": "fn_dir",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the root directory for searching.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return null|string|$this"
+            ],
+            "returnType": "null | string | $this",
+            "links": []
+        },
+        {
+            "definition": "reset()",
+            "target": "fn_reset",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Reset all options other than the root search directory.",
+            "attributes": [
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "recursive($new_value = null)",
+            "target": "fn_recursive",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "If true then sub-directories\/folders will be searched when either [dirs() or files()] are called and the full path will be returned.\n\nDefaults to false.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "includeRoot($new_value = null)",
+            "target": "fn_includeRoot",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Applies only when using [recursive(true)]. If set to false then the root search directory will be excluded from the returned file\/dir list.\n\nDefaults to true.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "fullPath($full_path = null)",
+            "target": "fn_fullPath",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "If true then then the full file paths will be returned when [dirs() or files()] are called. Defaults to false, however when [recursive(true)] is used then the value will always be true.",
+            "attributes": [
+                "@param null|bool $full_path",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "fileTypes(array $new_value = null)",
+            "target": "fn_fileTypes",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of files types to filter on when calling [files() or urlFiles()].\n\nExample:\n    $search->fileTypes(['png', 'jpg', 'svg'])",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "includeNames(array $new_value = null)",
+            "target": "fn_includeNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of files\/dir names to include on when calling [dirs(), files(), or urlFiles()]. If a file\/dir matches any names in the list then it will be included in the result.\n\nExample:\n    $search->includeNames(['index.php', 'app.php'])",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "includeRegExNames(array $new_value = null)",
+            "target": "fn_includeRegExNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of regex patterns to include on when calling [dirs(), files(), or urlFiles()]. If a file\/dir name matches any regex in the list then it will be included in the result.\n\nExample:\n    $search->includeRegExNames(['\/^app\/', '\/.htm$\/'])",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "includeRegExPaths(array $new_value = null)",
+            "target": "fn_includeRegExPaths",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of regex patterns to include on when calling [dirs(), files(), or urlFiles()]. If part of the full path matches any regex in the list then it will be included in the result.",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "excludeNames(array $new_value = null)",
+            "target": "fn_excludeNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of files\/dir names to exclude on when calling [dirs(), files(), or urlFiles()]. If a file\/dir matches any names in the list then it will be excluded from the result.\n\nExample:\n    $search->excludeNames(['.DS_Store', 'desktop.ini'])",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "excludeRegExNames(array $new_value = null)",
+            "target": "fn_excludeRegExNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of regex patterns to exclude on when calling [dirs(), files(), or urlFiles()]. If a file\/dir name matches any regex in the list then it will be excluded from the result.\n\nExample:\n    $search->excludeRegExName(['\/^[.]\/', '\/^testing-\/'])",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "excludeRegExPaths(array $new_value = null)",
+            "target": "fn_excludeRegExPaths",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of regex patterns to exclude on when calling [dirs(), files(), or urlFiles()]. If part of the full path matches any regex in the list then it will be excluded from the result.",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "includeText(array $new_value = null)",
+            "target": "fn_includeText",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify an array of search text that matching files must contain to be included in the result. If running from a web page or web service then this option should only be used against known files because it does not exclude large files from be opened.\n\nExample:\n    $search->fileTypes(['php'])->includeText(['X-API-Key'])\n\nBy default text searches are case-insensitive which is controlled by the [caseInsensitiveText()] function.",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return null|array|$this"
+            ],
+            "returnType": "null | array | $this",
+            "links": []
+        },
+        {
+            "definition": "caseInsensitiveText($new_value = null)",
+            "target": "fn_caseInsensitiveText",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Specify if content searches defined from [includeText()] should be case-insensitive or not.\n\nDefaults to [true] which means that ('ABC' === 'abc').",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "hideExtensions($new_value = null)",
+            "target": "fn_hideExtensions",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "If set to [true] then file extensions will be hidden on the result. This only applies to [files()] and requires [fullPath()] to be false.",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "files()",
+            "target": "fn_files",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns an array of file names in a directory matching the specified criteria.",
+            "attributes": [
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "dirs()",
+            "target": "fn_dirs",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns an array of directory names in a directory matching the specified criteria and excluding the dot directories '.' and '..'.",
+            "attributes": [
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "urlFiles($url_root)",
+            "target": "fn_urlFiles",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns an array of url names for files in directory matching the specified criteria.\n\nCurrently this option doesn't work with recursive directories [option: recursive(true)].",
+            "attributes": [
+                "@param string $url_root",
+                "@return array",
+                "@throws \\Exception"
+            ],
+            "returnType": "array",
+            "links": []
+        }
+    ],
+    "links": []
+}

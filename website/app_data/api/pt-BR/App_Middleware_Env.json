@@ -1,0 +1,60 @@
+{
+    "name": "App\\Middleware\\Env",
+    "short_name": "App\\Middleware\\Env",
+    "link": "App_Middleware_Env",
+    "namespace": "App\\Middleware",
+    "description": "Environment Middleware\n\nThis class is included with the starter site and provides a template with common options for environment middleware. Modify this class as needed for your site.\n\nExample usage that only allows a route if the user is on a local network and then loads a [.env] file prior to the route running:\n\n    $app->get('\/url', 'Controller')\n        ->filter('Env.isLocalNetwork')\n        ->filter('Env.loadDotEnv');",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "isLocalhost()",
+            "target": "fn_isLocalhost",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if the request is running from localhost '127.0.0.1' (IPv4) or '::1' (IPv6) and if the web server is also running on localhost.",
+            "attributes": [
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "isLocalNetwork()",
+            "target": "fn_isLocalNetwork",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if the web request is coming a local network. (for example 127.0.0.1 or 10.0.0.1).",
+            "attributes": [
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "isLocalFromProxy()",
+            "target": "fn_isLocalFromProxy",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return true if the web request is coming a local network and and a Proxy Server such as a Load Balancer is being used.",
+            "attributes": [
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "loadDotEnv(Application $app)",
+            "target": "fn_loadDotEnv",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Loads environment variables from a [.env] file into [getenv()] and [$_ENV].",
+            "attributes": [
+                "@param Application $app"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": []
+}

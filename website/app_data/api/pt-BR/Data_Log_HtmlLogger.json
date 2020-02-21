@@ -1,0 +1,190 @@
+{
+    "name": "FastSitePHP\\Data\\Log\\HtmlLogger",
+    "short_name": "Data\\Log\\HtmlLogger",
+    "link": "Data_Log_HtmlLogger",
+    "namespace": "FastSitePHP\\Data\\Log",
+    "description": "HTML Logger that uses the [Psr\\Log\\LoggerInterface].\n\nThis class can be used for temporary development logs because it outputs an HTML table of logged messages after the response is sent or depending on options can be used to replace the original response.",
+    "attributes": [],
+    "properties": [
+        {
+            "name": "temlate_file",
+            "target": "prop_temlate_file",
+            "isStatic": false,
+            "defaultValue": "__DIR__ . '\/..\/..\/Templates\/html-template.php'",
+            "description": "File path for the PHP Template used to show the logs",
+            "attributes": [
+                "@var string"
+            ],
+            "dataType": "string",
+            "links": []
+        },
+        {
+            "name": "date_format",
+            "target": "prop_date_format",
+            "isStatic": false,
+            "defaultValue": "\\DateTime::ISO8601",
+            "description": "Format to use when converting dates to a string",
+            "attributes": [
+                "@link http:\/\/php.net\/manual\/en\/class.datetimeinterface.php#datetime.constants.types",
+                "@var string"
+            ],
+            "dataType": "string",
+            "links": [
+                "http:\/\/php.net\/manual\/en\/class.datetimeinterface.php#datetime.constants.types"
+            ]
+        }
+    ],
+    "methods": [
+        {
+            "definition": "__construct(Application $app, $replace_response = false)",
+            "target": "fn___construct",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Class Constructor\n\nThe FastSitePHP Application must be passed when this class is created. Once called it adds either a [beforeSend()] or [after()] event based on the optional parameter [$replace_response].",
+            "attributes": [
+                "@param Application $app",
+                "@param null|bool $replace_response"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "getHtml()",
+            "target": "fn_getHtml",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Return HTML that will be used to show the logged messages. This function gets called to replace the current route or after the response is sent.",
+            "attributes": [],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "log($level, $message, array $context = array())",
+            "target": "fn_log",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Logs with an arbitrary level.",
+            "attributes": [
+                "@param string $level",
+                "@param string $message",
+                "@param array $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "emergency($message, array $context = array())",
+            "target": "fn_emergency",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "System is unusable.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "alert($message, array $context = array())",
+            "target": "fn_alert",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Action must be taken immediately.\n\nExample: Entire website down, database unavailable, etc. This should trigger the SMS alerts and wake you up.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "critical($message, array $context = array())",
+            "target": "fn_critical",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Critical conditions.\n\nExample: Application component unavailable, unexpected exception.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "error($message, array $context = array())",
+            "target": "fn_error",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Runtime errors that do not require immediate action but should typically be logged and monitored.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "warning($message, array $context = array())",
+            "target": "fn_warning",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Exceptional occurrences that are not errors.\n\nExample: Use of deprecated APIs, poor use of an API, undesirable things that are not necessarily wrong.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "notice($message, array $context = array())",
+            "target": "fn_notice",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Normal but significant events.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "info($message, array $context = array())",
+            "target": "fn_info",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Interesting events.\n\nExample: User logs in, SQL logs.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "debug($message, array $context = array())",
+            "target": "fn_debug",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Detailed debug information.",
+            "attributes": [
+                "@param string $message",
+                "@param array  $context",
+                "@return void"
+            ],
+            "returnType": null,
+            "links": []
+        }
+    ],
+    "links": []
+}

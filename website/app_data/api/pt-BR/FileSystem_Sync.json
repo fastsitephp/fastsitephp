@@ -1,0 +1,127 @@
+{
+    "name": "FastSitePHP\\FileSystem\\Sync",
+    "short_name": "FileSystem\\Sync",
+    "link": "FileSystem_Sync",
+    "namespace": "FastSitePHP\\FileSystem",
+    "description": "File System Sync\n\nThis class provides the ability for syncing of all files and directories from one directory to another directory. This class compares files using a hash (defaults to 'sha256') and updates the files if different. Additionally new files, deleted files, new empty directories, and deleted directories are handled.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "function dirFrom($new_value = null)",
+            "target": "fn_dirFrom",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the directory to sync from (source directory).",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "function dirTo($new_value = null)",
+            "target": "fn_dirTo",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the directory to sync to (destination directory).",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "function excludeNames(array $new_value = null)",
+            "target": "fn_excludeNames",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an array of files\/dir names to exclude. If a file\/dir matches any names in the list then it will be excluded from the result. This property does not handle files in nested directories. For nested files use [excludeRegExPaths()].",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return array|$this"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "excludeRegExPaths(array $new_value = null)",
+            "target": "fn_excludeRegExPaths",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set an array of files\/dir regex path expressions to exclude. If part of the full path matches any regex in the list then it will be excluded from the result.\n\nExample usage:\n    $sync->excludeRegExPaths(['\/node_modules\/']);",
+            "attributes": [
+                "@param null|array $new_value",
+                "@return array|$this"
+            ],
+            "returnType": "array | $this",
+            "links": []
+        },
+        {
+            "definition": "function summaryTitle($new_value = null)",
+            "target": "fn_summaryTitle",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the summary title used for report output when calling [printResults()]. Defaults to 'File System Sync Results'.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "function dryRun($new_value = null)",
+            "target": "fn_dryRun",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set a dry run boolean value for testing. When set to [true] no changes will be made when calling [sync()]. Defaults to [false].",
+            "attributes": [
+                "@param null|bool $new_value",
+                "@return bool|$this"
+            ],
+            "returnType": "bool | $this",
+            "links": []
+        },
+        {
+            "definition": "function hashAlgo($new_value = null)",
+            "target": "fn_hashAlgo",
+            "isStatic": false,
+            "isGetterSetter": true,
+            "description": "Get or set the hashing algorithm for comparing files when syncing. Defaults to 'sha256'.",
+            "attributes": [
+                "@param null|string $new_value",
+                "@return string|$this"
+            ],
+            "returnType": "string | $this",
+            "links": []
+        },
+        {
+            "definition": "function sync()",
+            "target": "fn_sync",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Sync files and directories (folders) from [dirFrom(path)] to [dirTo(path)]. The sync is recursive so all files and directories are synced in all sub-directories.\n\nTo view the results of the sync call [printResults()] after calling this function.",
+            "attributes": [
+                "@return $this"
+            ],
+            "returnType": "$this",
+            "links": []
+        },
+        {
+            "definition": "function printResults()",
+            "target": "fn_printResults",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Output the result of [sync()] as a text summary. This includes a list of all affected files and directories and summary counts. This function will typically be used for CLI output, however if used on a web server then <br> will be used for line breaks.",
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
+            "links": []
+        }
+    ],
+    "links": []
+}

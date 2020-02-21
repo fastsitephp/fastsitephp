@@ -1,0 +1,53 @@
+{
+    "name": "FastSitePHP\\Security\\Web\\RateLimit",
+    "short_name": "Security\\Web\\RateLimit",
+    "link": "Security_Web_RateLimit",
+    "namespace": "FastSitePHP\\Security\\Web",
+    "description": "Rate limiting can be used to limit the number of requests or actions that a user makes in a given time frame.\n\nSome examples:\n  - A Web API allowing users to submit no more than 1 request every second.\n  - No more than 2 new accounts per day per IP address.\n  - Limit users from sending more than 10 messages per hour.\n\nFastSitePHP's Rate Limit class is designed to provide an easy-to-use interface for defining and enforcing rate limits.",
+    "attributes": [
+        "@link https:\/\/en.wikipedia.org\/wiki\/Rate_limiting",
+        "@link https:\/\/medium.com\/smyte\/rate-limiter-df3408325846",
+        "@link https:\/\/www.figma.com\/blog\/an-alternative-approach-to-rate-limiting\/",
+        "@link https:\/\/konghq.com\/blog\/how-to-design-a-scalable-rate-limiting-algorithm\/",
+        "@link https:\/\/blog.cloudflare.com\/counting-things-a-lot-of-different-things\/",
+        "@link https:\/\/stripe.com\/blog\/rate-limiters"
+    ],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "filterRequest(Application $app, array $options)",
+            "target": "fn_filterRequest",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Filter the request if it is allowed based on a rate limit. If the user's rate limit is reached then a 429 [Too Many Requests] response is sent and [exit()] is called to stop the script execution.\n\nThe same options used for [allow()] are used here.",
+            "attributes": [
+                "@param array $options",
+                "@throws \\Exception"
+            ],
+            "returnType": null,
+            "links": []
+        },
+        {
+            "definition": "allow(array $options)",
+            "target": "fn_allow",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Check if a request or action is allowed based on a rate limit.\n\nRequired Options:\n    - [storage]: Object - Instance of [FastSitePHP\\Data\\KeyValue\\StorageInterface]\n    - [id]: Id assigned to the user or request. For example the client's IP Address or a user id\n\nCommon Optional Options:\n    - [max_allowed] (int): Maximum number of requests allowed for the specified duration\n    - [duration] (int): Time in sections\n\nAdditional Options:\n    - [key]: String value to prefix when saving a key-value-pair.\n      This would be used if you are using the RateLimiter for multiuple actions in the same site.\n    - [algo]: Algorithm to use ['fixed-window-counter' or 'token-bucket']. Defaults to 'fixed-window-counter'.",
+            "attributes": [
+                "@param array $options",
+                "@return array - list($allowed, $headers)",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - list($allowed, $headers)",
+            "links": []
+        }
+    ],
+    "links": [
+        "https:\/\/en.wikipedia.org\/wiki\/Rate_limiting",
+        "https:\/\/medium.com\/smyte\/rate-limiter-df3408325846",
+        "https:\/\/www.figma.com\/blog\/an-alternative-approach-to-rate-limiting\/",
+        "https:\/\/konghq.com\/blog\/how-to-design-a-scalable-rate-limiting-algorithm\/",
+        "https:\/\/blog.cloudflare.com\/counting-things-a-lot-of-different-things\/",
+        "https:\/\/stripe.com\/blog\/rate-limiters"
+    ]
+}

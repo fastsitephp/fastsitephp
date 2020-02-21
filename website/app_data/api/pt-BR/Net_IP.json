@@ -1,0 +1,65 @@
+{
+    "name": "FastSitePHP\\Net\\IP",
+    "short_name": "Net\\IP",
+    "link": "Net_IP",
+    "namespace": "FastSitePHP\\Net",
+    "description": "Internet Protocol\n\nThis class includes several static functions for working with IP Addresses and CIDR Strings. Validating IP\u2019s is often important for secure applications.",
+    "attributes": [],
+    "properties": [],
+    "methods": [
+        {
+            "definition": "cidr($cidr, $ip_to_compare = null)",
+            "target": "fn_cidr",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "The function cidr() is named for Classless Inter-Domain Routing (CIDR) which is an Internet Standard that allows for an Internet Protocol Address (IP Address) and its Subnet mask to be defined in a compact format. The format named CIDR Notation allows for various network settings to be calculated from a string. CIDR Notation supports both IPv4 and IPv6 Addresses and it is commonly used to specify a network IP range and to compare other IP addresses to the network range.\n\nAn example of a CIDR Notation value is '10.63.5.183\/24' and for this example means that the computer or device is on a private network (typically a corporate office network), that the IP Address of a specific computer is '10.63.5.183', that the network has a subnet mask of '255.255.255.0', and that there are 256 available IP Addresses for the network. Other IP Address can be compared to this CIDR Value to see if they are on the same network.\n\nThis function is used internally by FastSitePHP with [Web\\Request->clientIp()] and other functions when checking trusted proxy addresses.\n\nThis function can be called with 2 different parameter options and has different return types based on how the function was called. If only a CIDR value is passed as the parameter then this function returns an array of information calculated from the CIDR value, and if both a CIDR Value (or an Array of CIDR Values) and an IP Address are passed as parameters then this function compares the IP Address to the CIDR Value or Values and returns true if the IP Address is on the same network and false if not. If there is an error with the CIDR Value format then this function will return an error message in an array if looking up the CIDR Value or throw an exception if comparing a CIDR Value to and IP Address. Additionally if an IP Address is used instead of the CIDR Value then this function will simply compare the two IP Addresses.\n\nExamples:\n     *** These examples are comparing different private\n         network IP Addresses with either a CIDR Notation\n         Value or another IP Address\n     true  = cidr('10.63.5.183\/24', '10.63.5.120')\n     false = cidr('10.63.5.183\/24', '10.63.4.183')\n     true  = cidr('fe80::\/10', 'fe80::b091:1117:497a:9dc1')\n     true  = cidr('10.10.120.12', '10.10.120.12')\n     false = cidr('10.10.120.12', '10.10.120.13')\n\n     *** This example compares an IP Address to different\n         IP Ranges for Amazon Web Services (AWS);\n         note - these ranges may change over time\n     true  = cidr('54.231.0.0\/17', '54.231.17.108')    us-east-1\n     false = cidr('54.231.128.0\/19', '54.231.17.108')  eu-west-1\n\n     *** The IPv6 Addresses below look different however have the\n         same value so they return true when compared. They have\n         the same value because the first address omits leading\n         zeros for display while the 2nd address does not.\n     true = cidr('::1', '0000:0000:0000:0000:0000:0000:0000:0001')\n     true = cidr('::1\/128', '0000:0000:0000:0000:0000:0000:0000:0001')\n\n     *** This example is showing how an array of CIDR Strings can be used.\n         If the IP Address being compared matches any of the CIDR Strings\n         then this function will return true. The function [$app->privateNetworkAddresses()]\n         is used to return a list of CIDR Strings that would be on a private network.\n     true  = cidr(array('169.254.0.0\/16', '10.0.0.0\/8'), '10.10.120.14')\n     true  = cidr($app->privateNetworkAddresses(), '10.10.120.15')\n     false = cidr($app->privateNetworkAddresses(), '54.231.17.108')\n\n     *** Both Port Numbers and IPv6 Zone Indices can be part of the IP Address\n         used to compare. Depending upon the environment a Zone Index\n         may also be referred to as a Zone Identifier or a Scope ID.\n     true = cidr('10.0.0.0\/8', '10.10.120.13:8080')  \/\/ IPv4 Port Number\n     true = cidr('2001:db8::\/32', '[2001:db8:cafe::17]:4711') \/\/ IPv6 Port Number\n     true = cidr('fe80::\/10', 'fe80::3030:70d9:5af2:cc71%3') \/\/ IPv6 Zone Index\n\n     *** If an IPv6 Address is compared to an IPv4 CIDR or vice-versa\n         this function will return false\n     false = cidr('10.0.0.0\/8', 'fe80::b091:1117:497a:9dc1')\n     false = cidr('fe80::\/10', '10.10.120.12')\n\n     *** Return Network Information including IP Range from a IPv4 CIDR Notation Value\n     cidr('10.63.5.183\/24')\n     returns array(\n         'CIDR_Notation' => '10.63.5.183\/24',\n         'Address_Type' => 'IPv4',\n         'IP_Address' => '10.63.5.183',\n         'Subnet_Mask' => '255.255.255.0',\n         'Subnet_Mask_Bits' => 24,\n         'Cisco_Wildcard' => '0.0.0.255',\n         'Network_Address' => '10.63.5.0',\n         'Broadcast' => '10.63.5.255',\n         'Network_Range_First_IP' => '10.63.5.0',\n         'Network_Range_Last_IP' => '10.63.5.255',\n         'Usable_Range_First_IP' => '10.63.5.1',\n         'Usable_Range_Last_IP' => '10.63.5.254',\n         'Addresses_in_Network' => 256,\n         'Usable_Addresses_in_Network' => 254,\n     )\n\n     *** Return Network Information from a IPv6 CIDR Notation Value\n     cidr('fe80::b091:1117:497a:9dc1\/48')\n     returns array(\n         'CIDR_Notation' => 'fe80::b091:1117:497a:9dc1\/48',\n         'Address_Type' => 'IPv6',\n         'IP_Address' => 'fe80::b091:1117:497a:9dc1',\n         'Subnet_Mask' => 'ffff:ffff:ffff::',\n         'Subnet_Mask_Bits' => 48,\n         'Network_Address' => 'fe80::',\n         'Network_Range_First_IP' => 'fe80::',\n         'Network_Range_Last_IP' => 'fe80::ffff:ffff:ffff:ffff:ffff',\n         'Addresses_in_Network' => '1208925819614629174706176',\n     )\n\n     *** Example error when getting values for a CIDR Notation String\n     cidr('abc.abc.abc.abc\/24')\n     returns array(\n         'CIDR_Notation' => null,\n         'Error_Message' => 'The value [abc.abc.abc.abc] is not in valid IPv4 format',\n     )\n\n     *** Example error when comparing an IP Address with a CIDR Value\n     cidr('abc.abc.abc.abc\/24', '127.0.0.1')\n     throws \\InvalidArgumentException('The value [abc.abc.abc.abc] is not in valid IPv4 format')\n\n     *** If an invalid IP Address is specified with a valid CIDR value then\n         this function returns false and does not throw an Exception\n     false = cidr('10.0.0.0\/8', 'abc')",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/Classless_Inter-Domain_Routing",
+                "@link https:\/\/en.wikipedia.org\/wiki\/IPv4",
+                "@link https:\/\/en.wikipedia.org\/wiki\/IPv6_address",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Subnetwork",
+                "@link https:\/\/en.wikipedia.org\/wiki\/IPv4_subnetting_reference",
+                "@link https:\/\/en.wikipedia.org\/wiki\/IPv6_subnetting_reference",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Reserved_IP_addresses",
+                "@param string|array $cidr  CIDR Notation String Value or an array of CIDR Notation Strings",
+                "@param string|null $ip_to_compare    IP Address to compare to the CIDR Value or Values. Optional, defaults to null.",
+                "@return array|bool",
+                "@throws \\InvalidArgumentException"
+            ],
+            "returnType": "array | bool",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/Classless_Inter-Domain_Routing",
+                "https:\/\/en.wikipedia.org\/wiki\/IPv4",
+                "https:\/\/en.wikipedia.org\/wiki\/IPv6_address",
+                "https:\/\/en.wikipedia.org\/wiki\/Subnetwork",
+                "https:\/\/en.wikipedia.org\/wiki\/IPv4_subnetting_reference",
+                "https:\/\/en.wikipedia.org\/wiki\/IPv6_subnetting_reference",
+                "https:\/\/en.wikipedia.org\/wiki\/Reserved_IP_addresses"
+            ]
+        },
+        {
+            "definition": "privateNetworkAddresses()",
+            "target": "fn_privateNetworkAddresses",
+            "isStatic": true,
+            "isGetterSetter": false,
+            "description": "Return an Array of CIDR Notation Strings that contains Network Addresses that would only be on a private network (for example a Home Office Network or Enterprise LAN). Specific IP Address ranges are assigned for Private networks and in most cases this function will return addresses for both IPv4 and IPv6. This function will only return IPv4 addresses if the server running this function does not support IPv6. This function can be used with the [cidr()] function to test if an IP Address is on a local network.\n\nThis function is used internally by FastSitePHP with [Web\\Request->clientIp()] and other functions when checking trusted proxy addresses.\n\nThe following CIDR Notation Strings are returned:\n  [\n     '127.0.0.0\/8',      \/\/ IPv4 localhost\n     '10.0.0.0\/8',       \/\/ IPv4 Private Network, RFC1918 24-bit block\n     '172.16.0.0\/12',    \/\/ IPv4 Private Network, RFC1918 20-bit block\n     '192.168.0.0\/16',   \/\/ IPv4 Private Network, RFC1918 16-bit block\n     '169.254.0.0\/16',   \/\/ IPv4 local-link\n     '::1\/128',          \/\/ IPv6 localhost\n     'fc00::\/7',         \/\/ IPv6 Unique local address (Private Network)\n     'fe80::\/10',        \/\/ IPv6 local-link\n  ]\n\nThe IPv6 Unique local address 'fc00::\/7' also covers the IP Range 'fd00::\/8'.",
+            "attributes": [
+                "@link https:\/\/en.wikipedia.org\/wiki\/Private_network",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Reserved_IP_addresses",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Localhost",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Link-local_address",
+                "@link https:\/\/en.wikipedia.org\/wiki\/Unique_local_address",
+                "@return array"
+            ],
+            "returnType": "array",
+            "links": [
+                "https:\/\/en.wikipedia.org\/wiki\/Private_network",
+                "https:\/\/en.wikipedia.org\/wiki\/Reserved_IP_addresses",
+                "https:\/\/en.wikipedia.org\/wiki\/Localhost",
+                "https:\/\/en.wikipedia.org\/wiki\/Link-local_address",
+                "https:\/\/en.wikipedia.org\/wiki\/Unique_local_address"
+            ]
+        }
+    ],
+    "links": []
+}
