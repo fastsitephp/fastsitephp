@@ -55,6 +55,7 @@ SELECT
 		WHEN user_agent LIKE '%BB10;%' THEN 'Mobile / Phone'
 		WHEN user_agent LIKE '%RIM Tablet%' THEN 'Mobile / Tablet'
 		WHEN user_agent LIKE '%Linux x86_64%' THEN 'Desktop'
+		WHEN user_agent LIKE '%bot%' THEN 'Bot'
 	END AS device_type,
 	CASE	
 		WHEN user_agent LIKE '%BB10;%' THEN 'Blackberry'
@@ -76,6 +77,7 @@ SELECT
 		WHEN user_agent LIKE '%Linux x86_64%' THEN 'Linux'
 		WHEN user_agent LIKE '%bingbot/%' THEN 'Bot'
 		WHEN user_agent LIKE '%Googlebot/%' THEN 'Bot'		
+		WHEN user_agent LIKE '%bot%' THEN 'Bot'
 	END AS os_type,
 	CASE
 		WHEN user_agent LIKE '%Android %;%' THEN 
@@ -119,7 +121,10 @@ SELECT
 	END AS os,
 	CASE
 		WHEN user_agent LIKE '%X11; U; Linux%' AND user_agent LIKE '%Puffin%' THEN 'Puffin'
-		WHEN user_agent LIKE '%Edge/%' AND user_agent LIKE '%Chrome/%' THEN 'Edge'
+		WHEN user_agent LIKE '%Edg/%' AND user_agent LIKE '%Chrome/%' THEN 'Edge (Chromium)'
+		WHEN user_agent LIKE '%Edge/%' AND user_agent LIKE '%Chrome/%' THEN 'Edge (EdgeHTML)'
+		WHEN user_agent LIKE '%UBrowser/%' AND user_agent LIKE '%Chrome/%' THEN 'UC Browser'
+		WHEN user_agent LIKE '%OPR/%' AND user_agent LIKE '%Chrome/%' THEN 'Opera'
 		WHEN user_agent LIKE '%Silk/%' AND user_agent LIKE '%AppleWebKit/%' THEN 'Silk (Kindle)'
 		WHEN user_agent LIKE '%AOLBuild/%' AND user_agent LIKE '%Chrome/%' THEN 'AOL / Chrome'
 		WHEN user_agent LIKE '%AOLBuild/%' AND user_agent LIKE '%Trident/7.0%' THEN 'AOL / IE 11'
