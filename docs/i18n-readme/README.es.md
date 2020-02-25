@@ -4,9 +4,7 @@
 
 # :star2: ¡Bienvenido a FastSitePHP!
 
-**¡Gracias por su visita!**
-
-_Si estás viendo este mensaje, ¡eres uno de los primeros visitantes!_ 🌠👍
+**¡Gracias por su visita!** 🌠👍
 
 FastSitePHP es un nuevo marco web que utiliza PHP. FastSitePHP ha sido diseñado para un rendimiento rápido, flexibilidad de codificación, estabilidad a largo plazo, facilidad de uso y una mejor experiencia de desarrollo general. FastSitePHP también tiene un tamaño mínimo, por lo que es rápido de descargar y fácil de comenzar. Aunque es nuevo (publicado por primera vez en noviembre de 2019), FastSitePHP se escribió durante muchos años y es extremadamente estable y contiene una gran cantidad de pruebas unitarias.
 

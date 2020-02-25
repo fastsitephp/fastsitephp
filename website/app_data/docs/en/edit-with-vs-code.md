@@ -60,3 +60,26 @@ Console output will be displayed in the pane below your code. It’s much easier
 Find more here:
 
 https://code.visualstudio.com/docs/languages/php
+
+---
+## Updating Syntax Color for easier to read PHP tags in PHP templates
+
+
+By default PHP tags `<?php`, `<?`, `?>` will be the same color as HTML which can make them hard to read if you are using PHP Templates for server side rendering.
+
+This can be easily changed in the settings. Search for ` tokenColorCustomization` and then add the following snippet. If you would like a different color or font style simply update the JSON settings.
+
+```
+"editor.tokenColorCustomizations": {
+    "textMateRules": [{
+        "scope": [
+            "punctuation.section.embedded.begin.php",
+            "punctuation.section.embedded.end.php"
+        ],
+        "settings": {
+            "foreground": "#bbbb03",
+            "fontStyle": "bold"
+        }
+    }]
+},
+```

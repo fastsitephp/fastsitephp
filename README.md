@@ -4,9 +4,7 @@
 
 # :star2: Welcome to FastSitePHP!
 
-**Thanks for visiting!**
-
-_If you are seeing this message then you are one of the earliest visitors!_ 🌠👍
+**Thanks for visiting!** 🌠👍
 
 <table>
 	<tbody>

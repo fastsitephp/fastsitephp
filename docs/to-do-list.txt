@@ -34,6 +34,8 @@ TODO List
     - Another posible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
       for partial translatons. 
 
+*) Create Documentation that shows how Unit Testing works
+
 *) Known Site Issues
     - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
             <input type="datetime-local">
@@ -55,7 +57,10 @@ TODO List
     These files were created because creating full automated unit tests was causing too much of a delay
     for the initial release.
 
-* Install Script [create-fast-site.sh]
+*) fastsitephp\scripts\create-api-json-files.php
+    This file should be updated to handle multiple languages when the other language is a duplicate of the en file
+
+*) Install Script [create-fast-site.sh]
     - Running:
         wget https://www.fastsitephp.com/downloads/create-fast-site.sh
         sudo bash create-fast-site.sh
@@ -77,6 +82,9 @@ TODO List
         https://docs.microsoft.com/en-us/windows/wsl/install-win10
         https://docs.microsoft.com/en-us/windows/wsl/about
     - In the future add support for more Linux OS's
+    - Future likley add a default 503 fallback page with correct settings for nginx
+        By default nginx will show a generic 503 message when there are more concurrent connections that the server 
+        can handle (for example 1000 concurrent php connections using default settings)
 
 *) Starter Site - Future options and features
     - Add Unit Testing
