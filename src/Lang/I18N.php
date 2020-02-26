@@ -207,13 +207,13 @@ class I18N
             // Or Redirect (optional)
             } else if ($fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
                 // Build URL with the Fallback Language
-                $url = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '');
+                $url = $app->requestedPath();
                 if (strpos($url, '/' . $lang . '/') === 0) {
                     $url = $app->rootDir() . $fallback_lang . '/' . substr($url, strlen($lang) + 2);
                 } elseif ($url === '/' . $lang) {
                     $url = $app->rootDir() . $fallback_lang;
                 }
-                if ($url !== '') {
+                if ($url !== '' && $url !== null) {
                     $app->redirect($url);
                 }
             }
