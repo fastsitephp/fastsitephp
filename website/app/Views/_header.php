@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
+
         <title>FastSitePHP | <?= (isset($page_title) ? $app->escape($page_title) : $app->escape($i18n['page_title'])) ?></title>
         <?php if (isset($i18n) && isset($i18n['page_desc'])): ?>
             <meta name="description" content="<?= $app->escape($i18n['page_desc']) ?>">
@@ -48,7 +48,7 @@
                 default:
                     $github = 'https://github.com/fastsitephp/fastsitephp';
             }
-            
+
             // Once full translations are made this will go at the top of the file for the <html> element
             $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 
@@ -97,7 +97,7 @@
                                 </g>
                             </g>
                         </svg>
-                    </a></span>				
+                    </a></span>
                 </div>
                 <div class="mobile-menu" style="display:none;">
                     <div>
@@ -124,7 +124,7 @@
                         </li>
                         <li<?= (isset($nav_active_link) && $nav_active_link === 'examples' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->rootUrl() . $app->lang ?>/examples"><?= $app->escape($i18n['menu_examples']) ?></a>
-                        </li>				
+                        </li>
                         <li<?= (isset($nav_active_link) && $nav_active_link === 'documents' ? ' class="active"' : '') ?>>
                             <a href="<?= $app->rootUrl() . $app->lang ?>/documents"><?= $app->escape($i18n['menu_documents']) ?></a>
                         </li>
@@ -176,7 +176,7 @@
                             </li>
                             <li<?= (isset($nav_active_link) && $nav_active_link === 'examples' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->rootUrl() . $app->lang ?>/examples"><?= $app->escape($i18n['menu_examples']) ?></a>
-                            </li>				
+                            </li>
                             <li<?= (isset($nav_active_link) && $nav_active_link === 'documents' ? ' class="active"' : '') ?>>
                                 <a href="<?= $app->rootUrl() . $app->lang ?>/documents"><?= $app->escape($i18n['menu_documents']) ?></a>
                             </li>
