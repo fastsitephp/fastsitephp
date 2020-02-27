@@ -99,7 +99,7 @@ main ()
     # Install the FastSitePHP Starter Site
 
     # Navigate to your home directory and download the Starter Site
-    # This is a small download (~62 kb)
+    # This is a small download (~67 kb)
     echo -e "${FONT_BOLD}${FONT_UNDERLINE}Downloading FastSitePHP Stater Site${FONT_RESET}"
     wget https://github.com/fastsitephp/starter-site/archive/master.zip
     apt_install 'unzip'

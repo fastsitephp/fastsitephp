@@ -81,7 +81,7 @@ The FastSitePHP Framework can also be installed using Composer. When installed f
 composer require fastsitephp/fastsitephp
 ~~~
 
-### Start with a Starter Site (~62 kb)
+### Start with a Starter Site (~67 kb)
 
 A starter site for FastSitePHP also exists that includes several examples pages and provides a basic directory/file structure. It’s small in size and quick to setup.
 

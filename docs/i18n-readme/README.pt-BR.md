@@ -62,7 +62,7 @@ O framework FastSitePHP pode também ser instalado usando o Composer. Quando ins
 composer require fastsitephp/fastsitephp
 ~~~
 
-### Comece com um Site Inicial (~62 kb)
+### Comece com um Site Inicial (~67 kb)
 
 Um site inicial também existe e inclui vários páginas de exemplo e fornece uma estrutura básica de diretório/arquivo. É pequeno e rápido para configurar.
 

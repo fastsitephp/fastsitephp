@@ -6,7 +6,7 @@
     "install_win": "Instalar PHP en Windows",
     "install_mac": "Instalar PHP en macOS",
     "framework_and_site": "Framework FastSitePHP y Sitio Web (~1.2 mb)",
-    "starter_site": "Sitio de inicio de FastSitePHP (~62 kb)",
+    "starter_site": "Sitio de inicio de FastSitePHP (~67 kb)",
     "framework_only": "Framework FastSitePHP solamente (~470 kb)",
     "vs_code": "PHP con Visual Studio Code",
     "atom": "PHP con Editor Atom GitHub",
