@@ -19,9 +19,13 @@ TODO List
 |   There is no priority to this list.
 |   All contributions are welcome.
 |
+|   Generally every item in this list is of low priority and more of a
+|   wish list item rather than an actual need. The higest priority items
+|   are at the top and start with `**)`.
+|
 --------------------------------------------------------------------------
 
-*) Starter Site
+**) Starter Site
     - Finish full PHP 5.3 support, switch code under [app] and [app/Controllers] back to PHP 5.4 syntax
         and add a new script which will be called from [scripts\install.php] that converts the files back to 5.3 format if needed.
         This is being activly tested on AWS using [Amazon Linux AMI] because the default php install version is 5.3.
@@ -29,12 +33,16 @@ TODO List
     - Add Mobile Menu (like the main site)
     - Once Mobile Menu and additional translations are added a new release will be published
 
-*) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
-    - Search code for [$html_dir], currently 2 files are affected
-    - Another posible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
-      for partial translatons. 
+**) Create Documentation that shows how Unit Testing works
 
-*) Create Documentation that shows how Unit Testing works
+**) fastsitephp\scripts\create-api-json-files.php
+    This file should be updated to handle multiple languages when the other language is a duplicate of the `en` file.
+    Currently many of the `pt-BR` files are a duplicate of `en`
+
+**) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
+    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
+    These files were created because creating full automated unit tests was causing too much of a delay
+    for the initial release.
 
 *) Known Site Issues
     - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
@@ -51,14 +59,6 @@ TODO List
     - Improve Accessibility and Best Practices based on Chrome DevTools Lightsail Audit
         - Need to support HTTP/2 on the servers in addition to http/1.1
         - Remove duplicate [id] in the SVG on home page and other minor items
-
-*) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
-    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
-    These files were created because creating full automated unit tests was causing too much of a delay
-    for the initial release.
-
-*) fastsitephp\scripts\create-api-json-files.php
-    This file should be updated to handle multiple languages when the other language is a duplicate of the en file
 
 *) Install Script [create-fast-site.sh]
     - Running:
@@ -77,13 +77,13 @@ TODO List
                 fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
         3) sudo systemctl reload nginx
         4) Run Tests (after copying the `tests` directory)
-        *) With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow        
+        *) With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow
     - Need to test with the Windows Subsystem for Linux
         https://docs.microsoft.com/en-us/windows/wsl/install-win10
         https://docs.microsoft.com/en-us/windows/wsl/about
     - In the future add support for more Linux OS's
     - Future likley add a default 503 fallback page with correct settings for nginx
-        By default nginx will show a generic 503 message when there are more concurrent connections that the server 
+        By default nginx will show a generic 503 message when there are more concurrent connections that the server
         can handle (for example 1000 concurrent php connections using default settings)
 
 *) Starter Site - Future options and features
@@ -94,7 +94,12 @@ TODO List
           and it their docs they ware against using it on a production webserver)
         - Another option may be similar to how testing is handled with the main site
           and use web based testing (possibly from client-side JS using puppeteer for CLI)
-    - Future - possible mobile apps (iOS and Android) to work with a starter site 
+    - Future - possible mobile apps (iOS and Android) to work with a starter site
+
+*) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
+    - Search code for [$html_dir], currently 2 files are affected
+    - Another posible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
+      for partial translatons.
 
 *) Documentation to create
     - Publishing releases
@@ -201,7 +206,7 @@ TODO List
         php /var/www/scripts/install.php
         sudo rm /var/www/html/.htaccess
         sudo rm /var/www/html/Web.config
-        sudo rm /var/www/html/index.nginx-debian.html 
+        sudo rm /var/www/html/index.nginx-debian.html
         # Unit Testing
         sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
         cd ~
@@ -209,7 +214,7 @@ TODO List
         unzip master.zip
         cp -r ~/fastsitephp-master/tests /var/www/html/tests
         # View http://example.com/tests/index.htm
-        
+
 *) Playground Site
     - decide after frequent use with many users if [opcache_reset()]
         should be called regularly or if it is ok to leave it alone.
@@ -388,7 +393,7 @@ TODO List
         - How to update the sitemap of the main site during local development
             http://localhost:3000/fastsitephp/website/public/site/generate-sitemap
         - How to refresh API Docs
-            vendor\FastSitePHP\scripts\create-api-json-files.php        
+            vendor\FastSitePHP\scripts\create-api-json-files.php
     - docs for various scripts used with this site
     - how the playground site works
     - Using CORS - provide example from DataFormsJS
@@ -587,9 +592,9 @@ TODO List
         SignedData->expireTime(signed_text) - returns int/timestamp or null
         SignedData->isExpired(signed_text) - returns bool
     - These will only be used for reporting on the time stamp if desired by an app
-      and not for security. 
-    - SignedData uses a timestamp format compatible with JavaScript, here is a quick 
-      example of how to convert it for PHP functions (Unix Timestamp in Seconds): 
+      and not for security.
+    - SignedData uses a timestamp format compatible with JavaScript, here is a quick
+      example of how to convert it for PHP functions (Unix Timestamp in Seconds):
         $token = $_COOKIE['USER'];
         $exp = (float)explode('.', $token)[2];
         $exp = $exp / 1000;
