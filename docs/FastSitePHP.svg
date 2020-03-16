@@ -85,7 +85,7 @@
             <stop stop-color="#4F5B93" stop-opacity="0.8" offset="0%"></stop>
             <stop stop-color="#4F5B93" offset="100%"></stop>
         </linearGradient>
-        <text id="text-12" font-family="Corbel" font-size="84" font-weight="normal">
+        <text id="text-12" font-family="Helvetica, Roboto, Arial" font-size="76" font-weight="normal">
             <tspan x="13" y="87">FastSitePHP</tspan>
         </text>
         <filter x="-0.7%" y="-1.9%" width="101.8%" height="107.8%" filterUnits="objectBoundingBox" id="filter-13">

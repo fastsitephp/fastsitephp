@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/website/public/img/FastSitePHP_Rocketship.png" alt="FastSitePHP">
+	<img width="500" src="../FastSitePHP.svg" alt="FastSitePHP">
 </p>
 
 # :star2: Bem vindo ao FastSitePHP!
