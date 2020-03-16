@@ -10,12 +10,6 @@
             80%, 90% { transform: scale3d(1, 1, 1); }
         }
 
-        /*
-        transform-origin:100px 200px;
-        transform-origin:100px;
-        transform-origin: center;
-        */
-
         /* Rocketship Layout and CSS Animation */
         #Rocketship { animation: rocket 10s ease infinite; width:400px; height:400px; transform-origin:100px; }
         @keyframes rocket {
