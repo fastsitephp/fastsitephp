@@ -1,16 +1,16 @@
 {
-    "menu_home": "家",
-    "menu_playground": "代码游乐场",
+    "menu_home": "主页",
+    "menu_playground": "在线运行",
     "menu_getting_started": "入门",
     "menu_quick_ref": "快速参考",
     "menu_examples": "例子",
-    "menu_resources": "资源资源",
-    "menu_documents": "文件资料",
+    "menu_resources": "资源",
+    "menu_documents": "文档",
     "menu_api": "API",
-    "example_code": "范例程式码",
+    "example_code": "示例代码",
     "footer_license": "MIT许可下提供的站点和源代码",
-    "old_browser_warning": "警告-此页面上的某些功能需要的浏览器或操作系统比您当前使用的浏览器或操作系统更新。 如果您有其他浏览器，请打开该页面。",
+    "old_browser_warning": "警告-此页面上的某些功能需要的浏览器或操作系统比您当前使用的浏览器或操作系统更新。 请在其他浏览器打开该页面。",
     "api_docs": "API文档",
     "info": "信息",
-    "hello_world": "你好，世界"
+    "hello_world": "hello，world"
 }

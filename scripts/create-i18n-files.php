@@ -15,7 +15,7 @@
 
 // **** MODIFY here to add a new Language ****
 const LANG_COPY_FROM = 'en';
-const LANG_COPY_TO = 'es';
+const LANG_COPY_TO = 'zh-CN';
 
 // In case autoloader is not found:
 error_reporting(-1);
