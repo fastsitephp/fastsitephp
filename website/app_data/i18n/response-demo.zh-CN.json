@@ -1,0 +1,9 @@
+{
+    "page_title": "使用HTTP响应对象",
+    "response": "响应",
+    "response_types": "响应类型",
+    "page_requested": "此页面是在{time}请求的",
+    "html": "HTML",
+    "json": "JSON",
+    "text": "Text"
+}
