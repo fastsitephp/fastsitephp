@@ -2,6 +2,10 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Website (March 27, 2020)
+
+* **Thanks Li Jun Hui** for helping with Chinese translations! https://github.com/lijunhuippl
+
 ## 1.2.2 (February 26, 2020)
 
 * Update `I18N::langFile()` for a minor edge case bug related to 404 redirect on missing language. It was found to affect local development with the PHP built-in server when a single `index.php` file is used for routing.
