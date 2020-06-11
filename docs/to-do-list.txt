@@ -31,6 +31,9 @@ TODO List
       of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
     https://github.com/the-benchmarker/web-frameworks
 
+**) Create Docker Image
+    - Include the starter site?
+
 **) Create Documentation that shows how Unit Testing works
 
 **) fastsitephp\scripts\create-api-json-files.php
