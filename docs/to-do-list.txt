@@ -36,6 +36,16 @@ TODO List
     These files were created because creating full automated unit tests was causing too much of a delay
     for the initial release.
 
+*) Test and consider supporting [ngx_php7]
+    - Main Project:
+        https://github.com/rryqszq4/ngx_php7
+    - Example Usage:
+        https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/PHP/php-ngx
+    - This will require use of new function such as `ngx_query_args()` over `$_GET`
+    - [ngx_php7] is very high in performance - highest for PHP and one of the highest scores overall
+        (11 of 424 Frameworks as of June 2020)
+        https://www.techempower.com/benchmarks/
+
 *) Known Site Issues
     - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
             <input type="datetime-local">
