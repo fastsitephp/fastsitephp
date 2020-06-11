@@ -25,6 +25,12 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Add FastSitePHP to TechEmpower Benchmarks:
+    https://www.techempower.com/benchmarks/
+    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
+      of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
+    https://github.com/the-benchmarker/web-frameworks
+
 **) Create Documentation that shows how Unit Testing works
 
 **) fastsitephp\scripts\create-api-json-files.php
