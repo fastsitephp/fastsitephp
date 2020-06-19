@@ -13,8 +13,8 @@ namespace FastSitePHP\Net;
 
 /**
  * Internet Protocol
- * 
- * This class includes several static functions for working with IP Addresses 
+ *
+ * This class includes several static functions for working with IP Addresses
  * and CIDR Strings. Validating IP’s is often important for secure applications.
  */
 class IP
@@ -34,7 +34,7 @@ class IP
      * for the network. Other IP Address can be compared to this CIDR Value to see if
      * they are on the same network.
      *
-     * This function is used internally by FastSitePHP with [Web\Request->clientIp()] and 
+     * This function is used internally by FastSitePHP with [Web\Request->clientIp()] and
      * other functions when checking trusted proxy addresses.
      *
      * This function can be called with 2 different parameter options and has different return
@@ -558,7 +558,7 @@ class IP
      * IPv4 addresses if the server running this function does not support IPv6. This function
      * can be used with the [cidr()] function to test if an IP Address is on a local network.
      *
-     * This function is used internally by FastSitePHP with [Web\Request->clientIp()] and 
+     * This function is used internally by FastSitePHP with [Web\Request->clientIp()] and
      * other functions when checking trusted proxy addresses.
      *
      * The following CIDR Notation Strings are returned:
@@ -598,8 +598,8 @@ class IP
         // version of PHP on the server. If it is included then add IPv6 CIDR Values.
         //
         // According to documentation if [!defined('AF_INET6')] then PHP was not
-        // compiled with IPv6 however on Windows this option will likely not be set so 
-        // checking if the function [inet_ntop()] is defined instead is a more reliable 
+        // compiled with IPv6 however on Windows this option will likely not be set so
+        // checking if the function [inet_ntop()] is defined instead is a more reliable
         // way of checking IPv6 Support because [inet_ntop()] is required for IPv6.
         if (function_exists('inet_ntop')) {
             $cidr_values[] = '::1/128';     // localhost

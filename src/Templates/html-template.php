@@ -38,7 +38,7 @@
             var d = new Date(el.textContent);
             if (!isNaN(d.getTime())) {
                 var time = (typeof d.toLocaleString === 'function' ? d.toLocaleString() : d.toString());
-                el.textContent = time;                        
+                el.textContent = time;
             }
         });
     });

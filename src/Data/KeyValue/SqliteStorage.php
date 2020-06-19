@@ -15,7 +15,7 @@ use FastSitePHP\Data\Database;
 
 /**
  * Store Key-Value Pairs in a SQLite Database.
- * 
+ *
  * This class uses the [FastSitePHP\Data\KeyValue\StorageInterface] class interface.
  */
 class SqliteStorage implements StorageInterface
@@ -24,10 +24,10 @@ class SqliteStorage implements StorageInterface
 
     /**
      * Class Constructor
-     * 
+     *
      * Specify a path for the SQLite Database. The database file will be created
      * if it does not exist and the table [key_value_pairs] will be added.
-     * 
+     *
      * @param string $file_path
      */
     function __construct($file_path)
@@ -40,7 +40,7 @@ class SqliteStorage implements StorageInterface
 
     /**
      * Get a saved value with an optional default value if it doesn't exist or is null.
-     * 
+     *
      * @param string $key
      * @param mixed $default_value
      * @return string
@@ -54,7 +54,7 @@ class SqliteStorage implements StorageInterface
 
     /**
      * Set a value for a named key.
-     * 
+     *
      * @param string $key
      * @param string $value
      * @return void
@@ -72,7 +72,7 @@ class SqliteStorage implements StorageInterface
 
     /**
      * Check if a key exists in the database.
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -85,7 +85,7 @@ class SqliteStorage implements StorageInterface
 
     /**
      * Remove (delete) a key exists from the database.
-     * 
+     *
      * @param string $key
      * @return void
      */

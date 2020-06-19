@@ -17,11 +17,11 @@ namespace FastSitePHP\Net;
 class HttpResponse
 {
     /**
-     * Error code if there is a major failure with an HTTP Request 
+     * Error code if there is a major failure with an HTTP Request
      * such as a timeout or SSL Cert Error.  0 if no error.
-     * 
+     *
      * The error code is the value returned by [curl_errno()].
-     * 
+     *
      * @var int|string
      */
     public $error = 0;
@@ -43,20 +43,20 @@ class HttpResponse
      * so binary responses will also be in string format.
      * @var string|null
      */
-    public $content = null; 
+    public $content = null;
 
     /**
      * Response Body parsed to an Array for JSON Responses. This can be turned
      * off by setting the option [parse_json = false] from [HttpClient->request()].
      * @var array|null
      */
-    public $json = null; 
+    public $json = null;
 
     /**
      * Array of detailed information for the request and response from [curl_getinfo()].
      * Example ($res->info['CURLINFO_TOTAL_TIME']) if set will return the total transaction
      * time in seconds.
-     * 
+     *
      * @link http://php.net/manual/en/function.curl-getinfo.php
      * @var array|null
      */

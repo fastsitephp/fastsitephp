@@ -13,13 +13,13 @@ namespace FastSitePHP\Encoding;
 
 /**
  * Base64-URL Safe Encoding
- * 
+ *
  * PHP has built-in support for Base64 Encoding but not Base64-URL encoding.
  * This class encodes and decodes Base64-URL safe strings.
- * 
+ *
  * The difference between Base64 and Base64-URL is that Base64-URL uses
  * '-_' characters instead of '+/' and doesn't include '=' padding.
- * 
+ *
  * @link https://en.wikipedia.org/wiki/Base64
  * @link https://tools.ietf.org/html/rfc4648#section-5
  * @link https://tools.ietf.org/html/rfc7515#appendix-C
@@ -28,7 +28,7 @@ class Base64Url
 {
     /**
      * Encode a string as Base64-URL
-     * 
+     *
      * @param string $data
      * @return string
      */
@@ -36,12 +36,12 @@ class Base64Url
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
-    
+
     /**
      * Decode Base64-URL to a string. Returns the decoded data or false on failure.
      * The returned data may be binary. This uses the same behavior as calling the PHP
      * built-in function [base64_decode()].
-     * 
+     *
      * @param string $data
      * @return string|false
      * @throws \Exception
@@ -57,7 +57,7 @@ class Base64Url
         if ($padding !== 0) {
             $padding = 4 - $padding;
         }
-        
+
         // Convert to Standard Base64 String
         if ($padding === 0) {
             $data = strtr($data, '-_', '+/');
@@ -67,5 +67,5 @@ class Base64Url
 
         // Decode from Standard Base64 String
         return base64_decode($data, true);
-    }    
+    }
 }

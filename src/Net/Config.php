@@ -17,11 +17,11 @@ namespace FastSitePHP\Net;
 class Config
 {
     /**
-     * Return a (fqdn) 'fully-qualified domain name' for the server that is 
+     * Return a (fqdn) 'fully-qualified domain name' for the server that is
      * running this script. A fqdn might not be available which will result
      * in null being returned. This function performs a DNS lookup on the
      * hostname of the server.
-     * 
+     *
      * @return string|null 'server.example.com'
      */
     public function fqdn()
@@ -32,7 +32,7 @@ class Config
             $record = dns_get_record($host);
             $fqdn = (isset($record[0]) && isset($record[0]['host']) ? $record[0]['host'] : $host);
         }
-        return $fqdn;        
+        return $fqdn;
     }
 
     /**
@@ -40,8 +40,8 @@ class Config
      * if a site is installed in an environment with multiple web servers to determine what server a
      * specific user is accessing. If a computer is not connected to a network and PHP is running from
      * a development environment then this function will likely return the localhost address '127.0.0.1'
-     * however if connected to the internet or a corporate network then this function will 
-     * return the computer's network IP address. To get the IP Address of the Web Server Software see 
+     * however if connected to the internet or a corporate network then this function will
+     * return the computer's network IP address. To get the IP Address of the Web Server Software see
      * the function [FastSitePHP\Web\Request->serverIp()].
      *
      * @return string|null
@@ -50,15 +50,15 @@ class Config
     {
         // Get list of IPv4 Addresses for the Computer
         $ip_list = $this->networkIpList();
-        
+
         // Check if more than one IP Address was returned. If so
         // then prioritize the main ethernet interface/adapter.
         $ip_count = count($ip_list);
         if ($ip_count > 1) {
-            // Run one of the following commands [ip addr], [ifconfig], 
-            // or [ipconfig] and parse the results to an object. 
+            // Run one of the following commands [ip addr], [ifconfig],
+            // or [ipconfig] and parse the results to an object.
             $net_info = $this->parseNetworkInfo($this->networkInfo());
-            
+
             // Code changes can be manually tested by
             // reading from saved text files, example:
             // $net_info = $this->parseNetworkInfo(file_get_contents('{{path}}'));
@@ -68,7 +68,7 @@ class Config
                     // Linux/Unix
                     foreach ($net_info->interfaces as $interface) {
                         if (($interface->type === 'eth0' || $interface->type === 'en0') &&
-                            is_string($interface->inet) && 
+                            is_string($interface->inet) &&
                             filter_var($interface->inet, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)
                         ) {
                             return $interface->inet;
@@ -77,10 +77,10 @@ class Config
                 } else {
                     // Windows
                     foreach ($net_info->adapters as $adapter) {
-                        // Make sure that Oracle VirtualBox Host IP's are skipped 
+                        // Make sure that Oracle VirtualBox Host IP's are skipped
                         // and removed from the main array.
                         if (strpos($adapter->name, 'VirtualBox Host-Only Network') !== false) {
-                            // array_values() is used to re-index the array because if 
+                            // array_values() is used to re-index the array because if
                             // the removed item is the first item in the array then
                             // $ip_list[0] would no longer be available.
                             if (array_key_exists('IPv4 Address', $adapter->properties)) {
@@ -108,7 +108,7 @@ class Config
     /**
      * Return any array of IPv4 Address of the computer or server that is running the script.
      * Often a server will have more than 1 IP assigned.
-     * 
+     *
      * @return array
      */
     public function networkIpList()
@@ -123,25 +123,25 @@ class Config
 
         // If either gethost*() function returned false then there
         // was an error so return an empty array or the IP list.
-        return ($ip_list === false ? array() : $ip_list);        
+        return ($ip_list === false ? array() : $ip_list);
     }
 
     /**
-     * Return a string of Network Info from the OS. If Network info can't be 
+     * Return a string of Network Info from the OS. If Network info can't be
      * determined then null will be returned. This function works with
      * various OS's including Windows, Mac, and recent versions of Linux.
-     * It runs the following commands: 
-     * 
-     *     Win:   ipconfig 
+     * It runs the following commands:
+     *
+     *     Win:   ipconfig
      *            ipconfig /all    (If the optional [$all] parameter is true)
      *     Mac:   ifconfig
      *     Other: ip addr
      *            ifconfig
-     * 
+     *
      * For Linux newer versions will typically include the [ip] command.
      * For older versions of Linux or Unix OS's [ifconfig] will usually
      * be used.
-     * 
+     *
      * @param bool $all (Optional)
      * @return null
      * @throws \Exception
@@ -203,7 +203,7 @@ class Config
      */
     public function parseNetworkInfo($config_text, $exception_on_parse_error = false)
     {
-        // Always return null if null is passed, for example if calling 
+        // Always return null if null is passed, for example if calling
         // $this->parseNetworkInfo($this->networkInfo()) and networkInfo() fails.
         if ($config_text === null) {
             return null;
@@ -244,8 +244,8 @@ class Config
      */
     private function parseIpAddr($config_text, $exception_on_parse_error)
     {
-        // Results of [ip] and [ifconfig] commands have a general expected 
-        // format but vary in overall output format so only IP Addresses are 
+        // Results of [ip] and [ifconfig] commands have a general expected
+        // format but vary in overall output format so only IP Addresses are
         // parsed as that is that would be the most common use of these commands.
         //
         // Some examples for the source code of [ip] and [ifconfig] commands:
@@ -298,12 +298,12 @@ class Config
                         return null;
                     }
                 }
-                
+
                 // Which Address Type
                 $type = (strpos($line, 'inet6') === 0 ? 'inet6' : 'inet');
 
                 // Linux ifconfig will often start with 'inet addr:IP'
-                // All other values are expected to be 'inet IP ..' 
+                // All other values are expected to be 'inet IP ..'
                 $pos = strlen($type);
                 if (strpos($line, $type . ' addr:') === 0) {
                     $pos += 6;
@@ -322,8 +322,8 @@ class Config
                     $ip = substr($ip, 0, $pos);
                 }
 
-                // Set IP Property dynamically by type. 
-                // Will be a string if only one IP exits for the 
+                // Set IP Property dynamically by type.
+                // Will be a string if only one IP exits for the
                 // Interface or an array if multiple IP's exist.
                 if ($interface->{$type} === null) {
                     $interface->{$type} = $ip;
@@ -335,7 +335,7 @@ class Config
             }
         }
 
-        // Return all Interfaces that contain 
+        // Return all Interfaces that contain
         // either an IPv4 or IPv6 Address.
         $network = new \stdClass;
         $network->interfaces = array();
@@ -397,7 +397,7 @@ class Config
             if ($pos !== false) {
                 $value = substr($line, $pos + 5);
             }
-                
+
             // Add to Array
             $network->properties[$name] = $value;
 
@@ -467,7 +467,7 @@ class Config
 
                     // Add to Array
                     $adapter->properties[$name] = $value;
-                    $last_property = $name;                    
+                    $last_property = $name;
                 }
             }
 
@@ -476,6 +476,6 @@ class Config
         }
 
         // Return parsed values
-        return $network;        
+        return $network;
     }
 }

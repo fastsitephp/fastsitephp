@@ -12,7 +12,7 @@
 /**
  * PHP 5.5 and below does not include the function hash_equals().
  * This file can be included in a project as a polyfill for compatibility.
- * 
+ *
  * PHP Source Version:
  *     https://github.com/php/php-src/blob/master/ext/hash/hash.c
  *     PHP_FUNCTION(hash_equals)
@@ -22,8 +22,8 @@ if (!function_exists('hash_equals')) {
     /**
      * Timing attack safe string comparison.
      * Compares two strings using the same time whether they're equal or not.
-     * 
-     * @param string $known_string 
+     *
+     * @param string $known_string
      * @param string $user_string
      * @return bool
      * @link http://php.net/manual/en/function.hash-equals.php

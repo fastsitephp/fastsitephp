@@ -32,9 +32,9 @@ use FastSitePHP\Security\Crypto\Random;
  *
  * If using PHP 5.3 then using this class will polyfill functions [bin2hex()] and [hex2bin()]
  * and if using a version of PHP below 5.6 then this class will polyfill [hash_equals()].
- * 
+ *
  * For another Stateless CSRF Token implementation with NodeJS see the link below.
- * 
+ *
  * @link https://www.paypal-engineering.com/2016/06/01/securing-your-js-apps-w-stateless-csrf/
  */
 class CsrfStateless
@@ -42,7 +42,7 @@ class CsrfStateless
     /**
      * Return a key that can be used to generate and validate Stateless
      * CSRF Tokens. The key must be kept private and not shared with end users.
-     * 
+     *
      * @return string
      */
     public static function generateKey()

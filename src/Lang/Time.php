@@ -18,17 +18,17 @@ class Time
 {
     /**
      * Convert the number of seconds into an English text string.
-     * 
+     *
      * Example:
      *     Time::secondsToText(129680) = 1 Day, 12 Hours, 1 Minute, and 20 Seconds
      *     Time::secondsToText(120)    = 2 Minutes
      *     Time::secondsToText(119)    = 1 Minute and 59 Seconds
      *     Time::secondsToText(10)     = 10 Seconds
-     * 
+     *
      * For a basic numeric format of 'HH:MM:SS' you can instead use a PHP built-in
      * function as long as the time is less than 24 hours:
      *     date('H:i:s', $seconds)
-     * 
+     *
      * @param int $seconds
      * @return string
      */
@@ -45,7 +45,7 @@ class Time
 
     /**
      * Language 'en'
-     * 
+     *
      * @param int $years
      * @param int $days
      * @param int $hours

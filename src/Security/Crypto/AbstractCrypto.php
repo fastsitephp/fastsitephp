@@ -18,8 +18,8 @@ use FastSitePHP\Encoding\Json;
  *
  * This is a PHP Abstract Class which is used as a base class for classes
  * [Encryption, SignedData, FileEncryption]. Abstract classes cannot be created
- * directly and instead are inherited by the other classes. This class contains 
- * common functions shared by the 3 classes however not all properties and 
+ * directly and instead are inherited by the other classes. This class contains
+ * common functions shared by the 3 classes however not all properties and
  * functions are used by each class. PHP does not directly support multiple
  * inheritance however PHP 5.4 and later support a similar concept called
  * Traits. This version of FastSitePHP supports PHP Version 5.3 and which is
@@ -53,17 +53,17 @@ abstract class AbstractCrypto
     // be easily increased for the default key.
     protected $pbkdf2_algorithm = 'sha512';
     protected $pbkdf2_iterations = 200000;
-    
+
     // Use multi-byte string functions? This gets set from the
     // Class Constructor when an object is first created.
     private $use_mbstring = true;
 
     /**
      * Class Constructor
-     * 
-     * If using PHP 5.3 then functions [bin2hex()] and [hex2bin()] 
+     *
+     * If using PHP 5.3 then functions [bin2hex()] and [hex2bin()]
      * and OpenSSL Constant [OPENSSL_RAW_DATA] are polyfilled.
-     * 
+     *
      * If using PHP 5.5 or below then [hash_equals()] is polyfilled.
      */
     function __construct()
@@ -201,9 +201,9 @@ abstract class AbstractCrypto
     /**
      * Get or set the number of PBKDF2 iterations to use with
      * option [keyType('password')]. Defaults to 200000 [200,000].
-     * 
+     *
      * If you have an older server 200,000 might be too slow and
-     * you could use 100,000, however if you change this setting you 
+     * you could use 100,000, however if you change this setting you
      * would need to track what was encrypted with a different number.
      *
      * @param null|int $new_value

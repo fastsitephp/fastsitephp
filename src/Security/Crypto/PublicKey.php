@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
@@ -13,10 +13,10 @@ namespace FastSitePHP\Security\Crypto;
 
 /**
  * Public Key Generator
- * 
- * Used to generate RSA Keys which can be used for JWT Signing. Function 
+ *
+ * Used to generate RSA Keys which can be used for JWT Signing. Function
  * parameters allow for generation of additional public and private key types.
- * 
+ *
  * @link https://en.wikipedia.org/wiki/RSA_(cryptosystem)
  * @link https://tools.ietf.org/html/rfc3447
  */
@@ -25,18 +25,18 @@ class PublicKey
     /**
      * Return the default config options used when generating a new Key Pair.
      * This an array of options set for a 2048-bit RSA Key.
-     * 
+     *
      * 2048-bit is used as because it is provides a combination of acceptable
-     * speed for JWT and strong security. If a JWT needs to be signed and 
-     * validated after the year 2030 then a 3072-bit key is recommended, 
+     * speed for JWT and strong security. If a JWT needs to be signed and
+     * validated after the year 2030 then a 3072-bit key is recommended,
      * however 3072-bit keys are much slower to create.
-     * 
-     * On Windows this will attempt to find and set the [openssl.cnf] file 
+     *
+     * On Windows this will attempt to find and set the [openssl.cnf] file
      * for the instance of PHP that is running. This option is generally
      * required in order to generate RSA Key Pairs on Windows. The file if
      * found by default will exist at a location such as:
      *     C:\Program Files\PHP\v7.2\extras\ssl\openssl.cnf
-     * 
+     *
      * @link https://en.wikipedia.org/wiki/Key_size
      * @param int $bits - Defaults to 2048
      * @return array
@@ -63,13 +63,13 @@ class PublicKey
 
     /**
      * Generate a new RSA Key Pair
-     * 
+     *
      * @param int $bits - Defaults to 2048
      * @return array - [private_key, public_key]
      */
     public static function generateRsaKeyPair($bits = 2048)
     {
-        return self::generateKeyPair(self::defaultConfig($bits)); 
+        return self::generateKeyPair(self::defaultConfig($bits));
     }
 
     /**

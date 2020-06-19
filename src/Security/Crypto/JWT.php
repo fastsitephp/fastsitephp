@@ -19,14 +19,14 @@ use FastSitePHP\Security\Crypto\PublicKey;
 
 /**
  * JSON Web Tokens (JWT)
- * 
+ *
  * @link https://jwt.io/
  * @link https://tools.ietf.org/html/rfc7519
  * @link https://en.wikipedia.org/wiki/JSON_Web_Token
  * @link http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
  */
 class JWT implements CryptoInterface
-{	
+{
     // Default Algorithm, see comments in [algo()]
     private $algorithm = 'HS256';
     private $allowed_algos = array('HS256');
@@ -60,7 +60,7 @@ class JWT implements CryptoInterface
 
     /**
      * Class Constructor
-     * 
+     *
      * If using PHP 5.5 or below then [hash_equals()] is polyfilled,
      * and [bin2hex()] and [hex2bin()] are polyfilled for PHP 5.3.
      */
@@ -72,18 +72,18 @@ class JWT implements CryptoInterface
         if (PHP_VERSION_ID < 50600) {
             require_once __DIR__ . '/../../Polyfill/hash_equals_compat.php';
         }
-        
-        // Check whether to use multi-byte string 
+
+        // Check whether to use multi-byte string
         // functions when the class is created.
         $this->use_mbstring = extension_loaded('mbstring');
     }
-    
+
     /**
      * Generate a secure key based on the algorithm specified from the function [algo()].
-     * When using HMAC the key is returned in either Base64 of Hex format depending on the 
+     * When using HMAC the key is returned in either Base64 of Hex format depending on the
      * $type parameter (defaults to Base64); and when using RSA an array is returned
      * in the format of [private_key, public_key].
-     * 
+     *
      * @param string $key_type - 'base64' or 'hex'
      * @return string|array
      */
@@ -94,7 +94,7 @@ class JWT implements CryptoInterface
             $bytes = Random::bytes($len);
             return ($key_type === 'base64' ? base64_encode($bytes) : bin2hex($bytes));
         } else {
-            return PublicKey::generateRsaKeyPair();	
+            return PublicKey::generateRsaKeyPair();
         }
     }
 
@@ -119,13 +119,13 @@ class JWT implements CryptoInterface
         // Get Key and Settings
         $key = $this->getKey($key, $this->algorithm, false);
         list($type, $algo) = $this->algorithms[$this->algorithm];
-        
+
         // Build Header
         $header = Base64Url::encode(Json::encode(array(
             'alg' => $this->algorithm,
             'typ' => 'JWT',
         )));
-        
+
         // Encode Payload and Build String to Sign
         $payload = Base64Url::encode(Json::encode($payload));
         $data = $header . '.' . $payload;
@@ -174,7 +174,7 @@ class JWT implements CryptoInterface
             $alg = $header['alg'];
             $key = $this->getKey($key, $alg, true);
             list($type, $algo) = $this->algorithms[$alg];
-            
+
             // Verify
             if ($type === 'hmac') {
                 $calc_hash = \hash_hmac($algo, $hash_text, $key, true);
@@ -188,11 +188,11 @@ class JWT implements CryptoInterface
                 }
             }
 
-            // Validate Claims and Return Payload if Valid 
+            // Validate Claims and Return Payload if Valid
             $this->validateClaims($payload);
             return $payload;
         } catch (\Exception $e) {
-            // Re-throw Exception based if [exceptionOnError(true)] 
+            // Re-throw Exception based if [exceptionOnError(true)]
             // otherwise return null by default.
             if ($this->exception_on_error) {
                 throw $e;
@@ -233,8 +233,8 @@ class JWT implements CryptoInterface
             if ($value === false) {
                 $error = 'Error adding JWT Claim. Invalid [%s] claim. A string was passed however it could not be converted to a valid timestamp. The value must be either a integer representing a Unix Timestamp or a valid string for the PHP function [strtotime()], examples include \'+1 hour\' and \'+30 minutes\'.';
                 $error = sprintf($error, $claim);
-                throw new \Exception($error);			
-            }			
+                throw new \Exception($error);
+            }
         }
 
         // Check data type
@@ -260,10 +260,10 @@ class JWT implements CryptoInterface
     }
 
     /**
-     * By default [decode()] returns null when a JWT cannot be validated or  
-     * invalid settings are used. When the value of this function is set to 
+     * By default [decode()] returns null when a JWT cannot be validated or
+     * invalid settings are used. When the value of this function is set to
      * [true] then an exception will be thrown instead.
-     * 
+     *
      * @param string|null $value
      * @return bool|$this
      */
@@ -373,9 +373,9 @@ class JWT implements CryptoInterface
             $error = 'Invalid JWT for Decoding. The header does not contain either [typ] or [alg].';
             throw new \Exception($error);
         } elseif ($header['typ'] !== 'JWT') {
-            throw new \Exception('Invalid JWT for Decoding. The header contains an invalid [typ] value.');			
+            throw new \Exception('Invalid JWT for Decoding. The header contains an invalid [typ] value.');
         } elseif (gettype($header['alg']) !== 'string') {
-            throw new \Exception('Invalid JWT for Decoding. The header contains an invalid [alg] data type.');						
+            throw new \Exception('Invalid JWT for Decoding. The header contains an invalid [alg] data type.');
         } elseif (!in_array($header['alg'], $this->allowed_algos, true)) {
             $error = 'Invalid JWT for Decoding. Algorithm for the JWT is [%s], however this class only allows for [%s]. To change this option specify different algorithms in [%s->allowedAlgos()].';
             $error = sprintf($error, $header['alg'], implode($this->allowed_algos), __CLASS__);
@@ -386,7 +386,7 @@ class JWT implements CryptoInterface
     /**
      * Get string length using [mb_strlen()] if the extension
      * [mbstring] is loaded otherwise use [strlen()].
-     * 
+     *
      * @param string $str
      * @return int
      */
@@ -508,7 +508,7 @@ class JWT implements CryptoInterface
     /**
      * Helper function used for validation
      * @param string $field
-     * @return string 
+     * @return string
      */
     private function claimType($field)
     {
@@ -534,7 +534,7 @@ class JWT implements CryptoInterface
         if (!isset($payload[$field])) {
             throw new \Exception(sprintf('Error - JWT Validation failed. Missing required field [%s] from JWT Payload.', $field));
         }
-        
+
         $value = $payload[$field];
         $expected = $this->claimType($field);
         $type = gettype($value);
@@ -548,9 +548,9 @@ class JWT implements CryptoInterface
     }
 
     /**
-     * Get or set the default JWT Algorithm to use, for supported algorithms 
+     * Get or set the default JWT Algorithm to use, for supported algorithms
      * see comments in [allowedAlgos()]. Defaults to 'HMAC' with 'SHA256'.
-     * 
+     *
      * @param string|null $new_value
      * @return string|$this
      */
@@ -569,19 +569,19 @@ class JWT implements CryptoInterface
 
     /**
      * Get or set an array of allowed JWT Algorithms to accept when decoding.
-     * 
+     *
      * HMAC [HS256, HS384, HS512] and RSA [RS256, RS384, RS512] are supported.
      * Elliptic Curve Digital Signature Algorithms (ECDSA) [ES256, ES384, ES512]
-     * are not supported by this class because PHP's OpenSSL implementation 
+     * are not supported by this class because PHP's OpenSSL implementation
      * does not provide built-in support.
-     * 
+     *
      * If need to use (ECDSA) with PHP there are several options:
      *   Encode/Decode Fast (PHP C Extension):
      *     https://github.com/cdoco/php-jwt
      *   Encode/Decode Slower (Using PHP Code):
      *     https://github.com/lcobucci/jwt
      *     https://github.com/web-token/jwt-framework
-     * 
+     *
      * @param array|null $new_value
      * @return array|$this
      */
@@ -596,7 +596,7 @@ class JWT implements CryptoInterface
         foreach ($new_value as $algo) {
             $this->validateAlgo($algo, __FUNCTION__);
         }
-        $this->allowed_algos = $new_value;		
+        $this->allowed_algos = $new_value;
         return $this;
     }
 
@@ -624,15 +624,15 @@ class JWT implements CryptoInterface
     /**
      * Get or set Key Requirement when using and HMAC JWT [HS256, HS384, HS512].
      * Defaults to [false] and with default settings a strong key size must be used.
-     * 
+     *
      * This should only be set to [true] if compatibility with other code is needed.
      * Often online samples use common passwords such as 'secret' when signing JWT's
      * which is why this setting was created.
-     * 
+     *
      * @param bool|null $new_value
      * @return bool|$this
      */
-    public function useInsecureKey($new_value = null) 
+    public function useInsecureKey($new_value = null)
     {
         if ($new_value === null) {
             return $this->use_insecure_key;
@@ -642,13 +642,13 @@ class JWT implements CryptoInterface
     }
 
     /**
-     * Get or set whether defined claims must be validated when [decode()] is 
+     * Get or set whether defined claims must be validated when [decode()] is
      * called. Defaults to true.
-     * 
+     *
      * Example if the payload has a value for [exp] then by default the JWT
      * Expiration Time is checked otherwise [requireExpireTime()] would have
      * to be set.
-     * 
+     *
      * @param bool|null $new_value
      * @return bool|$this
      */
@@ -667,7 +667,7 @@ class JWT implements CryptoInterface
      * @return array|null|$this
      * @link https://tools.ietf.org/html/rfc7519#section-4.1.1
      */
-    public function allowedIssuers(array $new_value = null) 
+    public function allowedIssuers(array $new_value = null)
     {
         if ($new_value === null) {
             return $this->issuers;

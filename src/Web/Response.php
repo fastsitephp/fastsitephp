@@ -77,18 +77,18 @@ class Response
     /**
      * Specify options for [json_encode()] when a JSON Response is returned.
      * Defaults to [JSON_UNESCAPED_UNICODE] if using PHP 5.4+
-     * 
+     *
      * @var int
      */
     private $json_options = 0;
-    
+
     /**
      * Class Constructor
-     * 
-     * The FastSitePHP Application can be passed as an optional parameter and when 
+     *
+     * The FastSitePHP Application can be passed as an optional parameter and when
      * used the Status Code and any Response Headers defined from the Application
      * Object will be assigned to the Response Object.
-     * 
+     *
      * @param Application|null $app
      */
     function __construct(Application $app = null)
@@ -143,8 +143,8 @@ class Response
      * returned. To clear a Header field pass an empty string '' for the $value
      * parameter. If setting or clearing a Header field then the Response Object
      * will be returned so it can be called as a chainable method.
-     * 
-     * The Class [\FastSitePHP\Application] also has this function defined. 
+     *
+     * The Class [\FastSitePHP\Application] also has this function defined.
      * The difference is that Application version is used for basic responses
      * and headers are not validated.
      *
@@ -267,10 +267,10 @@ class Response
      * Get or set the response content type header. This function is designed
      * for developer ease of use so rather than having to define the full header
      * such as 'Content-Type: application/json' the type 'json' can simply be
-     * used. The header is sent in the response from the function send(). 
-     * This function supports the most common text content types used in 
-     * web sites and web applications. For a full list of content media types see 
-     * the defined standards from Internet Assigned Numbers Authority (IANA) in 
+     * used. The header is sent in the response from the function send().
+     * This function supports the most common text content types used in
+     * web sites and web applications. For a full list of content media types see
+     * the defined standards from Internet Assigned Numbers Authority (IANA) in
      * the reference link below.
      *
      * If this function is called without a type passed as a a parameter then it
@@ -278,14 +278,14 @@ class Response
      * Response object so it can be used in chainable methods.
      *
      * Parameters:
-     * [$type] If specified will be one of 'html|json|jsonp|text|css|javascript|xml|graphql', 
+     * [$type] If specified will be one of 'html|json|jsonp|text|css|javascript|xml|graphql',
      *     any type from function [Response->fileTypeToMimeType()],
      *     or the actual content type for example 'text/html'.
-     * [$option] If $type is in 'html|css|javascript|text' then $option can be a string 
-     *     to specify the charset (e.g.: 'UTF-8') otherwise if 'jsonp' is the content type 
-     *     then $option can be a string or an array of query string parameters. 
-     *     By default if $option is null and the type is 'html' then 'UTF-8' is used 
-     *     as the charset and if the type is 'jsonp' and then the query string 
+     * [$option] If $type is in 'html|css|javascript|text' then $option can be a string
+     *     to specify the charset (e.g.: 'UTF-8') otherwise if 'jsonp' is the content type
+     *     then $option can be a string or an array of query string parameters.
+     *     By default if $option is null and the type is 'html' then 'UTF-8' is used
+     *     as the charset and if the type is 'jsonp' and then the query string
      *     parameters 'callback' and 'jsonp' are used as the default.
      *
      * @link http://www.iana.org/assignments/media-types/media-types.xhtml
@@ -437,7 +437,7 @@ class Response
      *         $res = new \FastSitePHP\Web\Response();
      *         return $res->content('<h1>FastSitePHP</h1>');
      *     });
-     * 
+     *
      *     $app->get('/json', function() {
      *         $res = new \FastSitePHP\Web\Response();
      *         return $res
@@ -488,10 +488,10 @@ class Response
     /**
      * Get or set options for [json_encode()] when a JSON Response is returned.
      * Defaults to [JSON_UNESCAPED_UNICODE] when using PHP 5.4 or later.
-     * 
+     *
      * Example:
      *     $res->jsonOptions(JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-     * 
+     *
      * @param null|int $new_value
      * @return int|$this
      */
@@ -501,9 +501,9 @@ class Response
             return $this->json_options;
         }
         $this->json_options = (int)$new_value;
-        return $this; 
+        return $this;
     }
-    
+
     /**
      * Get or set a value for the 'ETag' Response Header which is used to specify
      * rules for HTTP Caching. ETag is short for Entity Tag and is typically a
@@ -910,8 +910,8 @@ class Response
      * is for old HTTP 1.0 clients that do not support either 'Cache-Control' or 'Expires'.
      *
      * This function exists in both [FastSitePHP\Application] and [FastSitePHP\Web\Response]
-     * classes; calling the function from the Application object specifies the headers only 
-     * when a route returns a basic response and calling the function from the Response 
+     * classes; calling the function from the Application object specifies the headers only
+     * when a route returns a basic response and calling the function from the Response
      * object specifies the headers only when the route returns a Response object.
      *
      * @link http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.21
@@ -927,10 +927,10 @@ class Response
     }
 
     /**
-     * Get or set a values for Cross-Origin Resource Sharing (CORS) Response Headers. 
+     * Get or set a values for Cross-Origin Resource Sharing (CORS) Response Headers.
      * For security reasons browsers will restrict content that is from a different domain
-     * when using JavaScript (for example: calling a Web Service from XMLHttpRequest). 
-     * CORS is a web standard that allows for restricted resources to work on domains 
+     * when using JavaScript (for example: calling a Web Service from XMLHttpRequest).
+     * CORS is a web standard that allows for restricted resources to work on domains
      * other than the domain where the resource is hosted.
      *
      * CORS Headers are sent with both the OPTIONS request method and the calling method.
@@ -953,7 +953,7 @@ class Response
      */
     public function cors(Application $app = null)
     {
-        // Return any previously set CORS Headers on this 
+        // Return any previously set CORS Headers on this
         // Response Object or null if no CORS Headers are set.
         if ($app === null) {
             $cors_headers = array();
@@ -964,9 +964,9 @@ class Response
             }
             return (count($cors_headers) === 0 ? null : $cors_headers);
         }
-        
+
         // Before setting CORS Headers from the Application Object
-        // to this Response Object, clear any previous CORS Headers 
+        // to this Response Object, clear any previous CORS Headers
         // that were set on this Response Object.
         foreach ($this->header_fields as $key => $value) {
             if (strpos(strtolower($key), 'access-control-') === 0) {
@@ -989,7 +989,7 @@ class Response
      * Define a cookie to be sent with the response along with the response headers.
      * Internally this calls the PHP function setcookie() from the private function
      * sendResponse(). To delete a cookie use the function [clearCookie()]. To read
-     * cookies use the [cookie()] function of the [FastSitePHP\Web\Request] Object 
+     * cookies use the [cookie()] function of the [FastSitePHP\Web\Request] Object
      * or use the PHP superglobal array $_COOKIE.
      *
      * @link http://php.net/manual/en/function.setcookie.php
@@ -1040,11 +1040,11 @@ class Response
         );
         return $this;
     }
-    
+
     /**
      * Send an empty value for a named cookie and expired time to tell the browser or
      * client to clear the cookie.
-     * 
+     *
      * @param string $name
      * @param string $path (default: '')
      * @param string $domain (default: '')
@@ -1056,15 +1056,15 @@ class Response
     {
         return $this->cookie($name, '', -1, $path, $domain, $secure, $httponly);
     }
-    
+
     /**
      * Create a secure cookie that can be read by clients client but not tampered with.
      * Cookies sent using this method need to be read with [Request->verifiedCookie()]
-     * to verify that they are not tampered with or expired. The default expiration time  
+     * to verify that they are not tampered with or expired. The default expiration time
      * is 1 hour and it applies to the signed data and not the cookie itself.
-     * 
+     *
      * Using this function requires the Application Config Value 'SIGNING_KEY'.
-     * 
+     *
      * See also [encryptedCookie()] and [jwtCookie()].
      *
      * @param string $name
@@ -1076,21 +1076,21 @@ class Response
      * @param bool $secure (default: false)
      * @param bool $httponly (default: false)
      * @return $this
-     */    
+     */
     public function signedCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)
     {
         $value = Crypto::sign($value, $expire_time);
-        return $this->cookie($name, $value, $expire, $path, $domain, $secure, $httponly);        
+        return $this->cookie($name, $value, $expire, $path, $domain, $secure, $httponly);
     }
 
     /**
      * Create a secure cookie with a JSON Web Token (JWT). Cookies sent using this
      * method need to be read with [Request->jwtCookie()] to verify that they are
-     * not tampered with or expired. The default expiration time is 1 hour and it 
+     * not tampered with or expired. The default expiration time is 1 hour and it
      * applies to the JWT and not the cookie itself.
-     * 
+     *
      * Using this function requires the Application Config Value 'JWT_KEY'.
-     * 
+     *
      * See also [encryptedCookie()] and [signedCookie()].
      *
      * @param string $name
@@ -1102,21 +1102,21 @@ class Response
      * @param bool $secure (default: false)
      * @param bool $httponly (default: false)
      * @return $this
-     */    
+     */
     public function jwtCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)
     {
         $value = Crypto::encodeJWT($value, $expire_time);
-        return $this->cookie($name, $value, $expire, $path, $domain, $secure, $httponly);        
+        return $this->cookie($name, $value, $expire, $path, $domain, $secure, $httponly);
     }
 
     /**
      * Create a secure and secret cookie that cannot be read by clients.
      * Cookies sent using this method need to be read with [Request->decryptedCookie()].
-     * 
+     *
      * Using this function requires the Application Config Value 'ENCRYPTION_KEY'.
-     * 
+     *
      * See also [signedCookie()] and [jwtCookie()].
-     * 
+     *
      * @param string $name
      * @param string $value
      * @param int $expire    Defaults to 0 which makes the cookie expire at the end of the session
@@ -1203,8 +1203,8 @@ class Response
      * the type of file is a file download; this includes common file types such as
      * Office Documents and Windows BMP Images. For a large list of known Mime-types
      * refer to the reference links below.
-     * 
-     * File extensions that map to a Mime type with the function are: 
+     *
+     * File extensions that map to a Mime type with the function are:
      *     Text: htm, html, txt, css, csv, md, markdown, jsx
      *     Image: jpg, jpeg, png, gif, webp, svg, ico
      *     Application: js, json, xml, pdf, woff, graphql
@@ -1226,7 +1226,7 @@ class Response
         } else {
             $file_type = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
         }
-        
+
         // Return mime-type based on file extension
         switch ($file_type) {
             // Text Files
@@ -1294,20 +1294,20 @@ class Response
      * to render templates. This function is ideal for sending file download responses
      * and media files such as images or video.
      *
-     * This function provides several optional parameters to specify the response 
+     * This function provides several optional parameters to specify the response
      * content type and caching headers:
      *
      * $content_type
-     * The content type to set for contentType() such as 'text', 'html' or 'download' to 
-     * specify 'application/octet-stream' and related headers for a file download. 
+     * The content type to set for contentType() such as 'text', 'html' or 'download' to
+     * specify 'application/octet-stream' and related headers for a file download.
      * If not set then the mime type is determined from the file extension
      * using the function fileTypeToMimeType().
      *
      * $cache_type
-     * Value to set for either ETag or Last-Modified headers which allow for 
-     * Cached Responses of 304 'Not Modified'. Valid options are: 'etag:md5', 
+     * Value to set for either ETag or Last-Modified headers which allow for
+     * Cached Responses of 304 'Not Modified'. Valid options are: 'etag:md5',
      * 'etag:sha1', and 'last-modified'. All values are calculated from the file directly.
-     * When calculating Etag based on a hash be aware that the value will be calculated 
+     * When calculating Etag based on a hash be aware that the value will be calculated
      * each time this function is called so in the case of large files that are 100's of
      * megabytes or more in size it can delay the initial streamed response by as much as
      * a few seconds. If very large files are used with this function and ETag is needed
@@ -1351,9 +1351,9 @@ class Response
         // to download the file.
         if ($content_type === 'download' || $content_type === 'application/octet-stream') {
             // Get the file name and replace any double-quotes.
-            // Note - [basename()] is not used because it doesn't always 
+            // Note - [basename()] is not used because it doesn't always
             // work in some environments (often Linux or Unix) for Unicode
-            // Characters unless calling [setlocale()]. Since the Locale 
+            // Characters unless calling [setlocale()]. Since the Locale
             // is not known this method is more reliable.
             //   $file_name = str_replace('"', '', basename($file_path));
             $data = explode(DIRECTORY_SEPARATOR, realpath($file_path));
@@ -1373,7 +1373,7 @@ class Response
         } else {
             $this->contentType($content_type);
         }
-        
+
         // If a cache type is specified then calculate either a
         // hash or last modified date from the file.
         if ($cache_type !== null) {
@@ -1396,7 +1396,7 @@ class Response
         if ($cache_control !== null) {
             $this->cacheControl($cache_control);
         }
-        
+
         // Set a private property to the file path and return the Response Object
         $this->response_file = $file_path;
         return $this;
@@ -1407,17 +1407,17 @@ class Response
      * redirect the user to another page or site by sending a status code of 3## for the
      * response with the Location Header set to the new URL.
      *
-     * The redirect() function also exists in the main Application Object but can be used 
+     * The redirect() function also exists in the main Application Object but can be used
      * here instead if your site is designed to return a Response object for all routes.
      *
      * Status Code can optionally be specified as the 2nd parameter. The default Status Code
-     * used is [302 'Found'] (Temporary Redirect). If Status Code [301 'Moved Permanently'] 
-     * is used Web Browsers will typically cache the result so careful testing and consideration 
+     * used is [302 'Found'] (Temporary Redirect). If Status Code [301 'Moved Permanently']
+     * is used Web Browsers will typically cache the result so careful testing and consideration
      * should be done if using a Status Code of 301. Other supported Status Codes are:
      * [303 'See Other'], [307 'Temporary Redirect'], and [308 'Permanent Redirect'].
      *
      * Example:
-     * 
+     *
      *     // User makes this request
      *     $app->get('/page1', function() {
      *         $res = new \FastSitePHP\Web\Response();
@@ -1462,12 +1462,12 @@ class Response
         }
 
         // Build the Response Body. This is not actually required and using a Web Browser
-        // the end user would never see this, however RFC 2616 recommends that the body 
+        // the end user would never see this, however RFC 2616 recommends that the body
         // of a Redirect Response should include a short note with a link to the new URI.
         $html_url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8', true);
         $content = '<h1>' . $status_code_text[$status_code] . '</h1>';
         $content .= '<p>Redirecting to <a href="' . $html_url . '">' . $html_url . '</a></p>';
-        
+
         // Set values for the Response and return this Response Object
         $this->status_code = $status_code;
         $this->header_fields['Location'] = $url;
@@ -1493,7 +1493,7 @@ class Response
     }
 
     /**
-     * Send the Response to the Client. This function gets called automatically if a route 
+     * Send the Response to the Client. This function gets called automatically if a route
      * returns a response object and would normally not be manually called. This function
      * handles sending Response Headers, Cookies, and Content.
      *
@@ -1510,20 +1510,20 @@ class Response
         // are acceptable (plus every single line of code in this function is unit tested so
         // even though it is large it functions as expected).
 
-        // Basic validation of the Response that either [content()] or [file()] 
+        // Basic validation of the Response that either [content()] or [file()]
         // was called for most response types but that not both are called.
         if ($this->response_content !== null && $this->response_file !== null) {
             throw new \Exception(sprintf('The [%s] Object for the current Route had content set through both [content()] and [file()] functions. When returning the response object from a route or when sending the response only one of these functions can be called.', __CLASS__));
         } else {
-            if ($this->status_code !== 304 
-                && $this->status_code !== 204 
+            if ($this->status_code !== 304
+                && $this->status_code !== 204
                 && $this->status_code !== 205
                 && $this->response_content === null
                 && $this->response_file === null) {
                     throw new \Exception(sprintf('The [%s] Object for the current Route had no content set from either [content()], [file()], or [redirect()] functions. Before returning the response object from a route or before sending the response content must be set unless the status code is [204 - No Content], [205 - Reset Content], or [304 - Not Modified].', __CLASS__));
             }
         }
-        
+
         // Check if JSON or JSONP Response and if so then update the Response Content
         if ($this->response_file === null && gettype($this->response_content) !== 'string') {
             // Get the Response Content-Type
@@ -1728,7 +1728,7 @@ class Response
                 // converted to the correct date/time format.
                 if ($expires !== null && is_int($expires)) {
                     $this->header('Expires', gmdate('D, d M Y H:i:s T', $expires));
-                }                
+                }
             }
 
             // First send the response status code if one is set, by default the web
@@ -1804,10 +1804,10 @@ class Response
         // they usually are not because the actual web servers (e.g.: Apache or IIS)
         // will add additional headers based on the content. Specifically FastSitePHP
         // does not modify or include the 'Content-Length' header for most responses
-        // because it is handled by the web server. It is easy to calculate what the 
-        // uncompressed content length would be however HTML content is often gzipped 
-        // by the web server so the actual content length of the response is not known 
-        // with PHP Code if compression is handled by the server. However FastSitePHP 
+        // because it is handled by the web server. It is easy to calculate what the
+        // uncompressed content length would be however HTML content is often gzipped
+        // by the web server so the actual content length of the response is not known
+        // with PHP Code if compression is handled by the server. However FastSitePHP
         // does send the 'Content-Length' for file responses, see more below.
         //
         // Additionally if this check is not in place and content is sent to output
@@ -1828,13 +1828,13 @@ class Response
                 echo $this->response_content;
             } else {
                 // Send [Content-Length] Response Header based on the file size.
-                // If the file type ends up with a content type such as 'text/html' 
+                // If the file type ends up with a content type such as 'text/html'
                 // then the web server will likely buffer all output and overwrite this,
-                // however if the file type is a file download, video streaming, etc 
+                // however if the file type is a file download, video streaming, etc
                 // then the header value will come from here and the web server will
                 // stream the file.
                 header('Content-Length: ' . filesize($this->response_file));
-                
+
                 // Make sure any previous output has been cleared. Without calling
                 // [ob_end_clean()] at least once [readfile()] would attempt to load
                 // the entire file in memory rather than streaming it.

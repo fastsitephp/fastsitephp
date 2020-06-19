@@ -13,16 +13,16 @@ namespace FastSitePHP\Encoding;
 
 /**
  * Encode to JSON and decode from JSON.
- * 
+ *
  * This classes uses the built-in [json_encode()] and [json_decode()] functions
  * however rather than returning [false] or [null] on errors an exception is thrown.
- * 
- * This class will also create a polyfill function for [json_last_error_msg()] 
+ *
+ * This class will also create a polyfill function for [json_last_error_msg()]
  * on old versions of PHP if there is an error, and provides compatible code for
- * JSON_BIGINT_AS_STRING when decoding. By default PHP converts large integers 
+ * JSON_BIGINT_AS_STRING when decoding. By default PHP converts large integers
  * to floating-point numbers. When this class is used to decode large ints are
  * converted to strings to prevent data loss.
- * 
+ *
  * For most code calling the built-in [json_encode()] and [json_decode()] functions
  * are recommend over this. The main reason to use this class is for JSON_BIGINT_AS_STRING
  * support on old versions of PHP.
@@ -43,7 +43,7 @@ class Json
         if ($options === null && PHP_VERSION_ID >= 50400) {
             $options = JSON_UNESCAPED_UNICODE;
         }
-        $json = json_encode($data, $options);        
+        $json = json_encode($data, $options);
         if ($json === false) {
             if (PHP_VERSION_ID < 50500) {
                 require_once __DIR__ . '/../Polyfill/json_last_error_msg_compat.php';
@@ -56,11 +56,11 @@ class Json
     /**
      * Decode a JSON string back to data. This is equivalent to using the
      * following settings with the built-in function:
-     * 
+     *
      *     $data = json_decode($text, true, 512, JSON_BIGINT_AS_STRING);
-     * 
+     *
      * When objects are decoded they are returned as PHP Associative Arrays.
-     * 
+     *
      * @param string $text
      * @return mixed
      * @throws \Exception

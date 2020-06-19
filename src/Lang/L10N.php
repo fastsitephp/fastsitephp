@@ -16,13 +16,13 @@ use FastSitePHP\FileSystem\Security;
 
 /**
  * Localization (l10n) API
- * 
+ *
  * Contains functions for formatting dates, times, and numbers.
- * 
- * [l10n] is spelled "Localisation" in British English. [l10n] is an 
+ *
+ * [l10n] is spelled "Localisation" in British English. [l10n] is an
  * acronym/numeronym that represents ("l" + 10 characters + "n"). The difference is
  * US English uses "z" while British English uses an "s" in the spelling of the word.
- * 
+ *
  * @link http://cldr.unicode.org/
  * @link https://en.wikipedia.org/wiki/Languages_used_on_the_Internet
  * @link https://en.wikipedia.org/wiki/List_of_countries_by_number_of_Internet_users
@@ -35,10 +35,10 @@ class L10N
 {
     // Default format if locale is not set
     private $locale = null;
-    private $timezone = null;    
+    private $timezone = null;
     private $format_date = 'Y-m-d'; // Short Date
     private $format_time = 'H:i:s'; // Medium Time (with Seconds)
-    private $format_date_time = 'Y-m-d H:i'; // Date-Time = Short Date and Short Time (no Seconds) 
+    private $format_date_time = 'Y-m-d H:i'; // Date-Time = Short Date and Short Time (no Seconds)
     private $decimal_point = '.';
     private $digit_group = ',';
     private $am = null;
@@ -48,10 +48,10 @@ class L10N
     /**
      * Class Constructor
      * Settings can optionally be set when the class is first created.
-     * 
+     *
      * Example:
      *   $l10n = new \FastSitePHP\Lang\L10N('en-US', 'America/Los_Angeles');
-     * 
+     *
      * @param string|null $locale
      * @param string|null $timezone
      */
@@ -66,12 +66,12 @@ class L10N
     }
 
     /**
-     * Return a list of supported locales. Each locale has a JSON file in the [Locales] sub-folder. 
-     * 
-     * Territories (Countries) are not always included when the language has a primary Country. 
-     * For example French ‘fr’ and German ‘de’ do not have locales for ‘fr-FR’ and ‘de-DE’ 
+     * Return a list of supported locales. Each locale has a JSON file in the [Locales] sub-folder.
+     *
+     * Territories (Countries) are not always included when the language has a primary Country.
+     * For example French ‘fr’ and German ‘de’ do not have locales for ‘fr-FR’ and ‘de-DE’
      * however setting [locale()] with either value will match to the correct language.
-     * 
+     *
      * @return array
      */
     function supportedLocales()
@@ -91,7 +91,7 @@ class L10N
     /**
      * Return an associative array of Supported Languages. The key will contain the
      * language abbreviation and the value will contain the language in English.
-     * 
+     *
      * @return array
      */
     function supportedLanguages()
@@ -134,7 +134,7 @@ class L10N
         // [$locale] can come from User Input and is used to read files
         // so it's important to be validated to prevent Path Traversal Attacks.
         // First check if it is a string and does not contain a space.
-        // Later [FastSitePHP\FileSystem\Security::dirContainsFile()] 
+        // Later [FastSitePHP\FileSystem\Security::dirContainsFile()]
         // is used to check additional characters and the file name.
         if (is_string($locale) === false || strpos($locale, ' ') !== false) {
             if (is_string($locale)) {
@@ -178,7 +178,7 @@ class L10N
         $this->pm = (isset($json['pm']) ? $json['pm'] : null);
         $this->decimal_point = $json['decimal'];
         $this->digit_group = $json['group'];
-        
+
         // Set lang and return this
         $this->locale = $locale;
         return $this;
@@ -188,7 +188,7 @@ class L10N
      * Return an array of timezones that can be set from the function [timezone()].
      * This function simply returns the results of the native PHP function
      * [\DateTimeZone::listIdentifiers()].
-     * 
+     *
      * @return array
      */
     function supportedTimezones()
@@ -238,29 +238,29 @@ class L10N
     }
 
     /**
-     * Format a date and time string based on the selected locale. 
+     * Format a date and time string based on the selected locale.
      * Seconds are not included in the result.
-     * 
+     *
      * Example:
      *   $l10n->timezone('UTC')->formatDateTime('2030-02-01 13:00:30');
-     * 
+     *
      * Returns:
      *   'ko-KR' : 2030. 2. 1. 오후 1:00
      *   'bn-BD' : ১/২/২০৩০ ১:০০ PM
      *   'en-US' : 2/1/2030, 1:00 PM
      *   'de-CH' : 01.02.2030, 13:00
-     * 
+     *
      * To return formatted current date and time:
      *   $l10n->formatDateTime(time());
-     * 
+     *
      * If an invalid time is passed and timezone is set then this function
      * will return [null]; otherwise if timezone is not set then the initial
      * value for Unix Timestamp (00:00:00 on 1 January 1970) will be returned.
-     * 
+     *
      * When using Language 'fa' (Farsi/Persian) or locale 'ar-SA' (Arabic - Saudi Arabia)
-     * dates are currently returned with Latin Digits using the Gregorian Calendar 
-     * instead of Jalaali Calendar for 'fa' and Hijri Calendar for 'ar-SA'. 
-     * If you need either of these calendars on a web page an option is to use 
+     * dates are currently returned with Latin Digits using the Gregorian Calendar
+     * instead of Jalaali Calendar for 'fa' and Hijri Calendar for 'ar-SA'.
+     * If you need either of these calendars on a web page an option is to use
      * the browser built-in object [Intl.DateTimeFormat] from JavaScript.
      *
      * @param int|string $date_time - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'
@@ -276,16 +276,16 @@ class L10N
      *
      * Example:
      *   $l10n->timezone('UTC')->formatDate('2030-02-01 13:00:30');
-     * 
+     *
      * Returns:
      *   'ko-KR' : 2030. 2. 1.
      *   'bn-BD' : ১/২/২০৩০
      *   'en-US' : 2/1/2030
      *   'de-CH' : 01.02.2030
-     * 
+     *
      * To return formatted current date:
      *   $l10n->formatDate(time());
-     * 
+     *
      * See additional notes in [formatDateTime()].
      *
      * @param int|string $date - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'
@@ -302,16 +302,16 @@ class L10N
      *
      * Example:
      *   $l10n->timezone('UTC')->formatTime('2030-02-01 13:00:30');
-     * 
+     *
      * Returns:
      *   'ko-KR' : 오후 1:00:30
      *   'bn-BD' : ১:০০:৩০ PM
      *   'en-US' : 1:00:30 PM
      *   'de-CH' : 13:00:30
-     * 
+     *
      * To return formatted current time:
      *   $l10n->formatTime(time());
-     * 
+     *
      * See additional notes in [formatDateTime()].
      *
      * @param int|string $time - Unix Timestamp (int) or string in format of 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DD'
@@ -354,7 +354,7 @@ class L10N
 
                 $groups = explode('.', $number);
                 $whole_number = strrev($groups[0]);
-                
+
                 $number = '';
                 for ($n = 0, $m = strlen($whole_number); $n < $m; $n++) {
                     if ($n === 3 || ($n > 3 && ($n-1) % 2 === 0)) {
@@ -397,7 +397,7 @@ class L10N
                 $date_format = (strpos($date_time_value, ':') !== false ? 'Y-m-d H:i:s' : 'Y-m-d');
                 $date = \DateTime::createFromFormat($date_format, $date_time_value);
             }
-            
+
             // If error return null otherwise set timezone and return formatted date
             $date_errors = \DateTime::getLastErrors();
             if ($date === false || ($date_errors['warning_count'] + $date_errors['error_count'] > 0)) {
@@ -414,7 +414,7 @@ class L10N
                 $date_value = date($format, strtotime($date_time_value));
             }
         }
-        
+
         // Handle translations for AM/PM
         if ($this->am !== null && $this->pm !== null) {
             $date_value = str_replace('AM', $this->am, $date_value);
@@ -427,13 +427,13 @@ class L10N
         if (strpos($this->locale, 'fa') === 0 || $this->locale === 'ar-SA') {
             return $date_value;
         }
-        
+
         return $this->translateDigits($date_value);
     }
 
     /**
      * Handle languages that use different digits
-     * 
+     *
      * @param string $value
      * @return string
      */

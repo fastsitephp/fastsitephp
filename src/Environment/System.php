@@ -21,21 +21,21 @@ class System
      * This typically includes human readable information such as the OS Version.
      * On some older UNIX platforms this function may instead return the OS that
      * PHP was built on but this is not expected on Windows, Linux, or Mac.
-     * 
+     *
      * For detailed system information see the function [systemInfo()] in this class.
      * See also [\FastSitePHP\Net\Config->fqdn()]
-     * 
-     * Keys in the Returned Array: 
+     *
+     * Keys in the Returned Array:
      *     [ 'OS Type', 'Version Info', 'Release Version', 'Host Name', 'CPU Type' ]
-     * 
+     *
      * @return array
      */
-    public function osVersionInfo() 
+    public function osVersionInfo()
     {
-        // This function returns all info from [php_uname()] which will often 
+        // This function returns all info from [php_uname()] which will often
         // vary from what the OS may return however it is still accurate and
         // returns info in format that is easy to read by an administrator or
-        // developer. 
+        // developer.
         //
         // For example on a tested version of Windows 10 this returned:
         //   {"Version Info": "build 14393 (Windows 10)"}
@@ -53,34 +53,34 @@ class System
     }
 
     /**
-     * Return a string of System Info from the OS. If System info can't be 
+     * Return a string of System Info from the OS. If System info can't be
      * determined then null will be returned. This function works with
      * various OS's including Windows, Mac, and recent versions of Linux.
-     * It runs the following commands: 
-     * 
+     * It runs the following commands:
+     *
      *     Linux:   cat /etc/os-release
      *     Windows: ver
      *     Mac:     system_profiler SPHardwareDataType SPSoftwareDataType
      *     FreeBSD: uname -mrs
      *     IBM AIX: uname -a
-     * 
-     * If running on Linux and the file [/etc/os-release] doesn't exist 
+     *
+     * If running on Linux and the file [/etc/os-release] doesn't exist
      * system info can possibly be obtained from one of the following commands:
-     * 
+     *
      *     lsb_release -a
      *     cat /etc/*-release
      *     cat /etc/*_version
-     * 
+     *
      * On Windows detailed info may be obtained by using the command [systeminfo] instead
      * however calling [systeminfo] often takes 10 - 30 seconds to run.
      *
      * FreeBSD also supports the command [freebsd-version] which will likely include
      * the same info as this function.
-     * 
+     *
      * For IBM iSeries (AS/400) Newer versions of the OS inlude commands
      * [lscfg, oslevel, prtconf] however often the OS is not updated so
      * this function simply returns [uname -a].
-     * 
+     *
      * @link https://www.linux.org/docs/man5/os-release.html
      * @link https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/systeminfo
      * @link https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/ver
@@ -137,7 +137,7 @@ class System
     public function diskSpace($drive = null)
     {
         // Get default Drive if this function is called with no parameters.
-        // In Windows this will most often be 'C:' however if Windows is installed 
+        // In Windows this will most often be 'C:' however if Windows is installed
         // on another Drive such as 'D:' then that drive will be returned.
         if ($drive === null) {
             $drive = (PHP_OS === 'WINNT' ? getenv('SystemDrive') : '/');
@@ -174,7 +174,7 @@ class System
      * For example if the server running PHP has drives C, D, and Z mapped then this function
      * will return array('C:', 'D:', 'Z:'). I this function is called from a Non-Windows
      * computer then an empty array will be returned.
-     * 
+     *
      * @return array
      */
     public function mappedDrives()
@@ -190,7 +190,7 @@ class System
         // for E_WARNING and get the current error level to later reset.
         // E_WARNING can be manually verified by adding the line [echo 1 / 0;].
         $current_error_level = error_reporting(E_ALL & ~E_WARNING);
-        
+
         // Loop from ASCII values for letters A to Z and check if the drive
         // exists or not. If it does then add it to the array.
         $drives = array();

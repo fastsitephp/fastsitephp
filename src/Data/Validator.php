@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
@@ -248,7 +249,7 @@ class Validator
         $error_fields = array();
 
         foreach ($this->rules as $item) {
-            // Get Field, Display Name, and Rules         
+            // Get Field, Display Name, and Rules
             list($field, $display_name, $rules) = $item;
             $display_name = ($display_name ?: $field);
             $rules = $this->parseRuleText($field, $rules);

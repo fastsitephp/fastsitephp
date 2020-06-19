@@ -16,21 +16,21 @@ use FastSitePHP\Data\DatabaseInterface;
 
 /**
  * ODBC Database
- * 
+ *
  * This class provides a thin wrapper for PHP ODBC functions. It reduces the
- * amount of code needed to query a database and provides a compatible 
- * class with FastSitePHP's Database class. 
- * 
- * ODBC is most common on Windows and especially on older servers or databases. 
- * In most cases PDO (FastSitePHP class [Database]) is preferred and will  
- * provide more recent drivers however if ODBC with PDO is not available the 
- * ODBC on a server then ODBC functions might be. Additionally certain databases  
+ * amount of code needed to query a database and provides a compatible
+ * class with FastSitePHP's Database class.
+ *
+ * ODBC is most common on Windows and especially on older servers or databases.
+ * In most cases PDO (FastSitePHP class [Database]) is preferred and will
+ * provide more recent drivers however if ODBC with PDO is not available the
+ * ODBC on a server then ODBC functions might be. Additionally certain databases
  * such as IBM may only work through ODBC on some servers.
- * 
+ *
  * IMPORTANT - If using this class you may need to call the fuction
- * [allowLargeTextValues()] if working with records that have large text or 
+ * [allowLargeTextValues()] if working with records that have large text or
  * binary data.
- * 
+ *
  * @link http://php.net/manual/en/ref.uodbc.php
  */
 class OdbcDatabase extends AbstractVendorDatabase implements DatabaseInterface
@@ -59,9 +59,9 @@ class OdbcDatabase extends AbstractVendorDatabase implements DatabaseInterface
     /**
      * Use when needed to make sure that ODBC will return large text fields.
      * By default only the first 4096 characters are returned.
-     * 
+     *
      * This sets the PHP INI Setting 'odbc.defaultlrl' to the specified size.
-     * 
+     *
      * @link http://php.net/manual/en/odbc.configuration.php#ini.uodbc.defaultlrl
      * @param int $size - Defaults to 100000 (100,000)
      * @return void

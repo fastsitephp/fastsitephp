@@ -25,7 +25,7 @@ $showDebugInfo = function($show_as_text = false) use ($start_time, $starting_mem
     $script_time = microtime(true) - $start_time;
     $ending_memory = memory_get_usage(false);
     $peak_memory = memory_get_peak_usage(false);
-    
+
     // HTML or Plain Text format?
     $show_as_text |= in_array('Content-Type: text/plain', headers_list());
     $show_as_text |= (php_sapi_name() === 'cli');
@@ -50,7 +50,7 @@ $showDebugInfo = function($show_as_text = false) use ($start_time, $starting_mem
     }
 
     // microtime() calculates on microseconds (one millionth of a second) however accuracy is based
-    // on the computer's hardware is zero is returned it doesn't necessarily mean that the page 
+    // on the computer's hardware is zero is returned it doesn't necessarily mean that the page
     // was generated in under a millionth of a second. When it happens display a message.
     if (stripos((string)$script_time, '.') === false) {
         echo  '<br/><br/>The script time to generate this page was less than one thousandth of a second';

@@ -30,7 +30,7 @@ abstract class AbstractDatabase
      * or similar types. For example when using a [CHAR] field:
      *     Field: [name] CHAR(20)
      *     Data saved as "John                "
-     * 
+     *
      * When querying by default the spaces will be returned however if
      * this function is set to [true] then "John" would be returned.
      *
@@ -57,23 +57,23 @@ abstract class AbstractDatabase
     }
 
     /**
-     * Used internally to trim strings on an array of records or values. 
-     * The "&" symbol is used to modify each value by reference which means 
-     * the array passed gets changed. This is one of the only functions that 
+     * Used internally to trim strings on an array of records or values.
+     * The "&" symbol is used to modify each value by reference which means
+     * the array passed gets changed. This is one of the only functions that
      * uses PHP References in FastSitePHP.
-     * 
+     *
      * PHP References are basically aliases and different than C/C++ Pointers.
-     * In general PHP 7 will optimized array's that do not change as Immutable 
-     * Arrays; this means that using references can often slow down code and 
+     * In general PHP 7 will optimized array's that do not change as Immutable
+     * Arrays; this means that using references can often slow down code and
      * decrease performance. References do increase memory however here they
-     * are used here to prevent large array's from being fully duplicated. 
-     * Different versions of this function were developed and tested for 
+     * are used here to prevent large array's from being fully duplicated.
+     * Different versions of this function were developed and tested for
      * performance to make sure this was the best option.
-     * 
-     * For small records there is generally no difference (by-val vs by-ref) 
-     * however if over a 1000 records are processed at once this function can 
+     *
+     * For small records there is generally no difference (by-val vs by-ref)
+     * however if over a 1000 records are processed at once this function can
      * often save 5 to 10 MB per call (tested on both PHP 5 and PHP 7).
-     * 
+     *
      * @link http://php.net/manual/en/language.references.php
      * @param array &$data
      * @return void

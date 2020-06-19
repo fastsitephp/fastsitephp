@@ -24,12 +24,12 @@ class CsrfSession
      * Setup and validate session-based CSRF Tokens. A good place to call this
      * function is on route filters of pages that use authentication.
      *
-     * This will assign the token to app property $app->locals['csrf_token'] 
-     * which then must be included with the form or response. When using 
+     * This will assign the token to app property $app->locals['csrf_token']
+     * which then must be included with the form or response. When using
      * [$app->render()] the value will be available as variable [$csrf_token].
-     * 
+     *
      * For usage see demo code.
-     * 
+     *
      * @link https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
      * @link https://en.wikipedia.org/wiki/Cross-site_request_forgery
      * @param Application $app
@@ -47,8 +47,8 @@ class CsrfSession
 
         // Get existing user token
         $user_token = (isset($_SESSION[$key]) ? $_SESSION[$key] : null);
-        
-        // Validate POST, PUT, DELETE Requests, etc. 
+
+        // Validate POST, PUT, DELETE Requests, etc.
         // A Token MUST be sent with the request.
         $method = (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : null);
         if (!($method === 'GET' || $method === 'HEAD' || $method === 'OPTIONS')) {

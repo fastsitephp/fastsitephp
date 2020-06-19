@@ -164,7 +164,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
 
         // Trim strings on each record in each rowset if the option is set.
         // The "&" is used to modify each rowset by reference rather than
-        // by copy it by value. See additional comments in the class 
+        // by copy it by value. See additional comments in the class
         // [AbstractDatabase] for more on PHP references.
         if ($this->trim_strings) {
             foreach ($rowsets as &$rowset) {

@@ -12,7 +12,7 @@
 /**
  * Versions of PHP below 5.5 do not include the function json_last_error_msg().
  * This file can be included in a project as a polyfill for compatibility.
- * 
+ *
  * PHP Source:
  *     https://github.com/php/php-src/blob/master/ext/json/json.c
  */
@@ -20,11 +20,11 @@
 if (!function_exists('json_last_error_msg')) {
     /**
      * Returns the error string of the last json_encode() or json_decode() call
-     * 
+     *
      * @link http://php.net/manual/en/function.json-last-error-msg.php
      * @return string
      */
-    function json_last_error_msg() {        
+    function json_last_error_msg() {
         switch (json_last_error()) {
             case JSON_ERROR_NONE:
                 return 'No error';

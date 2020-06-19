@@ -17,12 +17,12 @@ namespace FastSitePHP\Security\Crypto;
 class Random
 {
     /**
-     * This function calls [random_bytes()] for newer versions of PHP and if  
-     * using any version of PHP 5 then the function is first polyfilled using 
-     * compatibility functions from the [paragonie/random_compat] library. 
-     * [paragonie/random_compat] is widely used and known to be secure. 
+     * This function calls [random_bytes()] for newer versions of PHP and if
+     * using any version of PHP 5 then the function is first polyfilled using
+     * compatibility functions from the [paragonie/random_compat] library.
+     * [paragonie/random_compat] is widely used and known to be secure.
      * It is used in WordPress and many other projects.
-     * 
+     *
      * @link http://php.net/manual/en/function.random-bytes.php
      * @link https://github.com/paragonie/random_compat
      * @param int $length
@@ -42,7 +42,7 @@ class Random
                 throw new \Exception('A polyfill from [paragonie/random_compat] is required for your version of PHP. Please run [scripts/install.php] or refer to setup instructions.');
             }
 
-            // [include_once] is used rather than [require_once] in case the 
+            // [include_once] is used rather than [require_once] in case the
             // file doesn't exist; if it doesn't exist and [require_once] is used
             // then a White Screen of Death (WSOD) would likely occur.
             include_once $path;

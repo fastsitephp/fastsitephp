@@ -12,12 +12,12 @@
 namespace FastSitePHP\Security\Crypto;
 
 /**
- * This class provides an interface for crypto classes [Encryption, 
- * FileEncryption, SignedData, and JWT]. Each of these classes has a 
+ * This class provides an interface for crypto classes [Encryption,
+ * FileEncryption, SignedData, and JWT]. Each of these classes has a
  * simple [generateKey()] function that can be used to generate secure keys.
- * 
+ *
  * By default null is returned data cannot be decrypted or verified however
- * by setting [exceptionOnError(true)] then the actual exception will be 
+ * by setting [exceptionOnError(true)] then the actual exception will be
  * thrown. This allows for [if...then] logic to be used rather than exception
  * handling by the calling app.
  */

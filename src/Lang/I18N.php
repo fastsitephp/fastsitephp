@@ -328,7 +328,7 @@ class I18N
      *
      * Example usage:
      *     $app->redirect($app->rootUrl() . I18N::getUserDefaultLang() . '/');
-     * 
+     *
      * @return string
      */
     public static function getUserDefaultLang()
@@ -365,12 +365,12 @@ class I18N
     }
 
     /**
-     * Return true if the language is supported by the site. For a language to be 
+     * Return true if the language is supported by the site. For a language to be
      * supported it must include a '_.{lang}.json' file in the [I18N_DIR] directory.
      *
      * Requires config value:
      *     $app->config['I18N_DIR']
-     * 
+     *
      * @param string $lang
      * @return bool
      */

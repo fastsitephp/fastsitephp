@@ -15,11 +15,11 @@ use FastSitePHP\Net\IP;
 use FastSitePHP\Security\Crypto;
 
 /**
- * The Request Class represents an HTTP request and can be  
+ * The Request Class represents an HTTP request and can be
  * used to read content submitted by the browser or client.
  */
 class Request
-{   
+{
     /**
      * Saved contents of the PHP input stream as read from file_get_contents('php://input').
      * Prior to PHP 5.6 the input stream can only be read once.
@@ -31,12 +31,12 @@ class Request
     /**
      * Return a Request QueryString Value using format options from the
      * [value()] function. Returns Null if the QueryString doesn't exist.
-     * 
+     *
      * With native PHP Code Query String values can also be read from the
      * [$_GET] Superglobal array. Example:
-     * 
+     *
      *     $value = (isset($_GET['name']) ? $_GET['name'] : null)
-     * 
+     *
      * @param string $name
      * @param string $format (Optional)
      * @return mixed
@@ -47,14 +47,14 @@ class Request
     }
 
     /**
-     * Return a Request Form Field Value using format options from the 
+     * Return a Request Form Field Value using format options from the
      * [value()] function. Returns Null if the Form Field doesn't exist.
-     * 
+     *
      * With native PHP Form Field values can also be read from the
      * [$_POST] Superglobal array. Example:
-     * 
+     *
      *     $value = (isset($_POST['name']) ? $_POST['name'] : null)
-     * 
+     *
      * @param string $name
      * @param string $format (Optional)
      * @return mixed
@@ -65,14 +65,14 @@ class Request
     }
 
     /**
-     * Return a Request Cookie Value using format options from the 
+     * Return a Request Cookie Value using format options from the
      * [value()] function. Returns Null if the Cookie doesn't exist.
-     * 
+     *
      * With native PHP Code Cookie values can also be read from the
      * [$_COOKIE] Superglobal array. Example:
-     * 
+     *
      *     $value = (isset($_COOKIE['name']) ? $_COOKIE['name'] : null)
-     * 
+     *
      * @param string $name
      * @param string $format (Optional)
      * @return mixed
@@ -85,9 +85,9 @@ class Request
     /**
      * Use to read secure cookies that were created from [Response->signedCookie()].
      * Returns null if cookie is not set or if it cannot be verified.
-     * 
+     *
      * Using this function requires the Application Config Value 'SIGNING_KEY'.
-     * 
+     *
      * @param string $name - Name of the Signed Cookie
      * @return mixed
      */
@@ -102,9 +102,9 @@ class Request
     /**
      * Use to read secure cookies that were created from [Response->jwtCookie()].
      * Returns null if cookie is not set or if it cannot be verified.
-     * 
+     *
      * Using this function requires the Application Config Value 'JWT_KEY'.
-     * 
+     *
      * @param string $name - Name of the JWT Cookie
      * @return mixed
      */
@@ -114,14 +114,14 @@ class Request
             return null;
         }
         return Crypto::decodeJWT($_COOKIE[$name]);
-    }    
+    }
 
     /**
      * Use to read secure and secret cookies that were created from [Response->encryptedCookie()].
      * Returns null if cookie is not set or if it cannot be decrypted.
-     * 
+     *
      * Using this function requires the Application Config Value 'ENCRYPTION_KEY'.
-     * 
+     *
      * @param string $name - Name of the Encrypted Cookie
      * @return mixed
      */
@@ -139,8 +139,8 @@ class Request
      * object property, or an array of keys/properties exists and returns the value in the
      * desired format. This function is ideal for handling user input from PHP superglobals
      * ($_GET, $_POST, $_COOKIE, $_SESSION) and data from JSON Objects.
-     * 
-     * This function can be used to sanitize (clean) data and return it in a needed format 
+     *
+     * This function can be used to sanitize (clean) data and return it in a needed format
      * (example zero [0] for an integer instead of an invalid string or error message).
      *
      * Options for the return format are specified in the parameter [$format]. Options that end
@@ -266,7 +266,7 @@ class Request
                 } elseif (is_object($item)) {
                     // Object, check Property
                     $isset = property_exists($item, $prop);
-                    $item = ($isset ? $item->{$prop} : null);                    
+                    $item = ($isset ? $item->{$prop} : null);
                 } else {
                     // If the current item not an array or object then break the loop
                     $item = null;
@@ -293,7 +293,7 @@ class Request
         }
 
         // Truncate to max length if specified
-        if ($max_length !== null && $isset && strlen((string)$value) > $max_length) { 
+        if ($max_length !== null && $isset && strlen((string)$value) > $max_length) {
             $value = substr($value, 0, $max_length);
         }
 
@@ -370,8 +370,8 @@ class Request
     }
 
     /**
-     * Return the value of a Header Field sent with the HTTP Request. If the key does 
-     * not exist for then this function will return null. Header values are 
+     * Return the value of a Header Field sent with the HTTP Request. If the key does
+     * not exist for then this function will return null. Header values are
      * read directly from the PHP Superglobal $_SERVER Array.
      *
      * Examples:
@@ -420,9 +420,9 @@ class Request
         }
 
         // The 'Authorization' will be removed by default from environement
-        // variabes when using Apache for security. Many older servers and sites 
-        // will make it available to 'REDIRECT_HTTP_AUTHORIZATION' from [.htaccess] 
-        // by using [RewriteRule]. When using PHP 5.4+ [apache_request_headers()] 
+        // variabes when using Apache for security. Many older servers and sites
+        // will make it available to 'REDIRECT_HTTP_AUTHORIZATION' from [.htaccess]
+        // by using [RewriteRule]. When using PHP 5.4+ [apache_request_headers()]
         // should always exist and return the value without the need to update [.htaccess].
         if ($name_upper_case === 'AUTHORIZATION') {
             if (function_exists('apache_request_headers')) {
@@ -441,7 +441,7 @@ class Request
     }
 
     /**
-     * Return an array of all HTTP Request Headers Fields. Header names will be 
+     * Return an array of all HTTP Request Headers Fields. Header names will be
      * capitalized so the following names ['Content-type', 'Content-Type',
      * and 'CONTENT-TYPE'] would all be returned by this function as
      * 'Content-Type' for the key in the array.
@@ -505,7 +505,7 @@ class Request
         if (isset($_SERVER['CONTENT_LENGTH']) && !isset($req_headers['Content-Length'])) {
             $req_headers['Content-Length'] = $_SERVER['CONTENT_LENGTH'];
         }
-        
+
         // 'Authorization' Header, see comments in the [header()] function
         if (isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION']) && !isset($req_headers['Authorization'])) {
             $req_headers['Authorization'] = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'];
@@ -517,7 +517,7 @@ class Request
 
     /**
      * Return the Request Method as a string ['GET', 'POST', 'PUT', etc].
-     * 
+     *
      * @return string|null
      */
     public function method()
@@ -630,17 +630,17 @@ class Request
     /**
      * Return a Bearer Token value from the Authorization Request Header. If the
      * header is not set or the token is invalid then null will be returned.
-     * 
+     *
      * Bearer Tokens are commonly used with API’s and Web Services. Token values
      * are defined by the app and can include OAuth 2.0, JSON Web Tokens (JWT),
      * or custom formats.
-     * 
+     *
      * Example Request:
      *     'Authorization: Bearer abc123'
-     * 
+     *
      * This function returns:
      *     'abc123'
-     * 
+     *
      * The web standard (RFC 6750) is focused around OAuth 2.0 however it defines
      * a flexible format for the token value to support various encoded token types:
      *     Bearer {OAuth 2.0}
@@ -648,7 +648,7 @@ class Request
      *     Bearer {Hex}
      *     Bearer {Base64}
      *     Bearer {Base64url}
-     * 
+     *
      * @link https://tools.ietf.org/html/rfc6750
      * @return string|null
      */
@@ -687,7 +687,7 @@ class Request
      * function can be used with the cors() function to handle CORS Requests. In JavaScript the
      * origin of a web site can be determined from the property [window.location.origin]. For
      * reference links related to the 'Origin' Header refer to the cors() function.
-     * 
+     *
      * If a page is being viewed directly from the file system [window.location.origin] will
      * show 'file://' and submit a string value of 'null' to the server. The string value of null
      * is handled and returned as null with this function.
@@ -748,7 +748,7 @@ class Request
      *
      * Reading the remote client IP Address is a possible source of attacks by malicious
      * clients for insecure web frameworks and code. FastSitePHP is designed for security
-     * out of the box so using this function with default parameters is secure however 
+     * out of the box so using this function with default parameters is secure however
      * if using a proxy server the actual web server and environment must also be properly
      * configured. For an example of this type of attack see comments in the function [isLocal()].
      *
@@ -763,70 +763,70 @@ class Request
      *
      * In this example only the value Client2 would be safe to read as it is the last
      * "untrusted" IP Address to reach a "trusted" proxy server. The IP Address specified
-     * in Client1 could be anything (for example 127.0.0.1 to spoof localhost or a 
+     * in Client1 could be anything (for example 127.0.0.1 to spoof localhost or a
      * SQL Injection Attack) which is why only the value from Client2 would be valid for
      * IP Reporting or Logging. The terms "untrusted" and "trusted" are commonly used when
-     * referring to proxy servers and they mean that an "untrusted" client is one that 
-     * exists on the public internet while a "trusted" client is a known computer 
-     * (usually on a private network) that you have control over or trust as 
+     * referring to proxy servers and they mean that an "untrusted" client is one that
+     * exists on the public internet while a "trusted" client is a known computer
+     * (usually on a private network) that you have control over or trust as
      * providing valid IP info.
      *
      * This function has two parameters [$options] and [$trusted_proxies]:
      *
      *     $options (string or null):
-     *         *) Defaults to null which returns REMOTE_ADDR and results in remote 
+     *         *) Defaults to null which returns REMOTE_ADDR and results in remote
      *            IP Addresses not being checked.
      *         *) 'from proxy' - If specified this will check the following three server variables
      *            [ 'HTTP_X_FORWARDED_FOR', 'HTTP_CLIENT_IP', 'HTTP_FORWARDED' ] which maps to
-     *            Request Headers [ 'X-Forwarded-For', 'Client-IP', 'Forwarded' ]. Each of the 
+     *            Request Headers [ 'X-Forwarded-For', 'Client-IP', 'Forwarded' ]. Each of the
      *            Headers is checked and the matching header is used to lookup the IP Address.
-     *            If multiple headers exist with different IP Addresses then an exception 
+     *            If multiple headers exist with different IP Addresses then an exception
      *            is raised with this option because it would not be possible for the application
-     *            to know which header is correct. The three headers checked are the most 
+     *            to know which header is correct. The three headers checked are the most
      *            common headers used for specifying the client's IP Address. Headers
      *            'X-Forwarded-For' and 'Client-IP' are non-standard headers but widely used.
-     *            The header 'Forwarded' is part of Web Standard RFC 7239 however it is relatively 
+     *            The header 'Forwarded' is part of Web Standard RFC 7239 however it is relatively
      *            new (defined in 2014) and not yet widely used.
      *         *) 'HTTP_X_FORWARDED_FOR' or the key of a Server Variable for the Request Header
-     *            that contains the Client's IP Address from the Proxy Server. For example if 
+     *            that contains the Client's IP Address from the Proxy Server. For example if
      *            the client's IP Address is sent in the request header 'X-Forwarded-For' then
      *            the server variable 'HTTP_X_FORWARDED_FOR' will contain the value of the header.
-     *            Even though FastSitePHP allows for the simple option 'from proxy', entering the 
+     *            Even though FastSitePHP allows for the simple option 'from proxy', entering the
      *            actual server variable is good practice because it allows the application to
      *            ignore all other headers. In some cases a valid public client can also be behind
      *            a proxy server that uses one of the headers which is different than the header
-     *            used by the web server. In this case if the headers are not correctly modified 
-     *            by the proxy server then this function will raise an exception because 
+     *            used by the web server. In this case if the headers are not correctly modified
+     *            by the proxy server then this function will raise an exception because
      *            it doesn't know which header value to use.
      *
      *     $trusted_proxies (string or array):
      *         *) This option only applies if the parameter [$option] is not null.
-     *         *) 'trust local' - The default value. This uses CIDR Notation string 
-     *            values returned from the array [$app->privateNetworkAddresses()] 
-     *            and also allows for Web Standard RFC 7239 Obfuscated and 
-     *            Unknown Identifiers. 
+     *         *) 'trust local' - The default value. This uses CIDR Notation string
+     *            values returned from the array [$app->privateNetworkAddresses()]
+     *            and also allows for Web Standard RFC 7239 Obfuscated and
+     *            Unknown Identifiers.
      *         *) Optionally this parameter can be set with a string or an array of
      *            specific IP Addresses or CIDR Notation IP Ranges to trust.
      *         *) If using a proxy server then the default value 'trust local' should
-     *            be used for most websites as it is secure and only allows for 
+     *            be used for most websites as it is secure and only allows for
      *            IP Addresses that would appear on a private network to be trusted.
      *
      * Examples:
      *     Remote Address and one 'X-Forwarded-For' header on a private network
      *         REMOTE_ADDR = '10.1.1.1'
      *         HTTP_X_FORWARDED_FOR = '54.231.1.4, 10.1.1.2'
-     *         
+     *
      *         '10.1.1.1' = req->clientIp()
      *         Function called without any parameters so the value from REMOTE_ADDR is returned
      *
      *         '54.231.1.4' = req->clientIp('from proxy')
      *         '54.231.1.4' = req->clientIp('from proxy', 'trust local')
      *         '54.231.1.4' = req->clientIp('from proxy', $app->privateNetworkAddresses())
-     *         Client IP Address is returned when using 'from proxy' as the function 
+     *         Client IP Address is returned when using 'from proxy' as the function
      *         determines the proxy addresses. 'trust local' is the default option and
-     *         it uses an array of CIDR Notation String Values from the function 
+     *         it uses an array of CIDR Notation String Values from the function
      *         [$app->privateNetworkAddresses()].
-     *         
+     *
      *         '10.1.1.2' = req->clientIp('from proxy', '10.1.1.1')
      *         Only the IP Address '10.1.1.1' is trusted so '10.1.1.2' is returned
      *
@@ -835,11 +835,11 @@ class Request
      *
      *     Three Client IP Addresses specified ("' OR '1'='1' --", 127.0.0.1, 54.231.1.5).
      *     The left-most address is an attempted SQL Injection String while the 2nd address
-     *     '127.0.0.1' is an attempt to spoof localhost permissions. Only the 3rd Address 
+     *     '127.0.0.1' is an attempt to spoof localhost permissions. Only the 3rd Address
      *     '54.231.1.5' is the IP Address that the client actually connected from.
      *         REMOTE_ADDR = '10.0.0.1'
      *         HTTP_X_FORWARDED_FOR = "' OR '1'='1 --, 127.0.0.1, 54.231.1.5"
-     *         
+     *
      *         '10.0.0.1' = req->clientIp()
      *         Function called without any parameters so the value from REMOTE_ADDR is returned
      *
@@ -854,25 +854,25 @@ class Request
      *         HTTP_CLIENT_IP = '54.231.1.6'
      *
      *         req->clientIp('from proxy')
-     *         An Exception is thrown because the IP Request Headers are 
+     *         An Exception is thrown because the IP Request Headers are
      *         incompatible and the client cannot be determined.
      *
      *         '54.231.1.7' = req->clientIp('HTTP_X_FORWARDED_FOR')
      *         The correct Client IP is returned because the correct server variable is specified.
      *
-     *     Client IP supports both IPv4 and IPv6. In this example an IPv6 Unique local address 
+     *     Client IP supports both IPv4 and IPv6. In this example an IPv6 Unique local address
      *     ('fc00::/7') is specified as the trusted proxy. In CIDR Notation the address 'fc00::/7'
      *     also covers the IP Range 'fd00::/8' which is why REMOTE_ADDR starts with 'fddb:'.
      *         REMOTE_ADDR = 'fddb:1273:5643::1234'
      *         HTTP_X_FORWARDED_FOR = '2001:4860:4801:1318:0:6006:1300:b075'
-     *         
+     *
      *         '2001:4860:4801:1318:0:6006:1300:b075' = req->clientIp('from proxy')
      *         The correct public IPv6 Address (in this case a Googlebot) is returned
      *
      * @link https://en.wikipedia.org/wiki/X-Forwarded-For
      * @link https://tools.ietf.org/html/rfc7239
      * @link http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/x-forwarded-headers.html
-     * @link http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#x-headers 
+     * @link http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#x-headers
      * @param null|string           $option
      * @param array|string|null     $trusted_proxies
      * @return string|null
@@ -1064,7 +1064,7 @@ class Request
      * For protocol() if the [option] parameter is set to 'from proxy' then the value is read from the
      * request header 'X-Forwarded-Proto' (server variable X_FORWARDED_PROTO). To use a different proxy
      * request header use the corresponding server variable name as the [option] parameter. If using a
-     * proxy header variable the value from the proxy header should be either 'http' or 'https'. 
+     * proxy header variable the value from the proxy header should be either 'http' or 'https'.
      *
      * @param null|string           $option
      * @param array|string|null     $trusted_proxies
@@ -1073,18 +1073,18 @@ class Request
     public function protocol($option = null, $trusted_proxies = 'trust local')
     {
         // If the client that connected to the server used HTTPS then
-        // the server variable HTTPS will likely be set with a value 
+        // the server variable HTTPS will likely be set with a value
         // other than off.
         $is_secure = (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off');
         $proto = ($is_secure ? 'https' : 'http');
 
-        // If not checking for a proxy value then return 
+        // If not checking for a proxy value then return
         // the value used for the connection.
         if ($option === null) {
             return $proto;
         }
 
-        // Read the Proxy Header Value and if not trusted 
+        // Read the Proxy Header Value and if not trusted
         // or found return the default Server Protocal.
         $key = ($option === 'from proxy' ? 'HTTP_X_FORWARDED_PROTO' : $option);
         $proxy_proto = $this->proxyHeader($key, $trusted_proxies);
@@ -1103,7 +1103,7 @@ class Request
      * allow for the host to be safely read from a proxy request header. If not using a proxy server
      * then functions rootDir() and rootUrl() can be used to easily obtain needed URLs for the
      * hosted site instead of using this function.
-     * 
+     *
      * For reading proxy headers functions clientIp(), protocol(), host(), and port() all share
      * similar parameters; refer to clientIp() documentation for detailed comments on the options.
      * For host() if the [option] parameter is set to 'from proxy' then the value is read from the
@@ -1121,7 +1121,7 @@ class Request
      * [$allowed_hosts] Examples:
      *     'domain.tld'   - matches [domain.tld] and [DOMAIN.TLD] but not [www.domain.tld]
      *     '*.domain.tld' - matches [sub.domain.tld] and [sub. sub2.domain.tld] but not [domain.tld]
-     *     'Domain.tld:#' - matches [domain.tld:8080] 
+     *     'Domain.tld:#' - matches [domain.tld:8080]
      *
      * @param null|string           $option
      * @param array|string|null     $trusted_proxies
@@ -1137,7 +1137,7 @@ class Request
             return $host;
         }
 
-        // Read the Proxy Header Value and if not trusted 
+        // Read the Proxy Header Value and if not trusted
         // or found return the default Server Host.
         $key = ($option === 'from proxy' ? 'HTTP_X_FORWARDED_HOST' : $option);
         $proxy_host = $this->proxyHeader($key, $trusted_proxies);
@@ -1145,12 +1145,12 @@ class Request
             return $host;
         }
 
-        // If an array of allowed hosts is defined for validation 
+        // If an array of allowed hosts is defined for validation
         // then compare with the proxy host value.
         if ($allowed_hosts !== null) {
             $is_valid = false;
             foreach ($allowed_hosts as $allowed_host) {
-                // If the allowed host value contains either '*' or '#' then build 
+                // If the allowed host value contains either '*' or '#' then build
                 // and perform a regular expression comparison.
                 if (stripos($allowed_host, '*') !== false || stripos($allowed_host, '#') !== false) {
                     // Convert the simple wildcard expression to a regular expression.
@@ -1216,20 +1216,20 @@ class Request
      */
     public function port($option = null, $trusted_proxies = 'trust local')
     {
-        // Get the Server Port and if not checking 
+        // Get the Server Port and if not checking
         // for a proxy value then return it.
         $port = (isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : null);
         if ($option === null || $port === null) {
             return (int)$port;
         }
 
-        // Read the Proxy Header Value, if trusted then return the value 
+        // Read the Proxy Header Value, if trusted then return the value
         // from the proxy variable otherwise return the default server port.
         $key = ($option === 'from proxy' ? 'HTTP_X_FORWARDED_PORT' : $option);
         $proxy_port = $this->proxyHeader($key, $trusted_proxies);
         return (int)($proxy_port === null ? $port : $proxy_port);
     }
-    
+
     /**
      * Used by protocol(), host(), and port() to compare the value of REMOTE_ADDR
      * with any array or string of trusted proxy IP Addresses (for example a local
@@ -1250,20 +1250,20 @@ class Request
         if (is_string($trusted_proxies) && strtolower($trusted_proxies) === 'trust local') {
             $trusted_proxies = IP::privateNetworkAddresses();
         }
-        
-        // Get the IP Address from REMOTE_ADDR (this should be socket address of 
+
+        // Get the IP Address from REMOTE_ADDR (this should be socket address of
         // the computer or device that made the connection).
         $remote_addr = (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : null);
         if ($remote_addr === null) {
             return null;
         }
-        
+
         // Validate that REMOTE_ADDR matches the trusted proxies
         if (IP::cidr($trusted_proxies, $remote_addr) !== true) {
             return null;
         }
 
-        // Return the Server Variable if it exists because it 
+        // Return the Server Variable if it exists because it
         // is now considered to be trusted and safe to read
         return (isset($_SERVER[$server_variable]) ? $_SERVER[$server_variable] : null);
     }
@@ -1301,9 +1301,9 @@ class Request
      * Fix an invalid IPv6 localhost Address. The format is partically valid, for
      * example '[2001:db8:cafe::17]:4711' is an IPv6 that uses a port, however port
      * is not specified on this and it fails validation with PHP [filter_var()].
-     * 
+     *
      * This was first seen in PHP 7.3 using Windows 64-Bit PHP Built-In Server.
-     * 
+     *
      * @param string|null $ip
      * @return string|null
      */
@@ -1322,7 +1322,7 @@ class Request
      * If using this function make sure to test the site in various environments to see that
      * it behaves as expected. The reference link provides an example of how a misconfigured
      * server can cause errors with server software thinking its running in localhost when
-     * it's not. In regards to the reference link this function would not have failed 
+     * it's not. In regards to the reference link this function would not have failed
      * as it's checking both Client and Server IP Addresses.
      *
      * @link http://blog.ircmaxell.com/2012/11/anatomy-of-attack-how-i-hacked.html
@@ -1338,7 +1338,7 @@ class Request
             && ($server_ip === '127.0.0.1' || $server_ip === '::1')
         );
     }
-    
+
     /**
      * Parse the 'Accept' Request Header into an array or if an optional parameter is
      * specified then check if the 'Accept' Header contains the specified MIME Type and
@@ -1385,13 +1385,13 @@ class Request
     }
 
     /**
-     * For HTTP there are several standard 'Accept*' Request Headers that can be used for 
+     * For HTTP there are several standard 'Accept*' Request Headers that can be used for
      * content negotiation by a web server to determine how to respond.
-     * 
+     *
      * Parse the 'Accept-Language' Request Header into an array or if an optional parameter is
      * specified then check if the 'Accept-Language' Header contains the specified Language
      * and return true or false.
-     * 
+     *
      * Example:
      *     'Accept-Language' Header Value = 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4'
      *

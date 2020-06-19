@@ -14,12 +14,12 @@
  * This file can be included in a project as a polyfill for compatibility.
  * It is tested with PHP 5.4 and with PHP 5.3 using the bin2hex()
  * polyfill in this folder.
- * 
+ *
  * All code in this function including error validation
  * and messages are based on the defined standard and PHP source:
  *     https://github.com/php/php-src/blob/master/ext/hash/hash.c
  *     PHP_FUNCTION(hash_pbkdf2)
- * 
+ *
  * Additional links:
  *     https://tools.ietf.org/html/rfc2898
  *     https://en.wikipedia.org/wiki/List_of_PBKDF2_implementations
@@ -28,13 +28,13 @@
 if (!function_exists('hash_pbkdf2')) {
     /**
      * Generate a PBKDF2 key derivation of a supplied password
-     * 
+     *
      * @param string $algo
      * @param string $password
      * @param string $salt
      * @param int $iterations
      * @param int $length
-     * @param bool $raw_output 
+     * @param bool $raw_output
      * @return string|bool
      * @link http://php.net/manual/en/function.hash-pbkdf2.php
      */
@@ -70,7 +70,7 @@ if (!function_exists('hash_pbkdf2')) {
         if (!$raw_output) {
             $block_count = ceil($block_count / 2);
         }
-        
+
         // Build the Derived Key
         $dk = '';
         for ($block = 1; $block <= $block_count; $block++) {

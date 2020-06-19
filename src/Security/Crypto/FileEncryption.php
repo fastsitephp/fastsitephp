@@ -18,24 +18,24 @@ use FastSitePHP\Security\Crypto\Random;
 
 /**
  * File Encryption
- * 
+ *
  * This class is designed to provide secure and easy to use file encryption.
  * This class uses encryption that is compatible with most Linux, Unix, and Mac
  * computers using command line calls on the OS with [openssl]. This class
- * and has the ability to encrypt both large on-disk files and smaller 
- * in-memory files. Very large files of any size can be encrypted on when  
+ * and has the ability to encrypt both large on-disk files and smaller
+ * in-memory files. Very large files of any size can be encrypted on when
  * using the default command line settings.
- * 
+ *
  * As of 2019 file encryption has been tested and confirmed on recent versions
  * the following operating systems using the default or minimal OS setup and PHP:
  *   macOS, Windows, Ubuntu, Debian, Amazon Linux, CentOS, openSUSE, Fedora,
  *   Red Hat Enterprise Linux, Windows using Windows Subsystem for Linux
- * 
+ *
  * Large file encryption with FreeBSD may or may not work depending on which shell
  * commands are avaiable and which version of FreeBSD is used. If you intended on
  * using this class with FreeBSD for large file encryption make sure your server
  * passes all crypto unit tests.
- * 
+ *
  * A compatible Bash Script available on the main site at
  * [scripts/shell/bash/encrypt.sh].
  */
@@ -64,45 +64,45 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         }
         return \bin2hex(Random::bytes($bit_length / 8));
     }
-    
+
     /**
      * Encrypt a file
-     * 
+     *
      * This function takes an input plaintext file and an output file of
      * where to save the encrypted file. The file path for the encrypted
-     * file must refer to a file that does not yet exist. This function 
+     * file must refer to a file that does not yet exist. This function
      * returns nothing and raises an exception in the event of an error.
-     * 
+     *
      * The key is a string value in hexadecimal format that can be securely
      * generated using [generateKey()].
-     * 
+     *
      * If encrypting large files call [processFilesWithCmdLine(true)]
      * or use the helper [Crypto] class instead. See additional comments below.
-     * 
+     *
      * If using this Red Hat Linux you will likely first have to install
-     * the [xxd] command using [sudo yum install vim-common]. By default 
+     * the [xxd] command using [sudo yum install vim-common]. By default
      * [xxd] is expected to exist on most Linux and Unix OS's.
-     * 
+     *
      * IMPORTANT - File paths should generally not be passed user parameters
      * because a user could specify files other than the intended file. If
-     * an App does need to allow the user to specify a file then the code 
+     * an App does need to allow the user to specify a file then the code
      * should be carefully reviewed and tested for security.
-     * 
+     *
      * Function Properties used with [encryptFile()] and [decryptFile()]:
      *   Create a secure key
      *     [generateKey()]
      *
      *   [displayCmdErrorDetail(false)]
-     *     Set to [true] to show error detail on command line errors. 
-     *     IMPORTANT - this should only be used for debugging as it can show 
+     *     Set to [true] to show error detail on command line errors.
+     *     IMPORTANT - this should only be used for debugging as it can show
      *     security info such as file paths and the key in the error message.
-     * 
+     *
      *   [processFilesWithCmdLine(false)]
      *     By default files are processed in memory. If this is set to [true]
      *     then files are encrypted using shell commands. [true] will work with
-     *     most *nix OS's (Unix, Linux, macOS, etc); [false] is the only option that 
-     *     will work with Windows. Small files can be processed in memory much 
-     *     faster than using shell commands, however when using shell commands 
+     *     most *nix OS's (Unix, Linux, macOS, etc); [false] is the only option that
+     *     will work with Windows. Small files can be processed in memory much
+     *     faster than using shell commands, however when using shell commands
      *     large files (Gigs in size) can be processed.
      *
      *   Functions that change how Crypto Works:
@@ -110,7 +110,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      *     [pbkdf2Algorithm()] - For use with 'password' Key type
      *     [pbkdf2Iterations()] - For use with 'password' Key type
      *     [encryptThenAuthenticate()] - Set to [false] to disable Authentication
-     * 
+     *
      * @param string $file_path - Input file to encrypt, this file will not be modified
      * @param string $enc_file - Path to save the encrypted (output) file
      * @param string $key - Key in hexadecimal format
@@ -136,7 +136,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             throw new \Exception($error);
         }
         $this->validateFileName($enc_file);
-        
+
         // Process files using either command line (default and *nix systems only)
         // or by loading the entire file in memory and processing it using
         // the standard [encrypt()] function.
@@ -159,11 +159,11 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             }
 
             // Encrypt using openssl command line.
-            // The [2>&1] redirects stderr to stdout,  
+            // The [2>&1] redirects stderr to stdout,
             // this allows PHP to get the error details.
             $cmd = 'openssl enc -aes-256-cbc -in "' . $file_path . '" -out "' . $enc_file . '" -iv ' . $iv . '  -K ' . $key_enc . ' 2>&1';
             $this->runCmd($cmd, __FUNCTION__, 'openssl enc');
-            
+
             // Append IV to the end of the file
             $cmd = 'echo ' . $iv . ' | ' . $xxd . ' -r -p >> "' . $enc_file . '" 2>&1';
             $this->runCmd($cmd, __FUNCTION__, 'append iv');
@@ -174,7 +174,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 $this->runCmd($cmd, __FUNCTION__, 'openssl dgst');
             }
         } else {
-            // Encrypt file in memory with the Encryption Class 
+            // Encrypt file in memory with the Encryption Class
             // using compatible settings.
             $crypto = new Encryption();
             $crypto
@@ -184,7 +184,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 ->pbkdf2Algorithm($this->pbkdf2_algorithm)
                 ->pbkdf2Iterations($this->pbkdf2_iterations)
                 ->encryptThenAuthenticate($this->encrypt_then_authenticate);
-            
+
             // Read Input File, Encrypt Contents, and Write back to Encrypted File
             $plaintext = file_get_contents($file_path);
             $ciphertext = $crypto->encrypt($plaintext, $key);
@@ -201,13 +201,13 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
 
     /**
      * Decrypt a file
-     * 
-     * This function returns nothing and if the file cannot be decrypted an 
+     *
+     * This function returns nothing and if the file cannot be decrypted an
      * exception is thrown.
-     * 
+     *
      * See comments in [encryptFile()] because the same properties and settings
      * are used here.
-     * 
+     *
      * @param string $enc_file - Encrypted file, this file will not be modified
      * @param string $output_file - Path to save the decrypted file
      * @param string $key - Key in hexadecimal format
@@ -223,7 +223,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         // *) Encrypted file must exist
         // *) Output file cannot exist
         // *) Safe output file name
-        // *) File Size for specific environments		
+        // *) File Size for specific environments
         if (!is_file($enc_file)) {
             $error = 'File decryption failed because the file to decrypt [%s] was not found. If it exists then you should check directory or file permissions to verify that the user or account running has access.';
             $error = sprintf($error, $enc_file);
@@ -237,7 +237,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         $this->validateFileSizeDec($enc_file);
 
         // Decrypt file in memory with the Encryption Class.
-        // This option is based on [processFilesWithCmdLine(false)].		
+        // This option is based on [processFilesWithCmdLine(false)].
         if (!$this->process_files_with_cmd_line) {
             $crypto = new Encryption();
             $crypto
@@ -264,7 +264,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             // Success
             return;
         }
-        
+
         // Use Command Line - Default Decryption Method.
         // This option is not available on Windows.
 
@@ -348,7 +348,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                     $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
                     $this->runCmd($cmd, __FUNCTION__, 'truncate file hmac');
                 } else {
-                    // FreeBSD                    
+                    // FreeBSD
                     $cmd = str_replace('{{bytes}}', '32', $truncate_cmd);
                     $length = shell_exec($cmd);
                     if ($length === null) {
@@ -370,7 +370,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                     } else {
                         $handle = fopen($tmp_file, 'r+');
                         ftruncate($handle, (int)trim($length));
-                        fclose($handle);    
+                        fclose($handle);
                     }
                 }
 
@@ -471,13 +471,13 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         }
         throw new \Exception($message);
     }
-    
+
     /**
      * If either [encryptFile()] or [decryptFile()] fails this function
      * can be used to check the setup on the current computer or server.
      * It returns relevant information for debugging such as the file
      * path of all used commands, the current user, and the path variable.
-     * 
+     *
      * Example of Data Returned:
      *   {
      *       "valid": true,
@@ -491,20 +491,20 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      *           ...
      *       }
      *   }
-     * 
-     * The return property [getenforce] checks if Security-Enhanced Linux 
-     * (SELinux) is installed. SELinux is included with various Linux OS's 
-     * including Red Hat Enterprise Edition and CoreOS. SELinux provides 
-     * additional security features that can prevent Apache and PHP from 
-     * writing files unless configured to allow writing. If the shell command 
-     * [getenforce] runs then SELinux is installed. Permissions may vary  
-     * system to system however one example to allow writing by Apache/PHP 
+     *
+     * The return property [getenforce] checks if Security-Enhanced Linux
+     * (SELinux) is installed. SELinux is included with various Linux OS's
+     * including Red Hat Enterprise Edition and CoreOS. SELinux provides
+     * additional security features that can prevent Apache and PHP from
+     * writing files unless configured to allow writing. If the shell command
+     * [getenforce] runs then SELinux is installed. Permissions may vary
+     * system to system however one example to allow writing by Apache/PHP
      * to the directory [/var/www/data] and subdirectories is this:
-     * 
+     *
      *     sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/app_data(/.*)?"
      *     sudo restorecon -Rv /var/www/app_data
      *     sudo chown apache:apache -R /var/www/app_data/*
-     * 
+     *
      * @return array
      * @link https://opensource.com/article/18/7/sysadmin-guide-selinux
      * @link https://wiki.centos.org/HowTos/SELinux
@@ -554,7 +554,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
                 $valid = false;
             }
         }
-        
+
         // Check if Security-Enhanced Linux (SELinux) is installed.
         $getenforce = null;
         if (stripos(PHP_OS, 'Linux') !== false) {
@@ -579,15 +579,15 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
 
     /**
      * Get or set error detail level.
-     * 
-     * When preforming command line file encryption and decryption this 
-     * property can be set to true to provide detailed information 
+     *
+     * When preforming command line file encryption and decryption this
+     * property can be set to true to provide detailed information
      * including the command called with the error message.
-     * 
+     *
      * IMPORTANT - This property is intended only for developers during
      * development because the encryption key can be displayed with the
      * error message if the command that has an error includes it.
-     * 
+     *
      * @param null|bool $new_value
      * @return bool|$this
      */
@@ -599,31 +599,31 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         $this->display_cmd_error_detail = (bool)$new_value;
         return $this;
     }
-    
+
     /**
      * Get or set option on how to process files. Defaults to [false].
-     * 
-     * When set to [true] file encryption with will be done through command 
-     * line calls on the OS using [openssl]. This allows for efficient 
-     * streaming of large files during encryption and description and on most 
-     * systems allows for files of any size (limited by the OS) to be 
-     * encrypted. Command line file encryption can be done on most Linux, Unix, 
+     *
+     * When set to [true] file encryption with will be done through command
+     * line calls on the OS using [openssl]. This allows for efficient
+     * streaming of large files during encryption and description and on most
+     * systems allows for files of any size (limited by the OS) to be
+     * encrypted. Command line file encryption can be done on most Linux, Unix,
      * and Mac computers.
      *
-     * When set to [false] then file encryption will be handled in-memory 
+     * When set to [false] then file encryption will be handled in-memory
      * using settings that are compatible with [openssl] command line.
-     * 
-     * When set to [false] file encryption will be faster for small files 
-     * however the entire file is loaded in memory so it should only be used 
+     *
+     * When set to [false] file encryption will be faster for small files
+     * however the entire file is loaded in memory so it should only be used
      * on small files or based on the needs of your app and server.
      *
      * To perform file encryption on Windows this must be set to [false] because
      * command line encryption is currently not supported on Windows.
-     * 
-     * WARNING - setting [processFilesWithCmdLine(true)] is currently not 
+     *
+     * WARNING - setting [processFilesWithCmdLine(true)] is currently not
      * recommended when using FreeBSD unless your server passes all crypto
      * unit tests.
-     * 
+     *
      * @param bool|null $new_value
      * @return bool|$this
      */
@@ -638,7 +638,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
 
     /**
      * Validation that runs from both [encryptFile()] and [decryptFile()]
-     * 
+     *
      * @return void
      * @throws \Exception
      */
@@ -648,8 +648,8 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         // provide a helpful message so that it's easy for the developer to solve.
         // If you see this error then [exec()] is likely disabled in the [php.ini]
         // file so see the link: https://php.net/disable-functions
-        // For info on editing [php.ini] refer to file [test-app.php] 
-        // route '/check-server-config'. This error is not Unit Tested but must 
+        // For info on editing [php.ini] refer to file [test-app.php]
+        // route '/check-server-config'. This error is not Unit Tested but must
         // be manually tested by disabling [exec()].
         if (PHP_OS === 'WINNT') {
             if ($this->process_files_with_cmd_line) {
@@ -660,10 +660,10 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         } elseif (!function_exists('exec')) {
             $error = 'File encryption with [%s] depends on [exec()] which has likely been disabled for security reasons on this computer or server. Please refer to online documentation or source code comments on how to enable this feature.';
             $error = sprintf($error, __CLASS__);
-            throw new \Exception($error);			
+            throw new \Exception($error);
         }
     }
-    
+
     /**
      * When using FreeBSD the default Apache configuration may not
      * include the path '/usr/local/bin' so the command [xxd] might
@@ -672,12 +672,12 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * a 127 return code when running on FreeBSD. Most OS's will have
      * [xxd] installed however some may not (e.g.: Red Hat); to install
      * on Red Hat or similar run [sudo yum install vim-common].
-     * 
+     *
      * FreeBSD does not included [xxd] by default and can be installed
      * by running the following commands:
      *     su -
      *     pkg install vim-console
-     * 
+     *
      * @return string
      */
     private function xxdPath()
@@ -694,7 +694,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
 
     /**
      * Run a shell command and validate the output
-     * 
+     *
      * @param string $cmd - Command to run
      * @param string $type - Calling function
      * @param string $line - Debug info
@@ -732,7 +732,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
             $error = '[%s] failed at [%s] with unexpected output. You may need to check read/write permissions on the directory or files being used.';
             $error = sprintf($error, $type, $line);
         } elseif ($expected_count === 1 && $this->strlen($output[0]) !== $output_size) {
-            // This error is also not unit tested and would have to 
+            // This error is also not unit tested and would have to
             // be manually triggered by modifying code to be invalid.
             $error = '[%s] failed at [%s] with an unexpected output size. You may want to check available disk space on the drive. A serious error occurred or the code in this class was modified and is no longer working.';
             $error = sprintf($error, $type, $line);
@@ -754,12 +754,12 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
     }
 
     /**
-     * The output path is not intended to be defined by user parameters but 
-     * just in case Validate the output file path. This is a basic check for 
-     * key characters that can pose a security risk; if other invalid 
-     * characters specific to the OS are used then it will cause other 
+     * The output path is not intended to be defined by user parameters but
+     * just in case Validate the output file path. This is a basic check for
+     * key characters that can pose a security risk; if other invalid
+     * characters specific to the OS are used then it will cause other
      * parts of the calling functions to fail.
-     * 
+     *
      * @param string $file_path
      * @return void
      * @throws \Exception
@@ -771,7 +771,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         //   "      = Double-quotes is used on the calling shell
         //            commands for path and not valid for many OS's
         if (is_string($file_path) === false
-            || strpos($file_path, chr(0)) !== false 
+            || strpos($file_path, chr(0)) !== false
             || strpos($file_path, '"') !== false
         ) {
             throw new \Exception('Error - Invalid path for output file. The output file path cannot contain null character or characters [:"].');
@@ -783,7 +783,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
      * to provide a helpfull message. It only runs if PHP is using
      * a 64-Bit Build. On a 32-Bit build other commands will fail instead
      * on an invalid or small file.
-     * 
+     *
      * @param string $enc_file
      * @return void
      * @throws \Exception

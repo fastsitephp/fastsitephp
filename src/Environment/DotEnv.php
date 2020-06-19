@@ -47,26 +47,26 @@ namespace FastSitePHP\Environment;
 
 /**
  * Loads environment variables from a [.env] file into [getenv()] and [$_ENV].
- * 
+ *
  * This class is a port of the widely used node [dotenv] package so the
  * following syntax is supported:
- * 
+ *
  *   - Empty lines are skipped
  *   - Lines beginning with # are treated as comments
  *   - Empty values become empty strings ([EMPTY=] becomes {EMPTY: ''})
  *   - Whitespace is trimmed for unquoted values ([FOO= some value ] becomes {FOO: 'some value'})
  *   - Single and double quoted values are escaped ([SINGLE_QUOTE='quoted'] becomes {SINGLE_QUOTE: "quoted"})
  *   - Double quoted values expand new lines (example: [MULTILINE="new\nline"])
- * 
- * This class is minimal like the node pacakage and does not support 
+ *
+ * This class is minimal like the node pacakage and does not support
  * nested variables, inline shell execution, or advanced validation.
  * If you prefer to use those features then PHP packages [vlucas/phpdotenv]
  * or [symfony/dotenv] are recommended.
- * 
+ *
  * Because FastSitePHP's DotEnv Class is minimal and has fast performance it can be
  * used for production sites, however it’s a good idea to load it from middleware
- * or controller logic on needed routes rather than loading it for every route. 
- * 
+ * or controller logic on needed routes rather than loading it for every route.
+ *
  * @link https://www.npmjs.com/package/dotenv
  * @link https://github.com/vlucas/phpdotenv
  * @link https://github.com/symfony/dotenv
@@ -76,13 +76,13 @@ class DotEnv
     /**
      * Load a [.env] file from a directory. The directory and file must exist
      * or an exception will be thrown.
-     * 
+     *
      * An optional array [$required_vars] can be passed and if any key from
      * the array do not exist in the file an exception will be thrown.
      * The actual values are not validated by this class.
-     * 
+     *
      * Returns an array of all variables read from the file.
-     * 
+     *
      * @param string $dir_path
      * @param null|array $required_vars
      * @return array
@@ -100,7 +100,7 @@ class DotEnv
     /**
      * Load a file using [.env] file format. The full path of the file is
      * specified so it can be named anything.
-     * 
+     *
      * @param string $file_path
      * @param null|array $required_vars
      * @return array
@@ -127,7 +127,7 @@ class DotEnv
                 # [$value] will equal '' if missing
                 $key = $matches[1];
                 $value = $matches[2];
-                
+
                 $len = strlen($value) - 1;
                 $is_single_quoted = ($len > 1 && $value[0] === "'" && $value[$len] === "'");
                 $is_double_quoted = ($len > 1 && $value[0] === '"' && $value[$len] === '"');

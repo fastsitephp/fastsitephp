@@ -16,12 +16,12 @@ use FastSitePHP\Data\DatabaseInterface;
 
 /**
  * Abstract Class for PHP Vendor Database Extensions and ODBC Functions.
- * 
+ *
  * This class makes it easy to define a class that uses PHP Vendor
  * Database Functions. To use this class the inheriting class needs to
- * define which functions to call from protected member variables. 
+ * define which functions to call from protected member variables.
  * See [OdbcDatabase] or [Db2Database] for examples.
- * 
+ *
  * This class works by using [call_user_func()] and [call_user_func_array()]
  * on the function names. For example this code:
  *     $db = odbc_connect($dsn, $user, $password);
@@ -35,7 +35,7 @@ use FastSitePHP\Data\DatabaseInterface;
  *     call_user_func_array($func_fetch_array_index, array($resource, &$row));
  *     call_user_func($func_free_result, $resource);
  *     call_user_func($func_close, $this->db);
- * 
+ *
  * The function [call_user_func_array()] is used when one of the function
  * parameters is by reference.
  *
