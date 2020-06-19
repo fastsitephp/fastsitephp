@@ -29,6 +29,7 @@ log.txt
 # https://github.com/vimeo/psalm
 # https://github.com/phan/phan
 # https://github.com/phpstan/phpstan
+# https://github.com/FriendsOfPHP/PHP-CS-Fixer
 .phan/
 psalm.phar
 psalm*.txt
@@ -36,3 +37,6 @@ phan.phar
 phan*.txt
 phpstan.phar
 phpstan*.txt
+php-cs-fixer.phar
+php-cs-fixer-v2.phar
+.php_cs.cache
