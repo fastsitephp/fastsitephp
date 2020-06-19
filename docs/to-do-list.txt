@@ -132,6 +132,13 @@ TODO List
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/3-php-pslam-error.png
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/4-php-pslam-code-before.png
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/5-php-pslam-code-fixed.png
+        - Automatic fixing for PHP fix Testing:
+            https://github.com/FriendsOfPHP/PHP-CS-Fixer
+            Run:
+                {assume root dir}
+                cd fastsitephp
+                php php-cs-fixer-v2.phar fix src
+            This is being tested but currently changes every file for line endings on Windows
     - Document on how to use Composer
         # Windows
         # First install composer
