@@ -33,7 +33,7 @@ class Password
      *
      * If using PHP 5.3 then functions [bin2hex()] and [hex2bin()] are polyfilled.
      */
-    function __construct()
+    public function __construct()
     {
         if (PHP_VERSION_ID < 50400) {
             require_once __DIR__ . '/../Polyfill/hex_compat.php';

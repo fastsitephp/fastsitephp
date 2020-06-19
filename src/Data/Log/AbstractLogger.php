@@ -11,14 +11,14 @@
 
 namespace FastSitePHP\Data\Log;
 
-use Psr\Log\AbstractLogger As PsrLogger;
+use Psr\Log\AbstractLogger as PsrLogger;
 
 /**
  * This is a PHP Abstract Class which is used as a base class
  * to provide shared functions for multiple Logger classes.
- * 
+ *
  * This class depends on the widely used PSR Logger Interface.
- * 
+ *
  * @link https://www.php-fig.org/psr/psr-3/
  * @link https://github.com/php-fig/log
  */
@@ -26,7 +26,7 @@ abstract class AbstractLogger extends PsrLogger
 {
     /**
      * Format to use when converting dates to a string
-     * 
+     *
      * @link http://php.net/manual/en/class.datetimeinterface.php#datetime.constants.types
      * @var string
      */
@@ -34,7 +34,7 @@ abstract class AbstractLogger extends PsrLogger
 
     /**
      * Format variables into the message using '{placeholders}' with the variable name.
-     * 
+     *
      * @param string $message
      * @param array|null $context
      * @return string
@@ -45,7 +45,7 @@ abstract class AbstractLogger extends PsrLogger
             $replace = array();
             foreach ($context as $key => $val) {
                 if ($val === null || \is_bool($val)) {
-                    $replace['{' . $key . '}'] = \json_encode($val);                
+                    $replace['{' . $key . '}'] = \json_encode($val);
                 } elseif (\is_scalar($val) || (\is_object($val) && \method_exists($val, '__toString'))) {
                     $replace['{' . $key . '}'] = $val;
                 } elseif ($val instanceof \DateTimeInterface) {

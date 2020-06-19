@@ -64,7 +64,7 @@ class JWT implements CryptoInterface
      * If using PHP 5.5 or below then [hash_equals()] is polyfilled,
      * and [bin2hex()] and [hex2bin()] are polyfilled for PHP 5.3.
      */
-    function __construct()
+    public function __construct()
     {
         if (PHP_VERSION_ID < 50400) {
             require_once __DIR__ . '/../../Polyfill/hex_compat.php';

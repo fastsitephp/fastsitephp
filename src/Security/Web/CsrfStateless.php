@@ -142,7 +142,7 @@ class CsrfStateless
             if ($count === 2) {
                 $csrf_expire_time = (float)$parts[0];
                 $submitted_token = $parts[1];
-            } else if ($count !== 1) {
+            } elseif ($count !== 1) {
                 throw new \Exception('CSRF Token is not in the expected format when using an expiration time.');
             }
 

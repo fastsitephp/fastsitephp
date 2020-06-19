@@ -13,7 +13,7 @@ namespace FastSitePHP\Data;
 
 interface DatabaseInterface
 {
-    function __construct($dsn, $persistent = false, $user = null, $password = null);
+    public function __construct($dsn, $persistent = false, $user = null, $password = null);
     public function query($sql, array $params = null);
     public function queryOne($sql, array $params = null);
     public function queryValue($sql, array $params = null);

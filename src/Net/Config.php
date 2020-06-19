@@ -428,7 +428,7 @@ class Config
                 $network->adapters[] = $adapter;
                 $last_property = null;
             // Parse item rows
-            } else if (substr($line, 0, 3) === '   ') {
+            } elseif (substr($line, 0, 3) === '   ') {
                 // Get Name
                 $pos = strpos($line, ' . ');
                 if ($pos === false) {

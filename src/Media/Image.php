@@ -26,7 +26,7 @@
  * @link https://github.com/spatie/image-optimizer
  * @link https://github.com/mohuishou/ImageOCR
  */
-Class Image
+class Image
 {
     private $image = null;
     private $dir = null;
@@ -39,7 +39,7 @@ Class Image
      *
      * @param null|string $image_path
      */
-    function __construct($image_path = null)
+    public function __construct($image_path = null)
     {
         if ($image_path !== null) {
             $this->open($image_path);
@@ -49,7 +49,7 @@ Class Image
     /**
      * Class Destructor - Free memory by closing image when done.
      */
-    function __destruct()
+    public function __destruct()
     {
         $this->close();
     }
@@ -155,12 +155,12 @@ Class Image
             $new_width = $width * $pct;
             $new_height = $height * $pct;
         // Fit to height
-        } else if ($max_height !== null) {
+        } elseif ($max_height !== null) {
             $pct = $max_height / $height;
             $new_width = $width * $pct;
             $new_height = $height * $pct;
         // Fit to width
-        } else if ($max_width !== null) {
+        } elseif ($max_width !== null) {
             $pct = $max_width / $width;
             $new_width = $width * $pct;
             $new_height = $height * $pct;

@@ -873,8 +873,7 @@ class Application
      */
     public function statusCode($new_value = null)
     {
-        switch ($new_value)
-        {
+        switch ($new_value) {
             // Make sure a status code that is supported by FastSitePHP
             // is set. Many additional status codes exist however they
             // are not commonly used by most websites or applications.
@@ -1097,11 +1096,13 @@ class Application
                 // so check which version can be used and handle appropriately.
                 $fn = new \ReflectionFunction('ucwords');
                 if (count($fn->getParameters()) === 1) {
-                    $cap_case_header = function($value) {
+                    $cap_case_header = function ($value) {
                         return str_replace(' ', '-', ucwords(str_replace('-', ' ', $value)));
                     };
                 } else {
-                    $cap_case_header = function($value) { return ucwords($value, '-'); };
+                    $cap_case_header = function ($value) {
+                        return ucwords($value, '-');
+                    };
                 }
                 $diff = array_map($cap_case_header, $diff);
                 throw new \Exception(sprintf('Unsupported headers [%s] were specified when the function [%s->%s()] was called. The only headers that this function supports are valid headers for Cross-Origin Resource Sharing (CORS): [%s]', implode('], [', array_values($diff)), __CLASS__, __FUNCTION__, implode('], [', $valid_headers)));
@@ -1129,7 +1130,7 @@ class Application
                     case 'access-control-allow-credentials':
                         if ($value !== 'true' && $value !== true) {
                             throw new \Exception(sprintf('The only valid value for Header [Access-Control-Allow-Credentials] is [true]; if you do not need the value to be set to true then do not include it when calling [%s->%s()]. The value that causes this error was: [%s].', __CLASS__, __FUNCTION__, $value));
-                        } else if ($origin === '*') {
+                        } elseif ($origin === '*') {
                             throw new \Exception(sprintf('When using header [Access-Control-Allow-Credentials => true] specified from [%s->%s()] the server must respond using an origin rather than specifying a [*] wildcard. The requested origin can be obtained from [FastSitePHP\Web\Request->origin()]. You can then use the value from the request header to validate if it is a valid request and then send the origin back using the [Access-Control-Allow-Origin] header.', __CLASS__, __FUNCTION__));
                         }
                         break;
@@ -1167,11 +1168,11 @@ class Application
             } elseif (strpos($origin, 'http://') !== 0 && strpos($origin, 'https://') !== 0) {
                 throw new \Exception(sprintf('Invalid value for [Access-Control-Allow-Origin] of [%s] from [%s->%s()]. When using the [cors()] function the value if not [*] must begin with either [http://] or [https://].', $origin, __CLASS__, __FUNCTION__));
             // Error - multiple domains likely specified
-            } elseif(strpos($origin, ' ') !== false || strpos($origin, ',') !== false || strpos($origin, ';') !== false) {
+            } elseif (strpos($origin, ' ') !== false || strpos($origin, ',') !== false || strpos($origin, ';') !== false) {
                 throw new \Exception(sprintf('Invalid value for [Access-Control-Allow-Origin] of [%s] from [%s->%s()]. When using the [cors()] function the URL value must contain only one domain and it appears multiple domains were specified.', $origin, __CLASS__, __FUNCTION__));
             // Error - likely a full url rather than {protocol}{domain}
             // Example [http://domain.tld] vs [http://domain.tld/page]
-            } elseif(strpos($origin, '/', 8) !== false) {
+            } elseif (strpos($origin, '/', 8) !== false) {
                 throw new \Exception(sprintf('Invalid value for [Access-Control-Allow-Origin] of [%s] from [%s->%s()]. When using the [cors()] function the URL value must contain only the protocol and domain rather than a full URL (e.g.: [http://domain.tld] vs [http://domain.tld/page]).', $origin, __CLASS__, __FUNCTION__));
             }
         }
@@ -1781,8 +1782,8 @@ class Application
                 if (!is_file($file)) {
                     throw new \Exception(sprintf('Error calling [FastSitePHP\mount()]: File [%s] specified for mount path [%s] was not found in the directory [%s] or permissions are set so the file is not visible to PHP.', $file_name, $url_path, $dir_path));
                 }
-            // For full file Paths validate that the file can be loaded
             } elseif (!is_file($file)) {
+                // For full file Paths validate that the file can be loaded
                 throw new \Exception(sprintf('Error calling [FastSitePHP\mount()]: File Path [%s] specified for mount path [%s] does not exists or permissions are set so the file is not visible to PHP.', $file, $url_path));
             }
 
@@ -1930,11 +1931,11 @@ class Application
         // Validation
         if (headers_sent()) {
             throw new \Exception(sprintf('Error trying to redirect from [%s->%s()] because Response Headers have already been sent to the client.', __CLASS__, __FUNCTION__));
-        } else if (gettype($url) !== 'string') {
+        } elseif (gettype($url) !== 'string') {
             throw new \Exception(sprintf('Invalid parameter type [$url] for [%s->%s()], expected a [string] however a [%s] was passed.', __CLASS__, __FUNCTION__, gettype($url)));
-        } else if ($url === '') {
+        } elseif ($url === '') {
             throw new \Exception(sprintf('Invalid parameter for [%s->%s()], [$url] cannot be an empty string.', __CLASS__, __FUNCTION__));
-        } else if (strpos($url, "\n") !== false) {
+        } elseif (strpos($url, "\n") !== false) {
             throw new \Exception(sprintf('Invalid parameter for [%s->%s()], [$url] should be in the format of a URL understood by the client and cannot contain a line break. The URL passed to this function included a line break character.', __CLASS__, __FUNCTION__));
         }
 
@@ -2010,18 +2011,18 @@ class Application
             $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             $script_name = $_SERVER['SCRIPT_NAME'];
 
-            // For cases where URL contains the PHP page [ex: /public/index.php/test]
-            // and SCRIPT_NAME is similar to [/public/index.php].
-            // If the base script file name [ex: index.php] is not found in the
-            // script name then the request could be comming from the PHP built-in
-            // Webserver using a router page so keep the existing URL.
             if (strpos($url, $script_name) === 0) {
+                // For cases where URL contains the PHP page [ex: /public/index.php/test]
+                // and SCRIPT_NAME is similar to [/public/index.php].
+                // If the base script file name [ex: index.php] is not found in the
+                // script name then the request could be comming from the PHP built-in
+                // Webserver using a router page so keep the existing URL.
                 if (strpos($script_name, basename($_SERVER['SCRIPT_FILENAME'])) !== false) {
                     $url = substr($url, strlen($script_name));
                 }
-            // For cases where URL is similar to [/public/test]
-            // and SCRIPT_NAME is similar to [/public/index.php].
             } elseif ((string)$script_name !== '') {
+                // For cases where URL is similar to [/public/test]
+                // and SCRIPT_NAME is similar to [/public/index.php].
                 $data = explode('/', $script_name);
                 $base_name = $data[count($data) - 1];
                 $script_name = substr($script_name, 0, strlen($script_name) - strlen($base_name) - 1);
@@ -2225,15 +2226,15 @@ class Application
             } else {
                 return (int)$value;
             }
-        // Check for an return a float or null
         } elseif ($param->validation === 'float') {
+            // Check for an return a float or null
             if (filter_var($value, FILTER_VALIDATE_FLOAT) === false) {
                 return null;
             } else {
                 return (float)$value;
             }
-        // Check for and return a boolean or null
         } elseif ($param->validation === 'bool') {
+            // Check for and return a boolean or null
             // Using strict bool validation values so the following rules apply:
             // returns true if the value is '1', 'true', 'on', or 'yes'
             // returns false if the value is '0', 'false', 'off', or 'no'
@@ -2574,12 +2575,12 @@ class Application
                 if (is_null($result)) {
                     // Filter was executed and returned nothing so it's considered valid
                     continue;
-                } else if (is_bool($result)) {
+                } elseif (is_bool($result)) {
                     if ($result === false) {
                         $skip_route = true;
                         break;
                     }
-                } else if (is_object($result) && method_exists($result, 'send') && stripos(get_class($result), 'Response') !== false) {
+                } elseif (is_object($result) && method_exists($result, 'send') && stripos(get_class($result), 'Response') !== false) {
                     $response = $result;
                     break;
                 } else {
@@ -2710,9 +2711,10 @@ class Application
             // instead of a 404 'Not Found'.
             if (!($route->method === null
                 || $route->method === $method
-                || ($route->method === 'GET' && $method === 'HEAD'))) {
-                    $allowed_methods[] = $route->method;
-                    continue;
+                || ($route->method === 'GET' && $method === 'HEAD'))
+            ) {
+                $allowed_methods[] = $route->method;
+                continue;
             }
 
             // The route matches so check filter functions defined for the route.
@@ -2720,7 +2722,7 @@ class Application
             if ($response !== null) {
                 $route_was_found = true;
                 break;
-            } else if (!$skip_route) {
+            } elseif (!$skip_route) {
                 // Call the route controller function. There are three supported
                 // Controller options:
                 //   - Closure (Callback function)
@@ -2761,7 +2763,7 @@ class Application
                 // is turned on as would be expected in most  environments then
                 // and if content was submitted [ob_get_length()] will return
                 // a nubmer greather than zero.
-                if (isset($response) || ob_get_length() > 0 || headers_sent())  {
+                if (isset($response) || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }
             }
@@ -2774,7 +2776,7 @@ class Application
         if (!(isset($response) || ob_get_length() > 0 || headers_sent())) {
             foreach ($this->not_found_callbacks as $callback) {
                 $response = call_user_func($callback);
-                if (isset($response) || ob_get_length() > 0 || headers_sent())  {
+                if (isset($response) || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }
             }
@@ -2795,7 +2797,7 @@ class Application
             // Check if output has already been sent by a route or function.
             // If a response has already been sent then do nothing as the
             // route is handling all output.
-            if (!(ob_get_length() > 0 || headers_sent()))  {
+            if (!(ob_get_length() > 0 || headers_sent())) {
                 // If no output has been sent and a route was found then raise an exception
                 // with a message regarding the route. If no routes were matched then send a
                 // 404 'Not found' Response to the Client. If routes were matched but the
@@ -2922,6 +2924,7 @@ class Application
                     case 'GET':
                         $allowedMethods[] = 'HEAD';
                         // Fall-through the case statement to add the 'GET'
+                        // no break
                     default:
                         $allowedMethods[] = $route->method;
                         break;

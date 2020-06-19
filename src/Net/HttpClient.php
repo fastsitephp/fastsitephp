@@ -237,8 +237,8 @@ class HttpClient
                     $form = http_build_query($options['form'], '', '&');
                     curl_setopt($ch, CURLOPT_POSTFIELDS, $form);
                 }
-            // File
             } elseif (isset($options['send_file'])) {
+                // File
                 $send_file = $options['send_file'];
                 curl_setopt($ch, CURLOPT_PUT, true);
                 if ($method !== null) {
@@ -277,7 +277,7 @@ class HttpClient
         // Modified from: https://stackoverflow.com/a/41135574
         // Retains duplicate headers and complies with RFC822 and RFC2616.
         $this->res_headers = array();
-        curl_setopt($ch, CURLOPT_HEADERFUNCTION, function($curl, $header) {
+        curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($curl, $header) {
             $len = strlen($header);
             $header = explode(':', $header, 2);
             if (count($header) < 2) {

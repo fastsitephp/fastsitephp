@@ -561,7 +561,7 @@ class Search
         // Remove root search directory if [recursive(true)] and [includeRoot(false)]
         if ($this->recursive_search && !$this->include_root) {
             $root_dir = strlen(realpath($this->dir)) + 1;
-            $file_list = array_map(function($file) use ($root_dir) {
+            $file_list = array_map(function ($file) use ($root_dir) {
                 return substr($file, $root_dir);
             }, $file_list);
         }

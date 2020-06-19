@@ -131,15 +131,15 @@
                         <?php
                         $index = 0;
                         foreach ($e->getTrace() as $trace) {
-                            $index++;
-                        ?>
+                            $index++; ?>
                         <tr>
                             <td><?php echo $index ?></td>
                             <td><?php echo $app->escape($trace['function']) ?></td>
                             <td><?php echo $app->escape(isset($trace['file']) ? $trace['file'] : '') ?></td>
                             <td><?php echo $app->escape(isset($trace['line']) ? $trace['line'] : 0) ?></td>
                         </tr>
-                         <?php } ?>
+                         <?php
+                        } ?>
                     </tbody>
                 </table>
             </div>

@@ -55,7 +55,7 @@ class L10N
      * @param string|null $locale
      * @param string|null $timezone
      */
-    function __construct($locale = null, $timezone = null)
+    public function __construct($locale = null, $timezone = null)
     {
         if ($locale !== null) {
             $this->locale($locale);
@@ -74,7 +74,7 @@ class L10N
      *
      * @return array
      */
-    function supportedLocales()
+    public function supportedLocales()
     {
         $search = new Search();
 
@@ -94,7 +94,7 @@ class L10N
      *
      * @return array
      */
-    function supportedLanguages()
+    public function supportedLanguages()
     {
         $all_langs = json_decode(file_get_contents(__DIR__ . '/Languages.json'), true);
         $locales = $this->supportedLocales();
@@ -191,7 +191,7 @@ class L10N
      *
      * @return array
      */
-    function supportedTimezones()
+    public function supportedTimezones()
     {
         return \DateTimeZone::listIdentifiers();
     }

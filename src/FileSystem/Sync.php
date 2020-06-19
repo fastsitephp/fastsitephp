@@ -42,7 +42,7 @@ class Sync
      * @param null|string $new_value
      * @return string|$this
      */
-    function dirFrom($new_value = null)
+    public function dirFrom($new_value = null)
     {
         if ($new_value === null) {
             return $this->dir_from;
@@ -57,7 +57,7 @@ class Sync
      * @param null|string $new_value
      * @return string|$this
      */
-    function dirTo($new_value = null)
+    public function dirTo($new_value = null)
     {
         if ($new_value === null) {
             return $this->dir_to;
@@ -75,7 +75,7 @@ class Sync
      * @param null|array $new_value
      * @return array|$this
      */
-    function excludeNames(array $new_value = null)
+    public function excludeNames(array $new_value = null)
     {
         if ($new_value === null) {
             return $this->exclude_names;
@@ -111,7 +111,7 @@ class Sync
      * @param null|string $new_value
      * @return string|$this
      */
-    function summaryTitle($new_value = null)
+    public function summaryTitle($new_value = null)
     {
         if ($new_value === null) {
             return $this->summary_title;
@@ -127,7 +127,7 @@ class Sync
      * @param null|bool $new_value
      * @return bool|$this
      */
-    function dryRun($new_value = null)
+    public function dryRun($new_value = null)
     {
         if ($new_value === null) {
             return $this->dry_run;
@@ -143,7 +143,7 @@ class Sync
      * @param null|string $new_value
      * @return string|$this
      */
-    function hashAlgo($new_value = null)
+    public function hashAlgo($new_value = null)
     {
         if ($new_value === null) {
             return $this->hash_algo;
@@ -163,7 +163,7 @@ class Sync
      *
      * @return $this
      */
-    function sync()
+    public function sync()
     {
         // Validate
         if (!is_dir($this->dir_from)) {
@@ -282,7 +282,7 @@ class Sync
      *
      * @return void
      */
-    function printResults()
+    public function printResults()
     {
         // Determine lines breaks based on how PHP is being used (Web or CLI)
         $is_cli = (php_sapi_name() === 'cli');

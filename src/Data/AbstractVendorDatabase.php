@@ -66,7 +66,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
      * @param mixed $options - Default options exist for each database class. To customize refer to PHP documentation based on the driver used.
      * @throws \Exception
      */
-    function __construct($dsn, $user = null, $password = null, $persistent = false, $options = null)
+    public function __construct($dsn, $user = null, $password = null, $persistent = false, $options = null)
     {
         // Is the Database Driver Setup on the Server?
         if (!function_exists($this->func_connect)) {
@@ -95,7 +95,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
      * unless using a Persistent Connection.
      * @return void
      */
-    function __destruct()
+    public function __destruct()
     {
         if (!$this->persistent) {
             $this->close();

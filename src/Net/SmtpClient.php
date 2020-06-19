@@ -70,7 +70,7 @@ class SmtpClient
      * @return void
      * @throws \Exception
      */
-    function __construct($host = null, $port = null, $timeout = 5, \Closure $debug_callback = null)
+    public function __construct($host = null, $port = null, $timeout = 5, \Closure $debug_callback = null)
     {
         $this->debug_callback = $debug_callback;
         if ($host !== null) {
@@ -89,7 +89,7 @@ class SmtpClient
      *
      * @return void
      */
-    function __destruct()
+    public function __destruct()
     {
         if ($this->socket) {
             if (!$this->sent_quit) {
@@ -676,7 +676,8 @@ class SmtpClient
      * @return array
      * @throws \Exception
      */
-    private function sendCommand($expect_code, $cmd) {
+    private function sendCommand($expect_code, $cmd)
+    {
         // Make sure Socket is valid
         if (!is_resource($this->socket)) {
             $error = sprintf('SMTP Host is not connected to. Make sure [%s->connect()] is successful', __CLASS__);

@@ -53,7 +53,7 @@ class Email
      * @param string|null $subject
      * @param string|null $body
      */
-    function __construct($from = null, $to = null, $subject = null, $body = null)
+    public function __construct($from = null, $to = null, $subject = null, $body = null)
     {
         if ($from !== null) {
             $this->from($from);

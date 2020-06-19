@@ -205,7 +205,7 @@ class I18N
             if (!self::$redirect_on_missing_lang) {
                 $app->sendPageNotFound();
             // Or Redirect (optional)
-            } else if ($fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
+            } elseif ($fallback_lang !== null && strtolower($fallback_lang) !== strtolower($lang)) {
                 // Build URL with the Fallback Language
                 $url = $app->requestedPath();
                 if (strpos($url, '/' . $lang . '/') === 0) {
@@ -410,7 +410,7 @@ class I18N
         }
 
         // Check only during template rendering
-        $app->onRender(function() {
+        $app->onRender(function () {
             global $app;
             if (!isset($app->locals['i18n'])) {
                 I18N::langFile('_', $app->config['I18N_FALLBACK_LANG']);

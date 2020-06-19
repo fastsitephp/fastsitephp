@@ -966,13 +966,13 @@ class Request
                 //      $)          # match to the end of input [$]
                 //  /i              # End of regular expression [/] and specify case-insensitive search [i]
 
-                preg_match_all('/for=(?:"?)(.*?)(?:;|,|"|$)/i', $_SERVER[$proxy_header], $matches);
-                $proxy_ips[] = $matches[1];
-
-                // NOTE - for the above code the same regular expression and matching in JavaScript would be:
+                // NOTE - for the below code the same regular expression and matching in JavaScript would be:
                 //   var re = /for=(?:"?)(.*?)(?:;|,|"|$)/gi;
                 //   var results, ips = [], header = '{{text of HTTP_FORWARDED}}';
                 //   while ((results = re.exec(header)) !== null) { ips.push(results[1]); }
+
+                preg_match_all('/for=(?:"?)(.*?)(?:;|,|"|$)/i', $_SERVER[$proxy_header], $matches);
+                $proxy_ips[] = $matches[1];
             } else {
                 // Simply split the string into an array and trim the values
                 $proxy_ips[] = array_map('trim', explode(',', $_SERVER[$proxy_header]));

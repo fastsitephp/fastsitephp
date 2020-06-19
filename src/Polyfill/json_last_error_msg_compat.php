@@ -24,7 +24,8 @@ if (!function_exists('json_last_error_msg')) {
      * @link http://php.net/manual/en/function.json-last-error-msg.php
      * @return string
      */
-    function json_last_error_msg() {
+    function json_last_error_msg()
+    {
         switch (json_last_error()) {
             case JSON_ERROR_NONE:
                 return 'No error';

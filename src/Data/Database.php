@@ -41,7 +41,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
      * @param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.
      * @param null|array $options - Init options for the database
      */
-    function __construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())
+    public function __construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())
     {
         $options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
         if ($persistent) {

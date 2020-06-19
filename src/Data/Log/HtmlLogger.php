@@ -14,10 +14,10 @@ namespace FastSitePHP\Data\Log;
 use FastSitePHP\Application;
 
 /**
- * HTML Logger that uses the [Psr\Log\LoggerInterface]. 
- * 
- * This class can be used for temporary development logs because it outputs an 
- * HTML table of logged messages after the response is sent or depending on 
+ * HTML Logger that uses the [Psr\Log\LoggerInterface].
+ *
+ * This class can be used for temporary development logs because it outputs an
+ * HTML table of logged messages after the response is sent or depending on
  * options can be used to replace the original response.
  */
 class HtmlLogger extends AbstractLogger
@@ -32,33 +32,33 @@ class HtmlLogger extends AbstractLogger
 
     /**
      * Class Constructor
-     * 
+     *
      * The FastSitePHP Application must be passed when this class is created.
      * Once called it adds either a [beforeSend()] or [after()] event based
      * on the optional parameter [$replace_response].
-     * 
+     *
      * @param Application $app
      * @param null|bool $replace_response
      */
     public function __construct(Application $app, $replace_response = false)
     {
-        $logger = $this;        
+        $logger = $this;
         if ($replace_response) {
-            $app->beforeSend(function() use ($logger) {
+            $app->beforeSend(function () use ($logger) {
                 return $logger->getHtml();
             });
         } else {
-            $app->after(function() use ($logger) {
+            $app->after(function () use ($logger) {
                 echo $logger->getHtml();
             });
         }
     }
 
     /**
-     * Return HTML that will be used to show the logged messages. 
-     * This function gets called to replace the current route or 
+     * Return HTML that will be used to show the logged messages.
+     * This function gets called to replace the current route or
      * after the response is sent.
-     * 
+     *
      * @return string
      */
     public function getHtml()

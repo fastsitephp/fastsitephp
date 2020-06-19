@@ -91,7 +91,7 @@ class Response
      *
      * @param Application|null $app
      */
-    function __construct(Application $app = null)
+    public function __construct(Application $app = null)
     {
         if (PHP_VERSION_ID >= 50400) {
             $this->json_options = JSON_UNESCAPED_UNICODE;
@@ -321,8 +321,7 @@ class Response
 
         // Convert the simple content type from the parameter
         // to a content type that is valid for the http protocol
-        switch ($type)
-        {
+        switch ($type) {
             case 'html':
                 // By default the HTML character encoding for FastSitePHP is 'UTF-8'
                 // because it is the most widely used character encoding method
@@ -557,7 +556,7 @@ class Response
             }
 
             // Define a closure that calculates from the hash
-            $value = function($content) use ($algo) {
+            $value = function ($content) use ($algo) {
                 return hash($algo, $content);
             };
         }
@@ -1440,11 +1439,11 @@ class Response
         // Validation
         if (headers_sent()) {
             throw new \Exception(sprintf('Error trying to redirect from [%s->%s()] because Response Headers have already been sent to the client.', __CLASS__, __FUNCTION__));
-        } else if (gettype($url) !== 'string') {
+        } elseif (gettype($url) !== 'string') {
             throw new \Exception(sprintf('Invalid parameter type [$url] for [%s->%s()], expected a [string] however a [%s] was passed.', __CLASS__, __FUNCTION__, gettype($url)));
-        } else if ($url === '') {
+        } elseif ($url === '') {
             throw new \Exception(sprintf('Invalid parameter for [%s->%s()], [$url] cannot be an empty string.', __CLASS__, __FUNCTION__));
-        } else if (strpos($url, "\n") !== false) {
+        } elseif (strpos($url, "\n") !== false) {
             throw new \Exception(sprintf('Invalid parameter for [%s->%s()], [$url] should be in the format of a URL understood by the client and cannot contain a line break. The URL passed to this function included a line break character.', __CLASS__, __FUNCTION__));
         }
 
@@ -1519,8 +1518,9 @@ class Response
                 && $this->status_code !== 204
                 && $this->status_code !== 205
                 && $this->response_content === null
-                && $this->response_file === null) {
-                    throw new \Exception(sprintf('The [%s] Object for the current Route had no content set from either [content()], [file()], or [redirect()] functions. Before returning the response object from a route or before sending the response content must be set unless the status code is [204 - No Content], [205 - Reset Content], or [304 - Not Modified].', __CLASS__));
+                && $this->response_file === null
+            ) {
+                throw new \Exception(sprintf('The [%s] Object for the current Route had no content set from either [content()], [file()], or [redirect()] functions. Before returning the response object from a route or before sending the response content must be set unless the status code is [204 - No Content], [205 - Reset Content], or [304 - Not Modified].', __CLASS__));
             }
         }
 
@@ -1822,8 +1822,8 @@ class Response
         // for more info related to status code 100.
         if ($method !== 'HEAD'
             && ($this->status_code === null
-                || ($this->status_code !== 304 && $this->status_code !== 204 && $this->status_code !== 205))) {
-
+                || ($this->status_code !== 304 && $this->status_code !== 204 && $this->status_code !== 205))
+        ) {
             if ($this->response_file === null) {
                 echo $this->response_content;
             } else {

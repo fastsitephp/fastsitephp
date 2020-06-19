@@ -66,11 +66,13 @@ abstract class AbstractCrypto
      *
      * If using PHP 5.5 or below then [hash_equals()] is polyfilled.
      */
-    function __construct()
+    public function __construct()
     {
         // Create Polyfill/Compatibility Functions
         if (PHP_VERSION_ID < 50400) {
-            if (!defined('OPENSSL_RAW_DATA')) define('OPENSSL_RAW_DATA', 1);
+            if (!defined('OPENSSL_RAW_DATA')) {
+                define('OPENSSL_RAW_DATA', 1);
+            }
             require_once __DIR__ . '/../../Polyfill/hex_compat.php';
         }
         if (PHP_VERSION_ID < 50600) {
@@ -388,7 +390,8 @@ abstract class AbstractCrypto
                 : 'encryptThenAuthenticate, encryptionAlgorithm, hashingAlgorithm, and keySizeEnc'
             );
             $error = 'Invalid Key for encryption. The key required using the current settings must be a hex encoded string that is %d characters in length (%d bytes, %d bits) but was instead %d hex characters. Required key size is determined from the [%s] class using properties [%s].';
-            $error = sprintf($error,
+            $error = sprintf(
+                $error,
                 (($enc_bytes_size + $hmac_bytes_size) * 2), // Required Character Length
                 ($enc_bytes_size + $hmac_bytes_size),       // Byte Length
                 (($enc_bytes_size + $hmac_bytes_size) * 8), // Bit Length
@@ -457,6 +460,7 @@ abstract class AbstractCrypto
                     $error = sprintf($error, $method, $data_type, $create_method);
                     throw new \Exception($error);
                 }
+                break;
             case 's':
                 return $text;
             case 'i32': // Int32
@@ -468,6 +472,7 @@ abstract class AbstractCrypto
                 } else {
                     return (int)$text;
                 }
+                break;
             case 'f':
                 // Make sure the float is valid for the instance of PHP otherwise
                 // return data as text. Most languages use 64-Bit for floats/doubles/etc
@@ -477,6 +482,7 @@ abstract class AbstractCrypto
                 } else {
                     return (float)$text;
                 }
+                break;
             case 'b':
                 if (!($text === '0' || $text === '1')) {
                     $data_type = ($method === 'Decryption' ? 'decrypted' : 'verified');

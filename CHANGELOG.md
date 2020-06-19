@@ -2,6 +2,12 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Next Release (Changes published on GitHub but not Composer/Packagist)
+
+* Update all Framework code under `src` to validate with https://github.com/FriendsOfPHP/PHP-CS-Fixer
+  * This had no impact on code logic or any actual source code rather it updated some minor formatting issues such as replacing `function __construct` with `public function __construct` or `else if` with `elseif`.
+  * To use download `php-cs-fixer-v2.phar` then run: `php php-cs-fixer-v2.phar fix src`
+
 ## Website (March 27, 2020)
 
 * **Thanks Li Jun Hui** for helping with Chinese translations! https://github.com/lijunhuippl

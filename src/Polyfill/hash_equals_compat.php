@@ -28,7 +28,8 @@ if (!function_exists('hash_equals')) {
      * @return bool
      * @link http://php.net/manual/en/function.hash-equals.php
      */
-    function hash_equals($known_string, $user_string) {
+    function hash_equals($known_string, $user_string)
+    {
         // Only strings are allowed
         if (!is_string($known_string)) {
             trigger_error(sprintf('%s(): Expected known_string to be a string, %s given', __FUNCTION__, gettype($known_string)), E_USER_WARNING);

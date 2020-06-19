@@ -28,7 +28,8 @@ if (!function_exists('bin2hex')) {
      * @param string $str
      * @return string|false
      */
-    function bin2hex($str) {
+    function bin2hex($str)
+    {
         // Validation
         if (!is_scalar($str) && $str !== null) {
             trigger_error(sprintf('%s() expects parameter 1 to be string, %s given', __FUNCTION__, gettype($str)), E_USER_WARNING);
@@ -36,7 +37,7 @@ if (!function_exists('bin2hex')) {
         }
 
         // Convert from binary string to hex string using pack()
-        $array = unpack('H*' , $str);
+        $array = unpack('H*', $str);
         return $array[0];
     }
 }
@@ -49,7 +50,8 @@ if (!function_exists('hex2bin')) {
      * @param string $data
      * @return string|false
      */
-    function hex2bin($data) {
+    function hex2bin($data)
+    {
         // Parameter Type Validation
         if (!is_scalar($data) && $data !== null) {
             trigger_error(sprintf('%s() expects parameter 1 to be string, %s given', __FUNCTION__, gettype($data)), E_USER_WARNING);
@@ -67,6 +69,6 @@ if (!function_exists('hex2bin')) {
         }
 
         // Convert from hex string to binary string using pack()
-        return pack('H*' , $data);
+        return pack('H*', $data);
     }
 }

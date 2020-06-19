@@ -672,9 +672,10 @@ class AppMin
             // Next check the method [GET, POST, etc]
             if (!($route->method === null
                 || $route->method === $method
-                || ($route->method === 'GET' && $method === 'HEAD'))) {
-                    $allowed_methods[] = $route->method;
-                    continue;
+                || ($route->method === 'GET' && $method === 'HEAD'))
+            ) {
+                $allowed_methods[] = $route->method;
+                continue;
             }
 
             // The route matches so check any filter functions defined for the route.
@@ -687,7 +688,7 @@ class AppMin
                 // Call the route controller function
                 $response = call_user_func_array($route->controller, $args);
                 $route_was_found = true;
-                if (isset($response) || ob_get_length() > 0 || headers_sent())  {
+                if (isset($response) || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }
             }
@@ -695,7 +696,7 @@ class AppMin
 
         // Handle the Result
         if ($response === null) {
-            if (!(ob_get_length() > 0 || headers_sent()))  {
+            if (!(ob_get_length() > 0 || headers_sent())) {
                 if ($route_was_found) {
                     throw new \Exception(sprintf('Route [%s %s] was matched however the route function returned no response.', $method, $url));
                 } else {
@@ -711,7 +712,7 @@ class AppMin
                 }
             }
 
-        // String Response
+            // String Response
         } elseif (gettype($response) === 'string') {
             $this->sendResponse($response);
 
@@ -801,6 +802,7 @@ class AppMin
                     case 'GET':
                         $allowedMethods[] = 'HEAD';
                         // fall-through the case statement to add the 'GET'
+                        // no break
                     default:
                         $allowedMethods[] = $route->method;
                         break;

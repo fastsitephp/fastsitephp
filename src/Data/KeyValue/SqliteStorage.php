@@ -30,7 +30,7 @@ class SqliteStorage implements StorageInterface
      *
      * @param string $file_path
      */
-    function __construct($file_path)
+    public function __construct($file_path)
     {
         $dsn = 'sqlite:' . $file_path;
         $this->db = new \FastSitePHP\Data\Database($dsn);
