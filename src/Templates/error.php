@@ -1,3 +1,13 @@
+<?php
+
+/**
+ * @var \FastSitePHP\Application $app
+ * @var string $page_title
+ * @var string $message
+ * @var \ErrorException|null $e
+ */
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +70,7 @@
         </div>
         <?php
             // Check if there is an Exception to show and if [show_detailed_errors = true]
-            $has_error = (isset($e) && $e !== null);
+            $has_error = ($e !== null);
             $show_detailed_errors = $has_error & $app->show_detailed_errors;
 
             // If [$app->show_detailed_errors = false] but the request is coming from

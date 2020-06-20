@@ -84,7 +84,7 @@ class DotEnv
      * Returns an array of all variables read from the file.
      *
      * @param string $dir_path
-     * @param null|array $required_vars
+     * @param array $required_vars
      * @return array
      * @throws \Exception
      */
@@ -102,7 +102,7 @@ class DotEnv
      * specified so it can be named anything.
      *
      * @param string $file_path
-     * @param null|array $required_vars
+     * @param array $required_vars
      * @return array
      * @throws \Exception
      */

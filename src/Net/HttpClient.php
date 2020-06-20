@@ -316,7 +316,7 @@ class HttpClient
         curl_close($ch);
         if ($fp_out !== null) {
             fclose($fp_out);
-            if ($res->content === true) {
+            if ($res->content !== false) {
                 $res->content = realpath($path);
             }
         }
@@ -343,7 +343,7 @@ class HttpClient
      * @return HttpResponse
      * @throws \Exception
      */
-    private function requestWithPhp($url, array $options)
+    private function requestWithPhp($url, $options)
     {
         $http_options = array(
             'http' => array('ignore_errors' => true),

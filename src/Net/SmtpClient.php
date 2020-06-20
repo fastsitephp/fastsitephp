@@ -260,8 +260,8 @@ class SmtpClient
      * This must be called after connecting to the server and also
      * after sending STARTTLS.
      *
-     * @param null|string $client - Optionally pass a client name to send to the server, by default the FQDN of the current server is used. See the function [fqdn()].
-     * @return array - Reply lines from the server
+     * @param null|string $client Optionally pass a client name to send to the server, by default the FQDN of the current server is used. See the function [fqdn()].
+     * @return array Reply lines from the server
      * @throws \Exception
      */
     public function ehlo($client = null)
@@ -279,8 +279,8 @@ class SmtpClient
      * This is typically used by very old servers that
      * do not support EHLO.
      *
-     * @param null|string $client - See comments in [ehlo()]
-     * @return array - Reply lines from the server
+     * @param null|string $client See comments in [ehlo()]
+     * @return array Reply lines from the server
      * @throws \Exception
      */
     public function helo($client = null)
@@ -363,7 +363,7 @@ class SmtpClient
      *
      * @param null|string $client - See comments in [ehlo()]
      * @return array - Reply lines from the server from the EHLO command
-     * @return void
+     * @return array
      * @throws \Exception
      */
     public function startTls($client = null)

@@ -12,6 +12,7 @@
 namespace FastSitePHP\Security\Crypto;
 
 use FastSitePHP\Encoding\Json;
+use FastSitePHP\Security\Crypto\FileEncryption;
 
 /**
  * Abstract Crypto Class
@@ -383,9 +384,9 @@ abstract class AbstractCrypto
         $bin_key = hex2bin($key);
         $key_size = $this->strlen($bin_key);
         if ($key_size !== ($enc_bytes_size + $hmac_bytes_size)) {
-            $class = get_called_class();
+            $class = get_class($this);
             $props = (
-                $class === 'FileEncryption'
+                $class === FileEncryption::class
                 ? 'encryptThenAuthenticate'
                 : 'encryptThenAuthenticate, encryptionAlgorithm, hashingAlgorithm, and keySizeEnc'
             );
@@ -453,14 +454,13 @@ abstract class AbstractCrypto
             case 'n':
                 if ($text === chr(0)) {
                     return null;
-                } else {
-                    $data_type = ($method === 'Decryption' ? 'decrypted' : 'verified');
-                    $create_method = ($method === 'Decryption' ? 'encrypted' : 'signed');
-                    $error = '%s was successful however the %s data did not match a null value. It\'s likely that the data was %s with another program or a software library which is not compatible with this class.';
-                    $error = sprintf($error, $method, $data_type, $create_method);
-                    throw new \Exception($error);
                 }
-                break;
+
+                $data_type = ($method === 'Decryption' ? 'decrypted' : 'verified');
+                $create_method = ($method === 'Decryption' ? 'encrypted' : 'signed');
+                $error = '%s was successful however the %s data did not match a null value. It\'s likely that the data was %s with another program or a software library which is not compatible with this class.';
+                $error = sprintf($error, $method, $data_type, $create_method);
+                throw new \Exception($error);
             case 's':
                 return $text;
             case 'i32': // Int32
@@ -469,20 +469,18 @@ abstract class AbstractCrypto
                 // if it is too big to fit in 32-bit address on a 32-bit machine.
                 if (filter_var($text, FILTER_VALIDATE_INT) === false) {
                     return $text;
-                } else {
-                    return (int)$text;
                 }
-                break;
+
+                return (int)$text;
             case 'f':
                 // Make sure the float is valid for the instance of PHP otherwise
                 // return data as text. Most languages use 64-Bit for floats/doubles/etc
                 // so it's unexpected that this would fail. If it does a string is returned.
                 if (filter_var($text, FILTER_VALIDATE_FLOAT) === false) {
                     return $text;
-                } else {
-                    return (float)$text;
                 }
-                break;
+
+                return (float)$text;
             case 'b':
                 if (!($text === '0' || $text === '1')) {
                     $data_type = ($method === 'Decryption' ? 'decrypted' : 'verified');
@@ -491,6 +489,7 @@ abstract class AbstractCrypto
                     $error = sprintf($error, $method, $data_type, $create_method);
                     throw new \Exception($error);
                 }
+
                 return (bool)$text;
             case 'j':
                 try {
@@ -502,6 +501,7 @@ abstract class AbstractCrypto
                     $error = sprintf($error, $method, $data_type, $create_method, $e->getMessage());
                     throw new \Exception($error);
                 }
+
                 return $data;
             default:
                 // Unknown Type, likely a programming error when

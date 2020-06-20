@@ -75,7 +75,7 @@ abstract class AbstractDatabase
      * often save 5 to 10 MB per call (tested on both PHP 5 and PHP 7).
      *
      * @link http://php.net/manual/en/language.references.php
-     * @param array &$data
+     * @param array $data
      * @return void
      */
     protected function trimArray(&$data)

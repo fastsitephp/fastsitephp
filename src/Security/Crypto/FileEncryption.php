@@ -537,7 +537,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         $valid = true;
         foreach ($cmds as $cmd) {
             $cmdInfo[$cmd] = exec('which ' . $cmd);
-            if ($cmdInfo[$cmd] === null || $cmdInfo[$cmd] === '') {
+            if ($cmdInfo[$cmd] === '') {
                 $valid = false;
             }
         }
@@ -550,7 +550,7 @@ class FileEncryption extends AbstractCrypto implements CryptoInterface
         $cmdInfo['xxd'] = $this->xxdPath();
         if ($cmdInfo['xxd'] === 'xxd') {
             $cmdInfo['xxd'] = exec('which xxd');
-            if ($cmdInfo['xxd'] === null || $cmdInfo['xxd'] === '') {
+            if ($cmdInfo['xxd'] === '') {
                 $valid = false;
             }
         }

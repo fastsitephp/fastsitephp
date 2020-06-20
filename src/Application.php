@@ -464,7 +464,7 @@ class Application
                 $timezone = ini_get('date.timezone');
 
                 // Validate that it is defined
-                if ($timezone === '' || $timezone === null) {
+                if ($timezone === '') {
                     throw new \Exception('The settings [date.timezone] is not setup in [php.ini], it must be defined when using calling setup([date.timezone]) or setup() must be called with a valid timezone instead.');
                 }
             }
@@ -616,7 +616,7 @@ class Application
             // error template. This list is excluding E_ALL because it is used
             // for defining error reporting rules and E_CORE_ERROR and E_CORE_WARNING
             // because CORE errors will not be caught in a PHP Script.
-            if (get_class($e) === 'ErrorException') {
+            if ($e instanceof ErrorException) {
                 // http://php.net/manual/en/errorfunc.constants.php
                 $error_constants = array(
                     E_ERROR => 'E_ERROR',
@@ -2770,13 +2770,13 @@ class Application
         }
 
         // If no route was matched after checking all routes then call all
-        // functions defined with the [notFound()] function untill a response
+        // functions defined with the [notFound()] function until a response
         // is returned or content is sent. [notFound()] callback functions
         // can return a response.
         if (!(isset($response) || ob_get_length() > 0 || headers_sent())) {
             foreach ($this->not_found_callbacks as $callback) {
                 $response = call_user_func($callback);
-                if (isset($response) || ob_get_length() > 0 || headers_sent()) {
+                if ($response !== '' || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }
             }

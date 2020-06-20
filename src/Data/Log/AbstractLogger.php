@@ -36,7 +36,7 @@ abstract class AbstractLogger extends PsrLogger
      * Format variables into the message using '{placeholders}' with the variable name.
      *
      * @param string $message
-     * @param array|null $context
+     * @param array $context
      * @return string
      */
     protected function format($message, array $context = array())
