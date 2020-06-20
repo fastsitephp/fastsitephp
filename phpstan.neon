@@ -31,6 +31,7 @@
 parameters:
     checkMissingIterableValueType: false
     inferPrivatePropertyTypeFromConstructor: false
+    treatPhpDocTypesAsCertain: false
     ignoreErrors:
         -
             message: '#Access to an undefined property#'
@@ -55,38 +56,12 @@ parameters:
                 - src/Application.php
                 - src/AppMin.php
         -
-            message: '#Result of \|\| is always true#'
-            paths:
-                - src/Data/Validator.php
-                - src/Security/Crypto/JWT.php
-                - src/Web/Request.php
-                - src/Web/Response.php
-        -
             message: '#Comparison operation ">" between int<min, 0>\|false and 0 is always false.#'
             path: src/Application.php
         -
             message: '#Strict comparison using === between string and null will always evaluate to false#'
             paths:
                 - src/Security/Crypto/FileEncryption.php
-        -
-            # The items on the next error are based on phpstan assuming a user always passes a string if the PHPDoc Block
-            # specifies a string. These are error that can be matched based on [is_string()].
-            # These branches are reachable as confirmed in Unit Tests.
-            message: '#Else branch is unreachable because previous condition is always true#'
-            paths:
-                - src/Lang/I18N.php
-                - src/Lang/L10N.php
-        -
-            # These errors are similar ot the above where phpstan assumes user cannot pass invalid input.
-            # And some of these are related to mixed types not being handled by phpstan.
-            # These conditions are reachable as confirmed in Unit Tests.
-            message: '#Strict comparison using (.*) will always evaluate to false#'
-            paths:
-                - src/Lang/I18N.php
-                - src/Lang/L10N.php
-                - src/Security/Crypto/FileEncryption.php
-                - src/Net/HttpClient.php
-                - src/Security/Crypto/AbstractCrypto.php
         -
             # According to PHP Docs int should be passed and it has been confirmed to work
             # and used on production sites.
