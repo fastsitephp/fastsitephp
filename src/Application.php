@@ -464,7 +464,7 @@ class Application
                 $timezone = ini_get('date.timezone');
 
                 // Validate that it is defined
-                if ($timezone === '') {
+                if ($timezone === '' || $timezone === false) {
                     throw new \Exception('The settings [date.timezone] is not setup in [php.ini], it must be defined when using calling setup([date.timezone]) or setup() must be called with a valid timezone instead.');
                 }
             }
