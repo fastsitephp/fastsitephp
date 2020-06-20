@@ -604,7 +604,6 @@ class Request
                 return $form_data;
             default:
                 return $this->contentText();
-                break;
         }
     }
 

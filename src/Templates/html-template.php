@@ -1,3 +1,10 @@
+<?php
+
+/**
+ * @var array<int, string> $logs
+ */
+
+?>
 <style>
     .section-log { background-color:white; padding:50px; margin-top:50px; text-align:center; }
     .section-log table { margin:auto; text-align:left; border-collapse:collapse; }

@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * @var string $page_title
+ * @var string $message
+ * @var \ErrorException $e
+ */
+
 echo str_repeat('=', 80) . PHP_EOL;
 echo 'ERROR' . PHP_EOL;
 echo str_repeat('=', 80) . PHP_EOL;

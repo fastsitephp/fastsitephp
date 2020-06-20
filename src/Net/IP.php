@@ -529,7 +529,7 @@ class IP
             // If comparing an CIDR Value to an IP Address get the value of the IP to compare,
             // compare the resulting network address of both IP Addresses, and return a bool.
             //   Network address = {ip} bitwise AND {subnet_mask}
-            if ($ip_to_compare !== null) {
+            if ($ip_to_compare !== null && $ip !== false) {
                 $ip_to_compare = inet_pton($ip_to_compare);
                 return (($ip & $subnet_mask) === ($ip_to_compare & $subnet_mask));
             }

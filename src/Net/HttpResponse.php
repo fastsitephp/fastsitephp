@@ -41,7 +41,7 @@ class HttpResponse
     /**
      * Response Body as a Text String. PHP Strings are array's of bytes
      * so binary responses will also be in string format.
-     * @var string|null
+     * @var string|false|null
      */
     public $content = null;
 

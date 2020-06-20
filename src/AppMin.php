@@ -165,7 +165,7 @@ class AppMin
         if (isset($timezone) && $timezone !== null) {
             if ($timezone === 'date.timezone') {
                 $timezone = ini_get('date.timezone');
-                if ($timezone === '' || $timezone === null) {
+                if ($timezone === '' || $timezone === false) {
                     throw new \Exception('The settings [date.timezone] is not setup in [php.ini], it must be defined when using calling setup([date.timezone]) or setup() must be called with a valid timezone instead.');
                 }
             }
@@ -249,7 +249,7 @@ class AppMin
             $page_title = $this->error_page_title;
             $message = $this->error_page_message;
 
-            if (get_class($e) === 'ErrorException') {
+            if ($e instanceof ErrorException) {
                 $error_constants = array(
                     E_ERROR => 'E_ERROR',
                     E_WARNING => 'E_WARNING',

@@ -214,6 +214,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
         if ($this->index_returns_array) {
             $fields = call_user_func($this->func_fetch_array_index, $resource);
         } else {
+            $fields = [];
             call_user_func_array($this->func_fetch_array_index, array($resource, &$fields));
         }
         call_user_func($this->func_free_result, $resource);
@@ -240,6 +241,7 @@ class AbstractVendorDatabase extends AbstractDatabase implements DatabaseInterfa
                 $values[] = $fields[0];
             }
         } else {
+            $fields = [];
             while (call_user_func_array($this->func_fetch_array_index, array($resource, &$fields))) {
                 $values[] = $fields[0];
             }

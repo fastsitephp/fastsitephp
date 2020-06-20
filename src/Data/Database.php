@@ -39,7 +39,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
      * @param null|string $user - User Name for the Connection
      * @param null|string $password - Password for the User
      * @param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.
-     * @param null|array $options - Init options for the database
+     * @param array $options - Init options for the database
      */
     public function __construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())
     {

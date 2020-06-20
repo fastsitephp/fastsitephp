@@ -412,17 +412,12 @@ class Validator
                 // Browsers validate 'tel' by using the [pattern] attribute as 'tel'
                 // is mainly used for keyboard hints on mobile devices.
                 return true;
-                break;
             case 'number':
             case 'range':
                 if (is_int($value) || is_float($value)) {
                     return true;
                 }
-                return (
-                    (filter_var($value, FILTER_VALIDATE_INT) !== false || filter_var($value, FILTER_VALIDATE_FLOAT) !== false)
-                    ? true
-                    : false
-                );
+                return filter_var($value, FILTER_VALIDATE_INT) !== false || filter_var($value, FILTER_VALIDATE_FLOAT) !== false;
             case 'date':
                 // Accepted format: 'YYYY-MM-DD'
                 $date = \DateTime::createFromFormat('Y-m-d', $value);
