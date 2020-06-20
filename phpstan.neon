@@ -51,7 +51,7 @@ parameters:
             message: '#PHPDoc tag @param has invalid value#'
             path: src/Data/AbstractDatabase.php
         -
-            message: '#PHPDoc tag @param for parameter (s+) with type array|null is not subtype of native type array#'
+            message: '#PHPDoc tag @param for parameter (s+) with type array\|null is not subtype of native type array#'
             paths:
                 - src/Data/Database.php
                 - src/Data/Log/AbstractLogger.php
@@ -64,12 +64,12 @@ parameters:
             message: '#Call to an undefined method object#'
             path: src/Templates/error-cli.php
         -
-            message: '#Strict comparison using === between string|false and null will always evaluate to false.#'
+            message: '#Strict comparison using === between string\|false and null will always evaluate to false.#'
             paths:
                 - src/Application.php
                 - src/AppMin.php
         -
-            message: '#Result of || is always true#'
+            message: '#Result of \|\| is always true#'
             paths:
                 - src/Data/Validator.php
                 - src/Security/Crypto/JWT.php
@@ -83,7 +83,7 @@ parameters:
                 - src/Polyfill/hex_compat.php
                 - src/Templates/error.php
         -
-            message: '#Comparison operation ">" between int<min, 0>|false and 0 is always false.#'
+            message: '#Comparison operation ">" between int<min, 0>\|false and 0 is always false.#'
             path: src/Application.php
         -
             message: '#Unreachable statement - code above always terminates#'
