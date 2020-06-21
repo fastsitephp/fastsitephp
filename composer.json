@@ -25,6 +25,7 @@
         "psr/log": "^1.1"
     },
     "require-dev": {
-        "erusev/parsedown": "^1.7"
+        "erusev/parsedown": "^1.7",
+        "phpstan/phpstan": "^0.12.29"
     }
 }

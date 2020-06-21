@@ -36,6 +36,12 @@ TODO List
     The [phpstan.neon] file is now being simplified but it currently does not validate to level 8
     like it used too.
 
+    Now testing with the following:
+        - First install using composer from [package.json], by default FastSitePHP does not require composer
+        - Run:
+            vendor/bin/phpstan analyse src
+            vendor/bin/phpstan analyse --level 0 src
+
     Items for Review based on Pull Request (need to test several different versions of PHP and platforms):
     Some of these migth be valid (or should be changed)
         src/Application.php
