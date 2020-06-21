@@ -70,8 +70,8 @@
         </div>
         <?php
             // Check if there is an Exception to show and if [show_detailed_errors = true]
-            $has_error = ($e !== null);
-            $show_detailed_errors = $has_error & $app->show_detailed_errors;
+            $has_error = (isset($e) && $e !== null);
+            $show_detailed_errors = ($has_error && $app->show_detailed_errors);
 
             // If [$app->show_detailed_errors = false] but the request is coming from
             // localhost '127.0.0.1' (IPv4) or '::1' (IPv6) and if the web server software

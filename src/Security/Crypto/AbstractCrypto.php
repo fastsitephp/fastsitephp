@@ -12,7 +12,6 @@
 namespace FastSitePHP\Security\Crypto;
 
 use FastSitePHP\Encoding\Json;
-use FastSitePHP\Security\Crypto\FileEncryption;
 
 /**
  * Abstract Crypto Class
@@ -384,9 +383,9 @@ abstract class AbstractCrypto
         $bin_key = hex2bin($key);
         $key_size = $this->strlen($bin_key);
         if ($key_size !== ($enc_bytes_size + $hmac_bytes_size)) {
-            $class = get_class($this);
+            $class = get_called_class();
             $props = (
-                $class === FileEncryption::class
+                $class === 'FileEncryption'
                 ? 'encryptThenAuthenticate'
                 : 'encryptThenAuthenticate, encryptionAlgorithm, hashingAlgorithm, and keySizeEnc'
             );

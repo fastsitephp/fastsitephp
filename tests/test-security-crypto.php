@@ -1717,7 +1717,15 @@ $app->get('/check-file-setup', function() {
 
     // Run [checkFileSetup()]
     $crypto = new \FastSitePHP\Security\Crypto\FileEncryption();
-	$file_setup = $crypto->checkFileSetup();
+    $file_setup = $crypto->checkFileSetup();
+    
+    // Uncomment for manual testing on the server to see the 
+    // actual values for the server. The Test URL looks like this:
+    //     http://localhost:3000/tests/test-security-crypto.php/check-file-setup
+    //
+    // header('Content-Type: text/plain');
+    // var_dump($file_setup);
+    // exit();    
 
 	// Validate all properties
 	$tests_count = 0;

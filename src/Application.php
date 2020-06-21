@@ -2776,7 +2776,7 @@ class Application
         if (!(isset($response) || ob_get_length() > 0 || headers_sent())) {
             foreach ($this->not_found_callbacks as $callback) {
                 $response = call_user_func($callback);
-                if ($response !== '' || ob_get_length() > 0 || headers_sent()) {
+                if (isset($response) || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }
             }

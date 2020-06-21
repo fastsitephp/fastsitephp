@@ -501,6 +501,12 @@ class IP
             // Get the IPv6 Address in packed internet address string format.
             // Note - 'pton' stands for Presentation-format To Network-format.
             $ip = inet_pton($ip);
+            if ($ip === false) {
+                // This should never happen because of earlier validation using
+                // `filter_var()` so it cannot be Unit Tested. However it's included in case
+                // the code changes and primarily so that it better validates with PHP linters.
+                return $error_message(sprintf('The value [%s] is not in valid for the function [inet_pton()].', $ip));
+            }
 
             // If only comparing IP Addresses and not Network Address
             // then compare values and return a bool
@@ -529,7 +535,7 @@ class IP
             // If comparing an CIDR Value to an IP Address get the value of the IP to compare,
             // compare the resulting network address of both IP Addresses, and return a bool.
             //   Network address = {ip} bitwise AND {subnet_mask}
-            if ($ip_to_compare !== null && $ip !== false) {
+            if ($ip_to_compare !== null) {
                 $ip_to_compare = inet_pton($ip_to_compare);
                 return (($ip & $subnet_mask) === ($ip_to_compare & $subnet_mask));
             }

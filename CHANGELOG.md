@@ -4,7 +4,14 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 ## Next Release (Changes published on GitHub but not Composer/Packagist)
 
-* Update all Framework code under `src` to validate with https://github.com/FriendsOfPHP/PHP-CS-Fixer
+* Updates to simply the rules for linting using `phpstan` https://github.com/phpstan/phpstan
+  * Thanks **Ondřej Mirtes** https://github.com/ondrejmirtes (Author of phpstan) and **Viktor Szépe** https://github.com/szepeviktor for helping out.
+  * Updates are in pull requests:
+    * https://github.com/fastsitephp/fastsitephp/pull/20
+    * https://github.com/fastsitephp/fastsitephp/pull/21
+  * Updates are still in development and will go through more testing before being published as a new release
+
+* Updated all Framework code under `src` to validate with https://github.com/FriendsOfPHP/PHP-CS-Fixer
   * This had no impact on code logic or any actual source code rather it updated some minor formatting issues such as replacing `function __construct` with `public function __construct` or `else if` with `elseif`.
   * To use download `php-cs-fixer-v2.phar` then run: `php php-cs-fixer-v2.phar fix src`
 
