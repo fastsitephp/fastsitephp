@@ -1,26 +1,73 @@
+# -----------------------------------------------------------------------------
+#
+# This file is used for linting FastSitePHP with the
+# PHP Static Analysis Tool PHPStan:
+#   https://github.com/phpstan/phpstan
+#   https://phpstan.org/
+#
+# To lint the code base:
+#     1)
+#        a) Install PHPStan using Composer
+#           https://getcomposer.org/
+#           Composer uses settings from the file [composer.json]
+#        b) Or manually download [phpstan.phar] from:
+#            https://github.com/phpstan/phpstan/releases
+#     2)
+#        a) Run:
+#           vendor/bin/phpstan analyse
+#        b) Or use specific options (this may generate additional errors):
+#           vendor/bin/phpstan analyse --level 0 src
+#           vendor/bin/phpstan analyse --level 8
+#
+# Currently all code through extensive Unit Testing so errors found
+# by PHPStan need to go through careful review and if the code is valid
+# added as exceptions with relevant comments to this file, otherwise
+# the code should be updated.
+#
+# PHPStan will provide errors based on the version of PHP
+# Installed on your system so if you are using a version of PHP
+# that is less than 7.2 you will see errors for [Security/Password.php]
+# related to PHP 7.2+ constants such as: PASSWORD_ARGON2I
+#
+# References to [php-src] refer to:
+#     https://github.com/php/php-src
+#
+# -----------------------------------------------------------------------------
+
 parameters:
-    level: 4
+    level: 6
     paths:
+        # By default only the [src] directory is linted however [tests]
+        # and [scripts] could be linted in the future, however due to specific
+        # needs such as testing invalid PHP syntax code in [tests] and
+        # [scripts] will generate a large number of expected errors
+        # that would have to be added here in order for all tests to pass.
         - src/
-        # TODO
-        #- tests/
-        #- scripts/
+        # - tests/
+        # - scripts/
     checkMissingIterableValueType: false
     inferPrivatePropertyTypeFromConstructor: false
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
         -
-            # FIXME Properties in classes extending AbstractVendorDatabase are used in AbstractVendorDatabase
+            # AbstractVendorDatabase is used by the extended Db2Database and OdbcDatabase classes
+            # using protected properties and functions in a manner that allows for easy code use
+            # so it cannot be easily linted. Rather than full linting the specific classes are tested
+            # on various Windows and IBM Servers because the PHP extensions require specific db drivers.
             message: '#^Access to an undefined property FastSitePHP\\Data\\AbstractVendorDatabase::\$(func|connect|index)_[a-z_]+\.$#'
             path: src/Data/AbstractVendorDatabase.php
         -
-            # FIXME Use a custom exception
+            # FastSitePHP requires only 2 files to run so `sendErrorPage()` defines a custom
+            # property `severityText` on standard Exceptions. This does not pass linting however
+            # the default template and example templates use the optional feature.
+            # Alternative: Use a custom exception
             message: '#^Access to an undefined property ErrorException::\$severityText\.$#'
             paths:
                 - src/Application.php
                 - src/AppMin.php
         -
-            # TODO inet_pton() may return false
+            # In this specific case `inet_pton()` will never return false
+            # because earlier code validates the IP using `filter_var()`
             message: '#^Binary operation "." between string\|false and string results in an error\.$#'
             path: src/Net/IP.php
         -
@@ -28,6 +75,63 @@ parameters:
             message: '#^Offset 0 does not exist on array\(\)\.$#'
             path: src/Data/AbstractVendorDatabase.php
         -
-            # PHPStan does not reconize the return value of ob_get_length() may change
+            # PHPStan does not recognize the return value of ob_get_length() may change
             message: '#^Comparison operation ">" between int<min, 0>\|false and 0 is always false\.$#'
             path: src/Application.php
+        -
+            # Usage of `get_called_class()` is valid and unit tested for usage with both
+            # FileEncryption and Encryption classes.
+            message: '#^Strict comparison using === between .* and .* will always evaluate to false\.$#'
+            path: src/Security/Crypto/AbstractCrypto.php
+        -
+            # Variable changes to the templates would cause unit tests to fail so
+            # these errors can be ignored.
+            message: '#^Variable .* might not be defined.$#'
+            paths:
+                - src/Templates/error-cli.php
+                - src/Templates/error.php
+                - src/Templates/html-template.php
+        -
+            # [php-src] documents the `$passphrase` as a string only however null is also
+            # valid and in fact included with unit tests in [php-src].
+            message: '#^Parameter \#3 \$passphrase of function openssl_pkey_export expects string, null given\.$#'
+            path: src/Security/Crypto/PublicKey.php
+        -
+            # Interface classes and some Abstract files are more readable when not using PHPDoc Comments.
+            # Additionally well tested protected and private props do not need always typehints.
+            # Including PHPDocs wiht every single private and protected prop can make the code less
+            # readable as props will be displayed over many screens rather than together.
+            message: '#Property (.+) has no typehint specified#'
+            paths:
+                - src/Data/AbstractDatabase.php
+                - src/Data/Db2Database.php
+                - src/Data/OdbcDatabase.php
+                - src/Data/KeyValue/SqliteStorage.php
+                - src/Data/Log/HtmlLogger.php
+                - src/Data/Validator.php
+                - src/FileSystem/Search.php
+                - src/FileSystem/Sync.php
+                - src/Lang/L10N.php
+                - src/Lang/I18N.php
+                - src/Media/Image.php
+                - src/Net/Email.php
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/AbstractCrypto.php
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Security/Password.php
+                - src/Security/Crypto/JWT.php 
+        -
+            # See above comments
+            message: '#Method (.+) no typehint specified#'
+            paths:
+                - src/Data/DatabaseInterface.php
+                - src/Data/KeyValue/StorageInterface.php
+                - src/Security/Crypto/CryptoInterface.php
+        -
+            # See above comments
+            message: '#Method (.+) no return typehint specified#'
+            paths:
+                - src/Data/DatabaseInterface.php
+                - src/Data/KeyValue/StorageInterface.php
+                - src/Security/Crypto/CryptoInterface.php

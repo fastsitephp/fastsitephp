@@ -68,6 +68,6 @@ class OdbcDatabase extends AbstractVendorDatabase implements DatabaseInterface
      */
     public function allowLargeTextValues($size = 100000)
     {
-        ini_set('odbc.defaultlrl', $size);
+        ini_set('odbc.defaultlrl', (string)$size);
     }
 }

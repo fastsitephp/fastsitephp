@@ -667,7 +667,7 @@ class Validator
         $text = str_replace('{field}', $field_name, $text);
         $text = str_replace('{param}', $param, $text);
         $text = str_replace('{value}', $value, $text);
-        $text = str_replace('{size}', strlen($value), $text);
+        $text = str_replace('{size}', (string)strlen($value), $text);
         return $text;
     }
 

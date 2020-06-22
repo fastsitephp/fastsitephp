@@ -1093,7 +1093,7 @@ class Response
      * See also [encryptedCookie()] and [signedCookie()].
      *
      * @param string $name
-     * @param string $value
+     * @param array|object $value
      * @param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie
      * @param int $expire - Defaults to 0 which makes the cookie expire at the end of the session
      * @param string $path (default: '')
@@ -1102,7 +1102,7 @@ class Response
      * @param bool $httponly (default: false)
      * @return $this
      */
-    public function jwtCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)
+    public function jwtCookie($name, $value, $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)
     {
         $value = Crypto::encodeJWT($value, $expire_time);
         return $this->cookie($name, $value, $expire, $path, $domain, $secure, $httponly);

@@ -551,7 +551,7 @@ class IP
                 'Network_Address' => inet_ntop($ip & $subnet_mask),
                 'Network_Range_First_IP' => inet_ntop($ip & $subnet_mask), // Same as Network Address
                 'Network_Range_Last_IP' => inet_ntop($ip | ~$subnet_mask),
-                'Addresses_in_Network' => (function_exists('bcpow') ? bcpow(2, (128 - $bits)) : null),
+                'Addresses_in_Network' => (function_exists('bcpow') ? bcpow('2', (string)(128 - $bits)) : null),
             );
         }
     }
