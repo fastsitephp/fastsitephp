@@ -51,9 +51,9 @@ parameters:
     ignoreErrors:
         -
             # AbstractVendorDatabase is used by the extended Db2Database and OdbcDatabase classes
-            # using protected properties and functions in a manner that allows for easy code use
+            # using protected properties and functions in a manner that allows for easy code reuse
             # so it cannot be easily linted. Rather than full linting the specific classes are tested
-            # on various Windows and IBM Servers because the PHP extensions require specific db drivers.
+            # on Windows and IBM Servers because the PHP extensions require specific db drivers.
             message: '#^Access to an undefined property FastSitePHP\\Data\\AbstractVendorDatabase::\$(func|connect|index)_[a-z_]+\.$#'
             path: src/Data/AbstractVendorDatabase.php
         -
