@@ -4,7 +4,7 @@
  * @var \FastSitePHP\Application $app
  * @var string $page_title
  * @var string $message
- * @var \ErrorException|null $e
+ * @var \Exception|\ErrorException|null $e
  */
 
 ?>

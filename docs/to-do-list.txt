@@ -36,12 +36,6 @@ TODO List
     The [phpstan.neon] file is now being simplified but it currently does not validate to level 8
     like it used too.
 
-    Now testing with the following:
-        - First install using composer from [package.json], by default FastSitePHP does not require composer
-        - Run:
-            vendor/bin/phpstan analyse src
-            vendor/bin/phpstan analyse --level 0 src
-
     Items for Review based on Pull Request (need to test several different versions of PHP and platforms):
     Some of these migth be valid (or should be changed)
         src/Application.php
@@ -163,8 +157,6 @@ TODO List
     - How Linting works:
         - This could be a new markdown file linked from the readme in the [docs] folder
         - Either as a seperate doc or a larger doc such as "Editing the Framework Code"
-        - See comments in file:
-            fastsitephp\phpstan.neon
         - Related Print screens
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/0-phpstan-results.png
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/1-phpstan-code-check.png
@@ -180,6 +172,14 @@ TODO List
                 php php-cs-fixer-v2.phar fix src
             Do not run on Windows as it will show ever file changes due to line endings when using
             system settings from gitignore
+        - Alternative options to [PHPStan] that have been tested.
+          Just like [phpstan] running these would need a lot of config
+          files so currently only [phpstan] is used.
+            https://github.com/vimeo/psalm
+            https://github.com/phan/phan          
+          Simliar to [phpstan] a (*.phar) file would be downloaded and ran.
+            php psalm.phar > psalm_results.txt
+            php phan.phar > phan_results.txt
     - Document on how to use Composer
         # Windows
         # First install composer

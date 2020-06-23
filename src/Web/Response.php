@@ -1320,7 +1320,7 @@ class Response
      * @param string|null $content_type
      * @param string|null $cache_type
      * @param string|null $cache_control
-     * @return $this|string
+     * @return $this|string|null
      * @throws \Exception
      */
     public function file($file_path = null, $content_type = null, $cache_type = null, $cache_control = null)

@@ -21,8 +21,7 @@
 #
 # Currently all code through extensive Unit Testing so errors found
 # by PHPStan need to go through careful review and if the code is valid
-# added as exceptions with relevant comments to this file, otherwise
-# the code should be updated.
+# added as exceptions with relevant comments to this file.
 #
 # PHPStan will provide errors based on the version of PHP
 # Installed on your system so if you are using a version of PHP
@@ -35,7 +34,7 @@
 # -----------------------------------------------------------------------------
 
 parameters:
-    level: 6
+    level: 8
     paths:
         # By default only the [src] directory is linted however [tests]
         # and [scripts] could be linted in the future, however due to specific
@@ -99,9 +98,9 @@ parameters:
         -
             # Interface classes and some Abstract files are more readable when not using PHPDoc Comments.
             # Additionally well tested protected and private props do not need always typehints.
-            # Including PHPDocs wiht every single private and protected prop can make the code less
+            # Including PHPDocs with every single private and protected prop can make the code less
             # readable as props will be displayed over many screens rather than together.
-            message: '#Property (.+) has no typehint specified#'
+            message: '#Property .+ has no typehint specified#'
             paths:
                 - src/Data/AbstractDatabase.php
                 - src/Data/Db2Database.php
@@ -120,18 +119,105 @@ parameters:
                 - src/Security/Crypto/Encryption.php
                 - src/Security/Crypto/FileEncryption.php
                 - src/Security/Password.php
-                - src/Security/Crypto/JWT.php 
+                - src/Security/Crypto/JWT.php
         -
             # See above comments
-            message: '#Method (.+) no typehint specified#'
+            message: '#Method .+ no typehint specified#'
             paths:
                 - src/Data/DatabaseInterface.php
                 - src/Data/KeyValue/StorageInterface.php
                 - src/Security/Crypto/CryptoInterface.php
         -
             # See above comments
-            message: '#Method (.+) no return typehint specified#'
+            message: '#Method .+ no return typehint specified#'
             paths:
                 - src/Data/DatabaseInterface.php
                 - src/Data/KeyValue/StorageInterface.php
                 - src/Security/Crypto/CryptoInterface.php
+        -
+            # PHP uses and allows mixed types in many functions however phpstan is very stict
+            # and will give many false positives for calls that will work plus it seems to have
+            # errors related to the return types of built-in functions in some cases.
+            # FastSitePHP goes though a lot of unit testing for these items so they can
+            # be ignored once the code is tested. Additionally many PHP functions return false
+            # on errors and raise an Error rather than throw an Exception. The standard setup
+            # when using FastSitePHP converts Errors to Exceptions then throws them so this
+            # message handles items like that as well.
+            message: '#Parameter .+ expects .+ given#'
+            paths:
+                - src/AppMin.php
+                - src/Application.php
+                - src/Encoding/Json.php
+                - src/Net/Email.php
+                - src/Net/HttpClient.php
+                - src/Net/SmtpClient.php
+                - src/Environment/DotEnv.php
+                - src/Environment/System.php
+                - src/FileSystem/Search.php
+                - src/Lang/I18N.php
+                - src/Lang/L10N.php
+                - src/Media/Image.php
+                - src/Net/Config.php
+                - src/Security/Crypto/AbstractCrypto.php
+                - src/Security/Crypto/Encryption.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Security/Crypto/SignedData.php
+                - src/Security/Web/CsrfStateless.php
+                - src/Net/IP.php
+                - src/Templates/error.php
+                - src/Web/Request.php
+                - src/Web/Response.php
+        -
+            # Similar issue to the above error
+            message: '#Method (.+) should return (.+) but returns#'
+            paths:
+                - src/AppMin.php
+                - src/Application.php
+                - src/Data/Database.php
+                - src/Data/Validator.php
+                - src/Data/Log/HtmlLogger.php
+                - src/Net/Email.php
+                - src/Security/Crypto/Encryption.php
+                - src/Net/HttpClient.php
+                - src/Environment/System.php
+                - src/Lang/I18N.php
+                - src/Net/Config.php
+                - src/Security/Crypto/SignedData.php
+                - src/Security/Password.php
+        -
+            # Getter/Setting type functions are not handled well by phpstan
+            message: '#Cannot call method#'
+            paths:
+                - src/Application.php
+                - src/Data/Database.php
+                - src/FileSystem/Sync.php
+                - src/Lang/L10N.php
+                - src/Security/Crypto/FileEncryption.php
+                - src/Templates/error.php
+        -
+            message: '#Cannot access (offset|property)#'
+            paths:
+                - src/Data/Validator.php
+                - src/FileSystem/Security.php
+                - src/Net/Config.php
+                - src/Net/SmtpClient.php
+                - src/Security/Crypto/PublicKey.php
+        -
+            message: '#Offset .+ does not exist on#'
+            paths:
+                - src/Lang/Time.php
+                - src/Lang/I18N.php
+                - src/Net/HttpClient.php
+        -
+            message: '#Property .+ does not accept#'
+            paths:
+                - src/Net/HttpClient.php
+                - src/Web/Request.php
+        -
+            message: '#Argument of an invalid type .* supplied for foreach, only iterables are supported#'
+            paths:
+                - src/Data/Database.php
+                - src/Encoding/Utf8.php
+                - src/Lang/I18N.php
+                - src/Net/Email.php
+                - src/Web/Response.php
