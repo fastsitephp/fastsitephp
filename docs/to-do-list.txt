@@ -25,29 +25,11 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Some Updates are being made based on phpstan, for more see:
+**) Some Updates are being actively made based on phpstan (June 2020), for more see:
         https://github.com/fastsitephp/fastsitephp/pull/20
         https://github.com/fastsitephp/fastsitephp/pull/21
 
-    Previously used this version:
-        https://github.com/fastsitephp/fastsitephp/blob/ed87047e8b6199d0f8baf69362845674a0a28556/phpstan.neon
-    With this command:
-        php phpstan.phar analyse --level 8 -a autoload.php -c phpstan.neon src > phpstan_results.txt
-    The [phpstan.neon] file is now being simplified but it currently does not validate to level 8
-    like it used too.
-
-    Items for Review based on Pull Request (need to test several different versions of PHP and platforms):
-    Some of these migth be valid (or should be changed)
-        src/Application.php
-        src/AppMin.php
-            if ($timezone === '' || $timezone === null) {
-            if ($timezone === '' || $timezone === false) {
-        src/Security/Crypto/AbstractCrypto.php
-            $class = get_called_class();
-            $class = get_class($this);
-            -- 
-            $class === 'FileEncryption'
-            $class === FileEncryption::class
+    Pending item for review based on Pull Request (need to test several different versions of PHP and platforms):
         src/Security/Crypto/FileEncryption.php
             if ($cmdInfo[$cmd] === null || $cmdInfo[$cmd] === '') {
             if ($cmdInfo[$cmd] === '') {
@@ -56,7 +38,7 @@ TODO List
         Related to the File Encryption, need to test the following URL
         on a Secure RedHat Enterprise Linux Server without xxd installed
         to see what happens then test again with it installed and make sure
-        all Unit Tests pass.
+        all Unit Tests pass. Need to test several different versions of Linux.
             http://localhost:3000/tests/test-security-crypto.php/check-file-setup
 
 **) Add FastSitePHP to TechEmpower Benchmarks:
