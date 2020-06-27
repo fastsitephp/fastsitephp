@@ -25,6 +25,24 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Update Framework and Unit Tests for PHP 8 Alpha 1
+    Windows Binary Downloads:
+        https://windows.php.net/qa/
+    Source downloads for *nix:
+        https://downloads.php.net/~pollita/
+    - For now likely just test on Windows and wait for *nix binary downloads
+        as PHP 8 is still in Alpha 1 and likely to go through more changes.
+    - So far on Windows 64-bit 42 of 520 Unit Tests failed but the main site and all demos work
+        At a glance many of the failures are minor and some expected.
+    - To get Unit Tests working on Windows after download copy [php.ini-production] as [php.ini]
+        then enable settings:
+            extension_dir = "ext"
+            extension=curl
+            extension=openssl
+            extension=pdo_sqlite
+    - Once all tests run from [php.ini-production] replace [php.ini] using [php.ini-development]
+        and make sure warnings are clear and that tests that fail are expected to fail.
+
 **) Some Updates are being actively made based on phpstan (June 2020), for more see:
         https://github.com/fastsitephp/fastsitephp/pull/20
         https://github.com/fastsitephp/fastsitephp/pull/21
