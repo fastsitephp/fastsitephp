@@ -15,6 +15,12 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
   * This had no impact on code logic or any actual source code rather it updated some minor formatting issues such as replacing `function __construct` with `public function __construct` or `else if` with `elseif`.
   * To use download `php-cs-fixer-v2.phar` then run: `php php-cs-fixer-v2.phar fix src`
 
+## Bash Encryption Script (June 28, 2020)
+
+* The Bash Script `encrypt.sh` has been updated to allow for a default file extension `.enc` and to not require the output file parameter `-o` along with a few other minor improvements such as status output during encryption and description.
+  * The bash script is not included with the FastSitePHP Framework, however it is included with the main repository and was created for compatibility with the PHP class `FastSitePHP\Security\Crypto\FileEncryption`
+  * https://www.fastsitephp.com/en/documents/file-encryption-bash
+
 ## Website (March 27, 2020)
 
 * **Thanks Li Jun Hui** for helping with Chinese translations! https://github.com/lijunhuippl

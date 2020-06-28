@@ -25,7 +25,7 @@ To run using Bash run the command `bash encrypt.sh` from your shell or terminal 
 
 When you run the script without any options or using the `./encrypt.sh -h` Help Option you will see info for the command, usage, options, and examples.
 
-![Bash [encrypt.sh] Help Screen](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_bash/00_Encrypt_Help.png)
+![Bash [encrypt.sh] Help Screen](https://dydn9njgevbmp.cloudfront.net/img/docs/encrypt_sh_bash/00_Encrypt_Help.20200628.png)
 
 &nbsp;
 
@@ -122,7 +122,7 @@ Full understanding of these commands requires good knowledge of encryption terms
 # First create an empty 10 MB file named "crypto_test_10mb" for testing.
 # Mac uses [mkfile] while Linux or Unix will use one of the other commands.
 # [dd] is included for documentation purposes, however, it is very slow for this
-# and in general [dd], often called "disk destroyer", should be used with caution.
+# and in general [dd], often nick-named "disk destroyer", should be used with caution.
 mkfile -n 10m crypto_test_10mb
 xfs_mkfile 10m crypto_test_10mb
 fallocate -l 10m crypto_test_10mb
@@ -162,7 +162,7 @@ sudo yum install vim-common
 su -
 pkg install vim-console
 
-# If using FreeBSD with the root accountyou will need to re-create
+# If using FreeBSD with the root account you will need to re-create
 # the empty 10 MB file under root:
 #
 # truncate -s 10m crypto_test_10mb

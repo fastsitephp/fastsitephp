@@ -7,7 +7,7 @@
 #  ------------------------------------------------------------------
 #
 #  Author:   Conrad Sollitt
-#  Created:  2016 to 2019
+#  Created:  2016 to 2020
 #  License:  MIT
 #
 #  Developer Overview and Notes
@@ -92,9 +92,11 @@ main ()
     validate_files
     validate_key
     if [[ "${action}" == "encrypt" ]]; then
+        echo "Encrypting file [${in_file}] to [${out_file}] at [$(date)]"
         encrypt
         msg="Success, file [${in_file}] has been encrypted to [${out_file}]."
     else
+        echo "Decrypting file [${in_file}] to [${out_file}] at [$(date)]"
         decrypt
         msg="Success, file [${in_file}] has been decrypted to [${out_file}]."
     fi
@@ -155,9 +157,11 @@ show_help ()
     echo -e "${script} ${FONT_BOLD}-e${FONT_RESET} ${file_param} ${key_param}"
     echo -e "${script} ${FONT_BOLD}-e${FONT_RESET} ${file_param} ${pass_param}"
     echo -e "${script} ${FONT_BOLD}-e${FONT_RESET} ${file_param}"
+    echo -e "${script} ${FONT_BOLD}-e${FONT_RESET} ${infile_param}"
     echo -e "${script} ${FONT_BOLD}-d${FONT_RESET} ${file_param} ${key_param}"
     echo -e "${script} ${FONT_BOLD}-d${FONT_RESET} ${file_param} ${pass_param}"
     echo -e "${script} ${FONT_BOLD}-d${FONT_RESET} ${file_param}"
+    echo -e "${script} ${FONT_BOLD}-d${FONT_RESET} ${infile_param}"
     echo -e "${script} ${FONT_BOLD}-h${FONT_RESET}"
     echo -e "${script} ${FONT_BOLD}-t${FONT_RESET}"
     echo -e "${script} ${FONT_BOLD}-l${FONT_RESET}"
@@ -166,7 +170,7 @@ show_help ()
     echo -e "    ./${SCRIPT_NAME} -g"
     echo -e "    ${FONT_DIM}# If needed set execute permissions:${FONT_RESET}"
     echo -e "    chmod +x ${SCRIPT_NAME}"
-    echo -e "    ${FONT_DIM}# To install as a command:${FONT_RESET}"
+    echo -e "    ${FONT_DIM}# To install as a command (if not yet installed):${FONT_RESET}"
     echo -e "    sudo mv ${SCRIPT_NAME} /usr/local/bin/encrypt"
     echo -e "    ${FONT_DIM}# Once installed as a command you can run it from any directory:${FONT_RESET}"
     echo -e "    encrypt"
@@ -177,7 +181,7 @@ show_help ()
     echo "    -e    Encrypt a file, requires options [-i], [-o], and ([-k] or [-p])"
     echo "    -d    Decrypt a file, requires options [-i], [-o], and ([-k] or [-p])"
     echo "    -i    Input file, file to encrypt if using [-e] or decrypt if using [-d]"
-    echo "    -o    Output file, this file will be created"
+    echo "    -o    Output file, this file will be created. Optional, defaults to: \".enc\""
     echo "    -k    Key for encryption or decryption"
     echo "    -p    Password for encryption or decryption"
     echo "    -t    Run Core Unit Tests"
@@ -199,6 +203,11 @@ show_help ()
     echo -e "    ${FONT_DIM}# View the start or end of an of an encrypted file:${FONT_RESET}"
     echo '    head -c 256 test.enc | hexdump -C -v'
     echo '    tail -c 256 test.enc | hexdump -C -v'
+    echo ""
+    echo -e "    ${FONT_DIM}# When using the default '.enc' file extension${FONT_RESET}"
+    echo -e "    ${FONT_DIM}# the name of the output file is not required${FONT_RESET}"
+    echo "    bash ${SCRIPT_NAME} -e -i test.txt"
+    echo "    bash ${SCRIPT_NAME} -d -i test.txt.enc"
     echo ""
     echo -e "    ${FONT_DIM}# If a file name contains spaces then use quotes.${FONT_RESET}"
     echo -e "    ${FONT_DIM}# This exmple uses a password instead of a key.${FONT_RESET}"
@@ -325,6 +334,16 @@ validate_options ()
 {
     local error
 
+    # Before validation check if an input file is specified but not an output file.
+    # If so then use the default file extension. This requires the file name to end
+    # with ".enc" if the file is being decrypted.
+    if [[ "${action}" == "encrypt" && -n "${in_file}" && -z "${out_file}" ]]; then
+        out_file="${in_file}.enc"
+    elif [[ "${action}" == "decrypt" && "${in_file}" == *".enc" && -z "${out_file}" ]]; then
+        out_file=${in_file%.enc}
+    fi
+
+    # Validation, only a single error message is displayed even if there are multiple errors
     if [[ -z "${in_file}" ]]; then
         error="Error, missing or empty Input File parameter [-i]."
     elif [[ -z "${out_file}" ]]; then
@@ -338,6 +357,7 @@ validate_options ()
         if [[ ! -z "${password}" ]]; then
             echo -n "Confirm:"
             read -r -s confirm
+            echo "" # Extra line break
             if [[ "${password}" != "${confirm}" ]]; then
                 error="Error, password and confirmation did not match. Please try again."
             else
@@ -911,7 +931,7 @@ create_empty_file ()
 }
 
 # -----------------------------------------------------------------------------
-# Specify secret keys and IV used for encryption and decryption.
+# Specify unit testing secret keys and IV used for encryption and decryption.
 # Since this is a published "secret key" DO NOT copy it and use it.
 # To create secret keys for using this call [bash encrypt.sh -g].
 #
@@ -1213,7 +1233,9 @@ unit_test_run_script ()
     out_file="${tmp_file}.enc"
     unit_test_status "${out_file}"
     if [[ "${key_type}" == "key" ]]; then
-        bash "${SCRIPT_PATH}" -e -i "${in_file}" -o "${out_file}" -k "${key}" &> /dev/null 2>&1
+        # The [-o] options work for both key and password however excluding it on
+        # one test allows verification of the default file type '*.enc'
+        bash "${SCRIPT_PATH}" -e -i "${in_file}" -k "${key}" &> /dev/null 2>&1
         verify_exit_status $? 0
     else
         bash "${SCRIPT_PATH}" -e -i "${in_file}" -o "${out_file}" -p "${password}" &> /dev/null 2>&1
@@ -1226,10 +1248,17 @@ unit_test_run_script ()
     # Decrypt
     unit_test_item "Decrypting File with Option [-d]"
     in_file="${out_file}"
-    out_file="${tmp_file}.dec"
+    if [[ "${key_type}" == "key" ]]; then
+        unit_test_status "Deleting original temp file as it will be written during decryption"
+        rm "${tmp_file}"
+        verify_exit_status $? 0
+        out_file="${tmp_file}"
+    else
+        out_file="${tmp_file}.dec"
+    fi
     unit_test_status "${out_file}"
     if [[ "${key_type}" == "key" ]]; then
-        bash "${SCRIPT_PATH}" -d -i "${in_file}" -o "${out_file}" -k "${key}" &> /dev/null 2>&1
+        bash "${SCRIPT_PATH}" -d -i "${in_file}" -k "${key}" &> /dev/null 2>&1
         verify_exit_status $? 0
     else
         bash "${SCRIPT_PATH}" -d -i "${in_file}" -o "${out_file}" -p "${password}" &> /dev/null 2>&1
@@ -1242,7 +1271,9 @@ unit_test_run_script ()
     unit_test_item "Deleting temp files"
     rm "${tmp_file}"
     rm "${tmp_file}.enc"
-    rm "${tmp_file}.dec"
+    if [[ "${key_type}" == "password" ]]; then
+        rm "${tmp_file}.dec"
+    fi
     unit_test_status "Temp files deleted"
 }
 
