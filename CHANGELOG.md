@@ -9,8 +9,8 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
   * Updates are in pull requests:
     * https://github.com/fastsitephp/fastsitephp/pull/20
     * https://github.com/fastsitephp/fastsitephp/pull/21
-  * Updates are still in development and will go through more testing before being published as a new release
-
+  * The updates were minimal and required no changes to code logic and unit tests
+  * PHPStan version 0.12.29 has been added to [composer.json](composer.json)
 * Updated all Framework code under `src` to validate with https://github.com/FriendsOfPHP/PHP-CS-Fixer
   * This had no impact on code logic or any actual source code rather it updated some minor formatting issues such as replacing `function __construct` with `public function __construct` or `else if` with `elseif`.
   * To use download `php-cs-fixer-v2.phar` then run: `php php-cs-fixer-v2.phar fix src`

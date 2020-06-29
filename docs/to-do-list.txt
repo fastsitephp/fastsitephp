@@ -43,22 +43,6 @@ TODO List
     - Once all tests run from [php.ini-production] replace [php.ini] using [php.ini-development]
         and make sure warnings are clear and that tests that fail are expected to fail.
 
-**) Some Updates are being actively made based on phpstan (June 2020), for more see:
-        https://github.com/fastsitephp/fastsitephp/pull/20
-        https://github.com/fastsitephp/fastsitephp/pull/21
-
-    Pending item for review based on Pull Request (need to test several different versions of PHP and platforms):
-        src/Security/Crypto/FileEncryption.php
-            if ($cmdInfo[$cmd] === null || $cmdInfo[$cmd] === '') {
-            if ($cmdInfo[$cmd] === '') {
-            if ($cmdInfo['xxd'] === null || $cmdInfo['xxd'] === '') {
-            if ($cmdInfo['xxd'] === '') {
-        Related to the File Encryption, need to test the following URL
-        on a Secure RedHat Enterprise Linux Server without xxd installed
-        to see what happens then test again with it installed and make sure
-        all Unit Tests pass. Need to test several different versions of Linux.
-            http://localhost:3000/tests/test-security-crypto.php/check-file-setup
-
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
     * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
@@ -237,7 +221,13 @@ TODO List
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
             }
-        # Note, the above file is typically not modified on production systems, see comments in the file
+        # When using `create-fast-site.sh` run:
+            sudo nano /etc/nginx/sites-available/fastsitephp
+            Replace:
+                location ~ \.php$ {
+            With:
+                location ~ \.php {
+        # Note, if using a default install [sites-available/default] is typically not modified on production systems, see comments in the file
         # Also the default [location ~ \.php$ {] will work however [location ~ \.php {] is needed
         # for Unit Testing with the Web Server
         # Also optional for unit testing:
