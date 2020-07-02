@@ -1329,7 +1329,9 @@ class Application
             throw new \Exception(sprintf('Wrong number of parameters for the $callback closure definition defined from [%s->%s()]. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
         } elseif ($param_array[0]->isDefaultValueAvailable()) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The first parameter was defined as an optional value. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
-        } elseif (!$param_array[1]->isArray()) {
+        } elseif (PHP_VERSION_ID >= 80000 && $param_array[1]->getType()->getName() !== 'array') {
+            throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The second parameter was not defined with an array typehint. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
+        } elseif (PHP_VERSION_ID < 80000 && !$param_array[1]->isArray()) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The second parameter was not defined with an array typehint. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
         } elseif (!($param_array[1]->isDefaultValueAvailable() && $param_array[1]->getDefaultValue() === null)) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The second parameter was not defined as an optional value. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
