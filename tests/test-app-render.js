@@ -75,9 +75,15 @@
 	runHttpUnitTest("Application Object - Template Rendering - Error with Not Found - PHP", "test-app-render.php/php-error-with-not-found", {
 	    status: 500,
 	    responseContains: [
-	        '<td class="error-type">ErrorException</td>',
-	        '<td class="error-severity">8 (E_NOTICE)</td>',
-	        '<td class="error-message">Undefined variable: footer_data</td>',
+			'<td class="error-type">ErrorException</td>',
+			[
+				'<td class="error-severity">8 (E_NOTICE)</td>',
+				'<td class="error-severity">2 (E_WARNING)</td>', // PHP 8+
+			],
+			[
+				'<td class="error-message">Undefined variable: footer_data</td>',
+				'<td class="error-message">Undefined variable $footer_data</td>', // PHP 8+
+			],
 	        "footer-1.php</td></tr>",
 			"<td>include</td>",
 			"<td>render</td>"
@@ -258,7 +264,12 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error on Render 1 - PHP", "test-app-render.php/php-error-on-render-1", {
 	    status: 500,
-	    response: "[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Undefined variable: page1_data][FooterPhp1][footer&amp;data]"
+	    responseContains: [
+			[
+				"[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Undefined variable: page1_data][FooterPhp1][footer&amp;data]",
+				"[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Undefined variable $page1_data][FooterPhp1][footer&amp;data]"
+			]
+		]
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error on Render 2 - Text", "test-app-render.php/php-error-on-render-2", {
