@@ -1018,13 +1018,16 @@ $app->get('/error-recoverable', function() use ($app) {
 
 // Error Test with Error Type E_DEPRECATED
 $app->get('/error-deprecated', function() use ($app) {
-    // An unknown condition has been seen on one computer running 32-bit Windows 7
-    // with IIS Express and PHP 5.4 where this specific URL hangs and causes
-    // PHP to crash resulting in a White-Screen-of-Death page (WSOD). All other
-    // unit tests on the computer worked correctly and when running directly using
-    // PHP CLI from the command prompt without IIS Express there was no error.
+    // An unknown condition has been seen on two computers where this
+    // specific URL where it hangs and causes PHP to crash resulting
+    // in a White-Screen-of-Death page (WSOD).:
+    //  - One running 32-bit Windows 7 with IIS Express and PHP 5.4
+    //  - Linux / CentoOS on AWS Lightsail using PHP 5.4 
+    // All other unit tests on the Windows computer worked correctly and
+    // when running directly using PHP CLI from the command prompt without IIS
+    // Express there was no error.
     // The cause of the error is not known but if the computer you are testing on
-    // has this error then uncommenting the line below can fix this issue.
+    // has this error then un-commenting the line below can fix this issue.
     // The actual source of the error is the following line of code from
     // the errorHandler() function:
     //   throw new \ErrorException($message, 0, $severity, $file, $line);

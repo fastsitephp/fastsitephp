@@ -220,20 +220,6 @@ $app->get('/create-email-with-encoded-file-names', function() use ($app) {
     return $message;
 });
 
-// Because not all SMTP commands are Unit Tested and emails are not sent the 
-// files themselves are hashed in order to show if something changed. 
-// Sending Emails to common email providers using the SMTP Class 
-// and seeing how they look with widely used Email Clients
-// must be manually verified after any changes.
-$app->get('/class-hashes', function() use ($smtp_file, $email_file) {
-    // In case files are saved using [CRLF] normalize the line endings [CRLF -> LF].
-    // Also trim any white space.
-    return array(
-        'Email' => hash('sha384', trim(str_replace("\r\n", "\n", file_get_contents($email_file)))),
-        'SmtpClient' => hash('sha384', trim(str_replace("\r\n", "\n", file_get_contents($smtp_file)))),
-    );
-});
-
 // -----------------------------------------------------------
 // Run the application
 // -----------------------------------------------------------
