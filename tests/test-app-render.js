@@ -273,16 +273,22 @@
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error on Render 2 - Text", "test-app-render.php/php-error-on-render-2", {
-	    status: 500,
-	    responseContains: [
-	        '<td class="error-type">ErrorException</td>',
-	        '<td class="error-severity">8 (E_NOTICE)</td>',
-	        '<td class="error-message">Undefined variable: header_data</td>',
-	        "header-1.php</td></tr>",
-	        "<td>errorHandler</td>",
-	        "<td>include</td>",
-	        "<td>render</td>"
-	    ]
+		status: 500,
+		responseContains: [
+			'<td class="error-type">ErrorException</td>',
+			[
+				'<td class="error-severity">8 (E_NOTICE)</td>',  // PHP 5 and 7
+				'<td class="error-severity">2 (E_WARNING)</td>', // PHP 8
+			],
+			[
+				'<td class="error-message">Undefined variable: header_data</td>',  // PHP 5 and 7
+				'<td class="error-message">Undefined variable $header_data</td>', // PHP 8
+			],
+			"header-1.php</td></tr>",
+			"<td>errorHandler</td>",
+			"<td>include</td>",
+			"<td>render</td>"
+		]
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Exception on Render - PHP", "test-app-render.php/php-exception-on-render", {
@@ -299,16 +305,22 @@
 	    status: 500,
 	    response: "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Exception Test from engine([search_replace])][FooterText1][footer&amp;data]"
 	});
-	
+
 	runHttpUnitTest("Application Object - Template Rendering - Error on Error Page - PHP", "test-app-render.php/php-error-on-error-page", {
-	    status: 500,
-	    responseContains: [
-	        '<td class="error-type">ErrorException</td>',
-	        '<td class="error-severity">8 (E_NOTICE)</td>',
-	        '<td class="error-message">Undefined variable: header_data</td>',
-	        "header-1.php</td></tr>",
-	        "<td>include</td>"
-	    ]
+		status: 500,
+		responseContains: [
+			'<td class="error-type">ErrorException</td>',
+			[
+				'<td class="error-severity">8 (E_NOTICE)</td>',  // PHP 5 and 7
+				'<td class="error-severity">2 (E_WARNING)</td>', // PHP 8
+			],
+			[
+				'<td class="error-message">Undefined variable: header_data</td>',  // PHP 5 and 7
+				'<td class="error-message">Undefined variable $header_data</td>', // PHP 8
+			],
+			"header-1.php</td></tr>",
+			"<td>include</td>"
+		]
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Exception on Error Page - PHP", "test-app-render.php/php-exception-on-error-page", {

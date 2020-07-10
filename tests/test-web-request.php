@@ -1434,7 +1434,8 @@ $app->get('/value', function() use ($app) {
             'data' => $json,
             'key' => array('tags'),
             'format' => 'string',
-            'expectedError' => 'trim() expects parameter 1 to be string, array given'
+            'expectedError' => 'trim() expects parameter 1 to be string, array given', // PHP 5 and 7
+            'expectedErrorAlt' => 'Array to string conversion', // PHP 8
         ),
     );
 
@@ -1458,7 +1459,11 @@ $app->get('/value', function() use ($app) {
             var_dump($value);
             exit();
         } catch (\Exception $e) {
-            if ($e->getMessage() !== $test['expectedError']) {
+            $err_matches_expected = ($e->getMessage() === $test['expectedError']);
+            if (!$err_matches_expected && array_key_exists('expectedErrorAlt', $test)) {
+                $err_matches_expected = ($e->getMessage() === $test['expectedErrorAlt']);
+            }
+            if (!$err_matches_expected) {
                 echo sprintf('Error with Exception Test %d, Key [%s], The test correctly threw an exception but the message did not match the expected error message.', $test_error_count, (is_array($test['key']) ? implode(', ', $test['key']) : $test['key']));
                 echo '<br><br>';
                 var_dump($test);

@@ -498,8 +498,13 @@
         ]
     });
 
-    runHttpUnitTest("Application Object - Error Test - Error Type E_WARNING", "test-app.php/error-track-errors", {
-        response: "[$php_errormsg: Division by zero]"
+    runHttpUnitTest("Application Object - Error Test - Error Type E_WARNING with the setting [track_errors] turned on", "test-app.php/error-track-errors", {
+        responseContains: [
+            [
+                "[$php_errormsg: Division by zero]",
+                "Skipping Test, PHP version is 8 or above",
+            ]
+        ]
     });
 
     // For the [responseContains] array's with 2 items the first line is for PHP 5
@@ -539,40 +544,46 @@
         responseContains: [
             '<td class="error-type">ErrorException</td>',
             '<td class="error-severity">8 (E_NOTICE)</td>',
-            '<td class="error-message">Undefined variable: undefined_variable</td>',
+            [
+                '<td class="error-message">Undefined variable: undefined_variable</td>',
+                '<td class="error-message">A non well formed numeric value encountered</td>'
+            ],
             "<td>errorHandler</td>",
             "<td>{closure}</td>"
         ]
     });
 
-    // In the [responseContains] nested array's the first line is 
-    // for PHP 5 and second line is for PHP 7
     runHttpUnitTest("Application Object - Error Test - Error Type E_RECOVERABLE_ERROR or Throwable TypeError", "test-app.php/error-recoverable", {
         status: 500,
         responseContains: [
             [
-                '<td class="error-type">ErrorException</td>',
-                '<td class="error-type">TypeError</td>'
+                '<td class="error-type">ErrorException</td>', // PHP 5
+                '<td class="error-type">TypeError</td>' // PHP 7+
             ],
             [
-                '<td class="error-severity">4096 (E_RECOVERABLE_ERROR)</td>',
-                '<td class="error-code">0</td>'
+                '<td class="error-severity">4096 (E_RECOVERABLE_ERROR)</td>', // PHP 5
+                '<td class="error-code">0</td>' // PHP 7+
             ],
-            '<td class="error-message">Argument 1 passed to showObject() must be an instance of stdClass, string given, called in',
+            [
+                '<td class="error-message">Argument 1 passed to showObject() must be an instance of stdClass, string given, called in', // PHP 5 and 7
+                '<td class="error-message">showObject(): Argument #1 ($obj) must be of type stdClass, string given, called in', // PHP 8
+            ],
             "<td>showObject</td>"
         ]
     });
 
-    // In the [responseContains] nested array's the first line is 
-    // for PHP 5 and second line is for PHP 7
     runHttpUnitTest("Application Object - Error Test - Error Type E_DEPRECATED", "test-app.php/error-deprecated", {
         status: 500,
         responseContains: [
             '<td class="error-type">ErrorException</td>',
             '<td class="error-severity">8192 (E_DEPRECATED)</td>',
             [
+                // PHP 5
                 '<td class="error-message">Function split() is deprecated</td>',
-                '<td class="error-message">Non-static method DeprecatedTest::nonStaticFunction() should not be called statically</td>'
+                // PHP 7
+                '<td class="error-message">Non-static method DeprecatedTest::nonStaticFunction() should not be called statically</td>',
+                // PHP 8
+                '<td class="error-message">Required parameter $b follows optional parameter $a</td>'
             ],
             "<td>errorHandler</td>",
         ]
@@ -627,7 +638,10 @@
         responseContains: [
             '<td class="error-type">ErrorException</td>',
             '<td class="error-severity">64 (E_COMPILE_ERROR)</td>',
-            '<td class="error-message">{closure}(): Failed opening required &#039;missing-file.php&#039;',
+            [
+                '<td class="error-message">{closure}(): Failed opening required &#039;missing-file.php&#039;',
+                '<td class="error-message">Cannot use &#039;string&#039; as class name as it is reserved</td>',
+            ],
             "<td>shutdown</td>"
         ]
     });

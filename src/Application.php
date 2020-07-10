@@ -533,6 +533,8 @@ class Application
             // Return false so that the predefined php variable $php_errormsg
             // will be set. [$php_errormsg] is only set if this function
             // returns false and the setting 'track_errors' is turned on.
+            // [$php_errormsg] is only available for PHP 5 and 7 and has
+            // been removed for PHP 8.
             return false;
         }
 
@@ -1329,7 +1331,7 @@ class Application
             throw new \Exception(sprintf('Wrong number of parameters for the $callback closure definition defined from [%s->%s()]. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
         } elseif ($param_array[0]->isDefaultValueAvailable()) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The first parameter was defined as an optional value. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
-        } elseif (PHP_VERSION_ID >= 80000 && $param_array[1]->getType()->getName() !== 'array') {
+        } elseif (PHP_VERSION_ID >= 80000 && ($param_array[1]->getType() === null || $param_array[1]->getType()->getName() !== 'array')) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The second parameter was not defined with an array typehint. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
         } elseif (PHP_VERSION_ID < 80000 && !$param_array[1]->isArray()) {
             throw new \Exception(sprintf('Invalid parameters for the $callback closure definition defined from [%s->%s()]. The second parameter was not defined with an array typehint. The closure should be defined as [function($file, array $data = null)]', __CLASS__, __FUNCTION__));
@@ -1414,6 +1416,16 @@ class Application
         // Clear Previous Output, this prevents duplicate headers on template parse errors
         if (ob_get_length()) {
             ob_end_clean();
+        }
+
+        // PHP 8 Additional Validation. This specific error is correctly converted
+        // to an exception with PHP 5 and 7, however early beta testing with PHP 8 
+        // caused Unit Tests that tested error conditions to break with a fatal
+        // error that was only logged to CLI but not thrown to the calling app.
+        if (PHP_VERSION_ID >= 80000) {
+            if (!is_array($this->locals)) {
+                throw new \Exception('extract() expects parameter 1 to be array, ' . strtolower(gettype($this->locals)) . ' given');
+            }
         }
 
         // Start new output buffering

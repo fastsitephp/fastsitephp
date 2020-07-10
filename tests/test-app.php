@@ -990,6 +990,9 @@ $app->get('/error-warning', function() use ($app) {
 // the PHP predefined variable [$php_errormsg] to be set.
 // As of PHP 7.2.0 [$php_errormsg] is being DEPRECATED
 $app->get('/error-track-errors', function() use ($app) {
+    if (PHP_VERSION_ID >= 80000) {
+        return 'Skipping Test, PHP version is 8 or above';
+    }
     ini_set('track_errors', '1');
     error_reporting(0);
     $value = 1 / 0;
@@ -1004,6 +1007,12 @@ $app->get('/error-parse', function() use ($app) {
 
 // Error Test with Error Type E_NOTICE
 $app->get('/error-notice', function() use ($app) {
+    if (PHP_VERSION_ID >= 80000) {
+        // Many notice and warning errors in PHP 5 and 7 have been converted to errors
+        // in PHP 8. If the file includes an `int` typehint as shown below then this
+        // file would not run in PHP 5 or 7 so eval is used to trigger an E_NOTICE.
+        eval('function returnInt(int $i) { return $i; } echo returnInt("1a");');
+    }
     // Try to use an undefined variable, by default PHP processing would continue
     // however because $app->setup() is called this error will be handled
     echo $undefined_variable;
@@ -1042,7 +1051,7 @@ $app->get('/error-deprecated', function() use ($app) {
     if (PHP_MAJOR_VERSION === 5) {
         $data = split(',', 'a,b,c');
         echo join(',', $data);
-    } else {
+    } elseif (PHP_MAJOR_VERSION === 7) {
         // In PHP 7 the split() function was removed so test by calling
         // a non-static function of a class using a static function call.
         class DeprecatedTest {
@@ -1051,6 +1060,11 @@ $app->get('/error-deprecated', function() use ($app) {
             }
         }
         echo DeprecatedTest::nonStaticFunction();
+    } else {
+        // PHP 8
+        // Additional logic will likely be needed for
+        // each future Major release of PHP.
+        eval('function test($a = [], $b) { }');
     }
 });
 
@@ -1076,6 +1090,9 @@ $app->get('/error-user-deprecated', function() use ($app) {
 
 // Error Test with Error Type E_COMPILE_ERROR
 $app->get('/error-compile-error', function() use ($app) {
+    if (PHP_VERSION_ID >= 80000) {
+        eval('class string {}');
+    }
     require('missing-file.php');
 });
 

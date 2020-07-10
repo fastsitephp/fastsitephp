@@ -704,10 +704,18 @@
     runHttpUnitTest("Response Object - Cookie Test 3 - Error Setting Cookie", "test-web-response.php/cookie-3", {
         status: 500,
         responseContains: [
-            '<td class="error-type">ErrorException</td>',
-            '<td class="error-severity">2 (E_WARNING)</td>',
-            '<td class="error-message">setcookie() expects parameter 2 to be string, array given</td>',
-            "<td>errorHandler</td>",
+            [
+                '<td class="error-type">ErrorException</td>',
+                '<td class="error-type">TypeError</td>'
+            ],
+            [
+                '<td class="error-severity">2 (E_WARNING)</td>',
+                '<td class="error-code">0</td>',
+            ],
+            [
+                '<td class="error-message">setcookie() expects parameter 2 to be string, array given</td>',
+                '<td class="error-message">setcookie(): Argument #2 ($value) must be of type string, array given</td>',
+            ],
             "<td>setcookie</td>",
             "<td>send</td>"
         ]
@@ -716,17 +724,29 @@
     runHttpUnitTest("Response Object - Cookie Test 4 - Exception Setting Cookie", "test-web-response.php/cookie-4", {
         status: 500,
         responseContains: [
-            '<td class="error-type">Exception</td>',
-            '<td class="error-message">Error: setcookie() returned false for cookie named [unit-test]</td>',
+            [
+                '<td class="error-type">Exception</td>',
+                '<td class="error-type">TypeError</td>'
+            ],
+            [
+                '<td class="error-message">Error: setcookie() returned false for cookie named [unit-test]</td>',
+                '<td class="error-message">setcookie(): Argument #2 ($value) must be of type string, array given</td>',
+            ],
             "<td>send</td>"
         ]
     });
-
+    
     runHttpUnitTest("Response Object - Cookie Test 5 - Exception Setting Cookie", "test-web-response.php/cookie-5", {
         status: 500,
         responseContains: [
-            '<td class="error-type">Exception</td>',
-            '<td class="error-message">Error: setcookie() returned false for cookie named [Name was not a string, gettype=array]</td>',
+        [
+                '<td class="error-type">Exception</td>',
+                '<td class="error-type">TypeError</td>'
+            ],
+            [
+                '<td class="error-message">Error: setcookie() returned false for cookie named [Name was not a string, gettype=array]</td>',
+                '<td class="error-message">setcookie(): Argument #1 ($name) must be of type string, array given</td>',
+            ],
             "<td>send</td>"
         ]
     });

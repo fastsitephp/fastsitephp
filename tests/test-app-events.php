@@ -131,17 +131,18 @@ $app->error(function() use ($app) {
 
 $app->beforeSend(function($content) use ($app) {
     // Change Response Type
-    if ($app->requestedPath() !== '/error-in-after') {
+    $req_path = $app->requestedPath();
+    if ($req_path !== '/error-in-after' && $req_path !== '/invalid-event-test') {
         $app->header('Content-Type', 'text/plain');
     }
 
     // Raise Exception with specific URL
-    if ($app->requestedPath() === '/error-in-before-send') {
+    if ($req_path === '/error-in-before-send') {
         throw new \Exception('Error in beforeSend() event');
     }
 
     // Modify and Return the Response Object
-    if ($app->requestedPath() === '/response-object-events') {
+    if ($req_path === '/response-object-events') {
         $content->content .= '[beforeSend(' . get_class($content) . ')]';
         return $content;
     }
@@ -324,11 +325,15 @@ $app->get('/invalid-event-test', function() use ($app) {
                 $content .= '[' . $event . '() Unexpected ErrorException: ' . $e->getMessage() . ']';
             }
         } catch (\TypeError $e) {
-            // PHP 7
-            if (strpos($e->getMessage(), 'Argument 1 passed to FastSitePHP\Application::' . $event . '() must be an instance of Closure, string given') === 0) {
-                $content .= '[' . $event . '() Expected ErrorException Message]';
+            if (PHP_MAJOR_VERSION === 7) {
+                $expected_message = 'Argument 1 passed to FastSitePHP\Application::' . $event . '() must be an instance of Closure, string given';
             } else {
-                $content .= '[' . $event . '() Unexpected ErrorException: ' . $e->getMessage() . ']';
+                $expected_message = 'FastSitePHP\Application::' . $event . '(): Argument #1 ($callback) must be of type Closure, string given';
+            }
+            if (strpos($e->getMessage(), $expected_message) === 0) {
+                $content .= '[' . $event . '() Expected TypeError Message]';
+            } else {
+                $content .= '[' . $event . '() Unexpected TypeError: ' . $e->getMessage() . ']';
             }
         } catch (\Exception $e) {
             $content .= '[' . $event . '() Unexpected Exception: ' . $e->getMessage() . ']';

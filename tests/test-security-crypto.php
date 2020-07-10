@@ -127,10 +127,10 @@ function runCompatabilityTests($tests, $error_tests) {
            echo '<br>';
            echo json_encode($test);
            exit();
-       } catch (\Exception $e) {
+        } catch (\Exception $e) {
            // Check expected error message
            if (is_string($test['expected'])) {
-               $matches = ($e->getMessage() === $test['expected']);
+                $matches = ($e->getMessage() === $test['expected']);
            } else {
                 $matches = false;
                 foreach ($test['expected'] as $expected) {
@@ -164,7 +164,35 @@ function runCompatabilityTests($tests, $error_tests) {
 		   // and add results to a string.
            $error_count++;
            $all_results_string .= $e->getMessage();
-       }
+        } catch (\Throwable $e) {
+            // PHP 8 - Some of the previous errors were converted to ErrorException which
+            // can no longer use `catch (\Exception $e)` and instead must catch a specific
+            // `Error` or `Throwable` inteface.
+            if (is_string($test['expected'])) {
+                $matches = ($e->getMessage() === $test['expected']);
+            } else {
+                    $matches = false;
+                    foreach ($test['expected'] as $expected) {
+                        $matches = ($e->getMessage() === $expected);
+                        if ($matches) {
+                            break;
+                        }
+                    }
+            }
+            if (!$matches) {
+                echo sprintf('Test %d did not return the expected error message:', $error_count);
+                echo '<br>';
+                echo '<strong>Error:</strong> ' . $e->getMessage();
+                echo '<br>';
+                echo '<strong>Expected:</strong> ' . json_encode($test['expected']);
+                exit();
+            }
+
+            // Keep count of errors
+            // and add results to a string.
+            $error_count++;
+            $all_results_string .= $e->getMessage();
+        }
     }
 
     // Return counts
@@ -1463,7 +1491,12 @@ $app->get('/compatibility-functions', function() {
         array(
             'function' => 'bin2hex',
             'data' => array(),
-            'expected' => 'bin2hex() expects parameter 1 to be string, array given',
+            'expected' => array(
+                // PHP 5 and 7
+                'bin2hex() expects parameter 1 to be string, array given',
+                // PHP 8
+                'bin2hex(): Argument #1 ($data) must be of type string, array given',
+            ),
         ),
         // --------
         // hex2bin()
@@ -1471,7 +1504,10 @@ $app->get('/compatibility-functions', function() {
         array(
             'function' => 'hex2bin',
             'data' => array(),
-            'expected' => 'hex2bin() expects parameter 1 to be string, array given',
+            'expected' => array(
+                'hex2bin() expects parameter 1 to be string, array given',
+                'hex2bin(): Argument #1 ($data) must be of type string, array given',
+            ),
         ),
         array(
             'function' => 'hex2bin',
@@ -1495,6 +1531,7 @@ $app->get('/compatibility-functions', function() {
             'expected' => array(
                 'hash_equals(): Expected known_string to be a string, integer given',
                 'hash_equals(): Expected known_string to be a string, int given',
+                'hash_equals(): Argument #1 ($known_string) must be of type string, int given',
             ),
         ),
         array(
@@ -1503,6 +1540,7 @@ $app->get('/compatibility-functions', function() {
             'expected' => array(
                 'hash_equals(): Expected user_string to be a string, boolean given',
                 'hash_equals(): Expected user_string to be a string, bool given',
+                'hash_equals(): Argument #2 ($user_string) must be of type string, bool given',
             ),
         ),
     );
@@ -1670,17 +1708,26 @@ $app->get('/compatibility-functions-pbkdf2', function() {
         array(
             'function' => 'hash_pbkdf2',
             'parameters' => array('test', 'password', 'salt', 1, 20, false),
-            'expected' => 'hash_pbkdf2(): Unknown hashing algorithm: test',
+            'expected' => array(
+                'hash_pbkdf2(): Unknown hashing algorithm: test',
+                'hash_pbkdf2(): Argument #1 ($algo) must be a valid cryptographic hashing algorithm',
+            ),
         ),
         array(
             'function' => 'hash_pbkdf2',
             'parameters' => array('sha1', 'password', 'salt', 0, 20, false),
-            'expected' => 'hash_pbkdf2(): Iterations must be a positive integer: 0',
+            'expected' => array(
+                'hash_pbkdf2(): Iterations must be a positive integer: 0',
+                'hash_pbkdf2(): Argument #4 ($iterations) must be greater than 0',
+            ),
         ),
         array(
             'function' => 'hash_pbkdf2',
             'parameters' => array('sha1', 'password', 'salt', 1, -1, false),
-            'expected' => 'hash_pbkdf2(): Length must be greater than or equal to 0: -1',
+            'expected' => array(
+                'hash_pbkdf2(): Length must be greater than or equal to 0: -1',
+                'hash_pbkdf2(): Argument #5 ($length) must be greater than or equal to 0',
+            ),
         ),
     );
 

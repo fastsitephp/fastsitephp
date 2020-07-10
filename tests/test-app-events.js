@@ -128,8 +128,12 @@
 	});
 	
 	runHttpUnitTest("Application Object - Event Testing - Checking that only Closure Functions can be added to Events", "test-app-events.php/invalid-event-test", {
-	    type: "text",
-	    response: "[before() Expected ErrorException Message][beforeSend() Expected ErrorException Message][after() Expected ErrorException Message][error() Expected ErrorException Message][notFound() Expected ErrorException Message][beforeSend1][beforeSend2][after1][after2][After-Run]"
+		responseContains: [
+			[
+				"[before() Expected ErrorException Message][beforeSend() Expected ErrorException Message][after() Expected ErrorException Message][error() Expected ErrorException Message][notFound() Expected ErrorException Message][beforeSend1][beforeSend2][after1][after2][After-Run]",
+				"[before() Expected TypeError Message][beforeSend() Expected TypeError Message][after() Expected TypeError Message][error() Expected TypeError Message][notFound() Expected TypeError Message][beforeSend1][beforeSend2][after1][after2][After-Run]",
+			]
+		]
 	});
     
 	runHttpUnitTest("Application Object - Event Testing - Mixed Response in Route 1", "test-app-events.php/mixed-response", {

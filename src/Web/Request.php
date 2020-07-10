@@ -305,12 +305,12 @@ class Request
             // Always return a string type and an empty string if no data.
             // Whitespace is trimmed (spaces, tabs, new lines, etc).
             case 'string':
-                $value = ($isset ? trim($value) : '');
+                $value = ($isset ? trim((string)$value) : '');
                 return $value;
             // Return string data type or null if not set or
             // the string is empty. Whitespace is trimmed.
             case 'string?':
-                $value = ($isset ? trim($value) : '');
+                $value = ($isset ? trim((string)$value) : '');
                 return ($value === '' ? null : $value);
             // Always return a string and keep any whitespace
             case 'string with whitespace':

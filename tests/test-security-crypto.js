@@ -66,14 +66,18 @@
         responseContains: [[
             "[/compatibility-functions], [Tests: 26], [Error Tests: 6], [Len: 661], [sha256: 5fa42c28767343636ed2ce0b1c70b548415a23bb7dffc6d7b103294ce7922205]",
             "[/compatibility-functions], [Tests: 26], [Error Tests: 6], [Len: 654], [sha256: 45589eff61e712d8959f0a4b5a70bd1cc330b6ce08e7bf8dc53040f4ee5614cd]",
+            "[/compatibility-functions], [Tests: 26], [Error Tests: 6], [Len: 704], [sha256: 4ad29ee9cdcad1ce645bb179f700e20cb7cc6c859d3ff1e9a18b9ac2ad19ff0c]",
         ]]
     });
     
     runHttpUnitTest("Security Crypto - Compatibility Functions for PBKDF2 - RFC 6070 Test Vectors", "test-security-crypto.php/compatibility-functions-pbkdf2", {
         responseContains: [[
-        	"[/compatibility-functions-pbkdf2], [Tests: 12], [Error Tests: 3], [Len: 632], [sha256: 880e6e8f4331679ac682d0a4da9d5303e481752505f4df7cb4d8bb543925528d]",
-        	// This version only runs if uncommenting long running tests for pbkdf2
-        	"[/compatibility-functions-pbkdf2], [Tests: 14], [Error Tests: 3], [Len: 704], [sha256: 40ccf3534a26bc302bf07450ba3f1d351a810cbe8e0b3a21a4c75b4ce763c8f3]",
+            // PHP 5 and 7
+            "[/compatibility-functions-pbkdf2], [Tests: 12], [Error Tests: 3], [Len: 632], [sha256: 880e6e8f4331679ac682d0a4da9d5303e481752505f4df7cb4d8bb543925528d]",
+            // PHP 8
+            "[/compatibility-functions-pbkdf2], [Tests: 12], [Error Tests: 3], [Len: 687], [sha256: 16b7c5df588e72f2dbd734ed663a3e894de4284413faf3bb802f5ff707725a85]",
+            // This version only runs if uncommenting long running tests for pbkdf2
+            "[/compatibility-functions-pbkdf2], [Tests: 14], [Error Tests: 3], [Len: 704], [sha256: 40ccf3534a26bc302bf07450ba3f1d351a810cbe8e0b3a21a4c75b4ce763c8f3]",
         ]]
     });
     
