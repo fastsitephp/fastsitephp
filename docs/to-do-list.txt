@@ -25,23 +25,14 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Update Framework and Unit Tests for PHP 8 Alpha 1
-    Windows Binary Downloads:
-        https://windows.php.net/qa/
-    Source downloads for *nix:
-        https://downloads.php.net/~pollita/
-    - For now likely just test on Windows and wait for *nix binary downloads
-        as PHP 8 is still in Alpha 1 and likely to go through more changes.
-    - So far on Windows 64-bit 42 of 520 Unit Tests failed but the main site and all demos work
-        At a glance many of the failures are minor and some expected.
-    - To get Unit Tests working on Windows after download copy [php.ini-production] as [php.ini]
-        then enable settings:
-            extension_dir = "ext"
-            extension=curl
-            extension=openssl
-            extension=pdo_sqlite
-    - Once all tests run from [php.ini-production] replace [php.ini] using [php.ini-development]
-        and make sure warnings are clear and that tests that fail are expected to fail.
+**) Finish current updates for PHP 8 Alpha 1
+    - Changes are on the main branch and will be published as a new release soon
+    - So far everything is working correctly after latest updates, additional testing is being preformed to make sure all versions of PHP work
+
+**) See this issue from the starter site - if supported it may require some minor framework changes.
+    Ideally some sort of update can be put in place to avoid the issue for unexpected system settings.
+    https://github.com/fastsitephp/starter-site/issues/4
+    * Once this issue is fixed/handled then a new release will be published
 
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
@@ -198,6 +189,16 @@ TODO List
     - Need to come up with workflow and/or examples on how to publish images
         and then docs. Currently images are hosted on AWS and saved to a seperate
         Repository.
+    -  How to use the Windows Binary Downloads:
+        https://windows.php.net/download/
+        https://windows.php.net/qa/
+        - To get Unit Tests and Site features working on Windows after download copy [php.ini-production] as [php.ini]
+            then enable settings:
+                extension_dir = "ext"
+                extension=curl
+                extension=openssl
+                extension=pdo_sqlite
+
 
 *) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
     - Make the layout easier to use when picking an OS:

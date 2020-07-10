@@ -4,6 +4,10 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 ## Next Release (Changes published on GitHub but not Composer/Packagist)
 
+* Added support for PHP 8 Alpha 1
+  * Overall most features worked out of the box with PHP 8 however a few minor changes were needed for full support and a number of unit tests had to be updated
+  * Updates for PHP 8 do not affect previous versions of PHP so FastSitePHP now works with `PHP 5.3` to `PHP 8.0 (Alpha 1)`
+  * Additional changes may be needed because PHP 8 is not yet finalized
 * Updates to simply the rules for linting using `phpstan` https://github.com/phpstan/phpstan
   * Thanks **Ondřej Mirtes** https://github.com/ondrejmirtes (Author of phpstan) and **Viktor Szépe** https://github.com/szepeviktor for helping out.
   * Updates are in pull requests:
