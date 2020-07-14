@@ -72,10 +72,18 @@ echo "\n";
 echo str_repeat('-', 80);
 echo "\n";
 echo "dirContainsPath():\n";
+echo "i18n/_.en.json\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n/_.en.json'));
 var_dump(is_file(__DIR__ . '/i18n/_.en.json'));
+echo "../index.php\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, '../index.php'));
 var_dump(is_file(__DIR__ . '/../index.php'));
+echo "i18n\n";
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n'));
+var_dump(is_dir(__DIR__ . '/i18n'));
+echo "../src\n";
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, '../src'));
+var_dump(is_dir(__DIR__ . '/../src'));
 
 echo "\n";
 echo "dirContainsDir():\n";

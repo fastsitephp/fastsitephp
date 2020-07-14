@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright Conrad Sollitt and Authors. For full details of copyright
+ * Copyright 2019 Conrad Sollitt and Authors. For full details of copyright
  * and license, view the LICENSE file that is distributed with FastSitePHP.
  *
  * @package  FastSitePHP
@@ -76,7 +76,7 @@ class Security
     }
 
     /**
-     * Prevent Path Traversal Attacks by verifying if a file exists under the
+     * Prevent Path Traversal Attacks by verifying if a file or directory exists under the
      * specified directory. Sub-directories can be specified, however path traversal
      * using '../' or '..\' is not allowed for the [$path] paramater.
      *
@@ -116,7 +116,7 @@ class Security
         $full_path = implode(DIRECTORY_SEPARATOR, array($dir, $path));
 
         // Return true only if the directory contains the file
-        return is_file($full_path);
+        return (is_file($full_path) || is_dir($full_path));
     }
 
     /**

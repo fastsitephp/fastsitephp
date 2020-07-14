@@ -25,10 +25,6 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Finish current updates for PHP 8 Alpha 1
-    - Changes are on the main branch and will be published as a new release soon
-    - So far everything is working correctly after latest updates, additional testing is being preformed to make sure all versions of PHP work
-
 **) See this issue from the starter site - if supported it may require some minor framework changes.
     Ideally some sort of update can be put in place to avoid the issue for unexpected system settings.
     https://github.com/fastsitephp/starter-site/issues/4
@@ -39,6 +35,10 @@ TODO List
     * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
       of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
     https://github.com/the-benchmarker/web-frameworks
+
+**) FastSitePHP is tested and updated for PHP 8 Alpha 2 (as of July 12 2020)
+    * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
+    * For the final release of PHP 8 all Unit Tests must pass (currently all tests pass for Alpha 2)
 
 **) Create Docker Image
     - Include the starter site?
