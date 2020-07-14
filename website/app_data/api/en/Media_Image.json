@@ -174,7 +174,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Close Image to free memory",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         }

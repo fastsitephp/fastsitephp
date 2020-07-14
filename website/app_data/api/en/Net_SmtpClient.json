@@ -24,6 +24,7 @@
                 "@param int|null $port",
                 "@param int $timeout",
                 "@param \\Closure $debug_callback",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -35,7 +36,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Class Destructor Automatically send a QUIT command to the server and close the socket connection.",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -47,6 +50,7 @@
             "description": "Static helper function that sends emails using config values defined in either the [app->config] array or as environment variables.\n\nFor sites that store sensitive information in the environment or special config files using this function prevents the need to hard-code SMTP and Auth values in the source. At a minimum values for [SMTP_HOST] and [SMTP_PORT] are required. [SMTP_TIMEOUT] defaults to 5 seconds if not set; [SMTP_USER] and [SMTP_PASSWORD] are only needed if you SMTP Server requires an Auth User.",
             "attributes": [
                 "@param array $emails - Array of [\\FastSitePHP\\Net\\Email] objects",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -60,6 +64,7 @@
             "description": "Send an email",
             "attributes": [
                 "@param \\FastSitePHP\\Net\\Email $email",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -75,6 +80,7 @@
                 "@param string|null $host",
                 "@param int|null $port",
                 "@param int $timeout",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -86,7 +92,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Close SMTP Server Connection. If calling this manually then [quit()] should be called first.",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -97,11 +105,11 @@
             "isGetterSetter": false,
             "description": "Send an EHLO (Extended Hello) Command to the SMTP Server and read the reply lines which define supported extensions. This must be called after connecting to the server and also after sending STARTTLS.",
             "attributes": [
-                "@param null|string $client - Optionally pass a client name to send to the server, by default the FQDN of the current server is used. See the function [fqdn()].",
-                "@return array - Reply lines from the server",
+                "@param null|string $client Optionally pass a client name to send to the server, by default the FQDN of the current server is used. See the function [fqdn()].",
+                "@return array Reply lines from the server",
                 "@throws \\Exception"
             ],
-            "returnType": "array - Reply lines from the server",
+            "returnType": "array Reply lines from the server",
             "links": []
         },
         {
@@ -111,11 +119,11 @@
             "isGetterSetter": false,
             "description": "Send a HELO (Hello) Command to the SMTP Server. This is typically used by very old servers that do not support EHLO.",
             "attributes": [
-                "@param null|string $client - See comments in [ehlo()]",
-                "@return array - Reply lines from the server",
+                "@param null|string $client See comments in [ehlo()]",
+                "@return array Reply lines from the server",
                 "@throws \\Exception"
             ],
-            "returnType": "array - Reply lines from the server",
+            "returnType": "array Reply lines from the server",
             "links": []
         },
         {
@@ -144,9 +152,10 @@
             "attributes": [
                 "@param null|string $client - See comments in [ehlo()]",
                 "@return array - Reply lines from the server from the EHLO command",
+                "@return array",
                 "@throws \\Exception"
             ],
-            "returnType": "array - Reply lines from the server from the EHLO command",
+            "returnType": "array",
             "links": []
         },
         {
@@ -158,6 +167,7 @@
             "attributes": [
                 "@param string $user",
                 "@param string $password",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -172,6 +182,7 @@
             "attributes": [
                 "@param string $user",
                 "@param string $password",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -186,6 +197,7 @@
             "attributes": [
                 "@param string $user",
                 "@param string $password",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -200,6 +212,7 @@
             "attributes": [
                 "@param string $email",
                 "@param bool $utf8 - Defaults to false",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -213,6 +226,7 @@
             "description": "Send the RCPT TO Command to the SMTP Server. This gets called for each person the email is being sent to. This is handled automatically from the [send()] function.",
             "attributes": [
                 "@param string $email",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -239,6 +253,7 @@
             "isGetterSetter": false,
             "description": "Send a RSET (Reset) Command to the SMTP Server. This would be used to cancel an message.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -251,6 +266,7 @@
             "isGetterSetter": false,
             "description": "Send a NOOP (No operation) Command to the SMTP Server. This can be used to verify if the connection is ok.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -264,6 +280,7 @@
             "description": "Send email message using the DATA command. This is handled automatically from the [send()] function.",
             "attributes": [
                 "@param string $data",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -289,6 +306,7 @@
             "isGetterSetter": false,
             "description": "Send a QUIT Command to the SMTP Server. This gets call automatically when the object instance is destroyed.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,

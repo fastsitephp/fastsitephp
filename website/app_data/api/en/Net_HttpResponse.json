@@ -49,9 +49,9 @@
             "defaultValue": "null",
             "description": "Response Body as a Text String. PHP Strings are array's of bytes so binary responses will also be in string format.",
             "attributes": [
-                "@var string|null"
+                "@var string|false|null"
             ],
-            "dataType": "string\nnull",
+            "dataType": "string\nfalse\nnull",
             "links": []
         },
         {

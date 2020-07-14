@@ -197,7 +197,8 @@
             "isGetterSetter": false,
             "description": "Application defined exception handler function",
             "attributes": [
-                "@param \\Exception|\\Throwable $e"
+                "@param \\Exception|\\Throwable $e",
+                "@return void"
             ],
             "returnType": null,
             "links": []
@@ -225,7 +226,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Application defined error handler function for fatal errors",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -320,6 +323,7 @@
             "attributes": [
                 "@param string $url",
                 "@param int $status_code",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -383,6 +387,7 @@
             "isGetterSetter": false,
             "description": "This is the main function that processes the request, determines the route, and sends a response. Routes, settings, validation rules, etc need to be defined prior to calling this function.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,

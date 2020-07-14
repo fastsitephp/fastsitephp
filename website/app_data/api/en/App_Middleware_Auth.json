@@ -90,6 +90,35 @@
             ],
             "returnType": "array",
             "links": []
+        },
+        {
+            "definition": "validateDbUser($app, $login, $password)",
+            "target": "fn_validateDbUser",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Validate a user and password using a Database. This example uses the demo SQLite Db that is created by this class and can be easily modified to support other databases.",
+            "attributes": [
+                "@param Application $app",
+                "@param string $login",
+                "@param string $password",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
+        },
+        {
+            "definition": "validateLdapUser($login, $password)",
+            "target": "fn_validateLdapUser",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Validate a user and password using LDAP. This would be commonly used to validate users on a corporate network (for example a Windows Domain).",
+            "attributes": [
+                "@param string $login",
+                "@param string $password",
+                "@return bool"
+            ],
+            "returnType": "bool",
+            "links": []
         }
     ],
     "links": []

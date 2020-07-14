@@ -50,7 +50,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Class Deconstructor. Calls [close()] automatically unless using a Persistent Connection.",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -60,7 +62,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Close the connection",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },

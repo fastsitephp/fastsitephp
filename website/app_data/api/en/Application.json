@@ -841,6 +841,7 @@
                 "@link http:\/\/en.wikipedia.org\/wiki\/URL_redirection",
                 "@param string $url",
                 "@param int $status_code",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -922,6 +923,7 @@
             "isGetterSetter": false,
             "description": "This is the main function that processes the request, determines the route, and sends a response. Routes, settings, validation rules, etc need to be defined prior to calling this function.",
             "attributes": [
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,

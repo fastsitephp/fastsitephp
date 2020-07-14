@@ -67,7 +67,8 @@
             "isGetterSetter": false,
             "description": "Remove (delete) a key exists from the database.",
             "attributes": [
-                "@param string $key"
+                "@param string $key",
+                "@return void"
             ],
             "returnType": null,
             "links": []

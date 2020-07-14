@@ -54,8 +54,10 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Return HTML that will be used to show the logged messages. This function gets called to replace the current route or after the response is sent.",
-            "attributes": [],
-            "returnType": null,
+            "attributes": [
+                "@return string"
+            ],
+            "returnType": "string",
             "links": []
         },
         {

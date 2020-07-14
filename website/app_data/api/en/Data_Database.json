@@ -36,7 +36,7 @@
                 "@param null|string $user - User Name for the Connection",
                 "@param null|string $password - Password for the User",
                 "@param bool $persistent - If [true] then PHP will keep a persistent connection to the database after the script finishes.",
-                "@param null|array $options - Init options for the database"
+                "@param array $options - Init options for the database"
             ],
             "returnType": null,
             "links": [

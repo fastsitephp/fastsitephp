@@ -56,6 +56,7 @@
             "attributes": [
                 "@param string $file_name - Name of the file, example 'about' which returns 'about.fr.json' if language [fr] is selected",
                 "@param string $lang - User's Selected Language",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,
@@ -109,6 +110,7 @@
             "description": "Static function that can be called for each request to make sure that a language file is always loaded for template rendering when [$app->render()] is called.\n\nThis is useful if your site uses PHP or other templates for rendering and expects the [i18n] default file to always be available. For example an unexpected error or call to [$app->pageNotFound()] can trigger a template to be rendered.",
             "attributes": [
                 "@param \\FastSitePHP\\Application $app",
+                "@return void",
                 "@throws \\Exception"
             ],
             "returnType": null,

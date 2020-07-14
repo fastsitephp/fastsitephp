@@ -68,7 +68,8 @@
             "description": "Encrypt a file\n\nIf a file is 10 MB or smaller (or any size on Windows) then it will be processed in memory, otherwise the file will be processed using shell commands. This allows for files of any size to be encrypted.\n\nIf you need to encrypt files that are larger than 2 GB on a 32-Bit OS then you should use the [FileEncryption] class directly like this:\n    $crypto = new FileEncryption();\n    $crypto->processFilesWithCmdLine(true);\n    $crypto->encryptFile($file_path, $enc_file, $key);",
             "attributes": [
                 "@param string $file_path - Input file to encrypt, this file will not be modified",
-                "@param string $enc_file - Path to save the encrypted (output) file"
+                "@param string $enc_file - Path to save the encrypted (output) file",
+                "@return void"
             ],
             "returnType": null,
             "links": []
@@ -81,7 +82,8 @@
             "description": "Decrypt a file that was created from [encryptFile()]. The same memory and OS rules apply for file processing.\n\nThis function has no return value so if decryption fails an exception is thrown.",
             "attributes": [
                 "@param string $enc_file - Encrypted file, this file will not be modified",
-                "@param string $output_file - Path to save the decrypted file"
+                "@param string $output_file - Path to save the decrypted file",
+                "@return void"
             ],
             "returnType": null,
             "links": []

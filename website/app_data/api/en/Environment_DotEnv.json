@@ -19,7 +19,7 @@
             "description": "Load a [.env] file from a directory. The directory and file must exist or an exception will be thrown.\n\nAn optional array [$required_vars] can be passed and if any key from the array do not exist in the file an exception will be thrown. The actual values are not validated by this class.\n\nReturns an array of all variables read from the file.",
             "attributes": [
                 "@param string $dir_path",
-                "@param null|array $required_vars",
+                "@param array $required_vars",
                 "@return array",
                 "@throws \\Exception"
             ],
@@ -34,7 +34,7 @@
             "description": "Load a file using [.env] file format. The full path of the file is specified so it can be named anything.",
             "attributes": [
                 "@param string $file_path",
-                "@param null|array $required_vars",
+                "@param array $required_vars",
                 "@return array",
                 "@throws \\Exception"
             ],

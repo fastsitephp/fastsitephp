@@ -29,7 +29,7 @@
             "links": []
         },
         {
-            "definition": "function supportedLocales()",
+            "definition": "supportedLocales()",
             "target": "fn_supportedLocales",
             "isStatic": false,
             "isGetterSetter": false,
@@ -41,7 +41,7 @@
             "links": []
         },
         {
-            "definition": "function supportedLanguages()",
+            "definition": "supportedLanguages()",
             "target": "fn_supportedLanguages",
             "isStatic": false,
             "isGetterSetter": false,
@@ -67,7 +67,7 @@
             "links": []
         },
         {
-            "definition": "function supportedTimezones()",
+            "definition": "supportedTimezones()",
             "target": "fn_supportedTimezones",
             "isStatic": false,
             "isGetterSetter": false,

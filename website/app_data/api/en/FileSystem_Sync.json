@@ -8,7 +8,7 @@
     "properties": [],
     "methods": [
         {
-            "definition": "function dirFrom($new_value = null)",
+            "definition": "dirFrom($new_value = null)",
             "target": "fn_dirFrom",
             "isStatic": false,
             "isGetterSetter": true,
@@ -21,7 +21,7 @@
             "links": []
         },
         {
-            "definition": "function dirTo($new_value = null)",
+            "definition": "dirTo($new_value = null)",
             "target": "fn_dirTo",
             "isStatic": false,
             "isGetterSetter": true,
@@ -34,7 +34,7 @@
             "links": []
         },
         {
-            "definition": "function excludeNames(array $new_value = null)",
+            "definition": "excludeNames(array $new_value = null)",
             "target": "fn_excludeNames",
             "isStatic": false,
             "isGetterSetter": true,
@@ -60,7 +60,7 @@
             "links": []
         },
         {
-            "definition": "function summaryTitle($new_value = null)",
+            "definition": "summaryTitle($new_value = null)",
             "target": "fn_summaryTitle",
             "isStatic": false,
             "isGetterSetter": true,
@@ -73,7 +73,7 @@
             "links": []
         },
         {
-            "definition": "function dryRun($new_value = null)",
+            "definition": "dryRun($new_value = null)",
             "target": "fn_dryRun",
             "isStatic": false,
             "isGetterSetter": true,
@@ -86,7 +86,7 @@
             "links": []
         },
         {
-            "definition": "function hashAlgo($new_value = null)",
+            "definition": "hashAlgo($new_value = null)",
             "target": "fn_hashAlgo",
             "isStatic": false,
             "isGetterSetter": true,
@@ -99,7 +99,7 @@
             "links": []
         },
         {
-            "definition": "function sync()",
+            "definition": "sync()",
             "target": "fn_sync",
             "isStatic": false,
             "isGetterSetter": false,
@@ -111,7 +111,7 @@
             "links": []
         },
         {
-            "definition": "function printResults()",
+            "definition": "printResults()",
             "target": "fn_printResults",
             "isStatic": false,
             "isGetterSetter": false,

@@ -38,6 +38,14 @@
             {
                 "name": "Auth->deleteUser(Application $app, $login)",
                 "link": "App_Middleware_Auth#fn_deleteUser"
+            },
+            {
+                "name": "Auth->validateDbUser($app, $login, $password)",
+                "link": "App_Middleware_Auth#fn_validateDbUser"
+            },
+            {
+                "name": "Auth->validateLdapUser($login, $password)",
+                "link": "App_Middleware_Auth#fn_validateLdapUser"
             }
         ]
     },
@@ -859,7 +867,7 @@
         "properties": [],
         "methods": [
             {
-                "name": "Json::encode($data, $options = JSON_UNESCAPED_UNICODE)",
+                "name": "Json::encode($data, $options = null)",
                 "link": "Encoding_Json#fn_encode"
             },
             {
@@ -991,6 +999,10 @@
                 "link": "FileSystem_Search#fn_dirs"
             },
             {
+                "name": "Search->all()",
+                "link": "FileSystem_Search#fn_all"
+            },
+            {
                 "name": "Search->urlFiles($url_root)",
                 "link": "FileSystem_Search#fn_urlFiles"
             }
@@ -1006,7 +1018,7 @@
                 "link": "FileSystem_Security#fn_dirContainsFile"
             },
             {
-                "name": "Security::dirContainsPath($dir, $path)",
+                "name": "Security::dirContainsPath($dir, $path, $type = 'file')",
                 "link": "FileSystem_Security#fn_dirContainsPath"
             },
             {
@@ -1025,15 +1037,15 @@
         "properties": [],
         "methods": [
             {
-                "name": "Sync->function dirFrom($new_value = null)",
+                "name": "Sync->dirFrom($new_value = null)",
                 "link": "FileSystem_Sync#fn_dirFrom"
             },
             {
-                "name": "Sync->function dirTo($new_value = null)",
+                "name": "Sync->dirTo($new_value = null)",
                 "link": "FileSystem_Sync#fn_dirTo"
             },
             {
-                "name": "Sync->function excludeNames(array $new_value = null)",
+                "name": "Sync->excludeNames(array $new_value = null)",
                 "link": "FileSystem_Sync#fn_excludeNames"
             },
             {
@@ -1041,23 +1053,23 @@
                 "link": "FileSystem_Sync#fn_excludeRegExPaths"
             },
             {
-                "name": "Sync->function summaryTitle($new_value = null)",
+                "name": "Sync->summaryTitle($new_value = null)",
                 "link": "FileSystem_Sync#fn_summaryTitle"
             },
             {
-                "name": "Sync->function dryRun($new_value = null)",
+                "name": "Sync->dryRun($new_value = null)",
                 "link": "FileSystem_Sync#fn_dryRun"
             },
             {
-                "name": "Sync->function hashAlgo($new_value = null)",
+                "name": "Sync->hashAlgo($new_value = null)",
                 "link": "FileSystem_Sync#fn_hashAlgo"
             },
             {
-                "name": "Sync->function sync()",
+                "name": "Sync->sync()",
                 "link": "FileSystem_Sync#fn_sync"
             },
             {
-                "name": "Sync->function printResults()",
+                "name": "Sync->printResults()",
                 "link": "FileSystem_Sync#fn_printResults"
             }
         ]
@@ -1112,11 +1124,11 @@
                 "link": "Lang_L10N#fn___construct"
             },
             {
-                "name": "L10N->function supportedLocales()",
+                "name": "L10N->supportedLocales()",
                 "link": "Lang_L10N#fn_supportedLocales"
             },
             {
-                "name": "L10N->function supportedLanguages()",
+                "name": "L10N->supportedLanguages()",
                 "link": "Lang_L10N#fn_supportedLanguages"
             },
             {
@@ -1124,7 +1136,7 @@
                 "link": "Lang_L10N#fn_locale"
             },
             {
-                "name": "L10N->function supportedTimezones()",
+                "name": "L10N->supportedTimezones()",
                 "link": "Lang_L10N#fn_supportedTimezones"
             },
             {
@@ -2100,7 +2112,7 @@
                 "link": "Web_Response#fn_signedCookie"
             },
             {
-                "name": "Response->jwtCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "name": "Response->jwtCookie($name, $value, $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
                 "link": "Web_Response#fn_jwtCookie"
             },
             {

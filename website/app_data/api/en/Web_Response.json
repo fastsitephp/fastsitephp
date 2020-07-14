@@ -323,14 +323,14 @@
             "links": []
         },
         {
-            "definition": "jwtCookie($name, $value = '', $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
+            "definition": "jwtCookie($name, $value, $expire_time = '+1 hour', $expire = 0, $path = '', $domain = '', $secure = false, $httponly = false)",
             "target": "fn_jwtCookie",
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Create a secure cookie with a JSON Web Token (JWT). Cookies sent using this method need to be read with [Request->jwtCookie()] to verify that they are not tampered with or expired. The default expiration time is 1 hour and it applies to the JWT and not the cookie itself.\n\nUsing this function requires the Application Config Value 'JWT_KEY'.\n\nSee also [encryptedCookie()] and [signedCookie()].",
             "attributes": [
                 "@param string $name",
-                "@param string $value",
+                "@param array|object $value",
                 "@param string|int|null $expire_time - Expire time for the Signed Data and not the Cookie",
                 "@param int $expire - Defaults to 0 which makes the cookie expire at the end of the session",
                 "@param string $path (default: '')",
@@ -406,10 +406,10 @@
                 "@param string|null $content_type",
                 "@param string|null $cache_type",
                 "@param string|null $cache_control",
-                "@return $this|string",
+                "@return $this|string|null",
                 "@throws \\Exception"
             ],
-            "returnType": "$this | string",
+            "returnType": "$this | string | null",
             "links": []
         },
         {

@@ -30,7 +30,8 @@
             "description": "Use when needed to make sure that ODBC will return large text fields. By default only the first 4096 characters are returned.\n\nThis sets the PHP INI Setting 'odbc.defaultlrl' to the specified size.",
             "attributes": [
                 "@link http:\/\/php.net\/manual\/en\/odbc.configuration.php#ini.uodbc.defaultlrl",
-                "@param int $size - Defaults to 100000 (100,000)"
+                "@param int $size - Defaults to 100000 (100,000)",
+                "@return void"
             ],
             "returnType": null,
             "links": [
@@ -60,7 +61,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Class Deconstructor. Calls [close()] automatically unless using a Persistent Connection.",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },
@@ -70,7 +73,9 @@
             "isStatic": false,
             "isGetterSetter": false,
             "description": "Close the connection",
-            "attributes": [],
+            "attributes": [
+                "@return void"
+            ],
             "returnType": null,
             "links": []
         },

@@ -8,14 +8,14 @@
     "properties": [],
     "methods": [
         {
-            "definition": "encode($data, $options = JSON_UNESCAPED_UNICODE)",
+            "definition": "encode($data, $options = null)",
             "target": "fn_encode",
             "isStatic": true,
             "isGetterSetter": false,
-            "description": "Encode data to a JSON String. By default JSON_UNESCAPED_UNICODE is used and [$options] can be set to any valid value for [json_encode()].",
+            "description": "Encode data to a JSON String. By default when using PHP 5.4+ JSON_UNESCAPED_UNICODE is used for [$options]. [$options] can be set to any valid value for [json_encode()].",
             "attributes": [
                 "@param mixed $data",
-                "@param int $options (Optional)",
+                "@param int|null $options (Optional)",
                 "@return string",
                 "@throws \\Exception"
             ],

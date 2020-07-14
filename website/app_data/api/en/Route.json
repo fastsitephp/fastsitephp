@@ -37,9 +37,9 @@
             "defaultValue": "null",
             "description": "Request Method to match ['GET', 'POST', etc]",
             "attributes": [
-                "@var string"
+                "@var string|null"
             ],
-            "dataType": "string",
+            "dataType": "string\nnull",
             "links": []
         },
         {
