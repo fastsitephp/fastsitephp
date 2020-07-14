@@ -46,6 +46,8 @@ $app->onRender(function() use ($app) {
     // [public] dir is for dev, and [DOCUMENT_ROOT] for production.
     // This is a basic check but for the Requested URL to be 'localhost';
     // for actual IP validation see the class [App\Middleware\Env].
+    // [App\Middleware\Env] is used on router filters in this file;
+    // to see how it's used search this file for 'Env.isLocalhost'.
     $is_localhost = (
         isset($_SERVER['HTTP_HOST'])
         && ($_SERVER['HTTP_HOST'] === 'localhost' || strpos($_SERVER['HTTP_HOST'], 'localhost:') === 0)
@@ -56,6 +58,23 @@ $app->onRender(function() use ($app) {
         $path = $_SERVER['DOCUMENT_ROOT'] . '/css/site.css';
     }
     $app->locals['site_css'] = '<style>' . file_get_contents($path) . '</style>';
+});
+
+// If the development environment Laravel Valet (Mac-only) is being used
+// then check if the requested URL is looking for a file and return it if found.
+// This is needed because Valet uses the root [index.php] file as a router
+// and only looks under [~/public] for files by default. In all other development
+// environments and on production servers this function will be called for a 404
+// error but ignored because nothing is returned.
+$app->notFound(function() use ($app) {
+    if (isset($_SERVER['DOCUMENT_URI']) && strpos($_SERVER['DOCUMENT_URI'], '/laravel/valet/server.php') !== false) {
+        $root = __DIR__ . '/../public';
+        $path = $app->requestedPath();
+        if (Security::dirContainsPath($root, $path)) {
+            $res = new Response();
+            return $res->file($root . $path);
+        }
+    }
 });
 
 // ----------------------------------------------------------------------------
@@ -136,7 +155,7 @@ $app->get('/:lang/documents', 'Documents');
 $app->get('/:lang/documents/:page', 'Documents.getDoc');
 $app->get('/:lang/api', 'API');
 $app->get('/:lang/api/:class', 'API.getClass');
-$app->route('/:lang/security-issue', 'SecurityIssue'); // Using [route()] to allow for both GET and POST 
+$app->route('/:lang/security-issue', 'SecurityIssue'); // Using [route()] to allow for both GET and POST
 $app->get('/downloads/:file', 'Downloads');
 $app->get('/site/generate-sitemap', 'Sitemap')->filter('Env.isLocalhost');
 
