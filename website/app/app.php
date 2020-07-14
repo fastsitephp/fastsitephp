@@ -7,6 +7,7 @@
 // Classes used in this file. Classes are not loaded unless used.
 // ------------------------------------------------------------------
 
+use FastSitePHP\FileSystem\Security;
 use FastSitePHP\Lang\I18N;
 use FastSitePHP\Web\Response;
 
