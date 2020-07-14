@@ -20,6 +20,9 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Updated all Framework code under `src` to validate with https://github.com/FriendsOfPHP/PHP-CS-Fixer
   * This had no impact on code logic or any actual source code rather it updated some minor formatting issues such as replacing `function __construct` with `public function __construct` or `else if` with `elseif`.
   * To use download `php-cs-fixer-v2.phar` then run: `php php-cs-fixer-v2.phar fix src`
+* Added support for the Mac-only development environment Laravel Valet
+  * Related to issue https://github.com/fastsitephp/starter-site/issues/4
+  * **Thanks Valentin Ursuleac** https://github.com/ursuleacv for finding and opening this issue!
 
 ## Bash Encryption Script (June 28, 2020)
 

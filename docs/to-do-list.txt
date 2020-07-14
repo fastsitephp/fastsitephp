@@ -29,6 +29,7 @@ TODO List
     Ideally some sort of update can be put in place to avoid the issue for unexpected system settings.
     https://github.com/fastsitephp/starter-site/issues/4
     * Once this issue is fixed/handled then a new release will be published
+    *** Updates are currently being tested on both Starter Site and Main Framework
 
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
