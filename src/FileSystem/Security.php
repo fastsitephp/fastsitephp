@@ -62,6 +62,7 @@ class Security
             || strpos($file, '/') !== false
             || strpos($file, chr(0)) !== false // NULL Character
             || (PHP_OS === 'WINNT' && strpos($file, ':') !== false)
+            || trim($file) === ''
         ) {
             return false;
         }
@@ -91,10 +92,11 @@ class Security
      *
      * @param string $dir - Directory/Folder Path to look for the file under.
      * @param string $path - File path to search for under the root directory.
+     * @param string $type - Optional parameter, one of ['file', 'dir', 'all'], defaults to 'file'.
      * @return bool
      * @throws \Exception
      */
-    public static function dirContainsPath($dir, $path)
+    public static function dirContainsPath($dir, $path, $type = 'file')
     {
         // A valid directory is required
         if (!is_dir($dir)) {
@@ -107,6 +109,7 @@ class Security
             || strpos($path, '..\\') !== false
             || strpos($path, chr(0)) !== false
             || (PHP_OS === 'WINNT' && strpos($path, ':') !== false)
+            || trim($path) === ''
         ) {
             return false;
         }
@@ -115,8 +118,12 @@ class Security
         $dir = rtrim($dir, '\\/');
         $full_path = implode(DIRECTORY_SEPARATOR, array($dir, $path));
 
-        // Return true only if the directory contains the file
-        return (is_file($full_path) || is_dir($full_path));
+        // Return true only if the directory contains the file or dir
+        $path_found = (($type === 'file' || $type === 'all') && is_file($full_path));
+        if (!$path_found && ($type === 'dir' || $type === 'all')) {
+            $path_found = is_dir($full_path);
+        }
+        return $path_found;
     }
 
     /**
@@ -151,6 +158,7 @@ class Security
         if (strpos($dir_name, '\\') !== false
             || strpos($dir_name, '/') !== false
             || strpos($dir_name, chr(0)) !== false
+            || trim($dir_name) === ''
         ) {
             return false;
         }

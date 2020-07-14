@@ -3,7 +3,7 @@
     "short_name": "FileSystem\\Search",
     "link": "FileSystem_Search",
     "namespace": "FastSitePHP\\FileSystem",
-    "description": "File System Search\n\nThis Class has functions for searching the local file system for files and directories. Additionally URL Lists can be built from a list of files.\n\nThis class works by setting the root search directory\/folder [dir()], setting various search options, and then calling one of [files(), dirs(), or urlFiles($url_root)] functions.",
+    "description": "File System Search\n\nThis Class has functions for searching the local file system for files and directories. Additionally URL Lists can be built from a list of files.\n\nThis class works by setting the root search directory\/folder [dir()], setting various search options, and then calling one of [files(), dirs(), all(), or urlFiles($url_root)] functions.",
     "attributes": [],
     "properties": [],
     "methods": [
@@ -225,6 +225,19 @@
                 "@throws \\Exception"
             ],
             "returnType": "array",
+            "links": []
+        },
+        {
+            "definition": "all()",
+            "target": "fn_all",
+            "isStatic": false,
+            "isGetterSetter": false,
+            "description": "Returns an array of all directory names and an array of all files names from the root directory [dir(path)] excluding the dot directories '.' and '..'.\n\nThis function does not use any search criteria so if searching for files and directories use [files()] or [dirs()] instead.",
+            "attributes": [
+                "@return array - list($dirs, $files)",
+                "@throws \\Exception"
+            ],
+            "returnType": "array - list($dirs, $files)",
             "links": []
         },
         {

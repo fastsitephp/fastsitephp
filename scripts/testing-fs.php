@@ -131,7 +131,6 @@ print_r($files);
 echo "\n";
 echo "\n";
 
-
 // ------------------------------------------------------
 
 $files = $search
@@ -150,7 +149,7 @@ echo "\n";
 
 $files = $search
     ->reset()
-    ->dir(__DIR__ . '/../../../html')
+    ->dir(__DIR__ . '/../website/public')
     ->fileTypes(array('php', 'config'))
     ->files();
 
@@ -164,7 +163,7 @@ echo "\n";
 
 $dirs = $search
     ->reset()
-    ->dir(__DIR__ . '/../../../vendor')
+    ->dir(__DIR__ . '/../vendor')
     ->fileTypes(array('php'))
     ->recursive(true)
     ->files();
@@ -175,12 +174,11 @@ print_r($dirs);
 echo "\n";
 echo "\n";
 
-
 // ------------------------------------------------------
 
 $dirs = $search
     ->reset()
-    ->dir(__DIR__ . '/../../../vendor')
+    ->dir(__DIR__ . '/../vendor')
     ->fileTypes(array('php'))
     ->recursive(true)
     ->includeRegExPaths(array('/Security|Encoding/'))
@@ -195,7 +193,7 @@ echo "\n";
 
 // ------------------------------------------------------
 
-$dir = __DIR__ . '/../../../public/img/icons';
+$dir = __DIR__ . '/../website/public/img/icons';
 $url = 'https://www.fastsitephp/img/icons';
 
 $files = $search
@@ -206,6 +204,19 @@ $files = $search
     ->urlFiles($url);
 
 echo '#urlFiles()';
+echo "\n";
+print_r($files);
+echo "\n";
+echo "\n";
+
+// ------------------------------------------------------
+
+// [reset()] is not needed when calling [all()] because search filters are not used
+list($dirs, $files) = $search->dir(__DIR__)->all();
+
+echo '#files() - all()';
+echo "\n";
+print_r($dirs);
 echo "\n";
 print_r($files);
 echo "\n";
@@ -237,3 +248,7 @@ try {
 }
 echo "\n";
 echo "\n";
+
+// ------------------------------------------------------
+
+echo 'Finished!' . "\n";

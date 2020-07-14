@@ -19,7 +19,7 @@ namespace FastSitePHP\FileSystem;
  *
  * This class works by setting the root search directory/folder [dir()],
  * setting various search options, and then calling one of
- * [files(), dirs(), or urlFiles($url_root)] functions.
+ * [files(), dirs(), all(), or urlFiles($url_root)] functions.
  */
 class Search
 {
@@ -345,6 +345,44 @@ class Search
     }
 
     /**
+     * Returns an array of all directory names and an array of all files names
+     * from the root directory [dir(path)] excluding the dot directories '.' and '..'.
+     *
+     * This function does not use any search criteria so if searching for files
+     * and directories use [files()] or [dirs()] instead.
+     *
+     * @return array - list($dirs, $files)
+     * @throws \Exception
+     */
+    public function all()
+    {
+        // Validation
+        $this->checkRootDir();
+
+        // Get an array of files and folders excuding dot directories '.' and '..'
+        $fs_items = array_diff(scandir($this->dir), array('.', '..'));
+        $files = array();
+        $dirs = array();
+
+        // Add a forward slash if not included at the end.
+        // This works for Windows even though Windows typically used backslashes.
+        $dir_path = $this->dir;
+        if (substr($dir_path, -1) !== '/') {
+            $dir_path .= '/';
+        }
+
+        // Seperate all items from directory into a seperate array of dirs and files
+        foreach ($fs_items as $name) {
+            if (is_file($dir_path . $name)) {
+                $files[] = $name;
+            } else {
+                $dirs[] = $name;
+            }
+        }
+        return array($dirs, $files);
+    }
+
+    /**
      * Returns an array of url names for files in
      * directory matching the specified criteria.
      *
@@ -402,6 +440,20 @@ class Search
     }
 
     /**
+     * Make sure that [dir(path)] is set when calling [files(), dirs(), all(), or urlFiles()]
+     *
+     * @throws \Exception
+     */
+    private function checkRootDir()
+    {
+        if ($this->dir === null) {
+            throw new \Exception(sprintf('When searching for files or directories the root directory must first be set from [%s->dir()].', __CLASS__));
+        } elseif (!is_dir($this->dir)) {
+            throw new \Exception(sprintf('Directory [%s] does not exist or the current user does not have permissions to view it.', $this->dir));
+        }
+    }
+
+    /**
      * Private function used to search for both files and directories
      *
      * @param bool $get_dir
@@ -411,11 +463,7 @@ class Search
     private function getMatchingFilesAndDirs($get_dir)
     {
         // Validation
-        if ($this->dir === null) {
-            throw new \Exception(sprintf('When searching for files or directories the root directory must first be set from [%s->dir()].', __CLASS__));
-        } elseif (!is_dir($this->dir)) {
-            throw new \Exception(sprintf('Directory [%s] does not exist or the current user does not have permissions to view it.', $this->dir));
-        }
+        $this->checkRootDir();
 
         // Get an array of files and folders excuding dot directories '.' and '..'
         if ($this->recursive_search) {

@@ -6,10 +6,25 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 * Added support for PHP 8 Alpha 2
   * Overall most features worked out of the box with PHP 8 however a few minor changes were needed for full support and a number of unit tests had to be updated
-  * Both 64-Bit and 32-Bit releases have been tested and pass all Unit Tests
-  * Updates for PHP 8 do not affect previous versions of PHP so FastSitePHP now works with `PHP 5.3` to `PHP 8.0 (Alpha 2)`
+  * Both 64-Bit and 32-Bit releases have been tested and passed all Unit Tests
+  * Updates for PHP 8 do not affect previous versions of PHP so FastSitePHP now works with `PHP 5.3` to `PHP 8.0 (Alpha 2)` and all versions inbetween.
   * Additional changes may be needed because PHP 8 is not yet finalized
-* Added support so that `\FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path)` works with both files and directories. Previously this function only worked with files.
+* Added features for classes in the `\FastSitePHP\FileSystem` namespace:
+  * Added new function `all()` to `\FastSitePHP\FileSystem\Search`
+  * Added an optional `$type` parameter to `\FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path, $type = 'file')` so that `dirContainsPath()` can be used with both files and directories. Previously this function only worked with files. Options for `$type` are [`file`, `dir`, `all`].
+  * Added validation to check for empty strings for the `$dir_name` parameter in `\FastSitePHP\FileSystem\Security::dirContainsDir($root_dir, $dir_name)`. Previously the function would have returned `true`; now it returns `false` which is the intended behavior.
+  * Example usage:
+  ~~~php
+  // Security check against Path Traversal Attacks
+  if (!Security::dirContainsPath($root_dir, $user_dir, 'dir')) {
+      return $app->pageNotFound();
+  }
+
+  // Get list of all directories and files directly under the user dir
+  $search = Search();
+  $full_path = $root_dir . $user_dir;
+  list($dirs, $files) = $search->dir($full_path)->all();
+  ~~~
 * Updates to simplify the rules for linting using `phpstan` https://github.com/phpstan/phpstan
   * Thanks **Ondřej Mirtes** https://github.com/ondrejmirtes (Author of phpstan) and **Viktor Szépe** https://github.com/szepeviktor for helping out.
   * Updates are in pull requests:
@@ -23,6 +38,7 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Added support for the Mac-only development environment Laravel Valet
   * Related to issue https://github.com/fastsitephp/starter-site/issues/4
   * **Thanks Valentin Ursuleac** https://github.com/ursuleacv for finding and opening this issue!
+  * This has no effect on the main FastSitePHP framework, rather the default development `index.php` file and website `app.php` required some updates in order to run correctly if downloading the main repository.
 
 ## Bash Encryption Script (June 28, 2020)
 

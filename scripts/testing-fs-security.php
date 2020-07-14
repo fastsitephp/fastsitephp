@@ -74,23 +74,35 @@ echo "\n";
 echo "dirContainsPath():\n";
 echo "i18n/_.en.json\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n/_.en.json'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n/_.en.json', 'file'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n/_.en.json', 'dir'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n/_.en.json', 'all'));
 var_dump(is_file(__DIR__ . '/i18n/_.en.json'));
 echo "../index.php\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, '../index.php'));
 var_dump(is_file(__DIR__ . '/../index.php'));
 echo "i18n\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n', 'file'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n', 'dir'));
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, 'i18n', 'all'));
 var_dump(is_dir(__DIR__ . '/i18n'));
 echo "../src\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, '../src'));
 var_dump(is_dir(__DIR__ . '/../src'));
+echo "{empty string}\n";
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsPath(__DIR__, '', 'dir'));
 
 echo "\n";
 echo "dirContainsDir():\n";
+echo "i18n\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsDir(__DIR__, 'i18n'));
 var_dump(is_dir(__DIR__ . '/i18n'));
+echo "../src\n";
 var_dump(\FastSitePHP\FileSystem\Security::dirContainsDir(__DIR__, '../src'));
 var_dump(is_dir(__DIR__ . '/../src'));
+echo "{empty string}\n";
+var_dump(\FastSitePHP\FileSystem\Security::dirContainsDir(__DIR__, ''));
 
 // Test [fileIsValidImage()]
 $path_error1 = __DIR__ . '/files/invalid1.svg';
