@@ -34,11 +34,11 @@
             "target": "fn_dirContainsPath",
             "isStatic": true,
             "isGetterSetter": false,
-            "description": "Prevent Path Traversal Attacks by verifying if a file or directory exists under the specified directory. Sub-directories can be specified, however path traversal using '..\/' or '..\\' is not allowed for the [$path] paramater.\n\nSee additional comments and links in [dirContainsFile()].\n\nExample:\n    \/\/ Assume both files exist and would return [true] from built-in function [is_file()].\n    \/\/ False is returned for the 2nd file because a '..\/' was used.\n    $dir = __DIR__ . '\/..\/img';\n    true  = Security::dirContainsPath($dir, 'icons\/clipboard.svg')\n    false = Security::dirContainsPath($dir, '..\/..\/app\/app.php')",
+            "description": "Prevent Path Traversal Attacks by verifying if a file or directory exists under the specified directory. Sub-directories can be specified, however path traversal using '..\/' or '..\\' is not allowed for the [$path] paramater.\n\nSee additional comments and links in [dirContainsFile()].\n\nExample:\n    \/\/ Assume both files exist and would return [true] from built-in function [is_file()].\n    \/\/ False is returned for the 2nd file because a '..\/' was used.\n    $dir  = __DIR__ . '\/..\/img';\n    true  = Security::dirContainsPath($dir, 'icons\/clipboard.svg')\n    false = Security::dirContainsPath($dir, '..\/..\/app\/app.php')\n\n    \/\/ An optional parameter [$type] can be used with one of values: ['file', 'dir', 'all'].\n    \/\/ The defaut value is 'file'. Example:\n    false = Security::dirContainsPath($dir, 'icons')\n    true  = Security::dirContainsPath($dir, 'icons', 'dir')\n    true  = Security::dirContainsPath($dir, 'icons', 'all')",
             "attributes": [
                 "@param string $dir - Directory\/Folder Path to look for the file under.",
                 "@param string $path - File path to search for under the root directory.",
-                "@param string $type - Optional parameter, one of ['file', 'dir', 'all'], defaults to 'file'.",
+                "@param string $type",
                 "@return bool",
                 "@throws \\Exception"
             ],

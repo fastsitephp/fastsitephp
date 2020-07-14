@@ -25,12 +25,6 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) See this issue from the starter site - if supported it may require some minor framework changes.
-    Ideally some sort of update can be put in place to avoid the issue for unexpected system settings.
-    https://github.com/fastsitephp/starter-site/issues/4
-    * Once this issue is fixed/handled then a new release will be published
-    *** Updates are currently being tested on both Starter Site and Main Framework
-
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
     * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest

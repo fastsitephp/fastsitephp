@@ -86,13 +86,19 @@ class Security
      * Example:
      *     // Assume both files exist and would return [true] from built-in function [is_file()].
      *     // False is returned for the 2nd file because a '../' was used.
-     *     $dir = __DIR__ . '/../img';
+     *     $dir  = __DIR__ . '/../img';
      *     true  = Security::dirContainsPath($dir, 'icons/clipboard.svg')
      *     false = Security::dirContainsPath($dir, '../../app/app.php')
+     * 
+     *     // An optional parameter [$type] can be used with one of values: ['file', 'dir', 'all'].
+     *     // The defaut value is 'file'. Example:
+     *     false = Security::dirContainsPath($dir, 'icons')
+     *     true  = Security::dirContainsPath($dir, 'icons', 'dir')
+     *     true  = Security::dirContainsPath($dir, 'icons', 'all')
      *
      * @param string $dir - Directory/Folder Path to look for the file under.
      * @param string $path - File path to search for under the root directory.
-     * @param string $type - Optional parameter, one of ['file', 'dir', 'all'], defaults to 'file'.
+     * @param string $type
      * @return bool
      * @throws \Exception
      */

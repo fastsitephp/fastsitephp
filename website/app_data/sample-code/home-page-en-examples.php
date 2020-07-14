@@ -2936,7 +2936,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
 });
 
 $app->get('/examples/file-system-search', function() use ($app) {
-    $dir_path = __DIR__ . '/../../vendor/fastsitephp';
+    $dir_path = __DIR__ . '/../../../src';
 
     // EXAMPLE_CODE_START
     // TITLE: Search for Files and Directories (Folders)
@@ -2947,6 +2947,9 @@ $app->get('/examples/file-system-search', function() use ($app) {
     // For basic usage specify a root directory with the [dir()] command and then
     // call either [files()] or [dirs()]. An array of matching names will be returned.
     $files = $search->dir($dir_path)->files();
+
+    // [all()] can be used to return both directories and files
+    list($dirs, $files) = $search->dir($dir_path)->all();
 
     // Functions are chainable so breaking them up
     // one per line can make the code easier to read.
@@ -3776,6 +3779,11 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $path_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path1);
     $path_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path2);
 
+    // [dirContainsPath()] contains an optional 3rd parameter [$type] which defaults
+    // to 'file' and allows for one of the following options ['file', 'dir', 'all'].
+    $path3 = 'icons';
+    $exists = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path3, 'dir');
+
     // [dirContainsDir()] can be used to check directories/folders.
     $dir1 = 'icons';
     $dir2 = '../../app';
@@ -3791,9 +3799,9 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $is_image = \FastSitePHP\FileSystem\Security::fileIsValidImage($image_file);
     // EXAMPLE_CODE_END
 
-    // NOTE - both [$result1, $path_exists_1, $dir_exists_1] all equal [false] because
-    // the files/dirs won't exist. Code here is for example only, modify if you want to test.
-    return [$result1, $result2, $path_exists_1, $path_exists_2, $dir_exists_1, $dir_exists_2, $is_image];
+    // NOTE - most values equal [false] because the files/dirs won't exist.
+    // Code here is for example only, modify if you want to test.
+    return [$file_exists_1, $file_exists_2, $path_exists_1, $path_exists_2, $exists, $dir_exists_1, $dir_exists_2, $is_image];
 });
 
 $app->get('/examples/rate-limiting', function() use ($app) {

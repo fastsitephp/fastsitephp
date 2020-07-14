@@ -3051,7 +3051,7 @@ $app->get('/examples/smtp-client', function() use ($app) {
 });
 
 $app->get('/examples/file-system-search', function() use ($app) {
-    $dir_path = __DIR__ . '/../../vendor/fastsitephp';
+    $dir_path = __DIR__ . '/../../../src';
 
     // EXAMPLE_CODE_START
     // TITLE: Busque por Arquivos e Diretórios (Pastas)
@@ -3069,6 +3069,9 @@ $app->get('/examples/file-system-search', function() use ($app) {
     $dirs = $search
         ->dir($dir_path)
         ->dirs();
+
+    // [all()] can be used to return both directories and files
+    list($dirs, $files) = $search->dir($dir_path)->all();
 
     // URL lists can also be generated from matching files.
     $url_root = 'http://www.example.com/';
@@ -3885,6 +3888,11 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $path_exists_1 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path1);
     $path_exists_2 = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path2);
 
+    // [dirContainsPath()] contains an optional 3rd parameter [$type] which defaults
+    // to 'file' and allows for one of the following options ['file', 'dir', 'all'].
+    $path3 = 'icons';
+    $exists = \FastSitePHP\FileSystem\Security::dirContainsPath($dir, $path3, 'dir');
+
     // [dirContainsDir()] pode ser utilizada para verificar diretórios/pastas.
     $dir1 = 'icons';
     $dir2 = '../../app';
@@ -3901,10 +3909,10 @@ $app->get('/examples/file-system-security', function() use ($app) {
     $is_image = \FastSitePHP\FileSystem\Security::fileIsValidImage($image_file);
     // EXAMPLE_CODE_END
 
-    // NOTA - [$result1, $path_exists_1, $dir_exists_1] são todas iguais a
+    // NOTA - [$file_exists_1, $path_exists_1, $dir_exists_1] são todas iguais a
     // [false] por que os arquivos/diretórios não existirão. O código aqui é só
     // para exemplificação, modifique-o se você quiser fazer testes.
-    return [$result1, $result2, $path_exists_1, $path_exists_2, $dir_exists_1, $dir_exists_2, $is_image];
+    return [$file_exists_1, $file_exists_2, $path_exists_1, $path_exists_2, $exists, $dir_exists_1, $dir_exists_2, $is_image];
 });
 
 $app->get('/examples/rate-limiting', function() use ($app) {
