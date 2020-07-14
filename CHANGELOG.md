@@ -2,7 +2,7 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
-## Next Release (Changes published on GitHub but not Composer/Packagist)
+## 1.3.0 (July 14, 2020)
 
 * Added support for PHP 8 Alpha 2
   * Overall most features worked out of the box with PHP 8 however a few minor changes were needed for full support and a number of unit tests had to be updated
