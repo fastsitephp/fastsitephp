@@ -23,10 +23,10 @@
 # by PHPStan need to go through careful review and if the code is valid
 # added as exceptions with relevant comments to this file.
 #
-# PHPStan will provide errors based on the version of PHP
-# Installed on your system so if you are using a version of PHP
-# that is less than 7.2 you will see errors for [Security/Password.php]
-# related to PHP 7.2+ constants such as: PASSWORD_ARGON2I
+# PHPStan may provide warnings or errors based on the version of PHP
+# Installed on your system so if you are using a version of PHP.
+# This file currently assumes any version of PHP 7, however for a
+# full `[OK] No errors` result PHP 7.2 may be needed.
 #
 # References to [php-src] refer to:
 #     https://github.com/php/php-src
@@ -48,6 +48,14 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: false
     treatPhpDocTypesAsCertain: false
     ignoreErrors:
+        -
+            # Ignore PHP 8 code if running PHPStan from PHP 7
+            message: '#^Call to an undefined method ReflectionType::getName\(\)\.$#'
+            path: src/Application.php
+        -
+            # Ignore PHP 7.3+ code if running PHPStan from PHP 7.2 or below
+            message: '#^Constant PASSWORD_ARGON2(.*) not found.$#'
+            path: src/Security/Password.php
         -
             # AbstractVendorDatabase is used by the extended Db2Database and OdbcDatabase classes
             # using protected properties and functions in a manner that allows for easy code reuse

@@ -1419,7 +1419,7 @@ class Application
         }
 
         // PHP 8 Additional Validation. This specific error is correctly converted
-        // to an exception with PHP 5 and 7, however early beta testing with PHP 8 
+        // to an exception with PHP 5 and 7, however early beta testing with PHP 8
         // caused Unit Tests that tested error conditions to break with a fatal
         // error that was only logged to CLI but not thrown to the calling app.
         if (PHP_VERSION_ID >= 80000) {

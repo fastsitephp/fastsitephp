@@ -442,6 +442,7 @@ class Search
     /**
      * Make sure that [dir(path)] is set when calling [files(), dirs(), all(), or urlFiles()]
      *
+     * @return void
      * @throws \Exception
      */
     private function checkRootDir()
