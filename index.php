@@ -18,6 +18,10 @@
 if (isset($_SERVER['DOCUMENT_URI']) && strpos($_SERVER['DOCUMENT_URI'], '/laravel/valet/server.php') !== false) {
     $_SERVER['DOCUMENT_ROOT'] = __DIR__ . '/website/public';
     require __DIR__ . '/website/public/index.php';
+} elseif (isset($_SERVER['DOCUMENT_URI']) && strpos($_SERVER['DOCUMENT_URI'], '/tests/') === 0) {
+    // Likely Laravel Valet or a local build of nginx
+    http_response_code(500);
+    echo 'Your server does not support running unit tests directly from [*.php] files. Try running the Unit Tests from the built-in PHP Server or update your server config to allow direct access to PHP files.';
 } else {
     header('Location: website/public/');
 }
