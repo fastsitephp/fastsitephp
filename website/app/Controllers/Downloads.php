@@ -43,7 +43,7 @@ class Downloads
                 $api_url = 'https://api.github.com/repos/fastsitephp/fastsitephp/releases/latest';
                 $res = HttpClient::get($api_url);
                 if ($res->error || !isset($res->json['tag_name'])) {
-                    throw new \Exception('Call to GitHub failed, unable to get release number.');
+                    throw new \Exception(sprintf('Call to GitHub failed, unable to get release number. Error: %s', $res->error));
                 }
                 $version = $res->json['tag_name'];
                 $url = 'https://github.com/fastsitephp/fastsitephp/archive/' . $version . '.zip';
