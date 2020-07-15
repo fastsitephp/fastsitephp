@@ -475,12 +475,24 @@ class HttpClient
         }
 
         // Is there a 'Content-Type' header?
-        $has_header = (isset($res->headers) && isset($res->headers['Content-Type']));
+        $header_name = 'Content-Type';
+        $has_header = (isset($res->headers) && isset($res->headers[$header_name]));
+        if (!$has_header) {
+            // If not found perform a case-insensitive search of the array keys
+            $name_lower_case = strtolower($header_name);
+            foreach ($res->headers as $key => $data) {
+                if (strtolower($key) === $name_lower_case) {
+                    $header_name = $key;
+                    $has_header = true;
+                    break;
+                }
+            }
+        }
         $is_json = false;
         if ($has_header) {
             // Curl returns an array of each header on redirects
             // so get the last header if an array is returned.
-            $content_type = $res->headers['Content-Type'];
+            $content_type = $res->headers[$header_name];
             if (is_array($content_type)) {
                 $content_type = $content_type[count($content_type)-1];
             }

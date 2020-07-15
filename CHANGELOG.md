@@ -2,6 +2,13 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.3.1 (July 15, 2020)
+
+* Updates for `\FastSitePHP\Net\HttpClient`
+  * Fix so that `$response->json` is populated when the a case-insensitve header is used `content-type`, `CONTENT-TYPE`, etc is used starting with the value `application/json`. Previously a case-senstive header was required `Content-Type`.
+  * Updated the bundled `cacert.pem` from version `2019-10-16` to `2020-06-24`.
+* Updated `scripts/install.php` to also download and use latest version of `cacert.pem`.
+
 ## 1.3.0 (July 14, 2020)
 
 * Added support for PHP 8 Alpha 2

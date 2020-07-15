@@ -57,12 +57,12 @@ const ALWAYS_INSTALL_POLYFILLS = false; // [ircmaxell/password_compat] and [para
 
 // CA certificates are download from [https://curl.haxx.se/docs/caextract.html]
 // and saved at the following location:
-//     http://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2019-10-16/cacert.pem
-//     http://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2019-10-16/cacert.pem.sha256
+//     http://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2020-06-24/cacert.pem
+//     http://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2020-06-24/cacert.pem.sha256
 // The file is over 220 kb so rather than including it with source the file is
 // downloaded and verified from an HTTP link before any HTTPS requests are made.
-const CACERT_URL = 'http://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2019-10-16/cacert.pem';
-const CACERT_SHA256 = '5cd8052fcf548ba7e08899d8458a32942bf70450c9af67a0850b4c711804a2e4';
+const CACERT_URL = 'https://fastsitephp.s3-us-west-1.amazonaws.com/cacert/2020-06-24/cacert.pem';
+const CACERT_SHA256 = '726889705b00f736200ed7999f7a50021b8735d53228d679c4e6665aa3b44987';
 define('CACERT_FILE', sys_get_temp_dir() . '/install-cacert.pem');
 
 /**
