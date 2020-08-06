@@ -25,6 +25,16 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Starter Site is going through a few updates, one pending update before next release
+    will be to support [SameSite=Lax;] by default is using PHP 7.3 or higher in [starter-site/app/Middleware/Auth.php]
+    - FireFox currently gives the following warning after logging in on the Auth Demo:
+        Cookie “user” will be soon rejected because it has the “sameSite” attribute set to “none” or an invalid value, without the “secure” attribute. To know more about the “sameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite
+    - This will require updates to all or most cookie functions on the `FastSitePHP\Web\Response` class
+        to support the new optional PHP 7.3 function parameters
+    - Related Links:
+        https://www.php.net/manual/en/function.setcookie.php
+        https://github.com/php/php-src/blob/91fbd12d5736b3cc9fc6bc2545e877dd65be1f6c/ext/standard/head.c#L230
+    
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
     * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
