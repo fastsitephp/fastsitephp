@@ -53,7 +53,7 @@ define('VENDOR_DIR', __DIR__ . '/../vendor');
 // Change as desired based on your project
 const INSTALL_PSR_LOG = true; // [php-fig/log]
 const INSTALL_MARKDOWN = true; // [erusev/parsedown]
-const ALWAYS_INSTALL_POLYFILLS = false; // [ircmaxell/password_compat] and [paragonie/random_compat]
+const ALWAYS_INSTALL_POLYFILLS = true; // [ircmaxell/password_compat] and [paragonie/random_compat]
 
 // CA certificates are download from [https://curl.haxx.se/docs/caextract.html]
 // and saved at the following location:

@@ -1008,10 +1008,11 @@ $app->get('/error-parse', function() use ($app) {
 // Error Test with Error Type E_NOTICE
 $app->get('/error-notice', function() use ($app) {
     if (PHP_VERSION_ID >= 80000) {
-        // Many notice and warning errors in PHP 5 and 7 have been converted to errors
-        // in PHP 8. If the file includes an `int` typehint as shown below then this
-        // file would not run in PHP 5 or 7 so eval is used to trigger an E_NOTICE.
-        eval('function returnInt(int $i) { return $i; } echo returnInt("1a");');
+        // Many notice and warning errors in PHP 5 and 7 have been converted to errors in PHP 8.
+        // In the future as these change search through PHP C Source Code as needed to find E_NOTICE errors:
+        //   https://github.com/php/php-src/search?l=C&p=1&q=E_NOTICE
+        $data = crypt('test');
+        var_dump($data);
     }
     // Try to use an undefined variable, by default PHP processing would continue
     // however because $app->setup() is called this error will be handled
@@ -1173,12 +1174,18 @@ $app->get('/error-argument-count-error', function() use ($app) {
 // Resource Link:
 //   http://php.net/manual/en/language.operators.errorcontrol.php
 $app->get('/error-control-operator', function() use ($app) {
-    // Pass this PHP File to the following image function which
-    // will trigger and error because it is not a valid image.
-    // As long as the errorHandler() function is properly defined
-    // then this should return false.
-    $result = @file(null);
-    echo '@file(null) === ' . ($result === false ? 'false' : $result);
+    if (PHP_VERSION_ID >= 80000) {
+        // PHP 8 no longer silences fatal errors so a E_NOTICE error is used
+        $data = @crypt('test');
+        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+    } else {
+        // Pass this PHP File to the following image function which
+        // will trigger and error because it is not a valid image.
+        // As long as the errorHandler() function is properly defined
+        // then this should return false.
+        $result = @file(null);
+        echo '@file(null) === ' . ($result === false ? 'false' : $result);
+    }
 });
 
 // Just like the above test this test is testing the line:
@@ -1187,8 +1194,13 @@ $app->get('/error-control-operator', function() use ($app) {
 // disabling error reporting prior to the function call.
 $app->get('/error-reporting-disabled', function() use ($app) {
     error_reporting(0);
-    $result = file(null);
-    echo 'file(null) === ' . ($result === false ? 'false' : $result);
+    if (PHP_VERSION_ID >= 80000) {
+        $data = crypt('test');
+        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+    } else {
+        $result = file(null);
+        echo 'file(null) === ' . ($result === false ? 'false' : $result);    
+    }
 });
 
 // See the above two unit tests. Without error handling defined this error (often
@@ -1196,16 +1208,26 @@ $app->get('/error-reporting-disabled', function() use ($app) {
 // however FastSitePHP converts errors to Exceptions so this should so the error
 // page with an ErrorException.
 $app->get('/error-control-operator-not-used', function() use ($app) {
-    $result = file(null);
-    echo 'file(null) === ' . $result;
+    if (PHP_VERSION_ID >= 80000) {
+        $data = crypt('test');
+        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+    } else {
+        $result = file(null);
+        echo 'file(null) === ' . $result;    
+    }
 });
 
 // Similar to the above three unit tests, however this test uses
 // a try/catch block to handle the error.
 $app->get('/error-try-catch-instead-of-control-operator', function() use ($app) {
     try {
-        $result = file(null);
-        echo 'file(null) === ' . $result;
+        if (PHP_VERSION_ID >= 80000) {
+            $data = crypt('test');
+            echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+        } else {
+            $result = file(null);
+            echo 'file(null) === ' . $result;
+        }
     } catch (\Exception $e) {
         echo '[' . get_class($e) . ']: ' . $e->getMessage();
     }

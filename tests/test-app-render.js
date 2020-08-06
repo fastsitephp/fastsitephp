@@ -91,8 +91,15 @@
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error with Not Found - Text", "test-app-render.php/custom-error-with-not-found", {
-	    status: 500,
-	    response: "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]"
+		status: 500,
+		responseContains: [
+			[
+				// PHP 5 and 7
+				"[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]",
+				// PHP 8
+				"[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &quot;UnknownObject&quot; not found][FooterText1][footer&amp;data]",
+			]
+		]
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Exception with Not Found - Text", "test-app-render.php/custom-exception-with-not-found", {
@@ -167,8 +174,15 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error - PHP", "test-app-render.php/php-error", {
 	    status: 500,
-	    response: "[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterPhp1][footer&amp;data]"
-	});
+        responseContains: [
+            [
+                // PHP 5 and 7
+                "[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterPhp1][footer&amp;data]",
+                // PHP 8
+                "[HeaderPhp1][header&amp;data][ErrorPhp1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &quot;UnknownObject&quot; not found][FooterPhp1][footer&amp;data]",
+            ]
+        ]
+    });
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error - HTML", "test-app-render.php/file-error", {
 	    status: 500,
@@ -177,8 +191,15 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error - Text", "test-app-render.php/custom-error", {
 	    status: 500,
-	    response: "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]"
-	});
+        responseContains: [
+            [
+                // PHP 5 and 7
+                "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]",
+                // PHP 8
+                "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &quot;UnknownObject&quot; not found][FooterText1][footer&amp;data]",
+            ]
+        ]
+    });
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error using Custom Message - PHP", "test-app-render.php/php-error-custom-message", {
 	    status: 500,
@@ -298,7 +319,14 @@
 	
 	runHttpUnitTest("Application Object - Template Rendering - Error on Render - Text", "test-app-render.php/custom-error-on-render", {
 	    status: 500,
-	    response: "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]"
+	    responseContains: [
+            [
+                // PHP 5 and 7
+                "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &#039;UnknownObject&#039; not found][FooterText1][footer&amp;data]",
+                // PHP 8
+                "[HeaderText1][header&amp;data][ErrorText1][An error has occurred][An error has occurred while processing your request.][getMessage():Class &quot;UnknownObject&quot; not found][FooterText1][footer&amp;data]",
+            ]
+        ]
 	});
 	
 	runHttpUnitTest("Application Object - Template Rendering - Exception on Render - Text", "test-app-render.php/custom-exception-on-render", {

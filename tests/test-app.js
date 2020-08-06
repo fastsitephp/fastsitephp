@@ -477,7 +477,12 @@
                 '<td class="error-severity">1 (E_ERROR)</td>',
                 "<td>call_user_func_array</td>"
             ],
-            '<td class="error-message">Class &#039;UnknownObject&#039; not found</td>',
+            [
+                // PHP 5 and 7
+                '<td class="error-message">Class &#039;UnknownObject&#039; not found</td>',
+                // PHP 8
+                '<td class="error-message">Class &quot;UnknownObject&quot; not found</td>',
+            ],
             [
                 "<td>shutdown</td>",
                 "<td>run</td>"
@@ -529,7 +534,9 @@
                 // Mac with PHP 5.4
                 '<td class="error-message">parse error, expecting `&#039;,&#039;&#039; or `&#039;;&#039;&#039;</td>',
                 // PHP 7.4
-                '<tr><td><b>Message</b></td><td class="error-message">syntax error, unexpected &#039;echo&#039; (T_ECHO), expecting &#039;;&#039; or &#039;,&#039;</td></tr>',
+                '<td class="error-message">syntax error, unexpected &#039;echo&#039; (T_ECHO), expecting &#039;;&#039; or &#039;,&#039;</td>',
+                // PHP 8
+                '<td class="error-message">syntax error, unexpected token &quot;echo&quot;, expecting &quot;;&quot; or &quot;,&quot;</td>'
             ],
             "test-app-parse-error.php",
             [
@@ -546,7 +553,7 @@
             '<td class="error-severity">8 (E_NOTICE)</td>',
             [
                 '<td class="error-message">Undefined variable: undefined_variable</td>',
-                '<td class="error-message">A non well formed numeric value encountered</td>'
+                '<td class="error-message">crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.</td>'
             ],
             "<td>errorHandler</td>",
             "<td>{closure}</td>"
@@ -717,34 +724,74 @@
     });
 
     runHttpUnitTest("Application Object - Error Test - Error Control Operator", "test-app.php/error-control-operator", {
-        response: "@file(null) === false"
+        responseContains: [
+            [
+                // PHP 5 and 7
+                "@file(null) === false",
+                // PHP 8                
+                "gettype(@crypt(string, [missing])) = string",
+            ]
+        ]
     });
 
     runHttpUnitTest("Application Object - Error Test - Error Reporting Disabled", "test-app.php/error-reporting-disabled", {
-        response: "file(null) === false"
+        responseContains: [
+            [
+                // PHP 5 and 7
+                "file(null) === false",
+                // PHP 8                
+                "gettype(@crypt(string, [missing])) = string",
+            ]
+        ]
     });
 
     runHttpUnitTest("Application Object - Error Test - Error Control Operator Not Used", "test-app.php/error-control-operator-not-used", {
         status: 500,
         responseContains: [
             '<td class="error-type">ErrorException</td>',
-            '<td class="error-severity">2 (E_WARNING)</td>',
-            '<td class="error-message">file(): Filename cannot be empty</td>',
+            [
+                // PHP 5 and 7
+                '<td class="error-severity">2 (E_WARNING)</td>',
+                // PHP 8
+                '<td class="error-severity">8 (E_NOTICE)</td>',
+            ],
+            [
+                // PHP 5 and 7
+                '<td class="error-message">file(): Filename cannot be empty</td>',
+                // PHP 8
+                '<td class="error-message">crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.</td>',
+            ],
             "<td>errorHandler</td>",
-            "<td>file</td>"
         ]
     });
 
     runHttpUnitTest("Application Object - Error Test - Error Control Operator", "test-app.php/error-try-catch-instead-of-control-operator", {
-        response: "[ErrorException]: file(): Filename cannot be empty"
+        responseContains: [
+            [
+                // PHP 5 and 7
+                "[ErrorException]: file(): Filename cannot be empty",
+                // PHP 8
+                "[ErrorException]: crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.",
+            ]
+        ]
     });
 
     runHttpUnitTest("Application Object - Error Test - Changing Response Type", "test-app.php/error-change-content-type", {
         status: 500,
         responseContains: [
-            '<td class="error-type">ErrorException</td>',
+            [
+                // PHP 5 and 7
+                '<td class="error-type">ErrorException</td>',
+                // PHP 8
+                '<td class="error-type">ValueError</td>',
+            ],
             '<td class="error-code">0</td>',
-            '<td class="error-message">readfile(): Filename cannot be empty</td>',
+            [
+                // PHP 5 and 7
+                '<td class="error-message">readfile(): Filename cannot be empty</td>',
+                // PHP 8
+                '<td class="error-message">Path cannot be empty</td>',
+            ]
         ]
     });
 

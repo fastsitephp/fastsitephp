@@ -31,9 +31,30 @@ TODO List
       of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
     https://github.com/the-benchmarker/web-frameworks
 
-**) FastSitePHP is tested and updated for PHP 8 Alpha 2 (as of July 12 2020)
+**) FastSitePHP is tested and updated for PHP 8 Beta 1 (as of August 6 2020)
     * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
-    * For the final release of PHP 8 all Unit Tests must pass (currently all tests pass for Alpha 2)
+    * For the final release of PHP 8 all Unit Tests must pass (currently all tests pass for Beta 1)
+    * To get error messages correct (based on PHP changes in behavior) searching through PHP C Source Code is often needed:
+        https://github.com/php/php-src
+    * Install and Test on Windows:
+        - Download Latest Build: https://windows.php.net/qa/
+        - Copy [php.ini-production] as [php.ini]
+        - For final 8.0 release also make sure [php.ini-development] works "with errors for Unit Tests" but overall a site should work
+        - Also for final release make sure both [x64 Non Thread Safe] and [x86 Non Thread Safe] work
+        - Enable settings:
+            extension_dir = "ext"
+            extension=curl
+            extension=openssl
+            extension=pdo_sqlite
+        - Run commands (changing file paths based on local system):
+            cd "{fastsitephp root}"
+            "C:\Users\Administrator\Downloads\php-8.0.0beta1-nts-Win32-vs16-x64\php.exe" -S localhost:8080
+        - View Pages
+            http://localhost:8080/fastsitephp/website/public/sysinfo/phpinfo
+            http://localhost:8080/fastsitephp/website/public/en/
+            http://localhost:8080/fastsitephp/tests/index.htm
+            * Or remove "/fastsitephp" if running from main repository directly
+            * This assume full setup with all repositories under a main [fastsitephp] directory
 
 **) Create Docker Image
     - Include the starter site?
