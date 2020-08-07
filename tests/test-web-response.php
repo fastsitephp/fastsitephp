@@ -86,7 +86,8 @@ $app->after(function($content) use ($app) {
             
             // If not found then send an error message to the client
             if (!$was_found) {
-                echo sprintf('[Cookie (%d) was not found]: (%s)', $n, $expected[$n]);
+                echo sprintf('[Cookie (%d) was not found]:<br>', $n);
+                var_dump($expected[$n]);
                 echo '<br><br><strong>Headers: </strong>';
                 var_dump($headers);
                 echo '<br><br><strong>Expected: </strong>';
@@ -114,10 +115,19 @@ $app->after(function($content) use ($app) {
             }
             // PHP 5.5 added [Max-Age]
             // PHP 7 changes case from 'httponly' to 'HttpOnly'
+            // PHP 7.3 allows a new array $options parameter as the 3rd parameter.
+            //   For use with `SameSite` and future Cookie Options.
             if (version_compare(PHP_VERSION, '5.5.0', '<')) {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; path=/path; domain=domain.tld; secure; httponly',
                     'Set-Cookie: unit-test-data=abc123',
+                    'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; path=/path; domain=domain.tld; secure; httponly',
+                ));
+            } elseif (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+                compareHeaders(array(
+                    'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
+                    'Set-Cookie: unit-test-data=abc123',
+                    'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly; SameSite=Strict',
                 ));
             } elseif (version_compare(PHP_VERSION, '7.0.0', '>=')) {
                 compareHeaders(array(
@@ -127,11 +137,16 @@ $app->after(function($content) use ($app) {
                         'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=-1; path=/path; domain=domain.tld; secure; HttpOnly',
                     ),
                     'Set-Cookie: unit-test-data=abc123',
+                    array(
+                        'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
+                        'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=-1; path=/path; domain=domain.tld; secure; HttpOnly',
+                    ),
                 ));
             } else {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=-1; path=/path; domain=domain.tld; secure; httponly',
                     'Set-Cookie: unit-test-data=abc123',
+                    'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=-1; path=/path; domain=domain.tld; secure; httponly',
                 ));
             }
             break;
@@ -140,16 +155,25 @@ $app->after(function($content) use ($app) {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/path; domain=domain.tld; secure; httponly',
                     'Set-Cookie: unit-test-data=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT',
+                    'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/path; domain=domain.tld; secure; httponly',
+                ));
+            } elseif (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+                compareHeaders(array(
+                    'Set-Cookie: unit-test-route=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
+                    'Set-Cookie: unit-test-data=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0',
+                    'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly; SameSite=Strict',
                 ));
             } elseif (version_compare(PHP_VERSION, '7.0.0', '>=')) {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
                     'Set-Cookie: unit-test-data=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0',
+                    'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
                 ));
             } else {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; httponly',
                     'Set-Cookie: unit-test-data=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0',
+                    'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; httponly',
                 ));
             }
             break;
@@ -1449,11 +1473,21 @@ $app->route('/cookie-1', function() use ($app) {
     // Update Cookies
     $res
         ->cookie('unit-test-route', 'cookie-1', $app->time - 1, '/path', 'domain.tld', true, true)
-        ->cookie('unit-test-data', 'abc123');
+        ->cookie('unit-test-data', 'abc123')
+        // Using new Array [$options] format with [SameSite] attribute which is available for PHP 7.3 and higher.
+        // FastSitePHP handles the format and ignores [SameSite] on earlier versions of PHP
+        ->cookie('unit-test-route-2', 'cookie-3', array(
+            'expires' => $app->time - 1,
+            'path' => '/path',
+            'domain' => 'domain.tld',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        ));
 
     // Check Data
     $cookies = $res->cookies();
-    if (count($cookies) !== 2) {
+    if (count($cookies) !== 3) {
         return 'Cookie Count did not match';
     }
 
@@ -1478,6 +1512,20 @@ $app->route('/cookie-1', function() use ($app) {
     ) {
        return 'Cookie 1 did not match';
     }
+
+    if ($cookies[2]['name'] !== 'unit-test-route-2'
+        || $cookies[2]['value'] !== 'cookie-3'
+        || $cookies[2]['expire'] !== array(
+            'expires' => $app->time - 1,
+            'path' => '/path',
+            'domain' => 'domain.tld',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        )
+    ) {
+       return 'Cookie 2 did not match';
+    }
     
     // Success return a response
     return $res->cors($app)->content('[Cookie Test 1]');
@@ -1490,6 +1538,14 @@ $app->route('/cookie-2', function() {
     return $res
         ->cookie('unit-test-route', '', -1, '/path', 'domain.tld', true, true)
         ->cookie('unit-test-data')
+        ->cookie('unit-test-route-2', '', array(
+            'expires' => -1,
+            'path' => '/path',
+            'domain' => 'domain.tld',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Strict',
+        ))
         ->content('[Cookie Test 2]');
 });
 

@@ -694,11 +694,11 @@
     });
     
     runHttpUnitTest("Response Object - Cookie Test 1 - Adding and Updating Cookies", "test-web-response.php/cookie-1", {
-        response: "[Cookie Test 1][2 Headers were found]"
+        response: "[Cookie Test 1][3 Headers were found]"
     });
 
     runHttpUnitTest("Response Object - Cookie Test 2 - Deleting Cookies", "test-web-response.php/cookie-2", {
-        response: "[Cookie Test 2][2 Headers were found]"
+        response: "[Cookie Test 2][3 Headers were found]"
     });
 
     runHttpUnitTest("Response Object - Cookie Test 3 - Error Setting Cookie", "test-web-response.php/cookie-3", {

@@ -1193,13 +1193,18 @@ class Application
      * Internally this calls the PHP function setcookie(). To delete a cookie use
      * the function [clearCookie()]. To read cookies use the [cookie()] function
      * of the [FastSitePHP\Web\Request] Object or use the PHP superglobal array $_COOKIE.
+     * 
+     * The [$expire] parameter defaults to 0 which makes the cookie expire
+     * at the end of the session. Additionally if PHP 7.3 or higher is used then 
+     * an array of [$options] can be used as the [$expire] parameter and no other
+     * parameters are required. [$options] allows for the `SameSite` Attribute.
      *
      * @link http://php.net/manual/en/function.setcookie.php
      * @link http://php.net/manual/en/features.cookies.php
      * @link http://php.net/manual/en/reserved.variables.cookies.php
      * @param string $name
      * @param string $value
-     * @param int $expire    Defaults to 0 which makes the cookie expire at the end of the session
+     * @param int|array $expire
      * @param string $path (default: '')
      * @param string $domain (default: '')
      * @param bool $secure (default: false)
@@ -1246,16 +1251,21 @@ class Application
     /**
      * Send an empty value for a named cookie and expired time to tell the browser or
      * client to clear the cookie.
-     *
+     * 
      * @param string $name
-     * @param string $path (default: '')
+     * @param string $path_or_options (default: '')
      * @param string $domain (default: '')
      * @param bool $secure (default: false)
      * @param bool $httponly (default: false)
+     * @param null|string $samesite (default: null)
      * @return $this
      */
-    public function clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)
+    public function clearCookie($name, $path_or_options = '', $domain = '', $secure = false, $httponly = false, $samesite = null)
     {
+        if (is_array($path_or_options)) {
+            $path_or_options['expires'] = -1;
+            return $this->cookie($name, '', $path_or_options);
+        }
         return $this->cookie($name, '', -1, $path, $domain, $secure, $httponly);
     }
 
@@ -3074,7 +3084,18 @@ class Application
             foreach ($this->response_cookies as $cookie) {
                 // setcookie() will return false when php error handling is turned off,
                 // otherwise invalid calls to setcookie() will trigger E_WARNING errors.
-                $success = setcookie($cookie['name'], $cookie['value'], $cookie['expire'], $cookie['path'], $cookie['domain'], $cookie['secure'], $cookie['httponly']);
+                if (is_array($cookie['expire'])) {
+                    if (PHP_VERSION_ID >= 70300) {
+                        // PHP 7.3 +
+                        $success = setcookie($cookie['name'], $cookie['value'], $cookie['expire']);
+                    } else {
+                        // Compatability with new PHP 7.3 API - 'expire/expires' is not an error
+                        $options = $cookie['expire'];
+                        $success = setcookie($cookie['name'], $cookie['value'], $options['expires'], $options['path'], $options['domain'], $options['secure'], $options['httponly']);
+                    }
+                } else {
+                    $success = setcookie($cookie['name'], $cookie['value'], $cookie['expire'], $cookie['path'], $cookie['domain'], $cookie['secure'], $cookie['httponly']);
+                }
                 if (!$success) {
                     throw new \Exception(sprintf('Error: setcookie() returned false for cookie named [%s]', (is_string($cookie['name']) ? $cookie['name'] : 'Name was not a string, gettype=' . gettype($cookie['name']))));
                 }

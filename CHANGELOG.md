@@ -2,6 +2,19 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.0 (August 6, 2020)
+
+* Added Support so Cookies can use the `SameSite = 'Strict|Lax|None'` Attribute
+  * Requires `PHP 7.3` or Higher
+  * Affects the following functions which make a call to `setcookie()` using the new `$options` array parameter:
+    * `\FastSitePHP\Application->cookie($name, $value, array $options)`
+    * `\FastSitePHP\Application->clearCookie($name, array $options)`
+    * `\FastSitePHP\Web\Response->cookie($name, $value, array $options)`
+    * `\FastSitePHP\Web\Response->clearCookie($name, array $options)`
+    * `\FastSitePHP\Web\Response->signedCookie($name, $value, $expire_time, array $options)`
+    * `\FastSitePHP\Web\Response->jwtCookie($name, $value, $expire_time, array $options)`
+    * `\FastSitePHP\Web\Response->encryptedCookie($name, $value, array $options)`
+
 ## 1.3.1 (July 15, 2020)
 
 * Updates for `\FastSitePHP\Net\HttpClient`
