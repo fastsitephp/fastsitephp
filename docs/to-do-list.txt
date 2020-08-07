@@ -25,21 +25,17 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Starter Site is going through a few updates, one pending update before next release
-    will be to support [SameSite=Lax;] by default is using PHP 7.3 or higher in [starter-site/app/Middleware/Auth.php]
-    - FireFox currently gives the following warning after logging in on the Auth Demo:
-        Cookie “user” will be soon rejected because it has the “sameSite” attribute set to “none” or an invalid value, without the “secure” attribute. To know more about the “sameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite
-    - This will require updates to all or most cookie functions on the `FastSitePHP\Web\Response` class
-        to support the new optional PHP 7.3 function parameters
-    - Related Links:
-        https://www.php.net/manual/en/function.setcookie.php
-        https://github.com/php/php-src/blob/91fbd12d5736b3cc9fc6bc2545e877dd65be1f6c/ext/standard/head.c#L230
-    
-**) Add FastSitePHP to TechEmpower Benchmarks:
-    https://www.techempower.com/benchmarks/
-    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
-      of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
-    https://github.com/the-benchmarker/web-frameworks
+**) Starter Site
+    - A 2.0 version is being planned that will allow for a very minimal CMS
+        and allow editing of all code on the server siumilar to how the playground site works.
+    - Once created several templates will be provided (PHP, SPA, HTML only, etc) along
+        with a one-page simple site setup wizard to create an inital admin user.
+    - Add Unit Testing
+        - Include CLI Testing for the Auth middleware class and HTML rendered on pages to start
+        - Initially this will be done with Node and a client-side Puppeteer Script
+        - Server-side PHP testing using phpunit - https://phpunit.de/ or custom classes will likely
+            no be created as a Puppeteer/Node Script can easily be created to verify all core security
+            logic and pages on a site and it allows from testing of a live site from any server.
 
 **) FastSitePHP is tested and updated for PHP 8 Beta 1 (as of August 6 2020)
     * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
@@ -63,14 +59,21 @@ TODO List
             http://localhost:8080/fastsitephp/website/public/sysinfo/phpinfo
             http://localhost:8080/fastsitephp/website/public/en/
             http://localhost:8080/fastsitephp/tests/index.htm
+            http://localhost:8080/starter-site/public/en/
             * Or remove "/fastsitephp" if running from main repository directly
             * This assume full setup with all repositories under a main [fastsitephp] directory
+
+**) Add FastSitePHP to TechEmpower Benchmarks:
+    https://www.techempower.com/benchmarks/
+    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
+      of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
+    https://github.com/the-benchmarker/web-frameworks
 
 **) Create Docker Image
     - Include the starter site?
 
 **) Create Documentation that shows how Unit Testing works
-        
+
 **) fastsitephp\scripts\create-api-json-files.php
     This file should be updated to handle multiple languages when the other language is a duplicate of the `en` file.
     Currently many of the `pt-BR` files are a duplicate of `en`
@@ -133,14 +136,7 @@ TODO List
         can handle (for example 1000 concurrent php connections using default settings)
 
 *) Starter Site - Future options and features
-    - Add Unit Testing
-        - Likely include CLI Testing for the Auth middleware class to start
-        - Using phpunit - https://phpunit.de/ or custom classes has not been decided on and likely
-          won't until this is added (PHPUnit has limitations such as only running in latest PHP,
-          and it their docs they ware against using it on a production webserver)
-        - Another option may be similar to how testing is handled with the main site
-          and use web based testing (possibly from client-side JS using puppeteer for CLI)
-    - Future - possible mobile apps (iOS and Android) to work with a starter site
+    - Ppossible mobile apps (iOS and Android) to work with a starter site
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected
