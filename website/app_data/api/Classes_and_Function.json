@@ -24,7 +24,7 @@
                 "link": "App_Middleware_Auth#fn_login"
             },
             {
-                "name": "Auth->logout(Application $app)",
+                "name": "Auth->logout(Application $app, $lang = null)",
                 "link": "App_Middleware_Auth#fn_logout"
             },
             {
@@ -351,7 +351,7 @@
                 "link": "Application#fn_cookie"
             },
             {
-                "name": "Application->clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "name": "Application->clearCookie($name, $path_or_options = '', $domain = '', $secure = false, $httponly = false, $samesite = null)",
                 "link": "Application#fn_clearCookie"
             },
             {
@@ -2104,7 +2104,7 @@
                 "link": "Web_Response#fn_cookie"
             },
             {
-                "name": "Response->clearCookie($name, $path = '', $domain = '', $secure = false, $httponly = false)",
+                "name": "Response->clearCookie($name, $path_or_options = '', $domain = '', $secure = false, $httponly = false)",
                 "link": "Web_Response#fn_clearCookie"
             },
             {
