@@ -50,6 +50,7 @@ This section shows several different installation options for Linux using shell 
 # such php are already installed, and prompts before overwriting an existing site.
 
 # Supported Operating Systems (more will be added in the future):
+#   Ubuntu 16.04 LTS
 #   Ubuntu 18.04 LTS
 
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh

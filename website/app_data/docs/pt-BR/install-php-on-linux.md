@@ -51,6 +51,7 @@ Esta seção mostra várias opções de instalação diferentes para Linux utili
 # sobrescrever um site existente.
 
 # Sistemas Operacionais Suportados (mais serão adicionados no futuro):
+#   Ubuntu 16.04 LTS
 #   Ubuntu 18.04 LTS
 
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh
