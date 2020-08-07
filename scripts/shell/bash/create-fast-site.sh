@@ -11,7 +11,7 @@
 #  https://github.com/fastsitephp/starter-site
 #
 #  Author:   Conrad Sollitt
-#  Created:  2019
+#  Created:  2019 to 2020
 #  License:  MIT
 #
 #  Supported Operating Systems:
@@ -23,6 +23,10 @@
 #
 #  Basic Usage:
 #      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+#      sudo bash create-fast-site.sh
+#
+#  Or download directly from GitHub and install:
+#      wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/shell/bash/create-fast-site.sh
 #      sudo bash create-fast-site.sh
 #
 #  Options:
@@ -71,6 +75,15 @@ FONT_ERROR="${FONT_BG_RED}${FONT_WHITE}"
 # Get Path and Name of the Script
 SCRIPT_PATH="${BASH_SOURCE[0]}"
 SCRIPT_NAME=$(basename "${SCRIPT_PATH}")
+
+# By default apt-get on Ubuntu only installs PHP 7.2, in order to use newer
+# versions a 3rd party repository is required. To use the default version
+# use an empty string and to use the 3rd party repository specify the version.
+# The selected 3rd party repository is widely used and safe. PHP 7.3 or higher
+# is needed in order to use the security [SameSite] attribute for Cookies.
+#
+# PHP_VER=""
+PHP_VER="7.4"
 
 # ---------------------------------------------------------
 # Main function, this gets called from bottom of the file
@@ -167,12 +180,15 @@ install_apache ()
         exit $ERR_GENERAL
     fi
 
-    # Install Apache and PHP
+    # Install Apache, PHP, then enable PHP for Apache with libapache2-mod-php
     apt_install 'apache2'
-    apt_install 'php'
-
-    # Enable PHP for Apache
-    apt_install 'libapache2-mod-php'
+    if [[ "${PHP_VER}" == "" ]]; then
+        apt_install 'php'
+        apt_install 'libapache2-mod-php'
+    else
+        apt_install "php${PHP_VER}"
+        apt_install "libapache2-mod-php${PHP_VER}"
+    fi
 
     # Get the installed PHP major and minor version (example: 7.2)
     php_ver=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
@@ -251,7 +267,11 @@ install_nginx ()
     # Install nginx and PHP
     apt_install 'nginx'
     ufw allow 'Nginx HTTP'
-    apt_install 'php-fpm'
+    if [[ "${PHP_VER}" == "" ]]; then
+        apt_install 'php-fpm'
+    else
+        apt_install "php${PHP_VER}-fpm"
+    fi
 
     # Get the installed PHP major and minor version (example: 7.2)
     php_ver=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
@@ -337,6 +357,16 @@ check_root ()
 # ---------------------------------------------------------
 check_apt ()
 {
+    # 3rd party repositories are needed for specific versions of PHP
+    if [[ "${PHP_VER}" != "" ]]; then
+        if [ ! -f "/etc/apt/sources.list.d/ondrej-ubuntu-php-bionic.list" ]; then
+            echo -e "Install APT Repository ${FONT_BOLD}${FONT_UNDERLINE}ppa:ondrej/php${FONT_RESET}"
+            add-apt-repository ppa:ondrej/php -y
+        else
+            echo -e "APT Repository ${FONT_BOLD}${FONT_UNDERLINE}ppa:ondrej/php${FONT_RESET} already exists"
+        fi
+    fi
+
     if hash apt 2>/dev/null; then
         # Update [apt] Package Manager
         echo -e "Updating APT using ${FONT_BOLD}${FONT_UNDERLINE}apt update${FONT_RESET}"
