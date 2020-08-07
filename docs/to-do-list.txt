@@ -36,6 +36,18 @@ TODO List
         - Server-side PHP testing using phpunit - https://phpunit.de/ or custom classes will likely
             no be created as a Puppeteer/Node Script can easily be created to verify all core security
             logic and pages on a site and it allows from testing of a live site from any server.
+    - The bash script [fastsitephp\scripts\shell\bash\create-fast-site.sh] currently works with
+        Ubuntu 16.04 and 18.04 but not 20.04 without some updates.
+        - More research and testing is needed
+        - With both default apt repository and "ppa:ondrej/php" php7.4-sqlite and other extensions do not show up
+            - looks like `php7.4-sqlite3` might have to be used
+                https://ubuntu.pkgs.org/20.04/ubuntu-main-arm64/php7.4-sqlite3_7.4.3-4ubuntu1_arm64.deb.html
+        - An initial test by commenting out the extensions except for "php7.4-zip" worked when not using "ppa:ondrej/php"
+        - Additionally the function `get_user ()` needed to be updated for the commented `if [[ "$(uname -a)" ==` logic
+        - Bash Snippet to test for version 20.04:
+            [[ -n "$(cat /etc/os-release | grep 20.04)" ]] && echo "20.04" || echo "other"
+        - Ubuntu 20.04 LTS is not included on AWS Lightsail however it is included on DigitalOcean
+        - Before support the bash script must work with both Apache and nginx and provide full Unit Testing of the Framework
 
 **) FastSitePHP is tested and updated for PHP 8 Beta 1 (as of August 6 2020)
     * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
