@@ -15,11 +15,13 @@
 #  License:  MIT
 #
 #  Supported Operating Systems:
+#      Ubuntu 16.04 LTS
 #      Ubuntu 18.04 LTS
 #
-#  Download and running this script (requires root/sudo).
-#  This script works on a default OS when nothing is installed and is
-#  expected to take about 1 minute.
+#  Download and run this script. This script works on a default OS
+#  when nothing is installed and is expected to take about 1 minute.
+#  This script requires sudo and for the current user and for the
+#  current user to be named 'ubuntu'.
 #
 #  Basic Usage:
 #      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
@@ -530,6 +532,13 @@ copy_dir ()
 # ---------------------------------------------------------
 get_user ()
 {
+    # The logic used below is expecting the hard-coded user "ubuntu" which is
+    # used by default on AWS Lightsail. The commented logic below could be
+    # used to detect if the OS is Ubuntu and return the current user.
+    #
+    # if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
+    #    printf '%s' "${USER}"
+
     if id -u ubuntu >/dev/null 2>&1; then
         printf 'ubuntu'
     else
