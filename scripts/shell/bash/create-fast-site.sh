@@ -284,9 +284,9 @@ install_nginx ()
     # below are needed for all FastSitePHP common features to work and
     # for all Unit Tests to succeed, however they are not required
     # in order to use FastSitePHP.
-    apt_install "php${php_ver}-sqlite"
+    apt_install "php${php_ver}-sqlite3"
     apt_install "php${php_ver}-gd"
-    apt_install "php${php_ver}-bc"
+    apt_install "php${php_ver}-bcmath"
     apt_install "php${php_ver}-simplexml"
 
     # The zip extension is required in order for the FastSitePHP
