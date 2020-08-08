@@ -19,10 +19,16 @@
 #      Ubuntu 18.04 LTS
 #      Ubuntu 16.04 LTS
 #
-#  Download and run this script. This script works on a default OS
-#  when nothing is installed and is expected to take between 1 minute
-#  to a 1 and a half minutes to install. This script should work with
-#  any user however it requires sudo access when running the install.
+#  Confirmed Cloud Enviroments:
+#      [Amazon AWS Lightsail] with user [ubuntu]
+#      [DigitalOcean] with user [root]
+#
+#  This script works on a default OS when nothing is installed and is
+#  expected to take between 1 minute to a 1 and a half minutes to
+#  install. This script should work with any user however it requires
+#  sudo access when running the install.
+#
+#  Download and run this script:
 #
 #  Basic Usage:
 #      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
@@ -528,13 +534,6 @@ copy_dir ()
 # ---------------------------------------------------------
 # Check the OS and return the current user that will be
 # granted access to the Web Root Directory:
-#
-# Web directory:
-#   /var/www
-#
-# Example Users:
-#   AWS Lightsail: ubuntu
-#   DigitalOcean: root
 # ---------------------------------------------------------
 get_user ()
 {

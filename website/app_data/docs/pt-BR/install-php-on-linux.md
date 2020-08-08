@@ -51,8 +51,13 @@ Esta seção mostra várias opções de instalação diferentes para Linux utili
 # sobrescrever um site existente.
 
 # Sistemas Operacionais Suportados (mais serão adicionados no futuro):
-#   Ubuntu 16.04 LTS
+#   Ubuntu 20.04 LTS
 #   Ubuntu 18.04 LTS
+#   Ubuntu 16.04 LTS
+
+# Confirmed Cloud Enviroments:
+#   [Amazon AWS Lightsail] with user [ubuntu]
+#   [DigitalOcean] with user [root]
 
 wget https://www.fastsitephp.com/downloads/create-fast-site.sh
 sudo bash create-fast-site.sh
