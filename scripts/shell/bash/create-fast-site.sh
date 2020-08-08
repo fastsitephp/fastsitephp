@@ -15,13 +15,14 @@
 #  License:  MIT
 #
 #  Supported Operating Systems:
-#      Ubuntu 16.04 LTS
+#      Ubuntu 20.04 LTS
 #      Ubuntu 18.04 LTS
+#      Ubuntu 16.04 LTS
 #
 #  Download and run this script. This script works on a default OS
-#  when nothing is installed and is expected to take about 1 minute.
-#  This script requires sudo and for the current user and for the
-#  current user to be named 'ubuntu'.
+#  when nothing is installed and is expected to take between 1 minute
+#  to a 1 and a half minutes to install. This script should work with
+#  any user however it requires sudo access when running the install.
 #
 #  Basic Usage:
 #      wget https://www.fastsitephp.com/downloads/create-fast-site.sh
@@ -200,9 +201,9 @@ install_apache ()
     # below are needed for all FastSitePHP common features to work and
     # for all Unit Tests to succeed, however they are not required
     # in order to use FastSitePHP.
-    apt_install "php${php_ver}-sqlite"
+    apt_install "php${php_ver}-sqlite3"
     apt_install "php${php_ver}-gd"
-    apt_install "php${php_ver}-bc"
+    apt_install "php${php_ver}-bcmath"
     apt_install "php${php_ver}-simplexml"
 
     # The zip extension is required in order for the FastSitePHP
@@ -525,22 +526,20 @@ copy_dir ()
 }
 
 # ---------------------------------------------------------
-# Return a known user that will be granted access to the
-# Web Root Directory, Currently supported:
+# Check the OS and return the current user that will be
+# granted access to the Web Root Directory:
+#
+# Web directory:
 #   /var/www
-#     ubuntu
+#
+# Example Users:
+#   AWS Lightsail: ubuntu
+#   DigitalOcean: root
 # ---------------------------------------------------------
 get_user ()
 {
-    # The logic used below is expecting the hard-coded user "ubuntu" which is
-    # used by default on AWS Lightsail. The commented logic below could be
-    # used to detect if the OS is Ubuntu and return the current user.
-    #
-    # if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
-    #    printf '%s' "${USER}"
-
-    if id -u ubuntu >/dev/null 2>&1; then
-        printf 'ubuntu'
+    if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
+       printf '%s' "${USER}"
     else
         >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, This script currently only runs on Ubuntu."
         >&2 echo "To run modify the function [get_user ()] for your OS."
