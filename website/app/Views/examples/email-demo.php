@@ -131,7 +131,7 @@
     <section class="content example-title center align-center">
         <h1><?= $app->escape($i18n['page_title']) ?></h1>
         <?php if (isset($app->config['ExamplesSite'])): ?>
-            <a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Net_SmtpClient" target="_blank"><?= $app->escape($i18n['api_docs']) ?></a>
+            <a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Net_SmtpClient" target="_blank" rel="noopener"><?= $app->escape($i18n['api_docs']) ?></a>
         <?php else: ?>
             <a href="<?= $app->rootUrl() . $app->lang ?>/api/Net_SmtpClient"><?= $app->escape($i18n['api_docs']) ?></a>
         <?php endif ?>
@@ -280,21 +280,21 @@
             <h2><?= $app->escape($i18n['other_clients']) ?></h2>
             <p><?= $app->escape($i18n['info_other']) ?></p>
             <ul class="bullet-list">
-                <li><a href="https://github.com/PHPMailer/PHPMailer" target="_blank">https://github.com/PHPMailer/PHPMailer</a></li>
-                <li><a href="https://swiftmailer.symfony.com/" target="_blank">https://swiftmailer.symfony.com/</a></li>
-                <li><a href="https://zendframework.github.io/zend-mail/" target="_blank">https://zendframework.github.io/zend-mail/</a></li>
+                <li><a href="https://github.com/PHPMailer/PHPMailer" target="_blank" rel="noopener">https://github.com/PHPMailer/PHPMailer</a></li>
+                <li><a href="https://swiftmailer.symfony.com/" target="_blank" rel="noopener">https://swiftmailer.symfony.com/</a></li>
+                <li><a href="https://zendframework.github.io/zend-mail/" target="_blank" rel="noopener">https://zendframework.github.io/zend-mail/</a></li>
             </ul>
         </section>
 
         <section class="content">
             <h2><?= $app->escape($i18n['other_lang']) ?></h2>
             <ul class="bullet-list">
-                <li><strong>JavaScript (Node)</strong> <a href="https://nodemailer.com/about/" target="_blank">https://nodemailer.com/about/</a></li>
-                <li><strong>Python</strong> <a href="https://docs.python.org/3/library/smtplib.html" target="_blank">https://docs.python.org/3/library/smtplib.html</a></li>
-                <li><strong>Ruby Mail</strong> <a href="https://rubygems.org/gems/mail/" target="_blank">https://rubygems.org/gems/mail/</a></li>
-                <li><strong>Ruby SMTP</strong> <a href="https://ruby-doc.org/stdlib/libdoc/net/smtp/rdoc/Net/SMTP.html" target="_blank">https://ruby-doc.org/stdlib/libdoc/net/smtp/rdoc/Net/SMTP.html</a></li>
-                <li><strong>C# / .Net</strong> <a href="https://docs.microsoft.com/en-us/dotnet/api/system.net.mail" target="_blank">https://docs.microsoft.com/en-us/dotnet/api/system.net.mail</a></li>
-                <li><strong>Go Lang</strong> <a href="https://golang.org/pkg/net/smtp/" target="_blank">https://golang.org/pkg/net/smtp/</a></li>
+                <li><strong>JavaScript (Node)</strong> <a href="https://nodemailer.com/about/" target="_blank" rel="noopener">https://nodemailer.com/about/</a></li>
+                <li><strong>Python</strong> <a href="https://docs.python.org/3/library/smtplib.html" target="_blank" rel="noopener">https://docs.python.org/3/library/smtplib.html</a></li>
+                <li><strong>Ruby Mail</strong> <a href="https://rubygems.org/gems/mail/" target="_blank" rel="noopener">https://rubygems.org/gems/mail/</a></li>
+                <li><strong>Ruby SMTP</strong> <a href="https://ruby-doc.org/stdlib/libdoc/net/smtp/rdoc/Net/SMTP.html" target="_blank" rel="noopener">https://ruby-doc.org/stdlib/libdoc/net/smtp/rdoc/Net/SMTP.html</a></li>
+                <li><strong>C# / .Net</strong> <a href="https://docs.microsoft.com/en-us/dotnet/api/system.net.mail" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/api/system.net.mail</a></li>
+                <li><strong>Go Lang</strong> <a href="https://golang.org/pkg/net/smtp/" target="_blank" rel="noopener">https://golang.org/pkg/net/smtp/</a></li>
             </ul>
         </section>
     </div>

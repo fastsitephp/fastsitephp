@@ -404,7 +404,7 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
                     <span class="arrow"></span>
                 </span>
             </span>
-            <p class="try-other-site"><a href="https://www.dataformsjs.com/en/playground" target="_blank"><?= $app->escape($i18n['try_other_site']) ?></a></p>
+            <p class="try-other-site"><a href="https://www.dataformsjs.com/en/playground" target="_blank" rel="noopener"><?= $app->escape($i18n['try_other_site']) ?></a></p>
         </section>
     </div>
     <div class="files">
@@ -469,11 +469,11 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
                     data-already-exists="<?= $app->escape($i18n['file_already_exists']) ?>"
                     data-name-not-allowed="<?= $app->escape($i18n['name_not_allowed']) ?>">
                 </span>
-                <a class="btn view-file" href="#" target="_blank" style="display:none;">
+                <a class="btn view-file" href="#" target="_blank" rel="noopener" style="display:none;">
                     <span class="icon"></span>
                     <span class="text"><?= $app->escape($i18n['btn_view_file']) ?></span>
                 </a>
-                <a class="btn view-site" href="#" target="_blank">
+                <a class="btn view-site" href="#" target="_blank" rel="noopener">
                     <span class="icon"></span>
                     <span class="text"><?= $app->escape($i18n['btn_view_site']) ?></span>
                 </a>

@@ -139,12 +139,12 @@
         <?php endif ?>
         <p><?= $app->escapeDesc($class->description) ?></p>
         <h3 class="source-code"><?= $app->escape($i18n['source_code']) ?></h3>
-        <p><a href="<?= $app->escape($class->github) ?>" target="_blank"><img src="../../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32"></a></p>
+        <p><a href="<?= $app->escape($class->github) ?>" target="_blank" rel="noopener"><img src="../../img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32"></a></p>
         <?php if ($class->links): ?>
             <h3 class="related-links"><?= $app->escape($i18n['related_links']) ?></h3>
             <ul class="link-list">
             <?php foreach ($class->links as $link): ?>                
-                <li><a href="<?= $app->escape($link) ?>" target="_blank"><?= $app->escape($link) ?></a></li>
+                <li><a href="<?= $app->escape($link) ?>" target="_blank" rel="noopener"><?= $app->escape($link) ?></a></li>
             <?php endforeach ?>
             </ul>
         <?php endif ?>
@@ -202,7 +202,7 @@
                 <?php if ($method->links): ?>
                     <ul class="link-list">
                     <?php foreach ($method->links as $link): ?>                
-                        <li><a href="<?= $app->escape($link) ?>" target="_blank"><?= $app->escape($link) ?></a></li>
+                        <li><a href="<?= $app->escape($link) ?>" target="_blank" rel="noopener"><?= $app->escape($link) ?></a></li>
                     <?php endforeach ?>
                     </ul>
                 <?php endif ?>                

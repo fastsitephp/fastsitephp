@@ -62,7 +62,7 @@
     <section class="content example-title center align-center">
         <h1><?= $app->escape($i18n['page_title']) ?></h1>
         <?php if (isset($app->config['ExamplesSite'])): ?>
-            <a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Data_Database" target="_blank"><?= $app->escape($i18n['api_docs']) ?></a>
+            <a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Data_Database" target="_blank" rel="noopener"><?= $app->escape($i18n['api_docs']) ?></a>
         <?php else: ?>
             <a href="<?= $app->rootUrl() . $app->lang ?>/api/Data_Database"><?= $app->escape($i18n['api_docs']) ?></a>
         <?php endif ?>

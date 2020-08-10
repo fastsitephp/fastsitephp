@@ -24,7 +24,7 @@
     <section class="content example-title inline-block center align-center">
         <h1><?= $app->escape($i18n['page_title']) ?></h1>
         <?php if (isset($app->config['ExamplesSite'])): ?>
-            <div><a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Security_Crypto_Encryption" target="_blank"><?= $app->escape($i18n['api_docs']) ?></a></div>
+            <div><a href="https://www.fastsitephp.com/<?= $app->lang ?>/api/Security_Crypto_Encryption" target="_blank" rel="noopener"><?= $app->escape($i18n['api_docs']) ?></a></div>
         <?php else: ?>
             <div><a href="<?= $app->rootUrl() . $app->lang ?>/api/Security_Crypto_Encryption"><?= $app->escape($i18n['api_docs']) ?></a></div>
         <?php endif ?>

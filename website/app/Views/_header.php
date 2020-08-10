@@ -132,7 +132,7 @@
                             <a href="<?= $app->rootUrl() . $app->lang ?>/api"><?= $app->escape($i18n['menu_api']) ?></a>
                         </li>
                         <li>
-                            <a href="<?= $github ?>" class="github" target="_blank">
+                            <a href="<?= $github ?>" class="github" target="_blank" rel="noopener">
                             <img src="<?= $app->rootDir() ?>img/logos/GitHub-Mark-32px.png" alt="GitHub" height="32" width="32">
                             </a>
                         </li>
@@ -186,7 +186,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<?= $github ?>" class="github" target="_blank">
+                        <a href="<?= $github ?>" class="github" target="_blank" rel="noopener">
                         <img src="<?= $app->rootDir() ?>img/logos/GitHub-Mark-Light-32px.png" alt="GitHub" height="32" width="32">
                         </a>
                     </li>

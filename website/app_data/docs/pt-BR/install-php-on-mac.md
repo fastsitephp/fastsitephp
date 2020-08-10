@@ -20,7 +20,7 @@ Apple macOS vem com o Apache e o PHP já instalados, contudo o Apache e a utiliz
 
 <div class="quick-tip">
     <h3>Dica Rápida</h3>
-    <p>Por que o PHP já está instalado você pode utilizar o <a href="https://www.php.net/manual/en/features.commandline.webserver.php" target="_blank">Servidor Web Integrado do PHP</a> para um desenvolvimento local e assim não há necessidade de uma configuração complexa do Apache. Para informações de como fazer isso veja <a href="edit-with-vs-code">Utilize o Visual Studio Code para Desenvolvimento PHP</a> ou <a href="edit-with-atom">Utilize o Editor Atom do GitHub para Desenvolvimento PHP</a>.</p>
+    <p>Por que o PHP já está instalado você pode utilizar o <a href="https://www.php.net/manual/en/features.commandline.webserver.php" target="_blank" rel="noopener">Servidor Web Integrado do PHP</a> para um desenvolvimento local e assim não há necessidade de uma configuração complexa do Apache. Para informações de como fazer isso veja <a href="edit-with-vs-code">Utilize o Visual Studio Code para Desenvolvimento PHP</a> ou <a href="edit-with-atom">Utilize o Editor Atom do GitHub para Desenvolvimento PHP</a>.</p>
 </div>
 
 ### Recursos sobre Instalação do Apache, PHP e MySQL para macOS
