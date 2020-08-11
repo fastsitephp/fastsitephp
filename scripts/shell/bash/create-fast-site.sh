@@ -354,7 +354,7 @@ EOF
 check_root ()
 {
     if (( EUID != 0 )); then
-        >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, unable to install site. This script requires the root user."
+        >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, unable to install site. This script requires root or sudo access."
         >&2 echo "Install using the command below:"
         >&2 echo "    sudo bash ${SCRIPT_NAME}"
         exit $ERR_NOT_ROOT
@@ -537,8 +537,16 @@ copy_dir ()
 # ---------------------------------------------------------
 get_user ()
 {
+    # NOTE - If you are modifying this script for a custom
+    # setup and want to check if a specific user exists and
+    # assign permissions to that user the following logic
+    # can be used:
+    #
+    # if id -u ubuntu >/dev/null 2>&1; then
+    #     printf 'ubuntu'
+
     if [[ "$(uname -a)" == *"Ubuntu"* ]]; then
-       printf '%s' "${USER}"
+       printf '%s' $(logname)
     else
         >&2 echo -e "${FONT_ERROR}Error${FONT_RESET}, This script currently only runs on Ubuntu."
         >&2 echo "To run modify the function [get_user ()] for your OS."
