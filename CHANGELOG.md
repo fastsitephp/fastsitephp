@@ -2,6 +2,10 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.2 (September 3, 2020)
+
+* No changes however `export-ignore` was not working properly from `.gitattributes` for the previous release
+
 ## 1.4.1 (September 3, 2020)
 
 * Minor update for `\FastSitePHP\Application->requestedPath()` to return the requested path of valid static files when using the PHP Built-In Server for local development
