@@ -2036,6 +2036,11 @@ class Application
             $script_name = $_SERVER['SCRIPT_NAME'];
 
             if (strpos($url, $script_name) === 0) {
+                // PHP Built-In Server and requested URL is a valid static file from the project root.
+                // Example a JavaScript file under [/node_modules/].
+                if (php_sapi_name() == 'cli-server' && is_file($_SERVER['SCRIPT_FILENAME']) && strpos($_SERVER['REQUEST_URI'], '.php') === false) {
+                    return $_SERVER['REQUEST_URI'];
+                }
                 // For cases where URL contains the PHP page [ex: /public/index.php/test]
                 // and SCRIPT_NAME is similar to [/public/index.php].
                 // If the base script file name [ex: index.php] is not found in the

@@ -2,6 +2,11 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.1 (September 3, 2020)
+
+* Minor update for `\FastSitePHP\Application->requestedPath()` to return the requested path of valid static files when using the PHP Built-In Server for local development
+  * This was found to affect very specific setups, for example a root level `index.php` routing file with a `public` sub-directory and `node_modules` at the root level.
+
 ## 1.4.0 (August 6, 2020)
 
 * Added Support so Cookies can use the `SameSite = 'Strict|Lax|None'` Attribute
