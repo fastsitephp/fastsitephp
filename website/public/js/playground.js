@@ -4,7 +4,7 @@
  *
  * @package  FastSitePHP
  * @link     https://www.fastsitephp.com
- * @author   Conrad Sollitt (http://conradsollitt.com)
+ * @author   Conrad Sollitt (https://conradsollitt.com)
  * @license  MIT License
  */
 

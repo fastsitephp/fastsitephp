@@ -1,6 +1,6 @@
     </main>
     <footer>
-        <p>&copy; <?= date('Y') ?> <a href="http://www.conradsollitt.com/" target="_blank" rel="noopener">Conrad Sollitt</a></p>
+        <p>&copy; <?= date('Y') ?> <a href="https://conradsollitt.com/" target="_blank" rel="noopener">Conrad Sollitt</a></p>
         <p><?= $app->escape($i18n['footer_license']) ?></p>
     </footer>
     <script src="<?= $app->rootDir() ?>js/prism.js" defer></script>

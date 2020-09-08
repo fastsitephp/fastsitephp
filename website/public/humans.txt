@@ -7,7 +7,7 @@
 																					
 /* Contributors */
 	Author and Lead Developer (Framework and Site)
-	Site: http://conradsollitt.com
+	Site: https://conradsollitt.com
 	From: Los Angeles, California, USA
 
 	See all Contributors on GitHub:
