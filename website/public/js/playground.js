@@ -146,10 +146,12 @@
                     var msg = document.querySelector('.error-messages').getAttribute('data-saved-site');
                     if (confirm(msg)) {
                         removeSavedSitekey();
-                        // NOTE - `reload()` is now deprecated so some editors such as VS Code
-                        // will show a line through it, however it is still included here because
-                        // it improves the behavior for older Browsers. For example when using
-                        // `reload(true)` IE 11 will send a [Cache-Control: no-cache] Request Header.
+                        // NOTE - `reload(forcedReload: boolean)` is now deprecated so some editors
+                        // such as VS Code will show a line through it and only `reload()` is needed
+                        // on modern browsers, however it is still included here because it improves
+                        // the behavior for older Browsers. For example when using `reload(true)`
+                        // IE 11 will send a [Cache-Control: no-cache] Request Header while calling
+                        // only `reload()` will not send the header.
                         window.location.reload(true);
                     }
                 }, 100);
@@ -918,7 +920,7 @@
     }
 
     function loadPolyfill() {
-        // [fetch, String.prototype.endsWith, String.prototype.repeat] - Used in this file 
+        // [fetch, String.prototype.endsWith, String.prototype.repeat] - Used in this file
         // [String.prototype.startsWith] - Used with CodeMirror for linting
         var url = 'https://polyfill.io/v3/polyfill.min.js?features=fetch%2CString.prototype.endsWith%2CString.prototype.repeat%2CString.prototype.startsWith';
         var script = document.createElement('script');
