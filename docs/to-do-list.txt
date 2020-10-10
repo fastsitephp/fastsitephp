@@ -25,6 +25,10 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Minor Bug Fix Needed - Applies only to local development when using PHP Built-in server
+    with SPA apps and using [index.php] for all routes. See comments at:
+        https://github.com/dataformsjs/website/blob/master/app/app.php#L224
+
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
         and allow editing of all code on the server siumilar to how the playground site works.
