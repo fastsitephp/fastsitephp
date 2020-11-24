@@ -2,6 +2,10 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.3 (November 24, 2020)
+
+* Fix for `Application->requestedPath()` so that it strips the Query String if using the PHP Built-in Server with all resources using a fallback `index.php` or other PHP file. This was not a common scenario for most PHP development and didn't affect any production servers.
+
 ## 1.4.2 (September 3, 2020)
 
 * No changes however `export-ignore` was not working properly from `.gitattributes` for the previous release
@@ -36,7 +40,7 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 * Added support for PHP 8 Alpha 2
   * Overall most features worked out of the box with PHP 8 however a few minor changes were needed for full support and a number of unit tests had to be updated
   * Both 64-Bit and 32-Bit releases have been tested and passed all Unit Tests
-  * Updates for PHP 8 do not affect previous versions of PHP so FastSitePHP now works with `PHP 5.3` to `PHP 8.0 (Alpha 2)` and all versions inbetween.
+  * Updates for PHP 8 do not affect previous versions of PHP so FastSitePHP now works with `PHP 5.3` to `PHP 8.0 (Alpha 2)` and all versions in-between.
   * Additional changes may be needed because PHP 8 is not yet finalized
 * Added features for classes in the `\FastSitePHP\FileSystem` namespace:
   * Added new function `all()` to `\FastSitePHP\FileSystem\Search`
@@ -158,7 +162,7 @@ $app->get('/', function() use ($app) {
 
 ## 1.1.2 (December 16, 2019)
 
-* Updates for easier nginx suppport using a basic nginx install
+* Updates for easier nginx support using a basic nginx install
   * Change affected `Application->requestedPath()` and `AppMin->requestedPath()` so handle empty string "" for PATH_INFO
 
 ## Website (December 12, 2019)
@@ -187,9 +191,9 @@ sudo bash create-fast-site.sh
 ## 1.1.0 (December 10, 2019)
 
 * New Class `FastSitePHP\FileSystem\Sync`
-* Class `FastSitePHP\Lang\I18N` 
+* Class `FastSitePHP\Lang\I18N`
   * Added new static function: `I18N::getUserDefaultLang()`
-  * Fixed edge case error when multple calls are made to `I18N::langFile()` and a file is missing after the first call.
+  * Fixed edge case error when multiple calls are made to `I18N::langFile()` and a file is missing after the first call.
 
 ## 1.0.0 (November 14, 2019)
 
