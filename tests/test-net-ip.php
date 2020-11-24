@@ -585,7 +585,7 @@ $app->get('/client-ip-ipv4', function() use ($app) {
             'return_type' => 'string',
         ),
         // Using option 'from proxy' with multiple proxy IP's but using ';' rather than ',' to 
-        // seperate the IP Addresses. This would not be common and considered an invalid IP 
+        // separate the IP Addresses. This would not be common and considered an invalid IP 
         // as it will not be split. So the entire invalid string value is returned as the IP. 
         // If a server were setup to handle proxy IP's this way it would need custom code to 
         // parse the data or the clientIp() would need to be modified. This item is returned
@@ -989,7 +989,7 @@ $app->get('/client-ip-ipv4', function() use ($app) {
 
 // Just like the above test [/client-ip-ipv4] but for IPv6 Addresss and IPv4/IPv6 Mixed Headers.
 // All logic is tested in the IPv4 function and many of these tests are similar (even the comments)
-// but testing IPv6 plus some features unique to IPv6 such as Zone Index. IPv6 Tests are seperate
+// but testing IPv6 plus some features unique to IPv6 such as Zone Index. IPv6 Tests are separate
 // from IPv4 tests in case a server doens't support IPv6 and needs to work with IPv4.
 $app->get('/client-ip-ipv6', function() use ($app) {
     // --------------------------------------------------------

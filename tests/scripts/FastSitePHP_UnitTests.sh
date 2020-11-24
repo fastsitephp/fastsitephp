@@ -68,7 +68,7 @@ main ()
     has_error=0
 
     # Define an Array of Tests, Bash does not support structs, objects, or multi-dimensional arrays so each
-    # Test is packed into a string seperated by vertical bars '|' with extra white space for readability.
+    # Test is packed into a string separated by vertical bars '|' with extra white space for readability.
     tests=(
         # Check how the Server/Site handles the Request Header 'Expect: 100-continue'
         "${curl_post_args}|  ${post_url}?data=Expect100|   Has Expect:100-continue: true"

@@ -20,8 +20,9 @@ TODO List
 |   All contributions are welcome.
 |
 |   Generally every item in this list is of low priority and more of a
-|   wish list item rather than an actual need. The higest priority items
-|   are at the top and start with `**)`.
+|   wish list item rather than an actual need. The highest priority items
+|   are at the top and start with `**)`. Development typically occurs
+|   based on the need of real world production sites and apps.
 |
 --------------------------------------------------------------------------
 
@@ -31,9 +32,9 @@ TODO List
 
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
-        and allow editing of all code on the server siumilar to how the playground site works.
+        and allow editing of all code on the server similar to how the playground site works.
     - Once created several templates will be provided (PHP, SPA, HTML only, etc) along
-        with a one-page simple site setup wizard to create an inital admin user.
+        with a one-page simple site setup wizard to create an initial admin user.
     - Add Unit Testing
         - Include CLI Testing for the Auth middleware class and HTML rendered on pages to start
         - Initially this will be done with Node and a client-side Puppeteer Script
@@ -135,29 +136,29 @@ TODO List
         https://docs.microsoft.com/en-us/windows/wsl/install-win10
         https://docs.microsoft.com/en-us/windows/wsl/about
     - In the future add support for more Linux OS's
-    - Future likley add a default 502 bad gateway fallback page with correct settings for nginx
+    - Future likely add a default 502 bad gateway fallback page with correct settings for nginx
         By default nginx will show a generic 502 message when there are more concurrent connections that the server
         can handle (for example 1000 concurrent php connections using default settings)
 
 *) Starter Site - Future options and features
-    - Ppossible mobile apps (iOS and Android) to work with a starter site
+    - Possible mobile apps (iOS and Android) to work with a starter site
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected
-    - Another posible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
-      for partial translatons.
+    - Another possible option may be to use JavaScript to determine [dir="rtl" or dir="ltr"]
+      for partial translations.
 
 *) Documentation to create
     - Publishing releases
-        - Ideally there would be a better workflow, possibly a seperate "Release" branch
+        - Ideally there would be a better workflow, possibly a separate "Release" branch
         - Currently releases need [export-ignore] lines in [.gitattributes]
-            while the master must have them commented out. For the initial release this was done manuall.
+            while the master must have them commented out. For the initial release this was done manual.
     - How Unit Testing works
         - Markdown doc needs to be created in [docs] folder and linked from readme
         - Search this file for "unit test with nginx" which needs to be documented.
     - How Linting works:
         - This could be a new markdown file linked from the readme in the [docs] folder
-        - Either as a seperate doc or a larger doc such as "Editing the Framework Code"
+        - Either as a separate doc or a larger doc such as "Editing the Framework Code"
         - Related Print screens
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/0-phpstan-results.png
             https://fastsitephp.s3-us-west-1.amazonaws.com/img/linting/1-phpstan-code-check.png
@@ -178,7 +179,7 @@ TODO List
           files so currently only [phpstan] is used.
             https://github.com/vimeo/psalm
             https://github.com/phan/phan          
-          Simliar to [phpstan] a (*.phar) file would be downloaded and ran.
+          Similar to [phpstan] a (*.phar) file would be downloaded and ran.
             php psalm.phar > psalm_results.txt
             php phan.phar > phan_results.txt
     - Document on how to use Composer
@@ -210,10 +211,10 @@ TODO List
     - Publish step by step guide on FastSitePHP Server is Setup
     - Linux Install Doc
         - Need more OS examples
-        - Examples on how to connect to linux (possibly in seperate docs for Mac and Windows)
+        - Examples on how to connect to linux (possibly in separate docs for Mac and Windows)
     - PHP and FastSitePHP with Docker?
     - Need to come up with workflow and/or examples on how to publish images
-        and then docs. Currently images are hosted on AWS and saved to a seperate
+        and then docs. Currently images are hosted on AWS and saved to a separate
         Repository.
     -  How to use the Windows Binary Downloads:
         https://windows.php.net/download/
@@ -232,8 +233,8 @@ TODO List
         Example - get all <h3> links using:
             document.querySelectorAll('h3')
         Then create a <ul> link list in the [Overview] topic
-        Alternativly a Tab Layout could be used but that would likely take more time than it's worth
-        Another option would be a seperate document per OS and then all docs can have easy links to each other
+        Alternatively a Tab Layout could be used but that would likely take more time than it's worth
+        Another option would be a separate document per OS and then all docs can have easy links to each other
     - Add detailed nginx install guide after layout has been made easier to use
         # See also the most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
         sudo apt update
@@ -295,7 +296,7 @@ TODO List
     - decide after frequent use with many users if [opcache_reset()]
         should be called regularly or if it is ok to leave it alone.
         It cannot be called via CLI so a web service would need to be created to handle
-        it, or it could be called on ceartain actions such as 'delete-site' however
+        it, or it could be called on certain actions such as 'delete-site' however
         if there are many users then 'delete-site' would be too often. Another option
         would be to reset it on 'create-site' or 'delete-site' once it is using a
         specific amount of memory or number of cached files.
@@ -310,9 +311,9 @@ TODO List
     [FastSitePHP\vendor\FastSitePHP\src\Net\cacert.pem]
 
 *) Create Additional Interfaces for [\FastSitePHP\Data\KeyValue\StorageInterface]
-    - Currently only SQLite has been creatd:
+    - Currently only SQLite has been created:
         http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
-    - At a minimum both [memcached] and [redis] should be suppoted
+    - At a minimum both [memcached] and [redis] should be supported
         http://www.memcached.org/
             https://www.php.net/manual/en/intro.memcached.php
         https://redis.io/
@@ -328,7 +329,7 @@ TODO List
     Note - HHVM is ending support for PHP with the latest releases so
     make it work with the most recent version that supports PHP.
         https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html
-    - For Hack currently [test-net-smtp.php] has to be updated to not use a reference paramater
+    - For Hack currently [test-net-smtp.php] has to be updated to not use a reference parameter
 
 *) Many pages can use more graphics and updates, some specific examples:
     - Most examples need to have an improved mobile layout
@@ -401,7 +402,7 @@ TODO List
     - IP Validation with CIDR
     - File Search
     - File Security
-    - Existing Encryption Demo - Add more options (seperate tab or hidden by default?) to allow a user to encypt using different settings
+    - Existing Encryption Demo - Add more options (separate tab or hidden by default?) to allow a user to encrypt using different settings
         Ideally, allow changing of all settings that are possible but don't allow PBKDF2 on a public site
     - Request Example Page
         Include a demo/test tab with examples of reading different content types submitted by the user
@@ -485,7 +486,7 @@ TODO List
     - How to read info with [phpinfo()]
     - Send Email with Print Screen of SMTP Log Info
         Add a small 3-file zip download for testing emails with the 2
-        needed PHP files (no framework nessesary). It needs to be easy enough
+        needed PHP files (no framework necessary). It needs to be easy enough
         for sys admins to use with minimal programming experience
     - Environment Info using the Classes
     - Docs on how to use [.htaccess] might need to add [mod_rewrite] support for subdirectories
@@ -622,8 +623,8 @@ TODO List
 
 *) Data\Database
     - Create Unit Tests - use file [docs/scripts/testing-db.php] and [home-page-en-examples.php] as a starting point
-    - ODBC and DB2 Classes will have seperate test files not part of the standard unit tests
-    - Additional seperate unit test files for different database vendors (Oracle, Microsoft, etc)
+    - ODBC and DB2 Classes will have separate test files not part of the standard unit tests
+    - Additional separate unit test files for different database vendors (Oracle, Microsoft, etc)
     - Need to test [lastInsertId()] with Oracle and PostgreSQL. Might have to use bound parameters with Oracle:
         https://stackoverflow.com/questions/18441693/how-to-get-the-row-of-the-last-insert-on-oracle-using-pdo
       Create Docs on how to handle last insert id with different databases.
@@ -651,7 +652,7 @@ TODO List
         parseNetworkInfo(networkInfo(), true) - throws specific exceptions
     - networkIpList() returns an array of valid IP addresses
     - networkIp() currently doesn't allow mock tests and has to be verified on many
-        OS's. Seperate parts fo the code to a new function such as [netInfoToIp()].
+        OS's. Separate parts fo the code to a new function such as [netInfoToIp()].
         That way the logic of the function can be verified
 
 *) Unit Testing - docs\unit-testing\test-no-templates.php
@@ -709,13 +710,13 @@ TODO List
     - Unit Test an error or errors the with true/false for [displayCmdErrorDetail], code is
       manually verified for now. Most Unit Tests run the value with [true] for dev testing.
     - Some errors are included for safety and won't be tested, errors like this:
-		// Verify that the enrypted file can be read by PHP
+		// Verify that the encrypted file can be read by PHP
         if (!is_file($enc_file)) {
       A doc or general comment should explain which errors are not unit tested and why
     - Additional Unit Testing with a 32-Bit FreeBSD System
         - Search for all comments related to [$truncate_cmd_2] in the following file:
             fastsitephp/src/Security/Crypto/FileEncryption.php
-        - Bascially there is a permissions issue with the `truncate` on some tested 64-Bit VM's
+        - Basically there is a permissions issue with the `truncate` on some tested 64-Bit VM's
         - There is a work around for 64-Bit systems
         - For large file testing see:
             fastsitephp/scripts/crypto-test-large-file.php
@@ -748,7 +749,7 @@ TODO List
         The test should be slightly revised to handle all servers (different memory, threads, etc)
 
 *) FastSitePHP\Security\Web\Csrf*
-    - Make error messages static variables so user can channge if needed
+    - Make error messages static variables so user can change if needed
     - Create Unit Test Files based on [testing-csrf.php] or other demo code
 
 *) FastSitePHP\Media\Image
@@ -792,11 +793,11 @@ TODO List
         [Languages.json] is only in English, consider making a [Languages] folder and then
         have languages properly translated so [Languages.json] would end up [en.json].
         Or having at least [displayName] and [englishName] versions since every having every
-        language name translated to every lagnuage may not be practical (and creates large files).
+        language name translated to every language may not be practical (and creates large files).
         See script [l10n-process-files.php] as data needs to come from [unicode-cldr]
 
 *) Lang\Time
-    - Add Support for additional lanauges
+    - Add Support for additional languages
         public static function secondsToText($seconds, $locale = 'en')
       Then add additional language functions
 
@@ -851,7 +852,7 @@ TODO List
        - SMTP - Custom Test Page with Config or just use demos for testing?
     - Build a Mock SMTP Server for Unit Testing Timeouts and general testing
     - Add support for DomainKeys Identified Mail (DKIM)
-        This will take a while and will likely go in a seperate class
+        This will take a while and will likely go in a separate class
     - Support [AUTH CRAM-MD5] if any widely used SMTP servers still support it
         It seems primarly used with port 25 before TLS was used for security.
         Seems to be poorly supported now as secure ports now exist.

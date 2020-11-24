@@ -430,7 +430,7 @@ $app->get('/examples/php-loops', function() use ($app) {
     }
     echo "\n";
 
-    // [for] loop using C style syntax, this prints 0...9 on seperate lines
+    // [for] loop using C style syntax, this prints 0...9 on separate lines
     for ($n = 0; $n < 10; $n++) {
         echo $n;
         echo "\n";
@@ -1070,7 +1070,7 @@ $app->get('/examples/app-route-filter', function() use ($app) {
     })->filter($text_response);
 
     // A route can have multiple filters and for clarity you may want to put
-    // filter functions on seperate lines. This page will only be called if
+    // filter functions on separate lines. This page will only be called if
     // [$is_authenticated] returns [true] and it will also be a text response.
     $app->get('/secure-text-page', function($name) {
         return 'Hello ' . $name;
@@ -1229,7 +1229,7 @@ $app->get('/examples/app-dynamic', function() use ($app) {
 // EXAMPLE_CODE_START
 // TITLE: Application Events
 <?php
-// Just like the Hello World Demo this code can be copied to a seperate
+// Just like the Hello World Demo this code can be copied to a separate
 // [index.php] or other file and then tested.
 
 // There are 5 Application callback events:
@@ -1771,7 +1771,7 @@ $app->get('/examples/response-content-type', function() use ($app) {
 
     // When using the Response Object, properties are set through getter/setter
     // functions and are chainable so they can be used on one line as shown
-    // above or seperated to multiple lines as shown here.
+    // above or separated to multiple lines as shown here.
     $app->get('/text-response2', function() {
         return (new \FastSitePHP\Web\Response())
             ->contentType('text')

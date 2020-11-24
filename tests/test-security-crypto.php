@@ -2707,7 +2707,7 @@ $app->get('/decrypt-known-values-aes-gcm', function() {
 
 // This route is similar to [/decrypt-known-values] but uses password based encryption and decryption
 // using PBKDF2 (Password-Based Key Derivation Function 2) rather than standard keys.
-// PBKDF2 can be very slow which is why it is seperated to it's own route.
+// PBKDF2 can be very slow which is why it is separated to it's own route.
 $app->get('/decrypt-with-password', function() {
     // Define Passwords
     $key1_512 = 'de5f31a2aa949afc16fdab86880b4bea0d07bd38aa8c44c9afbd51a8021e460e39cbe73b25f1b74417b1bc412aaa0bd6375cff2973d760f6542722412b3d5e90';
@@ -3058,7 +3058,7 @@ $app->get('/decrypt-large-ints', function() {
     // Manually create the encrypted JSON data with Ints
     // that are too large for any valid 64-bit int size.
     function encrypt_large_int_json($text, $key) {
-        // Convert Single Hex Key to Seperate Encryption and HMAC Keys
+        // Convert Single Hex Key to Separate Encryption and HMAC Keys
         $key = hex2bin($key);
         $keys = array(
             'enc' => substr($key, 0, 32),

@@ -76,7 +76,7 @@ class Application
      * be rendered when the client requests a page that has not matched route or if they
      * request with the wrong method (example GET instead of a POST); the response status
      * codes returned with a not-found template are either [404 => 'Not Found'] or
-     * [405 => 'Method Not Allowed']. If this propery is left as the default null and an
+     * [405 => 'Method Not Allowed']. If this property is left as the default null and an
      * [error_template] is specified then the template specified in [error_template]
      * will be used. If not set then the default [error.php] template located under the
      * [Templates] directory will be used.
@@ -2044,7 +2044,7 @@ class Application
                 // For cases where URL contains the PHP page [ex: /public/index.php/test]
                 // and SCRIPT_NAME is similar to [/public/index.php].
                 // If the base script file name [ex: index.php] is not found in the
-                // script name then the request could be comming from the PHP built-in
+                // script name then the request could be coming from the PHP built-in
                 // Webserver using a router page so keep the existing URL.
                 if (strpos($script_name, basename($_SERVER['SCRIPT_FILENAME'])) !== false) {
                     $url = substr($url, strlen($script_name));

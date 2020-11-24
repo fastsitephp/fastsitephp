@@ -27,7 +27,7 @@ class QuickReference
 
         // Render Template
         // The JavaScript filter code is small so it is included inline in the
-        // page so it runs immediately, and being in a seperate file it can be
+        // page so it runs immediately, and being in a separate file it can be
         // shared with other pages.
         $templates = ['quick-reference.php', 'js-filter.htm'];
         return $app->render($templates, array(

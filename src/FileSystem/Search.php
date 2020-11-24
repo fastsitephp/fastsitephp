@@ -371,7 +371,7 @@ class Search
             $dir_path .= '/';
         }
 
-        // Seperate all items from directory into a seperate array of dirs and files
+        // Separate all items from directory into a separate array of dirs and files
         foreach ($fs_items as $name) {
             if (is_file($dir_path . $name)) {
                 $files[] = $name;

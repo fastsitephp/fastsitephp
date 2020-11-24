@@ -69,7 +69,7 @@ class ExampleCode
      */
     public function parseCode($code)
     {
-        // Split code based on specific comments to seperate related
+        // Split code based on specific comments to separate related
         // code, then remove first section before start of code.
         $code_blocks = explode('// EXAMPLE_CODE_START', $code);
         array_splice($code_blocks, 0, 1);

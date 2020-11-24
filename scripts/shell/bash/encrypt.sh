@@ -225,7 +225,7 @@ show_help ()
 # This function uses [getopts] to read script parameters, this only works here
 # because "$@" is passed to the function, otherwise this code would have
 # to be at the top script level outside of a function. This method is used
-# to keep the code organized into seperate functions. [local OPTIND] and the
+# to keep the code organized into separate functions. [local OPTIND] and the
 # ending [shift...] commands are only needed if this function is being called
 # twice and this script doesn't call it twice; however, it's good practice to
 # have if using [getopts] in a function.
@@ -409,7 +409,7 @@ validate_files ()
 }
 
 # ---------------------------------------------------------
-# Validate the Input Key and Split into 2 seperate keys
+# Validate the Input Key and Split into 2 separate keys
 # or when using a password make sure it is not empty.
 # ---------------------------------------------------------
 validate_key ()
@@ -435,7 +435,7 @@ validate_key ()
         exit $ERR_INVALID_KEY
     fi
 
-    # Split single key string into 2 seperate key strings.
+    # Split single key string into 2 separate key strings.
     # One for Encryption and one for HMAC.
     enc_key=${key:0:64}
     hmac_key=${key:64}
@@ -737,7 +737,7 @@ check_pbkdf2_result ()
         return 1
     fi
 
-    # Split single key string into 2 seperate key strings.
+    # Split single key string into 2 separate key strings.
     # One for Encryption and one for HMAC.
     enc_key=${key:0:64}
     hmac_key=${key:64}
@@ -1463,7 +1463,7 @@ unit_test_large_files ()
     unit_test_setup_settings
 
     # Define an Array of Tests, Bash does not support structs, objects, or
-    # multi-dimensional arrays so each Test is packed into a string seperated
+    # multi-dimensional arrays so each Test is packed into a string separated
     # by vertical bars (pipe character) '|'.
     tests=(
         "1 GB|1g|cd573cfaace07e7949bc0c46028904ff|6caa8477d12b6cafb47a2ddc2969bcbd"

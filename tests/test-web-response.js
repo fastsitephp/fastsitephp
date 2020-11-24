@@ -285,7 +285,7 @@
         ]
     });
 
-    // Expires and Last-Modified need to be moved to seperate tests.
+    // Expires and Last-Modified need to be moved to separate tests.
     // When running the test page multiple times web browsers will often
     // try to cache the page, the query string "?_={time}" prevents this from happening.
     // Some older versions of Edge Browser will show an error on this Test as it considers

@@ -80,7 +80,7 @@ $app->get('/route-matches-param-error', function() use ($app) {
 // Similar to the above Test routeMatches() is tested with invalid regular expression 
 // however a custom error handler function is defined that does return a value.
 // Because no value is returned when set_error_handler() is called the error variable
-// Just like the above test this is also tested in two seperate files.
+// Just like the above test this is also tested in two separate files.
 $app->get('/route-matches-custom-error', function() use ($app) {
     // Overwrite any existing Error Handler
     set_error_handler(function($severity, $message, $file, $line) {
