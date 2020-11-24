@@ -1193,9 +1193,9 @@ class Application
      * Internally this calls the PHP function setcookie(). To delete a cookie use
      * the function [clearCookie()]. To read cookies use the [cookie()] function
      * of the [FastSitePHP\Web\Request] Object or use the PHP superglobal array $_COOKIE.
-     * 
+     *
      * The [$expire] parameter defaults to 0 which makes the cookie expire
-     * at the end of the session. Additionally if PHP 7.3 or higher is used then 
+     * at the end of the session. Additionally if PHP 7.3 or higher is used then
      * an array of [$options] can be used as the [$expire] parameter and no other
      * parameters are required. [$options] allows for the `SameSite` Attribute.
      *
@@ -1251,7 +1251,7 @@ class Application
     /**
      * Send an empty value for a named cookie and expired time to tell the browser or
      * client to clear the cookie.
-     * 
+     *
      * @param string $name
      * @param string $path_or_options (default: '')
      * @param string $domain (default: '')
@@ -2039,7 +2039,11 @@ class Application
                 // PHP Built-In Server and requested URL is a valid static file from the project root.
                 // Example a JavaScript file under [/node_modules/].
                 if (php_sapi_name() == 'cli-server' && is_file($_SERVER['SCRIPT_FILENAME']) && strpos($_SERVER['REQUEST_URI'], '.php') === false) {
-                    return $_SERVER['REQUEST_URI'];
+                    $path = $_SERVER['REQUEST_URI'];
+                    if (strpos($path, '?') !== false) {
+                        $path = strtok($path, '?');
+                    }
+                    return $path;
                 }
                 // For cases where URL contains the PHP page [ex: /public/index.php/test]
                 // and SCRIPT_NAME is similar to [/public/index.php].
