@@ -26,19 +26,25 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Starter Site
-    - A 2.0 version is being planned that will allow for a very minimal CMS
-        and allow editing of all code on the server similar to how the playground site works.
-    - Once created several templates will be provided (PHP, SPA, HTML only, etc) along
-        with a one-page simple site setup wizard to create an initial admin user.
-    - Add Unit Testing
-        - Include CLI Testing for the Auth middleware class and HTML rendered on pages to start
-        - Initially this will be done with Node and a client-side Puppeteer Script
-        - Server-side PHP testing using phpunit - https://phpunit.de/ or custom classes will likely
-            no be created as a Puppeteer/Node Script can easily be created to verify all core security
-            logic and pages on a site and it allows from testing of a live site from any server.
-
 **) FastSitePHP is tested and updated for PHP 8 Beta 1 (as of August 6 2020)
+    * PHP 8.0 was released on November 26, 2020
+        - Testing is now active and and needed updates are planned to be complete early December
+        - Currently production sites using FastSitePHP should be ok to upgrade
+    * Tests that currently failed on Win 64 bit:
+        - In general this is expected as tests account for many different versions of
+            PHP and how PHP handles error and exceptions differently based on version
+        http://localhost:8080/fastsitephp/tests/test-app.php/error-warning
+        test-app.php/error-warning
+        test-app.php/error-parse
+        test-app.php/error-notice
+        test-app.php/error-control-operator
+        test-app.php/error-reporting-disabled
+        test-app.php/error-control-operator-not-used
+        test-app.php/error-try-catch-instead-of-control-operator
+        test-security-crypto.php/compatibility-functions
+    -------------------
+    Previous comments (most are still relevant)
+    -------------------
     * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
     * For the final release of PHP 8 all Unit Tests must pass (currently all tests pass for Beta 1)
     * To get error messages correct (based on PHP changes in behavior) searching through PHP C Source Code is often needed:
@@ -55,7 +61,8 @@ TODO List
             extension=pdo_sqlite
         - Run commands (changing file paths based on local system):
             cd "{fastsitephp root}"
-            "C:\Users\Administrator\Downloads\php-8.0.0beta1-nts-Win32-vs16-x64\php.exe" -S localhost:8080
+            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x64\php.exe" -S localhost:8080
+            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x86\php.exe" -S localhost:8080
         - View Pages
             http://localhost:8080/fastsitephp/website/public/sysinfo/phpinfo
             http://localhost:8080/fastsitephp/website/public/en/
@@ -64,9 +71,21 @@ TODO List
             * Or remove "/fastsitephp" if running from main repository directly
             * This assume full setup with all repositories under a main [fastsitephp] directory
 
+**) Starter Site
+    - A 2.0 version is being planned that will allow for a very minimal CMS
+        and allow editing of all code on the server similar to how the playground site works.
+    - Once created several templates will be provided (PHP, SPA, HTML only, etc) along
+        with a one-page simple site setup wizard to create an initial admin user.
+    - Add Unit Testing
+        - Include CLI Testing for the Auth middleware class and HTML rendered on pages to start
+        - Initially this will be done with Node and a client-side Puppeteer Script
+        - Server-side PHP testing using phpunit - https://phpunit.de/ or custom classes will likely
+            no be created as a Puppeteer/Node Script can easily be created to verify all core security
+            logic and pages on a site and it allows from testing of a live site from any server.
+
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
-    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the higest
+    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the highest
       of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
     https://github.com/the-benchmarker/web-frameworks
 
