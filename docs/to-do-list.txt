@@ -33,15 +33,29 @@ TODO List
     * Tests that currently failed on Win 64 bit:
         - In general this is expected as tests account for many different versions of
             PHP and how PHP handles error and exceptions differently based on version
-        http://localhost:8080/fastsitephp/tests/test-app.php/error-warning
-        test-app.php/error-warning
-        test-app.php/error-parse
-        test-app.php/error-notice
-        test-app.php/error-control-operator
-        test-app.php/error-reporting-disabled
-        test-app.php/error-control-operator-not-used
-        test-app.php/error-try-catch-instead-of-control-operator
-        test-security-crypto.php/compatibility-functions
+        - On past releases the C source generally has to be searched to find new
+            items that will trigger the errors:
+                https://github.com/php/php-src
+        - Testing: 
+            http://localhost:8080/fastsitephp/tests/test-app.php/error-warning
+            test-app.php/error-warning
+            test-app.php/error-parse
+            test-app.php/error-notice
+            test-app.php/error-control-operator
+            test-app.php/error-reporting-disabled
+            test-app.php/error-control-operator-not-used
+            test-app.php/error-try-catch-instead-of-control-operator
+            test-security-crypto.php/compatibility-functions
+            ----
+            test-net-config.php/check-net-config-class
+                * Error only on initial test with Linux Ubuntu 20.04 LTS using Apache
+                * Had the following error but worked when testing manually:
+                            <tr><td><b>Type</b></td><td class="error-type">ErrorException</td></tr>
+                            <tr><td><b>Code</b></td><td class="error-code">0</td></tr>
+                                                    <tr><td><b>Severity</b></td><td class="error-severity">2 (E_WARNING)</td></tr>
+                                                    <tr><td><b>Message</b></td><td class="error-message">Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net</td></tr>
+                            <tr><td><b>File</b></td><td class="error-file">/var/www/html/tests/test-net-config.php</td></tr>
+                            <tr><td><b>Line</b></td><td class="error-line">15</td></tr>
     -------------------
     Previous comments (most are still relevant)
     -------------------

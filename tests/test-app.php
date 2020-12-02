@@ -978,6 +978,7 @@ $app->get('/error-fatal', function() use ($app) {
     $test = new UnknownObject();
 });
 
+// TODO - continue here for updates related to PHP 8.9 (December 1, 2020):
 // Error Test with Error Type E_WARNING
 $app->get('/error-warning', function() use ($app) {
     // Divide by zero error, depending upon the PHP settings processing would
