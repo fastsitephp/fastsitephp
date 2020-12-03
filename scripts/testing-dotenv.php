@@ -3,7 +3,7 @@
 // In the future this code (or similar) needs to be moved to a full Unit Test.
 //
 // Full unit tests should likely write a [.env] file to the temp directory
-// and use the following file and exmaple for testing:
+// and use the following file and example for testing:
 //    https://github.com/motdotla/dotenv/blob/master/tests/.env
 //    https://github.com/motdotla/dotenv/blob/master/tests/test-parse.js
 //

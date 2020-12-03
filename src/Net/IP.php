@@ -310,7 +310,7 @@ class IP
         //  0x00000011 = 17
         //  ..
         //  0x7ffffffe =  2147483646
-        //  0x7fffffff =  2147483647  Highest 32-bit postive integer
+        //  0x7fffffff =  2147483647  Highest 32-bit positive integer
         //  0x80000000 = -2147483648  Lowest 32-bit negative integer
         //  0x80000001 = -2147483647
         //  0x80000002 = -2147483646
