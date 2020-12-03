@@ -92,7 +92,7 @@ SCRIPT_NAME=$(basename "${SCRIPT_PATH}")
 # is needed in order to use the security [SameSite] attribute for Cookies.
 #
 # PHP_VER=""
-PHP_VER="7.4"
+PHP_VER="8.0"
 
 # ---------------------------------------------------------
 # Main function, this gets called from bottom of the file
