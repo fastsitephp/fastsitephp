@@ -978,9 +978,14 @@ $app->get('/error-fatal', function() use ($app) {
     $test = new UnknownObject();
 });
 
-// TODO - continue here for updates related to PHP 8.9 (December 1, 2020):
 // Error Test with Error Type E_WARNING
 $app->get('/error-warning', function() use ($app) {
+    if (PHP_VERSION_ID >= 80000) {
+        // In case this becomes a different error in future versions of PHP
+        // use the following URL to find new warning errors:
+        // https://github.com/php/php-src/search?l=C&p=1&q=E_WARNING
+        session_destroy();
+    }
     // Divide by zero error, depending upon the PHP settings processing would
     // continue however because $app->setup() is called this error will be handled
     echo 1 / 0;
@@ -1012,8 +1017,7 @@ $app->get('/error-notice', function() use ($app) {
         // Many notice and warning errors in PHP 5 and 7 have been converted to errors in PHP 8.
         // In the future as these change search through PHP C Source Code as needed to find E_NOTICE errors:
         //   https://github.com/php/php-src/search?l=C&p=1&q=E_NOTICE
-        $data = crypt('test');
-        var_dump($data);
+        date_default_timezone_set('test');
     }
     // Try to use an undefined variable, by default PHP processing would continue
     // however because $app->setup() is called this error will be handled
@@ -1162,7 +1166,6 @@ $app->get('/error-argument-count-error', function() use ($app) {
     echo argument_error_test();
 });
 
-
 // Error Testing using the Error Control Operator.
 // In PHP Errors can be ignored for expressions by including
 // the [@] character before the expression, however an error
@@ -1177,8 +1180,8 @@ $app->get('/error-argument-count-error', function() use ($app) {
 $app->get('/error-control-operator', function() use ($app) {
     if (PHP_VERSION_ID >= 80000) {
         // PHP 8 no longer silences fatal errors so a E_NOTICE error is used
-        $data = @crypt('test');
-        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+        $result = @date_default_timezone_set('test');
+        echo '@date_default_timezone_set(test) = ' . ($result === false ? 'false' : $result);
     } else {
         // Pass this PHP File to the following image function which
         // will trigger and error because it is not a valid image.
@@ -1196,8 +1199,8 @@ $app->get('/error-control-operator', function() use ($app) {
 $app->get('/error-reporting-disabled', function() use ($app) {
     error_reporting(0);
     if (PHP_VERSION_ID >= 80000) {
-        $data = crypt('test');
-        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+        $result = date_default_timezone_set('test');
+        echo 'date_default_timezone_set(test) = ' . ($result === false ? 'false' : $result);
     } else {
         $result = file(null);
         echo 'file(null) === ' . ($result === false ? 'false' : $result);    
@@ -1205,13 +1208,13 @@ $app->get('/error-reporting-disabled', function() use ($app) {
 });
 
 // See the above two unit tests. Without error handling defined this error (often
-// caused by bad user input or data) would prevent a script from propertly running
+// caused by bad user input or data) would prevent a script from properly running
 // however FastSitePHP converts errors to Exceptions so this should so the error
 // page with an ErrorException.
 $app->get('/error-control-operator-not-used', function() use ($app) {
     if (PHP_VERSION_ID >= 80000) {
-        $data = crypt('test');
-        echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+        $result = date_default_timezone_set('test');
+        echo 'date_default_timezone_set(test) = ' . $result;
     } else {
         $result = file(null);
         echo 'file(null) === ' . $result;    
@@ -1223,8 +1226,8 @@ $app->get('/error-control-operator-not-used', function() use ($app) {
 $app->get('/error-try-catch-instead-of-control-operator', function() use ($app) {
     try {
         if (PHP_VERSION_ID >= 80000) {
-            $data = crypt('test');
-            echo 'gettype(@crypt(string, [missing])) = ' . gettype($data);
+            $result = date_default_timezone_set('test');
+            echo 'date_default_timezone_set(test) = ' . $result;
         } else {
             $result = file(null);
             echo 'file(null) === ' . $result;

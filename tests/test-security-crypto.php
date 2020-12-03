@@ -1495,7 +1495,7 @@ $app->get('/compatibility-functions', function() {
                 // PHP 5 and 7
                 'bin2hex() expects parameter 1 to be string, array given',
                 // PHP 8
-                'bin2hex(): Argument #1 ($data) must be of type string, array given',
+                'bin2hex(): Argument #1 ($string) must be of type string, array given',
             ),
         ),
         // --------
@@ -1506,7 +1506,7 @@ $app->get('/compatibility-functions', function() {
             'data' => array(),
             'expected' => array(
                 'hex2bin() expects parameter 1 to be string, array given',
-                'hex2bin(): Argument #1 ($data) must be of type string, array given',
+                'hex2bin(): Argument #1 ($string) must be of type string, array given',
             ),
         ),
         array(

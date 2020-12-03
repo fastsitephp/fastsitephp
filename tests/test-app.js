@@ -8,13 +8,13 @@
 
 (function () {
     "use strict"; // Invoke strict mode
-    
+
     // This is the first test that runs, is calls a web service which checks
     // the Server settings and configuration for issues that might affect
     // some of the unit tests. If the Server is configured in a manner that
     // is known to trigger errors then the callback function will call
-    // [showServerConfigError] which clearly shows a list of errors above 
-    // the section where QUnit is displayed. There are two Server 
+    // [showServerConfigError] which clearly shows a list of errors above
+    // the section where QUnit is displayed. There are two Server
     // configuration tests, this Unit Test and the one below.
     runHttpUnitTest("Check Server Configuration", "test-app.php/check-server-config", {
         type: "json",
@@ -61,18 +61,18 @@
 	        }
         }
     });
-    
+
     runHttpUnitTest("Application Object", "test-app.php/check-app-class", {
         response: {
             get_class: "FastSitePHP\\Application",
             get_parent_class: false
         }
     });
-    
+
     runHttpUnitTest("Application Object - Properties", "test-app.php/check-app-properties", {
         response: "All properties matched for [FastSitePHP\\Application]: after_callbacks, allow_methods_override, allow_options_requests, before_callbacks, before_send_callbacks, case_sensitive_urls, config, controller_root, cors_headers, error_callbacks, error_page_message, error_page_title, error_template, footer_templates, header_fields, header_templates, json_options, lang, last_error, lazy_load_props, locals, method_not_allowed_message, method_not_allowed_title, middleware_root, no_cache, not_found_callbacks, not_found_page_message, not_found_page_title, not_found_template, params, render_callbacks, response_cookies, show_detailed_errors, site_routes, status_code, strict_url_mode, template_dir, view_engine"
     });
-    
+
     runHttpUnitTest("Application Object - Functions", "test-app.php/check-app-methods", {
         response: "All methods matched for [FastSitePHP\\Application]: __call, __get, after, before, beforeSend, callMiddleware, checkParam, clearCookie, cookie, cookies, cors, delete, engine, error, errorHandler, errorPage, escape, exceptionHandler, get, header, headers, lazyLoad, methodExists, mount, noCache, notFound, onRender, pageNotFound, param, patch, post, put, redirect, render, requestedPath, rootDir, rootUrl, route, routeMatches, routes, run, runAfterEvents, sendErrorPage, sendOptionsResponse, sendPageNotFound, sendResponse, setup, shutdown, skipRoute, statusCode"
     });
@@ -225,7 +225,7 @@
             runHttpUnitTest("Application Object - Redirect for Status Code - " + prop + " " + redirectStatusCodes[prop], "test-app.php/redirect-" + prop, {
                 responseUrl: rootDir + "test-app.php/redirected-" + prop,
                 response: prop + " Redirect"
-            });                        
+            });
         }
     }
 
@@ -249,7 +249,7 @@
     runHttpUnitTest("Application Object - Filter Test - Version 4", "test-app.php/filter-test-1", {
         response: "filter-test-1"
     });
-    
+
     runHttpUnitTest("Application Object - Skip Route Test", "test-app.php/skip-route-test", {
         status: 404,
         responseContains: [
@@ -269,7 +269,7 @@
     runHttpUnitTest("Application Object - Filter Test with Filter Modifying the App Object", "test-app.php/update-app-filter", {
         response: "updateAppFilter()"
     });
-    
+
     runHttpUnitTest("Application Object - Invalid Filter Test", "test-app.php/invalid-filter-test", {
         status: 500,
         responseContains: [
@@ -288,7 +288,7 @@
             "<td>run</td>",
         ]
     });
-    
+
     runHttpUnitTest("Application Object - Route Parameter Test - One Parameter", "test-app.php/hello/World", {
         response: "Hello World"
     });
@@ -384,7 +384,7 @@
     runHttpUnitTest("Application Object - escape()", "test-app.php/escape", {
         response: "&lt;script&gt;&amp;&quot;&#039;"
     });
-    
+
     runHttpUnitTest("Application Object - Parameter - Error Message 1", "test-app.php/param-error-1", {
         response: "Unexpected $name variable type specified for [FastSitePHP\\Application->param()]"
     });
@@ -463,7 +463,7 @@
         responseExcludes: "Should never get called"
     });
 
-    // In the [responseContains] nested array's the first line is 
+    // In the [responseContains] nested array's the first line is
     // for PHP 5 and second line is for PHP 7
     runHttpUnitTest("Application Object - Error Test - Error Type E_ERROR or Throwable Error", "test-app.php/error-fatal", {
         status: 500,
@@ -495,7 +495,10 @@
         responseContains: [
             '<td class="error-type">ErrorException</td>',
             '<td class="error-severity">2 (E_WARNING)</td>',
-            '<td class="error-message">Division by zero</td>',
+            [
+                '<td class="error-message">Division by zero</td>',
+                '<td class="error-message">session_destroy(): Trying to destroy uninitialized session</td>',
+            ],
             "<td>errorHandler</td>",
             "<td>{closure}</td>",
             "<td>call_user_func_array</td>",
@@ -536,7 +539,8 @@
                 // PHP 7.4
                 '<td class="error-message">syntax error, unexpected &#039;echo&#039; (T_ECHO), expecting &#039;;&#039; or &#039;,&#039;</td>',
                 // PHP 8
-                '<td class="error-message">syntax error, unexpected token &quot;echo&quot;, expecting &quot;;&quot; or &quot;,&quot;</td>'
+                '<td class="error-message">syntax error, unexpected token &quot;echo&quot;, expecting &quot;;&quot; or &quot;,&quot;</td>',
+                '<td class="error-message">syntax error, unexpected token &quot;echo&quot;, expecting &quot;,&quot; or &quot;;&quot;</td>',
             ],
             "test-app-parse-error.php",
             [
@@ -553,12 +557,13 @@
             '<td class="error-severity">8 (E_NOTICE)</td>',
             [
                 '<td class="error-message">Undefined variable: undefined_variable</td>',
-                '<td class="error-message">crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.</td>'
+                '</td><td class="error-message">date_default_timezone_set(): Timezone ID &#039;test&#039; is invalid</td>'
             ],
             "<td>errorHandler</td>",
             "<td>{closure}</td>"
         ]
     });
+
 
     runHttpUnitTest("Application Object - Error Test - Error Type E_RECOVERABLE_ERROR or Throwable TypeError", "test-app.php/error-recoverable", {
         status: 500,
@@ -660,7 +665,7 @@
         responseContains: [
             '<td class="error-type">ErrorException</td>',
             [
-                '<td class="error-severity">2048 (E_STRICT)</td>', // PHP 5 
+                '<td class="error-severity">2048 (E_STRICT)</td>', // PHP 5
                 '<td class="error-severity">8 (E_NOTICE)</td>', // PHP 7
             ],
             [
@@ -671,7 +676,7 @@
         ]
     });
 
-    // In the [responseContains] nested array's the first line is 
+    // In the [responseContains] nested array's the first line is
     // for PHP 5 and second line is for PHP 7
     runHttpUnitTest("Application Object - Error Test - Throwable ArithmeticError", "test-app.php/error-arithmetic-error", {
         status: 500,
@@ -703,7 +708,7 @@
         ]
     });
 
-    // In the [responseContains] nested array's the first line is 
+    // In the [responseContains] nested array's the first line is
     // for PHP 5.* and PHP 7.0 and second line is for PHP 7.1
     runHttpUnitTest("Application Object - Error Test - Throwable ArgumentCountError", "test-app.php/error-argument-count-error", {
         status: 500,
@@ -729,7 +734,7 @@
                 // PHP 5 and 7
                 "@file(null) === false",
                 // PHP 8                
-                "gettype(@crypt(string, [missing])) = string",
+                "@date_default_timezone_set(test) = false",
             ]
         ]
     });
@@ -740,7 +745,7 @@
                 // PHP 5 and 7
                 "file(null) === false",
                 // PHP 8                
-                "gettype(@crypt(string, [missing])) = string",
+                "date_default_timezone_set(test) = false",
             ]
         ]
     });
@@ -759,7 +764,7 @@
                 // PHP 5 and 7
                 '<td class="error-message">file(): Filename cannot be empty</td>',
                 // PHP 8
-                '<td class="error-message">crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.</td>',
+                '<td class="error-message">date_default_timezone_set(): Timezone ID &#039;test&#039; is invalid</td>',
             ],
             "<td>errorHandler</td>",
         ]
@@ -771,7 +776,7 @@
                 // PHP 5 and 7
                 "[ErrorException]: file(): Filename cannot be empty",
                 // PHP 8
-                "[ErrorException]: crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash.",
+                "[ErrorException]: date_default_timezone_set(): Timezone ID 'test' is invalid",
             ]
         ]
     });
@@ -827,7 +832,7 @@
             result: "success"
         }
     });
-	
+
     runHttpUnitTest("Application Object - Request Method - PUT Test with 204 Response", "test-app.php/put-test-2", {
         method: "PUT",
         status: 204,
@@ -978,7 +983,7 @@
     runHttpUnitTest("Application Object - Mount Testing - Checking for File [mount1]", "mount-testing/test-mount2.php", {
         response: "test-mount2.php"
     });
-    
+
     runHttpUnitTest("Application Object - Mount Testing - Testing Route defined from mount() - File Name in Test File 1", "test-app.php/mount/test", {
         response: "/mount/test"
     });
@@ -1023,7 +1028,7 @@
     runHttpUnitTest("Application Object - Routing - Testing routeMatches()", "test-app.php/route-matches", {
         response: "Success for routeMatches() function, Completed 30 Unit Tests and 6 Exception Tests"
     });
-    
+
     runHttpUnitTest("Application Object - Routing - Testing routeMatches() Error with Error Handling Set", "test-app.php/route-matches-param-error", {
         response: "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric or backslash"
     });

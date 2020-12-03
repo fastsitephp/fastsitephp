@@ -30,32 +30,28 @@ TODO List
     * PHP 8.0 was released on November 26, 2020
         - Testing is now active and and needed updates are planned to be complete early December
         - Currently production sites using FastSitePHP should be ok to upgrade
-    * Tests that currently failed on Win 64 bit:
-        - In general this is expected as tests account for many different versions of
-            PHP and how PHP handles error and exceptions differently based on version
-        - On past releases the C source generally has to be searched to find new
-            items that will trigger the errors:
-                https://github.com/php/php-src
-        - Testing: 
-            http://localhost:8080/fastsitephp/tests/test-app.php/error-warning
-            test-app.php/error-warning
-            test-app.php/error-parse
-            test-app.php/error-notice
-            test-app.php/error-control-operator
-            test-app.php/error-reporting-disabled
-            test-app.php/error-control-operator-not-used
-            test-app.php/error-try-catch-instead-of-control-operator
-            test-security-crypto.php/compatibility-functions
+            All errors in unit tests are related to changes in error messages from past alpha release of PHP 8.0
+        - All tests are now confirmed on windows using PHP built-in server (both x86 and x64)
+        - More testing is needed on Linux using both Apache and nginx
+        - Need to manually confirm some individual tests, see:
+            https://php.watch/versions/8.0/resource-CurlHandle
+    * Tests that currently failed:
+        - Testing:
+            http://localhost:8080/fastsitephp/tests/test-net-config.php/check-net-config-class
             ----
             test-net-config.php/check-net-config-class
                 * Error only on initial test with Linux Ubuntu 20.04 LTS using Apache
                 * Had the following error but worked when testing manually:
-                            <tr><td><b>Type</b></td><td class="error-type">ErrorException</td></tr>
-                            <tr><td><b>Code</b></td><td class="error-code">0</td></tr>
-                                                    <tr><td><b>Severity</b></td><td class="error-severity">2 (E_WARNING)</td></tr>
-                                                    <tr><td><b>Message</b></td><td class="error-message">Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net</td></tr>
-                            <tr><td><b>File</b></td><td class="error-file">/var/www/html/tests/test-net-config.php</td></tr>
-                            <tr><td><b>Line</b></td><td class="error-line">15</td></tr>
+                //      E_WARNING
+                //      Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net
+                //      File: /var/www/html/tests/test-net-config.php
+                //      Line 15
+                runHttpUnitTest("Networking Config Object", "test-net-config.php/check-net-config-class", {
+                    response: {
+                        get_class: "FastSitePHP\\Net\\Config",
+                        get_parent_class: false
+                    }
+                });
     -------------------
     Previous comments (most are still relevant)
     -------------------
@@ -207,7 +203,7 @@ TODO List
           Just like [phpstan] running these would need a lot of config
           files so currently only [phpstan] is used.
             https://github.com/vimeo/psalm
-            https://github.com/phan/phan          
+            https://github.com/phan/phan
           Similar to [phpstan] a (*.phar) file would be downloaded and ran.
             php psalm.phar > psalm_results.txt
             php phan.phar > phan_results.txt
