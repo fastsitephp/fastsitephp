@@ -26,61 +26,6 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) FastSitePHP is tested and updated for PHP 8 Beta 1 (as of August 6 2020)
-    * PHP 8.0 was released on November 26, 2020
-        - Testing is now active and and needed updates are planned to be complete early December
-        - Currently production sites using FastSitePHP should be ok to upgrade
-            All errors in unit tests are related to changes in error messages from past alpha release of PHP 8.0
-        - All tests are now confirmed on windows using PHP built-in server (both x86 and x64)
-        - More testing is needed on Linux using both Apache and nginx
-        - Need to manually confirm some individual tests, see:
-            https://php.watch/versions/8.0/resource-CurlHandle
-    * Tests that currently failed:
-        - Testing:
-            http://localhost:8080/fastsitephp/tests/test-net-config.php/check-net-config-class
-            ----
-            test-net-config.php/check-net-config-class
-                * Error only on initial test with Linux Ubuntu 20.04 LTS using Apache
-                * Had the following error but worked when testing manually:
-                //      E_WARNING
-                //      Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net
-                //      File: /var/www/html/tests/test-net-config.php
-                //      Line 15
-                runHttpUnitTest("Networking Config Object", "test-net-config.php/check-net-config-class", {
-                    response: {
-                        get_class: "FastSitePHP\\Net\\Config",
-                        get_parent_class: false
-                    }
-                });
-    -------------------
-    Previous comments (most are still relevant)
-    -------------------
-    * As new versions of PHP 8 are released the Framework needs to go through full Unit Testing and updates if needed
-    * For the final release of PHP 8 all Unit Tests must pass (currently all tests pass for Beta 1)
-    * To get error messages correct (based on PHP changes in behavior) searching through PHP C Source Code is often needed:
-        https://github.com/php/php-src
-    * Install and Test on Windows:
-        - Download Latest Build: https://windows.php.net/qa/
-        - Copy [php.ini-production] as [php.ini]
-        - For final 8.0 release also make sure [php.ini-development] works "with errors for Unit Tests" but overall a site should work
-        - Also for final release make sure both [x64 Non Thread Safe] and [x86 Non Thread Safe] work
-        - Enable settings:
-            extension_dir = "ext"
-            extension=curl
-            extension=openssl
-            extension=pdo_sqlite
-        - Run commands (changing file paths based on local system):
-            cd "{fastsitephp root}"
-            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x64\php.exe" -S localhost:8080
-            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x86\php.exe" -S localhost:8080
-        - View Pages
-            http://localhost:8080/fastsitephp/website/public/sysinfo/phpinfo
-            http://localhost:8080/fastsitephp/website/public/en/
-            http://localhost:8080/fastsitephp/tests/index.htm
-            http://localhost:8080/starter-site/public/en/
-            * Or remove "/fastsitephp" if running from main repository directly
-            * This assume full setup with all repositories under a main [fastsitephp] directory
-
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
         and allow editing of all code on the server similar to how the playground site works.
@@ -103,6 +48,16 @@ TODO List
     - Include the starter site?
 
 **) Create Documentation that shows how Unit Testing works
+    - Currently when testing on specific versions of PHP 8 with Linux Ubuntu
+        on both Apache and nginx one test is known to fail at times but then
+        works when running the test a 2nd time:
+            Test: test-net-config.php/check-net-config-class
+            Error:
+                E_WARNING
+                Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net
+                File: /var/www/html/tests/test-net-config.php
+                Line 15
+    - This error does not happen when using the pre-built Windows builds of PHP
 
 **) fastsitephp\scripts\create-api-json-files.php
     This file should be updated to handle multiple languages when the other language is a duplicate of the `en` file.
@@ -244,13 +199,24 @@ TODO List
     -  How to use the Windows Binary Downloads:
         https://windows.php.net/download/
         https://windows.php.net/qa/
+        - [x64 Non Thread Safe] or [x86 Non Thread Safe]
         - To get Unit Tests and Site features working on Windows after download copy [php.ini-production] as [php.ini]
             then enable settings:
                 extension_dir = "ext"
                 extension=curl
                 extension=openssl
                 extension=pdo_sqlite
-
+        - Run commands (changing file paths based on local system):
+            cd "{fastsitephp root}"
+            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x64\php.exe" -S localhost:8080
+            "C:\Users\Administrator\Downloads\php-8.0.0-nts-Win32-vs16-x86\php.exe" -S localhost:8080
+        - View Pages
+            http://localhost:8080/fastsitephp/website/public/sysinfo/phpinfo
+            http://localhost:8080/fastsitephp/website/public/en/
+            http://localhost:8080/fastsitephp/tests/index.htm
+            http://localhost:8080/starter-site/public/en/
+            * Or remove "/fastsitephp" if running from main repository directly
+            * This assume full setup with all repositories under a main [fastsitephp] directory
 
 *) Linux Install Doc https://www.fastsitephp.com/en/documents/install-php-on-linux
     - Make the layout easier to use when picking an OS:

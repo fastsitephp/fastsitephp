@@ -4,7 +4,7 @@
 // *) The route in this file generates a E_COMPILE_WARNING
 //    Error once the clousure is evaluated so it can't be 
 //    used in other unit testing pages as it will always 
-//    generate an error. On some versions of PHP 7 the error
+//    generate an error. On some versions of PHP 7+ the error
 //    will not be triggered.
 // ==================================================================
 

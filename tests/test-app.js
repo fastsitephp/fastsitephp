@@ -663,16 +663,20 @@
     runHttpUnitTest("Application Object - Error Test - Error Type E_STRICT", "test-app.php/error-strict", {
         status: 500,
         responseContains: [
-            '<td class="error-type">ErrorException</td>',
+            [
+                '<td class="error-type">Exception</td>',
+                '<td class="error-type">ErrorException</td>',
+            ],
             [
                 '<td class="error-severity">2048 (E_STRICT)</td>', // PHP 5
                 '<td class="error-severity">8 (E_NOTICE)</td>', // PHP 7
+                '<td class="error-code">0</td>', // PHP 8
             ],
             [
                 'Non-static method SimpleClass::getValue() should not be called statically', // PHP 5
-                '<td class="error-message">Accessing static property SimpleClass::$prop as non static</td>',
-            ],
-            "<td>errorHandler</td>"
+                '<td class="error-message">Accessing static property SimpleClass::$prop as non static</td>', // PHP 7
+                '<td class="error-message">Skipping E_STRICT for PHP 8+</td>', // PHP 8+
+            ]
         ]
     });
 

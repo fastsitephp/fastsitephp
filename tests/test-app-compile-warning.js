@@ -14,6 +14,7 @@
         responseContains: [[
             '<td class="error-severity">128 (E_COMPILE_WARNING)</td></tr>',
             'php7',
+            'php8',
         ]]
     });
                 

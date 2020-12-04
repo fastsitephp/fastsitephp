@@ -1107,8 +1107,12 @@ $app->get('/error-compile-error', function() use ($app) {
 //   http://php.net/manual/en/migration70.incompatible.php
 // In some versions of PHP 7 calling [SimpleClass::getValue()] will result
 // with [E_DEPRECATED], however in some newer versions it doesn't raise and error
-// or throw an Exception.
+// or throw an Exception. In some versions of PHP 8 this generates the error
+// and but not all installations so going forward this test returns a generic error.  
 $app->get('/error-strict', function() use ($app) {
+    if (PHP_VERSION_ID >= 80000) {
+        throw new \Exception('Skipping E_STRICT for PHP 8+');
+    }
     if (PHP_MAJOR_VERSION === 5) {
         echo SimpleClass::getValue();
     } else {
