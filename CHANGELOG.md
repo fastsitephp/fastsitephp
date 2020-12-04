@@ -2,6 +2,11 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.4 (December 3, 2020)
+
+* Update `cacert.pem` to the latest version which is used by `\FastSitePHP\Net\HttpClient` on Windows and Mac Computers.
+* Confirmed that FastSitePHP works with the final release of `PHP 8.0.0`. Previously it was tested and updated for Alpha builds. No Framework changes had to be made with this release, however some unit tests had to be updated.
+
 ## 1.4.3 (November 24, 2020)
 
 * Fix for `Application->requestedPath()` so that it strips the Query String if using the PHP Built-in Server with all resources using a fallback `index.php` or other PHP file. This was not a common scenario for most PHP development and didn't affect any production servers.

@@ -38,6 +38,15 @@ TODO List
             no be created as a Puppeteer/Node Script can easily be created to verify all core security
             logic and pages on a site and it allows from testing of a live site from any server.
 
+**) PHP Script to download and update and related docs for [cacert.pem]
+    - Files:
+        fastsitephp\src\Net\cacert.pem
+        fastsitephp\src\Net\cacert.pem.sha256
+    - Source:
+        https://curl.haxx.se/docs/caextract.html
+    - Currently the file is updated manually several times per year
+    - A simple script can make it easy to update existing sites
+
 **) Add FastSitePHP to TechEmpower Benchmarks:
     https://www.techempower.com/benchmarks/
     * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the highest
@@ -57,6 +66,8 @@ TODO List
                 Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net
                 File: /var/www/html/tests/test-net-config.php
                 Line 15
+    - The error also happens the first time for each request after
+        a reboot but then works after it is called once.
     - This error does not happen when using the pre-built Windows builds of PHP
 
 **) fastsitephp\scripts\create-api-json-files.php
@@ -298,9 +309,6 @@ TODO List
     - Allow support for an optional custom property "_I18N_NOTES" that would display in a notes section for each file.
         Either that or create a [{file}._notes.json] file and use that.
 
-*) PHP Script to download and update and related docs
-    [FastSitePHP\vendor\FastSitePHP\src\Net\cacert.pem]
-
 *) Create Additional Interfaces for [\FastSitePHP\Data\KeyValue\StorageInterface]
     - Currently only SQLite has been created:
         http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
@@ -315,12 +323,6 @@ TODO List
         If so need to add comments about not using sleep while a session is open
     - Installer [scripts/install.php] and Autoloader [scripts/fast_autoloader.php]
         should be setup to optionally handle a [Predis] install.
-
-*) Support for https://hhvm.com/
-    Note - HHVM is ending support for PHP with the latest releases so
-    make it work with the most recent version that supports PHP.
-        https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html
-    - For Hack currently [test-net-smtp.php] has to be updated to not use a reference parameter
 
 *) Many pages can use more graphics and updates, some specific examples:
     - Most examples need to have an improved mobile layout
