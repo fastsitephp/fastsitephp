@@ -1,5 +1,5 @@
 <style>
-    section.content { width:90%; max-width:900px; }
+    section.content { max-width:900px; }
     .response,
     .code { margin-top:40px; max-width:700px; }
 </style>

@@ -38,21 +38,6 @@ TODO List
             no be created as a Puppeteer/Node Script can easily be created to verify all core security
             logic and pages on a site and it allows from testing of a live site from any server.
 
-**) PHP Script to download and update and related docs for [cacert.pem]
-    - Files:
-        fastsitephp\src\Net\cacert.pem
-        fastsitephp\src\Net\cacert.pem.sha256
-    - Source:
-        https://curl.haxx.se/docs/caextract.html
-    - Currently the file is updated manually several times per year
-    - A simple script can make it easy to update existing sites
-
-**) Add FastSitePHP to TechEmpower Benchmarks:
-    https://www.techempower.com/benchmarks/
-    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the highest
-      of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
-    https://github.com/the-benchmarker/web-frameworks
-
 **) Create Docker Image
     - Include the starter site?
 
@@ -78,6 +63,29 @@ TODO List
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
     These files were created because creating full automated unit tests was causing too much of a delay
     for the initial release.
+
+*) New Classes to Create:
+    Environment\UserAgent
+        - Starting point: vendor\FastSitePHP\examples\site-examples\Controllers\DatabaseDemo.sql
+        - The SQL demo file should also be expanded upon for more traffic, it is mostly based on
+          US General Population (GENPOP) Web Traffic from around 2015-2018.
+        - SQL file should have commented versions available for Oracle, MySQL, and PostgreSQL
+    FileSystem\Path::join
+
+*) Add FastSitePHP to TechEmpower Benchmarks:
+    https://www.techempower.com/benchmarks/
+    * FastSitePHP has been added to [the-benchmarker/web-frameworks] and scored the highest
+      of all standard PHP frameworks that do not use swoole or other in-memory third-party servers.
+    https://github.com/the-benchmarker/web-frameworks
+
+*) PHP Script to download and update and related docs for [cacert.pem]
+    - Files:
+        fastsitephp\src\Net\cacert.pem
+        fastsitephp\src\Net\cacert.pem.sha256
+    - Source:
+        https://curl.haxx.se/docs/caextract.html
+    - Currently the file is updated manually several times per year
+    - A simple script can make it easy to update existing sites
 
 *) Test and consider supporting [ngx_php7]
     - Main Project:
@@ -294,21 +302,6 @@ TODO List
         cp -r ~/fastsitephp-master/tests /var/www/html/tests
         # View http://example.com/tests/index.htm
 
-*) Playground Site
-    - decide after frequent use with many users if [opcache_reset()]
-        should be called regularly or if it is ok to leave it alone.
-        It cannot be called via CLI so a web service would need to be created to handle
-        it, or it could be called on certain actions such as 'delete-site' however
-        if there are many users then 'delete-site' would be too often. Another option
-        would be to reset it on 'create-site' or 'delete-site' once it is using a
-        specific amount of memory or number of cached files.
-
-*) I18N Editor
-    - FastSitePHP\Templates\i18n-editor.php
-    - And add method to [FastSitePHP\Lang\I18N] for rendering the form and allow users to save values
-    - Allow support for an optional custom property "_I18N_NOTES" that would display in a notes section for each file.
-        Either that or create a [{file}._notes.json] file and use that.
-
 *) Create Additional Interfaces for [\FastSitePHP\Data\KeyValue\StorageInterface]
     - Currently only SQLite has been created:
         http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
@@ -323,27 +316,6 @@ TODO List
         If so need to add comments about not using sleep while a session is open
     - Installer [scripts/install.php] and Autoloader [scripts/fast_autoloader.php]
         should be setup to optionally handle a [Predis] install.
-
-*) Many pages can use more graphics and updates, some specific examples:
-    - Most examples need to have an improved mobile layout
-    - Github Icons on [getting-started] page resize incorrectly
-        when the page is shown on a narrow mobile screen (375px width)
-        or when the page is refreshed with the browser very narrow.
-    - Many documents need to have the image header section improved for mobile layout
-    - Should an icon be added to each page title for the main pages?
-        - Only if it makes the pages look better
-        - Need to test with SVG icons
-    - [getting-started] page
-        - Create icons for [Download] and [Developing with PHP] text?
-        - Or should there be an "Install [php logo]" and similar items?
-        - Or leave as-is? Need to try several different options
-    - All Examples should have more Graphics and Icons
-    - Stater Site
-        - create nice svg icons for each of the resource links
-    - Playground
-        - possibly add an animated CSS bomb going off once a user manually deletes a site.
-            For example, SVG fuse using path animation then shake the bomb, then
-            show an exploding animating that quickly scales out.
 
 *) Examples
     - System Info (only returns real info if running in localhost or modified, otherwise return content generated from example cloud servers)
@@ -510,21 +482,6 @@ TODO List
             https://github.com/jrosebr1/simple-keras-rest-api
     - Using Symfony Request/Response Objects with FastSitePHP Routing - possibly in the Quick Reference as well
     - How graphics are created and editor for the site - Sketch and other apps
-
-*) New Classes to Create:
-    Environment\UserAgent
-        - Starting point: vendor\FastSitePHP\examples\site-examples\Controllers\DatabaseDemo.sql
-        - The SQL demo file should also be expanded upon for more traffic, it is mostly based on
-          US General Population (GENPOP) Web Traffic from around 2015-2018.
-        - SQL file should have commented versions available for Oracle, MySQL, and PostgreSQL
-    FileSystem\Path::join
-    FileSystem\File\Csv
-    Media\Video
-    Web\DbSession
-    Web\DynamicRouting
-    Web\SiteMapBuilder
-        May or may not be created, at the very least docs are needed on how to create one
-    Web\StaticSiteBuilder
 
 *) Unit Testing
     - The below items are a lower priority than having all classes fully tested

@@ -20,7 +20,7 @@
         margin:0 auto 60px auto;
     }
 
-    .home-page .sample-code { max-width:680px; margin-bottom:0; }
+    .home-page .sample-code { max-width:700px; margin-bottom:0; }
     .home-page .sample-code h2 { font-size:24px; }
     .home-page .try-playgound { text-align:center; padding:80px 0 30px 0; }
 

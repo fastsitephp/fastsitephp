@@ -32,7 +32,7 @@
         display: block;
         padding: 30px;
         border-radius: 4px;
-        max-width: 700px;
+        max-width: 740px;
         margin: 30px auto;
         overflow: auto;
         font-size:12px;

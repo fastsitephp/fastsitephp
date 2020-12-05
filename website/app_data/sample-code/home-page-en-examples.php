@@ -63,8 +63,8 @@ $app->get('/examples', function() use ($app) {
 // some JavaScript experience it is very easy to get started with PHP.
 
 // PHP Scripts start with [<?php] and individual lines must end with a
-// semicolon [;]. The [echo] statement outputs/prints content on the screen. This
-// example if saved as a file simply ouputs 'Hello World!'.
+// semicolon [;]. The [echo] statement outputs/prints content on the screen.
+// This example if saved as a file simply outputs 'Hello World!'.
 echo 'Hello World!';
 // EXAMPLE_CODE_END
 */

@@ -271,7 +271,7 @@ footer a:hover { background-color: #E2E4EF; color:#4F5B93; }
 .content a:hover { color:#8892BF; text-decoration: none; }
 .content p:last-child { margin-bottom: 0; }
 
-.sample-code { max-width:700px; padding:20px; }
+.sample-code { max-width:720px; padding:20px; }
 .sample-code h2 { font-size:18px; text-align:center; margin-bottom:20px; }
 
 .error { padding:1em; background-color:red; color:white; }
