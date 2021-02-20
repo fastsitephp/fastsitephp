@@ -22,7 +22,7 @@
 
     .home-page .sample-code { max-width:700px; margin-bottom:0; }
     .home-page .sample-code h2 { font-size:24px; }
-    .home-page .try-playgound { text-align:center; padding:80px 0 30px 0; }
+    .home-page .try-playground { text-align:center; padding:80px 0 30px 0; }
 
     a.btn {
         background-color: #FFAB76;
@@ -209,6 +209,23 @@
         0%, 25%, 30%, 55%, 60%, 100% { opacity: 0; }
         1%, 15%, 31%, 45%, 61%, 80%, 90% { opacity: 1; }
     }
+
+    /* Animation using IntersectionObserver */
+    [data-animate="show-and-scale"] { opacity: 0; transform: scale(.5); }
+    [data-animate="show-and-scale"].show-and-scale { animation: show-and-scale .5s ease-in-out forwards; }
+
+    [data-animate="move-from-right"] { transform: translateX(100px); }
+    [data-animate].move-from-right { animation: move-from-right .5s ease-in-out forwards; }
+
+    @keyframes show-and-scale {
+        from { opacity: 0; transform: scale(.5); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes move-from-right {
+        from { transform: translateX(100px); }
+        to { transform: translateX(0); }
+    }
 </style>
 <?php
 // Once full translations are made this will go at the top of the file for the <html> element
@@ -222,7 +239,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
                 Add [id="svg-title-text"]
                 Add <title> and <desc> with "FastSitePHP"
                 * On the Sketch Version 62 (latest tested version in 1/2020) the export did not work well
-                  so the next line was manually used. 
+                  so the next line was manually used.
                 Replace [font-family="Corbel"] with font-family="Helvetica, Roboto, Arial" and set font-size="76"
                 Also search JavaScript on this page for '#text-2' as Corbel is being used with Windows
             -->
@@ -395,7 +412,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 	    <ul class="cards">
 		    <li>
 		    	<div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['better_title']) ?></h3>
@@ -404,7 +421,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['performance_title']) ?></h3>
@@ -413,7 +430,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Lightswitch.svg" alt="<?= $app->escape($i18n['setup_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Lightswitch.svg" alt="<?= $app->escape($i18n['setup_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
                     <h3><?= $app->escape($i18n['setup_title']) ?></h3>
@@ -422,7 +439,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Samples.svg" alt="<?= $app->escape($i18n['learn_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Samples.svg" alt="<?= $app->escape($i18n['learn_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
                     <h3 class="hover10"><?= $app->escape($i18n['learn_title']) ?></h3>
@@ -431,7 +448,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Security-Lock.svg" alt="<?= $app->escape($i18n['security_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Security-Lock.svg" alt="<?= $app->escape($i18n['security_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
                     <h3><?= $app->escape($i18n['security_title']) ?></h3>
@@ -440,7 +457,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Clipboard.svg" alt="<?= $app->escape($i18n['test_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Clipboard.svg" alt="<?= $app->escape($i18n['test_title']) ?>" data-animate="show-and-scale">
                 </div>
 		    	<div class="text">
                     <h3><?= $app->escape($i18n['test_title']) ?></h3>
@@ -453,7 +470,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
         <h2><?= $app->escape($i18n['sample_code']) ?></h2>
         <pre><code class="language-php"><?= $app->escape($sample_code) ?></code></pre>
     </section>
-    <div class="try-playgound">
+    <div class="try-playground" data-animate="move-from-right">
         <a href="<?= $app->rootUrl() . $app->lang ?>/playground" class="btn">
             <span class="text"><?= $app->escape($i18n['create_site']) ?></span>
             <span class="icon-container">
@@ -462,3 +479,20 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
         </a>
     </div>
 </div>
+
+<!-- Page Animation using IntersectionObserver for Modern Browsers -->
+<script type="module">
+    const animationObserver = new IntersectionObserver((entries, observer) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                const className = entry.target.getAttribute('data-animate');
+                entry.target.classList.add(className);
+                observer.unobserve(entry.target);
+            }
+        }
+    });
+    const elements = document.querySelectorAll('[data-animate]');
+    for (const element of elements) {
+        animationObserver.observe(element);
+    }
+</script>
