@@ -5,16 +5,16 @@ TODO List
 |
 |   In General:
 |
-|   *) Translations
-|      https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md
-|   *) More Examples (for all or most classes and features)
 |   *) More Documentation
+|   *) More Examples (for all or most classes and features)
 |   *) More Unit Testing
-|       - All classes and code must be Unit tested (ideally every line).
-|         Currently all core classes are tested but not all code.
 |       - A number of manual test files from [fastsitephp/scripts/testing-*.php]
 |         need to be converted unit tests under [fastsitephp/tests/*]
+|       - All classes and code must be Unit tested (ideally every line).
+|         Currently all core classes are tested but not all code.
 |   *) Additional Classes and Features
+|   *) Translations
+|      https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md
 |
 |   There is no priority to this list.
 |   All contributions are welcome.
@@ -87,16 +87,6 @@ TODO List
     - Currently the file is updated manually several times per year
     - A simple script can make it easy to update existing sites
 
-*) Test and consider supporting [ngx_php7]
-    - Main Project:
-        https://github.com/rryqszq4/ngx_php7
-    - Example Usage:
-        https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/PHP/php-ngx
-    - This will require use of new function such as `ngx_query_args()` over `$_GET`
-    - [ngx_php7] is very high in performance - highest for PHP and one of the highest scores overall
-        (11 of 424 Frameworks as of June 2020)
-        https://www.techempower.com/benchmarks/
-
 *) Known Site Issues
     - iPhone/Safari (latest) - l10n demo does not work because Safari doesn't fully support:
             <input type="datetime-local">
@@ -138,9 +128,6 @@ TODO List
     - Future likely add a default 502 bad gateway fallback page with correct settings for nginx
         By default nginx will show a generic 502 message when there are more concurrent connections that the server
         can handle (for example 1000 concurrent php connections using default settings)
-
-*) Starter Site - Future options and features
-    - Possible mobile apps (iOS and Android) to work with a starter site
 
 *) Once all pages are translated in Arabic use [$html_dir] at the root <html> element
     - Search code for [$html_dir], currently 2 files are affected
@@ -199,9 +186,6 @@ TODO List
         - Updated Print Screens on [install-php-on-linux] using [apt] instead of [apt-get] and installing the Starter Site
         - Framework (how to run examples when downloading directly)
         - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
-    - Update images and content on [edit-with-vs-code] and related docs with
-        the published version of FastSitePHP and how to download the site
-        or use [git clone] to download it.
     - Source Code Folder structure
     - How the Unit Testing for FastSitePHP works
         - Include print screen examples of how it recommends fixes
@@ -473,13 +457,6 @@ TODO List
             echo curl_exec($ch);
             curl_close($ch);
             exit();
-    - AI and ML with PHP
-        Create examples with a Python Backend and use the HttpClient similar to the GraphQL example code
-        https://github.com/dstogov/php-tensorflow  - Requires a C Extension - from a PHP/Zend Core Developer
-        https://www.glohbe.de/en/stockprice-prediction-with-ai-in-php/  Blog Article showing how to use PHP AI project
-        https://github.com/marasong/resnet50  PHP that calls a Python Server with Resnet 50
-        https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html   Uses ResNet50 with model from ImageNet
-            https://github.com/jrosebr1/simple-keras-rest-api
     - Using Symfony Request/Response Objects with FastSitePHP Routing - possibly in the Quick Reference as well
     - How graphics are created and editor for the site - Sketch and other apps
 
@@ -543,7 +520,7 @@ TODO List
     - fileStream() similar to file but accepts HTTP_RANGE header
     - Test one or more non-common status codes such as 503 Service Unavailable
         PHP 5.3 code will need to be updates for additional status codes
-            Possibly make it a pollyfill
+            Possibly make it a polyfill
         Also unit test the error message from the function
         https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
     - New function [asFile(content, name)] that returns regular content as a file download
@@ -554,7 +531,7 @@ TODO List
     - queryString() - More unit tests that verify all $format options (currently they are verified in [value()])
     - form() - ...
     - url() - return full URL including query string. Just like [host()] and other user input headers this
-        needs to hanlde proxy servers and since it's related to security it must be carefully developed and tested.
+        needs to handle proxy servers and since it's related to security it must be carefully developed and tested.
     - Need to add Unit Tests for the 'Authentication' header. Code properly works on all servers - just needs Unit Tests.
         The reason is that Apache can remove it from $_SERVER, however it's handled here.
     - origin() - need to unit test string value of 'null'
@@ -785,7 +762,7 @@ TODO List
     - For HTTP using php/stream - use [fopen] instead of [file_get_contents] so files
         can be saved. Currently the full response is read into memory
     - Proxy with CURLOPT_PROXY
-    - Alternativly rather than making this class too large simply recommned Guzzle if additional features
+    - Alternatively rather than making this class too large simply recommend Guzzle if additional features
       such as cookies are needed. Depends on how much code is needed for additional features. The HttpClient
       class must be kept small in order for easy security auditing and fast performance.
         http://docs.guzzlephp.org/en/stable/
@@ -804,7 +781,7 @@ TODO List
     - Add support for DomainKeys Identified Mail (DKIM)
         This will take a while and will likely go in a separate class
     - Support [AUTH CRAM-MD5] if any widely used SMTP servers still support it
-        It seems primarly used with port 25 before TLS was used for security.
+        It seems primarily used with port 25 before TLS was used for security.
         Seems to be poorly supported now as secure ports now exist.
     - Possibly add a [altBody(text)] for when [isHtml(true)]
         Ideally some recent stats on text based html clients and usage along
@@ -896,7 +873,7 @@ TODO List
 *) Html Logger Template - Make it look nice, example more colors or images based on error type
 
 *) Improve formatting and comments on API Docs, possibly use Markdown in PHP DocBlock comments
-    Use consistant spacing for indents in PHP DocBlocks - 4 Spaces instead of 2
+    Use consistent spacing for indents in PHP DocBlocks - 4 Spaces instead of 2
 
 *) Add Specific API Examples for the following (but do not show in Quick Ref):
         http://localhost:3000/FastSitePHP/website/public/en/api/Data_OdbcDatabase
