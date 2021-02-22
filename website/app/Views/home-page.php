@@ -210,7 +210,13 @@
         1%, 15%, 31%, 45%, 61%, 80%, 90% { opacity: 1; }
     }
 
-    /* Animation using IntersectionObserver */
+    /*
+    Animation using IntersectionObserver
+    These get set by JavaScript near the bottom of this file.
+
+    The first two cards in [reasons-to-use] do not use animation to avoid
+    taking focus away from the main Rocket and H1 animation.
+    */
     [data-animate="show-and-scale"] { opacity: 0; transform: scale(.5); }
     [data-animate="show-and-scale"].show-and-scale { animation: show-and-scale .5s ease-in-out forwards; }
 
@@ -412,7 +418,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 	    <ul class="cards">
 		    <li>
 		    	<div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>" data-animate="show-and-scale">
+                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['better_title']) ?></h3>
@@ -421,7 +427,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>" data-animate="show-and-scale">
+                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['performance_title']) ?></h3>
@@ -480,7 +486,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
     </div>
 </div>
 
-<!-- Page Animation using IntersectionObserver for Modern Browsers -->
+<!-- Page Animation using IntersectionObserver -->
 <script type="module">
     const animationObserver = new IntersectionObserver((entries, observer) => {
         for (const entry of entries) {
@@ -495,4 +501,38 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
     for (const element of elements) {
         animationObserver.observe(element);
     }
+</script>
+<script nomodule>
+    (function() {
+        'use strict';
+
+        function animate() {
+            var animationObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var className = entry.target.getAttribute('data-animate');
+                        entry.target.classList.add(className);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            var elements = document.querySelectorAll('[data-animate]');
+            Array.prototype.forEach.call(elements, function(element) {
+                animationObserver.observe(element);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var hasObserver = (window.IntersectionObserver !== undefined);
+            if (hasObserver) {
+                animate();
+            } else {
+                var url = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+                var script = document.createElement('script');
+                script.onload = animate;
+                script.src = url;
+                document.querySelector('head').appendChild(script);
+            }
+        });
+    })();
 </script>
