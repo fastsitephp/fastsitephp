@@ -214,11 +214,16 @@
     Animation using IntersectionObserver
     These get set by JavaScript near the bottom of this file.
 
-    The first two cards in [reasons-to-use] do not use animation to avoid
-    taking focus away from the main Rocket and H1 animation.
+    The first two cards in [reasons-to-use] do not use animation unless on a narrow
+    screen (e.g.: phone) to avoid taking focus away from the main Rocket and H1 animation.
     */
     [data-animate="show-and-scale"] { opacity: 0; transform: scale(.5); }
     [data-animate="show-and-scale"].show-and-scale { animation: show-and-scale .5s ease-in-out forwards; }
+
+    @media (max-width: 500px) {
+        [data-animate="show-and-scale-mobile"] { opacity: 0; transform: scale(.5); }
+        [data-animate="show-and-scale-mobile"].show-and-scale-mobile { animation: show-and-scale .5s ease-in-out forwards; }
+    }
 
     [data-animate="move-from-right"] { transform: translateX(100px); }
     [data-animate].move-from-right { animation: move-from-right .5s ease-in-out forwards; }
@@ -418,7 +423,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 	    <ul class="cards">
 		    <li>
 		    	<div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Better-Sites.svg" alt="<?= $app->escape($i18n['better_title']) ?>" data-animate="show-and-scale-mobile">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['better_title']) ?></h3>
@@ -427,7 +432,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
 		    </li>
 		    <li>
                 <div class="img">
-                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>">
+                    <img src="<?= $app->rootDir() ?>img/icons/Performance.svg" alt="<?= $app->escape($i18n['performance_title']) ?>" data-animate="show-and-scale-mobile">
                 </div>
 		    	<div class="text">
 			    	<h3><?= $app->escape($i18n['performance_title']) ?></h3>
