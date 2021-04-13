@@ -126,7 +126,7 @@
             }
         })
         .catch(function(error) {
-            // If there is an error downloading the defualt template
+            // If there is an error downloading the default template
             // so a special message as the serve may be down.
             if (url !== 'download-site') { // ':lang/site-template'
                 var msg = document.querySelector('.error-messages').getAttribute('data-server-down');
@@ -339,6 +339,12 @@
             saveSiteKey(data.site);
             parseSiteKey();
             enableSiteEditing();
+            // Sync site key with template for main page.
+            // This is handled both on server and the JavaScript cache.
+            // The JavaScript cache shows content from the template which is
+            // why it's updated both on client and server for new sites.
+            state.fileCache['app.php'].content = state.fileCache['app.php'].content.replace(/{site}/g, state.siteString);
+            viewFile('app.php');
         })
         .catch(function(error) {
             showError(error);
