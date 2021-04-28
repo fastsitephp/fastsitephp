@@ -129,7 +129,7 @@ function createVendorDir() {
 /**
  * Download and verify a [cacert.pem] file for HTTPS requests.
  * The file will downloaded via an HTTP request and then saved
- * to the system's temp directory. Everytime the file is used
+ * to the system's temp directory. Every time the file is used
  * the contents are verified using a SHA-256 hash.
  */
 function downloadCACert() {
@@ -273,16 +273,33 @@ function extractZip($download) {
     echo 'Extracting: ' . $path . LINE_BREAK;
 
     // Extract from Zip
-    $zip = new \ZipArchive;
-    $zip->open($path);
-    $success = $zip->extractTo(VENDOR_DIR);
-    $zip->close();
+    $error = null;
+    if (class_exists('ZipArchive')) {
+        $zip = new \ZipArchive;
+        $zip->open($path);
+        $success = $zip->extractTo(VENDOR_DIR);
+        $zip->close();
+    } else if (PHP_OS === 'Darwin') {
+        // As of early 2021 Mac includes PHP, however ZipArchive is not enabled by default
+        $cmd = 'unzip -o ' . escapeshellarg($path) . ' -d ' . escapeshellarg(VENDOR_DIR);
+        exec($cmd, $output, $return_var);
+        $success = ($return_var === 0);
+        if ($return_var !== 0) {
+            $error = 'Error: ' . $return_var . ', output: [' . implode(', ', $output) . ']';
+        }
+    } else {
+        $success = false;
+        $error = 'Missing PHP built-in class ZipArchive. Please check your [php.ini] file to enable or install it.';
+    }
 
     // Check Result
     if ($success) {
         echo 'File extracted successfully' . LINE_BREAK;
     } else {
         echo 'Error extracting Zip' . LINE_BREAK;
+        if ($error !== null) {
+            echo $error . LINE_BREAK;
+        }
         exit(ERR_SCRIPT_FAILED);
     }
 
