@@ -194,7 +194,7 @@ function getLatestRelease() {
     echo str_repeat('-', 80) . LINE_BREAK;
     echo 'Getting latest release of FastSitePHP: ' . $url . LINE_BREAK;
     $context = stream_context_create($http_options);
-    $response = file_get_contents($url, null, $context);
+    $response = file_get_contents($url, false, $context);
     $json = json_decode($response);
     if ($json && isset($json->tag_name)) {
         echo 'Version: ' . $json->tag_name . LINE_BREAK;
@@ -231,7 +231,7 @@ function downloadZip($url, $path) {
         ),
     );
     $context = stream_context_create($http_options);
-    $response = file_get_contents($url, null, $context);
+    $response = file_get_contents($url, false, $context);
 
     // Look for a 200 Response Code, example:
     //     'HTTP/1.0 200 OK'
