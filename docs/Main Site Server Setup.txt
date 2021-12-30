@@ -206,7 +206,7 @@ ls /var/www/html
 # Restart the server and make sure everything works after a reboot
 sudo reboot
 
-# Additional Steps performmed for the live site
+# Additional Steps performed for the live site
 https://www.fastsitephp.com/en/
 
 # 1) Created Static IP in AWS Lightsail for the Sever: 44.227.18.120

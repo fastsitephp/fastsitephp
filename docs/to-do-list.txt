@@ -26,6 +26,17 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Handle update for nginx on PHP 8.1 Ubuntu 20
+    - Request->headers()
+        Behavior change for PHP 8.1? This is returning [Content-Length]
+        and [Content-Type] with null values. Need to do more testing.
+    - Application->escape()
+        Depreciation of null on 1st param so may have to add the 
+        following prior to htmlspecialchars() call:
+        if ($text === null) {
+            return '';
+        }
+
 **) On a new Mac (Tested Late April 2021) with a default PHP install (and after [php.ini] was copied)
     a single unit test is failing (not critical as it's checking a very specific OpenSSL message):
 	http://localhost:3000/tests/test-security-crypto.php/encryption-class-errors	
@@ -48,9 +59,6 @@ TODO List
         - Server-side PHP testing using phpunit - https://phpunit.de/ or custom classes will likely
             no be created as a Puppeteer/Node Script can easily be created to verify all core security
             logic and pages on a site and it allows from testing of a live site from any server.
-
-**) Create Docker Image
-    - Include the starter site?
 
 **) Create Documentation that shows how Unit Testing works
     - Currently when testing on specific versions of PHP 8 with Linux Ubuntu
