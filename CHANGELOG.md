@@ -2,6 +2,12 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Web Server Updates (December 30, 2021)
+
+* Both the main site and the playground site (along with several other open source projects) where migrated to a new server (1 server instead of 5).
+  * FastSitePHP requires very little resources or memory so it didn't make sense to run 5 servers.
+  * See the new setup doc at: https://github.com/fastsitephp/fastsitephp/blob/master/docs/server-setup/server-setup.sh
+
 ## 1.4.4 (December 3, 2020)
 
 * Update `cacert.pem` to the latest version which is used by `\FastSitePHP\Net\HttpClient` on Windows and Mac Computers.

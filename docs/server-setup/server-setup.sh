@@ -108,6 +108,15 @@ wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/sy
 bash sync-server-from-github.sh
 rm sync-server-from-github.sh
 
+# Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
+sudo nano /var/www/fastsitephp-site/app_data/.env
+
+# Keys (copy from values local file)
+SMTP_HOST={host}
+SMTP_PORT={port}
+SMTP_USER={email}
+SMTP_PASSWORD={password}
+
 # Install FastSitePHP Playground
 wget https://raw.githubusercontent.com/fastsitephp/playground/master/scripts/sync-server-from-github.sh
 bash sync-server-from-github.sh
@@ -334,6 +343,8 @@ sudo systemctl reload nginx
 #       Test the default tempalte.
 #       Delete and create a new site and manually test the following:
 #           https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing.php
+#   http://fastsitephp.com/en/security-issue
+#       Submit form to confirm email works
 
 # Installed HTTPS Certificate using certbot:
 #    https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
