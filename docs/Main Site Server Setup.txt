@@ -8,6 +8,19 @@
 #
 # ------------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------------
+#
+#            ** Setup for New Server (December 30th, 2021) **
+#
+# This site is now hosted with several open source sites. See the new version
+# of setup commands in the [server-setup] sub-folder or at the link below.
+# The commands described in this file are still relevant because they provide
+# more detailed comments on the purpose of each command.
+#
+# https://github.com/fastsitephp/fastsitephp/blob/master/docs/server-setup/server-setup.sh
+#
+# ------------------------------------------------------------------------------------
+
 # ------------------------------------------
 # New Easy Setup
 # ------------------------------------------
@@ -51,7 +64,7 @@ cp -r ~/fastsitephp-master/tests /var/www/html/tests
 # Run and Verify all Unit Tests
 #     http://{host}/tests/index.htm
 #
-# To run all tests edit the HTML file and 
+# To run all tests edit the HTML file and
 # set all values to true:
 #   runTimeConsumingTasks = true
 #   runTestsWithRSA = true
@@ -144,7 +157,7 @@ FastSitePHP\src
     -> Copy to [/var/www/vendor/fastsitephp]
 Other Dependencies (PHP Logging and Markdown)
     -> Created by script [/var/www/scripts/install.php]
-    
+
 # Copy Files (Commands)
 cp -r ~/fastsitephp-master/website/app /var/www/app
 cp -r ~/fastsitephp-master/website/app_data /var/www/app_data
@@ -192,7 +205,7 @@ tail -n 1 /var/log/apache2/error.log
 
 # Run and Verify all Unit Tests
 # http://44.227.18.120/tests/index.htm
-# To run all tests edit the HTML file and 
+# To run all tests edit the HTML file and
 # set all values to true:
 #   runTimeConsumingTasks = true
 #   runTestsWithRSA = true
