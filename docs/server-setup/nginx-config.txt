@@ -1,0 +1,90 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name _;
+    root /var/www/default-site;
+    index index.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+server {
+    server_name dataformsjs.com www.dataformsjs.com;
+    access_log /var/log/nginx/dataformsjs-site.access.log;
+    error_log /var/log/nginx/dataformsjs-site.error.log;
+    root /var/www/dataformsjs-site/public;
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+    location /graphql {
+        proxy_pass http://127.0.0.1:4000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    location = /examples/ {
+        return 302 /index.php/examples/;
+    }
+}
+
+server {
+    server_name playground.dataformsjs.com;
+    access_log /var/log/nginx/dataformsjs-playground.access.log;
+    error_log /var/log/nginx/dataformsjs-playground.error.log;
+    root /var/www/dataformsjs-playground/public;
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+}
+
+server {
+    server_name fastsitephp.com www.fastsitephp.com;
+    access_log /var/log/nginx/fastsitephp-site.access.log;
+    error_log /var/log/nginx/fastsitephp-site.error.log;
+    root /var/www/fastsitephp-site/public;
+    index index.php;
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+    }
+}
+
+server {
+    server_name playground.fastsitephp.com;
+    access_log /var/log/nginx/fastsitephp-playground.access.log;
+    error_log /var/log/nginx/fastsitephp-playground.error.log;
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
+server {
+    server_name ai-ml.dataformsjs.com;
+    access_log /var/log/nginx/dataformsjs-ai-ml.access.log;
+    error_log /var/log/nginx/dataformsjs-ai-ml.error.log;
+    root /var/www/dataformsjs-ai-ml/public;
+    index index.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    location /predict {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}

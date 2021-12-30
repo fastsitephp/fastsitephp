@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn webserver
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/var/www/dataformsjs-ai-ml
+Environment="PATH=/var/www/dataformsjs-ai-ml/env/bin"
+ExecStart=/var/www/dataformsjs-ai-ml/env/bin/gunicorn -w 1 -b 127.0.0.1:5000 app:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
