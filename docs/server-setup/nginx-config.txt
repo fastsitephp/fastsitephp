@@ -14,7 +14,7 @@ server {
     access_log /var/log/nginx/dataformsjs-site.access.log;
     error_log /var/log/nginx/dataformsjs-site.error.log;
     root /var/www/dataformsjs-site/public;
-    index index.php;
+    index index.php index.html;
     location / {
         try_files $uri $uri/ /index.php$is_args$args;
     }

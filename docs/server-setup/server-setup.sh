@@ -253,8 +253,8 @@ sudo apt-get install -y nodejs
 # In the future this will likely be fixed and the most recent package versions
 # can be used again.
 #
-# npm i express graphql express-graphql better-sqlite3
-npm i express@4.17.2 graphql@15.3.0 express-graphql@0.12.0 better-sqlite3@7.4.5
+# npm i express graphql express-graphql better-sqlite3 cors
+npm i express@4.17.2 graphql@15.3.0 express-graphql@0.12.0 better-sqlite3@7.4.5 cors@2.8.5
 sudo npm install pm2 -g
 pm2 start app.js
 
@@ -321,8 +321,10 @@ sudo systemctl reload nginx
 # setup before migration to the new server.
 #
 #   http://35.155.22.255/
+#   http://fastsitephp.com/
 #   http://www.fastsitephp.com/
 #   http://playground.fastsitephp.com/
+#   http://dataformsjs.com/
 #   http://www.dataformsjs.com/
 #   http://playground.dataformsjs.com/
 #   http://ai-ml.dataformsjs.com/
@@ -343,14 +345,21 @@ sudo systemctl reload nginx
 #       Test the default tempalte.
 #       Delete and create a new site and manually test the following:
 #           https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing.php
+#   http://www.dataformsjs.com/unit-testing/
 #   http://fastsitephp.com/en/security-issue
 #       Submit form to confirm email works
+#   Test many of the example pages
 
 # Installed HTTPS Certificate using certbot:
 #    https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
 #    For each main site make sure both non-www and www are entered, example:
 #        [dataformsjs.com] and [www.dataformsjs.com]
 #        The new certbot is doing this by default while previous versions did not.
+#    After update the above HTTP links should redirect automatically to HTTPS.
+#        Excluding the URL with IP in it.
+#        Confirm DataFormsJS examples work from localhost once HTTPS takes effect.
+#        - Examples include: Entry Form, Image Classification, GraphQL, Places Demo.
+#        - This confirms that CORS and other functions works with the various services.
 
 # Make sure playground sites are deleted as expected. The full test requires
 # leaving sites open for over an hour to make sure they are deleted (both
