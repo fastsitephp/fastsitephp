@@ -4544,6 +4544,7 @@ $app->get('/encryption-class-errors', function() use ($app) {
             'expected' => 'The parameter [FastSitePHP\Security\Crypto\Encryption->encryptionAlgorithm($encryption_algorithm)] must be a string but was instead a [integer].',
         ),
         array(
+            // This only runs folder older versions of PHP
             'run-test' => (PHP_VERSION_ID < 70100),
             'object' => 'crypto3',
             'func' => 'encryptionAlgorithm',
@@ -4613,9 +4614,11 @@ $app->get('/encryption-class-errors', function() use ($app) {
             'func' => 'decrypt',
             'param' => $ciphertext2,
             'param2' => $key2_alt,
-            // NOTE - since this error comes from [openssl] is possible that the error
-            // message can vary. This is the expected starting text of the error.
-            'expectedStart' => 'Decryption Failed, Error from openssl: [error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt]',
+            // NOTE - this error comes from [openssl] and can vary on different systems.
+            // This is the expected starting text of the error.
+            'expectedStart' => 'Decryption Failed, Error from openssl:',
+            // Example of full error text:
+            //   Decryption Failed, Error from openssl: [error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt]
         ),
         array(
             'func' => 'encrypt',
@@ -4690,6 +4693,9 @@ $app->get('/encryption-class-errors', function() use ($app) {
                 echo '<br>';
                 var_dump($value);
                 exit();
+            } else {
+                $tests_count++;
+                $error_text[] = $error;
             }
         } catch (\Exception $e) {
             $tests_count++;
@@ -4699,7 +4705,7 @@ $app->get('/encryption-class-errors', function() use ($app) {
                 if (strpos($error, $expected_start) !== 0) {
                     echo 'Failed with function: ' . $func;
                     echo '<br>';
-                    var_dump($param);
+                    var_dump($test);
                     echo '<br>';
                     var_dump($error);
                     echo '<br><b>Expected Start:</b> ';
@@ -4711,7 +4717,7 @@ $app->get('/encryption-class-errors', function() use ($app) {
                 if ($error !== $expected) {
                     echo 'Failed with function: ' . $func;
                     echo '<br>';
-                    var_dump($param);
+                    var_dump($test);
                     echo '<br>';
                     var_dump($error);
                     echo '<br>';

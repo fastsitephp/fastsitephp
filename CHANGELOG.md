@@ -2,11 +2,11 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
-## Next Release (Planned for early Januaray 2022)
+## 1.4.5 (January 5, 2022)
 
 * Added Support for PHP 8.1
 * Updated `Request->headers()` for nginx when it includes `Content-Length` or `Content-Type` with a blank value.
-* Updated Server Setup Script `create-fast-site.sh` so that it shows the IPv4 Address rather than IPv6
+* Updated Server Setup Script `create-fast-site.sh` so that it shows the IPv4 Address rather than IPv6 and updated version of PHP installed from `8.0` to `8.1`.
 
 ## Web Server Updates (December 30, 2021)
 

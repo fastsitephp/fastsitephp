@@ -243,19 +243,11 @@
         ]]
     });
 
-    runHttpUnitTest("Security Cryto - Error Messages", "test-security-crypto.php/encryption-class-errors", {
-        // Lines:
-        //   [Tests: 34] = PHP 7.1 or later
-        //   [Tests: 35] = Below 7.1
-        //   [Tests: 36] = Below 5.5
-        responseContains: [[
-            "[/encryption-class-errors], [Tests: 34], [Len: 6309], [sha256: 36d00efc93eea86a574efea93094eff8d662e4f552aa6336ffb1ed68cc00ad2e]",
-            "[/encryption-class-errors], [Tests: 35], [Len: 177], [sha256: 30fe6c4a6fde871ab45851a20ffe844910b849797207f1e3c5fe7389f174ae5e]",
-            "[/encryption-class-errors], [Tests: 36], [Len: 456], [sha256: 1934b18dbd0d3fcf6321ef84386bcb17d566382ab1f59321b5c18a0b583b3e02]",
-        ]]
+    runHttpUnitTest("Security Crypto - Error Messages", "test-security-crypto.php/encryption-class-errors", {
+        response: "[/encryption-class-errors], [Tests: 36], [Len: 6522], [sha256: e0e0292a6b93565c93d01f212bba449ef1bc9e244ddf533952d3792c210d7dcd]"
     });
     
-    runHttpUnitTest("Security Cryto - Error Messages", "test-security-crypto.php/signed-data-class-errors", {
+    runHttpUnitTest("Security Crypto - Error Messages", "test-security-crypto.php/signed-data-class-errors", {
         response: "[/signed-data-class-errors], [Tests: 22], [Len: 4078], [sha256: d3768f0d0b839f38481a4daa04282e382bc801d26aa175a206256b37f9b1a545]"
     });
 

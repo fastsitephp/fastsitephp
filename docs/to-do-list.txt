@@ -26,40 +26,29 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) Add Support for PHP 8.1
-    - LATEST - Updates have been made and are being tested
-    - This is planned for January 2021
-    - Currently PHP 8.0 is supported and PHP 8.1 mostly works but some
-        Unit Tests are broken
-    - Need to verify Windows, Apache, and nginx
-        Commands to Unit Test from Cloud Server:
-            # Install Starter Site (at least two servers one for Apache and one for nginx)
-            wget https://www.fastsitephp.com/downloads/create-fast-site.sh
-            # Currently only PHP 8.0 is supported so manually change the PHP_VER variable to 8.1
-            nano create-fast-site.sh
-            # Apache
-            sudo bash create-fast-site.sh -a
-            # nginx
-            sudo bash create-fast-site.sh -n
-            # Update [Application, Web\Request, Web\Response] objects to latest version
-            # Download and copy unit tests
-            wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
-            unzip master.zip
-            cp -r ~/fastsitephp-master/tests /var/www/html/tests
-            # Run and Verify all Unit Tests
-            #   http://{host}/tests/index.htm
 
+**) Unit Test [/encryption-class-errors] was updated on 2022-01-05 to generate the same result
+        for all versions of PHP. Previously it had different tests for different versions of PHP.
+        Need to re-test with older versions to confirm the hash still works.
+        Test with the following:
+        //   [Tests: 35] = Below 7.1
+        //   [Tests: 36] = Below 5.5
+    - Commands to Unit Test from Cloud Server:
+        # Install Starter Site (at least two servers one for Apache and one for nginx)
+        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+        # Currently only PHP 8.0 is supported so manually change the PHP_VER variable to 8.1
+        nano create-fast-site.sh
+        # Apache
+        sudo bash create-fast-site.sh -a
+        # nginx
+        sudo bash create-fast-site.sh -n
+        # Download and copy unit tests
+        wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+        unzip master.zip
+        cp -r ~/fastsitephp-master/tests /var/www/html/tests
+        # Run and Verify all Unit Tests
+        #   http://{host}/tests/index.htm
 
-**) On a new Mac (Tested Late April 2021) with a default PHP install (and after [php.ini] was copied)
-    a single unit test is failing (not critical as it's checking a very specific OpenSSL message):
-	http://localhost:3000/tests/test-security-crypto.php/encryption-class-errors	
-    Source:
-	https://github.com/fastsitephp/fastsitephp/blob/master/tests/test-security-crypto.php#L4611
-    Example Error (hash changes each time):
-	Failed with function: decrypt
-	string(43) "1zlKo7Guvw4-Yfm3qq_VlVZfR7xD8BBfSp1Ob2TvDRY"
-	string(109) "Decryption Failed, Error from openssl: [error:06FFF064:digital envelope routines:CRYPTO_internal:bad decrypt]"
-	Expected Start: NULL
 
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS

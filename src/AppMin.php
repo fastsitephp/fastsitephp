@@ -334,6 +334,9 @@ class AppMin
      */
     public function escape($text)
     {
+        if ($text === null) {
+            return '';
+        }
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', true);
     }
 
