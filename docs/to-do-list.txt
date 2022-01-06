@@ -27,29 +27,6 @@ TODO List
 --------------------------------------------------------------------------
 
 
-**) Unit Test [/encryption-class-errors] was updated on 2022-01-05 to generate the same result
-        for all versions of PHP. Previously it had different tests for different versions of PHP.
-        Need to re-test with older versions to confirm the hash still works.
-        Test with the following:
-        //   [Tests: 35] = Below 7.1
-        //   [Tests: 36] = Below 5.5
-    - Commands to Unit Test from Cloud Server:
-        # Install Starter Site (at least two servers one for Apache and one for nginx)
-        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
-        # Currently only PHP 8.0 is supported so manually change the PHP_VER variable to 8.1
-        nano create-fast-site.sh
-        # Apache
-        sudo bash create-fast-site.sh -a
-        # nginx
-        sudo bash create-fast-site.sh -n
-        # Download and copy unit tests
-        wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
-        unzip master.zip
-        cp -r ~/fastsitephp-master/tests /var/www/html/tests
-        # Run and Verify all Unit Tests
-        #   http://{host}/tests/index.htm
-
-
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
         and allow editing of all code on the server similar to how the playground site works.
@@ -63,18 +40,38 @@ TODO List
             logic and pages on a site and it allows from testing of a live site from any server.
 
 **) Create Documentation that shows how Unit Testing works
-    - Currently when testing on specific versions of PHP 8 with Linux Ubuntu
-        on both Apache and nginx one test is known to fail at times but then
-        works when running the test a 2nd time:
-            Test: test-net-config.php/check-net-config-class
-            Error:
-                E_WARNING
-                Narrowing occurred during type inference of ZEND_FETCH_OBJ_R. Please file a bug report on bugs.php.net
-                File: /var/www/html/tests/test-net-config.php
-                Line 15
-    - The error also happens the first time for each request after
-        a reboot but then works after it is called once.
-    - This error does not happen when using the pre-built Windows builds of PHP
+    - Markdown doc needs to be created in [docs] folder and linked from readme
+    - Include print screen examples of how it recommends fixes
+    - Include docs for use with Linux, Mac, Windows
+    - Update the [readme.md] file once the link is created
+    - Commands to Unit Test from Cloud Server:
+        # Install Starter Site (two servers needed one for Apache and another for nginx)
+        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
+        # Apache
+        sudo bash create-fast-site.sh -a
+        # nginx
+        sudo bash create-fast-site.sh -n
+        # nginx requires config updates to allow direct access to '*.php' files.
+        # By default FastSitePHP is configured for security to not allow it.
+            sudo nano /etc/nginx/sites-available/fastsitephp
+                Replace:
+                    location ~ \.php$ {
+                With:
+                    location ~ \.php {
+            sudo nano /etc/nginx/snippets/fastcgi-php.conf
+                Replace:
+                    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                With:
+                    fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
+        # Download and copy unit tests
+        wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
+        unzip master.zip
+        cp -r ~/fastsitephp-master/tests /var/www/html/tests
+        # Run and Verify all Unit Tests
+        #   http://{host}/tests/index.htm
+        # With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow
+        # Related link: https://forum.nginx.org/read.php?29,251164,251966
+
 
 **) fastsitephp\scripts\create-api-json-files.php
     This file should be updated to handle multiple languages when the other language is a duplicate of the `en` file.
@@ -124,29 +121,9 @@ TODO List
         - Need to support HTTP/2 on the servers in addition to http/1.1
         - Remove duplicate [id] in the SVG on home page and other minor items
 
-*) Install Script [create-fast-site.sh]
-    - Running:
-        wget https://www.fastsitephp.com/downloads/create-fast-site.sh
-        sudo bash create-fast-site.sh
-    - Need doc on how to unit test with nginx:
-        1) sudo nano /etc/nginx/sites-available/fastsitephp
-            Replace:
-                location ~ \.php$ {
-            With:
-                location ~ \.php {
-        3) sudo nano /etc/nginx/snippets/fastcgi-php.conf
-            Replace:
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            With:
-                fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
-        3) sudo systemctl reload nginx
-        4) Run Tests (after copying the `tests` directory)
-        *) With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow
-    - Need to test with the Windows Subsystem for Linux
-        https://docs.microsoft.com/en-us/windows/wsl/install-win10
-        https://docs.microsoft.com/en-us/windows/wsl/about
-    - In the future add support for more Linux OS's
-    - Future likely add a default 502 bad gateway fallback page with correct settings for nginx
+*) Install Script [create-fast-site.sh]       
+    - Add support for more Linux OS's
+    - Add a default 502 bad gateway fallback page with correct settings for nginx
         By default nginx will show a generic 502 message when there are more concurrent connections that the server
         can handle (for example 1000 concurrent php connections using default settings)
 
@@ -159,10 +136,8 @@ TODO List
     - Publishing releases
         - Ideally there would be a better workflow, possibly a separate "Release" branch
         - Currently releases need [export-ignore] lines in [.gitattributes]
-            while the master must have them commented out. For the initial release this was done manual.
-    - How Unit Testing works
-        - Markdown doc needs to be created in [docs] folder and linked from readme
-        - Search this file for "unit test with nginx" which needs to be documented.
+            while the master branch must have them commented out.
+        - The current manual system is probably ok but it needs to be documented
     - How Linting works:
         - This could be a new markdown file linked from the readme in the [docs] folder
         - Either as a separate doc or a larger doc such as "Editing the Framework Code"
@@ -208,13 +183,8 @@ TODO List
         - Framework (how to run examples when downloading directly)
         - Main Site (uses [FastSitePHP\docs\Main Site Server Setup.txt])
     - Source Code Folder structure
-    - How the Unit Testing for FastSitePHP works
-        - Include print screen examples of how it recommends fixes
-        - Include docs for use with Linux, Mac, Windows
-        - Update the [readme.txt] file once the link is created
     - Publish step by step guide on FastSitePHP Server is Setup
     - Linux Install Doc
-        - Need more OS examples
         - Examples on how to connect to linux (possibly in separate docs for Mac and Windows)
     - PHP and FastSitePHP with Docker?
     - Need to come up with workflow and/or examples on how to publish images
@@ -250,68 +220,12 @@ TODO List
         Then create a <ul> link list in the [Overview] topic
         Alternatively a Tab Layout could be used but that would likely take more time than it's worth
         Another option would be a separate document per OS and then all docs can have easy links to each other
-    - Add detailed nginx install guide after layout has been made easier to use
-        # See also the most recent version of [fastsitephp\scripts\shell\bash\create-fast-site.sh]
-        sudo apt update
-        sudo apt install -y nginx
-        sudo ufw allow 'Nginx HTTP'
-        sudo apt install -y php-fpm
-        sudo nano /etc/nginx/sites-available/default
-            index index.php index.html index.htm index.nginx-debian.html;
-            try_files $uri $uri/ /index.php$is_args$args;
-            # location ~ \.php$ {
-            location ~ \.php {
-                include snippets/fastcgi-php.conf;
-                fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
-            }
-        # When using `create-fast-site.sh` run:
-            sudo nano /etc/nginx/sites-available/fastsitephp
-            Replace:
-                location ~ \.php$ {
-            With:
-                location ~ \.php {
-        # Note, if using a default install [sites-available/default] is typically not modified on production systems, see comments in the file
-        # Also the default [location ~ \.php$ {] will work however [location ~ \.php {] is needed
-        # for Unit Testing with the Web Server
-        # Also optional for unit testing:
-        sudo nano /etc/nginx/snippets/fastcgi-php.conf
-            Replace:
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            With:
-                fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
-        sudo systemctl reload nginx
-        sudo adduser ubuntu www-data
-        sudo chown ubuntu:www-data -R /var/www
-        sudo chmod 0775 -R /var/www
-        cd /var/www/html
-        echo "<?php phpinfo(); ?>" | sudo tee phpinfo.php
-        # Install FastSitePHP Starter Site:
-        cd ~
-        wget https://github.com/fastsitephp/starter-site/archive/master.zip
-        sudo apt install unzip
-        unzip master.zip
-        cp -r ~/starter-site-master/app /var/www/app
-        cp -r ~/starter-site-master/app_data /var/www/app_data
-        cp -r ~/starter-site-master/scripts /var/www/scripts
-        cp -r ~/starter-site-master/public/. /var/www/html
-        sudo apt install php7.2-zip
-        php /var/www/scripts/install.php
-        sudo rm /var/www/html/.htaccess
-        sudo rm /var/www/html/Web.config
-        sudo rm /var/www/html/index.nginx-debian.html
-        # Unit Testing
-        sudo apt install php7.2-sqlite php7.2-gd php7.2-bc php7.2-simplexml
-        cd ~
-        wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
-        unzip master.zip
-        cp -r ~/fastsitephp-master/tests /var/www/html/tests
-        # View http://example.com/tests/index.htm
 
 *) Create Additional Interfaces for [\FastSitePHP\Data\KeyValue\StorageInterface]
     - Currently only SQLite has been created:
         http://localhost:3000/FastSitePHP/website/public/en/api/Data_KeyValue_SqliteStorage
     - At a minimum both [memcached] and [redis] should be supported
-        http://www.memcached.org/
+        https://www.memcached.org/
             https://www.php.net/manual/en/intro.memcached.php
         https://redis.io/
             https://github.com/phpredis/phpredis
@@ -436,7 +350,6 @@ TODO List
     - Updating this site:
         - Where to add files
         - How to update lang files, etc
-        - Update humans.txt for new Contributors
         - How to update the sitemap of the main site during local development
             http://localhost:3000/fastsitephp/website/public/site/generate-sitemap
         - How to refresh API Docs
@@ -483,23 +396,10 @@ TODO List
 
 *) Unit Testing
     - The below items are a lower priority than having all classes fully tested
-    - JavaScript Code for Unit Tests can be converted to latest version of JavaScript
-    - [core.js] will be converted to a ES Module with exports and then calling files will import from it
-    - Update JS Code to also allow CLI using Node.
-    - After test converting the JS files to JSON and having a new core JS file and PHP version
-      so that that Unit Tests can be run in Browser, with Node, or with PHP
-    - Strong ETags fail during Unit Testing with standard nginx setup.
-      Strong Etags are not common so this is acceptable, however it would be good to document
-      how to allow strong etags so the tests can pass:
-        "Response Object - Cache Headers Test - 3c - Strong ETag Function Test", "test-web-response.php/cache-headers-3-strong?_="
-        "Response Object - Cache Headers Test - 5b - 304 Response for Strong ETag", "test-web-response.php/cache-headers-5"
-      Related link:
-        https://forum.nginx.org/read.php?29,251164,251966
-      Another option would be to modify the Unit Test to allow for Weak ETags form nginx or skip this test if using nginx.
-      Likely just keep it (and document it) as the Unit Tests are meant to show what a web server supports
-
-*) Unit Testing JS Clarification
-    [responseContains] should be replaced with [responseMatchesOne] for a number of Tests
+    - Unit Testing JS Clarification
+        [responseContains] should be replaced with [responseMatchesOne] for a number of Tests
+    - Convert the JS files to JSON and having a new core JS file and PHP version
+      so that that Unit Tests can be run in Browser, or with PHP
 
 *) Use [$app->lang] for language translations with the Error and Page Not found templates.
     Translations will be stored in JSON files (1 per language), likely in a directory [I18N]
@@ -562,9 +462,6 @@ TODO List
     If a 500 response is returned then JavaScript should provide a message that JSON support is
     not installed if it can be determined from the error. This can be manually verified by
     installing only Apache and PHP without Modules on FreeBSD.
-
-*) Test many additional Linux environments and add more helper info to [/check-server-config]
-    based on common modules that may be missing. Also create docs for various OS installs.
 
 *) Unit Test function [checkObjectMethods()] needs to handle static methods
     Used in [Net\IP] class and more
