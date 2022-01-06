@@ -4417,7 +4417,6 @@ $app->get('/encryption-class-errors', function() use ($app) {
     // Define Error Tests
     $tests_count = 0;
     $error_text = array();
-    $error_text_old_php = array();
     $tests = array(
         array(
             'func' => 'hashingAlgorithm',
@@ -4695,7 +4694,7 @@ $app->get('/encryption-class-errors', function() use ($app) {
                 exit();
             } else {
                 $tests_count++;
-                $error_text[] = $error;
+                $error_text[] = ($expected_start !== null ? $expected_start : $error);
             }
         } catch (\Exception $e) {
             $tests_count++;
@@ -4725,17 +4724,11 @@ $app->get('/encryption-class-errors', function() use ($app) {
                     exit();
                 }
             }
-
-            if ($run_test_isset) {
-                $error_text_old_php[] = $error;
-            }
         }
     }
 
     // Result
-    // [$error_text_old_php] is used on older PHP versions to hash only the old error text.
-    // This prevents having to re-test on many PHP versions when updating a single error message.
-    $error_text = implode('', ($error_text_old_php ? $error_text_old_php : $error_text));
+    $error_text = implode('', $error_text);
     return sprintf('[Tests: %d], [Len: %d], [sha256: %s]', $tests_count, len($error_text), hash('sha256', $error_text));
 });
 
