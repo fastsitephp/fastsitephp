@@ -172,7 +172,7 @@ main ()
 
     # Get public IP for the server from Google and show to the user
     # From: https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
-    ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
+    ip=$(dig TXT +short -4 o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
     echo -e "View your site at: ${FONT_BOLD}${FONT_UNDERLINE}http://${ip}${FONT_RESET}"
 }
 
