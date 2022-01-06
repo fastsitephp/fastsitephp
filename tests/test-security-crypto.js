@@ -244,7 +244,7 @@
     });
 
     runHttpUnitTest("Security Crypto - Error Messages", "test-security-crypto.php/encryption-class-errors", {
-        response: "[/encryption-class-errors], [Tests: 36], [Len: 6522], [sha256: e0e0292a6b93565c93d01f212bba449ef1bc9e244ddf533952d3792c210d7dcd]"
+        response: "[/encryption-class-errors], [Tests: 36], [Len: 6690], [sha256: 0325f2b5d282232235095624fbfaa5903c5e2f918497d3cad4d30560eb8219d4]"
     });
     
     runHttpUnitTest("Security Crypto - Error Messages", "test-security-crypto.php/signed-data-class-errors", {

@@ -4694,7 +4694,7 @@ $app->get('/encryption-class-errors', function() use ($app) {
                 exit();
             } else {
                 $tests_count++;
-                $error_text[] = ($expected_start !== null ? $expected_start : $error);
+                $error_text[] = ($expected_start !== null ? $expected_start : $expected);
             }
         } catch (\Exception $e) {
             $tests_count++;
