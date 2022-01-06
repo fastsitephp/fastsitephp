@@ -1327,7 +1327,7 @@ $app->get('/default-settings-signed-data', function() use ($app) {
 // class match functionality of the native PHP Versions. Newer
 // versions of PHP such as PHP 7 will include all of these
 // functions by default however older versions will not. Regardless
-// of the  version of PHP used the functions calls should always
+// of the version of PHP used the functions calls should always
 // have the same result and have the same error messages if called
 // with invalid parameters. Created functions and constants:
 //  OPENSSL_RAW_DATA
@@ -1379,7 +1379,7 @@ $app->get('/compatibility-functions', function() {
         ),
         array(
             'function' => 'bin2hex',
-            'data' => null,
+            'data' => (PHP_VERSION_ID < 80100 ? null : ''),
             'expected' => '',
         ),
         // 'Hello' in Mandarin Chinese
@@ -1424,7 +1424,7 @@ $app->get('/compatibility-functions', function() {
         ),
         array(
             'function' => 'hex2bin',
-            'data' => null,
+            'data' => (PHP_VERSION_ID < 80100 ? null : ''),
             'expected' => '',
         ),
         // 'Hello' in Mandarin Chinese
@@ -1877,9 +1877,9 @@ $app->get('/validate-base64url-encoding', function() {
             'base64url' => 'MDEyMzQ1Njc4OQ',
         ),
         // Null passed to both [base64_encode()] and [Base64Url::encode()]
-        // returns an empty string.
+        // returns an empty string. Deprecated starting with PHP 8.1
         array(
-            'data' => null,
+            'data' => (PHP_VERSION_ID < 80100 ? null : ''),
             'base64' => '',
             'base64url' => '',
         ),

@@ -93,7 +93,11 @@
     });
 
     runHttpUnitTest("Security Crypto - Base64 URL Safe Encoding and Decoding", "test-security-crypto.php/validate-base64url-encoding", {
-        response: "[/validate-base64url-encoding], [Tests: 15], [Statements: 60], [Len: 2136], [sha256: fcae9e5b92009d9d5229b0345aabce57cc612b0fdfbed05d79f78be526c36efe], [Exception: Invalid parameter of type [array] for [FastSitePHP\\Encoding\\Base64Url::decode()], only strings or null can be decoded.]"
+        responseContains: [[
+            "[/validate-base64url-encoding], [Tests: 15], [Statements: 60], [Len: 2136], [sha256: fcae9e5b92009d9d5229b0345aabce57cc612b0fdfbed05d79f78be526c36efe], [Exception: Invalid parameter of type [array] for [FastSitePHP\\Encoding\\Base64Url::decode()], only strings or null can be decoded.]",
+            // PHP 8.1
+            "[/validate-base64url-encoding], [Tests: 15], [Statements: 60], [Len: 2137], [sha256: 099889fc3fc52690e9a81f68c667e4d31f7535018c9e658a352808c2cf9aea9b], [Exception: Invalid parameter of type [array] for [FastSitePHP\\Encoding\\Base64Url::decode()], only strings or null can be decoded.]",
+        ]]
     });
 
     runHttpUnitTest("Security Crypto - Encrypt and Decrypt using Encryption Algorithm AES-256-CBC", "test-security-crypto.php/encrypt-and-decrypt-aes-256-cbc", {

@@ -1724,7 +1724,7 @@ class Response
                         // set the status code to 304 'Not Modified'. If an invalid request header
                         // is sent then this will not cause an exception but rather evaluate to
                         // false. This is confirmed with a unit test.
-                        if ($last_modified === strtotime($if_modified_since)) {
+                        if ($if_modified_since !== null && $last_modified === strtotime($if_modified_since)) {
                             $this->status_code = 304;
                         }
                     }

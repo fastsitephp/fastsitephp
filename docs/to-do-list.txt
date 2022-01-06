@@ -27,20 +27,10 @@ TODO List
 --------------------------------------------------------------------------
 
 **) Add Support for PHP 8.1
+    - LATEST - Updates have been made and are being tested
     - This is planned for January 2021
     - Currently PHP 8.0 is supported and PHP 8.1 mostly works but some
         Unit Tests are broken
-    - This page is currently broken without changes:
-            https://www.fastsitephp.com/en/examples/request-demo
-    - Request->headers()
-        Behavior change for PHP 8.1 with nginx? This is returning [Content-Length]
-        and [Content-Type] with null values. Need to do more testing and fix code.
-    - Application->escape()
-        Depreciation of null on 1st param so may have to add the 
-        following prior to htmlspecialchars() call:
-        if ($text === null) {
-            return '';
-        }
     - Need to verify Windows, Apache, and nginx
         Commands to Unit Test from Cloud Server:
             # Install Starter Site (at least two servers one for Apache and one for nginx)
@@ -51,18 +41,13 @@ TODO List
             sudo bash create-fast-site.sh -a
             # nginx
             sudo bash create-fast-site.sh -n
+            # Update [Application, Web\Request, Web\Response] objects to latest version
             # Download and copy unit tests
             wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
             unzip master.zip
             cp -r ~/fastsitephp-master/tests /var/www/html/tests
             # Run and Verify all Unit Tests
             #   http://{host}/tests/index.htm
-    - https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh
-      Needs to be updated to show IPV4 instead of IPV6 on AWS Lightsail, example result on recent test:
-        View your site at: http://2600:1f14:d5e:e600:2faf:30c1:5f89:23e1
-      Related Bash Code:
-        ip=$(dig TXT +short o-o.myaddr.l.google.com @ns1.google.com | awk -F'"' '{ print $2}')
-        echo -e "View your site at: ${FONT_BOLD}${FONT_UNDERLINE}http://${ip}${FONT_RESET}"
 
 
 **) On a new Mac (Tested Late April 2021) with a default PHP install (and after [php.ini] was copied)

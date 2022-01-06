@@ -382,7 +382,7 @@
     });
 
     runHttpUnitTest("Application Object - escape()", "test-app.php/escape", {
-        response: "&lt;script&gt;&amp;&quot;&#039;"
+        response: "&lt;script&gt;&amp;&quot;&#039;[]"
     });
 
     runHttpUnitTest("Application Object - Parameter - Error Message 1", "test-app.php/param-error-1", {
@@ -595,7 +595,9 @@
                 // PHP 7
                 '<td class="error-message">Non-static method DeprecatedTest::nonStaticFunction() should not be called statically</td>',
                 // PHP 8
-                '<td class="error-message">Required parameter $b follows optional parameter $a</td>'
+                '<td class="error-message">Required parameter $b follows optional parameter $a</td>',
+                // PHP 8.1
+                '<td class="error-message">Optional parameter $a declared before required parameter $b is implicitly treated as a required parameter</td>',
             ],
             "<td>errorHandler</td>",
         ]
@@ -789,9 +791,9 @@
         status: 500,
         responseContains: [
             [
-                // PHP 5 and 7
+                // PHP 5, 7, 8.1
                 '<td class="error-type">ErrorException</td>',
-                // PHP 8
+                // PHP 8.0
                 '<td class="error-type">ValueError</td>',
             ],
             '<td class="error-code">0</td>',
@@ -800,6 +802,8 @@
                 '<td class="error-message">readfile(): Filename cannot be empty</td>',
                 // PHP 8
                 '<td class="error-message">Path cannot be empty</td>',
+                // PHP 8.1
+                '<td class="error-message">readfile(): Passing null to parameter #1 ($filename) of type string is deprecated</td>',
             ]
         ]
     });

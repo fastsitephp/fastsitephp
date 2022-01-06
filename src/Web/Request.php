@@ -474,7 +474,11 @@ class Request
                 foreach ($headers as $key => $value) {
                     // Replace '_' with spaces and capitalize the words then replace
                     // the spaces with dashes '-' resulting in the correct header name.
-                    $req_headers[str_replace(' ', '-', ucwords(strtolower(str_replace('-', ' ', $key))))] = $value;
+                    $name = str_replace(' ', '-', ucwords(strtolower(str_replace('-', ' ', $key))));
+                    if (($name === 'Content-Length' || $name === 'Content-Type') && $value === '') {
+                        continue; // This can happen with Nginx
+                    }
+                    $req_headers[$name] = $value;
                 }
                 return $req_headers;
             }

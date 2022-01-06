@@ -1313,6 +1313,9 @@ class Application
         // run the commented two lines below in an empty PHP file
         //   header('Content-type: text/plain');
         //   echo json_encode(get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES, 'UTF-8'), JSON_PRETTY_PRINT);
+        if ($text === null) {
+            return ''; // Passing null to htmlspecialchars() is deprecated as of PHP 8.1
+        }
         return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', true);
     }
 

@@ -71,7 +71,7 @@ $app->before(function() use ($app) {
 });
 
 // -----------------------------------------------------------------------------------------------------
-// [notFound()] events if not initial routes are matched and they can return a response.
+// [notFound()] events if no initial routes are matched. [notFound()] can return a response.
 // There are three specific unit tests called from the client page for this:
 // 1) '/not-found-1' - this tests returns content in the first function so beforeSend() and after() functions get called
 // 2) '/not-found-2' - same as first call but the first function is skipped
@@ -195,7 +195,7 @@ $app->after(function($content) use ($app) {
     }
 
     // Check for data in route [event-test-1], if found then add text to the response
-    if (strpos($content, '[updated-event-test-') !== false) {
+    if ($content !== null && strpos($content, '[updated-event-test-') !== false) {
         echo '[expected $content found]';
     }
 

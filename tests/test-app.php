@@ -872,7 +872,7 @@ $app->get('/param-test-11/:year?/:month?', function($year = 2015, $month = 12) u
 
 // HTML Escape Test
 $app->get('/escape', function() use ($app) {
-    echo $app->escape('<script>&"\'');
+    echo $app->escape('<script>&"\'') . '[' . $app->escape(null) . ']';
 });
 
 // Testing param() error messages
@@ -1244,7 +1244,7 @@ $app->get('/error-try-catch-instead-of-control-operator', function() use ($app) 
 // This test is designed to test the call [header_remove()] from
 // [$app->sendErrorOr404()]. If [header_remove()] were not called
 // then an invalid image would appear on the browser but because
-// it is called the error page is properly displayed.
+// it is called before  the error page is properly displayed.
 $app->get('/error-change-content-type', function() use ($app) {
     header('Content-Type: image/png');
     readfile(null);
