@@ -235,6 +235,11 @@
         };
     }
 
+    function hideError() {
+        var container = document.querySelector('.error-message');
+        container.style.display = 'none';
+    }
+
     function showError(error) {
         var container = document.querySelector('.error-message');
         var label = container.querySelector('p .text');
@@ -695,6 +700,8 @@
     }
 
     function saveFile() {
+        hideError();
+
         // Save CodeMirror content to <textarea>
         state.cm.save();
         var content = document.getElementById('code-editor').value;
@@ -753,7 +760,12 @@
             },
             body: content,
         })
-        .then(function() {
+        .then(function(data) {
+            if (data.success === false) {
+                var errorMessage = (data.errorMessage ? data.errorMessage : 'Could not save file, please try again later or open an issue on GitHub.');
+                showError(errorMessage);
+                return;
+            }
             if (isNewFile || nameHasChanged) {
                 state.fileCache[file] = {
                     type: type,
