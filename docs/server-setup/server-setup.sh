@@ -114,14 +114,15 @@ rm sync-server-from-github.sh
 # can be attacked by unkown PHP issues in the future.
 # 
 # # Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
-# sudo nano /var/www/fastsitephp-site/app_data/.env
+#     sudo nano /var/www/fastsitephp-site/app_data/.env
+# This file was deleted after more recent upates but its not removed
+# from this file so that full security steps can easily be described.
 
 # # Keys (copy from values local file)
 # SMTP_HOST={host}
 # SMTP_PORT={port}
 # SMTP_USER={email}
 # SMTP_PASSWORD={password}
-#
 # --------------------------------------------------------------------------
 
 # Install FastSitePHP Playground
