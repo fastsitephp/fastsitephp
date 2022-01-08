@@ -108,14 +108,21 @@ wget https://raw.githubusercontent.com/fastsitephp/fastsitephp/master/scripts/sy
 bash sync-server-from-github.sh
 rm sync-server-from-github.sh
 
-# Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
-sudo nano /var/www/fastsitephp-site/app_data/.env
+# --------------------------------------------------------------------------
+# Optional and no longer used as of 2022-01-08 due to security update
+# because the FastSitePHP Playground (which exists on the same server)
+# can be attacked by unkown PHP issues in the future.
+# 
+# # Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
+# sudo nano /var/www/fastsitephp-site/app_data/.env
 
-# Keys (copy from values local file)
-SMTP_HOST={host}
-SMTP_PORT={port}
-SMTP_USER={email}
-SMTP_PASSWORD={password}
+# # Keys (copy from values local file)
+# SMTP_HOST={host}
+# SMTP_PORT={port}
+# SMTP_USER={email}
+# SMTP_PASSWORD={password}
+#
+# --------------------------------------------------------------------------
 
 # Install FastSitePHP Playground
 wget https://raw.githubusercontent.com/fastsitephp/playground/master/scripts/sync-server-from-github.sh

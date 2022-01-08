@@ -12,18 +12,18 @@ class SecurityIssue
 {
     /**
      * Route function for URL '/:lang/security-issue'.
-     * 
+     *
      * This page is linked from the [README.md] on 2 different playground sites
      * and provides a form for developers or security researchers to submit
      * private messages regarding security issues:
-     * 
+     *
      *     https://github.com/fastsitephp/playground
      *     https://github.com/dataformsjs/playground
-     * 
+     *
      * Testing this page requires setup of a [.env] file with the needed
      * settings. The code in this page provides a good example of handling
      * a <form> POST with PHP and sending the result via SMTP.
-     *  
+     *
      * @param Application $app
      * @param string $lang
      * @return string
@@ -33,6 +33,18 @@ class SecurityIssue
         // Load JSON Language File
         I18N::langFile('security-issue', $lang);
 
+        // Main logic from this controller is optional and no longer
+        // used as of 2022-01-08 due to security update. Comments and 
+        // the [disabled] attribute are used on the main view file.
+        return $app->render('security-issue.php', [
+            'email_from' => null,
+            'message' => null,
+            'message_sent' => null,
+            'sent_info' => null,
+            'errors' => null,
+        ]);
+
+        /*
         // Variables used for email logic and with template rendering
         $email_from = null;
         $message = null;
@@ -84,5 +96,6 @@ class SecurityIssue
             'sent_info' => $sent_info,
             'errors' => $errors,
         ]);
+        */
     }
 }
