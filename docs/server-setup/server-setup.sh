@@ -164,8 +164,10 @@ wget https://www.php.net/distributions/php-7.4.27.tar.bz2
 tar xjf php-7.4.27.tar.bz2
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.h
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.c
+wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/exec.c
 mv file.h ~/php-7.4.27/ext/standard/file.h
 mv file.c ~/php-7.4.27/ext/standard/file.c
+mv exec.c ~/php-7.4.27/ext/standard/exec.c
 #
 # Build PHP 8
 # cd php-8.1.1

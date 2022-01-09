@@ -26,6 +26,15 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) FastSitePHP playground needs to have the custom build of PHP updated to
+    disable all code specified in [php.ini] [disable_functions/disable_classes].
+    Several critical functions such as `shell_exec` have been disabled based
+    on published code from [mm0r1/exploits] but it's clear all disabled functions
+    need to be handled from within PHP and not [php.ini]. Additionally other
+    settings should be reviewed as well.
+    https://github.com/mm0r1/exploits
+    https://github.com/mm0r1/exploits/issues/10#issuecomment-1008248348
+    https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing-2.php
 
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
