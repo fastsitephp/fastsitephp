@@ -26,7 +26,8 @@
 # This file is a shell script however the [*.sh] extension is so the commands
 # can show up in code editor using syntax highlighting. This file does not run;
 # rather the commands and instructions need to be followed for the server setup.
-# Expect about 30 to 60 minutes for full server setup.
+# Expect about 30 to 60 minutes for full server setup and likely a few hours for
+# full testing, DNS changes, etc.
 #
 # For detail comments on each of the servers refer to one of the following documents:
 #   https://github.com/fastsitephp/fastsitephp/blob/master/docs/Main%20Site%20Server%20Setup.txt
@@ -111,14 +112,16 @@ rm sync-server-from-github.sh
 # --------------------------------------------------------------------------
 # Optional and no longer used as of 2022-01-08 due to security update
 # because the FastSitePHP Playground (which exists on the same server)
-# can be attacked by unkown PHP issues in the future.
-# 
-# # Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
+# can be attacked by unkown PHP issues in the future. Because of this
+# no senstive or secure info can be stored on the server.
+#
+# Setup [.env] file which is used for the FastSitePHP [/en/security-issue] page
 #     sudo nano /var/www/fastsitephp-site/app_data/.env
 # This file was deleted after more recent upates but its not removed
-# from this file so that full security steps can easily be described.
-
-# # Keys (copy from values local file)
+# from this file so that full stepup can be described.
+#
+# Keys (copy from values local file):
+#
 # SMTP_HOST={host}
 # SMTP_PORT={port}
 # SMTP_USER={email}
@@ -376,8 +379,8 @@ sudo systemctl reload nginx
 # for DataFormsJS and FastSitePHP)
 #
 # To view cron history:
+grep CRON /var/log/syslog
 
-#
 # View last result and sites directory:
 cat /var/www/dataformsjs-playground/app_data/delete-sites-last-result.txt
 cat /var/www/dataformsjs-playground/app_data/last-cron-job.txt
@@ -388,3 +391,22 @@ ls -la /var/www/fastsitephp-playground/public/sites
 
 # Restart the server and make sure everything works after a reboot
 sudo reboot
+
+# As new security updates are found and patched for the FastSitePHP Playground
+# it can be updated on the main server wihtout having to setup a new server by
+# running commands between the following lines in this file:
+#   wget https://www.php.net/distributions/php-7.4.27.tar.bz2
+#   ....
+#   sudo make install
+#
+# For example in January 2022 updates for [exec.c] were made
+# and more updates are planned in the near future.
+#
+# IMPORANT - the main server only has 1 GB of memory so before running
+# the `make` command stop node/express and gunicorn/python otherwise
+# the server will freeze and require a reboot from the AWS console.
+# It's possible that only gunicorn needs to be stopped due to TensorFlow.
+#   pm2 stop app
+#   sudo systemctl stop gunicorn.service
+#
+# After the updates are made reboot the server.
