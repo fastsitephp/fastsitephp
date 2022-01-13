@@ -153,24 +153,34 @@ php /var/www/dataformsjs-playground/scripts/install.php
 mkdir /var/www/dataformsjs-playground/public/sites
 
 # Setup custom build of PHP with Apache for FastSitePHP Playground
+#
 # PHP [php-8.1.1] can be used instead of [php-7.4.27] with some changes
 # documented in the comments however PHP 7 is being used because the `make`
 # command runs in about 4 to 5 minutes on a low cost server. When using PHP 8
 # the `make` command would typically crash low cost servers and take 10 minutes
 # on more costly large servers. This site is being setup with a low cost
 # ($5 USD per month) server so PHP 7 is being used.
+#
+# IMPORTANT - before new releases of PHP are added the change log for PHP must be
+# reviewed to determine if new functions (or changes) support writing files.
+# Functions that provide file write access are disabled using modified [*.c, *.h]
+# files and the script [update-php-c-source-files.php] are used to update many more C files
+# prior to PHP being build on the system. If you are interseted (or want to verify) the
+# modified C files then a diff viewer such as WinMerge or VS Code can be used to compare files.
+#
 which php
-# This is the active version of PHP prior to these commands
+# This is the active version of PHP prior to these commands (and needed if re-running)
 # Output: /usr/bin/php
 sudo apt install -y apache2 apache2-dev libxml2-dev
 wget https://www.php.net/distributions/php-7.4.27.tar.bz2
 tar xjf php-7.4.27.tar.bz2
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.h
 wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/file.c
-wget https://fastsitephp.s3-us-west-1.amazonaws.com/playground/php-7.4.27/exec.c
+wget https://fastsitephp.s3.us-west-1.amazonaws.com/playground/php-7.4.27/php.h
 mv file.h ~/php-7.4.27/ext/standard/file.h
 mv file.c ~/php-7.4.27/ext/standard/file.c
-mv exec.c ~/php-7.4.27/ext/standard/exec.c
+mv php.h ~/php-7.4.27/main/php.h
+/usr/bin/php /var/www/fastsitephp-playground/scripts/update-php-c-source-files.php
 #
 # Build PHP 8
 # cd php-8.1.1
@@ -358,6 +368,7 @@ sudo systemctl reload nginx
 #       Test the default tempalte.
 #       Delete and create a new site and manually test the following:
 #           https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing.php
+#           https://github.com/fastsitephp/playground/blob/master/scripts/app-error-testing-2.php
 #   http://www.dataformsjs.com/unit-testing/
 #   http://fastsitephp.com/en/security-issue
 #       Submit form to confirm email works
@@ -399,8 +410,8 @@ sudo reboot
 #   ....
 #   sudo make install
 #
-# For example in January 2022 updates for [exec.c] were made
-# and more updates are planned in the near future.
+# For example in January 2022 updates for were made to address advanced
+# exploits related to modifying [php.ini] disabled functions.
 #
 # IMPORANT - the main server only has 1 GB of memory so before running
 # the `make` command stop node/express and gunicorn/python otherwise
