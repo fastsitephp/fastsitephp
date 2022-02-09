@@ -85,7 +85,7 @@ SQL;
     }
 
     /**
-     * Delete the SQLite Database everytime it reaches over 10 megabytes.
+     * Delete the SQLite Database every time it reaches over 10 megabytes.
      * It is intended only as a temporary database for this demo page.
      */
     private function checkDb($path) {
