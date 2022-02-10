@@ -66,7 +66,7 @@ class CustomSend
 }
 
 // When converted to JSON using json_encode() static
-// properies are expected to not be included
+// properties are expected to not be included
 class CustomClass
 {
     public $Name = 'FastSitePHP_App';

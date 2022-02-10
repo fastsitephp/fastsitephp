@@ -59,7 +59,7 @@
             "target": "prop_not_found_template",
             "isStatic": false,
             "defaultValue": "null",
-            "description": "Not Found template file or or an array of file names. The not-found template will be rendered when the client requests a page that has not matched route or if they request with the wrong method (example GET instead of a POST); the response status codes returned with a not-found template are either [404 => 'Not Found'] or [405 => 'Method Not Allowed']. If this propery is left as the default null and an [error_template] is specified then the template specified in [error_template] will be used. If not set then the default [error.php] template located under the [Templates] directory will be used.",
+            "description": "Not Found template file or or an array of file names. The not-found template will be rendered when the client requests a page that has not matched route or if they request with the wrong method (example GET instead of a POST); the response status codes returned with a not-found template are either [404 => 'Not Found'] or [405 => 'Method Not Allowed']. If this property is left as the default null and an [error_template] is specified then the template specified in [error_template] will be used. If not set then the default [error.php] template located under the [Templates] directory will be used.",
             "attributes": [
                 "@var string|array|null"
             ],

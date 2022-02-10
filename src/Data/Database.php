@@ -31,6 +31,15 @@ class Database extends AbstractDatabase implements DatabaseInterface
     public $db = null;
 
     /**
+     * If `true` then `bindValue()` will be used for parametrized queries
+     * otherwise parameter type will be dynamic and determined by PHP
+     * or the database. If `false` dynamic parameters will be used and the
+     * PHP MySQL driver (not other databases) will typically convert all
+     * integers to strings by default.
+     */
+    public $use_bind_value = true;
+
+    /**
      * Class constructor. Creates Db Connection using PDO.
      *
      * @link http://php.net/manual/en/pdo.construct.php
@@ -64,9 +73,41 @@ class Database extends AbstractDatabase implements DatabaseInterface
             $stmt = $this->db->query($sql);
         } else {
             $stmt = $this->db->prepare($sql);
-            $stmt->execute($params);
+            if ($this->use_bind_value) {
+                foreach ($params as $key => $value) {
+                    $index = (is_string($key) ? $key : $key + 1); // Keys must start at 1 and not 0
+                    $type = $this->getBindType($value);
+                    $stmt->bindValue($index, $value, $type);
+                }
+                $stmt->execute();
+            } else {
+                $stmt->execute($params);
+            }
         }
         return $stmt;
+    }
+
+    /**
+     * Return a PDO Constant for use with `PDOStatement->bindValue()` based on
+     * the value type. This is used internally for parametrized queries by default
+     * unless `$this->use_bind_value = false`.
+     *
+     * @param mixed $value
+     * @return int
+     */
+    public function getBindType($value) {
+        switch (gettype($value)) {
+            case 'NULL':
+                return PDO::PARAM_NULL;
+            case 'boolean':
+                return PDO::PARAM_BOOL;
+            case 'integer':
+                return PDO::PARAM_INT;
+            case 'resource':
+                return PDO::PARAM_LOB;
+            default:
+                return PDO::PARAM_STR;
+        }
     }
 
     /**
@@ -155,7 +196,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
      */
     public function querySets($sql, array $params = null)
     {
-        // Query and add all returned rowsets to an array
+        // Query and add all returned row sets to an array
         $stmt = $this->runQuery($sql, $params);
         $rowsets = array();
         do {
@@ -177,7 +218,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
 
     /**
      * Run a SQL Action Statement (INSERT, UPDATE, DELETE, etc) and return
-     * the number or rows affected. If multiple statments are passed then
+     * the number or rows affected. If multiple statements are passed then
      * the returned row count will likely be for only the last query.
      *
      * @param string $sql
@@ -217,7 +258,7 @@ class Database extends AbstractDatabase implements DatabaseInterface
 
     /**
      * Prepare a SQL Statement and run many record parameters against it.
-     * This can be used for transacations such as bulk record inserts.
+     * This can be used for transactions such as bulk record inserts.
      * Returns the total number of rows affected for all queries.
      *
      * @param string $sql

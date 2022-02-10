@@ -6,7 +6,7 @@ error_reporting(-1);
 ini_set('display_errors', 'on');
 
 // Autoloader for the Starter Site
-// Run this for the Starter Site 'App\*' classes proir to other code
+// Run this for the Starter Site 'App\*' classes prior to other code
 spl_autoload_register(function($class) {
     if (strpos($class, 'App\\') === 0) {
         $file_path = __DIR__ . '/../../starter-site/app/' . str_replace('\\', '/', substr($class, 4)) . '.php';
@@ -70,10 +70,22 @@ foreach ($class_names as $class_name) {
     $save_name = str_replace('FastSitePHP_', '', $save_name);
     $path = $dir_save . '/' . $save_name;
     echo 'Getting Description for Class: ' . $class_name . "\n";
-    $class = getClassDescription($class_name);
-    $classes[] = $class;
-    echo 'Saving File: ' . $path . "\n";
-    file_put_contents($path, json_encode($class, JSON_PRETTY_PRINT));
+    try {
+        $class = getClassDescription($class_name);
+        $classes[] = $class;
+        echo 'Saving File: ' . $path . "\n";
+        file_put_contents($path, json_encode($class, JSON_PRETTY_PRINT));        
+    } catch (\Exception $e) {
+        // Skip error from [OdbcDatabase] if building on a machine that doesn't
+        // have the ODBC driver installed. when this happens generic files such
+        // as [Classes.json] should not be committed to Git without manual editing.
+        // Rather this allows for machines to update docs for the class/functions
+        // being developed on them.
+        if (strpos($e->getMessage(), 'SQL_CUR_USE_ODBC') == false) {
+            echo $e;
+            exit(1);
+        }
+    }
 }
 
 // Build a sort array of all classes by namespace

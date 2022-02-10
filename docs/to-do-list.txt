@@ -480,6 +480,7 @@ TODO List
         http://php.net/manual/en/function.odbc-autocommit.php
         http://php.net/manual/en/function.db2-autocommit.php
     - Add additional Vendor Database Classes using [AbstractDatabaseFunctions]
+    - Testing for any other defined public function (example: `getBindType`)
 
 *) FileSystem\Search
     - Additional file search options modifiedAfter, modifiedBefore, sizeLargerThan, sizeSmallerThan, sizeMbLargerThan, sizeMbSmallerThan

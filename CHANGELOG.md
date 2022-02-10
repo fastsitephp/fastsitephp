@@ -2,6 +2,19 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.4.6 (February 9, 2022)
+
+* Updated `FastSitePHP\Data\Database` to use PDO data types rather than dynamic typing for parametrized queries
+  * Added new function `Database->getBindType($value)` for this feature
+  * This can be turned off using `$db->use_bind_value = false;` where `$db` is an instance of the `Database` class
+  * This was added because MySQL (but not other databases) would have issues for certain queries where INT type was specifically required:
+  ```php
+  $sql = 'SELECT * FROM test ORDER BY id DESC LIMIT ?';
+  $records = $db->query($sql, [$limit]);
+  ```
+  * https://www.php.net/manual/en/pdo.constants.php
+* Fixed minor typos in docs
+
 ## 1.4.5 (January 5, 2022)
 
 * Added Support for PHP 8.1

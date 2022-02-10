@@ -27,7 +27,7 @@ use FastSitePHP\Data\DatabaseInterface;
  * ODBC on a server then ODBC functions might be. Additionally certain databases
  * such as IBM may only work through ODBC on some servers.
  *
- * IMPORTANT - If using this class you may need to call the fuction
+ * IMPORTANT - If using this class you may need to call the function
  * [allowLargeTextValues()] if working with records that have large text or
  * binary data.
  *
