@@ -2592,7 +2592,7 @@ class Application
      * route. If a filter function returns false then the route is skipped.
      * If the filter function returns a response object then it will be used
      * instead of the controller for the route, this would commonly be handled
-     * for filters than handle authenication.
+     * for filters than handle authentication.
      *
      * @param Route $route
      * @param string $method
@@ -2798,7 +2798,7 @@ class Application
                 // be determined by checking if headers are sent. If [output_buffering]
                 // is turned on as would be expected in most  environments then
                 // and if content was submitted [ob_get_length()] will return
-                // a nubmer greather than zero.
+                // a number greater than zero.
                 if (isset($response) || ob_get_length() > 0 || headers_sent()) {
                     break;
                 }

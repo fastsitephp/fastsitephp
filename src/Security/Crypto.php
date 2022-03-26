@@ -214,7 +214,7 @@ class Crypto
             return $app->config[$name];
         }
 
-        // Get from the System's Enviroment Variable. If a project is set to use
+        // Get from the System's Environment Variable. If a project is set to use
         // a [.env] file and a related class then the value would come from here.
         $value = getenv($name);
         if ($value !== false) {
@@ -241,7 +241,7 @@ class Crypto
         // NOTE - the file size check may not work properly if the file
         // is over 2 GB and the OS or version of PHP being used is 32-bit.
         // If you need to encrypt large files (over 2 GB) on a 32-bit OS.
-        // See comments in [encryptFile()] of this calss.
+        // See comments in [encryptFile()] of this class.
         $crypto = new FileEncryption();
         $ten_megabytes = (1024 * 1024 * 10);
         if (PHP_OS !== 'WINNT'
