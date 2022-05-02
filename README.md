@@ -88,7 +88,7 @@ A starter site for FastSitePHP also exists that includes several examples pages 
 [https://github.com/fastsitephp/starter-site](https://github.com/fastsitephp/starter-site)
 
 <p align="center">
-<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site" width="500">
+<img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site">
 </p>
 
 ## :page_facing_up: Example Code
