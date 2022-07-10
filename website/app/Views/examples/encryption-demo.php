@@ -6,11 +6,14 @@
     .row { margin:20px; display:flex; align-items:flex-start; flex-direction:column; }
     .buttons,
     .key-controls { display:flex; align-items:flex-start; }
+    .labels { display: flex; flex-direction:column; }
+    .label { display: flex; }
     .key-controls { border: 1px solid rgb(169, 169, 169); }
-    input { width:600px; }
-    label { font-weight:bold; margin:10px; margin-left:20px; }
+    input[type="radio"] { margin-left:10px; padding:4px; }
+    label { font-weight:bold; margin:5px 10px; margin-left:20px; }
     button { margin:20px 20px 0 0; }
     #key { width:calc(100% - 30px); border:0; }
+    #password { width:calc(100% - 30px); min-width: 250px; }
     #text { width:calc(100% - 30px); }
     section.content.tab-container { width:90%; min-width:600px; max-width:1050px; padding:0; }
     section.content.tab-container.sample-code { max-width:600px; margin-top:40px; padding:20px; }
@@ -43,8 +46,18 @@
         </div>
         <div class="row">
             <div class="key-controls">
-                <label for="key"><?= $app->escape($i18n['key']) ?></label>
+                <div class="labels">
+                    <div class="label">
+                        <input type="radio" id="use-key" name="key-or-password" value="key" checked>
+                        <label for="key"><?= $app->escape($i18n['key']) ?></label>
+                    </div>
+                    <div class="label">
+                        <input type="radio" id="use-password" name="key-or-password" value="password">
+                        <label for="password"><?= $app->escape($i18n['password']) ?></label>
+                    </div>
+                </div>
                 <textarea id="key" rows="3" cols="55"><?= $app->escape($key) ?></textarea>
+                <input id="password" type="password" style="display:none;">
             </div>
             <div class="buttons">
                 <button id="btn-encrypt"><?= $app->escape($i18n['encrypt']) ?></button>

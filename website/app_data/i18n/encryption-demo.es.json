@@ -2,6 +2,7 @@
     "page_title": "Demostración de Encriptado",
     "sample_text": "Ingrese o copie/pegue el texto aquí para encriptar o desencriptar.",
     "key": "Clave",
+    "password": "Contraseña",
     "encrypt": "Encriptar",
     "decrypt": "Desencriptar",
     "new_key": "Generar nueva clave",

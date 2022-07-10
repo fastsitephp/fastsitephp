@@ -54,7 +54,7 @@ class EncryptionDemo
     private function getRequest() {
         $req = new Request();
         $data = $req->content();
-        return [$data['key'], $data['text']];
+        return [$data['key'], $data['password'], $data['text']];
     }
 
     /**
@@ -64,8 +64,13 @@ class EncryptionDemo
     {
         $crypto = new Encryption();
         try {
-            list($key, $plaintext) = $this->getRequest();
-            $ciphertext = $crypto->encrypt($plaintext, $key);
+            list($key, $password, $plaintext) = $this->getRequest();
+            if ($key === null) {
+                $crypto->keyType('password');
+                $ciphertext = $crypto->encrypt($plaintext, $password);
+            } else {
+                $ciphertext = $crypto->encrypt($plaintext, $key);
+            }
             return ['text' => $ciphertext];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
@@ -80,8 +85,13 @@ class EncryptionDemo
         $crypto = new Encryption();
         $crypto->exceptionOnError(true); // By default NULL is returned on errors
         try {
-            list($key, $ciphertext) = $this->getRequest();
-            $plaintext = $crypto->decrypt($ciphertext, $key);
+            list($key, $password, $ciphertext) = $this->getRequest();
+            if ($key === null) {
+                $crypto->keyType('password');
+                $plaintext = $crypto->decrypt($ciphertext, $password);
+            } else {
+                $plaintext = $crypto->decrypt($ciphertext, $key);
+            }
             return ['text' => $plaintext];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];

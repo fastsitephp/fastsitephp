@@ -2,6 +2,7 @@
     "page_title": "加密演示",
     "sample_text": "在此处输入或复制/粘贴文本以加密或解密.",
     "key": "秘钥",
+    "password": "密码",
     "encrypt": "加密",
     "decrypt": "解密",
     "new_key": "生成新密钥",

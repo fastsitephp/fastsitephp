@@ -2,6 +2,7 @@
     "page_title": "Encryption Demo",
     "sample_text": "Enter or copy/paste text here to encrypt or decrypt.",
     "key": "Key",
+    "password": "Password",
     "encrypt": "Encrypt",
     "decrypt": "Decrypt",
     "new_key": "Generate New Key",
