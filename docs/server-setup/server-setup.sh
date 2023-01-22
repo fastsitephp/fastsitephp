@@ -47,7 +47,7 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update
 
 # Optional (takes several minutes)
-# apt upgrade
+# sudo apt -y upgrade
 
 # Install nginx and PHP
 sudo apt install -y nginx
@@ -296,8 +296,9 @@ cd /var/www/dataformsjs-ai-ml
 sudo apt install -y python3-pip python3-venv
 python3 -m venv env
 source env/bin/activate
-pip3 install numpy keras==2.4.3 flask flask-cors Pillow scikit-learn==0.24.1 Gunicorn
-pip3 install --no-cache-dir tensorflow==2.4.1
+pip3 install numpy==1.21 keras==2.11.0 flask flask-cors Pillow scikit-learn Gunicorn
+pip3 install --no-cache-dir tensorflow-cpu
+
 sudo apt install -y gunicorn
 deactivate
 cp /var/www/dataformsjs-site/app/app.py app.py
@@ -312,6 +313,11 @@ sudo nano /etc/systemd/system/gunicorn.service
 # Copy file contents from [gunicorn.service.txt] and save
 sudo systemctl enable gunicorn.service
 sudo systemctl start gunicorn.service
+# Other commands if needed
+sudo systemctl status gunicorn.service
+sudo systemctl stop gunicorn.service
+sudo systemctl disable gunicorn.service
+sudo systemctl restart gunicorn.service
 
 # Default Site
 cd /var/www/default-site
