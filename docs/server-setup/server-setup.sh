@@ -288,16 +288,26 @@ pm2 startup
 pm2 save
 
 # DataFormsJS AI/ML Server
-# The code currently requires specific versions of [keras, tensorflow, and scikit-learn].
-# [scikit-learn] should generally be easy to handle version changes however both [Keras]
-# and [tensorflow] can take a lot of research, testing, and updates to support new versions,
-# so for this basic demo server specific versions are used.
 cd /var/www/dataformsjs-ai-ml
 sudo apt install -y python3-pip python3-venv
 python3 -m venv env
 source env/bin/activate
-pip3 install numpy==1.21 keras==2.11.0 flask flask-cors Pillow scikit-learn Gunicorn
-pip3 install --no-cache-dir tensorflow-cpu
+# --------------------
+# If using PyTorch
+# Switched to PyTorch from TensorFlow on 4/30/2023. TensorFlow takes more memory
+# and was the likely source of the server crashing occasionally in 2022 and 2023.
+#
+pip3 install numpy flask flask-cors Pillow scikit-learn Gunicorn
+pip3 install --no-cache-dir torchvision
+# --------------------
+# If using TensorFlow
+# The code currently requires specific versions of [keras, tensorflow, and scikit-learn].
+# [scikit-learn] should generally be easy to handle version changes however both [Keras]
+# and [tensorflow] can take a lot of research, testing, and updates to support new versions,
+# so for this basic demo server specific versions are used.
+#
+# pip3 install numpy==1.21 keras==2.11.0 flask flask-cors Pillow scikit-learn Gunicorn
+# pip3 install --no-cache-dir tensorflow-cpu
 
 sudo apt install -y gunicorn
 deactivate
