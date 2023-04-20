@@ -294,7 +294,7 @@ python3 -m venv env
 source env/bin/activate
 # --------------------
 # If using PyTorch
-# Switched to PyTorch from TensorFlow on 4/30/2023. TensorFlow takes more memory
+# Switched to PyTorch from TensorFlow on 4/20/2023. TensorFlow takes more memory
 # and was the likely source of the server crashing occasionally in 2022 and 2023.
 #
 pip3 install numpy flask flask-cors Pillow scikit-learn Gunicorn
