@@ -51,6 +51,7 @@ Esta seção mostra várias opções de instalação diferentes para Linux utili
 # sobrescrever um site existente.
 
 # Sistemas Operacionais Suportados (mais serão adicionados no futuro):
+#   Ubuntu 22.04 LTS
 #   Ubuntu 20.04 LTS
 #   Ubuntu 18.04 LTS
 #   Ubuntu 16.04 LTS
