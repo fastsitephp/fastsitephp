@@ -13,15 +13,15 @@
 # When publishing changes (new release in GitHub) these lines are manually
 # uncommented and then immediately after publishing the lines are commented.
 #
-# /docs           export-ignore
-# /scripts        export-ignore
-# /tests          export-ignore
-# /website        export-ignore
-# .gitattributes  export-ignore
-# .gitignore      export-ignore
-# autoload.php    export-ignore
-# index.php       export-ignore
-# phpstan.neon    export-ignore
+/docs           export-ignore
+/scripts        export-ignore
+/tests          export-ignore
+/website        export-ignore
+.gitattributes  export-ignore
+.gitignore      export-ignore
+autoload.php    export-ignore
+index.php       export-ignore
+phpstan.neon    export-ignore
 
 # Auto detect text files and perform LF normalization
 * text=auto

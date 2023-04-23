@@ -2,6 +2,15 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.5.0 (April 23, 2023)
+
+* **Added Support for PHP 8.2**
+* Dynamic Properties have been Deprecated by default as of PHP 8.2 so both `Application` and `AppMin` classes now extend from stdClass to support Dynamic Properties. FastSitePHP is designed for flexibility so Dynamic Properties are an important feature.
+* This logic in custom Error Templates `(isset($e->severityText) ? ' (' . $e->severityText . ')' : '')` needs to be replaced with `(isset($severityText) ? ' (' . $severityText . ')' : '')`
+* For PHP 8.2+ the Utf8 Class now uses `iconv('windows-1252', 'UTF-8', $data)` instead of `utf8_encode($data)` while older versions of PHP still use `utf8_encode()`.
+* Update `cacert.pem` to the latest version which is used by `\FastSitePHP\Net\HttpClient` on Windows and Mac Computers.
+* Added `AppMin->show_detailed_errors` boolean property based on the standard `Application` Class.  * Minor Unit Testing updates to handle changed error messages in PHP.
+
 ## 1.4.6 (February 9, 2022)
 
 * Updated `FastSitePHP\Data\Database` to use PDO data types rather than dynamic typing for parametrized queries
