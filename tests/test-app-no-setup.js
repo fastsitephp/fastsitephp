@@ -20,7 +20,10 @@
     });
 
     runHttpUnitTest("Application Object - Routing - Testing routeMatches() Error with No Error Handling Set", "test-app-no-setup.php/route-matches-param-error", {
-        response: "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric or backslash"
+        responseContains: [[
+            "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric or backslash",
+            "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric, backslash, or NUL",
+        ]]
     });
 
     runHttpUnitTest("Application Object - Routing - Testing routeMatches() Custom Error with No Error Handling Set", "test-app-no-setup.php/route-matches-custom-error", {

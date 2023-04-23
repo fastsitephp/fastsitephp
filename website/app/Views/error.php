@@ -75,7 +75,7 @@
                 <tr><td><b>Type</b></td><td class="error-type"><?php echo $app->escape(get_class($e)) ?></td></tr>
                 <tr><td><b>Code</b></td><td class="error-code"><?php echo $app->escape($e->getCode()) ?></td></tr>
                 <?php if (get_class($e) === 'ErrorException') { ?>
-                    <tr><td><b>Severity</b></td><td class="error-severity"><?php echo $app->escape($e->getSeverity()) . (isset($e->severityText) ? ' (' . $e->severityText . ')' : '') ?></td></tr>
+                    <tr><td><b>Severity</b></td><td class="error-severity"><?php echo $app->escape($e->getSeverity()) . (isset($severityText) ? ' (' . $severityText . ')' : '') ?></td></tr>
                 <?php } ?>
                 <tr><td><b>Message</b></td><td class="error-message"><?php echo str_replace("\n", '<br>', $app->escape($e->getMessage())) ?></td></tr>
                 <tr><td><b>File</b></td><td class="error-file"><?php echo $app->escape($e->getFile()) ?></td></tr>

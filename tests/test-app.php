@@ -241,7 +241,7 @@ $app->get('/check-server-config', function() use ($app, $display_errors) {
     // Check the [php.ini] setting [output_buffering], this error will most likely be triggered if the
     // settings file [php.ini] is not being used. If the option to "Off" or "0" then many tests will
     // fail however if it is turned on but set to a different value (example: 2048) then likely only
-    // this config check will fail however because the default and recommened option for both
+    // this config check will fail however because the default and recommend option for both
     // PHP Development and Production Servers is 4096 that is the value that is checked.
     if (ini_get('output_buffering') !== '4096') {
 	    if ($ini_path === false) {
@@ -319,7 +319,7 @@ $app->get('/check-server-config', function() use ($app, $display_errors) {
     // do not use any function overloading features.
     // https://secure.php.net/manual/en/book.mbstring.php
     // https://secure.php.net/manual/en/mbstring.overload.php
-    if (extension_loaded('mbstring') && ini_get('mbstring.func_overload') !== '0') {
+    if (extension_loaded('mbstring') && filter_var(ini_get('mbstring.func_overload'), FILTER_VALIDATE_BOOLEAN) === true) {
         $errors[] = 'Multibyte function overloading is being used. This is not expected to impact FastSitePHP however using this feature is highly discouraged and has been DEPRECATED as of PHP 7.2.0. Using this feature may affect your application or third-party code libraries.';
     }
 

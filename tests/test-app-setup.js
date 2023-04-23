@@ -27,10 +27,18 @@
     runHttpUnitTest("Application Object - Setup - Timezone missing from [php.ini]", "test-app-setup.php/setup-phpini-error", {
         status: 500,
         responseContains: [
-            '<td class="error-type">Exception</td>',
-            '<td class="error-message">The settings [date.timezone] is not setup in [php.ini], it must be defined when using calling setup([date.timezone]) or setup() must be called with a valid timezone instead.</td>',
-            "<td>setup</td>",
-            "<td>{closure}</td>",
+            [
+                '<td class="error-type">Exception</td>',
+                '<td class="error-type">ErrorException</td>',
+            ],
+            [
+                '<td class="error-message">The settings [date.timezone] is not setup in [php.ini], it must be defined when using calling setup([date.timezone]) or setup() must be called with a valid timezone instead.</td>',
+                '<td class="error-message">ini_set(): Invalid date.timezone value &#039;&#039;, using &#039;UTC&#039; instead</td>',
+            ],
+            [
+                "<td>{closure}</td>",
+                "<td>shutdown</td>",
+            ],
         ],
         responseExcludes: "[Should not show on unit test]"
     });

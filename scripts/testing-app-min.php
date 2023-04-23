@@ -29,5 +29,12 @@ $app->get('/hello/:name', function($name) use ($app) {
     return 'Hello ' . $name;
 });
 
+// Detailed Error info will show for localhost otherwise the following
+// must be called just like when using the standard `Application` Class:
+//     $app->show_detailed_errors = true;
+$app->get('/error', function() {
+    return 1 / 0;
+});
+
 // Run the App
 $app->run();

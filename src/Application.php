@@ -23,7 +23,7 @@ use FastSitePHP\Route;
  * global error handling, template rendering, request routing, application
  * events, basic response methods, sending of the response, and more.
  */
-class Application
+class Application extends \stdClass
 {
     // ------------------------------------------------------------------------------------------------
     //       Public Member Variables
@@ -639,7 +639,7 @@ class Application
                 // Define the property [severityText] if the error level can be determined.
                 $error_level = $e->getSeverity();
                 if (isset($error_constants[$error_level])) {
-                    $e->severityText = $error_constants[$error_level];
+                    $severityText = $error_constants[$error_level];
                 }
             }
         }
@@ -665,6 +665,7 @@ class Application
                     'page_title' => $page_title,
                     'message' => $message,
                     'e' => $e,
+                    'severityText' => (isset($severityText) ? $severityText : null),
                 ));
             } catch (\Exception $render_ex) {
                 $this->error_template = null;
@@ -692,6 +693,7 @@ class Application
                     'page_title' => $page_title,
                     'message' => $message,
                     'e' => $e,
+                    'severityText' => (isset($severityText) ? $severityText : null),
                 ));
             } else {
                 // Automatic Unit Tests do not exist for this line because it would

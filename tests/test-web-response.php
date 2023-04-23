@@ -123,6 +123,12 @@ $app->after(function($content) use ($app) {
                     'Set-Cookie: unit-test-data=abc123',
                     'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; path=/path; domain=domain.tld; secure; httponly',
                 ));
+            } elseif (version_compare(PHP_VERSION, '8.2.0', '>=')) {
+                compareHeaders(array(
+                    'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d M Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
+                    'Set-Cookie: unit-test-data=abc123',
+                    'Set-Cookie: unit-test-route-2=cookie-3; expires=' . date('D, d M Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly; SameSite=Strict',
+                ));
             } elseif (version_compare(PHP_VERSION, '7.3.0', '>=')) {
                 compareHeaders(array(
                     'Set-Cookie: unit-test-route=cookie-1; expires=' . date('D, d-M-Y H:i:s', $app->time - 1) . ' GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
@@ -156,6 +162,12 @@ $app->after(function($content) use ($app) {
                     'Set-Cookie: unit-test-route=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/path; domain=domain.tld; secure; httponly',
                     'Set-Cookie: unit-test-data=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT',
                     'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/path; domain=domain.tld; secure; httponly',
+                ));
+            } elseif (version_compare(PHP_VERSION, '8.2.0', '>=')) {
+                compareHeaders(array(
+                    'Set-Cookie: unit-test-route=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly',
+                    'Set-Cookie: unit-test-data=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT; Max-Age=0',
+                    'Set-Cookie: unit-test-route-2=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT; Max-Age=0; path=/path; domain=domain.tld; secure; HttpOnly; SameSite=Strict',
                 ));
             } elseif (version_compare(PHP_VERSION, '7.3.0', '>=')) {
                 compareHeaders(array(

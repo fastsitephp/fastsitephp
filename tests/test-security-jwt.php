@@ -466,10 +466,10 @@ $app->get('/claim-errors', function() {
         $jwt->decode($token, $key);
         $success_count++;
     }
-    $results[] = "Success Count [${success_count}] with validateDefinedClaims(false)";
+    $results[] = "Success Count [{$success_count}] with validateDefinedClaims(false)";
     $jwt->validateDefinedClaims(true);
 
-    // Set emtpy arrays and string and run tests
+    // Set empty arrays and string and run tests
     // This verifies lines such as:
     //     if ($this->issuers === null || count($this->issuers) === 0) {
     $jwt

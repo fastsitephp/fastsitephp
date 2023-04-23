@@ -36,7 +36,15 @@ namespace FastSitePHP\Encoding;
 class Utf8
 {
     /**
-     * Encode data to UTF-8
+     * Encode data to UTF-8; this function recursively encodes data on Arrays and Objects.
+     *
+     * With PHP 8.2 and above this function uses the following encoding function:
+     *     iconv('windows-1252', 'UTF-8', $data)
+     * And below PHP 8.2:
+     *     utf8_encode($data)
+     *
+     * If you have different needs for a special character set then copying and
+     * modifying this class is recommended.
      *
      * @param mixed $data
      * @return string
@@ -52,10 +60,9 @@ class Utf8
                 $data->{$key} = self::encode($value);
             }
         } elseif (is_string($data)) {
-            // If you have different needs for a special character set
-            // then copy this class and modify it to use a different encoding.
-            // Example:
-            //   return iconv('windows-1252', 'UTF-8', $string);
+            if (PHP_VERSION_ID >= 80200) {
+                return iconv('windows-1252', 'UTF-8', $data);
+            }
             return utf8_encode($data);
         }
         return $data;

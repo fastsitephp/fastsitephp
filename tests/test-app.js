@@ -65,7 +65,7 @@
     runHttpUnitTest("Application Object", "test-app.php/check-app-class", {
         response: {
             get_class: "FastSitePHP\\Application",
-            get_parent_class: false
+            get_parent_class: "stdClass"
         }
     });
 
@@ -817,7 +817,7 @@
         ]
     });
 
-    runHttpUnitTest("Application Object - Dynamic Fucntions assigned to the Application Object", "test-app.php/dynamic-functions", {
+    runHttpUnitTest("Application Object - Dynamic Functions assigned to the Application Object", "test-app.php/dynamic-functions", {
         response: "[called from test()][called from test2(abc)][called from test2(123)][called from test2(&lt;&amp;&gt;)][BadMethodCallException][Call to undefined method FastSitePHP\\Application::test4()][BadMethodCallException][Call to undefined method FastSitePHP\\Application::test3(), a property exists of the same name however to be called as a dynamic function from FastSitePHP it must be defined as a Closure. The current type of [test3] is [string].]"
     });
 
@@ -1038,7 +1038,10 @@
     });
 
     runHttpUnitTest("Application Object - Routing - Testing routeMatches() Error with Error Handling Set", "test-app.php/route-matches-param-error", {
-        response: "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric or backslash"
+        responseContains: [[
+            "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric or backslash",
+            "Error with param([:regex_invalid]), the regular expression [ABC] is not valid for the PHP function preg_match(). Error message from PHP: preg_match(): Delimiter must not be alphanumeric, backslash, or NUL",
+        ]]
     });
 
     runHttpUnitTest("Application Object - Routing - Testing routeMatches() Custom Error with Error Handling Set", "test-app.php/route-matches-custom-error", {

@@ -19,12 +19,80 @@ TODO List
 |   There is no priority to this list.
 |   All contributions are welcome.
 |
-|   Generally every item in this list is of low priority and more of a
-|   wish list item rather than an actual need. The highest priority items
-|   are at the top and start with `**)`. Development typically occurs
-|   based on the need of real world production sites and apps.
+|   Generally every item in this list is of low priority and more of a wish list
+|   item rather than an actual need. The highest priority items are at the top
+|   and start with `**)`. Development typically occurs based on the need of
+|   real world production sites and apps or to support new versions of PHP.
 |
 --------------------------------------------------------------------------
+
+**) Support for PHP 8.2
+    - In Development and Testing as of April 23, 2023, new release will likely be published within days
+    - Current changes
+        - Application and AppMin classes now extend from stdClass to support Dynamic Properties
+        - This logic in custom Error Templates:
+            (isset($e->severityText) ? ' (' . $e->severityText . ')' : '')
+          Needs to be replaced with:
+            (isset($severityText) ? ' (' . $severityText . ')' : '')
+        - Utf8 Class now uses:
+            iconv('windows-1252', 'UTF-8', $data);
+          Instead of:
+            utf8_encode($data)
+          Older versions of PHP still use: `utf8_encode()`
+        - Minor Unit Testing updates to handle changed error messages in PHP
+        - Update `cacert.pem` to the latest version which is used by `\FastSitePHP\Net\HttpClient` on Windows and Mac Computers.
+        - Added `AppMin->show_detailed_errors` boolean property based on the standard `Application` Class
+    - Testing and considering two options to handle Dynamic Properties with the `Application` class
+        - Dynamic Properties are deprecated by default with PHP 8.2
+        - `extends \stdClass` (current version)
+        - Or the following code:
+            private $dynamic_props = array();
+            public function __call($name, $arguments)
+            {
+                if (property_exists($this, $name)) {
+                    if ($this->{$name} instanceof \Closure) {
+                        return call_user_func_array($this->{$name}, $arguments);
+                    } else {
+                        throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s(), a property exists of the same name however to be called as a dynamic function from FastSitePHP it must be defined as a Closure. The current type of [%s] is [%s].', __CLASS__, $name, $name, gettype($this->{$name})));
+                    }
+                } else if (array_key_exists($name, $this->dynamic_props)) {
+                    if ($this->dynamic_props[$name] instanceof \Closure) {
+                        return call_user_func_array($this->dynamic_props[$name], $arguments);
+                    } else {
+                        throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s(), a property exists of the same name however to be called as a dynamic function from FastSitePHP it must be defined as a Closure. The current type of [%s] is [%s].', __CLASS__, $name, $name, gettype($this->dynamic_props[$name])));
+                    }
+                } else {
+                    throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s()', __CLASS__, $name));
+                }
+            }
+            public function methodExists($name)
+            {
+                return (
+                    method_exists($this, $name)
+                    || (property_exists($this, $name) && $this->{$name} instanceof \Closure)
+                    //|| (array_key_exists($name, $this->dynamic_props) && $this->dynamic_props[$name] instanceof \Closure)
+                );
+            }
+            public function __set($name, $value)
+            {
+                $this->dynamic_props[$name] = $value;
+            }
+
+            public function __isset($name)
+            {
+                return array_key_exists($name, $this->dynamic_props);
+            }
+            public function __get($name)
+            {
+                if (array_key_exists($name, $this->dynamic_props)) {
+                    return $this->dynamic_props[$name];
+                } else  if (array_key_exists($name, $this->lazy_load_props)) {
+                    $this->{$name} = call_user_func($this->lazy_load_props[$name]);
+                    return $this->{$name};
+                }
+                // ...
+            }
+
 
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
@@ -122,7 +190,7 @@ TODO List
         - Need to support HTTP/2 on the servers in addition to http/1.1
         - Remove duplicate [id] in the SVG on home page and other minor items
 
-*) Install Script [create-fast-site.sh]       
+*) Install Script [create-fast-site.sh]
     - Add support for more Linux OS's
     - Add a default 502 bad gateway fallback page with correct settings for nginx
         By default nginx will show a generic 502 message when there are more concurrent connections that the server

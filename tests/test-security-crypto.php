@@ -536,9 +536,9 @@ function signAndVerify($hashing_algorithm, $app = null) {
         }
         $tests_count++;
 
-        // If using default hasing method then verify the Crypto Facade class
+        // If using default hashing method then verify the Crypto Facade class
         if ($hashing_algorithm === 'sha256' && $value !== null) {
-            putenv("SIGNING_KEY=${key}");
+            putenv("SIGNING_KEY={$key}");
             $signed2 = \FastSitePHP\Security\Crypto::sign($value, null); // 2nd Parameter defaults to a 1 hour timeout
             $verified2 = \FastSitePHP\Security\Crypto::verify($signed2);
             if ($signed !== $signed2 || $verified !== $verified2) {

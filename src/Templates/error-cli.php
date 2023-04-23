@@ -12,7 +12,7 @@ echo str_repeat('=', 80) . PHP_EOL;
 echo 'Type: ' . get_class($e) . PHP_EOL;
 echo 'Code: ' . $e->getCode() . PHP_EOL;
 if (get_class($e) === 'ErrorException') {
-    echo 'Severity: ' . $e->getSeverity() . (isset($e->severityText) ? ' (' . $e->severityText . ')' : '') . PHP_EOL;
+    echo 'Severity: ' . $e->getSeverity() . (isset($severityText) ? ' (' . $severityText . ')' : '') . PHP_EOL;
 }
 echo 'Message: ' . $e->getMessage() . PHP_EOL;
 echo 'File: ' . $e->getFile() . PHP_EOL;

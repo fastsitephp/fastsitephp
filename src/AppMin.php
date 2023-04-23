@@ -30,7 +30,7 @@ use FastSitePHP\Route;
  * copying the files to your project and modifying this class to fit the needs
  * of your site.
  */
-class AppMin
+class AppMin extends \stdClass
 {
     /**
      * HTTP Response Status Code
@@ -78,6 +78,17 @@ class AppMin
      * @var string|array|null
      */
     public $not_found_template = null;
+
+    /**
+     * If set to [true] then full error details will be displayed on the
+     * default error template. When using the default error template if
+     * running directly on localhost (both client and server) then full error
+     * details will automatically be displayed. These rules would only apply
+     * to custom error templates if they are setup the same.
+     *
+     * @var bool
+     */
+    public $show_detailed_errors = false;
 
     /**
      * Title for 500 Error Responses, available as [$page_title] for the error template.
@@ -267,7 +278,7 @@ class AppMin
                 );
                 $error_level = $e->getSeverity();
                 if (isset($error_constants[$error_level])) {
-                    $e->severityText = $error_constants[$error_level];
+                    $severityText = $error_constants[$error_level];
                 }
             }
         }
@@ -286,6 +297,7 @@ class AppMin
                     'page_title' => $page_title,
                     'message' => $message,
                     'e' => $e,
+                    'severityText' => (isset($severityText) ? $severityText : null),
                 ));
             } catch (\Exception $render_ex) {
                 $this->error_template = null;
@@ -300,6 +312,7 @@ class AppMin
                     'page_title' => $page_title,
                     'message' => $message,
                     'e' => $e,
+                    'severityText' => (isset($severityText) ? $severityText : null),
                 ));
             } else {
                 $response = '<h1>' . $this->escape($page_title) . '</h1>';
