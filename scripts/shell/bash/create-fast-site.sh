@@ -12,9 +12,11 @@
 #
 #  Author:   Conrad Sollitt
 #  Created:  2019 to 2020
+#  Updated:  2023
 #  License:  MIT
 #
 #  Supported Operating Systems:
+#      Ubuntu 22.04 LTS
 #      Ubuntu 20.04 LTS
 #      Ubuntu 18.04 LTS
 #      Ubuntu 16.04 LTS
@@ -92,7 +94,7 @@ SCRIPT_NAME=$(basename "${SCRIPT_PATH}")
 # is needed in order to use the security [SameSite] attribute for Cookies.
 #
 # PHP_VER=""
-PHP_VER="8.1"
+PHP_VER="8.2"
 
 # ---------------------------------------------------------
 # Main function, this gets called from bottom of the file
