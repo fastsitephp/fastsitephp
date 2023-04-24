@@ -26,6 +26,15 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) PHP Installation Docs for both Windows and Mac are no longer valid and need
+    to be updated with the latest methods.
+    - FastSitePHP Docs:
+        https://fastsitephp.com/en/documents/install-php-on-windows#install_php
+        https://fastsitephp.com/en/documents/install-php-on-mac
+    - See:
+        https://www.php.net/manual/en/install.windows.php
+        https://www.php.net/manual/en/install.macosx.php
+
 **) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
     These files were created because creating full automated unit tests was causing too much of a delay
