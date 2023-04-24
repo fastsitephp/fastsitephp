@@ -33,7 +33,7 @@
             "target": "fn_allow",
             "isStatic": false,
             "isGetterSetter": false,
-            "description": "Check if a request or action is allowed based on a rate limit.\n\nRequired Options:\n    - [storage]: Object - Instance of [FastSitePHP\\Data\\KeyValue\\StorageInterface]\n    - [id]: Id assigned to the user or request. For example the client's IP Address or a user id\n\nCommon Optional Options:\n    - [max_allowed] (int): Maximum number of requests allowed for the specified duration\n    - [duration] (int): Time in sections\n\nAdditional Options:\n    - [key]: String value to prefix when saving a key-value-pair.\n      This would be used if you are using the RateLimiter for multiuple actions in the same site.\n    - [algo]: Algorithm to use ['fixed-window-counter' or 'token-bucket']. Defaults to 'fixed-window-counter'.",
+            "description": "Check if a request or action is allowed based on a rate limit.\n\nRequired Options:\n    - [storage]: Object - Instance of [FastSitePHP\\Data\\KeyValue\\StorageInterface]\n    - [id]: Id assigned to the user or request. For example the client's IP Address or a user id\n\nCommon Optional Options:\n    - [max_allowed] (int): Maximum number of requests allowed for the specified duration\n    - [duration] (int): Time in sections\n\nAdditional Options:\n    - [key]: String value to prefix when saving a key-value-pair.\n      This would be used if you are using the RateLimiter for multiple actions in the same site.\n    - [algo]: Algorithm to use ['fixed-window-counter' or 'token-bucket']. Defaults to 'fixed-window-counter'.",
             "attributes": [
                 "@param array $options",
                 "@return array - list($allowed, $headers)",

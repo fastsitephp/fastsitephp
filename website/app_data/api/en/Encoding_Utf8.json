@@ -14,7 +14,7 @@
             "target": "fn_encode",
             "isStatic": true,
             "isGetterSetter": false,
-            "description": "Encode data to UTF-8",
+            "description": "Encode data to UTF-8; this function recursively encodes data on Arrays and Objects.\n\nWith PHP 8.2 and above this function uses the following encoding function:\n    iconv('windows-1252', 'UTF-8', $data) And below PHP 8.2:\n    utf8_encode($data)\n\nIf you have different needs for a special character set then copying and modifying this class is recommended.",
             "attributes": [
                 "@param mixed $data",
                 "@return string"

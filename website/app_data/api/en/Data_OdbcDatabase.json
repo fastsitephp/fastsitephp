@@ -3,7 +3,7 @@
     "short_name": "Data\\OdbcDatabase",
     "link": "Data_OdbcDatabase",
     "namespace": "FastSitePHP\\Data",
-    "description": "ODBC Database\n\nThis class provides a thin wrapper for PHP ODBC functions. It reduces the amount of code needed to query a database and provides a compatible class with FastSitePHP's Database class.\n\nODBC is most common on Windows and especially on older servers or databases. In most cases PDO (FastSitePHP class [Database]) is preferred and will provide more recent drivers however if ODBC with PDO is not available the ODBC on a server then ODBC functions might be. Additionally certain databases such as IBM may only work through ODBC on some servers.\n\nIMPORTANT - If using this class you may need to call the fuction [allowLargeTextValues()] if working with records that have large text or binary data.",
+    "description": "ODBC Database\n\nThis class provides a thin wrapper for PHP ODBC functions. It reduces the amount of code needed to query a database and provides a compatible class with FastSitePHP's Database class.\n\nODBC is most common on Windows and especially on older servers or databases. In most cases PDO (FastSitePHP class [Database]) is preferred and will provide more recent drivers however if ODBC with PDO is not available the ODBC on a server then ODBC functions might be. Additionally certain databases such as IBM may only work through ODBC on some servers.\n\nIMPORTANT - If using this class you may need to call the function [allowLargeTextValues()] if working with records that have large text or binary data.",
     "attributes": [
         "@link http:\/\/php.net\/manual\/en\/ref.uodbc.php"
     ],

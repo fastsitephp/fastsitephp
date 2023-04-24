@@ -91,6 +91,18 @@
             "links": []
         },
         {
+            "name": "show_detailed_errors",
+            "target": "prop_show_detailed_errors",
+            "isStatic": false,
+            "defaultValue": "false",
+            "description": "If set to [true] then full error details will be displayed on the default error template. When using the default error template if running directly on localhost (both client and server) then full error details will automatically be displayed. These rules would only apply to custom error templates if they are setup the same.",
+            "attributes": [
+                "@var bool"
+            ],
+            "dataType": "bool",
+            "links": []
+        },
+        {
             "name": "error_page_title",
             "target": "prop_error_page_title",
             "isStatic": false,

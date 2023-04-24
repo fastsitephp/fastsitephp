@@ -105,6 +105,10 @@
                 "link": "AppMin#prop_not_found_template"
             },
             {
+                "name": "AppMin->show_detailed_errors",
+                "link": "AppMin#prop_show_detailed_errors"
+            },
+            {
                 "name": "AppMin->error_page_title",
                 "link": "AppMin#prop_error_page_title"
             },
@@ -507,12 +511,20 @@
             {
                 "name": "Database->db",
                 "link": "Data_Database#prop_db"
+            },
+            {
+                "name": "Database->use_bind_value",
+                "link": "Data_Database#prop_use_bind_value"
             }
         ],
         "methods": [
             {
                 "name": "Database->__construct($dsn, $user = null, $password = null, $persistent = false, array $options = array())",
                 "link": "Data_Database#fn___construct"
+            },
+            {
+                "name": "Database->getBindType($value) {",
+                "link": "Data_Database#fn_getBindType"
             },
             {
                 "name": "Database->query($sql, array $params = null)",

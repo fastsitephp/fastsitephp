@@ -3,7 +3,7 @@
     "short_name": "App\\Middleware\\Cors",
     "link": "App_Middleware_Cors",
     "namespace": "App\\Middleware",
-    "description": "CORS Middleware (Cross-Origin Resource Sharing)\n\nThis class is included with the starter site and provides a template with common options for CORS Services. Use this class with route filter callback functions so that the OPTIONS request can be handled.\n\nThis class is desinged to be easy to use without making changes and also easy to modify if you need to handle custom CORS options for your site.",
+    "description": "CORS Middleware (Cross-Origin Resource Sharing)\n\nThis class is included with the starter site and provides a template with common options for CORS Services. Use this class with route filter callback functions so that the OPTIONS request can be handled.\n\nThis class is designed to be easy to use without making changes and also easy to modify if you need to handle custom CORS options for your site.",
     "attributes": [
         "@link https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Access_control_CORS",
         "@link http:\/\/www.html5rocks.com\/en\/tutorials\/cors\/",
