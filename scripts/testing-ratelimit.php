@@ -1,10 +1,10 @@
 <?php
 
 // Test Script for manually testing the RateLimit class.
-// In the future this code can be used as a starting point 
-// when creating the full unit tests and demos. In the meantime 
+// In the future this code can be used as a starting point
+// when creating the full unit tests and demos. In the meantime
 // this manually helps confirm the class works as expected.
-// 
+//
 // Demos are not yet decided on but likely will include something
 // similar to the copied/echo function versions at the bottom
 // of this file.
@@ -112,11 +112,11 @@ $options = [
 // $result = json_encode(fixedWindowCounter($max_allowed, $duration), JSON_PRETTY_PRINT);
 // $result = json_encode(tokenBucket($max_allowed, $duration), JSON_PRETTY_PRINT);
 
-echo "Allowing ${max_allowed} requests per ${duration} seconds<br>";
+echo "Allowing {$max_allowed} requests per {$duration} seconds<br>";
 $rate_limit = new \FastSitePHP\Security\Web\RateLimit();
 $result = json_encode($rate_limit->allow($options), JSON_PRETTY_PRINT);
 
-echo "<br><br><strong><pre>${result}</pre></strong>";
+echo "<br><br><strong><pre>{$result}</pre></strong>";
 
 $script = <<<'EOD'
     <br><br><div><strong>Time since page was refreshed: </strong><span id="timer">0</span>
@@ -131,8 +131,8 @@ echo $script;
 /**
  * Debug function, this is a copy of the [RateLimit->fixedWindowCounter()],
  * however it contains 'echo' statements to see the value of variables.
- * 
- * Saves data to session. 
+ *
+ * Saves data to session.
  */
 function fixedWindowCounter($max_allowed, $duration)
 {
@@ -157,7 +157,7 @@ function fixedWindowCounter($max_allowed, $duration)
     }
 
     // Check Request
-    echo "Allowing ${max_allowed} requests per ${duration} seconds<br>";
+    echo "Allowing {$max_allowed} requests per {$duration} seconds<br>";
     if ($expires === null || $expires < $now) {
         // Reset to (max - 1) because the counter just started or has expired
         $expires = $now + $duration;
@@ -167,14 +167,14 @@ function fixedWindowCounter($max_allowed, $duration)
         // Limit reached
         $allowed = false;
         $retry_after = max(1, $expires - $now);
-        echo '<span style="color:red;">Invalid</span><br>';            
+        echo '<span style="color:red;">Invalid</span><br>';
     } else {
         // Decrease counter
         $remaining--;
         echo '<span style="color:white; background-color:green;">Allowed</span><br>';
     }
-    echo "Remaining: ${remaining} <br>";
-    
+    echo "Remaining: {$remaining} <br>";
+
     // Build Headers
     $headers = array();
     if ($retry_after !== null) {
@@ -182,7 +182,7 @@ function fixedWindowCounter($max_allowed, $duration)
     }
     $plural1 = ($max_allowed === 1 ? '' : 's');
     $plural2 = ($duration === 1 ? '' : 's');
-    $headers['X-RateLimit-Limit'] = "${max_allowed} Request${plural1} per ${duration} Second${plural2}";
+    $headers['X-RateLimit-Limit'] = "{$max_allowed} Request{$plural1} per {$duration} Second{$plural2}";
     $headers['X-RateLimit-Remaining'] = $remaining;
     $headers['X-RateLimit-Reset'] = $expires;
 
@@ -195,8 +195,9 @@ function fixedWindowCounter($max_allowed, $duration)
 /**
  * Debug function, this is a copy of the [RateLimit->tokenBucket()],
  * however it contains 'echo' statements to see the value of variables.
- * 
- * Saves value to session. 
+ *
+ * Saves value to session.
+ * The default function defaults to and Instance of [FastSitePHP\Data\KeyValue\StorageInterface].
  */
 function tokenBucket($max_allowed, $duration)
 {
@@ -221,17 +222,17 @@ function tokenBucket($max_allowed, $duration)
     }
 
     // Check Request
-    echo "Allowing a rate of ${max_allowed} requests per ${duration} seconds<br>";
+    echo "Allowing a rate of {$max_allowed} requests per {$duration} seconds<br>";
     if ($prev_request === null) {
         $requests_allowed = $max_allowed - 1;
     } else {
         $time_passed = $now - $prev_request;
-        echo "Time Passed: ${time_passed} <br>";
+        echo "Time Passed: {$time_passed} <br>";
         $allowed_per_sec = $max_allowed / $duration;
-        echo "Allowed Per Second: ${allowed_per_sec} <br>";
-        echo "Starting Allowed: ${requests_allowed} <br>";
+        echo "Allowed Per Second: {$allowed_per_sec} <br>";
+        echo "Starting Allowed: {$requests_allowed} <br>";
         $requests_allowed += $time_passed * $allowed_per_sec;
-        echo "New Allowed: ${requests_allowed} <br>";
+        echo "New Allowed: {$requests_allowed} <br>";
         if ($requests_allowed > $max_allowed) {
             // Reset to (max - 1) because the bucket has expired
             $requests_allowed = $max_allowed - 1;
@@ -249,7 +250,7 @@ function tokenBucket($max_allowed, $duration)
             echo '<span style="color:white; background-color:green;">Allowed</span><br>';
         }
     }
-    echo "Allowed: ${requests_allowed} <br>";
+    echo "Allowed: {$requests_allowed} <br>";
 
     // Build Headers
     $headers = array();
@@ -259,6 +260,6 @@ function tokenBucket($max_allowed, $duration)
 
     // Save status and return result
     $_SESSION[$key] = $now . ':' . $requests_allowed;
-    echo 'Saved: ' . $_SESSION[$key] . '<br>'; 
+    echo 'Saved: ' . $_SESSION[$key] . '<br>';
     return array($allowed, $headers);
 }

@@ -36,9 +36,9 @@ class Time
     {
         // Using Calendar Year (365 days) and not Astronomical Year (365.25 days)
         $years = (int)floor($seconds / 31536000);   // 31536000 = 60 * 60 * 24 * 365
-        $days = (int)floor($seconds / 86400 % 365); //    86400 = 60 * 60 * 24
-        $hours = (int)floor($seconds / 3600 % 24);  //     3600 = 60 * 60
-        $minutes = (int)floor($seconds / 60 % 60);
+        $days = (int)floor((int)($seconds / 86400) % 365); //    86400 = 60 * 60 * 24
+        $hours = (int)floor((int)($seconds / 3600) % 24);  //     3600 = 60 * 60
+        $minutes = (int)floor((int)($seconds / 60) % 60);
         $seconds = (int)($seconds % 60);
         return self::english($years, $days, $hours, $minutes, $seconds);
     }

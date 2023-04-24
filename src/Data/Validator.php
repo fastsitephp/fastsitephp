@@ -422,7 +422,7 @@ class Validator
                 // Accepted format: 'YYYY-MM-DD'
                 $date = \DateTime::createFromFormat('Y-m-d', $value);
                 $date_errors = \DateTime::getLastErrors();
-                $is_valid = ($date !== false && ($date_errors['warning_count'] + $date_errors['error_count'] === 0));
+                $is_valid = ($date !== false && $date_errors !== false && ($date_errors['warning_count'] + $date_errors['error_count'] === 0));
                 return $is_valid;
             case 'time':
                 // Accepted formats: 'HH:MM:SS' or 'HH:MM' (24-Hour Time)
@@ -438,7 +438,7 @@ class Validator
                 foreach ($formats as $format) {
                     $date = \DateTime::createFromFormat($format, $value);
                     $date_errors = \DateTime::getLastErrors();
-                    $is_valid = ($date !== false && ($date_errors['warning_count'] + $date_errors['error_count'] === 0));
+                    $is_valid = ($date !== false && $date_errors !== false && ($date_errors['warning_count'] + $date_errors['error_count'] === 0));
                     if ($is_valid) {
                         return true;
                     }

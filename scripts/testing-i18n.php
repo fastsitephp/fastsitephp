@@ -44,7 +44,7 @@ foreach ($tests as $test) {
         echo json_encode($test);
         echo "\n";
         echo "\n";
-        
+
         if (count($test) === 3) {
             $app->config['I18N_DIR'] = $test[2];
         }
@@ -62,7 +62,7 @@ foreach ($tests as $test) {
         // $i18n->langFile('page2');
         print_r(\FastSitePHP\Lang\I18N::$loaded_files);
         echo "\n";
-        print_r($app->locals['i18n']);        
+        print_r($app->locals['i18n']);
         echo "\n";
         echo '$app->lang: ';
         print_r($app->lang);

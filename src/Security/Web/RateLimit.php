@@ -85,7 +85,7 @@ class RateLimit
      *
      * Additional Options:
      *     - [key]: String value to prefix when saving a key-value-pair.
-     *       This would be used if you are using the RateLimiter for multiuple actions in the same site.
+     *       This would be used if you are using the RateLimiter for multiple actions in the same site.
      *     - [algo]: Algorithm to use ['fixed-window-counter' or 'token-bucket']. Defaults to 'fixed-window-counter'.
      *
      * @param array $options

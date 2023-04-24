@@ -342,6 +342,9 @@ class L10N
     public function formatNumber($number, $decimals = 0)
     {
         // Format based on selected locale
+        if ($decimals === null) {
+            $decimals = 0;
+        }
         $number = number_format($number, $decimals, $this->decimal_point, $this->digit_group);
 
         // Handle Custom Digit Grouping
@@ -400,7 +403,7 @@ class L10N
 
             // If error return null otherwise set timezone and return formatted date
             $date_errors = \DateTime::getLastErrors();
-            if ($date === false || ($date_errors['warning_count'] + $date_errors['error_count'] > 0)) {
+            if ($date === false || $date_errors === false || ($date_errors['warning_count'] + $date_errors['error_count'] > 0)) {
                 return null;
             } else {
                 $date->setTimezone(new \DateTimeZone($this->timezone));
@@ -424,7 +427,7 @@ class L10N
         // To correctly format locales for 'fa' use of Jalaali Calendar is needed
         // and 'ar-SA' requires Hijri Calendar conversion. This is not yet supported.
         // For more see related notes in file [l10n-process-files.php].
-        if (strpos($this->locale, 'fa') === 0 || $this->locale === 'ar-SA') {
+        if ($this->locale !== null && (strpos($this->locale, 'fa') === 0 || $this->locale === 'ar-SA')) {
             return $date_value;
         }
 
@@ -439,6 +442,9 @@ class L10N
      */
     private function translateDigits($value)
     {
+        if ($this->locale === null) {
+            return $value;
+        }
         if (strpos($this->locale, 'ar') === 0) {
             $skip_list = array('ar-DZ', 'ar-EH', 'ar-LY', 'ar-MA', 'ar-TN');
             if (!in_array($this->locale, $skip_list)) {

@@ -225,7 +225,7 @@ try {
 }
 
 // ----------------------------------------------------------------
-// Send a 2nd Email with the same SMTP Connnection
+// Send a 2nd Email with the same SMTP Connection
 // $email->subject('Email 2 from PHP');
 // $smtp->send($email);
 

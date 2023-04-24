@@ -2,6 +2,14 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## 1.5.1 (April 23, 2023)
+
+* Updates to handle Deprecation Notices in PHP 8.1 and 8.2
+  * `FastSitePHP\Lang\Time::secondsToText()`
+  * `FastSitePHP\Lang\L10N->formatDateTime()`
+  * `FastSitePHP\Lang\L10N->formatNumber()`
+  * `FastSitePHP\Data\Validator->checkType()`
+
 ## 1.5.0 (April 23, 2023)
 
 * **Added Support for PHP 8.2**

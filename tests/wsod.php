@@ -1,6 +1,8 @@
 <?php
 // Use to check "White Screen of Death" (WSOD) Errors.
 // For safety this file only runs from localhost.
+// As of early 2023 a generic 500 error page is displayed with Chromium
+// Browsers when a WSOD occurs and the response status code is 500.
 
 if (strpos($_SERVER['HTTP_HOST'], 'localhost') === 0) {
 	// Handle and show all errors

@@ -24,7 +24,7 @@ $tests = array(
         'file' => basename(__FILE__),
     ),
     array(
-        'dir' => __DIR__ . '\\',
+        'dir' => __DIR__ . (PHP_OS === 'WINNT' ? '\\' : '/'),
         'file' => basename(__FILE__),
     ),
     array(

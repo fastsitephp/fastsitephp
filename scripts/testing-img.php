@@ -82,7 +82,7 @@ $img
     ->crop($left, $top, $width, $height, $target_width, $target_height)
     ->save($name_cropped2);
 
-// Overwrite orginal file with a larger size by width.
+// Overwrite original file with a larger size by width.
 // Uncomment to test:
 //
 // $img = new \FastSitePHP\Media\Image();

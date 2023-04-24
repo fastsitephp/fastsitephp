@@ -26,6 +26,20 @@ TODO List
 |
 --------------------------------------------------------------------------
 
+**) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
+    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
+    These files were created because creating full automated unit tests was causing too much of a delay
+    for the initial release.
+    - This is now the main priority because the PHP Language frequently publishes breaking changes
+        without announcing them in the main release notes. For example, with PHP 8.2 `\DateTime::getLastErrors()`
+        always returned a object and never a bool. As of PHP 8.2 it was changed to a bool, but 
+        the notes were only include in the method documentation and not overall documentation:
+            https://www.php.net/releases/8.2/en.php
+            https://www.php.net/manual/en/datetimeimmutable.getlasterrors.php
+    - Also with 8.2 [ErrorException / 8192 (E_DEPRECATED)] errors were found with both
+        number_format() and strpos() when passing null, but the details are not published in the
+        PHP docs so this wasn't caught until more detailed manual testing.
+
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
         and allow editing of all code on the server similar to how the playground site works.
@@ -77,11 +91,6 @@ TODO List
 **) fastsitephp\scripts\create-api-json-files.php
     This file should be updated to handle multiple languages when the other language is a duplicate of the `en` file.
     Currently many of the `pt-BR` files are a duplicate of `en`
-
-**) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
-    under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
-    These files were created because creating full automated unit tests was causing too much of a delay
-    for the initial release.
 
 *) New Classes to Create:
     Environment\UserAgent
