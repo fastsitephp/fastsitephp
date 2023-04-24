@@ -87,6 +87,8 @@ TODO List
                     fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 With:
                     fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
+                Or comment out the original line and add the 2nd line 
+            sudo service nginx restart
         # Download and copy unit tests
         wget https://github.com/fastsitephp/fastsitephp/archive/master.zip
         unzip master.zip
@@ -95,6 +97,8 @@ TODO List
         #   http://{host}/tests/index.htm
         # With nginx all but 2 tests should pass. They are related to strong etags which nginx does not allow
         # Related link: https://forum.nginx.org/read.php?29,251164,251966
+        # Since this is a known issue it could be avoided by passing the type of server from PHP
+        # and then using JS logic to check the response based on the server. (** This would be good to add **)
 
 
 **) fastsitephp\scripts\create-api-json-files.php
