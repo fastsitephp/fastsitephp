@@ -92,7 +92,7 @@ foreach ($files as $file) {
     // Example Key:
     //   main.en-US-POSIX.dates.calendars.gregorian.dateFormats.short
     //
-    // The differences is reading 'medium' vs 'short' formats is primarly based
+    // The differences is reading 'medium' vs 'short' formats is primarily based
     // on what a web browser would show for the same language.
     $json = json_decode(file_get_contents($file));
     $medium_dates = array('zh-Hans-SG', 'zh-Hans-HK', 'zh-Hans-MO', 'zh-Hant-MO');

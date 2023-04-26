@@ -17,11 +17,11 @@
 // In addition to this script to test the PHP code you can manually test
 // the shell commands using a bash script at [shell/bash/encrypt.sh].
 // The bash script doesn't require PHP and should run on most Linux OS's
-// wihtout having to install anything.
+// without having to install anything.
 //
 // Instructions
 // 1) Copy this file to the [html] folder or a location that can be
-//    viewed from your brower. If copying to a different location then
+//    viewed from your browser. If copying to a different location then
 //    modify the statement that loads the autoloader [autoload.php] so
 //    that it loads the correct files.
 // 2) Run the script from a browser and wait till it completes. If there is a
@@ -58,7 +58,7 @@ $key_hmac = '6c3516271b9c008ab4279e5904995aa943117331e3e968560cedb5c7c17266ab';
 $iv = '0ee221ef9e00dfa69efb3b1112bfbb2f';
 
 // Make sure there is no timeout because this script
-// will likely take about 5 mintues or more to run.
+// will likely take about 5 minutes or more to run.
 set_time_limit(0);
 
 // Uncomment if needed to see permissions and command paths
@@ -112,7 +112,7 @@ function createNullFile($file_path, $file_size)
             $cmd = 'dd if=/dev/zero of="' . $file_path . '" bs=' . $file_size . ' count=1';
             break;
         default:
-            throw new \Exception('Unexpected Error - Unable to find a commnad on this OS for creating empty files.');
+            throw new \Exception('Unexpected Error - Unable to find a command on this OS for creating empty files.');
             break;
     }
     $cmd .= ' 2>&1'; // Make sure errors are displayed
@@ -163,7 +163,7 @@ function createFile($file_path, $enc_file, $key_enc, $key_hmac, $iv)
     $cmd = 'cat "' . $enc_file . '" | openssl dgst -sha256 -mac hmac -macopt hexkey:' . $key_hmac . ' -binary >> "' . $enc_file . '" 2>&1';
     runCmd($cmd);
 
-    // Verify that the enrypted file can be read by PHP
+    // Verify that the encrypted file can be read by PHP
     if (!is_file($enc_file)) {
         throw new \Exception(sprintf('File encryption failed because the encrypted file [%s] was not found after commands successfully ran. The error is unexpected so you may want to verify permissions for the web server or user running PHP and if the file was actually created.', $enc_file));
     }
@@ -195,7 +195,7 @@ function checkHash($file, $expected_hash)
 }
 
 // Run a shell command and check the result
-function runCmd($cmd, $expect_ouput = false)
+function runCmd($cmd, $expect_output = false)
 {
     // Run the command saving the exit status and all output to an array
     // var_dump($cmd);
@@ -206,7 +206,7 @@ function runCmd($cmd, $expect_ouput = false)
     // it ran successfully otherwise there was an error.
     // This applies to most Unix/Linux/Mac/Windows programs.
 
-    $expected_count = ($expect_ouput ? 1 : 0);
+    $expected_count = ($expect_output ? 1 : 0);
     $error = null;
 
     if ($exit_status !== 0) {
@@ -229,7 +229,7 @@ function runCmd($cmd, $expect_ouput = false)
     }
 
     // Return single output line or null
-    return ($expect_ouput ? $output[0] : null);
+    return ($expect_output ? $output[0] : null);
 }
 
 // See comments in [Crypto->xxdPath()]

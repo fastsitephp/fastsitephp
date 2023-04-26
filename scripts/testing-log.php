@@ -71,7 +71,7 @@ $logger->info('This is a Test.');
 $logger->info('User {name} created', [ 'name' => 'Admin' ]);
 $logger->error('Error Test');
 
-// Test all varaible types that are handled
+// Test all variable types that are handled
 $data = array(
     'obj1' => new Test(),
     'obj2' => new Test2(),

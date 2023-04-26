@@ -8,7 +8,7 @@
 //     https://www.fastsitephp.com/en/documents/edit-with-vs-code
 //
 // This script requires a local setup of 3 repositories and is safe to run multiple times
-// as it will not overwite existing files.
+// as it will not overwrite existing files.
 //
 // See Online docs for full details:
 //     https://github.com/fastsitephp/fastsitephp/blob/master/docs/i18n-translations.md

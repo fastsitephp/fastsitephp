@@ -2648,7 +2648,7 @@ class Application extends \stdClass
         $result = null;
         $valid_callback = false;
         if ($callback instanceof \Closure) {
-            // Using a closure/callback functon
+            // Using a closure/callback function
             $result = call_user_func($callback);
             $valid_callback = true;
         } elseif (is_string($callback)) {

@@ -13,7 +13,7 @@
     // If comparing with IE all values will look different, this mainly tested with
     // Chrome and Safari.
     //
-    // Also helpfull for development and comparing:
+    // Also helpful for development and comparing:
     //   http://demo.icu-project.org/icu-bin/locexp
     //   http://demo.icu-project.org/icu-bin/locexp?d_=en&_=en_US
 

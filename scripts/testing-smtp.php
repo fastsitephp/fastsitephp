@@ -65,7 +65,7 @@ $from = 'noreply@example.com';
 // $port = 587;
 
 // -------------------------------------------
-// Define other options or chagne
+// Define other options or change
 // $to = array('YOUR_EMAIL@example.com', 'YOUR_EMAIL@hotmail.com', 'YOUR_EMAIL@gmail.com');
 // $priority = 'Low'; // 'High'
 // $cc = 'YOUR_EMAIL@gmail.com';

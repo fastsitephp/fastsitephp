@@ -1,6 +1,6 @@
 <?php
 
-// Copy this file to root folder and run wiht Apache HTTP server benchmarking tool:
+// Copy this file to root folder and run with Apache HTTP server benchmarking tool:
 //     sudo apt-get install apache2-utils
 //     https://httpd.apache.org/docs/2.4/programs/ab.html
 

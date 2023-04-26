@@ -51,7 +51,7 @@ spl_autoload_register(function($class) {
     // Uncomment, modify, and use if needed.
     //
     // Handle projects that use older PRS-0 style file naming where an
-    // underscore character is used to sperate folders.
+    // underscore character is used to separate folders.
     /*
     $pos = strpos($class, '_');
     if ($pos !== false) {
