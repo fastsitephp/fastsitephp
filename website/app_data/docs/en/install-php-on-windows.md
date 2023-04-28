@@ -21,6 +21,12 @@
 ## Overview
 This tutorial provides instructions with a step by step guide on how to setup a web server (IIS) and PHP on Windows and some alternative options. Installing PHP on Windows is relatively quick and simple because Microsoft provides easy to use installers.
 
+<div class="quick-tip" style="margin-bottom:20px">
+    <h3>IMPORTANT</h3>
+    <p>This page has old content and will be updated in the future. In the meantime please see the main Windows Installation from the PHP Group:</p>
+    <p><a href="https://www.php.net/manual/en/install.windows.php" target="_blank">https://www.php.net/manual/en/install.windows.php</a></p>
+</div>
+
 <div class="quick-tip">
     <h3>Quick Tip</h3>
     <p>If you only need PHP for local development you can skip the IIS install and jump to <a href="#install_php">installing PHP</a> or see additional links in this section of the page.</p>

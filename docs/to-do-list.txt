@@ -26,28 +26,25 @@ TODO List
 |
 --------------------------------------------------------------------------
 
-**) PHP Installation Docs for both Windows and Mac are no longer valid and need
-    to be updated with the latest methods.
-    - FastSitePHP Docs:
-        https://fastsitephp.com/en/documents/install-php-on-windows#install_php
-        https://fastsitephp.com/en/documents/install-php-on-mac
-    - See:
-        https://www.php.net/manual/en/install.windows.php
-        https://www.php.net/manual/en/install.macosx.php
-
 **) Refactor early manual Unit Test files [fastsitephp/scripts/testing-*.php] as proper unit tests
     under [fastsitephp/tests/*]. Additional details exist for each or most of the scripts in this file.
     These files were created because creating full automated unit tests was causing too much of a delay
     for the initial release.
     - This is now the main priority because the PHP Language frequently publishes breaking changes
         without announcing them in the main release notes. For example, with PHP 8.2 `\DateTime::getLastErrors()`
-        always returned a object and never a bool. As of PHP 8.2 it was changed to a bool, but 
+        always returned a object and never a bool. As of PHP 8.2 it was changed to a bool, but
         the notes were only include in the method documentation and not overall documentation:
             https://www.php.net/releases/8.2/en.php
             https://www.php.net/manual/en/datetimeimmutable.getlasterrors.php
     - Also with 8.2 [ErrorException / 8192 (E_DEPRECATED)] errors were found with both
         number_format() and strpos() when passing null, but the details are not published in the
         PHP docs so this wasn't caught until more detailed manual testing.
+
+**) PHP Installation Docs for both Windows and Mac are no longer valid and need
+    to be updated with the latest methods.
+    - FastSitePHP Docs:
+        https://fastsitephp.com/en/documents/install-php-on-windows#install_php
+        https://fastsitephp.com/en/documents/install-php-on-mac
 
 **) Starter Site
     - A 2.0 version is being planned that will allow for a very minimal CMS
@@ -87,7 +84,7 @@ TODO List
                     fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 With:
                     fastcgi_split_path_info ^(.+\.php)(/|/.+)$;
-                Or comment out the original line and add the 2nd line 
+                Or comment out the original line and add the 2nd line
             sudo service nginx restart
         # Download and copy unit tests
         wget https://github.com/fastsitephp/fastsitephp/archive/master.zip

@@ -18,6 +18,12 @@
 ## Visão Geral
 Apple macOS vem com o Apache e o PHP já instalados, contudo o Apache e a utilização do PHP com ele não está habilitado por padrão. Este tutorial fornece uma visão geral às tarefas chaves relacionadas a habilitar o Apache e PHP; contudo, os passos necessários para cada versão do macOS pode variar muito, sendo assim será necessário que você visite muitas páginas relacionadas a este tópico.
 
+<div class="quick-tip" style="margin-bottom:20px">
+    <h3>IMPORTANT</h3>
+    <p>This page has old content and will be updated in the future. In the meantime please see the main macOS Installation from the PHP Group:</p>
+    <p><a href="https://www.php.net/manual/en/install.macosx.php" target="_blank">https://www.php.net/manual/en/install.macosx.php</a></p>
+</div>
+
 <div class="quick-tip">
     <h3>Dica Rápida</h3>
     <p>Por que o PHP já está instalado você pode utilizar o <a href="https://www.php.net/manual/en/features.commandline.webserver.php" target="_blank" rel="noopener">Servidor Web Integrado do PHP</a> para um desenvolvimento local e assim não há necessidade de uma configuração complexa do Apache. Para informações de como fazer isso veja <a href="edit-with-vs-code">Utilize o Visual Studio Code para Desenvolvimento PHP</a> ou <a href="edit-with-atom">Utilize o Editor Atom do GitHub para Desenvolvimento PHP</a>.</p>

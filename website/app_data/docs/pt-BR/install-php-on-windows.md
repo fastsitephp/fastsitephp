@@ -21,6 +21,12 @@
 ## Visão Geral
 Este tutorial fornece instruções com um guia passo a passo de como configurar um servidor web (IIS) e PHP no Windows e algumas opções alternativas. Instalar o PHP no Windows é relativamente rápido e simples por que a Microsoft fornece instaladores fáceis de utilizar.
 
+<div class="quick-tip" style="margin-bottom:20px">
+    <h3>IMPORTANT</h3>
+    <p>This page has old content and will be updated in the future. In the meantime please see the main Windows Installation from the PHP Group:</p>
+    <p><a href="https://www.php.net/manual/en/install.windows.php" target="_blank">https://www.php.net/manual/en/install.windows.php</a></p>
+</div>
+
 <div class="quick-tip">
     <h3>Dica Rápida</h3>
     <p>Se você precisa somente do PHP para desenvolvimento local você pode pular o processo de instalação do IIS e ir direto para <a href="#install_php">instalando o  PHP</a> ou ver links adicionais nesta seção da página.</p>
