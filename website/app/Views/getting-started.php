@@ -153,12 +153,6 @@
                 </a>
             </li>
             <li>
-                <a href="<?= $app->rootUrl() . $app->lang ?>/documents/edit-with-atom">
-                    <img src="../img/logos/atom.png" alt="Atom Editor">
-                    <span class="text"><?= $app->escape($i18n['atom']) ?></span>
-                </a>
-            </li>
-            <li>
                 <a href="<?= $app->rootUrl() . $app->lang ?>/documents/edit-with-other">
                     <img src="../img/icons/Code-Editor.svg" alt="<?= $app->escape($i18n['code_editors']) ?>">
                     <span class="text"><?= $app->escape($i18n['other_editors']) ?></span>

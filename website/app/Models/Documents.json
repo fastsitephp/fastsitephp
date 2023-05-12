@@ -24,12 +24,6 @@
         "img_alt": "Visual Studio Code"
     },
     {
-        "page": "edit-with-atom",
-        "category": "category-develop",
-        "img": "../img/logos/atom.png",
-        "img_alt_i18n": "img-alt-atom"
-    },
-    {
         "page": "edit-with-other",
         "category": "category-develop",
         "img": "../img/icons/Code-Editor.svg",

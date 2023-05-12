@@ -11,7 +11,6 @@
     "install-php-on-windows": "Instale IIS y PHP en un servidor o PC de escritorio Windows",
     "install-php-on-mac": "Instalar Apache y PHP en una Mac",
     "edit-with-vs-code": "Utilice el Visual Studio Code para el desarrollo de PHP",
-    "edit-with-atom": "Utilice Editor Atom de Github para el desarrollo de PHP",
     "edit-with-other": "Use otros Editores de Código e IDE para el desarrollo de PHP",
     "file-encryption-bash": "Cifrado de archivos utilizando el Script Bash compatible [encrypt.sh]",
     "file-encryption-windows": "Cifrado de archivos usando el Script Bash [encrypt.sh] en Windows",
