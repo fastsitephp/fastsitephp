@@ -532,7 +532,7 @@ $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');
             if (hasObserver) {
                 animate();
             } else {
-                var url = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+                var url = 'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=IntersectionObserver';
                 var script = document.createElement('script');
                 script.onload = animate;
                 script.src = url;

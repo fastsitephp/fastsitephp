@@ -940,7 +940,7 @@
     function loadPolyfill() {
         // [fetch, String.prototype.endsWith, String.prototype.repeat] - Used in this file
         // [String.prototype.startsWith] - Used with CodeMirror for linting
-        var url = 'https://polyfill.io/v3/polyfill.min.js?features=fetch%2CString.prototype.endsWith%2CString.prototype.repeat%2CString.prototype.startsWith';
+        var url = 'https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=fetch%2CString.prototype.endsWith%2CString.prototype.repeat%2CString.prototype.startsWith';
         var script = document.createElement('script');
         script.onload = function() { setup(); };
         script.onerror = function() {

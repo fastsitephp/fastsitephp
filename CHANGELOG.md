@@ -2,6 +2,14 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Web Server Updates (Aug 19, 2024)
+
+* Replace all instances of the Polyfill Service `https://polyfill.io/v3/polyfill.min.js?` with `https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&`
+  * This is due to a supply chain attack against the popular JS Polyfill Library and site `polyfill.io`.
+  * https://cdnjs.cloudflare.com/polyfill/
+  * https://www.akamai.com/blog/security/2024-polyfill-supply-chain-attack-what-to-know
+  * Based on how the Polyfill is loaded for FastSitePHP this error would have only affected users of IE (as of 2024 this is mainly old Windows Servers in a corporate environment).
+
 ## 1.5.1 (April 23, 2023)
 
 * Updates to handle Deprecation Notices in PHP 8.1 and 8.2
