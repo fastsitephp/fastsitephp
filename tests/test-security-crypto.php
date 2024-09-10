@@ -69,8 +69,8 @@ class Test
     public $prop2 = true;
 }
 
-// Shared function that gets called to verify compatability/polyfill functions
-function runCompatabilityTests($tests, $error_tests) {
+// Shared function that gets called to verify compatibility/polyfill functions
+function runCompatibilityTests($tests, $error_tests) {
 	// Keep Count and save all results to a single string
 	$tests_count = 0;
 	$error_count = 0;
@@ -167,7 +167,7 @@ function runCompatabilityTests($tests, $error_tests) {
         } catch (\Throwable $e) {
             // PHP 8 - Some of the previous errors were converted to ErrorException which
             // can no longer use `catch (\Exception $e)` and instead must catch a specific
-            // `Error` or `Throwable` inteface.
+            // `Error` or `Throwable` interface.
             if (is_string($test['expected'])) {
                 $matches = ($e->getMessage() === $test['expected']);
             } else {
@@ -1541,12 +1541,13 @@ $app->get('/compatibility-functions', function() {
                 'hash_equals(): Expected user_string to be a string, boolean given',
                 'hash_equals(): Expected user_string to be a string, bool given',
                 'hash_equals(): Argument #2 ($user_string) must be of type string, bool given',
+                'hash_equals(): Argument #2 ($user_string) must be of type string, true given',
             ),
         ),
     );
 
     // Run all Tests
-    $results = runCompatabilityTests($tests, $error_tests);
+    $results = runCompatibilityTests($tests, $error_tests);
     $tests_count = $results[0];
     $error_count = $results[1];
     $all_results_string = $results[2];
@@ -1732,7 +1733,7 @@ $app->get('/compatibility-functions-pbkdf2', function() {
     );
 
     // Run all Tests
-    $results = runCompatabilityTests($tests, $error_tests);
+    $results = runCompatibilityTests($tests, $error_tests);
     $tests_count = $results[0];
     $error_count = $results[1];
     $all_results_string = $results[2];
