@@ -2,6 +2,11 @@
 
 FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-versioning). This change log includes Framework release history and new website features or major changes.
 
+## Web Site Updates (Sep 10, 2024)
+
+* Updated Unit Tests for PHP 8.3
+* Updated the bash installation script [create-fast-site.sh](https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh) so that it defaults to PHP 8.3 instead of PHP 8.2
+
 ## Web Server Updates (Aug 19, 2024)
 
 * Replace all instances of the Polyfill Service `https://polyfill.io/v3/polyfill.min.js?` with `https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&`
@@ -86,7 +91,7 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 ## 1.3.1 (July 15, 2020)
 
 * Updates for `\FastSitePHP\Net\HttpClient`
-  * Fix so that `$response->json` is populated when the a case-insensitve header is used `content-type`, `CONTENT-TYPE`, etc is used starting with the value `application/json`. Previously a case-senstive header was required `Content-Type`.
+  * Fix so that `$response->json` is populated when the a case-insensitive header is used `content-type`, `CONTENT-TYPE`, etc is used starting with the value `application/json`. Previously a case-sensitive header was required `Content-Type`.
   * Updated the bundled `cacert.pem` from version `2019-10-16` to `2020-06-24`.
 * Updated `scripts/install.php` to also download and use latest version of `cacert.pem`.
 
