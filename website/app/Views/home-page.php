@@ -118,13 +118,6 @@
         transform: scale3d(1, 1, 1);
         transition: transform .2s ease-in-out;
     }
-    @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-        /* IE Only - Card Images will appear slightly larger, if using max-width they stretch */
-        ul.cards li img {
-            max-height: inherit;
-            max-width: 100px;
-        }
-    }
     ul.cards li div.text {
         padding:20px;
     }
@@ -238,6 +231,24 @@
         to { transform: translateX(0); }
     }
 </style>
+<script nomodule>
+    (function() {
+        'use strict';
+        var isIE = (navigator.userAgent.indexOf('Trident/') !== -1);
+        if (isIE) {
+            // IE Only - Card Images will appear slightly larger, if using max-width they stretch
+            var style = document.createElement('style');
+            var css = '@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {';
+            css += '    ul.cards li img {',
+            css += '        max-height: inherit;',
+            css += '        max-width: 100px;',
+            css += '    }',
+            css += '}';
+            style.innerHTML = css;
+            document.head.appendChild(style);
+        }
+    })();
+</script>
 <?php
 // Once full translations are made this will go at the top of the file for the <html> element
 $html_dir = ($app->lang === 'ar' ? 'rtl' : 'ltr');

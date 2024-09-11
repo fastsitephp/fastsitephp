@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <title>FastSitePHP | <?= (isset($page_title) ? $app->escape($page_title) : $app->escape($i18n['page_title'])) ?></title>
         <?php if (isset($i18n) && isset($i18n['page_desc'])): ?>
@@ -32,6 +31,21 @@
                 var isSamsung = (navigator.userAgent.toLowerCase().indexOf('samsungbrowser') > -1);
                 if (isSamsung) {
                     document.documentElement.classList.add('samsung');
+                }
+            })();
+        </script>
+        <script nomodule>
+            (function() {
+                'use strict';
+                var isIE = (navigator.userAgent.indexOf('Trident/') !== -1);
+                if (isIE) {
+                    // IE only - fixed nav layout when menu items wrap to 2 lines
+                    var style = document.createElement('style');
+                    var css = '@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {';
+                    css += '    .site-nav { flex: 1 0 auto; }'
+                    css += '}';
+                    style.innerHTML = css;
+                    document.head.appendChild(style);
                 }
             })();
         </script>

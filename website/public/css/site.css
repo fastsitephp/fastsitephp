@@ -14,7 +14,7 @@ code, pre {
 }
 
 /* IE 10 Responsive */
-@-ms-viewport { width: device-width; }
+/* @-ms-viewport { width: device-width; } */
 
 /* Prevent issues with RTL Languages such as Arabic changing SVG Layout */
 svg { direction:ltr; }
@@ -48,7 +48,7 @@ body {
 }
 /*
     This gets set from [app/Views/_header.php].
-    A tested Samsung Galaxy Tablet does not handle this specifc [radial-gradient()]
+    A tested Samsung Galaxy Tablet does not handle this specific [radial-gradient()]
 */
 html.samsung body {
     background-image: none;
@@ -81,11 +81,6 @@ a:visited { color:#4F5B93; }
     background-color: #4F5B93;
     background-image: linear-gradient(-180deg, #7481B5 0%, #4F5B93 100%);
     box-shadow:0 1px 3px 0 rgba(0, 0, 0, .3);
-}
-
-/* IE only - fixed nav layout when menu items wrap to 2 lines */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    .site-nav { flex: 1 0 auto; }
 }
 
 .mobile-nav { display:flex; justify-content: space-between; }
