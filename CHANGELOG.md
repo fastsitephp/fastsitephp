@@ -6,6 +6,9 @@ FastSitePHP uses [Semantic Versioning](https://docs.npmjs.com/about-semantic-ver
 
 * Updated Unit Tests for PHP 8.3
 * Updated the bash installation script [create-fast-site.sh](https://github.com/fastsitephp/fastsitephp/blob/master/scripts/shell/bash/create-fast-site.sh) so that it defaults to PHP 8.3 instead of PHP 8.2
+* Updated the Main Site, Playground, and Starter Site so that css `@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {}` would only be included if the browser is IE 11.
+  * Edge browser started giving a deprecation warning when using this CSS media query.
+  * Even though IE is no longer supported by Microsoft it still works on legacy Windows Servers and in some cases companies have internal apps that still require IE so allowing it to work provides a reference on how to work with legacy sites.
 
 ## Web Server Updates (Aug 19, 2024)
 
