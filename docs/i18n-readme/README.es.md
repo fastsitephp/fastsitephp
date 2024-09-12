@@ -2,17 +2,17 @@
     <img width="500" src="../FastSitePHP.svg" alt="FastSitePHP">
 </p>
 
-# :star2: ¡Bienvenido a FastSitePHP!
+# 🌟 ¡Bienvenido a FastSitePHP!
 
 **¡Gracias por su visita!** 🌠👍
 
-FastSitePHP es un nuevo marco web que utiliza PHP. FastSitePHP ha sido diseñado para un rendimiento rápido, flexibilidad de codificación, estabilidad a largo plazo, facilidad de uso y una mejor experiencia de desarrollo general. FastSitePHP también tiene un tamaño mínimo, por lo que es rápido de descargar y fácil de comenzar. Aunque es nuevo (publicado por primera vez en noviembre de 2019), FastSitePHP se escribió durante muchos años y es extremadamente estable y contiene una gran cantidad de pruebas unitarias.
+FastSitePHP es un nuevo marco web que utiliza PHP. FastSitePHP ha sido diseñado para un rendimiento rápido, flexibilidad de codificación, estabilidad a largo plazo, facilidad de uso y una mejor experiencia de desarrollo general. FastSitePHP también tiene un tamaño mínimo, por lo que es rápido de descargar y fácil de comenzar. FastSitePHP se publicó por primera vez en noviembre de 2019 y se escribió y utilizó durante muchos años antes de su lanzamiento. A partir de 2024, se ha utilizado en una variedad de aplicaciones y sitios web, es extremadamente estable y contiene muchas pruebas unitarias.
 
 Este repositorio contiene el Marco de FastSitePHP y el sitio web principal.
 
 FastSitePHP incluye muchos componentes independientes que se pueden usar sin usar el objeto de aplicación principal o Framework, por lo que es fácil de usar FastSitePHP con otros marcos o proyectos PHP.
 
-## :dizzy: ¿Por qué usar FastSitePHP?
+## 💫 ¿Por qué usar FastSitePHP?
 
 |<img src="https://www.fastsitephp.com/img/icons/Performance.svg" alt="Gran actuación" width="60">|<img src="https://www.fastsitephp.com/img/icons/Lightswitch.svg" alt="Fácil de configurar y utilizar" width="60">|
 |---|---|
@@ -22,7 +22,7 @@ FastSitePHP incluye muchos componentes independientes que se pueden usar sin usa
 |---|---|
 |**Rápido para aprender y depurar** FastSitePHP está bien documentado y viene con muestras prácticas. FastSitePHP proporciona mensajes de error amigables para el desarrollador para que los errores puedan repararse rápidamente incluso si tiene poca o ninguna experiencia en programación con PHP.|**Fuerte seguridad** La seguridad ha sido cuidadosamente planificada en todas las características de FastSitePHP para que sea segura y fácil de trabajar. Las características de seguridad incluyen cifrado (texto, objetos y archivos), cookies firmadas, JWT, CORS, validación del servidor proxy, limitación de velocidad y más.|
 
-## :rocket: Pruébalo en línea!
+## 🚀 Pruébalo en línea!
 
 El sitio principal de FastSitePHP proporciona un área de juegos de código donde puede desarrollar con PHP, HTML, JavaScript, CSS y más. No hay nada que instalar y puede trabajar con PHP directamente en un servidor. Si nunca ha usado PHP, esta es una excelente manera de aprender PHP.
 
@@ -32,7 +32,7 @@ El sitio principal de FastSitePHP proporciona un área de juegos de código dond
 <img src="https://github.com/fastsitephp/static-files/raw/master/img/screenshots/Playground.png" alt="FastSitePHP Code Playground">
 </p>
 
-## :rocket: Empezando
+## 🚀 Empezando
 
 **Comenzar a usar PHP y FastSitePHP es extremadamente fácil.** Si no tiene PHP instalado, consulte las instrucciones para Windows, Mac y Linux en la página de inicio:
 
@@ -73,7 +73,7 @@ También existe un sitio de inicio para FastSitePHP que incluye varias páginas 
 <img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site" width="500">
 </p>
 
-## :page_facing_up: Código de ejemplo
+## 📄 Código de ejemplo
 
 ```php
 <?php
@@ -220,7 +220,7 @@ $app->mount('/examples', 'home-page-en-examples.php');
 $app->run();
 ```
 
-## :handshake: Contribuyendo
+## 🤝 Contribuyendo
 
 **Todas las contribuciones son bienvenidas.** Para cambios importantes, incluidas nuevas clases, cambios en el código existente, actualización de gráficos y archivos existentes, abra primero un problema para analizar qué le gustaría cambiar. Algunos ejemplos de artículos para contribuir:
 
@@ -233,7 +233,7 @@ $app->run();
 
 El archivo [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) contiene la lista completa de elementos que están actualmente pendientes y es un buen lugar para comenzar.
 
-## :question: Preguntas más frecuentes
+## ❓ Preguntas más frecuentes
 
 **¿Por qué se creó FastSitePHP?**
 
@@ -260,7 +260,7 @@ Para el sitio que se está desarrollando, el marco y los componentes se reemplaz
 
 Todas las versiones de PHP de 5.3 a 7.4.
 
-## :memo: Licencia
+## 📝 Licencia
 
 Este proyecto está licenciado bajo la **MIT License** - vea el archivo [LICENSE](LICENSE) para más detalles.
 

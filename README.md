@@ -2,7 +2,7 @@
 	<img width="500" src="docs/FastSitePHP.svg" alt="FastSitePHP">
 </p>
 
-# :star2: Welcome to FastSitePHP!
+# 🌟 Welcome to FastSitePHP!
 
 **Thanks for visiting!** 🌠👍
 
@@ -24,13 +24,13 @@
 	</tbody>
 </table>
 
-FastSitePHP is a modern open source Framework for building High Performance websites and API’s with PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is minimal in size so it quick to download and easy to get started. FastSitePHP was first published in November of 2019 however it was written and used over many years and is extremely stable containing a large number of unit tests.
+FastSitePHP is a modern open source Framework for building High Performance websites and API’s with PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is minimal in size so it quick to download and easy to get started. FastSitePHP was first published in November of 2019, and it was written and used over many years prior to its release. As of 2024 has been used in a variety of applications and websites and is extremely stable and contains many unit tests.
 
 This repository contains FastSitePHP’s Framework and main Website.
 
 FastSitePHP includes many Standalone Components that can be used without using the main Application object or Framework so it’s easy to use FastSitePHP with other PHP Frameworks or Projects.
 
-## :dizzy: Why use FastSitePHP?
+## 💫 Why use FastSitePHP?
 
 |<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Performance.svg" alt="Great Performance" width="60">|<img src="https://github.com/fastsitephp/fastsitephp/blob/master/website/public/img/icons/Lightswitch.svg" alt="Easy to setup and use" width="60">|
 |---|---|
@@ -40,7 +40,7 @@ FastSitePHP includes many Standalone Components that can be used without using t
 |---|---|
 |**Quick to learn and debug** FastSitePHP is well documented and comes with practical samples. FastSitePHP provides developer friendly error messages so that errors can be fixed quickly even if you have little or no experience programming with PHP.|**Strong Security** Security has been carefully planned in all features of FastSitePHP so that it is both secure and easy to work with. Security features include Encryption (text, objects, and files), Signed Cookies, JWT, CORS, Proxy Server Validation, Rate Limiting, and more.|
 
-## :rocket: Try it online!
+## 🚀 Try it online!
 
 The main site for FastSitePHP provides a Code Playground where you can develop with PHP, HTML, JavaScript, CSS, and more. There is nothing to install and you can work with PHP directly on a server. If you have never used PHP this is a great way to learn PHP.
 
@@ -50,7 +50,7 @@ The main site for FastSitePHP provides a Code Playground where you can develop w
 <img src="https://github.com/fastsitephp/static-files/raw/master/img/screenshots/Playground.png" alt="FastSitePHP Code Playground">
 </p>
 
-## :rocket: Getting Started
+## 🚀 Getting Started
 
 **Getting started with PHP and FastSitePHP is extremely easy.** If you do not have PHP installed then see instructions for Windows, Mac, and Linux on the getting started page:
 
@@ -91,7 +91,7 @@ A starter site for FastSitePHP also exists that includes several examples pages 
 <img src="https://github.com/fastsitephp/static-files/raw/master/img/starter_site/2020-01-10/home-page.png" alt="FastSitePHP Starter Site">
 </p>
 
-## :page_facing_up: Example Code
+## 📄 Example Code
 
 ```php
 <?php
@@ -233,7 +233,7 @@ $app->mount('/examples', 'home-page-en-examples.php');
 $app->run();
 ```
 
-## :handshake: Contributing
+## 🤝 Contributing
 
 **All contributions are welcome.** For major changes including new classes, breaking changes to existing code, updating existing graphics and files, please open an issue first to discuss what you would like to change. Some examples of items to contribute:
 
@@ -247,7 +247,7 @@ $app->run();
 
 The [docs/to-do-list.txt](https://github.com/fastsitephp/fastsitephp/blob/master/docs/to-do-list.txt) file contains the full list of items that are currently pending and is good place to start.
 
-## :question: FAQ
+## ❓ FAQ
 
 **Why was FastSitePHP Created?**
 
@@ -289,7 +289,7 @@ For example using a mock environment from CLI tests would often work because fil
 To run the tests start a web server and then open the file `tests/index.htm` with a web browser. The `tests` directory/folder can simply be copied to any server that supports PHP and you can run tests. If you are testing on a production server you should delete the `tests` directory after running tests.
 In the future additional documentation and print screens with more details and how to use will be provided.
 
-## :memo: License
+## 📝 License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
