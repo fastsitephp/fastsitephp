@@ -12,7 +12,7 @@ use FastSitePHP\FileSystem\Search;
  * Typically this will run from localhost at the following URL:
  * http://localhost:3000/fastsitephp/website/public/site/generate-sitemap
  * 
- * It will overwite the existing site [sitemap.xml] so it only needs 
+ * It will overwrite the existing site [sitemap.xml] so it only needs 
  * to run when new pages or translations are added.
  * 
  * To add a new language add it under the [$langs] array at line 34.
@@ -30,7 +30,7 @@ class Sitemap
         // Site Settings
         $host = 'https://www.fastsitephp.com';
         $urls = [];
-        // *** Add new lanauges here once the content is ready
+        // *** Add new languages here once the content is ready
         $langs = [
             'en',
             'pt-BR',
