@@ -24,7 +24,7 @@
 	</tbody>
 </table>
 
-FastSitePHP is a modern open source Framework for building High Performance websites and API’s with PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is minimal in size so it quick to download and easy to get started. FastSitePHP was first published in November of 2019, and it was written and used over many years prior to its release. As of 2024 has been used in a variety of applications and websites and is extremely stable and contains many unit tests.
+FastSitePHP is a modern open source Framework for building High Performance websites and API’s with PHP. FastSitePHP has been designed for fast performance, coding flexibility, long term stability, ease of use, and a better overall development experience. FastSitePHP is minimal in size so it quick to download and easy to get started. FastSitePHP was first published in November of 2019; and it was written and used over many years prior to its release. As of 2024 has been used in a variety of applications and websites and is extremely stable and contains many unit tests.
 
 This repository contains FastSitePHP’s Framework and main Website.
 
