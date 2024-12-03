@@ -444,6 +444,7 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
                     <option value="js" data-mode="text/javascript">JavaScript</option>
                     <option value="css" data-mode="text/css">CSS</option>
                     <option value="svg" data-mode="application/xml">SVG</option>
+                    <option value="txt" data-mode="text/plain">Text</option>
                 </select>
             </span>
             <span>

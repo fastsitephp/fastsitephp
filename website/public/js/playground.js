@@ -646,6 +646,8 @@
     function setupCodeMirror(mode) {
         if (mode === undefined) {
             mode = 'application/x-httpd-php';
+        } else if (mode === 'text/plain') {
+            mode = null;
         }
 
         var options = {
@@ -920,6 +922,9 @@
                 break;
             case 'svg':
                 mode = 'application/xml';
+                break;
+            case 'txt':
+                mode = 'text/plain';
                 break;
             default:
                 showError('Unknown file type, new file type not yet handled.');
