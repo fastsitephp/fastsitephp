@@ -138,11 +138,12 @@ $jshint_root = 'https://cdnjs.cloudflare.com/ajax/libs/jshint/2.10.2/';
         border-radius: 2em;
     }
 
-    .files ul li.php::before { content:'PHP'; background-color:#4F5B93; }
+    .files ul li.php::before { content:'php'; background-color:#4F5B93; }
     .files ul li.htm::before { content:'< >'; background-color:#e54c21; }
-    .files ul li.js::before { content:'JS'; background-color:#f7df1e; }
+    .files ul li.js::before { content:'js'; background-color:#f7df1e; }
     .files ul li.css::before { content:'{ }'; background-color:#214ce5; }
     .files ul li.svg::before { content:'○'; background-color:#ff9a00; }
+    .files ul li.txt::before { content:'TXT'; background-color:white; }
 
     .files ul li.active {
         background-color: #4F5B93;
